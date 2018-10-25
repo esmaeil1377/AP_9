@@ -10,21 +10,21 @@ public class RequestAnalyzer {
 
 
     //regex of commands
-    private static final String SeeScorestr = "See score";
-    private static final String SeeGillsstr = "See gills";
-    private static final String AddArmystr = "Add army \\d+";
-    private static final String AddBazarstr = "Add bazar \\d+";
-    private static final String AddBlockstr = "Add block";
-    private static final String AddHomestr = "Add home \\d+ \\d+ \\d+";
-    private static final String UpgradeItem = "UpgradeBlock \\d+ \\d+";
-    private static final String UpgradeBlock = "Upgrade \\d+";
-    private static final String UpgradeFloorUnit = "Upgrade \\d+ \\d+ floor unit";
-    private static final String RemoveUnit = "Upgrade \\d+ \\d+";
-    private static final String RemoveBlock = "Upgrade \\d+";
-    private static final String Attack= "Attack \\d+";
-    private static final String loot= "Loot \\d+";
-    private static final String Yield = "Yield";
-    private static final String Done = "Done";
+    private static final String SeeScorestr = "[S|s][E|e][E|e] [S|s][C|c][O|o][R|r][E|e]";
+    private static final String SeeGillsstr = "[S|s][E|e][E|e] [G|g][I|i][L|l][L|l][S|s]";
+    private static final String AddArmystr = "[A|a][D|d][D|d] [A|a][R|r][M|m][Y|y] \\d+";
+    private static final String AddBazarstr = "[A|a][D|d][D|d] [b|B][A|a][Z|z][A|a][R|r] \\d+";
+    private static final String AddBlockstr = "[A|a][D|d][D|d] [B|b][L|l][O|o][C|c][K|k]";
+    private static final String AddHomestr = "[A|a][D|d][D|d] [H|h][O|o][M|][M|m][E|e] \\d+ \\d+ \\d+";
+    private static final String UpgradeItem = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e][B|b][L|l][O|o][C|c][K|k] \\d+ \\d+";
+    private static final String UpgradeBlock = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e] \\d+";
+    private static final String UpgradeFloorUnit = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e] \\d+ \\d+ [F|f][L|l][O|o][O|o][R|r] [U|u][N|n][I|i][T|t]";
+    private static final String RemoveUnit = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e] \\d+ \\d+";
+    private static final String RemoveBlock = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e] \\d+";
+    private static final String Attack= "[A|a][T|t][T|t][A|a][C|c][K|k] \\d+";
+    private static final String loot= "[L|l][O|o][O|o][T|t] \\d+";
+    private static final String Yield = "[Y|y][I|i][E|e][L|l][D|d]";
+    private static final String Done = "[D|d][O|o][N|n][E|e]";
 
 
     public static Requests getRequest(String command){
