@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.InvalidInput;
-import Model.Requests;
-import Model.SeeGills;
-import Model.SeeScore;
+import Model.*;
 
 public class RequestAnalyzer {
 
@@ -19,7 +16,7 @@ public class RequestAnalyzer {
     private static final String AddBazarstr = "Add bazar [\\d+]";
     private static final String AddBlockstr = "Add block";
     private static final String AddHomestr = "Add home [\\d+] [\\d=] [\\d+]";
-    private static final String UpgradeItem = "Upgrade [\\d+] [\\d+]";
+    private static final String UpgradeItem = "UpgradeBlock [\\d+] [\\d+]";
     private static final String UpgradeBlock = "Upgrade [\\d+]";
     private static final String RemoveUnit = "Upgrade [\\d+] [\\d+]";
     private static final String RemoveBlock = "Upgrade [\\d+]";
@@ -37,26 +34,31 @@ public class RequestAnalyzer {
         }
         else if(command.matches(AddArmystr)){
             String[] params = command.split(" ");
-            return();
-
+            return(new AddArmy(Integer.valueOf(params[2])));
         }
         else if(command.matches(AddBazarstr)){
             String[] params = command.split(" ");
+            return(new AddBazar(Integer.valueOf(params[2])));
         }
         else if(command.matches(AddBlockstr)){
             String[] params = command.split(" ");
+            return(new AddBlock());
         }
         else if(command.matches(AddHomestr)){
             String[] params = command.split(" ");
+            return(new AddHome(Integer.valueOf(params[2]),Integer.valueOf(params[3]),Integer.valueOf(params[4])));
         }
         else if(command.matches(UpgradeBlock)){
             String[] params = command.split(" ");
+            return(new UpgradeBlock());
         }
         else if(command.matches(UpgradeItem)){
             String[] params = command.split(" ");
+            return(new UpgradeItem(Integer.valueOf(params[1]),Integer.valueOf(params[2])));
         }
         else if(command.matches(RemoveUnit)){
             String[] params = command.split(" ");
+            return(new RemoveBlock())
         }
         else if(command.matches(RemoveBlock)){
             String[] params = command.split(" ");
