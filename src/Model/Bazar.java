@@ -1,7 +1,7 @@
 package Model;
 
 public class Bazar {
-   public static int Level;
+   public static int Level = 1;
    public static int Id;
 
     public void setLevel(int level) {
@@ -12,7 +12,7 @@ public class Bazar {
         return Id;
     }
 
-    public void setId(int id) {
+    public static void setId(int id) {
         Id = id;
     }
 

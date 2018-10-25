@@ -12,6 +12,13 @@ public class AddBazar extends Requests {
     }
 
     public AddBazar(int blockId){
-        this.BlockId=blockId;
+        for(Block block:City.ArrayListblocks){
+            if(blockId == block.getId()){
+                Bazar bazar = new Bazar();
+                Bazar.setId(NextId());
+
+                block.getBazarArrayList().add(bazar);
+            }
+        }
     }
 }

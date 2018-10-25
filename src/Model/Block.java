@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Block {
-    private int Level;
+    private int Level = 1;
     private int Id;
     static ArrayList<Bazar> BazarArrayList;
     private ArrayList<Padafand> PadafandArrayList;

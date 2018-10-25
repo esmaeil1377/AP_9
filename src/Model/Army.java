@@ -1,7 +1,7 @@
 package Model;
 
 public class Army {
-   private int Level = 0;
+   private int Level = 1;
    private int Id;
 
     public void setLevel(int level) {
