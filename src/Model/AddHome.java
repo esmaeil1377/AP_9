@@ -18,6 +18,13 @@ public class AddHome extends Requests {
     }
 
     public AddHome(int blockid,int numberFloor,int numberUnit){
-
+        for(Block block:City.ArrayListblocks){
+            if(blockid==block.getId()){
+                House house=new House();
+                house.setId(NextId());
+                for()
+                block.getHouseArrayList().add(house);
+            }
+        }
     }
 }

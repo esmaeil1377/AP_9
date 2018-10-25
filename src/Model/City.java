@@ -19,4 +19,7 @@ public class City {
         return(Score);
     }
 
+    public static ArrayList<Block> getArrayListblocks() {
+        return ArrayListblocks;
+    }
 }
