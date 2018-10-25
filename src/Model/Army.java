@@ -4,6 +4,7 @@ public class Army {
    private float Level = 1;
    private int Id;
    private static int NumberOf=0;
+    public static float LevelOfAttak = 0;
 
     public void setNumberOf(int numberOf) {
         NumberOf = numberOf;
@@ -29,7 +30,8 @@ public class Army {
     public int getId() {
         return Id;
     }
-    public static float LevelOfAttak = 0;
+
+
     public static float levelOfAttak() {
         for (Block block : City.ArrayListblocks) {
 
@@ -45,16 +47,12 @@ public class Army {
                         LevelOfAttak = (float) (army.getNumberOf() * (0.8));
                     if (army.getLevel() == 5)
                         LevelOfAttak = (float) (army.getNumberOf() * (1));
-
                 }
-
-
             }
         }
         return LevelOfAttak;
     }
 
     public void Loot(int BlockId1){
-
     }
 }

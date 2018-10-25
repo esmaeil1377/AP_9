@@ -12,4 +12,12 @@ public class Floor {
    public static ArrayList<Unit> getArrayListunits() {
       return ArrayListunits;
    }
+
+   public void AddUnitArrayList(Unit unit){
+      ArrayListunits.add(unit);
+   }
+
+   public void RemoveArrayList(Unit unit){
+      ArrayListunits.remove(unit);
+   }
 }

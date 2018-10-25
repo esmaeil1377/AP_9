@@ -18,10 +18,10 @@ public class AddBazar extends Requests {
             if(blockId == block.getId()){
                 Bazar bazar = new Bazar();
                 Bazar.setId(NextId.NextId());
-
-                block.getBazarArrayList().add(bazar);
+                block.AddtoBazarArray(bazar);
                 User.setGills(User.getGills() - 6000);
                 block.setScoreForPersons(bazar);
+                break;
             }
         }
 

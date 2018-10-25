@@ -28,14 +28,15 @@ public class AddHome extends Requests {
                     Floor floor=new Floor();
                     for(int j=0;j<numberUnit;j++){
                         Unit unit=new Unit();
-                        floor.getArrayListunits().add(unit);
-
-                    house.getArrayListFloors().add(floor);
+                        floor.AddUnitArrayList(unit);
                     }
+                        house.AddFloorArrayList(floor);
                 }
-                block.getHouseArrayList().add(house);
+                block.AddtoHouseArray(house);
                 User.setGills(User.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
+                break;
             }
+
         }
     }
 }

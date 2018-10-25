@@ -14,6 +14,14 @@ public class Unit {
         return personArrayList;
     }
 
+    public void AddPersonArrayList(Person person){
+        personArrayList.add(person);
+    }
+
+    public void RemovePersonArrayList(Person person){
+        personArrayList.remove(person);
+    }
+
     public int getPerson() {
         return person;
     }

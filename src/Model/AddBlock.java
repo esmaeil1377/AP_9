@@ -1,6 +1,8 @@
 package Model;
 
 import static Model.Done.User;
+import static Model.Done.user1;
+import static Model.Done.user2;
 
 public class AddBlock extends Requests {
     private int BlockId;
@@ -16,7 +18,12 @@ public class AddBlock extends Requests {
     public AddBlock(){
         Block block = new Block();
         block.setId(NextId.NextId());
-        City.ArrayListblocks.add(block);
-        User.setGills(User.getScore() - 1000);
-    }
-}
+        if(User.equals(user1)){
+            user1.city1.AddBlockArrayList(block);
+            User.setGills(User.getScore() - 1000);
+        }
+        else{
+            user2.city2.AddBlockArrayList(block);
+            User.setGills(User.getScore() - 1000);
+        }
+}}

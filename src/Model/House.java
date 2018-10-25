@@ -31,5 +31,13 @@ public class House {
         return ArrayListFloors;
     }
 
+    public void AddFloorArrayList(Floor floor){
+        ArrayListFloors.add(floor);
+    }
+
+    public void RemoveFloorArrayList(Floor floor){
+        ArrayListFloors.remove(floor);
+    }
+
 
 }

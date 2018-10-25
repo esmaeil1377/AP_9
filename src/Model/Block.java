@@ -11,6 +11,38 @@ public class Block {
     public static ArrayList<Army> ArmyArrayList;
 
 
+    public void AddtoHouseArray(House house){
+    HouseArrayList.add(house);}
+
+    public void AddtoArmyArray(Army army){
+        ArmyArrayList.add(army);
+    }
+
+    public void AddtoBazarArray(Bazar bazar){
+        BazarArrayList.add(bazar);
+    }
+
+    public void AddtoPadafandArray(Padafand padafand){
+        PadafandArrayList.add(padafand);
+    }
+
+    public void RemoveHouseArray(House house){
+        HouseArrayList.remove(house);
+    }
+
+    public void RemoveBazarArray(Bazar bazar){
+        BazarArrayList.remove(bazar);
+    }
+
+    public void RemoveArmyArray(Army army){
+        ArmyArrayList.remove(army);
+    }
+
+    public void RemovePadafandArray(Padafand padafand){
+        PadafandArrayList.remove(padafand);
+    }
+
+
     public static void setArmyArrayList(ArrayList<Army> armyArrayList) {
         ArmyArrayList = armyArrayList;
     }

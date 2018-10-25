@@ -22,4 +22,12 @@ public class City {
     public static ArrayList<Block> getArrayListblocks() {
         return ArrayListblocks;
     }
+
+    public void AddBlockArrayList(Block block){
+        ArrayListblocks.add(block);
+    }
+
+    public void RemoveBlockArrayList(Block block){
+        ArrayListblocks.remove(block);
+    }
 }
