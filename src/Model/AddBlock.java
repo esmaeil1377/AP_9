@@ -11,9 +11,9 @@ public class AddBlock extends Requests {
         BlockId = blockId;
     }
 
-    public AddBlock(int blockId){
+    public AddBlock(){
         Block block = new Block();
-        block.setId(blockId);
+        block.setId(NextId.NextId());
         City.ArrayListblocks.add(block);
     }
 }
