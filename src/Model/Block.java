@@ -5,7 +5,6 @@ public class Block {
     private int Id;
     static Bazar [] BazarArrayList;
     private Padafand [] PadafandArrayList;
-    private static Gilgdoni Gigldini;
     public static House[] HouseArrayList;
 
     public void setBazarArrayList( Bazar [] bazarArrayList) {
@@ -40,29 +39,24 @@ public class Block {
         return Level;
     }
 
-    public static void setGigldini(Gilgdoni gigldini) {
-        Gigldini = gigldini;
-    }
-
-    public static double getPopulation(){
-        double Population=0;
+    public static double getScore(){
+        double Score=0;
         for(int i = 0;i<HouseArrayList.length;i++){
             for(int j =0; j<House.ArrayListFloors.length;j++){
 
                         House house=HouseArrayList[i];
                     Floor floor = House.ArrayListFloors[j];
-                      Population +=((floor.ArrayListunits).length) *5;
-
+                      Score +=((floor.ArrayListunits).length) *5;
                 }
 
             }
             if(Bazar.Level == 1)
-                Population *=1.2;
+                Score *=1.2;
             if(Bazar.Level == 2)
-                Population *=1.4;
+                Score *=1.4;
             if(Bazar.Level == 3)
-                Population *=1.6;
-        return(Population);
+                Score *=1.6;
+        return(Score);
     }
 
 }
