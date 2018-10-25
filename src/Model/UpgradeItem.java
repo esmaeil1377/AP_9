@@ -20,11 +20,6 @@ public class UpgradeItem extends Requests {
                     padafand.setLevel(padafand.getLevel()+1);
                 }
             }
-            for(House house:block.getHouseArrayList()){
-                if(house.getId()==unitId && block.getId()==blockId){
-                    block.getHouseArrayList().remove(house);
-                }
-            }
         }
 
     }
