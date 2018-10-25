@@ -19,5 +19,5 @@ public class Bazar {
     public int getLevel() {
         return Level;
     }
-    
+
 }
