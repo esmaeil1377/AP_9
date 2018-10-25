@@ -13,6 +13,13 @@ public class Done extends Requests {
             User=user1;
         }
 
+    }
 
+    public static void changeUser(){
+        if(User.equals(user1)){
+            User=user2;
+        }else{
+            User=user1;
+        }
     }
 }

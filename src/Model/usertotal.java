@@ -4,6 +4,8 @@ public class usertotal {
     private static int Score;
     private static int Gills = 30000;
     private int UserId;
+
+
     public static int getScore() {
         return Score;
     }

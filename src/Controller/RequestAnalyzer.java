@@ -12,15 +12,17 @@ public class RequestAnalyzer {
     //regex of commands
     private static final String SeeScorestr = "See score";
     private static final String SeeGillsstr = "See gills";
-    private static final String AddArmystr = "Add army [\\d+]";
-    private static final String AddBazarstr = "Add bazar [\\d+]";
+    private static final String AddArmystr = "Add army \\d+";
+    private static final String AddBazarstr = "Add bazar \\d+";
     private static final String AddBlockstr = "Add block";
-    private static final String AddHomestr = "Add home [\\d+] [\\d=] [\\d+]";
-    private static final String UpgradeItem = "UpgradeBlock [\\d+] [\\d+]";
-    private static final String UpgradeBlock = "Upgrade [\\d+]";
-    private static final String UpgradeFloorUnit = "Upgrade [\\d+] [\\d+] floor unit";
-    private static final String RemoveUnit = "Upgrade [\\d+] [\\d+]";
-    private static final String RemoveBlock = "Upgrade [\\d+]";
+    private static final String AddHomestr = "Add home \\d+ \\d+ \\d+";
+    private static final String UpgradeItem = "UpgradeBlock \\d+ \\d+";
+    private static final String UpgradeBlock = "Upgrade \\d+";
+    private static final String UpgradeFloorUnit = "Upgrade \\d+ \\d+ floor unit";
+    private static final String RemoveUnit = "Upgrade \\d+ \\d+";
+    private static final String RemoveBlock = "Upgrade \\d+";
+    private static final String Attack= "Attack \\d+";
+    private static final String loot= "Loot \\d+";
     private static final String Yield = "Yield";
     private static final String Done = "Done";
 
@@ -73,6 +75,14 @@ public class RequestAnalyzer {
             String[] params = command.split(" ");
             return(new Done());
         }else if (command.matches(UpgradeFloorUnit)){
+            String[] params = command.split(" ");
+            return (new UpgradeFloorUnit(Integer.valueOf(params[1]) , Integer.valueOf(params[2])));
+        }
+        else if (command.matches(UpgradeFloorUnit)){
+            String[] params = command.split(" ");
+            return (new UpgradeFloorUnit(Integer.valueOf(params[1]) , Integer.valueOf(params[2])));
+        }
+        else if (command.matches(UpgradeFloorUnit)){
             String[] params = command.split(" ");
             return (new UpgradeFloorUnit(Integer.valueOf(params[1]) , Integer.valueOf(params[2])));
         }

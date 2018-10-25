@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Block {
     private static int Level = 1;
     private static int Id;
-    static ArrayList<Bazar> BazarArrayList;
+    public static ArrayList<Bazar> BazarArrayList;
     public static ArrayList<Padafand> PadafandArrayList;
     private static ArrayList<House> HouseArrayList;
     public static ArrayList<Army> ArmyArrayList;
@@ -31,7 +31,7 @@ public class Block {
         BazarArrayList = bazarArrayList;
     }
 
-    public ArrayList<Bazar> getBazarArrayList() {
+    public static ArrayList<Bazar> getBazarArrayList() {
         return BazarArrayList;
     }
 
@@ -39,7 +39,7 @@ public class Block {
         PadafandArrayList = padafandArrayList;
     }
 
-    public  ArrayList<Padafand> getPadafandArrayList() {
+    public  static ArrayList<Padafand> getPadafandArrayList() {
         return PadafandArrayList;
     }
 

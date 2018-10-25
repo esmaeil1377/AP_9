@@ -4,6 +4,9 @@ public class User1 extends usertotal {
     private static int Score;
     private static int Gills = 30000;
     private int UserId;
+    public City city1=new City();
+
+
     public static int getScore() {
         return Score;
     }
