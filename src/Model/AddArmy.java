@@ -1,26 +1,13 @@
 package Model;
 
-public class AddArmy extends Requests{
-    String item;
-    int NumberFloor;
-    int NumberUnit;
+public class AddArmy extends Requests {
     int BlockId;
 
-    public void setItem(String item) {
-        this.item = item;
+    public AddArmy(int blockId){
+        this.BlockId=blockId;
+
     }
 
-    public String getItem() {
-        return item;
-    }
-
-    public void setNumberFloor(int numberFloor) {
-        NumberFloor = numberFloor;
-    }
-
-    public int getNumberFloor() {
-        return NumberFloor;
-    }
 
     public void setBlockId(int blockId) {
         BlockId = blockId;
@@ -30,11 +17,4 @@ public class AddArmy extends Requests{
         return BlockId;
     }
 
-    public void setNumberUnit(int numberUnit) {
-        NumberUnit = numberUnit;
-    }
-
-    public int getNumberUnit() {
-        return NumberUnit;
-    }
 }

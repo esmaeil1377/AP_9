@@ -1,7 +1,7 @@
 package Model;
 
 public class Bazar {
-   private int Level;
+   private static int Level;
    private int Id;
 
     public void setLevel(int level) {
