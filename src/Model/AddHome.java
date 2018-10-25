@@ -22,7 +22,14 @@ public class AddHome extends Requests {
             if(blockid==block.getId()){
                 House house=new House();
                 house.setId(NextId());
-                for()
+                for(int i=0;i<numberFloor;i++){
+                    Floor floor=new Floor();
+                    for(int j=0;j<numberUnit;j++){
+                        Unit unit=new Unit();
+                        floor.getArrayListunits().add(unit);
+                    }
+                    house.getArrayListFloors().add()
+                }
                 block.getHouseArrayList().add(house);
             }
         }
