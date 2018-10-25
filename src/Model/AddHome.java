@@ -21,7 +21,7 @@ public class AddHome extends Requests {
         for(Block block:City.ArrayListblocks){
             if(blockid==block.getId()){
                 House house=new House();
-                house.setId(NextId());
+                house.setId(NextId.NextId());
                 for(int i=0;i<numberFloor;i++){
                     Floor floor=new Floor();
                     for(int j=0;j<numberUnit;j++){

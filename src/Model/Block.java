@@ -60,12 +60,9 @@ public class Block {
 
     public static double getScore(){
         double Score=0;
-        for(int i = 0;i<HouseArrayList.length;i++){
-            for(int j =0; j<House.ArrayListFloors.length;j++){
-
-                        House house=HouseArrayList[i];
-                    Floor floor = House.ArrayListFloors[j];
-                      Score +=(floor.ArrayListunits.length) *5;
+        for(House house:Block.getHouseArrayList()){
+            for(Floor floor:house.getArrayListFloors()){
+                      Score +=(floor.ArrayListunits.size()) *5;
                 }
 
             }
