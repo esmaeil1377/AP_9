@@ -2,5 +2,7 @@ package Model;
 
 public class RemoveUnit extends Requests {
 
-    public RemoveUnit(int )
+    public RemoveUnit(int blockid,int unitId){
+
+    }
 }
