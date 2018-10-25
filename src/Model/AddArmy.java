@@ -10,6 +10,7 @@ public class AddArmy extends Requests {
                 army.setId(NextId.NextId());
                 block.getArmyArrayList().add(army);
                 User.setGills(User.getGills() - 15000);
+                army.setNumberOf(army.getNumberOf()+100);
             }
         }
     }
