@@ -6,9 +6,9 @@ public class Block {
     private static int Level = 1;
     private static int Id;
     static ArrayList<Bazar> BazarArrayList;
-    private ArrayList<Padafand> PadafandArrayList;
+    public static ArrayList<Padafand> PadafandArrayList;
     private static ArrayList<House> HouseArrayList;
-    private static ArrayList<Army> ArmyArrayList;
+    public static ArrayList<Army> ArmyArrayList;
 
 
     public static void setArmyArrayList(ArrayList<Army> armyArrayList) {
@@ -65,6 +65,7 @@ public class Block {
             for(Floor floor:house.getArrayListFloors()){
                 Pupulation +=(floor.ArrayListunits.size()) *5;
                 }
+
 
             }
 

@@ -29,4 +29,33 @@ public class Padafand {
     public int getLevel() {
         return level;
     }
+    public static float LevelOfDefense = 0;
+
+
+    public static float levelOfDefense(int BlockId) {
+        for (Block block : City.ArrayListblocks) {
+
+            if (block.getId() == BlockId) {
+        if (block.PadafandArrayList.size() == 1) {
+            for (Padafand padafand : block.PadafandArrayList) {
+                if (padafand.getLevel() == 1)
+                    LevelOfDefense = (float) (padafand.getNumofperson() * (0.2));
+                if (padafand.getLevel() == 2)
+                    LevelOfDefense = (float) (padafand.getNumofperson() * (0.4));
+                if (padafand.getLevel() == 3)
+                    LevelOfDefense = (float) (padafand.getNumofperson() * (0.6));
+                if (padafand.getLevel() == 4)
+                    LevelOfDefense = (float) (padafand.getNumofperson() * (0.8));
+                if (padafand.getLevel() == 5)
+                    LevelOfDefense = (float) (padafand.getNumofperson() * (1));
+
+            }
+
+
+        }
+        }
+
+    }
+        return LevelOfDefense;
+}
 }
