@@ -2,8 +2,7 @@ package Model;
 
 public class User {
     private int Score;
-    private int Gills;
-
+    private int Gills = 30000;
     public int getScore() {
         return Score;
     }

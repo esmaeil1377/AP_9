@@ -50,29 +50,31 @@ public class RequestAnalyzer {
         }
         else if(command.matches(UpgradeBlock)){
             String[] params = command.split(" ");
-            return(new UpgradeBlock());
+            return(new UpgradeBlock(Integer.valueOf(params[1])));
         }
         else if(command.matches(UpgradeItem)){
             String[] params = command.split(" ");
             return(new UpgradeItem(Integer.valueOf(params[1]),Integer.valueOf(params[2])));
         }
-        else if(command.matches(RemoveUnit)){
-            String[] params = command.split(" ");
-            return(new RemoveBlock())
-        }
         else if(command.matches(RemoveBlock)){
             String[] params = command.split(" ");
+            return(new RemoveBlock(Integer.valueOf(params[1])));
+        }
+        else if(command.matches(RemoveUnit)){
+            String[] params = command.split(" ");
+            return(new RemoveUnit(Integer.valueOf(params[1]),Integer.valueOf(params[2])));
         }
         else if(command.matches(Yield)){
             String[] params = command.split(" ");
+            return(new Yield());
         }
         else if(command.matches(Done)){
             String[] params = command.split(" ");
+            return(new Done());
         }
         else{
             return(new InvalidInput());
         }
-        return(null);
     }
 
 }
