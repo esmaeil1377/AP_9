@@ -1,8 +1,8 @@
 package Model;
 
 public class User {
-    int Score;
-    int Gills;
+    private int Score;
+    private int Gills;
 
     public int getScore() {
         return Score;
