@@ -45,7 +45,7 @@ public class Padafand {
             }
         } else {
             for (Block block : user2.city2.ArrayListblocks) {
-                CheckLevelOf(BlockId, block);Nex
+                CheckLevelOf(BlockId, block);
             }
         }
         return LevelOfDefense;
