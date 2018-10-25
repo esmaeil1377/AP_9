@@ -60,8 +60,11 @@ public class Block {
 
     public static double getScore(){
         double Score=0;
-        for(House house:HouseArrayList){
-            for(Floor floor:house.ArrayListFloors){
+        for(int i = 0;i<HouseArrayList.length;i++){
+            for(int j =0; j<House.ArrayListFloors.length;j++){
+
+                        House house=HouseArrayList[i];
+                    Floor floor = House.ArrayListFloors[j];
                       Score +=(floor.ArrayListunits.length) *5;
                 }
 
@@ -74,7 +77,5 @@ public class Block {
                 Score *=1.6;
         return(Score);
     }
-
-
 
 }
