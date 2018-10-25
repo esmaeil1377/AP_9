@@ -50,7 +50,7 @@ public class RequestAnalyzer {
         }
         else if(command.matches(UpgradeBlock)){
             String[] params = command.split(" ");
-            return(new UpgradeBlock());
+            return(new UpgradeBlock(Integer.valueOf(params[1])));
         }
         else if(command.matches(UpgradeItem)){
             String[] params = command.split(" ");
