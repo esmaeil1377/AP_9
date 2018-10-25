@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class View {
     private static Scanner input = new Scanner(System.in);
 
-    public void getCommand()
+    public static String getCommand()
     {
          String Console;
          Console = input.nextLine();
-         RequestAnalyzer.getRequest(Console);
+         return(Console);
     }
 }

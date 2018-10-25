@@ -2,7 +2,7 @@ package Model;
 
 import static Model.Done.User;
 
-public class AddDefense {
+public class AddDefense extends Requests{
 
 
     public AddDefense(int blockId){

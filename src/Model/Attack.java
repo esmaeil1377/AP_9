@@ -22,7 +22,6 @@ public class Attack extends Requests {
                        //libkjv
                     }
                     else{
-
             }
         }
     }
