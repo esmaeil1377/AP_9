@@ -9,9 +9,9 @@ public class AddArmy extends Requests {
                 Army army = new Army();
                 army.setId(NextId.NextId());
                 block.getArmyArrayList().add(army);
+                User.setGills(User.getGills() - 15000);
             }
         }
-
     }
 
 

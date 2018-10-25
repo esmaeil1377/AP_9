@@ -32,6 +32,7 @@ public class AddHome extends Requests {
                     }
                 }
                 block.getHouseArrayList().add(house);
+                User.setGills(User.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
             }
         }
     }

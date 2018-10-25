@@ -3,19 +3,22 @@ package Model;
 public class User {
     private int Score;
     private int Gills = 30000;
-    public int getScore() {
+    private int UserId;
+    public static int getScore() {
         return Score;
     }
 
-    public void setScore(int score) {
+    public static void setScore(int score) {
         Score = score;
     }
 
-    public int getGills() {
+    public static int getGills() {
         return Gills;
     }
 
-    public void setGills(int gills) {
+    public static void setGills(int gills) {
         Gills = gills;
     }
+
+
 }

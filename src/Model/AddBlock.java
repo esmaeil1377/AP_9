@@ -15,5 +15,6 @@ public class AddBlock extends Requests {
         Block block = new Block();
         block.setId(NextId.NextId());
         City.ArrayListblocks.add(block);
+        User.setGills(User.getScore() - 1000);
     }
 }

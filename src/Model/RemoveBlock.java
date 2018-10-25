@@ -6,8 +6,9 @@ public class RemoveBlock extends Requests {
         for(Block block:City.ArrayListblocks){
             if(block.getId()==blockid){
                 City.ArrayListblocks.remove(block);
+                User.setGills(User.getGills() + 10000);
             }
         }
-        }
     }
+}
 

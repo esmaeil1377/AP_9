@@ -18,6 +18,7 @@ public class AddBazar extends Requests {
                 Bazar.setId(NextId.NextId());
 
                 block.getBazarArrayList().add(bazar);
+                User.setGills(User.getGills() - 6000);
             }
         }
     }
