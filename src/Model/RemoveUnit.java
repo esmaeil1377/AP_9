@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
+import static Model.Done.User;
 
 public class RemoveUnit extends Requests {
 

@@ -1,5 +1,7 @@
 package Model;
 
+import static Model.Done.User;
+
 public class UpgradeItem extends Requests {
 
     public UpgradeItem(int blockId,int unitId){
@@ -8,6 +10,7 @@ public class UpgradeItem extends Requests {
                 if(bazar.getId()==unitId && block.getId()==blockId){
                     bazar.setLevel(bazar.getLevel()+1);
                     User.setGills(User.getGills() - (bazar.getLevel() + 1) * 5000);
+                    block.setScoreForPersons(bazar);
                 }
             }
             for(Army army:block.getArmyArrayList()){

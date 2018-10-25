@@ -30,4 +30,6 @@ public class House {
     public static ArrayList<Floor> getArrayListFloors() {
         return ArrayListFloors;
     }
+
+
 }

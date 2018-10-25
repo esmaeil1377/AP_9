@@ -11,13 +11,13 @@ public class City {
         ArrayListblocks = arrayListblocks;
     }
 
-    public static int getBlockScore(){
-        int Score=0;
-        for(Block i:ArrayListblocks){
-            Score+=i.getScore();
-        }
-        return(Score);
-    }
+//    public static int getBlockScore(){
+//        int Score=0;
+//        for(Block i:ArrayListblocks){
+//            Score+=i.getScore();
+//        }
+//        return(Score);
+//    }
 
     public static ArrayList<Block> getArrayListblocks() {
         return ArrayListblocks;

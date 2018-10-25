@@ -59,8 +59,8 @@ public class Block {
         return Level;
     }
 
-    public static double getPupulation(){
-        double Pupulation =0;
+    public static int getPupulation(){
+        int Pupulation =0;
         for(House house:Block.getHouseArrayList()){
             for(Floor floor:house.getArrayListFloors()){
                 Pupulation +=(floor.ArrayListunits.size()) *5;
@@ -72,6 +72,39 @@ public class Block {
         return(Pupulation);
     }
 
+
+
+    public static void setScoreForPersons(Bazar bazar ){
+        for(House house:Block.getHouseArrayList()){
+            for(Floor floor:house.getArrayListFloors()){
+                for(Unit unit:floor.getArrayListunits()){
+                   for(Person person:unit.getPersonArrayList()){
+                          person.setPersonScore((float)(person.getPersonScore()*(1+(bazar.getLevel()*(0.2)))));
+                   }
+                   }
+
+        }
+    }
+            }
+
+
+
+
+
+    public static int getٍEmployedNum(){
+        int employedpeple=0;
+        for(Bazar bazar:Block.getBazarArrayList()){
+            int lev=bazar.getLevel();
+            employedpeple+=50+(lev-1)*20;
+        }
+        for(Army army:Block.getArmyArrayList()){
+            employedpeple+=100+(army.getLevel()-1)*10;
+        }
+        for(Padafand padafand:Block.getPadafandArrayList()){
+            employedpeple+=30;
+        }
+        return(employedpeple);
+    }
 
 
 }
