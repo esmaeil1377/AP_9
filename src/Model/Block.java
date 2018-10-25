@@ -96,10 +96,10 @@ public class Block {
         for(House house:Block.getHouseArrayList()){
             for(Floor floor:house.getArrayListFloors()){
                 Pupulation +=(floor.ArrayListunits.size()) *5;
-                }
-
-
             }
+
+
+        }
 
         return(Pupulation);
     }
@@ -110,14 +110,14 @@ public class Block {
         for(House house:Block.getHouseArrayList()){
             for(Floor floor:house.getArrayListFloors()){
                 for(Unit unit:floor.getArrayListunits()){
-                   for(Person person:unit.getPersonArrayList()){
-                          person.setPersonScore((float)(person.getPersonScore()*(1+(bazar.getLevel()*(0.2)))));
-                   }
-                   }
+                    for(Person person:unit.getPersonArrayList()){
+                        person.setPersonScore((float)(person.getPersonScore()*(1+(bazar.getLevel()*(0.2)))));
+                    }
+                }
 
+            }
         }
     }
-            }
 
 
 
