@@ -92,18 +92,18 @@ public class Block {
 
 
     public static int getٍEmployedNum(){
-        int employedpeple=0;
+        int employedpeople=0;
         for(Bazar bazar:Block.getBazarArrayList()){
             int lev=bazar.getLevel();
-            employedpeple+=50+(lev-1)*20;
+            employedpeople+=50+(lev-1)*20;
         }
         for(Army army:Block.getArmyArrayList()){
-            employedpeple+=100+(army.getLevel()-1)*10;
+            employedpeople+=100+(army.getLevel()-1)*10;
         }
         for(Padafand padafand:Block.getPadafandArrayList()){
-            employedpeple+=30;
+            employedpeople+=30;
         }
-        return(employedpeple);
+        return(employedpeople);
     }
 
 
