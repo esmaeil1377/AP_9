@@ -1,14 +1,17 @@
 package View;
 
+import Controller.RequestAnalyzer;
 import java.util.Scanner;
+
+
 
 public class View {
     private static Scanner input = new Scanner(System.in);
 
-    public String getCommand() {
-        return input.nextLine();
+    public void getCommand()
+    {
+         String Console;
+         Console = input.nextLine();
+         RequestAnalyzer.getRequest(Console);
     }
-
-
-
 }
