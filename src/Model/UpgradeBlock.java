@@ -1,5 +1,7 @@
 package Model;
 
+import static Model.Done.User;
+
 public class UpgradeBlock extends Requests {
         private String Blockid;
 

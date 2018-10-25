@@ -1,5 +1,7 @@
 package Model;
 
+import static Model.Done.User;
+
 public class AddBazar extends Requests {
     private int BlockId;
 
@@ -20,6 +22,8 @@ public class AddBazar extends Requests {
                 block.getBazarArrayList().add(bazar);
                 User.setGills(User.getGills() - 6000);
             }
+            block.setScoreForPersons();
         }
+
     }
 }

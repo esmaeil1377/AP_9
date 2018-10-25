@@ -1,8 +1,8 @@
 package Model;
 
-public class User {
-    private int Score;
-    private int Gills = 30000;
+public class User2 extends usertotal {
+    private static int Score;
+    private static int Gills = 30000;
     private int UserId;
     public static int getScore() {
         return Score;
@@ -19,6 +19,4 @@ public class User {
     public static void setGills(int gills) {
         Gills = gills;
     }
-
-
 }

@@ -1,5 +1,7 @@
 package Model;
 
+import static Model.Done.User;
+
 public class AddHome extends Requests {
     private int BlockId;
     private int NumberFloor;

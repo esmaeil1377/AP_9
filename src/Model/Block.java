@@ -6,7 +6,7 @@ public class Block {
     private static int Level = 1;
     private static int Id;
     static ArrayList<Bazar> BazarArrayList;
-    private ArrayList<Padafand> PadafandArrayList;
+    private static ArrayList<Padafand> PadafandArrayList;
     private static ArrayList<House> HouseArrayList;
     private static ArrayList<Army> ArmyArrayList;
 
@@ -31,7 +31,7 @@ public class Block {
         BazarArrayList = bazarArrayList;
     }
 
-    public ArrayList<Bazar> getBazarArrayList() {
+    public static ArrayList<Bazar> getBazarArrayList() {
         return BazarArrayList;
     }
 
@@ -39,7 +39,7 @@ public class Block {
         PadafandArrayList = padafandArrayList;
     }
 
-    public  ArrayList<Padafand> getPadafandArrayList() {
+    public  static ArrayList<Padafand> getPadafandArrayList() {
         return PadafandArrayList;
     }
 
@@ -59,18 +59,56 @@ public class Block {
         return Level;
     }
 
-    public static double getPupulation(){
-        double Pupulation =0;
+    public static int getPupulation(){
+        int Pupulation =0;
         for(House house:Block.getHouseArrayList()){
             for(Floor floor:house.getArrayListFloors()){
                 Pupulation +=(floor.ArrayListunits.size()) *5;
                 }
-
             }
 
         return(Pupulation);
     }
 
+
+
+    public static void setScoreForPersons(){
+
+        for(Bazar bazar:Block.getBazarArrayList()){
+            int a=0;
+            int tedadaemplyedbyBazar=50+(bazar.getLevel()-1)*20;
+        for(House house:Block.getHouseArrayList()){
+            for(Floor floor:house.getArrayListFloors()){
+                for(Unit unit:floor.getArrayListunits()){
+                   for(Person person:unit.getPersonArrayList()){
+                       if(a<tedadaemplyedbyBazar){
+                       if(person.getPersonScore()==1){
+                          person.setPersonScore(1+(float)(bazar.getLevel()*(0.2)));
+                   }
+                   }
+
+        }
+    }
+            }
+        }
+        }
+    }
+
+
+    public static int getٍEmployedNum(){
+        int employedpeple=0;
+        for(Bazar bazar:Block.getBazarArrayList()){
+            int lev=bazar.getLevel();
+            employedpeple+=50+(lev-1)*20;
+        }
+        for(Army army:Block.getArmyArrayList()){
+            employedpeple+=100+(army.getLevel()-1)*10;
+        }
+        for(Padafand padafand:Block.getPadafandArrayList()){
+            employedpeple+=30;
+        }
+        return(employedpeple);
+    }
 
 
 }
