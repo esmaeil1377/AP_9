@@ -2,7 +2,7 @@ package Model;
 
 public class Padafand {
     private int Id;
-    private int level = 0;
+    private int level = 1;
 
     public void setId(int id) {
         Id = id;
