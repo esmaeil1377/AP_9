@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import Model.Block.*;
 
 public class City {
     public static  ArrayList<Block> ArrayListblocks;
@@ -12,7 +13,9 @@ public class City {
 
     public static int getBlockScore(){
         int Score=0;
-        for(int i=0<ArrayListBlocks.length();i++){
+        for(Block i:ArrayListblocks){
+            Score+=i.Block.getBlockScore();
+        }
     }
 
 }
