@@ -1,6 +1,6 @@
 package Model;
 
-public class UpgradeFloorUnit {
+public class UpgradeFloorUnit extends Requests{
 
 
     public UpgradeFloorUnit(int blockId,int unitId){

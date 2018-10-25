@@ -18,6 +18,7 @@ public class RequestAnalyzer {
     private static final String AddHomestr = "Add home [\\d+] [\\d=] [\\d+]";
     private static final String UpgradeItem = "UpgradeBlock [\\d+] [\\d+]";
     private static final String UpgradeBlock = "Upgrade [\\d+]";
+    private static final String UpgradeFloorUnit = "Upgrade [\\d+] [\\d+] floor unit";
     private static final String RemoveUnit = "Upgrade [\\d+] [\\d+]";
     private static final String RemoveBlock = "Upgrade [\\d+]";
     private static final String Yield = "Yield";
@@ -71,6 +72,9 @@ public class RequestAnalyzer {
         else if(command.matches(Done)){
             String[] params = command.split(" ");
             return(new Done());
+        }else if (command.matches(UpgradeFloorUnit)){
+            String[] params = command.split(" ");
+            return (new UpgradeFloorUnit(Integer.valueOf(params[1]) , Integer.valueOf(params[2])));
         }
         else{
             return(new InvalidInput());
