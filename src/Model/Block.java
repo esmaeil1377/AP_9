@@ -1,26 +1,27 @@
 package Model;
-
+import java.lang.*;
 import java.util.ArrayList;
 
 public class Block {
     private int Level;
     private int Id;
-    private ArrayList<Bazar> BazarArrayList;
-    private ArrayList<Padafand> PadafandArrayList;
+    static Bazar [] BazarArrayList;
+    private Padafand [] PadafandArrayList;
+    private static Gilgdoni Gigldini;
 
-    public void setBazarArrayList(ArrayList<Bazar> bazarArrayList) {
+    public void setBazarArrayList( Bazar [] bazarArrayList) {
         BazarArrayList = bazarArrayList;
     }
 
-    public ArrayList<Bazar> getBazarArrayList() {
+    public Bazar [] getBazarArrayList() {
         return BazarArrayList;
     }
 
-    public void setPadafandArrayList(ArrayList<Padafand> padafandArrayList) {
+    public void setPadafandArrayList( Padafand [] padafandArrayList) {
         PadafandArrayList = padafandArrayList;
     }
 
-    public ArrayList<Padafand> getPadafandArrayList() {
+    public  Padafand [] getPadafandArrayList() {
         return PadafandArrayList;
     }
 
@@ -40,4 +41,14 @@ public class Block {
         return Level;
     }
 
+    public static void setGigldini(Gilgdoni gigldini) {
+        Gigldini = gigldini;
+    }
+
+    public static int getPopulation(){
+        for(int i = 0;i<Gilgdoni.HouseArrayList.length;i++){
+
+        }
+        return()
+    }
 }
