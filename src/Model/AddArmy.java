@@ -1,6 +1,6 @@
 package Model;
 
-public class Add extends Requests{
+public class AddArmy extends Requests{
     String item;
     int NumberFloor;
     int NumberUnit;
