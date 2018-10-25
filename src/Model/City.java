@@ -14,8 +14,9 @@ public class City {
     public static int getBlockScore(){
         int Score=0;
         for(Block i:ArrayListblocks){
-            Score+=i.Block.getBlockScore();
+            Score+=i.getScore();
         }
+        return(Score);
     }
 
 }

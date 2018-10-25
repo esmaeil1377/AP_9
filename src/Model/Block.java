@@ -6,6 +6,7 @@ public class Block {
     static Bazar [] BazarArrayList;
     private Padafand [] PadafandArrayList;
     public static House[] HouseArrayList;
+    public static A
 
     public void setBazarArrayList( Bazar [] bazarArrayList) {
         BazarArrayList = bazarArrayList;
