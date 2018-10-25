@@ -5,6 +5,5 @@ public class NotPossible extends Requests {
 
 
     public NotPossible(){
-
     }
 }
