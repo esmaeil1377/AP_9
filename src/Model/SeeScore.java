@@ -8,6 +8,7 @@ public class SeeScore extends Requests {
     }
 
     public static int getScore() {
+
         return Score;
     }
 }
