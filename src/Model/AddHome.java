@@ -27,8 +27,9 @@ public class AddHome extends Requests {
                     for(int j=0;j<numberUnit;j++){
                         Unit unit=new Unit();
                         floor.getArrayListunits().add(unit);
+
+                    house.getArrayListFloors().add(floor);
                     }
-                    house.getArrayListFloors().add()
                 }
                 block.getHouseArrayList().add(house);
             }
