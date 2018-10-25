@@ -1,12 +1,13 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Block {
     private int Level;
-    private int Id;
+    private static int Id;
     static Bazar [] BazarArrayList;
     private Padafand [] PadafandArrayList;
     public static House[] HouseArrayList;
-    public static A
 
     public void setBazarArrayList( Bazar [] bazarArrayList) {
         BazarArrayList = bazarArrayList;
