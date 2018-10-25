@@ -15,7 +15,7 @@ public class AddBazar extends Requests {
         for(Block block:City.ArrayListblocks){
             if(blockId == block.getId()){
                 Bazar bazar = new Bazar();
-                Bazar.setId(NextId());
+                Bazar.setId(NextId.NextId());
 
                 block.getBazarArrayList().add(bazar);
             }

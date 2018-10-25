@@ -4,7 +4,13 @@ public class AddArmy extends Requests {
     int BlockId;
 
     public AddArmy(int blockId){
-        this.BlockId=blockId;
+        for(Block block:City.ArrayListblocks){
+            if(blockId == block.getId()){
+                Army army = new Army();
+                army.setId(NextId.NextId());
+                block.getArmyArrayList().add(army);
+            }
+        }
 
     }
 
