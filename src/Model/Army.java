@@ -53,6 +53,4 @@ public class Army {
         return LevelOfAttak;
     }
 
-    public void Loot(int BlockId1){
-    }
 }
