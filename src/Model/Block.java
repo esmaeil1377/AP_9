@@ -1,27 +1,26 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Block {
     private int Level;
     private int Id;
-    private int Capacity = 15;
-    private ArrayList<Bazar> BazarArrayList;
-    private ArrayList<Padafand> PadafandArrayList;
+    static Bazar [] BazarArrayList;
+    private Padafand [] PadafandArrayList;
+    private static Gilgdoni Gigldini;
+    public static House[] HouseArrayList;
 
-    public void setBazarArrayList(ArrayList<Bazar> bazarArrayList) {
+    public void setBazarArrayList( Bazar [] bazarArrayList) {
         BazarArrayList = bazarArrayList;
     }
 
-    public ArrayList<Bazar> getBazarArrayList() {
+    public Bazar [] getBazarArrayList() {
         return BazarArrayList;
     }
 
-    public void setPadafandArrayList(ArrayList<Padafand> padafandArrayList) {
+    public void setPadafandArrayList( Padafand [] padafandArrayList) {
         PadafandArrayList = padafandArrayList;
     }
 
-    public ArrayList<Padafand> getPadafandArrayList() {
+    public  Padafand [] getPadafandArrayList() {
         return PadafandArrayList;
     }
 
@@ -45,10 +44,25 @@ public class Block {
         Gigldini = gigldini;
     }
 
-    public static int getPopulation(){
-        for(int i = 0;i<Gilgdoni.HouseArrayList.length;i++){
+    public static double getPopulation(){
+        double Population=0;
+        for(int i = 0;i<HouseArrayList.length;i++){
+            for(int j =0; j<House.ArrayListFloors.length;j++){
 
-        }
-        return()
+                        House house=HouseArrayList[i];
+                    Floor floor = House.ArrayListFloors[j];
+                      Population +=((floor.ArrayListunits).length) *5;
+
+                }
+
+            }
+            if(Bazar.Level == 1)
+                Population *=1.2;
+            if(Bazar.Level == 2)
+                Population *=1.4;
+            if(Bazar.Level == 3)
+                Population *=1.6;
+        return(Population);
     }
+
 }
