@@ -13,6 +13,7 @@ public class UpgradeItem extends Requests {
             for(Army army:block.getArmyArrayList()){
                 if(army.getId()==unitId && block.getId()==blockId){
                     army.setLevel(army.getLevel()+1);
+                    army.setNumberOf(army.getNumberOf()+10);
                     User.setGills(User.getGills() - 20000);
                 }
             }
@@ -20,11 +21,6 @@ public class UpgradeItem extends Requests {
                 if(padafand.getId()==unitId && block.getId()==blockId){
                     padafand.setLevel(padafand.getLevel()+1);
                     User.setGills(User.getGills() - 5000);
-                }
-            }
-            for(House house:block.getHouseArrayList()){
-                if(house.getId()==unitId && block.getId()==blockId){
-                    block.getHouseArrayList().remove(house);
                 }
             }
         }
