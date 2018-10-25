@@ -1,6 +1,9 @@
 package Model;
 
+import static Model.Block.CalculaTedadItems;
 import static Model.Done.User;
+import static Model.Done.user1;
+import static Model.Done.user2;
 
 public class AddHome extends Requests {
     private int BlockId;
@@ -19,24 +22,53 @@ public class AddHome extends Requests {
         NumberUnit = numberUnit;
     }
 
-    public AddHome(int blockid,int numberFloor,int numberUnit){
-        for(Block block:City.ArrayListblocks){
-            if(blockid==block.getId()){
-                House house=new House();
-                house.setId(NextId.NextId());
-                for(int i=0;i<numberFloor;i++){
-                    Floor floor=new Floor();
-                    for(int j=0;j<numberUnit;j++){
-                        Unit unit=new Unit();
-                        floor.AddUnitArrayList(unit);
+    public AddHome(int blockid, int numberFloor, int numberUnit) {
+        if (User.equals(user1)) {
+            for (Block block : user1.city1.ArrayListblocks) {
+                if (blockid == block.getId()) {
+                    if (CalculaTedadItems(block) < block.getLevel()) {
+                        House house = new House();
+                        house.setId(NextId.NextId());
+                        for (int i = 0; i < numberFloor; i++) {
+                            Floor floor = new Floor();
+                            for (int j = 0; j < numberUnit; j++) {
+                                Unit unit = new Unit();
+                                floor.AddUnitArrayList(unit);
+                            }
+                            house.AddFloorArrayList(floor);
+                        }
+                        block.AddtoHouseArray(house);
+                        user1.setGills(user1.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
+                        break;
+                    } else {
+                        NotPossible notPossible = new NotPossible();
                     }
-                        house.AddFloorArrayList(floor);
-                }
-                block.AddtoHouseArray(house);
-                User.setGills(User.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
-                break;
-            }
 
+                }
+            }
+        } else {
+            for (Block block : user2.city2.ArrayListblocks) {
+                if (blockid == block.getId()) {
+                    if (CalculaTedadItems(block) < block.getLevel()) {
+                        House house = new House();
+                        house.setId(NextId.NextId());
+                        for (int i = 0; i < numberFloor; i++) {
+                            Floor floor = new Floor();
+                            for (int j = 0; j < numberUnit; j++) {
+                                Unit unit = new Unit();
+                                floor.AddUnitArrayList(unit);
+                            }
+                            house.AddFloorArrayList(floor);
+                        }
+                        block.AddtoHouseArray(house);
+                        user2.setGills(user2.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
+                        break;
+                    } else {
+                        NotPossible notPossible = new NotPossible();
+                    }
+
+                }
+            }
         }
     }
 }

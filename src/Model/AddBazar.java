@@ -1,6 +1,9 @@
 package Model;
 
+import static Model.Block.CalculaTedadItems;
 import static Model.Done.User;
+import static Model.Done.user1;
+import static Model.Done.user2;
 
 public class AddBazar extends Requests {
     private int BlockId;
@@ -13,18 +16,39 @@ public class AddBazar extends Requests {
         return BlockId;
     }
 
-    public AddBazar(int blockId){
-        for(Block block:City.ArrayListblocks){
-            if(blockId == block.getId()){
-                Bazar bazar = new Bazar();
-                Bazar.setId(NextId.NextId());
-                block.AddtoBazarArray(bazar);
-                User.setGills(User.getGills() - 6000);
-                block.setScoreForPersons(bazar);
-                break;
+    public AddBazar(int blockId) {
+        if (User.equals(user1)) {
+            for (Block block : user1.city1.ArrayListblocks) {
+                if (blockId == block.getId()) {
+                    if (CalculaTedadItems(block) < block.getLevel()) {
+                        Bazar bazar = new Bazar();
+                        Bazar.setId(NextId.NextId());
+                        block.AddtoBazarArray(bazar);
+                        user1.setGills(user1.getGills() - 6000);
+                        block.setScoreForPersonsForAddingBazar(bazar);
+                        break;
+                    } else {
+                        NotPossible notPossible = new NotPossible();
+                    }
+                }
+            }
+        } else {
+            for (Block block : user2.city2.ArrayListblocks) {
+                if (blockId == block.getId()) {
+                    if (CalculaTedadItems(block) < block.getLevel()) {
+                        Bazar bazar = new Bazar();
+                        Bazar.setId(NextId.NextId());
+                        block.AddtoBazarArray(bazar);
+                        user2.setGills(user2.getGills() - 6000);
+                        block.setScoreForPersonsForAddingBazar(bazar);
+                        break;
+                    } else {
+                        NotPossible notPossible = new NotPossible();
+                    }
+                }
+
+
             }
         }
-
-
     }
 }

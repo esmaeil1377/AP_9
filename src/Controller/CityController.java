@@ -9,7 +9,7 @@ import static View.View.getCommand;
 public class CityController {
 
 
-    public void lookingForCommand(){
+    public static void lookingForCommand(){
         while(getCommand()!="Yield"){
             Requests request=getRequest(getCommand());
 

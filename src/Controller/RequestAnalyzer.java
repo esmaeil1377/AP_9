@@ -87,7 +87,7 @@ public class RequestAnalyzer {
             return (new UpgradeFloorUnit(Integer.valueOf(params[1]) , Integer.valueOf(params[2])));
         }
         else{
-            return(new InvalidInput());
+            return(new NotPossible());
         }
     }
 

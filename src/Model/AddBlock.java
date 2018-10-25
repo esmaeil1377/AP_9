@@ -15,15 +15,15 @@ public class AddBlock extends Requests {
         BlockId = blockId;
     }
 
-    public AddBlock(){
+    public AddBlock() {
         Block block = new Block();
         block.setId(NextId.NextId());
-        if(User.equals(user1)){
+        if (User.equals(user1)) {
             user1.city1.AddBlockArrayList(block);
             User.setGills(User.getScore() - 1000);
-        }
-        else{
+        } else {
             user2.city2.AddBlockArrayList(block);
             User.setGills(User.getScore() - 1000);
         }
-}}
+    }
+}

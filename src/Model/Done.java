@@ -7,18 +7,11 @@ public class Done extends Requests {
 
     public void Done(){
         if(User.equals(user1)){
+            user1.setAfterDayGills();
             User=user2;
         }
         else{
-            User=user1;
-        }
-
-    }
-
-    public static void changeUser(){
-        if(User.equals(user1)){
-            User=user2;
-        }else{
+            user2.setAfterDayGills();
             User=user1;
         }
     }

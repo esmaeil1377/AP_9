@@ -1,14 +1,18 @@
 package Model;
 
-public class SeeGills extends Requests {
-    private static int Gills;
+import static Model.Done.User;
+import static Model.Done.user1;
+import static Model.Done.user2;
 
-    public static void setGills(int gills) {
-        Gills = gills;
-    }
+public class SeeGills extends Requests {
+
 
     public static int getGills() {
-        return Gills;
+        if (User.equals(user1)) {
+            return user1.AfterDayGills;
+        } else {
+            return user2.AfterDayGills;
+        }
     }
 }
 

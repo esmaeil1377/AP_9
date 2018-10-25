@@ -10,6 +10,15 @@ public class Block {
     private static ArrayList<House> HouseArrayList;
     public static ArrayList<Army> ArmyArrayList;
 
+    public static int CalculaTedadItems(Block block){
+        int out=0;
+        out+=block.getBazarArrayList().size();
+        out+=block.getPadafandArrayList().size();
+        out+=block.getHouseArrayList().size();
+        out+=block.getArmyArrayList().size();
+        return(out);
+    }
+
 
     public void AddtoHouseArray(House house){
     HouseArrayList.add(house);}
@@ -106,12 +115,26 @@ public class Block {
 
 
 
-    public static void setScoreForPersons(Bazar bazar ){
+    public static void setScoreForPersonsForAddingBazar(Bazar bazar ){
         for(House house:Block.getHouseArrayList()){
             for(Floor floor:house.getArrayListFloors()){
                 for(Unit unit:floor.getArrayListunits()){
                     for(Person person:unit.getPersonArrayList()){
                         person.setPersonScore((float)(person.getPersonScore()*(1+(bazar.getLevel()*(0.2)))));
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    public void setScoreForPersonsForRemovingBazar(Bazar bazar ){
+        for(House house:Block.getHouseArrayList()){
+            for(Floor floor:house.getArrayListFloors()){
+                for(Unit unit:floor.getArrayListunits()){
+                    for(Person person:unit.getPersonArrayList()){
+                        person.setPersonScore((float)(person.getPersonScore()/(1+(bazar.getLevel()*(0.2)))));
                     }
                 }
 
