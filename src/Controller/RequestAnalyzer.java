@@ -24,7 +24,7 @@ public class RequestAnalyzer {
     private static final String Done = "Done";
 
 
-    public Requests getRequest(String command){
+    public static Requests getRequest(String command){
         if(command.matches(SeeScorestr)){
             return(new SeeScore());
         }
