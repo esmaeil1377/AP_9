@@ -12,6 +12,7 @@ public class UpgradeItem extends Requests {
             for(Army army:block.getArmyArrayList()){
                 if(army.getId()==unitId && block.getId()==blockId){
                     army.setLevel(army.getLevel()+1);
+                    army.setNumberOf(army.getNumberOf()+10);
                 }
             }
             for(Padafand padafand:block.getPadafandArrayList()){

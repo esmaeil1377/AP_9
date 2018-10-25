@@ -3,8 +3,8 @@ package Model;
 import java.util.ArrayList;
 
 public class Block {
-    private int Level = 1;
-    private int Id;
+    private static int Level = 1;
+    private static int Id;
     static ArrayList<Bazar> BazarArrayList;
     private ArrayList<Padafand> PadafandArrayList;
     private static ArrayList<House> HouseArrayList;
