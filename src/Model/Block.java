@@ -72,27 +72,21 @@ public class Block {
 
 
 
-    public static void setScoreForPersons(){
-
-        for(Bazar bazar:Block.getBazarArrayList()){
-            int a=0;
-            int tedadaemplyedbyBazar=50+(bazar.getLevel()-1)*20;
+    public static void setScoreForPersons(Bazar bazar ){
         for(House house:Block.getHouseArrayList()){
             for(Floor floor:house.getArrayListFloors()){
                 for(Unit unit:floor.getArrayListunits()){
                    for(Person person:unit.getPersonArrayList()){
-                       if(a<tedadaemplyedbyBazar){
-                       if(person.getPersonScore()==1){
-                          person.setPersonScore(1+(float)(bazar.getLevel()*(0.2)));
+                          person.setPersonScore((float)(person.getPersonScore()*(1+(bazar.getLevel()*(0.2)))));
                    }
                    }
 
         }
     }
             }
-        }
-        }
-    }
+
+
+
 
 
     public static int getٍEmployedNum(){

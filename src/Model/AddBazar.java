@@ -21,9 +21,10 @@ public class AddBazar extends Requests {
 
                 block.getBazarArrayList().add(bazar);
                 User.setGills(User.getGills() - 6000);
+                block.setScoreForPersons(bazar);
             }
-            block.setScoreForPersons();
         }
+
 
     }
 }
