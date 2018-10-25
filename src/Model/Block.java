@@ -58,21 +58,16 @@ public class Block {
         return Level;
     }
 
-    public static double getScore(){
-        double Score=0;
+    public static double getPupulation(){
+        double Pupulation =0;
         for(House house:Block.getHouseArrayList()){
             for(Floor floor:house.getArrayListFloors()){
-                      Score +=(floor.ArrayListunits.size()) *5;
+                Pupulation +=(floor.ArrayListunits.size()) *5;
                 }
 
             }
-            if(Bazar.Level == 1)
-                Score *=1.2;
-            if(Bazar.Level == 2)
-                Score *=1.4;
-            if(Bazar.Level == 3)
-                Score *=1.6;
-        return(Score);
+
+        return(Pupulation);
     }
 
 }
