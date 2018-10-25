@@ -2,6 +2,7 @@ package Controller;
 
 import Model.InvalidInput;
 import Model.Requests;
+import Model.See;
 
 public class RequestAnalyzer {
 
@@ -27,7 +28,8 @@ public class RequestAnalyzer {
 
     public Requests getRequest(String command){
         if(command.matches(SeeScorestr)){
-
+            String[] params = command.split(" ");
+            return(new See());
         }
         else if(command.matches(SeeGillsstr)){
             String[] params = command.split(" ");
