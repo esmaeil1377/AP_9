@@ -1,8 +1,8 @@
 package Model;
 
 public class Bazar {
-   private static int Level;
-   private int Id;
+   public static int Level;
+   public static int Id;
 
     public void setLevel(int level) {
         Level = level;

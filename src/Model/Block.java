@@ -46,7 +46,7 @@ public class Block {
 
                         House house=HouseArrayList[i];
                     Floor floor = House.ArrayListFloors[j];
-                      Score +=((floor.ArrayListunits).length) *5;
+                      Score +=(floor.ArrayListunits.length) *5;
                 }
 
             }

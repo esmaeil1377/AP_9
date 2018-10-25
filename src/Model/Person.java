@@ -5,5 +5,5 @@ import Model.Block.*;
 
 
 public class Person {
-    private float PersonScore=1;
+    private float PersonScore = 1;
 }
