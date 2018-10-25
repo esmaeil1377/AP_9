@@ -10,6 +10,7 @@ public class Block {
     private static ArrayList<House> HouseArrayList;
     private static ArrayList<Army> ArmyArrayList;
 
+
     public static void setArmyArrayList(ArrayList<Army> armyArrayList) {
         ArmyArrayList = armyArrayList;
     }
@@ -42,19 +43,19 @@ public class Block {
         return PadafandArrayList;
     }
 
-    public void setLevel(int level) {
+    public static void setLevel(int level) {
         Level = level;
     }
 
-    public int getId() {
+    public static int getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public static void setId(int id) {
         Id = id;
     }
 
-    public int getLevel() {
+    public static int getLevel() {
         return Level;
     }
 

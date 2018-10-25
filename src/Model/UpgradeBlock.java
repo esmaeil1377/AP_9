@@ -8,7 +8,7 @@ public class UpgradeBlock extends Requests {
             for(Block block:City.ArrayListblocks){
                 if(block.getId()==blockId){
                     block.setLevel(block.getLevel()+1);
-                    User.setGills(User.getGills() );
+                    User.setGills(User.getGills() - (int) Math.pow((double) 500 ,(double) block.getLevel()));
                 }
             }
         }
