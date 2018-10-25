@@ -1,6 +1,6 @@
 package Model;
 
-public class UpgradeFloorUnit extends Requests{
+public class UpgradeFloorUnit extends Requests {
 
 
     public UpgradeFloorUnit(int blockId,int unitId){
@@ -9,11 +9,19 @@ public class UpgradeFloorUnit extends Requests{
                 for(House house:block.getHouseArrayList()){
                     if(house.getId()==unitId){
                         Floor floor=new Floor();
-                        for(int i=0;i< ;i++){
+                        int tedadUnitdarfloor=0;
+                        for(Floor floor2:house.getArrayListFloors()){
+                            tedadUnitdarfloor=floor2.getArrayListunits().size();
+                        break;}
+                        for(Floor floor3:house.getArrayListFloors()){
                             Unit unit=new Unit();
                             floor.getArrayListunits().add(unit);
                         }
-                        for(Floor floor1:house.getArrayListFloors()){
+                        for(int i=0;i<tedadUnitdarfloor+1;i++){
+                            Unit unit=new Unit();
+                            floor.getArrayListunits().add(unit);
+                        }
+                        house.getArrayListFloors().add(floor);
 
                         }
                     }
@@ -21,4 +29,4 @@ public class UpgradeFloorUnit extends Requests{
             }
         }
     }
-}
+

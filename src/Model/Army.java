@@ -1,14 +1,23 @@
 package Model;
 
 public class Army {
-   private int Level = 1;
+   private float Level =(float)0.2;
    private int Id;
+   private int NumberOf=0;
 
-    public void setLevel(int level) {
+    public void setNumberOf(int numberOf) {
+        NumberOf = numberOf;
+    }
+
+    public int getNumberOf() {
+        return NumberOf;
+    }
+
+    public void setLevel(float level) {
         Level = level;
     }
 
-    public int getLevel() {
+    public float getLevel() {
         return Level;
     }
 
