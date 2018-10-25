@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Block {
-    private int Level = 0;
+    private int Level;
     private int Id;
     private int Capacity = 15;
     private ArrayList<Bazar> BazarArrayList;
@@ -41,4 +41,14 @@ public class Block {
         return Level;
     }
 
+    public static void setGigldini(Gilgdoni gigldini) {
+        Gigldini = gigldini;
+    }
+
+    public static int getPopulation(){
+        for(int i = 0;i<Gilgdoni.HouseArrayList.length;i++){
+
+        }
+        return()
+    }
 }
