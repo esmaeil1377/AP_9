@@ -9,6 +9,7 @@ public class Block {
     public static ArrayList<Padafand> PadafandArrayList;
     private static ArrayList<House> HouseArrayList;
     public static ArrayList<Army> ArmyArrayList;
+    public NextId NextUnitId=new NextId();
 
     public static int CalculaTedadItems(Block block){
         int out=0;

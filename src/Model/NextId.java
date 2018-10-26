@@ -3,11 +3,12 @@ package Model;
 import java.util.ArrayList;
 
 public class NextId {
-    private static int NextId = 0;
+    private static int NextId= 0;
     private static ArrayList<Integer> IdsList;
 
     public static int NextId(){
         NextId++;
+        System.out.println(NextId);
         if(!(IdsList.contains(NextId))) {
             IdsList.add(NextId);
             return NextId;

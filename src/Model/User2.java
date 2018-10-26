@@ -1,7 +1,7 @@
 package Model;
 
 public class User2 extends usertotal {
-    private static int Score;
+    public static int Score;
     private static int Gills = 30000;
     public static int AfterDayGills=30000;
     private int UserId;

@@ -7,11 +7,11 @@ import static Model.Done.user2;
 public class SeeGills extends Requests {
 
 
-    public static int getGills() {
+    public static void getGills() {
         if (User.equals(user1)) {
-            return user1.AfterDayGills;
+            View.View.AddtoOutPut(String.valueOf(user1.AfterDayGills));
         } else {
-            return user2.AfterDayGills;
+            View.View.AddtoOutPut(String.valueOf(user2.AfterDayGills));
         }
     }
 }

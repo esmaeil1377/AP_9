@@ -6,7 +6,7 @@ import Model.Block.*;
 public class City {
     public static  ArrayList<Block> ArrayListblocks;
     private Army army;
-    public NextId nextid=new NextId();
+    public static NextId NextBlockId=new NextId();
 
     public void setArrayListblocks(ArrayList<Block> arrayListblocks) {
         ArrayListblocks = arrayListblocks;

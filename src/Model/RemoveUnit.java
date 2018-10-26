@@ -12,32 +12,32 @@ public class RemoveUnit extends Requests {
                 for (Bazar bazar : block.getBazarArrayList()) {
                     if (bazar.getId() == unitId && block.getId() == blockid) {
                         block.RemoveBazarArray(bazar);
-                        if (unitId == user1.city1.nextid.getNextId()) {
-                            user1.city1.nextid.setNextId(unitId - 1);
+                        if (unitId == block.NextUnitId.getNextId()) {
+                            block.NextUnitId.setNextId(unitId - 1);
                             user1.setGills(user1.getGills() + 500);
                         }
                     }
                     for (Army army : block.getArmyArrayList()) {
                         if (army.getId() == unitId && block.getId() == blockid) {
                             block.RemoveArmyArray(army);
-                            if (unitId == user1.city1.nextid.getNextId()) {
-                                user1.city1.nextid.setNextId(unitId - 1);
+                            if (unitId == block.NextUnitId.getNextId()) {
+                                block.NextUnitId.setNextId(unitId - 1);
                                 user1.setGills(user1.getGills() + 10000);
                             }
                         }
                         for (Padafand padafand : block.getPadafandArrayList()) {
                             if (padafand.getId() == unitId && block.getId() == blockid) {
                                 block.RemovePadafandArray(padafand);
-                                if (unitId == user1.city1.nextid.getNextId()) {
-                                    user1.city1.nextid.setNextId(unitId - 1);
+                                if (unitId == block.NextUnitId.getNextId()) {
+                                    block.NextUnitId.setNextId(unitId - 1);
                                     user1.setGills(user1.getGills() + 10000);
                                 }
                             }
                             for (House house : block.getHouseArrayList()) {
                                 if (house.getId() == unitId && block.getId() == blockid) {
                                     block.RemoveHouseArray(house);
-                                    if (unitId == user1.city1.nextid.getNextId()) {
-                                        user1.city1.nextid.setNextId(unitId - 1);
+                                    if (unitId == block.NextUnitId.getNextId()) {
+                                        block.NextUnitId.setNextId(unitId - 1);
                                     }
                                 }
                             }
@@ -50,8 +50,8 @@ public class RemoveUnit extends Requests {
                 for (Bazar bazar : block.getBazarArrayList()) {
                     if (bazar.getId() == unitId && block.getId() == blockid) {
                         block.RemoveBazarArray(bazar);
-                        if (unitId == user2.city2.nextid.getNextId()) {
-                            user2.city2.nextid.setNextId(unitId - 1);
+                        if (unitId == block.NextUnitId.getNextId()) {
+                            block.NextUnitId.setNextId(unitId - 1);
                             user2.setGills(user2.getGills() + 500);
                             block.setScoreForPersonsForRemovingBazar(bazar);
                         }
@@ -59,24 +59,24 @@ public class RemoveUnit extends Requests {
                     for (Army army : block.getArmyArrayList()) {
                         if (army.getId() == unitId && block.getId() == blockid) {
                             block.RemoveArmyArray(army);
-                            if (unitId == user2.city2.nextid.getNextId()) {
-                                user2.city2.nextid.setNextId(unitId - 1);
+                            if (unitId == block.NextUnitId.getNextId()) {
+                                block.NextUnitId.setNextId(unitId - 1);
                                 user2.setGills(user2.getGills() + 10000);
                             }
                         }
                         for (Padafand padafand : block.getPadafandArrayList()) {
                             if (padafand.getId() == unitId && block.getId() == blockid) {
                                 block.RemovePadafandArray(padafand);
-                                if (unitId == user2.city2.nextid.getNextId()) {
-                                    user2.city2.nextid.setNextId(unitId - 1);
+                                if (unitId == block.NextUnitId.getNextId()) {
+                                    block.NextUnitId.setNextId(unitId - 1);
                                     user2.setGills(user2.getGills() + 10000);
                                 }
                             }
                             for (House house : block.getHouseArrayList()) {
                                 if (house.getId() == unitId && block.getId() == blockid) {
                                     block.RemoveHouseArray(house);
-                                    if (unitId == user2.city2.nextid.getNextId()) {
-                                        user2.city2.nextid.setNextId(unitId - 1);
+                                    if (unitId == block.NextUnitId.getNextId()) {
+                                        block.NextUnitId.setNextId(unitId - 1);
                                     }
                                 }
                             }

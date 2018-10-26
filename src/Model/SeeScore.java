@@ -6,12 +6,12 @@ import static Model.Done.user2;
 
 public class SeeScore extends Requests {
 
-    public static int getScore() {
+    public static void getScore() {
         if(User.equals(user1)) {
-            return user1.getScore();
+            View.View.AddtoOutPut(String.valueOf(user1.Score));
         }
         else{
-            return(user2.getScore());
+            View.View.AddtoOutPut(String.valueOf(user2.Score));
         }
     }
 }

@@ -4,6 +4,7 @@ import static Model.Block.CalculaTedadItems;
 import static Model.Done.User;
 import static Model.Done.user1;
 import static Model.Done.user2;
+import static View.View.*;
 
 public class AddArmy extends Requests {
     int BlockId;
@@ -14,6 +15,9 @@ public class AddArmy extends Requests {
                 if (blockId == block.getId()) {
                     if (CalculaTedadItems(block) < block.getLevel()) {
                         Army army = new Army();
+                        int armyid=block.NextUnitId.NextId();
+                        AddtoOutPut(String.valueOf(armyid));
+                        army.setId(armyid);
                         army.setId(NextId.NextId());
                         army.setNumberOf(army.getNumberOf() + 100);
                         block.AddtoArmyArray(army);
@@ -29,7 +33,9 @@ public class AddArmy extends Requests {
                 if (blockId == block.getId()) {
                     if (CalculaTedadItems(block) < block.getLevel()) {
                         Army army = new Army();
-                        army.setId(NextId.NextId());
+                        int armyid=block.NextUnitId.NextId();
+                        AddtoOutPut(String.valueOf(armyid));
+                        army.setId(armyid);
                         army.setNumberOf(army.getNumberOf() + 100);
                         block.AddtoArmyArray(army);
                         user2.setGills(user2.getGills() - 15000);

@@ -3,6 +3,7 @@ package Model;
 import static Model.Done.User;
 import static Model.Done.user1;
 import static Model.Done.user2;
+import static View.View.AddtoOutPut;
 
 public class AddBlock extends Requests {
     private int BlockId;
@@ -16,8 +17,11 @@ public class AddBlock extends Requests {
     }
 
     public AddBlock() {
+        System.out.println("hello");
         Block block = new Block();
-        block.setId(NextId.NextId());
+        int blockid=City.NextBlockId.NextId();
+        AddtoOutPut(String.valueOf(blockid));
+        block.setId(blockid);
         if (User.equals(user1)) {
             user1.city1.AddBlockArrayList(block);
             User.setGills(User.getScore() - 1000);

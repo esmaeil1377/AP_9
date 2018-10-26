@@ -4,6 +4,7 @@ import static Model.Block.CalculaTedadItems;
 import static Model.Done.User;
 import static Model.Done.user1;
 import static Model.Done.user2;
+import static View.View.AddtoOutPut;
 
 public class AddHome extends Requests {
     private int BlockId;
@@ -28,7 +29,9 @@ public class AddHome extends Requests {
                 if (blockid == block.getId()) {
                     if (CalculaTedadItems(block) < block.getLevel()) {
                         House house = new House();
-                        house.setId(NextId.NextId());
+                        int houseid=block.NextUnitId.NextId();
+                        AddtoOutPut(String.valueOf(houseid));
+                        house.setId(houseid);
                         for (int i = 0; i < numberFloor; i++) {
                             Floor floor = new Floor();
                             for (int j = 0; j < numberUnit; j++) {
@@ -51,7 +54,9 @@ public class AddHome extends Requests {
                 if (blockid == block.getId()) {
                     if (CalculaTedadItems(block) < block.getLevel()) {
                         House house = new House();
-                        house.setId(NextId.NextId());
+                        int houseid=block.NextUnitId.NextId();
+                        AddtoOutPut(String.valueOf(houseid));
+                        house.setId(houseid);
                         for (int i = 0; i < numberFloor; i++) {
                             Floor floor = new Floor();
                             for (int j = 0; j < numberUnit; j++) {

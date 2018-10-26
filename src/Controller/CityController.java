@@ -10,8 +10,12 @@ public class CityController {
 
 
     public static void lookingForCommand(){
-        while(getCommand()!="Yield"){
+
+        while(true){
             Requests request=getRequest(getCommand());
+            if(!(getCommand().matches("[Y|y][I|i][E|e][L|l][D|d]"))){
+                break;
+            }
 
         }
     }
