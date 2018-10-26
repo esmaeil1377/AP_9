@@ -11,6 +11,7 @@ public class Block {
     public static ArrayList<Army> ArmyArrayList=new ArrayList<>();
     public NextitemId NextUnitId=new NextitemId();
 
+
     public static int CalculaTedadItems(Block block){
         int out=0;
         out+=(block.getBazarArrayList(block).size());

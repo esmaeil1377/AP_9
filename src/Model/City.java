@@ -10,6 +10,7 @@ public class City {
     private Army army;
     public static NextblockId NextBlockId=new NextblockId();
 
+
     public void setArrayListblocks(ArrayList<Block> arrayListblocks) {
         ArrayListblocks = arrayListblocks;
     }

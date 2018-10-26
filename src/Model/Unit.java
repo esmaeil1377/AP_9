@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Unit {
     private final int person = 5;
-    private ArrayList<Person> personArrayList;
+    private ArrayList<Person> personArrayList=new ArrayList<>();
 
     public void setPersonArrayList(ArrayList<Person> personArrayList) {
         this.personArrayList = personArrayList;
