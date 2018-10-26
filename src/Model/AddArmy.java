@@ -1,7 +1,6 @@
 package Model;
 
 import static Model.Block.CalculaTedadItems;
-import static Model.Done.User;
 import static Model.Done.user1;
 import static Model.Done.user2;
 import static View.View.*;
@@ -29,7 +28,7 @@ public class AddArmy extends Requests {
                             int armyid = block.NextUnitId.NextId();
                             AddtoOutPut(String.valueOf(armyid));
                             army.setId(armyid);
-                            army.setId(NextId.NextId());
+                            army.setId(NextitemId.NextId());
                             army.setNumberOf(army.getNumberOf() + 100);
                             block.AddtoArmyArray(army);
                             possible += 1;

@@ -22,9 +22,7 @@ public class View {
 
     public static String getCommand()
     {
-         String Console;
-         Console = input.nextLine();
-         return(Console);
+         return(input.nextLine());
     }
 
 

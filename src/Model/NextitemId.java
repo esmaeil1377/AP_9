@@ -2,13 +2,12 @@ package Model;
 
 import java.util.ArrayList;
 
-public class NextId {
+public class NextitemId {
     private static int NextId = 0;
     private static ArrayList<Integer> IdArrayList=new ArrayList<>();
 
     public static int NextId() {
         NextId++;
-        System.out.println(NextId);
         if (IdArrayList.size() != 0) {
             if (!(IdArrayList.contains(NextId))) {
                 IdArrayList.add(NextId);

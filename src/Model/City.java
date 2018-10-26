@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-import Model.Block.*;
 
 import static Model.Done.user1;
 import static Model.Done.user2;
@@ -9,7 +8,7 @@ import static Model.Done.user2;
 public class City {
     public static  ArrayList<Block> ArrayListblocks=new ArrayList<>();
     private Army army;
-    public static NextId NextBlockId=new NextId();
+    public static NextblockId NextBlockId=new NextblockId();
 
     public void setArrayListblocks(ArrayList<Block> arrayListblocks) {
         ArrayListblocks = arrayListblocks;

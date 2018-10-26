@@ -10,7 +10,7 @@ public class Loot extends Requests {
         for(Block block:user2.city2.ArrayListblocks){
             if(block.getId()==Blockid){
                 int itemofblock=0;
-                itemofblock+=block.getBazarArrayList().size();
+                itemofblock+=block.getBazarArrayList(block).size();
                 itemofblock+=block.getArmyArrayList().size();
                 itemofblock+=block.getHouseArrayList().size();
                 user1.setGills(User.getGills()+500*itemofblock);
@@ -21,7 +21,7 @@ public class Loot extends Requests {
         for(Block block:user1.city1.ArrayListblocks){
             if(block.getId()==Blockid){
                 int itemofblock=0;
-                itemofblock+=block.getBazarArrayList().size();
+                itemofblock+=block.getBazarArrayList(block).size();
                 itemofblock+=block.getArmyArrayList().size();
                 itemofblock+=block.getHouseArrayList().size();
                 user2.setGills(User.getGills()+500*itemofblock);

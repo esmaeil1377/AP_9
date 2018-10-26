@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class House {
-    public static ArrayList<Floor> ArrayListFloors;
+    public static ArrayList<Floor> ArrayListFloors=new ArrayList<>();
     private int Id;
     private int NumberFloor;
 

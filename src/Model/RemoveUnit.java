@@ -10,7 +10,7 @@ public class RemoveUnit extends Requests {
         int possible=0;
         if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
-                for (Bazar bazar : block.getBazarArrayList()) {
+                for (Bazar bazar : block.getBazarArrayList(block)) {
                     if (bazar.getId() == unitId && block.getId() == blockid) {
                         block.RemoveBazarArray(bazar);
                         possible+=1;
@@ -52,7 +52,7 @@ public class RemoveUnit extends Requests {
             }
         } else {
             for (Block block : user2.city2.ArrayListblocks) {
-                for (Bazar bazar : block.getBazarArrayList()) {
+                for (Bazar bazar : block.getBazarArrayList(block)) {
                     if (bazar.getId() == unitId && block.getId() == blockid) {
                         block.RemoveBazarArray(bazar);
                         possible+=1;

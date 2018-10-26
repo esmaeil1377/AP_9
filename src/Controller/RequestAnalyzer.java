@@ -1,12 +1,17 @@
 package Controller;
 
 import Model.*;
+import Model.Done.*;
+import View.View;
+
+import static Model.Done.*;
 
 public class RequestAnalyzer {
-
-
-    public static final String EXIT = "exit";
     private static RequestAnalyzer commandAnalyzer = new RequestAnalyzer();
+
+    public RequestAnalyzer getAnalyzerInstance(){
+        return(commandAnalyzer);
+    }
 
 
     //regex of commands
@@ -15,7 +20,7 @@ public class RequestAnalyzer {
     private static final String AddArmystr = "[A|a][D|d][D|d] [A|a][R|r][M|m][Y|y] \\d+";
     private static final String AddBazarstr = "[A|a][D|d][D|d] [b|B][A|a][Z|z][A|a][R|r] \\d+";
     private static final String AddBlockstr = "[A|a][D|d][D|d] [B|b][L|l][O|o][C|c][K|k]";
-    private static final String AddHomestr = "[A|a][D|d][D|d] [H|h][O|o][M|][M|m][E|e] \\d+ \\d+ \\d+";
+    private static final String AddHomestr = "[A|a][D|d][D|d] [H|h][O|o][M|m][E|e] \\d+ \\d+ \\d+";
     private static final String UpgradeItem = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e][B|b][L|l][O|o][C|c][K|k] \\d+ \\d+";
     private static final String UpgradeBlock = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e] \\d+";
     private static final String UpgradeFloorUnit = "[U|u][P|p][G|g][R|r][A|a][D|d][E|e] \\d+ \\d+ [F|f][L|l][O|o][O|o][R|r] [U|u][N|n][I|i][T|t]";
@@ -69,11 +74,11 @@ public class RequestAnalyzer {
         }
         else if(command.matches(Yield)){
             String[] params = command.split(" ");
-            return(new Yield());
+            return(Model.Yield.getYieldInstance());
         }
         else if(command.matches(Done)){
-            String[] params = command.split(" ");
-            return(new Done());
+            Model.Done.getDoneInstance().NextDay();
+            return(Model.Done.getDoneInstance());
         }else if (command.matches(UpgradeFloorUnit)){
             String[] params = command.split(" ");
             return (new UpgradeFloorUnit(Integer.valueOf(params[1]) , Integer.valueOf(params[2])));
@@ -87,6 +92,8 @@ public class RequestAnalyzer {
             return (new UpgradeFloorUnit(Integer.valueOf(params[1]) , Integer.valueOf(params[2])));
         }
         else{
+            System.out.println("dztjn");
+            View.AddtoOutPut("not possible");
             return(new NotPossible());
         }
     }

@@ -9,7 +9,7 @@ public class UpgradeItem extends Requests {
     public UpgradeItem(int blockId,int unitId){
         if(Done.getDay()%2==0){
             for(Block block:user1.city1.ArrayListblocks){
-                for(Bazar bazar:block.getBazarArrayList()){
+                for(Bazar bazar:block.getBazarArrayList(block)){
                     if(bazar.getId()==unitId && block.getId()==blockId){
                         bazar.setLevel(bazar.getLevel()+1);
                         user1.setGills(user1.getGills() - (bazar.getLevel() + 1) * 5000);
@@ -34,7 +34,7 @@ public class UpgradeItem extends Requests {
     }
     else{
             for(Block block:user2.city2.ArrayListblocks){
-                for(Bazar bazar:block.getBazarArrayList()){
+                for(Bazar bazar:block.getBazarArrayList(block)){
                     if(bazar.getId()==unitId && block.getId()==blockId){
                         bazar.setLevel(bazar.getLevel()+1);
                         user2.setGills(user2.getGills() - (bazar.getLevel() + 1) * 5000);

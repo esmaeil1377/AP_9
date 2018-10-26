@@ -46,7 +46,8 @@ public class AddHome extends Requests {
                         user1.setGills(user1.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
                         break;
                     } else {
-                        NotPossible notPossible = new NotPossible();
+                        System.out.println("xtj");
+                        View.View.AddtoOutPut("not possible");
                     }
 
                 }
@@ -72,13 +73,14 @@ public class AddHome extends Requests {
                         user2.setGills(user2.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
                         break;
                     } else {
-                        NotPossible notPossible = new NotPossible();
+                        View.View.AddtoOutPut("not possible");
                     }
 
                 }
             }
         }
         if(possible==0){
+            System.out.println("possible==0");
             View.View.AddtoOutPut("not possible");
         }
     }

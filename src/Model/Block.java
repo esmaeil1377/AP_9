@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Block {
     private static int Level = 1;
     private static int Id;
-    public static ArrayList<Bazar> BazarArrayList;
-    public static ArrayList<Padafand> PadafandArrayList;
-    private static ArrayList<House> HouseArrayList;
-    public static ArrayList<Army> ArmyArrayList;
-    public NextId NextUnitId=new NextId();
+    public static ArrayList<Bazar> BazarArrayList=new ArrayList<>();
+    public static ArrayList<Padafand> PadafandArrayList=new ArrayList<>();
+    private static ArrayList<House> HouseArrayList=new ArrayList<>();
+    public static ArrayList<Army> ArmyArrayList=new ArrayList<>();
+    public NextitemId NextUnitId=new NextitemId();
 
     public static int CalculaTedadItems(Block block){
         int out=0;
-        out+=block.getBazarArrayList().size();
+        out+=(block.getBazarArrayList(block).size());
         out+=block.getPadafandArrayList().size();
         out+=block.getHouseArrayList().size();
         out+=block.getArmyArrayList().size();
@@ -73,7 +73,7 @@ public class Block {
         BazarArrayList = bazarArrayList;
     }
 
-    public static ArrayList<Bazar> getBazarArrayList() {
+    public static ArrayList<Bazar> getBazarArrayList(Block block) {
         return BazarArrayList;
     }
 
@@ -147,9 +147,9 @@ public class Block {
 
 
 
-    public static int getٍEmployedNum(){
+    public static int getٍEmployedNum(Block block){
         int employedpeople=0;
-        for(Bazar bazar:Block.getBazarArrayList()){
+        for(Bazar bazar:block.getBazarArrayList(block)){
             int lev=bazar.getLevel();
             employedpeople+=50+(lev-1)*20;
         }
