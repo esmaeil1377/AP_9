@@ -1,6 +1,5 @@
 package Model;
 
-import static Model.Done.User;
 import static Model.Done.user1;
 import static Model.Done.user2;
 

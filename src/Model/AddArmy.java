@@ -14,19 +14,16 @@ public class AddArmy extends Requests {
         int notpossibleuser1 = 0;
         int notpossibleuser2 = 0;
         for (Block block : user1.city1.ArrayListblocks) {
-            if (block.getArmyArrayList().size() != 1) {
-                notpossibleuser1 += 1;
-            }
+            if (block.getArmyArrayList().size() != 1) { notpossibleuser1 += 1; }
         }
         for (Block block : user2.city2.ArrayListblocks) {
-            if (block.getArmyArrayList().size() != 1) {
-                notpossibleuser2 += 1;
-            }
+            if (block.getArmyArrayList().size() != 1) { notpossibleuser2 += 1; }
         }
+
         if (Done.getDay() % 2 == 0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (blockId == block.getId()) {
-                    if (CalculaTedadItems(block) < block.getLevel()) {
+                    if (CalculaTedadItems(block) < 15+(5*block.getLevel())) {
                         if (notpossibleuser1 == 0) {
                             Army army = new Army();
                             int armyid = block.NextUnitId.NextId();
@@ -49,7 +46,7 @@ public class AddArmy extends Requests {
         } else {
             for (Block block : user2.city2.ArrayListblocks) {
                 if (blockId == block.getId()) {
-                    if (CalculaTedadItems(block) < block.getLevel()) {
+                    if (CalculaTedadItems(block) < 15+(5*block.getLevel())) {
                         if (notpossibleuser2 == 0) {
                             Army army = new Army();
                             int armyid = block.NextUnitId.NextId();

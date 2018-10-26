@@ -28,7 +28,7 @@ public class AddHome extends Requests {
         if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (blockid == block.getId()) {
-                    if (CalculaTedadItems(block) < block.getLevel()) {
+                    if (CalculaTedadItems(block) < 15+(5*block.getLevel())) {
                         House house = new House();
                         int houseid=block.NextUnitId.NextId();
                         AddtoOutPut(String.valueOf(houseid));
@@ -54,7 +54,7 @@ public class AddHome extends Requests {
         } else {
             for (Block block : user2.city2.ArrayListblocks) {
                 if (blockid == block.getId()) {
-                    if (CalculaTedadItems(block) < block.getLevel()) {
+                    if (CalculaTedadItems(block) < 15+(5*block.getLevel())) {
                         House house = new House();
                         int houseid=block.NextUnitId.NextId();
                         AddtoOutPut(String.valueOf(houseid));

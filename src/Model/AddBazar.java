@@ -22,7 +22,7 @@ public class AddBazar extends Requests {
         if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (blockId == block.getId()) {
-                    if (CalculaTedadItems(block) < block.getLevel()) {
+                    if (CalculaTedadItems(block) < 15+(5*block.getLevel())) {
                         Bazar bazar = new Bazar();
                         int bazarid=block.NextUnitId.NextId();
                         AddtoOutPut(String.valueOf(bazarid));
@@ -40,7 +40,7 @@ public class AddBazar extends Requests {
         } else {
             for (Block block : user2.city2.ArrayListblocks) {
                 if (blockId == block.getId()) {
-                    if (CalculaTedadItems(block) < block.getLevel()) {
+                    if (CalculaTedadItems(block) < 15+(5*block.getLevel())) {
                         Bazar bazar = new Bazar();
                         int bazarid=block.NextUnitId.NextId();
                         AddtoOutPut(String.valueOf(bazarid));
