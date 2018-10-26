@@ -8,7 +8,7 @@ public class Attack extends Requests {
 
     public Attack(int BlockId) {
         float sathhamle = 0;
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             for (Block block : user1.city1.getArrayListblocks()) {
                 if (block.getArmyArrayList().size() == 1) {
                     for (Army army : block.getArmyArrayList()) {

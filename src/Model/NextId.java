@@ -3,20 +3,23 @@ package Model;
 import java.util.ArrayList;
 
 public class NextId {
-    private static int NextId= 0;
-    private static ArrayList<Integer> IdsList;
+    private static int NextId = 0;
+    private static ArrayList<Integer> IdArrayList=new ArrayList<>();
 
-    public static int NextId(){
+    public static int NextId() {
         NextId++;
         System.out.println(NextId);
-        if(!(IdsList.contains(NextId))) {
-            IdsList.add(NextId);
-            return NextId;
+        if (IdArrayList.size() != 0) {
+            if (!(IdArrayList.contains(NextId))) {
+                IdArrayList.add(NextId);
+                return NextId;
+            } else {
+                NextId();
+            }
+        } else {
+            return (NextId);
         }
-        else{
-            NextId();
-        }
-        System.out.println("NextIdProblem");
+        System.out.println("in next id it do't go to if and else");
         return(-1);
     }
 

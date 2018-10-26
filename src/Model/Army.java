@@ -36,7 +36,7 @@ public class Army {
 
 
     public float levelOfAttak() {
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 CheckArnylevel(block);
             }

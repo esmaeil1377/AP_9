@@ -10,7 +10,7 @@ public class AddDefense extends Requests {
 
 
     public AddDefense(int blockId) {
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             for (Block block : user1.city1.getArrayListblocks()) {
                 if (blockId == block.getId()) {
                     if (CalculaTedadItems(block) < block.getLevel()) {

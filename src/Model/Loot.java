@@ -6,7 +6,7 @@ import static Model.Done.*;
 public class Loot extends Requests {
 
     public Loot(int Blockid){
-        if(User.equals(user1)){
+        if(Done.getDay()%2==0){
         for(Block block:user2.city2.ArrayListblocks){
             if(block.getId()==Blockid){
                 int itemofblock=0;

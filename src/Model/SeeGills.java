@@ -8,7 +8,7 @@ public class SeeGills extends Requests {
 
 
     public static void getGills() {
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             View.View.AddtoOutPut(String.valueOf(user1.AfterDayGills));
         } else {
             View.View.AddtoOutPut(String.valueOf(user2.AfterDayGills));

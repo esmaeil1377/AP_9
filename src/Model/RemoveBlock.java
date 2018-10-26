@@ -7,7 +7,7 @@ import static Model.Done.user2;
 public class RemoveBlock extends Requests {
 
     public RemoveBlock(int blockid) {
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (block.getId() == blockid) {
                     user1.city1.ArrayListblocks.remove(block);

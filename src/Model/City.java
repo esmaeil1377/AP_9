@@ -3,8 +3,11 @@ package Model;
 import java.util.ArrayList;
 import Model.Block.*;
 
+import static Model.Done.user1;
+import static Model.Done.user2;
+
 public class City {
-    public static  ArrayList<Block> ArrayListblocks;
+    public static  ArrayList<Block> ArrayListblocks=new ArrayList<>();
     private Army army;
     public static NextId NextBlockId=new NextId();
 
@@ -25,7 +28,11 @@ public class City {
     }
 
     public void AddBlockArrayList(Block block){
-        ArrayListblocks.add(block);
+        if(Done.getDay()%2==0){
+        user1.city1.ArrayListblocks.add(block);
+    }else{
+            user2.city2.ArrayListblocks.add(block);
+        }
     }
 
     public void RemoveBlockArrayList(Block block){

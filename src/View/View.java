@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class View {
     private static View view=new View();
     private static Scanner input = new Scanner(System.in);
-    private static ArrayList<String> OutPutToPrint;
+    private static ArrayList<String> OutPutToPrint=new ArrayList<>();
 
 
     private View(){}

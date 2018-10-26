@@ -8,7 +8,7 @@ public class UpgradeFloorUnit extends Requests {
 
 
     public UpgradeFloorUnit(int blockId, int unitId) {
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             for (Block block : user1.city1.getArrayListblocks()) {
                 if (blockId == block.getId()) {
                     for (House house : block.getHouseArrayList()) {

@@ -7,7 +7,7 @@ import static Model.Done.user2;
 public class SeeScore extends Requests {
 
     public static void getScore() {
-        if(User.equals(user1)) {
+        if(Done.getDay()%2==0) {
             View.View.AddtoOutPut(String.valueOf(user1.Score));
         }
         else{

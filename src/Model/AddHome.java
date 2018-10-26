@@ -24,7 +24,7 @@ public class AddHome extends Requests {
     }
 
     public AddHome(int blockid, int numberFloor, int numberUnit) {
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (blockid == block.getId()) {
                     if (CalculaTedadItems(block) < block.getLevel()) {

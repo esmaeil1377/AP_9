@@ -22,7 +22,7 @@ public class AddBlock extends Requests {
         int blockid=City.NextBlockId.NextId();
         AddtoOutPut(String.valueOf(blockid));
         block.setId(blockid);
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             user1.city1.AddBlockArrayList(block);
             User.setGills(User.getScore() - 1000);
         } else {

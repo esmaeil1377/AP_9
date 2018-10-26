@@ -8,7 +8,7 @@ public class UpgradeBlock extends Requests {
 
 
     public UpgradeBlock(int blockId) {
-        if (User.equals(user1)) {
+        if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (block.getId() == blockId) {
                     block.setLevel(block.getLevel() + 1);
