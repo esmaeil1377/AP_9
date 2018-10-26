@@ -24,6 +24,7 @@ public class AddHome extends Requests {
     }
 
     public AddHome(int blockid, int numberFloor, int numberUnit) {
+        int possible=0;
         if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (blockid == block.getId()) {
@@ -41,6 +42,7 @@ public class AddHome extends Requests {
                             house.AddFloorArrayList(floor);
                         }
                         block.AddtoHouseArray(house);
+                        possible+=1;
                         user1.setGills(user1.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
                         break;
                     } else {
@@ -66,6 +68,7 @@ public class AddHome extends Requests {
                             house.AddFloorArrayList(floor);
                         }
                         block.AddtoHouseArray(house);
+                        possible+=1;
                         user2.setGills(user2.getGills() - 700 - 300 * numberFloor - numberFloor * numberUnit * 100);
                         break;
                     } else {
@@ -74,6 +77,9 @@ public class AddHome extends Requests {
 
                 }
             }
+        }
+        if(possible==0){
+            View.View.AddtoOutPut("not possible");
         }
     }
 }

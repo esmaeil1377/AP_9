@@ -13,7 +13,9 @@ public class CityController {
 
         while(true){
             Requests request=getRequest(getCommand());
-            if(!(getCommand().matches("[Y|y][I|i][E|e][L|l][D|d]"))){
+            System.out.println(getCommand());
+            if((getCommand().matches("[Y|y][I|i][E|e][L|l][D|d]"))){
+                System.out.println("father");
                 break;
             }
 

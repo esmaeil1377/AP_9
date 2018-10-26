@@ -10,6 +10,7 @@ public class AddDefense extends Requests {
 
 
     public AddDefense(int blockId) {
+        int possible=0;
         if (Done.getDay()%2==0) {
             for (Block block : user1.city1.getArrayListblocks()) {
                 if (blockId == block.getId()) {
@@ -21,6 +22,7 @@ public class AddDefense extends Requests {
                         padafand.setNumofperson(30);
                         user1.setGills(user1.getGills() - 10000);
                         block.AddtoPadafandArray(padafand);
+                        possible+=1;
                         break;
                     } else {
                         NotPossible notPossible = new NotPossible();
@@ -38,11 +40,15 @@ public class AddDefense extends Requests {
                     padafand.setNumofperson(30);
                     user2.setGills(user2.getGills() - 10000);
                     block.AddtoPadafandArray(padafand);
+                    possible+=1;
                     break;
                 } else {
                     NotPossible notPossible = new NotPossible();
                 }
             }
+        }
+        if(possible==0){
+            View.View.AddtoOutPut("not possible");
         }
     }
 }

@@ -17,17 +17,20 @@ public class AddBlock extends Requests {
     }
 
     public AddBlock() {
-        System.out.println("hello");
+        if (Done.getDay()%2==0) {
         Block block = new Block();
-        int blockid=City.NextBlockId.NextId();
+        int blockid=user1.city1.NextBlockId.NextId();
         AddtoOutPut(String.valueOf(blockid));
         block.setId(blockid);
-        if (Done.getDay()%2==0) {
-            user1.city1.AddBlockArrayList(block);
-            User.setGills(User.getScore() - 1000);
+        user1.city1.AddBlockArrayList(block);
+        user1.setGills(user1.getScore() - 1000);
         } else {
+            Block block = new Block();
+            int blockid=user2.city2.NextBlockId.NextId();
+            AddtoOutPut(String.valueOf(blockid));
+            block.setId(blockid);
             user2.city2.AddBlockArrayList(block);
-            User.setGills(User.getScore() - 1000);
+            user2.setGills(user2.getScore() - 1000);
         }
     }
 }

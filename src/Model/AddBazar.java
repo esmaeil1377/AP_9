@@ -18,6 +18,7 @@ public class AddBazar extends Requests {
     }
 
     public AddBazar(int blockId) {
+        int possible=0;
         if (Done.getDay()%2==0) {
             for (Block block : user1.city1.ArrayListblocks) {
                 if (blockId == block.getId()) {
@@ -27,6 +28,7 @@ public class AddBazar extends Requests {
                         AddtoOutPut(String.valueOf(bazarid));
                         bazar.setId(bazarid);
                         block.AddtoBazarArray(bazar);
+                        possible+=1;
                         user1.setGills(user1.getGills() - 6000);
                         block.setScoreForPersonsForAddingBazar(bazar);
                         break;
@@ -44,6 +46,7 @@ public class AddBazar extends Requests {
                         AddtoOutPut(String.valueOf(bazarid));
                         bazar.setId(bazarid);
                         block.AddtoBazarArray(bazar);
+                        possible+=1;
                         user2.setGills(user2.getGills() - 6000);
                         block.setScoreForPersonsForAddingBazar(bazar);
                         break;
@@ -54,6 +57,9 @@ public class AddBazar extends Requests {
 
 
             }
+        }
+        if(possible==0){
+            View.View.AddtoOutPut("not possible");
         }
     }
 }
