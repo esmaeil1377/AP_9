@@ -1,6 +1,6 @@
-package FarmModel.MapObject.AnimalsProduct;
+package FarmModel.OutMapObject.WorkShop;
 
-public class Egg extends  AnimalsProduct{
+public class UnknownWorkShop extends WorkShop {
     private int priceForSell;
     private int priceToBuy;
 
