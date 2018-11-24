@@ -4,9 +4,8 @@ public class Cage extends Request {
     private int x;
     private int y;
 
-    public Cage(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Cage(String requestLine) {
+        AnalyzeRequestLine(requestLine);
     }
 
     public int getX() {
@@ -23,5 +22,7 @@ public class Cage extends Request {
 
     public void setY(int y) {
         this.y = y;
+    }
+    public void AnalyzeRequestLine(String requestLine){
     }
 }

@@ -5,11 +5,11 @@ public class AddVehicle extends Request {
     private String itemName;
     private int count;
 
-    public AddVehicle(String vehicleName, String itemName, int count) {
-        this.vehicleName = vehicleName;
-        this.itemName = itemName;
-        this.count = count;
+    public AddVehicle(String request) {
+        AnalyzeRequestLine(request);
+
     }
+
 
     public String getVehicleName() {
         return vehicleName;
@@ -33,5 +33,8 @@ public class AddVehicle extends Request {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public void AnalyzeRequestLine(String requestLine){
     }
 }
