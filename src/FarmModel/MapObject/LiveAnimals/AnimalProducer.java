@@ -8,4 +8,11 @@ public abstract class AnimalProducer extends Animals {
     public void EatGrass() {
     }
 
+    public int getAnimalHealth() {
+        return animalHealth;
+    }
+
+    public void setAnimalHealth(int animalHealth) {
+        this.animalHealth = animalHealth;
+    }
 }

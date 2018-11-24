@@ -16,5 +16,17 @@ public class RequestAnalayzer {
     private String Turn="turn [0-9]*";
 
     public void RequestAnalayzer(String requestString){
+//        if(requestString.matches(BuyAnimals)){}
+//        else if(requestString.matches(PickUp)){}
+//        else if(requestString.matches(Cage)){}
+//        else if(requestString.matches(Plant)){}
+//        else if(requestString.matches(PickUp)){}
+//        else if(requestString.matches(Cage)){}
+//        else if(requestString.matches(PickUp)){}
+//        else if(requestString.matches(PickUp)){}
+//        else if(requestString.matches(PickUp)){}
+//        else if(requestString.matches(PickUp)){}
+//        else if(requestString.matches(PickUp)){}
+//        else {}
     }
 }
