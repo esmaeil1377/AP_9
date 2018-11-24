@@ -1,6 +1,9 @@
 package FarmModel.MapObject.LiveAnimals;
 
-public class WildAnimals extends Animals {
+public abstract class WildAnimals extends Animals {
+
+    public abstract int getPriceForSell();
+    public abstract int getPriceToBuy();
 
     public void Destroyed () {
     }

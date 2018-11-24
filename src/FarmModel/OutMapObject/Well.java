@@ -35,5 +35,5 @@ public class Well extends OutMapObject {
 
     public void FillTheBucket() {
     }
-
 }
+

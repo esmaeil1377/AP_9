@@ -11,5 +11,23 @@ public class Cell {
 
 
     public void AddCellAMapObject(MapObject mapObject){}
+
+    public int getXPosition() {
+        return XPosition;
+    }
+
+    public void setXPosition(int XPosition) {
+        this.XPosition = XPosition;
+    }
+
+    public int getYPsition() {
+        return YPsition;
+    }
+
+    public void setYPsition(int YPsition) {
+        this.YPsition = YPsition;
+    }
+
     public void RremoveCellAMapObject(MapObject mapObject){}
+
 }
