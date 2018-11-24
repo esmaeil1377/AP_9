@@ -1,4 +1,4 @@
 package FarmModel;
 
-public class mission {
+public class Mission {
 }
