@@ -9,8 +9,6 @@ public class Shop {
 
 
     public void AddToShopOffering(Object object){}
-    public void AddToShopOffering(Object object) {
-    }
 
     public void RemoveFromShopOffreing(Object object) {
     }

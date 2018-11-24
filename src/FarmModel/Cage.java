@@ -5,6 +5,8 @@ import FarmModel.MapObject.LiveAnimals.WildAnimals;
 public class Cage {
     private int level;
     private double time;
+    private int activationPrice;
+
 
     public Cage(WildAnimals wildAnimals){
 
