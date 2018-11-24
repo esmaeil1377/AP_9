@@ -2,8 +2,9 @@ package FarmModel;
 
 import java.util.ArrayList;
 
-public class Shop {
+public class GameShop {
     ArrayList<Object> shop=new ArrayList<>();
+
 
     public void AddToShopOffering(Object object){}
 
