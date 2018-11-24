@@ -1,4 +1,4 @@
 package FarmModel.MapObject.LiveAnimals;
 
-public class Chicken extends Producer {
+public class Chicken extends AnimalProducer {
 }
