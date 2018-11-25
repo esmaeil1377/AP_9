@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="92.0" y="766.0">FarmModel.OutMapObject.WareHouse</node>
+    <node x="309.875" y="0.0">FarmModel.MapObject.MapObject</node>
+    <node x="1087.0" y="524.0">FarmModel.MapObject.WorkShopProduct.WorkShopProduct</node>
+    <node x="1223.0" y="603.0">FarmModel.MapObject.WorkShopProduct.Cookie</node>
+    <node x="455.0" y="687.0">FarmController.RequestAnalayzer</node>
+    <node x="947.0" y="450.0">FarmModel.Request.Cage</node>
+    <node x="300.0" y="613.0">FarmModel.OutMapObject.WorkShop.SewingFactory</node>
+    <node x="68.0" y="237.0">FarmModel.MapObject.LiveAnimals.Lion</node>
+    <node x="323.375" y="79.0">FarmModel.MapObject.Water</node>
+    <node x="1085.0" y="687.0">FarmModel.Mission</node>
+    <node x="444.0" y="613.0">FarmModel.OutMapObject.WorkShop.Spinnery</node>
+    <node x="341.0" y="237.0">FarmModel.MapObject.LiveAnimals.Chicken</node>
+    <node x="793.0" y="687.0">FarmModel.OutMapObject.Vehicle.Helicopter</node>
+    <node x="246.0" y="687.0">FarmModel.OutMapObject.Vehicle.TransportationVehicle</node>
+    <node x="0.0" y="450.0">FarmModel.Request.Well</node>
+    <node x="0.0" y="158.0">FarmModel.MapObject.LiveAnimals.Dog</node>
+    <node x="307.0" y="450.0">FarmModel.Request.Print</node>
+    <node x="557.0" y="613.0">FarmModel.OutMapObject.WorkShop.WeavinFactory</node>
+    <node x="732.0" y="450.0">FarmModel.Request.Buy</node>
+    <node x="423.375" y="79.0">FarmModel.MapObject.Grass</node>
+    <node x="1115.0" y="603.0">FarmModel.MapObject.WorkShopProduct.Powder</node>
+    <node x="1410.5" y="524.0">FarmModel.MapObject.AnimalsProduct.AnimalsProduct</node>
+    <node x="1470.0" y="450.0">FarmModel.Request.Start</node>
+    <node x="0.0" y="613.0">FarmModel.OutMapObject.WorkShop.CakeBakery</node>
+    <node x="183.0" y="450.0">FarmModel.Request.SaveGame</node>
+    <node x="1218.0" y="687.0">FarmModel.Cage</node>
+    <node x="158.0" y="237.0">FarmModel.MapObject.LiveAnimals.Bear</node>
+    <node x="250.0" y="237.0">FarmModel.MapObject.LiveAnimals.Ship</node>
+    <node x="637.0" y="450.0">FarmModel.Request.Clear</node>
+    <node x="0.0" y="766.0">FarmModel.OutMapObject.Well</node>
+    <node x="28.25" y="687.0">FarmModel.OutMapObject.OutMapObject</node>
+    <node x="312.10897435897436" y="158.0">FarmModel.MapObject.LiveAnimals.AnimalProducer</node>
+    <node x="1163.0" y="450.0">FarmModel.Request.LoadGame</node>
+    <node x="1382.0" y="450.0">FarmModel.Request.Run</node>
+    <node x="642.0" y="687.0">FarmModel.GameShop</node>
+    <node x="857.0" y="613.0">FarmModel.OutMapObject.WorkShop.CookieBakery</node>
+    <node x="702.0" y="613.0">FarmModel.OutMapObject.WorkShop.EggPowderPlant</node>
+    <node x="290.0" y="766.0">FarmModel.OutMapObject.Vehicle.Truck</node>
+    <node x="1338.0" y="687.0">FarmModel.Time</node>
+    <node x="1530.0" y="603.0">FarmModel.MapObject.AnimalsProduct.Wool</node>
+    <node x="942.0" y="687.0">FarmModel.FarmMap</node>
+    <node x="464.10897435897436" y="158.0">FarmModel.MapObject.LiveAnimals.Cat</node>
+    <node x="213.375" y="79.0">FarmModel.MapObject.LiveAnimals.Animals</node>
+    <node x="1022.0" y="603.0">FarmModel.MapObject.WorkShopProduct.Cake</node>
+    <node x="1573.0" y="687.0">FarmModel.Cell</node>
+    <node x="1352.0" y="603.0">FarmModel.MapObject.AnimalsProduct.Milk</node>
+    <node x="1457.0" y="687.0">FarmModel.User</node>
+    <node x="399.00000000000006" y="450.0">FarmModel.Request.PickUp</node>
+    <node x="92.0" y="450.0">FarmModel.Request.Turn</node>
+    <node x="91.0" y="158.0">FarmModel.MapObject.LiveAnimals.WildAnimals</node>
+    <node x="1442.0" y="603.0">FarmModel.MapObject.AnimalsProduct.Egg</node>
+    <node x="819.0" y="450.0">FarmModel.Request.AddVehicle</node>
+    <node x="1288.0" y="450.0">FarmModel.Request.Plant</node>
+    <node x="503.00000000000006" y="450.0">FarmModel.Request.LoadCustom</node>
+    <node x="1562.0" y="450.0">FarmModel.Request.Upgrade</node>
+    <node x="1042.0" y="450.0">FarmModel.Request.GoVehicle</node>
+    <node x="439.0" y="524.0">FarmModel.OutMapObject.WorkShop.WorkShop</node>
+    <node x="774.25" y="311.0">FarmModel.Request.Request</node>
+    <node x="449.0" y="237.0">FarmModel.MapObject.LiveAnimals.Cow</node>
+    <node x="128.0" y="613.0">FarmModel.OutMapObject.WorkShop.UnknownWorkShop</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="FarmModel.MapObject.AnimalsProduct.Milk" target="FarmModel.MapObject.AnimalsProduct.AnimalsProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="1387.0" y="578.0" />
+      <point x="1432.3333333333333" y="578.0" />
+      <point x="-43.66666666666666" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.WildAnimals" target="FarmModel.MapObject.LiveAnimals.Animals">
+      <point x="5.6843418860808015E-14" y="-14.5" />
+      <point x="148.50000000000006" y="138.0" />
+      <point x="247.125" y="138.0" />
+      <point x="-11.25" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Start" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="1506.0" y="370.0" />
+      <point x="855.8125" y="370.0" />
+      <point x="36.5625" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.Grass" target="FarmModel.MapObject.MapObject">
+      <point x="0.0" y="-14.5" />
+      <point x="461.375" y="54.0" />
+      <point x="399.04166666666663" y="54.0" />
+      <point x="35.66666666666663" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WorkShop.CakeBakery" target="FarmModel.OutMapObject.WorkShop.WorkShop">
+      <point x="0.0" y="-14.5" />
+      <point x="54.0" y="573.0" />
+      <point x="446.3571428571429" y="573.0" />
+      <point x="-44.14285714285711" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Bear" target="FarmModel.MapObject.LiveAnimals.WildAnimals">
+      <point x="0.0" y="-14.5" />
+      <point x="194.0" y="212.0" />
+      <point x="177.25" y="212.0" />
+      <point x="28.75" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.AnimalsProduct.Egg" target="FarmModel.MapObject.AnimalsProduct.AnimalsProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Cat" target="FarmModel.MapObject.LiveAnimals.Animals">
+      <point x="0.0" y="-14.5" />
+      <point x="496.60897435897436" y="128.0" />
+      <point x="292.125" y="128.0" />
+      <point x="33.75" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Turn" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="127.5" y="370.0" />
+      <point x="782.6875" y="370.0" />
+      <point x="-36.5625" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Lion" target="FarmModel.MapObject.LiveAnimals.WildAnimals">
+      <point x="0.0" y="-14.5" />
+      <point x="103.0" y="212.0" />
+      <point x="119.75" y="212.0" />
+      <point x="-28.75" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WorkShop.Spinnery" target="FarmModel.OutMapObject.WorkShop.WorkShop">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Clear" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="674.5" y="420.0" />
+      <point x="810.8125" y="420.0" />
+      <point x="-8.4375" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.WorkShopProduct.Cake" target="FarmModel.MapObject.WorkShopProduct.WorkShopProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="1058.5" y="578.0" />
+      <point x="1111.0" y="578.0" />
+      <point x="-48.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Buy" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="765.5" y="430.0" />
+      <point x="816.4375" y="430.0" />
+      <point x="-2.8125" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WorkShop.SewingFactory" target="FarmModel.OutMapObject.WorkShop.WorkShop">
+      <point x="0.0" y="-14.5" />
+      <point x="362.0" y="593.0" />
+      <point x="475.7857142857143" y="593.0" />
+      <point x="-14.714285714285722" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Well" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="36.0" y="360.0" />
+      <point x="777.0625" y="360.0" />
+      <point x="-42.1875" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WorkShop.EggPowderPlant" target="FarmModel.OutMapObject.WorkShop.WorkShop">
+      <point x="0.0" y="-14.5" />
+      <point x="769.5" y="583.0" />
+      <point x="519.9285714285714" y="583.0" />
+      <point x="29.428571428571445" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.GoVehicle" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="1092.5" y="410.0" />
+      <point x="833.3125" y="410.0" />
+      <point x="14.0625" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.LoadGame" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="1215.5" y="400.0" />
+      <point x="838.9375" y="400.0" />
+      <point x="19.6875" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Plant" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="1325.0" y="390.0" />
+      <point x="844.5625" y="390.0" />
+      <point x="25.3125" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Dog" target="FarmModel.MapObject.LiveAnimals.Animals">
+      <point x="0.0" y="-14.5" />
+      <point x="35.5" y="128.0" />
+      <point x="224.625" y="128.0" />
+      <point x="-33.75" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Cage" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="984.5" y="420.0" />
+      <point x="827.6875" y="420.0" />
+      <point x="8.4375" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WorkShop.UnknownWorkShop" target="FarmModel.OutMapObject.WorkShop.WorkShop">
+      <point x="0.0" y="-14.5" />
+      <point x="204.0" y="583.0" />
+      <point x="461.07142857142856" y="583.0" />
+      <point x="-29.428571428571445" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.WorkShopProduct.Powder" target="FarmModel.MapObject.WorkShopProduct.WorkShopProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.AnimalProducer" target="FarmModel.MapObject.LiveAnimals.Animals">
+      <point x="0.0" y="-14.5" />
+      <point x="378.10897435897436" y="138.0" />
+      <point x="269.625" y="138.0" />
+      <point x="11.25" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Cow" target="FarmModel.MapObject.LiveAnimals.AnimalProducer">
+      <point x="0.0" y="-14.5" />
+      <point x="484.5" y="212.0" />
+      <point x="422.10897435897436" y="212.0" />
+      <point x="44.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.Water" target="FarmModel.MapObject.MapObject">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Run" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="1416.0" y="380.0" />
+      <point x="850.1875" y="380.0" />
+      <point x="30.9375" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.Well" target="FarmModel.OutMapObject.OutMapObject">
+      <point x="0.0" y="-14.5" />
+      <point x="36.0" y="741.0" />
+      <point x="59.75" y="741.0" />
+      <point x="-31.5" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.AnimalsProduct.Wool" target="FarmModel.MapObject.AnimalsProduct.AnimalsProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="1568.0" y="578.0" />
+      <point x="1519.6666666666667" y="578.0" />
+      <point x="43.66666666666666" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Chicken" target="FarmModel.MapObject.LiveAnimals.AnimalProducer">
+      <point x="0.0" y="-14.5" />
+      <point x="385.0" y="212.0" />
+      <point x="378.10897435897436" y="212.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.Vehicle.Truck" target="FarmModel.OutMapObject.Vehicle.TransportationVehicle">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WorkShop.WeavinFactory" target="FarmModel.OutMapObject.WorkShop.WorkShop">
+      <point x="0.0" y="-14.5" />
+      <point x="619.5" y="593.0" />
+      <point x="505.2142857142857" y="593.0" />
+      <point x="14.714285714285722" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Upgrade" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="1609.0" y="360.0" />
+      <point x="861.4375" y="360.0" />
+      <point x="42.1875" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.Print" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="343.0" y="390.0" />
+      <point x="793.9375" y="390.0" />
+      <point x="-25.3125" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.SaveGame" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="235.0" y="380.0" />
+      <point x="788.3125" y="380.0" />
+      <point x="-30.9375" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Ship" target="FarmModel.MapObject.LiveAnimals.AnimalProducer">
+      <point x="0.0" y="-14.5" />
+      <point x="285.5" y="212.0" />
+      <point x="334.10897435897436" y="212.0" />
+      <point x="-44.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.LoadCustom" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="560.0" y="410.0" />
+      <point x="805.1875" y="410.0" />
+      <point x="-14.0625" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.WorkShopProduct.Cookie" target="FarmModel.MapObject.WorkShopProduct.WorkShopProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="1265.0" y="578.0" />
+      <point x="1207.0" y="578.0" />
+      <point x="48.0" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WareHouse" target="FarmModel.OutMapObject.OutMapObject">
+      <point x="0.0" y="-14.5" />
+      <point x="146.5" y="741.0" />
+      <point x="122.75" y="741.0" />
+      <point x="31.5" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.PickUp" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="441.00000000000006" y="400.0" />
+      <point x="799.5625" y="400.0" />
+      <point x="-19.6875" y="14.5" />
+    </edge>
+    <edge source="FarmModel.Request.AddVehicle" target="FarmModel.Request.Request">
+      <point x="0.0" y="-14.5" />
+      <point x="873.0" y="430.0" />
+      <point x="822.0625" y="430.0" />
+      <point x="2.8125" y="14.5" />
+    </edge>
+    <edge source="FarmModel.MapObject.LiveAnimals.Animals" target="FarmModel.MapObject.MapObject">
+      <point x="0.0" y="-14.5" />
+      <point x="258.375" y="54.0" />
+      <point x="327.70833333333337" y="54.0" />
+      <point x="-35.66666666666666" y="14.5" />
+    </edge>
+    <edge source="FarmModel.OutMapObject.WorkShop.CookieBakery" target="FarmModel.OutMapObject.WorkShop.WorkShop">
+      <point x="0.0" y="-14.5" />
+      <point x="917.0" y="573.0" />
+      <point x="534.6428571428571" y="573.0" />
+      <point x="44.14285714285711" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9985524728588661" x="488.50000000000006" y="321.4798260449384" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
