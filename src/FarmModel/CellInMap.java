@@ -4,7 +4,7 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 import java.util.ArrayList;
 
-public class Cell {
+public class CellInMap {
     private int XPosition;
     private int YPsition;
     ArrayList<ObjectInMap15_15> cellObjectInMap1515 =new ArrayList<>();

@@ -1,8 +1,7 @@
 package FarmModel;
 
 public class FarmMap {
-    Cell Map[][]=new Cell[15][15];
-
-
+    CellInMap Map[][]=new CellInMap[15][15];
+    CellOutOfMapInPlayGround BorderMap[][]=new CellOutOfMapInPlayGround[20][20];
 
 }
