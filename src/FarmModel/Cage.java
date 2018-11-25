@@ -1,8 +1,9 @@
 package FarmModel;
 
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
-public class Cage {
+public class Cage extends ObjectInMap15_15 {
     private double time;
     private int activationPrice;
 
