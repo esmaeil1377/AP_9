@@ -3,8 +3,8 @@ package FarmModel.Request;
 public class GoVehicle extends Request {
     private String vehicleName;
 
-    public GoVehicle(String vehicleName) {
-        this.vehicleName = vehicleName;
+    public GoVehicle(String requestLine) {
+        AnalyzeRequestLine(requestLine);
     }
 
     public String getVehicleName() {
@@ -13,5 +13,9 @@ public class GoVehicle extends Request {
 
     public void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
+    }
+
+    public void AnalyzeRequestLine(String requestLine){
+
     }
 }

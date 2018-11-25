@@ -1,0 +1,5 @@
+package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
+
+public class ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
+
+}

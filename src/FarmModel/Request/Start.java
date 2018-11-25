@@ -3,8 +3,8 @@ package FarmModel.Request;
 public class Start extends Request {
     private String WorkShopName;
 
-    public Start(String workShopName) {
-        WorkShopName = workShopName;
+    public Start(String requestLine) {
+        AnalyzeRequestLine(requestLine);
     }
 
     public String getWorkShopName() {
@@ -14,4 +14,6 @@ public class Start extends Request {
     public void setWorkShopName(String workShopName) {
         WorkShopName = workShopName;
     }
+
+    public void AnalyzeRequestLine(String requestLine){}
 }

@@ -23,6 +23,7 @@ public class Cage extends Request {
     public void setY(int y) {
         this.y = y;
     }
+
     public void AnalyzeRequestLine(String requestLine){
     }
 }

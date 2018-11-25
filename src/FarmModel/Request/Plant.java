@@ -4,9 +4,8 @@ public class Plant extends Request {
     private int x;
     private int y;
 
-    public Plant(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Plant(String requestlIne) {
+        AnalyzeRequestLine(requestlIne);
     }
 
     public int getX() {
@@ -24,4 +23,5 @@ public class Plant extends Request {
     public void setY(int y) {
         this.y = y;
     }
+    public void AnalyzeRequestLine(String requestLine){}
 }

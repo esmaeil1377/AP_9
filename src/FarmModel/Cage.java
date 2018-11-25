@@ -1,6 +1,6 @@
 package FarmModel;
 
-import FarmModel.MapObject.LiveAnimals.WildAnimals;
+import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 
 public class Cage {
     private double time;

@@ -1,16 +1,16 @@
 package FarmModel;
 
-import FarmModel.MapObject.MapObject;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 import java.util.ArrayList;
 
 public class Cell {
     private int XPosition;
     private int YPsition;
-    ArrayList<MapObject> cellMapObject=new ArrayList<>();
+    ArrayList<ObjectInMap15_15> cellObjectInMap1515 =new ArrayList<>();
 
 
-    public void AddCellAMapObject(MapObject mapObject){}
+    public void AddCellAMapObject(ObjectInMap15_15 objectInMap1515){}
 
     public int getXPosition() {
         return XPosition;
@@ -28,6 +28,6 @@ public class Cell {
         this.YPsition = YPsition;
     }
 
-    public void RremoveCellAMapObject(MapObject mapObject){}
+    public void RremoveCellAMapObject(ObjectInMap15_15 objectInMap1515){}
 
 }

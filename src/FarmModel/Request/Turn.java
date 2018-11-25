@@ -3,8 +3,8 @@ package FarmModel.Request;
 public class Turn extends Request {
     private int n;
 
-    public Turn(int n) {
-        this.n = n;
+    public Turn(String requestLine) {
+        AnalyzeRequestLine(requestLine);
     }
 
     public int getN() {
@@ -14,4 +14,6 @@ public class Turn extends Request {
     public void setN(int n) {
         this.n = n;
     }
+
+    public void AnalyzeRequestLine(String requestLIne){}
 }
