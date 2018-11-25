@@ -1,6 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
-public class CakeBakery extends WorkShop {
+public class CakeBakery extends WorkShop{
     private int priceForSell;
     private int priceToBuy;
 

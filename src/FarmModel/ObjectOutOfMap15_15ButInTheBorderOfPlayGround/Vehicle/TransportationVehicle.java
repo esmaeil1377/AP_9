@@ -1,5 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
-public class TransportationVehicle {
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
+
+public class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private double TimeToMoveThePath;
 }

@@ -1,6 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
-public class Helicopter {
+public class Helicopter extends TransportationVehicle{
     private int activationPrice;
 
     public int getActivationPrice() {
