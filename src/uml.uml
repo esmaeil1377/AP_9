@@ -3,49 +3,49 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="546.0" y="359.5">FarmModel.ObjectInMap15_15.WorkShopProduct.Cookie</node>
-    <node x="332.0" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.Spinnery</node>
-    <node x="1206.0" y="1020.0">FarmModel.CellInMap</node>
+    <node x="654.0" y="359.5">FarmModel.ObjectInMap15_15.WorkShopProduct.Cookie</node>
+    <node x="344.7678571428572" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.Spinnery</node>
     <node x="348.0" y="1228.0">FarmModel.Time</node>
     <node x="0.0" y="337.5">FarmModel.ObjectInMap15_15.AnimalsProduct.Egg</node>
+    <node x="1206.0" y="1020.0">FarmModel.CellInMap</node>
     <node x="790.0" y="1228.0">FarmModel.FarmMap</node>
     <node x="455.0" y="1020.0">FarmModel.CellOutOfMapInPlayGround</node>
     <node x="846.5" y="505.0">FarmModel.ObjectInMap15_15.LiveAnimals.Bear</node>
-    <node x="634.0" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.EggPowderPlant</node>
-    <node x="1149.4871031746034" y="326.0">FarmModel.ObjectInMap15_15.LiveAnimals.AnimalProducer</node>
-    <node x="1439.0" y="623.0">FarmController.RequestAnalayzer</node>
+    <node x="1149.6299603174605" y="326.0">FarmModel.ObjectInMap15_15.LiveAnimals.AnimalProducer</node>
+    <node x="495.7678571428572" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.EggPowderPlant</node>
+    <node x="1451.7678571428573" y="623.0">FarmController.RequestAnalayzer</node>
     <node x="166.0" y="913.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck</node>
-    <node x="1263.0" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery</node>
+    <node x="801.7678571428572" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery</node>
     <node x="0.0" y="1020.0">FarmModel.Mission</node>
-    <node x="789.0" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CookieBakery</node>
+    <node x="650.7678571428572" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CookieBakery</node>
     <node x="0.0" y="1228.0">FarmModel.User</node>
-    <node x="1329.5" y="516.0">FarmModel.ObjectInMap15_15.LiveAnimals.Ship</node>
-    <node x="483.0" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WeavinFactory</node>
-    <node x="940.0" y="712.5">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse</node>
-    <node x="489.5" y="0.0">FarmModel.ObjectInMap15_15.ObjectInMap15_15</node>
-    <node x="515.0" y="157.5">FarmModel.ObjectInMap15_15.WorkShopProduct.WorkShopProduct</node>
-    <node x="1316.4871031746034" y="293.0">FarmModel.ObjectInMap15_15.LiveAnimals.Cat</node>
+    <node x="997.5" y="516.0">FarmModel.ObjectInMap15_15.LiveAnimals.Ship</node>
+    <node x="952.7678571428572" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WeavinFactory</node>
+    <node x="491.5" y="0.0">FarmModel.ObjectInMap15_15.ObjectInMap15_15</node>
+    <node x="397.6428571428572" y="712.5">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse</node>
+    <node x="517.0" y="157.5">FarmModel.ObjectInMap15_15.WorkShopProduct.WorkShopProduct</node>
+    <node x="1316.6299603174602" y="293.0">FarmModel.ObjectInMap15_15.LiveAnimals.Cat</node>
     <node x="582.0" y="1228.0">View.View</node>
     <node x="1268.25" y="146.5">FarmModel.ObjectInMap15_15.LiveAnimals.Animals</node>
+    <node x="1329.5" y="516.0">FarmModel.ObjectInMap15_15.LiveAnimals.Cow</node>
     <node x="453.0" y="359.5">FarmModel.ObjectInMap15_15.WorkShopProduct.Cake</node>
-    <node x="997.5" y="516.0">FarmModel.ObjectInMap15_15.LiveAnimals.Cow</node>
-    <node x="940.0" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.SewingFactory</node>
-    <node x="695.5" y="505.0">FarmModel.ObjectInMap15_15.LiveAnimals.Lion</node>
+    <node x="1103.7678571428573" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.SewingFactory</node>
     <node x="0.0" y="913.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter</node>
+    <node x="695.5" y="505.0">FarmModel.ObjectInMap15_15.LiveAnimals.Lion</node>
     <node x="151.0" y="337.5">FarmModel.ObjectInMap15_15.AnimalsProduct.Wool</node>
-    <node x="650.0" y="359.5">FarmModel.ObjectInMap15_15.WorkShopProduct.Powder</node>
-    <node x="789.0" y="735.5">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop</node>
-    <node x="45.5" y="746.5">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle</node>
-    <node x="1417.25" y="123.0">FarmModel.Cage</node>
+    <node x="546.0" y="359.5">FarmModel.ObjectInMap15_15.WorkShopProduct.Powder</node>
+    <node x="801.7678571428572" y="735.5">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop</node>
+    <node x="42.50892857142867" y="746.5">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle</node>
     <node x="1163.5" y="516.0">FarmModel.ObjectInMap15_15.LiveAnimals.Chicken</node>
-    <node x="440.41071428571433" y="702.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well</node>
+    <node x="1417.25" y="123.0">FarmModel.Cage</node>
+    <node x="952.7678571428572" y="702.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well</node>
     <node x="302.0" y="337.5">FarmModel.ObjectInMap15_15.AnimalsProduct.Milk</node>
-    <node x="1534.4871031746034" y="304.0">FarmModel.ObjectInMap15_15.LiveAnimals.Dog</node>
-    <node x="332.2363095238098" y="168.5">FarmModel.ObjectInMap15_15.Grass</node>
-    <node x="437.375" y="623.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround</node>
+    <node x="1534.6299603174602" y="304.0">FarmModel.ObjectInMap15_15.LiveAnimals.Dog</node>
+    <node x="333.2839285714287" y="168.5">FarmModel.ObjectInMap15_15.Grass</node>
     <node x="1129.0" y="1228.0">FarmModel.GameShop</node>
-    <node x="147.73630952380972" y="146.5">FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct</node>
-    <node x="1091.0" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.UnknownWorkShop</node>
+    <node x="471.3928571428572" y="623.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround</node>
+    <node x="147.78392857142887" y="146.5">FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct</node>
+    <node x="1254.7678571428573" y="902.0">FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.UnknownWorkShop</node>
     <node x="758.0" y="326.0">FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals</node>
   </nodes>
   <notes />
@@ -53,84 +53,84 @@
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Animals" target="FarmModel.ObjectInMap15_15.ObjectInMap15_15">
       <point x="0.0" y="-36.5" />
       <point x="1332.75" y="103.0" />
-      <point x="627.4000000000001" y="103.0" />
+      <point x="629.4000000000001" y="103.0" />
       <point x="39.40000000000009" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround">
       <point x="0.0" y="-70.0" />
-      <point x="526.9107142857143" y="682.0" />
-      <point x="559.25" y="682.0" />
-      <point x="-40.625" y="14.5" />
+      <point x="1039.2678571428573" y="672.0" />
+      <point x="755.7678571428572" y="672.0" />
+      <point x="121.875" y="14.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.AnimalProducer" target="FarmModel.ObjectInMap15_15.LiveAnimals.Animals">
       <point x="0.0" y="-48.0" />
-      <point x="1222.9871031746034" y="273.0" />
+      <point x="1223.1299603174605" y="273.0" />
       <point x="1316.625" y="273.0" />
       <point x="-16.125" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Ship" target="FarmModel.ObjectInMap15_15.LiveAnimals.AnimalProducer">
       <point x="0.0" y="-25.5" />
-      <point x="1402.5" y="480.0" />
-      <point x="1271.9871031746034" y="480.0" />
-      <point x="49.0" y="48.0" />
+      <point x="1070.5" y="480.0" />
+      <point x="1174.1299603174605" y="480.0" />
+      <point x="-49.0" y="48.0" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.EggPowderPlant" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
       <point x="0.0" y="-36.5" />
-      <point x="701.5" y="882.0" />
-      <point x="835.7857142857142" y="882.0" />
-      <point x="-18.71428571428578" y="36.5" />
+      <point x="563.2678571428572" y="872.0" />
+      <point x="829.8392857142858" y="872.0" />
+      <point x="-37.428571428571445" y="36.5" />
+    </edge>
+    <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround">
+      <point x="0.0" y="-59.5" />
+      <point x="526.6428571428572" y="682.0" />
+      <point x="593.2678571428572" y="682.0" />
+      <point x="-40.625" y="14.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.AnimalsProduct.Wool" target="FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct">
       <point x="0.0" y="-36.5" />
       <point x="216.5" y="273.0" />
-      <point x="213.23630952380972" y="273.0" />
+      <point x="213.28392857142887" y="273.0" />
       <point x="0.0" y="36.5" />
-    </edge>
-    <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround">
-      <point x="0.0" y="-59.5" />
-      <point x="1069.0" y="672.0" />
-      <point x="721.75" y="672.0" />
-      <point x="121.875" y="14.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.WorkShopProduct.Cookie" target="FarmModel.ObjectInMap15_15.WorkShopProduct.WorkShopProduct">
       <point x="0.0" y="-14.5" />
-      <point x="0.0" y="25.5" />
+      <point x="696.0" y="273.0" />
+      <point x="638.6666666666666" y="273.0" />
+      <point x="48.66666666666666" y="25.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.SewingFactory" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
       <point x="0.0" y="-36.5" />
-      <point x="1005.5" y="882.0" />
-      <point x="873.2142857142858" y="882.0" />
-      <point x="18.71428571428578" y="36.5" />
+      <point x="1169.2678571428573" y="872.0" />
+      <point x="904.6964285714287" y="872.0" />
+      <point x="37.428571428571445" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle">
       <point x="0.0" y="-25.5" />
       <point x="73.0" y="882.0" />
-      <point x="100.75" y="882.0" />
+      <point x="97.75892857142867" y="882.0" />
       <point x="-55.25" y="25.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround">
       <point x="0.0" y="-25.5" />
-      <point x="156.0" y="682.0" />
-      <point x="478.0" y="682.0" />
+      <point x="153.00892857142867" y="682.0" />
+      <point x="512.0178571428572" y="682.0" />
       <point x="-121.875" y="14.5" />
-    </edge>
-    <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.UnknownWorkShop" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
-      <point x="0.0" y="-36.5" />
-      <point x="1167.0" y="872.0" />
-      <point x="891.9285714285716" y="872.0" />
-      <point x="37.42857142857156" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround">
       <point x="0.0" y="-36.5" />
-      <point x="854.5" y="682.0" />
-      <point x="640.5" y="682.0" />
+      <point x="867.2678571428572" y="682.0" />
+      <point x="674.5178571428572" y="682.0" />
       <point x="40.625" y="14.5" />
+    </edge>
+    <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.UnknownWorkShop" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
+      <point x="0.0" y="-36.5" />
+      <point x="1330.7678571428573" y="862.0" />
+      <point x="923.4107142857143" y="862.0" />
+      <point x="56.14285714285711" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
       <point x="0.0" y="-36.5" />
-      <point x="1328.5" y="862.0" />
-      <point x="910.6428571428569" y="862.0" />
-      <point x="56.14285714285688" y="36.5" />
+      <point x="0.0" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals" target="FarmModel.ObjectInMap15_15.LiveAnimals.Animals">
       <point x="0.0" y="-48.0" />
@@ -140,15 +140,9 @@
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Cow" target="FarmModel.ObjectInMap15_15.LiveAnimals.AnimalProducer">
       <point x="0.0" y="-25.5" />
-      <point x="1070.5" y="480.0" />
-      <point x="1173.9871031746034" y="480.0" />
-      <point x="-49.0" y="48.0" />
-    </edge>
-    <edge source="FarmModel.ObjectInMap15_15.AnimalsProduct.Milk" target="FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct">
-      <point x="0.0" y="-36.5" />
-      <point x="367.5" y="273.0" />
-      <point x="256.90297619047635" y="273.0" />
-      <point x="43.66666666666663" y="36.5" />
+      <point x="1402.5" y="480.0" />
+      <point x="1272.1299603174605" y="480.0" />
+      <point x="49.0" y="48.0" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Bear" target="FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals">
       <point x="0.0" y="-36.5" />
@@ -156,64 +150,70 @@
       <point x="875.75" y="480.0" />
       <point x="39.25" y="48.0" />
     </edge>
+    <edge source="FarmModel.ObjectInMap15_15.AnimalsProduct.Milk" target="FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct">
+      <point x="0.0" y="-36.5" />
+      <point x="367.5" y="273.0" />
+      <point x="256.9505952380955" y="273.0" />
+      <point x="43.66666666666663" y="36.5" />
+    </edge>
     <edge source="FarmModel.ObjectInMap15_15.WorkShopProduct.Cake" target="FarmModel.ObjectInMap15_15.WorkShopProduct.WorkShopProduct">
       <point x="0.0" y="-14.5" />
       <point x="489.5" y="273.0" />
-      <point x="539.3333333333334" y="273.0" />
+      <point x="541.3333333333334" y="273.0" />
       <point x="-48.66666666666666" y="25.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.Grass" target="FarmModel.ObjectInMap15_15.ObjectInMap15_15">
       <point x="0.0" y="-14.5" />
-      <point x="370.2363095238098" y="103.0" />
-      <point x="548.6" y="103.0" />
+      <point x="371.2839285714287" y="103.0" />
+      <point x="550.6" y="103.0" />
       <point x="-39.39999999999998" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WeavinFactory" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
       <point x="0.0" y="-36.5" />
-      <point x="548.5" y="872.0" />
-      <point x="817.0714285714284" y="872.0" />
-      <point x="-37.42857142857156" y="36.5" />
+      <point x="1018.2678571428572" y="882.0" />
+      <point x="885.9821428571429" y="882.0" />
+      <point x="18.714285714285666" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Dog" target="FarmModel.ObjectInMap15_15.LiveAnimals.Animals">
       <point x="0.0" y="-70.0" />
-      <point x="1627.9871031746034" y="263.0" />
+      <point x="1628.1299603174602" y="263.0" />
       <point x="1381.125" y="263.0" />
       <point x="48.375" y="36.5" />
-    </edge>
-    <edge source="FarmModel.ObjectInMap15_15.AnimalsProduct.Egg" target="FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct">
-      <point x="0.0" y="-36.5" />
-      <point x="65.5" y="273.0" />
-      <point x="169.5696428571431" y="273.0" />
-      <point x="-43.66666666666663" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle">
       <point x="0.0" y="-25.5" />
       <point x="239.0" y="882.0" />
-      <point x="211.25" y="882.0" />
+      <point x="208.25892857142867" y="882.0" />
       <point x="55.25" y="25.5" />
+    </edge>
+    <edge source="FarmModel.ObjectInMap15_15.AnimalsProduct.Egg" target="FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct">
+      <point x="0.0" y="-36.5" />
+      <point x="65.5" y="273.0" />
+      <point x="169.61726190476224" y="273.0" />
+      <point x="-43.66666666666663" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Cat" target="FarmModel.ObjectInMap15_15.LiveAnimals.Animals">
       <point x="0.0" y="-81.0" />
-      <point x="1415.4871031746034" y="273.0" />
+      <point x="1415.6299603174602" y="273.0" />
       <point x="1348.875" y="273.0" />
       <point x="16.125" y="36.5" />
-    </edge>
-    <edge source="FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct" target="FarmModel.ObjectInMap15_15.ObjectInMap15_15">
-      <point x="0.0" y="-36.5" />
-      <point x="213.23630952380972" y="93.0" />
-      <point x="509.20000000000005" y="93.0" />
-      <point x="-78.79999999999995" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Chicken" target="FarmModel.ObjectInMap15_15.LiveAnimals.AnimalProducer">
       <point x="0.0" y="-25.5" />
       <point x="1236.5" y="480.0" />
-      <point x="1222.9871031746034" y="480.0" />
+      <point x="1223.1299603174605" y="480.0" />
       <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="FarmModel.ObjectInMap15_15.AnimalsProduct.AnimalsProduct" target="FarmModel.ObjectInMap15_15.ObjectInMap15_15">
+      <point x="0.0" y="-36.5" />
+      <point x="213.28392857142887" y="93.0" />
+      <point x="511.2" y="93.0" />
+      <point x="-78.80000000000001" y="36.5" />
     </edge>
     <edge source="FarmModel.Cage" target="FarmModel.ObjectInMap15_15.ObjectInMap15_15">
       <point x="0.0" y="-60.0" />
       <point x="1549.25" y="93.0" />
-      <point x="666.8000000000001" y="93.0" />
+      <point x="668.8000000000001" y="93.0" />
       <point x="78.80000000000007" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.LiveAnimals.Lion" target="FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals">
@@ -224,15 +224,9 @@
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.Spinnery" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
       <point x="0.0" y="-36.5" />
-      <point x="397.5" y="862.0" />
-      <point x="798.3571428571427" y="862.0" />
-      <point x="-56.14285714285734" y="36.5" />
-    </edge>
-    <edge source="FarmModel.ObjectInMap15_15.WorkShopProduct.Powder" target="FarmModel.ObjectInMap15_15.WorkShopProduct.WorkShopProduct">
-      <point x="0.0" y="-14.5" />
-      <point x="694.0" y="273.0" />
-      <point x="636.6666666666666" y="273.0" />
-      <point x="48.66666666666663" y="25.5" />
+      <point x="410.2678571428572" y="862.0" />
+      <point x="811.1250000000001" y="862.0" />
+      <point x="-56.14285714285711" y="36.5" />
     </edge>
     <edge source="FarmModel.ObjectInMap15_15.WorkShopProduct.WorkShopProduct" target="FarmModel.ObjectInMap15_15.ObjectInMap15_15">
       <point x="0.0" y="-25.5" />
@@ -240,18 +234,22 @@
     </edge>
     <edge source="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CookieBakery" target="FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop">
       <point x="0.0" y="-36.5" />
-      <point x="0.0" y="36.5" />
+      <point x="716.2678571428572" y="882.0" />
+      <point x="848.5535714285714" y="882.0" />
+      <point x="-18.71428571428578" y="36.5" />
+    </edge>
+    <edge source="FarmModel.ObjectInMap15_15.WorkShopProduct.Powder" target="FarmModel.ObjectInMap15_15.WorkShopProduct.WorkShopProduct">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="25.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.5107692307692308" x="1007.5602409638554" y="640.0" />
-  <SelectedNodes>
-    <node>FarmModel.ObjectInMap15_15.WorkShopProduct.Cookie</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="0.9769452449567723" x="861.0" y="684.0" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
-    <Category>Methods</Category>
     <Category>Properties</Category>
+    <Category>Methods</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
