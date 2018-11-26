@@ -5,6 +5,7 @@ public class Buy extends Request {
 
     public Buy(String requestLine) {
         AnalyzeRequestLine(animalName);
+
     }
 
     public String getAnimalName() {

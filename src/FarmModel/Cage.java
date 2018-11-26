@@ -10,6 +10,7 @@ public class Cage extends ObjectInMap15_15 {
 
     public Cage(WildAnimals wildAnimals){
 
+
     }
     public void RemoveFromMap(WildAnimals wildAnimals){
     }
