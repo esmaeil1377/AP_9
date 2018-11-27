@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class PrintRequest extends Request {
     private String commandName;
