@@ -16,4 +16,6 @@ public class TurnRequest extends Request {
     }
 
     public void AnalyzeRequestLine(String requestLIne){}
+
+    public void AddWildAnimalsToMapAfterOneMinute(){}
 }
