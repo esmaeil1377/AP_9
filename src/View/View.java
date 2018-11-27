@@ -7,5 +7,7 @@ public class View {
 
     public void getRequest(){}
 
+    public static void ShowMap(){}
 
+    public static void ShowShop(){}
 }
