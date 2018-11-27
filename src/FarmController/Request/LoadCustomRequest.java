@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class LoadCustom extends Request {
+public class LoadCustomRequest extends Request {
     private String directory;
 
-    public LoadCustom(String requestLine) {
+    public LoadCustomRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 

@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Run extends Request {
+public class RunRequest extends Request {
     private String mapName;
 
-    public Run(String requestLine) {
+    public RunRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 

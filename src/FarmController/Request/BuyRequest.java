@@ -1,10 +1,11 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Buy extends Request {
+public class BuyRequest extends Request {
     private String animalName;
 
-    public Buy(String requestLine) {
+    public BuyRequest(String requestLine) {
         AnalyzeRequestLine(animalName);
+
     }
 
     public String getAnimalName() {

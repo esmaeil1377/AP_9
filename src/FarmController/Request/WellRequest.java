@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Well extends Request {
+public class WellRequest extends Request {
     private int AmountOfWaterInBucket;
 
-    public Well(){}
+    public WellRequest(){}
 
     public void setAmountOfWaterInBucket(int amountOfWaterInBucket) {
         AmountOfWaterInBucket = amountOfWaterInBucket;

@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class LoadGame extends Request {
+public class LoadGameRequest extends Request {
     private String fileName;
 
-    public LoadGame(String requestLine){
+    public LoadGameRequest(String requestLine){
         AnalyzeRequestLine(requestLine);
     }
 

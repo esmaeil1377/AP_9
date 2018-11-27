@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Upgrade extends Request {
+public class UpgradeRequest extends Request {
     private String command;
 
-    public Upgrade(String requestLine) {
+    public UpgradeRequest(String requestLine) {
         AnalyzeRequestlIne(requestLine);
     }
 

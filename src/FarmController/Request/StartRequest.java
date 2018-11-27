@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Start extends Request {
+public class StartRequest extends Request {
     private String WorkShopName;
 
-    public Start(String requestLine) {
+    public StartRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 

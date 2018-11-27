@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Clear extends Request {
+public class ClearRequest extends Request {
     private String vehicleName;
 
-    public Clear(String requestLine) {
+    public ClearRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 

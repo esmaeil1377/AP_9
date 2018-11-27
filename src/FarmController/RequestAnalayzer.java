@@ -1,5 +1,7 @@
 package FarmController;
 
+import FarmController.Request.BuyRequest;
+
 public class RequestAnalayzer {
     private String BuyAnimals="buy (cat|dog)";
     private String PickUp=" pickup [0-9] [0-9]";
@@ -16,17 +18,19 @@ public class RequestAnalayzer {
     private String Turn="turn [0-9]*";
 
     public void RequestAnalayzer(String requestString){
-//        if(requestString.matches(BuyAnimals)){}
-//        else if(requestString.matches(PickUp)){}
-//        else if(requestString.matches(Cage)){}
-//        else if(requestString.matches(Plant)){}
-//        else if(requestString.matches(PickUp)){}
-//        else if(requestString.matches(Cage)){}
-//        else if(requestString.matches(PickUp)){}
-//        else if(requestString.matches(PickUp)){}
-//        else if(requestString.matches(PickUp)){}
-//        else if(requestString.matches(PickUp)){}
-//        else if(requestString.matches(PickUp)){}
-//        else {}
+        if(requestString.matches(BuyAnimals)){
+            new BuyRequest(requestString);
+        }
+        else if(requestString.matches(PickUp)){}
+        else if(requestString.matches(Cage)){}
+        else if(requestString.matches(Plant)){}
+        else if(requestString.matches(PickUp)){}
+        else if(requestString.matches(Cage)){}
+        else if(requestString.matches(PickUp)){}
+        else if(requestString.matches(PickUp)){}
+        else if(requestString.matches(PickUp)){}
+        else if(requestString.matches(PickUp)){}
+        else if(requestString.matches(PickUp)){}
+        else {}
     }
 }

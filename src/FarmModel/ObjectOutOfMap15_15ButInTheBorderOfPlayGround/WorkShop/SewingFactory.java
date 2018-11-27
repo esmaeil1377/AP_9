@@ -13,4 +13,13 @@ public class SewingFactory extends WorkShop {
     public int getPriceForSell() {
         return priceForSell;
     }
+
+    @Override
+    public void getProductAndPutResultInMap() {
+    }
+
+    @Override
+    public void UpgradeWorkShop() {
+
+    }
 }

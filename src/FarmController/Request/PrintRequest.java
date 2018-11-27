@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Print extends Request {
+public class PrintRequest extends Request {
     private String commandName;
 
-    public Print(String requestLine) {
+    public PrintRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 

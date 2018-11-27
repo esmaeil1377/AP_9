@@ -1,10 +1,10 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class PickUp extends Request {
+public class CageRequest extends Request {
     private int x;
     private int y;
 
-    public PickUp(String requestLine) {
+    public CageRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 
@@ -23,5 +23,7 @@ public class PickUp extends Request {
     public void setY(int y) {
         this.y = y;
     }
-    public void AnalyzeRequestLine(String requestLine){}
+
+    public void AnalyzeRequestLine(String requestLine){
+    }
 }

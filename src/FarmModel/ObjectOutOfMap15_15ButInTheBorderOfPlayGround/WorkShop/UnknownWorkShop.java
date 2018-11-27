@@ -13,4 +13,13 @@ public class UnknownWorkShop extends WorkShop {
     public int getPriceToBuy() {
         return priceToBuy;
     }
+
+    @Override
+    public void getProductAndPutResultInMap() {
+    }
+
+    @Override
+    public void UpgradeWorkShop() {
+
+    }
 }

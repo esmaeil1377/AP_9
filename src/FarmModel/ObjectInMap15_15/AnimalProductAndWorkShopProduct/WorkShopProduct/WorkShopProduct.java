@@ -1,8 +1,9 @@
-package FarmModel.ObjectInMap15_15.WorkShopProduct;
+package FarmModel.ObjectInMap15_15.AnimalProductAndWorkShopProduct.WorkShopProduct;
 
+import FarmModel.ObjectInMap15_15.AnimalProductAndWorkShopProduct.AnimalProductAndWorkShopProduct;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
-public class WorkShopProduct extends ObjectInMap15_15 {
+public class WorkShopProduct extends AnimalProductAndWorkShopProduct {
     private int activationPrice;
 
     public int getActivationPrice() {
