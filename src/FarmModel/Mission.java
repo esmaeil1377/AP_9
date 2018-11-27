@@ -7,7 +7,7 @@ public class Mission {
     private int Reward;
     private int TimeTakeForPlayerToPlayTheMap;
     private FarmMap farmMap=new FarmMap();
-    private Time time=new Time();
+    private int time;
 
 
     public Mission(int reward, int timeTakeForPlayerToPlayTheMap, FarmMap farmMap, ArrayList<Object> ObjectForStartingTheMission) {
@@ -17,4 +17,12 @@ public class Mission {
     }
 
     public void PutStartingObjectRandomlyInTheirPlace(ArrayList<Object> ObjectForStartingTheMission){}
+
+    public void setFarmMap(FarmMap farmMap) {
+        this.farmMap = farmMap;
+    }
+
+    public FarmMap getFarmMap() {
+        return farmMap;
+    }
 }

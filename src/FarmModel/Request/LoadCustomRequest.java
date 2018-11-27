@@ -15,5 +15,6 @@ public class LoadCustomRequest extends Request {
         this.directory = directory;
     }
 
-    public void AnalyzeRequestLine(String requestLIne){}
+    public void AnalyzeRequestLine(String requestLIne) {
+    }
 }

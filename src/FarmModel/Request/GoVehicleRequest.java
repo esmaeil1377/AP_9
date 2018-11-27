@@ -15,7 +15,7 @@ public class GoVehicleRequest extends Request {
         this.vehicleName = vehicleName;
     }
 
-    public void AnalyzeRequestLine(String requestLine){
+    public void AnalyzeRequestLine(String requestLine) {
 
     }
 }
