@@ -1,6 +1,6 @@
 package FarmController;
 
-import FarmModel.Request.Buy;
+import FarmController.Request.BuyRequest;
 
 public class RequestAnalayzer {
     private String BuyAnimals="buy (cat|dog)";
@@ -19,7 +19,7 @@ public class RequestAnalayzer {
 
     public void RequestAnalayzer(String requestString){
         if(requestString.matches(BuyAnimals)){
-            new Buy(requestString);
+            new BuyRequest(requestString);
         }
         else if(requestString.matches(PickUp)){}
         else if(requestString.matches(Cage)){}

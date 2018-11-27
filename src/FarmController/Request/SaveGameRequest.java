@@ -1,11 +1,11 @@
-package FarmModel.Request;
+package FarmController.Request;
 
 
-public class SaveGame extends Request {
+public class SaveGameRequest extends Request {
 //    public ObjectMapper mapper=new ObjectMapper();
     private String fileName;
 
-    public SaveGame(String fileName) {
+    public SaveGameRequest(String fileName) {
         this.fileName = fileName;
     }
 

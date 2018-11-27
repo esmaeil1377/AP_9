@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Turn extends Request {
+public class TurnRequest extends Request {
     private int n;
 
-    public Turn(String requestLine) {
+    public TurnRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 

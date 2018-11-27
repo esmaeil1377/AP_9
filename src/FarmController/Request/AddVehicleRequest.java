@@ -1,11 +1,11 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class AddVehicle extends Request {
+public class AddVehicleRequest extends Request {
     private String vehicleName;
     private String itemName;
     private int count;
 
-    public AddVehicle(String request) {
+    public AddVehicleRequest(String request) {
         AnalyzeRequestLine(request);
 
     }

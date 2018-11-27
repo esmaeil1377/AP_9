@@ -1,9 +1,9 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class GoVehicle extends Request {
+public class GoVehicleRequest extends Request {
     private String vehicleName;
 
-    public GoVehicle(String requestLine) {
+    public GoVehicleRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 

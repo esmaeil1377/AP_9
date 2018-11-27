@@ -1,11 +1,11 @@
-package FarmModel.Request;
+package FarmController.Request;
 
-public class Plant extends Request {
+public class PickUpRequest extends Request {
     private int x;
     private int y;
 
-    public Plant(String requestlIne) {
-        AnalyzeRequestLine(requestlIne);
+    public PickUpRequest(String requestLine) {
+        AnalyzeRequestLine(requestLine);
     }
 
     public int getX() {
