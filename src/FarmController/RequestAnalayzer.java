@@ -1,6 +1,6 @@
 package FarmController;
 
-import FarmController.Request.BuyRequest;
+import FarmModel.Request.BuyRequest;
 
 public class RequestAnalayzer {
     private String BuyAnimals="buy (cat|dog)";

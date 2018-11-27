@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class AddVehicleRequest extends Request {
     private String vehicleName;

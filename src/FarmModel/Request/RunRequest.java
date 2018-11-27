@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class RunRequest extends Request {
     private String mapName;

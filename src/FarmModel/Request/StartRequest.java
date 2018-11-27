@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class StartRequest extends Request {
     private String WorkShopName;

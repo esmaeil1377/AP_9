@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class UpgradeRequest extends Request {
     private String command;

@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class LoadGameRequest extends Request {
     private String fileName;

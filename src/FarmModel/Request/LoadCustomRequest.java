@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class LoadCustomRequest extends Request {
     private String directory;

@@ -1,4 +1,4 @@
-package FarmController.Request;
+package FarmModel.Request;
 
 public class BuyRequest extends Request {
     private String animalName;
