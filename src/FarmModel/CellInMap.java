@@ -5,29 +5,43 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import java.util.ArrayList;
 
 public class CellInMap {
-    private int XPosition;
-    private int YPsition;
+    private int x;
+    private int y;
     ArrayList<ObjectInMap15_15> cellObjectInMap1515 =new ArrayList<>();
 
 
-    public void AddCellAMapObject(ObjectInMap15_15 objectInMap1515){}
 
     public int getXPosition() {
-        return XPosition;
+        return x;
     }
 
     public void setXPosition(int XPosition) {
-        this.XPosition = XPosition;
+        this.x = XPosition;
     }
 
     public int getYPsition() {
-        return YPsition;
+        return y;
     }
 
     public void setYPsition(int YPsition) {
-        this.YPsition = YPsition;
+        this.y = YPsition;
     }
 
-    public void RremoveCellAMapObject(ObjectInMap15_15 objectInMap1515){}
+    public ArrayList<ObjectInMap15_15> getCellObjectInMap1515() {
+        return cellObjectInMap1515;
+    }
+
+    public void AddCellAMapObject(ObjectInMap15_15 objectInMap15_15){
+        cellObjectInMap1515.add(objectInMap15_15);
+    }
+    public void RemoveCellAMapObject(ObjectInMap15_15 objectInMap15_15){
+        for(ObjectInMap15_15 objectInMap15_15s:cellObjectInMap1515){
+            if(objectInMap15_15.equals(objectInMap15_15s)){
+                cellObjectInMap1515.remove(objectInMap15_15s);
+                return;
+            }
+        }
+    }
+
 
 }
