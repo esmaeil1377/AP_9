@@ -1,75 +1,68 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
-import FarmModel.FarmMap;
-import FarmModel.FarmMap.*;
 import FarmModel.Game;
-import FarmModel.Mission;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import FarmModel.ObjectInMap15_15.Grass;
 
 public abstract class AnimalProducer extends Animals {
     private int animalAmountOfHunger;
+    private int RemainTurnToProduce;
+    private boolean wantToEatGrass=false;
+    private int MinOfHungerToGoToFindTheGrass;
+    private int turnToProduce;
+
+    public void setTurnToProduce(int turnToProduce) {
+        this.turnToProduce = turnToProduce;
+    }
+
+    public int getTurnToProduce() {
+        return turnToProduce;
+    }
+
+    public int getMinOfHungerToGoToFindTheGrass() {
+        return MinOfHungerToGoToFindTheGrass;
+    }
+
+    public void setMinOfHungerToGoToFindTheGrass(int minOfHungerToGoToFindTheGrass) {
+        MinOfHungerToGoToFindTheGrass = minOfHungerToGoToFindTheGrass;
+    }
+
+    public void setWantToEatGrass(boolean wantToEatGrass) {
+        this.wantToEatGrass = wantToEatGrass;
+    }
+
+    @Override
+    public int getX() {
+        return super.getX();
+    }
+    public boolean getWantToEat(){
+        return wantToEatGrass;
+    }
+
 
     public abstract void Produce();
 
     public void EatGrass() {
+        int x=getX();
+        int y=getY();
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].RemoveCellAMapObject(new Grass());
     }
 
-    public int getAnimalHealth() {
+
+    public int getAnimalAmountOfHunger() {
         return animalAmountOfHunger;
     }
 
-    public void setAnimalHealth(int animalAmountOfHunger) {
+    public int getRemainTurnToProduce() {
+        return RemainTurnToProduce;
+    }
+
+    public void setAnimalAmountOfHunger(int animalAmountOfHunger) {
         this.animalAmountOfHunger = animalAmountOfHunger;
     }
 
-    public static void WalkWithEveryTurnWhenTheyAreHungry(AnimalProducer animalProducer){
-        int currentX=animalProducer.getX();
-        int currentY=animalProducer.getY();
-        int nextX;
-        int nextY;
-        ArrayList<Integer> PointOfNearestGrass=animalProducer.FindNearGrass();
-        int xPositionOfTheGrass=PointOfNearestGrass.get(0);
-        int yPositionOfTheGrass=PointOfNearestGrass.get(1);
-        if(xPositionOfTheGrass<currentX){
-            nextX=currentX-1;
-        }
-        else{
-            nextX=currentX+1;
-        }
-        if(yPositionOfTheGrass<currentY){
-            nextY=currentY-1;
-        }
-        else{
-            nextY=currentY+1;
-        }
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[currentX][currentY].RemoveCellAMapObject(animalProducer);
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[currentX][currentY].AddCellAMapObject(animalProducer);
+    public void setRemainTurnToProduce(int remainTurnToProduce) {
+        RemainTurnToProduce = remainTurnToProduce;
     }
 
-    public ArrayList<Integer> FindNearGrass(){
-        int currentX=getX();
-        int currentY=getY();
-        HashMap<Integer,Integer> XAndYOfGrassInMap=new HashMap<>();
-        for(int x=0;x<15;x++){
-            for(int y=0;y<15;y++){
-                if(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].HasGrass()){
-                    XAndYOfGrassInMap.put(x,y);
-                }
-            }
-        }
-        int nearestXGrass=100;
-        int nearestYGrass=100;
-        for(Integer xGrass:XAndYOfGrassInMap.keySet()){
-            double distanceBetweenAnimalAndNearestGrass=FarmMap.DistanceBetweenTwoCell(nearestXGrass,nearestYGrass,currentX,currentY);
-            double distanceBetweenAnimalAndGrass=FarmMap.DistanceBetweenTwoCell(xGrass,XAndYOfGrassInMap.get(xGrass),currentX,currentY);
-            if(distanceBetweenAnimalAndGrass<distanceBetweenAnimalAndNearestGrass){
-                nearestXGrass=xGrass;
-                nearestYGrass=XAndYOfGrassInMap.get(xGrass);
-            }
-        }
-        return new ArrayList<>(Arrays.asList(nearestXGrass,nearestYGrass));
-    }
+    public abstract boolean IsHungry();
 }

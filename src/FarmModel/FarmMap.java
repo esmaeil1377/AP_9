@@ -9,20 +9,17 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop
 import java.util.ArrayList;
 
 public class FarmMap {
-    private CellInMap Map[][]=new CellInMap[15][15];
+    private Cell Map[][]=new Cell[15][15];
     private ArrayList<TransportationVehicle> Vehicles=new ArrayList<>();
     private ArrayList<WorkShop> workShops=new ArrayList<>();
     private WareHouse wareHouse=new WareHouse();
     private Well well=new Well();
 
-    public CellInMap[][] getMap() {
+    public Cell[][] getMap() {
         return Map;
     }
     public void AddCellMapObject(ObjectInMap15_15 objectInMap15_15,int cellX,int celly){
         Map[cellX][celly].getCellObjectInMap1515().add(objectInMap15_15);
-    }
-    public void RemoveCellAMapObject(ObjectInMap15_15 objectInMap15_15,int cellX,int cellY){
-        Map[cellX][cellY].RemoveCellAMapObject(objectInMap15_15);
     }
 
     public ArrayList<TransportationVehicle> getVehicles() {

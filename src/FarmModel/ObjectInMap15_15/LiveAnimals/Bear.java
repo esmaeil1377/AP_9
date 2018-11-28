@@ -14,4 +14,6 @@ public class Bear extends WildAnimals {
         return PriceForSell;
     }
 
+
+
 }

@@ -1,4 +1,4 @@
-package FarmModel.ObjectInMap15_15.AnimalProductAndWorkShopProduct.AnimalsProduct;
+package FarmModel.ObjectInMap15_15.Product.AnimalsProduct;
 
 public class Wool extends AnimalsProduct {
     private int priceForSell;

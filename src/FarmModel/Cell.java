@@ -1,11 +1,13 @@
 package FarmModel;
 
 import FarmModel.ObjectInMap15_15.Grass;
+import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.Product.Product;
 
 import java.util.ArrayList;
 
-public class CellInMap {
+public class Cell {
     private int x;
     private int y;
     ArrayList<ObjectInMap15_15> cellObjectInMap1515 =new ArrayList<>();
@@ -46,12 +48,26 @@ public class CellInMap {
 
     public boolean HasGrass(){
         for(ObjectInMap15_15 objectInMap15_15:cellObjectInMap1515){
-            if(objectInMap15_15.equals(new Grass())){
+            if(objectInMap15_15 instanceof Grass){
                 return true;
             }
         }
         return false;
     }
-
-
+    public boolean HasProduct(){
+        for(ObjectInMap15_15 objectInMap15_15:cellObjectInMap1515){
+            if(objectInMap15_15 instanceof Product){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean HasWildAnimal(){
+        for(ObjectInMap15_15 objectInMap15_15:cellObjectInMap1515){
+            if(objectInMap15_15 instanceof WildAnimals){
+                return true;
+            }
+        }
+        return false;
+    }
 }
