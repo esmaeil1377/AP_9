@@ -55,6 +55,11 @@ public class FarmMap {
     public void RemoveFromWareHouse(Object object){}
 
 
+    public static double DistanceBetweenTwoCell(int xCell1,int yCell1,int xCell2,int yCell2){
+        return (Math.pow(Math.pow(xCell1-xCell2,2)+Math.pow(yCell1-yCell2,2),0.5));
+    }
+
+
 
 
 }

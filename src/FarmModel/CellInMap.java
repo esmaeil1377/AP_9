@@ -1,5 +1,6 @@
 package FarmModel;
 
+import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 import java.util.ArrayList;
@@ -41,6 +42,15 @@ public class CellInMap {
                 return;
             }
         }
+    }
+
+    public boolean HasGrass(){
+        for(ObjectInMap15_15 objectInMap15_15:cellObjectInMap1515){
+            if(objectInMap15_15.equals(new Grass())){
+                return true;
+            }
+        }
+        return false;
     }
 
 

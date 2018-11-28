@@ -1,36 +1,34 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
 import FarmModel.FarmMap;
+import FarmModel.Game;
 import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 public class Animals extends ObjectInMap15_15 {
 
-    public static void WalkForOneTurn(Animals animals) {
+    public static void WalkRandomlyForOneTurn(Animals animals) {
         int currentX = animals.getX();
         int currentY = animals.getY();
         int nextRandomDirection = getNextRandomDirection(currentX, currentY);
-        Mission.getFarmMap().RemoveCellAMapObject(animals, currentX, currentY);
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().RemoveCellAMapObject(animals, currentX, currentY);
         if (nextRandomDirection == 1) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX + 1, currentY);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX + 1, currentY);
         } else if (nextRandomDirection == 2) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX + 1, currentY+1);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX + 1, currentY+1);
         } else if (nextRandomDirection == 3) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX, currentY +1);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX, currentY +1);
         } else if (nextRandomDirection == 4) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX-1, currentY +1);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX-1, currentY +1);
         } else if (nextRandomDirection == 5) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX-1, currentY);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX-1, currentY);
         } else if (nextRandomDirection == 6) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX-1, currentY -1);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX-1, currentY -1);
         } else if (nextRandomDirection == 7) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX, currentY -1);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX, currentY -1);
         } else if (nextRandomDirection == 8) {
-            Mission.getFarmMap().AddCellMapObject(animals, currentX+1, currentY-1);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().AddCellMapObject(animals, currentX+1, currentY-1);
         }
-    }
-
-    public void Die() {
     }
 
     public static int getNextRandomDirection(int currentX, int currentY) {
@@ -74,4 +72,5 @@ public class Animals extends ObjectInMap15_15 {
     public static int getNumberBetween0_9() {
         return ((int) (Math.random() * 8) + 1);
     }
+
 }

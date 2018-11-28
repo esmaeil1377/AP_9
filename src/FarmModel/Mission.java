@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Mission {
     private int Reward;
     private int TimeTakeForPlayerToPlayTheMap;
-    private static FarmMap farmMap;
+    private FarmMap farmMap;
     private int time;
 
 
@@ -22,7 +22,7 @@ public class Mission {
         this.farmMap = farmMap;
     }
 
-    public static FarmMap getFarmMap() {
+    public FarmMap getFarmMap() {
         return farmMap;
     }
 }
