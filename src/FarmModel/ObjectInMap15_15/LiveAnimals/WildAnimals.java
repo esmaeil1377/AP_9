@@ -7,9 +7,6 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 public abstract class WildAnimals extends Animals {
 
-    public abstract int getPriceForSell();
-    public abstract int getPriceToBuy();
-
     public void Destroyed () {
         int x=getX();
         int y=getY();

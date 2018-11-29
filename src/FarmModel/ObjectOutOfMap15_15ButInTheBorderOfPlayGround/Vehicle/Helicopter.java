@@ -1,13 +1,24 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import java.util.ArrayList;
+
 public class Helicopter extends TransportationVehicle{
-    private int activationPrice;
+    private ArrayList<Object> goodsThatCarry=new ArrayList<>();
 
-    public int getActivationPrice() {
-        return activationPrice;
+    public void setGoodsThatCarry(ArrayList<Object> goodsThatCarry) {
+        this.goodsThatCarry = goodsThatCarry;
     }
 
-    public void setActivationPrice(int activationPrice) {
-        this.activationPrice = activationPrice;
+    public ArrayList<Object> getGoodsThatCarry() {
+        return goodsThatCarry;
     }
+
+    public Helicopter(){
+        setActivationPrice();
+        setCapacity();
+        setTurnToMoveObjectToCity();
+    }
+
+
+    //some method to buy or sell object
 }

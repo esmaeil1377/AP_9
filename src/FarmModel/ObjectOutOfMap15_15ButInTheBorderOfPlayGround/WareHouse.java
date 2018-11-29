@@ -6,6 +6,15 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level;
     private ArrayList<Object> StoreList=new ArrayList<>();
     private int activationPriceForUpgrade;
+    private int capacityOfWareHouse;
+
+    public void setCapacityOfWareHouse(int capacityOfWareHouse) {
+        this.capacityOfWareHouse = capacityOfWareHouse;
+    }
+
+    public int getCapacityOfWareHouse() {
+        return capacityOfWareHouse;
+    }
 
     public int getActivationPriceForUpgrade() {
         return activationPriceForUpgrade;
@@ -19,5 +28,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
 
     public void RemoveObjectToStore(Object object){}
 
-  public void UpgradadeWareHouse(){}
+  public void UpgradadeWareHouse(){
+
+  }
 }
