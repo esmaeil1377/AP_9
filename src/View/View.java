@@ -3,11 +3,14 @@ package View;
 import java.util.Scanner;
 
 public class View {
-    public Scanner scanner=new Scanner(System.in);
+    public Scanner scanner = new Scanner(System.in);
 
-    public void getRequest(){}
+    public void getRequest() {
+    }
 
-    public static void ShowMap(){}
+    public static void ShowMap() {
+    }
 
-    public static void ShowShop(){}
+    public static void ShowShop() {
+    }
 }

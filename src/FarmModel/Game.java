@@ -3,14 +3,15 @@ package FarmModel;
 import java.util.ArrayList;
 
 public class Game {
-    private static Game game=new Game();
+    private static Game game = new Game();
     private User currentUserAcount;
-    ArrayList<User> userAcount=new ArrayList<>();
-    private InformationNeededInGame informationNeededInGame=InformationNeededInGame.getDataNeededInGameInstance();
+    ArrayList<User> userAcount = new ArrayList<>();
+    private InformationNeededInGame informationNeededInGame = InformationNeededInGame.getDataNeededInGameInstance();
 
-    private Game(){}
+    private Game() {
+    }
 
-    public static   Game getGameInstance(){
+    public static Game getGameInstance() {
         return game;
     }
 

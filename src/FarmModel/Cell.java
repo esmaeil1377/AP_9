@@ -10,8 +10,7 @@ import java.util.ArrayList;
 public class Cell {
     private int x;
     private int y;
-    ArrayList<ObjectInMap15_15> cellObjectInMap1515 =new ArrayList<>();
-
+    ArrayList<ObjectInMap15_15> cellObjectInMap1515 = new ArrayList<>();
 
 
     public int getXPosition() {
@@ -34,37 +33,40 @@ public class Cell {
         return cellObjectInMap1515;
     }
 
-    public void AddCellAMapObject(ObjectInMap15_15 objectInMap15_15){
+    public void AddCellAMapObject(ObjectInMap15_15 objectInMap15_15) {
         cellObjectInMap1515.add(objectInMap15_15);
     }
-    public void RemoveCellAMapObject(ObjectInMap15_15 objectInMap15_15){
-        for(ObjectInMap15_15 objectInMap15_15s:cellObjectInMap1515){
-            if(objectInMap15_15.equals(objectInMap15_15s)){
+
+    public void RemoveCellAMapObject(ObjectInMap15_15 objectInMap15_15) {
+        for (ObjectInMap15_15 objectInMap15_15s : cellObjectInMap1515) {
+            if (objectInMap15_15.equals(objectInMap15_15s)) {
                 cellObjectInMap1515.remove(objectInMap15_15s);
                 return;
             }
         }
     }
 
-    public boolean HasGrass(){
-        for(ObjectInMap15_15 objectInMap15_15:cellObjectInMap1515){
-            if(objectInMap15_15 instanceof Grass){
+    public boolean HasGrass() {
+        for (ObjectInMap15_15 objectInMap15_15 : cellObjectInMap1515) {
+            if (objectInMap15_15 instanceof Grass) {
                 return true;
             }
         }
         return false;
     }
-    public boolean HasProduct(){
-        for(ObjectInMap15_15 objectInMap15_15:cellObjectInMap1515){
-            if(objectInMap15_15 instanceof Product){
+
+    public boolean HasProduct() {
+        for (ObjectInMap15_15 objectInMap15_15 : cellObjectInMap1515) {
+            if (objectInMap15_15 instanceof Product) {
                 return true;
             }
         }
         return false;
     }
-    public boolean HasWildAnimal(){
-        for(ObjectInMap15_15 objectInMap15_15:cellObjectInMap1515){
-            if(objectInMap15_15 instanceof WildAnimals){
+
+    public boolean HasWildAnimal() {
+        for (ObjectInMap15_15 objectInMap15_15 : cellObjectInMap1515) {
+            if (objectInMap15_15 instanceof WildAnimals) {
                 return true;
             }
         }

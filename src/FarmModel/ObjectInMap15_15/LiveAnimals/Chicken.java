@@ -16,8 +16,9 @@ public class Chicken extends AnimalProducer {
         int y=getY();
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].AddCellAMapObject(new Egg());
     }
-    public boolean IsHungry(){
-        if(getAnimalAmountOfHunger()<=3){
+
+    public boolean IsHungry() {
+        if (getAnimalAmountOfHunger() <= 3) {
             return true;
         }
         return false;

@@ -3,7 +3,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 public class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
-    private int Level=0;
+    private int Level = 0;
     private double turnToMoveObjectToCity;
     private int capacity;
 
@@ -23,7 +23,7 @@ public class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPl
         return turnToMoveObjectToCity;
     }
 
-    public void UpgradeVehicle(){
+    public void UpgradeVehicle() {
         //increase in capacity
         //decrease in turnToMoveObjectToCity
     }

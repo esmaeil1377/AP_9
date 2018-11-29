@@ -1,7 +1,6 @@
 package FarmModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Mission {
     private int Reward;
@@ -16,7 +15,8 @@ public class Mission {
         this.farmMap = farmMap;
     }
 
-    public void PutStartingObjectRandomlyInTheirPlace(ArrayList<Object> ObjectForStartingTheMission){}
+    public void PutStartingObjectRandomlyInTheirPlace(ArrayList<Object> ObjectForStartingTheMission) {
+    }
 
     public void setFarmMap(FarmMap farmMap) {
         this.farmMap = farmMap;

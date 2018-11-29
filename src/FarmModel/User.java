@@ -7,12 +7,13 @@ public class User {
     private int money;
     private Mission currentPlayingMission;
     //inja bayad tamam mission ha ro baraye Missions az rouye ye pushe bezarim.
-    private ArrayList<Mission> Missions=new ArrayList<>();
-    private GameShop gameShop=new GameShop();
+    private ArrayList<Mission> Missions = new ArrayList<>();
+    private GameShop gameShop = new GameShop();
 
-    public User(String acountName){
-        this.acountName=acountName;
+    public User(String acountName) {
+        this.acountName = acountName;
     }
+
     public GameShop getGameShop() {
         return gameShop;
     }
@@ -53,6 +54,8 @@ public class User {
         int nowMoney = getMoney();
         setMoney(nowMoney + amountIncreaseMoney);
     }
-    public void AddMissionToMissionsForUser(Mission mission){}
+
+    public void AddMissionToMissionsForUser(Mission mission) {
+    }
 
 }

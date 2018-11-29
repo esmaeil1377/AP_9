@@ -6,7 +6,7 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 
 public class Ship extends AnimalProducer {
 
-    public Ship(){
+    public Ship() {
         setAnimalAmountOfHunger();
         setMinOfHungerToGoToFindTheGrass();
         setTurnToProduce();
@@ -14,14 +14,14 @@ public class Ship extends AnimalProducer {
 
     @Override
     public void Produce() {
-        int x=getX();
-        int y=getY();
+        int x = getX();
+        int y = getY();
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].AddCellAMapObject(new Wool());
     }
 
     @Override
-    public boolean IsHungry(){
-        if(getAnimalAmountOfHunger()<=){
+    public boolean IsHungry() {
+        if (getAnimalAmountOfHunger() <=) {
             return true;
         }
         return false;

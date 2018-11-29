@@ -6,7 +6,7 @@ import FarmModel.ObjectInMap15_15.Grass;
 public abstract class AnimalProducer extends Animals {
     private int animalAmountOfHunger;
     private int RemainTurnToProduce;
-    private boolean wantToEatGrass=false;
+    private boolean wantToEatGrass = false;
     private int MinOfHungerToGoToFindTheGrass;
     private int turnToProduce;
 
@@ -34,7 +34,8 @@ public abstract class AnimalProducer extends Animals {
     public int getX() {
         return super.getX();
     }
-    public boolean getWantToEat(){
+
+    public boolean getWantToEat() {
         return wantToEatGrass;
     }
 
@@ -42,8 +43,8 @@ public abstract class AnimalProducer extends Animals {
     public abstract void Produce();
 
     public void EatGrass() {
-        int x=getX();
-        int y=getY();
+        int x = getX();
+        int y = getY();
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].RemoveCellAMapObject(new Grass());
     }
 

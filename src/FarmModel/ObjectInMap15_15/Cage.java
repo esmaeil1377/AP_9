@@ -5,7 +5,8 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 public class Cage extends ObjectInMap15_15 {
 
-    public Cage(WildAnimals wildAnimals){
+    public Cage(WildAnimals wildAnimals) {
+
     }
 
 }

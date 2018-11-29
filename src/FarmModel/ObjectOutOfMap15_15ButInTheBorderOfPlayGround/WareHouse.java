@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level;
-    private ArrayList<Object> StoreList=new ArrayList<>();
+    private ArrayList<Object> StoreList = new ArrayList<>();
     private int capacityOfWareHouse;
 
     public void setCapacityOfWareHouse(int capacityOfWareHouse) {
@@ -15,11 +15,13 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return capacityOfWareHouse;
     }
 
-    public void AddObjectToStore(Object object){}
+    public void AddObjectToStore(Object object) {
+    }
 
-    public void RemoveObjectToStore(Object object){}
+    public void RemoveObjectToStore(Object object) {
+    }
 
-  public void UpgradadeWareHouse(){
+    public void UpgradadeWareHouse() {
 
-  }
+    }
 }

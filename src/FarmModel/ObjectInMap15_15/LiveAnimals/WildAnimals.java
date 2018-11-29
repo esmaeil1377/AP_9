@@ -11,8 +11,8 @@ public abstract class WildAnimals extends Animals {
         int x=getX();
         int y=getY();
         Cell cell =Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y];
-        for(ObjectInMap15_15 objectInMap15_15:cell.getCellObjectInMap1515()){
-            if(!(objectInMap15_15 instanceof WildAnimals) && !(objectInMap15_15 instanceof Grass)){
+        for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap1515()) {
+            if (!(objectInMap15_15 instanceof WildAnimals) && !(objectInMap15_15 instanceof Grass)) {
                 cell.RemoveCellAMapObject(objectInMap15_15);
             }
         }
