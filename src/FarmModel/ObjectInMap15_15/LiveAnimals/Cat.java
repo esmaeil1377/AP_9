@@ -6,7 +6,6 @@ import FarmModel.ObjectInMap15_15.Product.Product;
 
 public class Cat extends Animals {
     private int Level = 0;
-    private int activationPrice;
     private Product productThatCarryToPutInWareHouse;
 
     public void setProduct(Product product) {
@@ -35,10 +34,6 @@ public class Cat extends Animals {
         }
     }
 
-    public int getActivationPrice() {
-        return activationPrice;
-    }
-
     public int getLevel() {
         return Level;
     }
@@ -46,9 +41,6 @@ public class Cat extends Animals {
     public void UpgradeCat(int level) {
     }
 
-    public void setActivationPrice(int activationPrice) {
-        this.activationPrice = activationPrice;
-    }
 
 
 }

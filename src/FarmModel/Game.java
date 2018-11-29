@@ -6,6 +6,7 @@ public class Game {
     private static Game game=new Game();
     private User currentUserAcount;
     ArrayList<User> userAcount=new ArrayList<>();
+    private InformationNeededInGame informationNeededInGame=InformationNeededInGame.getDataNeededInGameInstance();
 
     private Game(){}
 
