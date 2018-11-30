@@ -1,5 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmModel.Game;
+
 public class Helicopter extends TransportationVehicle {
 
     public Helicopter() {

@@ -7,6 +7,11 @@ public class SewingFactory extends WorkShop {
     }
 
     @Override
+    public void MakeAProductAndPutItInMap() {
+
+    }
+
+    @Override
     public void UpgradeWorkShop() {
 
     }

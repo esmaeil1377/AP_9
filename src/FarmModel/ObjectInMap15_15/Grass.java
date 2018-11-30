@@ -1,10 +1,10 @@
 package FarmModel.ObjectInMap15_15;
 
 public class Grass extends ObjectInMap15_15 {
-    private int turnTODisApear;
+    private int turnToDisapear;
     private int remainTurnToDisApear;
     public Grass(){
-        setTurnTODisApear();
+        setTurnTODisapear();
     }
 
     public int getRemainTurnToDisApear() {
@@ -15,11 +15,11 @@ public class Grass extends ObjectInMap15_15 {
         this.remainTurnToDisApear = remainTurnToDisApear;
     }
 
-    public int getTurnTODisApear() {
-        return turnTODisApear;
+    public int getTurnToDisapear() {
+        return turnToDisapear;
     }
 
-    public void setTurnTODisApear(int turnTODisApear) {
-        this.turnTODisApear = turnTODisApear;
+    public void setTurnTODisapear(int turnTODisApear) {
+        this.turnToDisapear = turnTODisApear;
     }
 }

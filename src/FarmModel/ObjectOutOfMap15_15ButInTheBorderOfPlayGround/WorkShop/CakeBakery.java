@@ -7,6 +7,11 @@ public class CakeBakery extends WorkShop{
     }
 
     @Override
+    public void MakeAProductAndPutItInMap() {
+
+    }
+
+    @Override
     public void UpgradeWorkShop() {
 
     }
