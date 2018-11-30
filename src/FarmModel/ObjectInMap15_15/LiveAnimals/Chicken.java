@@ -6,15 +6,15 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 public class Chicken extends AnimalProducer {
 
     public Chicken(){
-        setAnimalAmountOfHunger(8);
-        setMinOfHungerToGoToFindTheGrass(3);
-        setTurnToProduce(20);
+        setAnimalAmountOfHunger();
+        setMinOfHungerToGoToFindTheGrass();
+        setTurnToProduce();
     }
     @Override
     public void Produce() {
         int x=getX();
         int y=getY();
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].AddCellAMapObject(new Egg());
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].AddCellAMapObject(new Egg());
     }
 
     public boolean IsHungry() {

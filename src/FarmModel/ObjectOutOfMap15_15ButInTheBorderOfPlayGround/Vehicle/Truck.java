@@ -3,32 +3,21 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 import java.util.ArrayList;
 
 public class Truck extends TransportationVehicle {
-    private ArrayList<Object> goodsThatCarry = new ArrayList<>();
 
-    public ArrayList<Object> getGoodsThatCarry() {
-        return goodsThatCarry;
-    }
-
-    public void setGoodsThatCarry(ArrayList<Object> goodsThatCarry) {
-        this.goodsThatCarry = goodsThatCarry;
-    }
 
     public Truck() {
-        setTurnToMoveObjectToCity();
+        setTurnToMoveObjectToCityAndComeBack();
         setCapacity();
     }
 
-    public void SellObjectToCity(ArrayList<Object> goods) {
+    public void SellObjectToCityAndGetMoneyToUser() {
         setGoodsThatCarry(null);
+        setRemainTurnToMoveObjectToCityAndComeBack(0);
         //delete onject from warehouse and increase money;
-    }
-
-    public void TransportGoodsToCity() {
-
     }
 
     public void TakeObjectFromWareHouse(ArrayList<Object> goods) {
         setGoodsThatCarry(goods);
-
+        //delete from warehouse goods that are going to sell
     }
 }

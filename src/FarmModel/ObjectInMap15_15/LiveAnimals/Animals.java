@@ -1,6 +1,6 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
-import FarmModel.FarmMap;
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
@@ -16,7 +16,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         int nextX = 0;
         int nextY = 0;
         int nextRandomDirection = getNextRandomDirection(currentX, currentY);
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[currentX][currentY].RemoveCellAMapObject(animals);
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[currentX][currentY].RemoveCellAMapObject(animals);
         if (nextRandomDirection == 1) {
             nextX = currentX + 1;
             nextY = currentY;
@@ -42,7 +42,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             nextX = currentX + 1;
             nextY = currentY - 1;
         }
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[nextX][nextY].AddCellAMapObject(animals);
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[nextX][nextY].AddCellAMapObject(animals);
         animals.setX(nextX);
         animals.setY(nextY);
     }
@@ -89,9 +89,9 @@ public abstract class Animals extends ObjectInMap15_15 {
         return ((int) (Math.random() * 8) + 1);
     }
 
-    public void Walk(Animals animals) {
+    public static void Walk(Animals animals) {
         if (animals instanceof AnimalProducer) {
-            if (((AnimalProducer) animals).getWantToEat()) {
+            if (((AnimalProducer) animals).WantToEat()) {
                 WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(animals);
             } else if (((AnimalProducer) animals).getAnimalAmountOfHunger() <= ((AnimalProducer) animals).getMinOfHungerToGoToFindTheGrass()) {
                 WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(animals);
@@ -157,8 +157,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         } else {
             nextY = currentY + 1;
         }
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[currentX][currentY].RemoveCellAMapObject(animal);
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[nextX][nextY].AddCellAMapObject(animal);
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[currentX][currentY].RemoveCellAMapObject(animal);
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[nextX][nextY].AddCellAMapObject(animal);
         animal.setX(nextX);
         animal.setY(nextY);
     }
@@ -169,7 +169,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfGrassInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].HasGrass()) {
+                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasGrass()) {
                     XAndYOfGrassInMap.put(x, y);
                 }
             }
@@ -177,8 +177,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         int nearestXGrass = -100;
         int nearestYGrass = -100;
         for (Integer xGrass : XAndYOfGrassInMap.keySet()) {
-            double distanceBetweenAnimalAndNearestGrass = FarmMap.DistanceBetweenTwoCell(nearestXGrass, nearestYGrass, currentX, currentY);
-            double distanceBetweenAnimalAndGrass = FarmMap.DistanceBetweenTwoCell(xGrass, XAndYOfGrassInMap.get(xGrass), currentX, currentY);
+            double distanceBetweenAnimalAndNearestGrass = Farm.DistanceBetweenTwoCell(nearestXGrass, nearestYGrass, currentX, currentY);
+            double distanceBetweenAnimalAndGrass = Farm.DistanceBetweenTwoCell(xGrass, XAndYOfGrassInMap.get(xGrass), currentX, currentY);
             if (distanceBetweenAnimalAndGrass < distanceBetweenAnimalAndNearestGrass) {
                 nearestXGrass = xGrass;
                 nearestYGrass = XAndYOfGrassInMap.get(xGrass);
@@ -193,7 +193,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].HasProduct()) {
+                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasProduct()) {
                     XAndYOfProductInMap.put(x, y);
                 }
             }
@@ -201,8 +201,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         int nearestXProduct = -100;
         int nearestYProduct = -100;
         for (Integer xProduct : XAndYOfProductInMap.keySet()) {
-            double distanceBetweenAnimalAndNearestProduct = FarmMap.DistanceBetweenTwoCell(nearestXProduct, nearestYProduct, currentX, currentY);
-            double distanceBetweenAnimalAndProduct = FarmMap.DistanceBetweenTwoCell(xProduct, XAndYOfProductInMap.get(xProduct), currentX, currentY);
+            double distanceBetweenAnimalAndNearestProduct = Farm.DistanceBetweenTwoCell(nearestXProduct, nearestYProduct, currentX, currentY);
+            double distanceBetweenAnimalAndProduct = Farm.DistanceBetweenTwoCell(xProduct, XAndYOfProductInMap.get(xProduct), currentX, currentY);
             if (distanceBetweenAnimalAndProduct < distanceBetweenAnimalAndNearestProduct) {
                 nearestXProduct = xProduct;
                 nearestYProduct = XAndYOfProductInMap.get(xProduct);
@@ -217,7 +217,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfWildAnimalInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].HasWildAnimal()) {
+                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasWildAnimal()) {
                     XAndYOfWildAnimalInMap.put(x, y);
                 }
             }
@@ -225,8 +225,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         int nearestXWildAnimal = -100;
         int nearestYWildAnimal = -100;
         for (Integer xWildAnimal : XAndYOfWildAnimalInMap.keySet()) {
-            double distanceBetweenAnimalAndNearestWildAnimal = FarmMap.DistanceBetweenTwoCell(nearestXWildAnimal, nearestYWildAnimal, currentX, currentY);
-            double distanceBetweenAnimalAndWildAnimal = FarmMap.DistanceBetweenTwoCell(xWildAnimal, XAndYOfWildAnimalInMap.get(xWildAnimal), currentX, currentY);
+            double distanceBetweenAnimalAndNearestWildAnimal = Farm.DistanceBetweenTwoCell(nearestXWildAnimal, nearestYWildAnimal, currentX, currentY);
+            double distanceBetweenAnimalAndWildAnimal = Farm.DistanceBetweenTwoCell(xWildAnimal, XAndYOfWildAnimalInMap.get(xWildAnimal), currentX, currentY);
             if (distanceBetweenAnimalAndWildAnimal < distanceBetweenAnimalAndNearestWildAnimal) {
                 nearestXWildAnimal = xWildAnimal;
                 nearestYWildAnimal = XAndYOfWildAnimalInMap.get(xWildAnimal);
@@ -241,7 +241,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].HasProduct()) {
+                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasProduct()) {
                     XAndYOfProductInMap.put(x, y);
                 }
             }

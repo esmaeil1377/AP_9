@@ -19,9 +19,9 @@ public class Cat extends Animals {
     public void TakeProduct() {
         int x = getX();
         int y = getY();
-        for (ObjectInMap15_15 objectInMap15_15 : Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].getCellObjectInMap1515()) {
+        for (ObjectInMap15_15 objectInMap15_15 : Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].getCellObjectInMap1515()) {
             if (objectInMap15_15 instanceof Product) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].RemoveCellAMapObject(objectInMap15_15);
+                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].RemoveCellAMapObject(objectInMap15_15);
                 setProduct((Product) objectInMap15_15);
             }
         }
@@ -29,7 +29,7 @@ public class Cat extends Animals {
 
     public void PutProductInStore() {
         if (getProduct() != null) {
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getWareHouse().AddObjectToStore(getProduct());
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddObjectToStore(getProduct());
             setProduct(null);
         }
     }

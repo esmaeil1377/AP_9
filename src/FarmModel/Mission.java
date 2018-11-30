@@ -5,24 +5,24 @@ import java.util.ArrayList;
 public class Mission {
     private int Reward;
     private int TimeTakeForPlayerToPlayTheMap;
-    private FarmMap farmMap;
+    private Farm farm;
     private int time;
 
 
-    public Mission(int reward, int timeTakeForPlayerToPlayTheMap, FarmMap farmMap, ArrayList<Object> ObjectForStartingTheMission) {
+    public Mission(int reward, int timeTakeForPlayerToPlayTheMap, Farm farm, ArrayList<Object> ObjectForStartingTheMission) {
         Reward = reward;
         TimeTakeForPlayerToPlayTheMap = timeTakeForPlayerToPlayTheMap;
-        this.farmMap = farmMap;
+        this.farm = farm;
     }
 
     public void PutStartingObjectRandomlyInTheirPlace(ArrayList<Object> ObjectForStartingTheMission) {
     }
 
-    public void setFarmMap(FarmMap farmMap) {
-        this.farmMap = farmMap;
+    public void setFarm(Farm farm) {
+        this.farm = farm;
     }
 
-    public FarmMap getFarmMap() {
-        return farmMap;
+    public Farm getFarm() {
+        return farm;
     }
 }

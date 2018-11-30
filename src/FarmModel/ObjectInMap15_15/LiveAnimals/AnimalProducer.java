@@ -1,14 +1,25 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
+import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Grass;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 public abstract class AnimalProducer extends Animals {
     private int animalAmountOfHunger;
+    private int healthyAnimalAmountOfHunger;
     private int RemainTurnToProduce;
     private boolean wantToEatGrass = false;
     private int MinOfHungerToGoToFindTheGrass;
     private int turnToProduce;
+
+    public int getHealthyAnimalAmountOfHunger() {
+        return healthyAnimalAmountOfHunger;
+    }
+
+    public void setHealthyAnimalAmountOfHunger(int healthyAnimalAmountOfHunger) {
+        this.healthyAnimalAmountOfHunger = healthyAnimalAmountOfHunger;
+    }
 
     public void setTurnToProduce(int turnToProduce) {
         this.turnToProduce = turnToProduce;
@@ -35,7 +46,7 @@ public abstract class AnimalProducer extends Animals {
         return super.getX();
     }
 
-    public boolean getWantToEat() {
+    public boolean WantToEat() {
         return wantToEatGrass;
     }
 
@@ -45,7 +56,17 @@ public abstract class AnimalProducer extends Animals {
     public void EatGrass() {
         int x = getX();
         int y = getY();
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarmMap().getMap()[x][y].RemoveCellAMapObject(new Grass());
+        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+        for(ObjectInMap15_15 objectInMap15_15:cell.getCellObjectInMap1515()){
+            if(objectInMap15_15 instanceof Grass){
+                cell.RemoveCellAMapObject(objectInMap15_15);
+                setAnimalAmountOfHunger(getAnimalAmountOfHunger()+1);
+                if(getAnimalAmountOfHunger()==healthyAnimalAmountOfHunger){
+                    setWantToEatGrass(false);
+                }
+                return;
+            }
+        }
     }
 
 
