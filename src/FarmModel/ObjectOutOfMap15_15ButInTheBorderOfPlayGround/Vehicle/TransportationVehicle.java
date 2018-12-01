@@ -6,16 +6,24 @@ import java.util.ArrayList;
 
 public class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level = 0;
-    private double turnToMoveObjectToCityAndComeBack;
+    private int turnToMoveObjectToCityAndComeBack;
     private int capacity;
     private int remainTurnToMoveObjectToCityAndComeBack;
     private ArrayList<Object> goodsThatCarry = new ArrayList<>();
+    private boolean isVehicleActivated=false;
 
-    public void setGoodsThatCarry(ArrayList<Object> goodsThatCarry) {
+    public void setVehicleActivated(boolean vehicleActivated) {
+        isVehicleActivated = vehicleActivated;
+    }
+    public boolean IsVehicleActivated(){
+        return isVehicleActivated;
+    }
+
+    void setGoodsThatHaveToCarry(ArrayList<Object> goodsThatCarry) {
         this.goodsThatCarry = goodsThatCarry;
     }
 
-    public ArrayList<Object> getGoodsThatCarry() {
+    public ArrayList<Object> getGoodsThatHaveToCarry() {
         return goodsThatCarry;
     }
 
@@ -31,7 +39,7 @@ public class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPl
         return Level;
     }
 
-    public void setCapacity(int capacity) {
+    void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -39,16 +47,16 @@ public class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPl
         return capacity;
     }
 
-    public void setTurnToMoveObjectToCityAndComeBack(double turnToMoveObjectToCityAndComeBack) {
+    void setTurnToMoveObjectToCityAndComeBack(int turnToMoveObjectToCityAndComeBack) {
         this.turnToMoveObjectToCityAndComeBack = turnToMoveObjectToCityAndComeBack;
     }
 
-    public double getTurnToMoveObjectToCityAndComeBack() {
+    public int getTurnToMoveObjectToCityAndComeBack() {
         return turnToMoveObjectToCityAndComeBack;
     }
 
     public void UpgradeVehicle() {
-        //increase in capacity
+        Level=Level+1;
         //decrease in turnToMoveObjectToCityAndComeBack
     }
 }

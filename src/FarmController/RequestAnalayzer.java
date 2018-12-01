@@ -16,6 +16,7 @@ public class RequestAnalayzer {
     private String LoadGame="load game .*";
     private String Print="print .*";
     private String Turn="turn [0-9]*";
+    private String GoVehicle="(truck|helicopter) go";
 
     public void RequestAnalayzer(String requestString){
         if(requestString.matches(BuyAnimals)){

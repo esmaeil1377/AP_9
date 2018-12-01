@@ -1,18 +1,16 @@
 package FarmModel;
 
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+
 import java.util.ArrayList;
 
 public class GameShop {
-    private ArrayList<Object> products = new ArrayList<>();
+    private ArrayList<WorkShop> workshopoffeirng=new ArrayList<>();
 
     public class Shop {
         ArrayList<Object> shop = new ArrayList<>();
 
 
-        public void AddToShopOffering(Object object) {
-        }
-
-        public void RemoveFromShopOffreing(Object object) {
-        }
+        public void showOfferings(){}
     }
 }

@@ -59,10 +59,6 @@ public class InformationNeededInGame {
         //.....
     }
 
-    public static InformationNeededInGame getDataNeededInGameInstance() {
-        return informationNeededInGame;
-    }
-
     public static int GetData(String strDataName) {
         return informationAndNumber.get(strDataName);
     }

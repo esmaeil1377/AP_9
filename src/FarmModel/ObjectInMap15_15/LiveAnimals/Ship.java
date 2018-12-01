@@ -20,7 +20,7 @@ public class Ship extends AnimalProducer {
 
     @Override
     public boolean IsHungry() {
-        if (getAnimalAmountOfHunger() <=) {
+        if (getAnimalAmountOfHunger() <=getMinOfHungerToGoToFindTheGrass()) {
             return true;
         }
         return false;

@@ -11,13 +11,13 @@ public class Truck extends TransportationVehicle {
     }
 
     public void SellObjectToCityAndGetMoneyToUser() {
-        setGoodsThatCarry(null);
+        setGoodsThatHaveToCarry(null);
         setRemainTurnToMoveObjectToCityAndComeBack(0);
         //delete onject from warehouse and increase money;
     }
 
     public void TakeObjectFromWareHouse(ArrayList<Object> goods) {
-        setGoodsThatCarry(goods);
+        setGoodsThatHaveToCarry(goods);
         //delete from warehouse goods that are going to sell
     }
 }

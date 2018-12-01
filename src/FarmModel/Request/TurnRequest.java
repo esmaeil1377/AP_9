@@ -6,6 +6,7 @@ import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
@@ -219,14 +220,25 @@ public class TurnRequest extends Request {
 
     private void MakeTruckPassTheWayToCity() {
         Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
-        if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == truck.getTurnToMoveObjectToCityAndComeBack()) {
+        if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
             truck.SellObjectToCityAndGetMoneyToUser();
-        } else {
+        } else if(truck.IsVehicleActivated()==true){
             truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
         }
     }
 
     private void MakeHelicopterPassTheWayToCity() {
+        Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
+        if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
+            helicopter.GiveObjectToWareHouse();
+        } else if(helicopter.IsVehicleActivated()==true){
+            helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
+        }
+    }
+
+
+    private void StopMissionIfItIsFinished(){
+
     }
 
 }

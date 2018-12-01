@@ -11,7 +11,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         isWellActivatedToFillTheBucket = wellActivatedToFillTheBucket;
     }
     public boolean isWellActivatedToFillTheBucket(){
-        return isWellActivatedToFillTheBucket;
+        return isWellActivatedToFillTheBucket;ٌ
     }
     public void setRemianTurnToFillTheBucket(int remianTurnToFillTheBucket) {
         this.remianTurnToFillTheBucket = remianTurnToFillTheBucket;
@@ -49,6 +49,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void FillTheBucket() {
+        //decrease money of the user
     }
 }
 
