@@ -12,6 +12,7 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Farm {
     private Cell Map[][] = new Cell[15][15];
@@ -21,6 +22,7 @@ public class Farm {
     private WareHouse wareHouse = new WareHouse();
     private Well well = new Well();
     private int remainTurnToRandomlyAddWildAnimalToMap = 60;
+    private HashMap<Object,Integer> recordNoteBookThatRecoredEveryThingAndNumbers=new HashMap<>();
 
     public int getRemainTurnToRandomlyAddWildAnimalToMap() {
         return remainTurnToRandomlyAddWildAnimalToMap;
@@ -91,10 +93,6 @@ public class Farm {
         return Map;
     }
 
-    public void AddCellMapObject(ObjectInMap15_15 objectInMap15_15, int cellX, int celly) {
-        Map[cellX][celly].getCellObjectInMap1515().add(objectInMap15_15);
-    }
-
     public ArrayList<WorkShop> getWorkShops() {
         return workShops;
     }
@@ -111,12 +109,17 @@ public class Farm {
     }
 
     public void AddToWareHouse(Object object) {
+        RecordThisTransActionThatAddedToWareHouse(object);
     }
 
     public void RemoveFromWorkShops(WorkShop workShop) {
     }
 
     public void RemoveFromWareHouse(Object object) {
+    }
+    public void RecordThisTransActionThatAddedToWareHouse(Object object){
+        if(object instanceof )
+
     }
 
 

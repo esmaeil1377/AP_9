@@ -50,6 +50,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
 
     public void FillTheBucket() {
         //decrease money of the user
+        //it fill the bucket if it's empty.
     }
 }
 
