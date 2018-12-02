@@ -19,6 +19,14 @@ public class Mission {
         this.farm = farm;
     }
 
+    public boolean isMissionCompletedBefore() {
+        return isMissionCompletedBefore;
+    }
+
+    public void setMissionCompletedBefore(boolean missionCompletedBefore) {
+        isMissionCompletedBefore = missionCompletedBefore;
+    }
+
     public void PutStartingObjectRandomlyInTheirPlace(ArrayList<Object> ObjectForStartingTheMission) {
     }
 
