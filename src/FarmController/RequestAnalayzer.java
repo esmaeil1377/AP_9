@@ -28,7 +28,7 @@ public class RequestAnalayzer {
         } else if (requestString.matches(Plant)) {
             new PlantRequest(requestString);
         } else if (requestString.matches(Well)) {
-            new WellRequest(requestString);
+            new WellRequest();
         } else if (requestString.matches(StartWorkShop)) {
             new StartRequest(requestString);
         } else if (requestString.matches(Upgrade)) {

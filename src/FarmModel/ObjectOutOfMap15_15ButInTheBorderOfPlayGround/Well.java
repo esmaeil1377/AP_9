@@ -4,7 +4,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level = 0;
     private int WaterOfTheBucket = 0;
     private int turnToFillTheBucket;
-    private int remianTurnToFillTheBucket;
+    private int remainTurnToFillTheBucket;
     private boolean isWellActivatedToFillTheBucket =false;
 
     public void setWellActivatedToFillTheBucket(boolean wellActivatedToFillTheBucket) {
@@ -13,12 +13,12 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     public boolean isWellActivatedToFillTheBucket(){
         return isWellActivatedToFillTheBucket;ٌ
     }
-    public void setRemianTurnToFillTheBucket(int remianTurnToFillTheBucket) {
-        this.remianTurnToFillTheBucket = remianTurnToFillTheBucket;
+    public void setRemainTurnToFillTheBucket(int remainTurnToFillTheBucket) {
+        this.remainTurnToFillTheBucket = remainTurnToFillTheBucket;
     }
 
-    public int getRemianTurnToFillTheBucket() {
-        return remianTurnToFillTheBucket;
+    public int getRemainTurnToFillTheBucket() {
+        return remainTurnToFillTheBucket;
     }
 
     public void setTurnToFillTheBucket(int turnToFillTheBucket) {

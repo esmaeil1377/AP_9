@@ -194,11 +194,11 @@ public class TurnRequest extends Request {
 
     private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() {
         Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
-        if (well.getRemianTurnToFillTheBucket() == 0 && well.isWellActivatedToFillTheBucket()) {
+        if (well.getRemainTurnToFillTheBucket() == 0 && well.isWellActivatedToFillTheBucket()) {
             well.FillTheBucket();
             well.setWellActivatedToFillTheBucket(false);
-        } else if (well.getRemianTurnToFillTheBucket() != 0 && well.isWellActivatedToFillTheBucket()) {
-            well.setRemianTurnToFillTheBucket(well.getRemianTurnToFillTheBucket() - 1);
+        } else if (well.getRemainTurnToFillTheBucket() != 0 && well.isWellActivatedToFillTheBucket()) {
+            well.setRemainTurnToFillTheBucket(well.getRemainTurnToFillTheBucket() - 1);
         }
     }
 
