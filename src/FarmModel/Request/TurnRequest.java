@@ -240,6 +240,7 @@ public class TurnRequest extends Request {
 
     private void StopMissionIfItIsFinished() {
         if () {
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setMissionCompletedBefore(true);
         }
         //increase money of the user by the end of this method;
     }
