@@ -22,4 +22,9 @@ public class Helicopter extends TransportationVehicle {
         setGoodsThatHaveToCarry(null);
         //delete from warehouse goods that are going to sell and something in userMoney
     }
+
+    @Override
+    public String toString() {
+        return "Helicopter";
+    }
 }

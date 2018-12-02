@@ -4,7 +4,7 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_
 
 import java.util.ArrayList;
 
-public class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
+public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level = 0;
     private int turnToMoveObjectToCityAndComeBack;
     private int capacity;

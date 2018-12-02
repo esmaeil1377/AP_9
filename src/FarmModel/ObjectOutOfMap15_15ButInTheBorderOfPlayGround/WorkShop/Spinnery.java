@@ -13,6 +13,10 @@ public class Spinnery extends WorkShop {
 
     @Override
     public void UpgradeWorkShop() {
+    }
 
+    @Override
+    public String toString() {
+        return "Spinnery";
     }
 }

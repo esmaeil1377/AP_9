@@ -25,4 +25,9 @@ public class Ship extends AnimalProducer {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Ship";
+    }
 }

@@ -1,6 +1,6 @@
 package FarmModel.ObjectInMap15_15;
 
-public class ObjectInMap15_15 {
+public abstract class ObjectInMap15_15 {
     private int x;
     private int y;
 
@@ -23,4 +23,6 @@ public class ObjectInMap15_15 {
     public void AddToFarmMap(){}
 
     public void RemoveFromMap(){}
+
+    public abstract String toString();
 }

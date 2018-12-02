@@ -9,6 +9,11 @@ public class CookieBakery extends WorkShop {
     }
 
     @Override
+    public String toString() {
+        return "CookieBakery";
+    }
+
+    @Override
     public void MakeAProductAndPutItInMap() {
 
     }

@@ -18,7 +18,10 @@ public class Dog extends Animals {
                 return;
             }
         }
-
     }
 
+    @Override
+    public String toString() {
+        return "Dog";
+    }
 }

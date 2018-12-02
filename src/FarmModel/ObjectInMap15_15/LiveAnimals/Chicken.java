@@ -5,6 +5,11 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 
 public class Chicken extends AnimalProducer {
 
+    @Override
+    public String toString() {
+        return "Chicken";
+    }
+
     public Chicken(){
         setAnimalAmountOfHunger();
         setMinOfHungerToGoToFindTheGrass();

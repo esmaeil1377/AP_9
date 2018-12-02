@@ -41,5 +41,8 @@ public class Cat extends Animals {
     public void UpgradeCat(int level) {
     }
 
-
+    @Override
+    public String toString() {
+        return "Cat";
+    }
 }

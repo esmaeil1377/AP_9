@@ -13,6 +13,10 @@ public class EggPowderPlant extends WorkShop {
 
     @Override
     public void UpgradeWorkShop() {
+    }
 
+    @Override
+    public String toString() {
+        return "EggPowderPlant";
     }
 }

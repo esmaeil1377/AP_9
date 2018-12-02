@@ -35,18 +35,18 @@ public class TurnRequest extends Request {
     private void DoWorkByPassingTime(int turn) {
         for(int t=0;t<turn;t++) {
             AddWildAnimalsToMapAfterOneMinute();
-            MoveObject(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMap());
-            KillAnimalsThatAreVeryHungeryOrMakeThemHungrierOrEat(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMap());
+            MoveObject(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            KillAnimalsThatAreVeryHungeryOrMakeThemHungrierOrEat(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeProductDisapearOrDecreaseRemainTurnToDisapear(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentProductInMap());
-            MakeAnimalProduce(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMap());
+            MakeAnimalProduce(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWorkShopProduce(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops());
             MakeGrassDisapear(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentGrassInMap());
             FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
             MakeTruckPassTheWayToCity();
             MakeHelicopterPassTheWayToCity();
-            MakeCatTakeProduct(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMap());
-            MakeDogKillWildAnimal(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMap());
-            MakeWildAnimalDestroy(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMap());
+            MakeCatTakeProduct(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeDogKillWildAnimal(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeWildAnimalDestroy(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             //and so on
         }
     }
@@ -238,7 +238,8 @@ public class TurnRequest extends Request {
 
 
     private void StopMissionIfItIsFinished(){
-
+        if(){}
+        //increase money of the user by the end of this method;
     }
 
 }

@@ -22,6 +22,10 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void UpgradadeWareHouse() {
+    }
 
+    @Override
+    public String toString() {
+        return "WareHouse";
     }
 }

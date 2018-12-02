@@ -20,4 +20,9 @@ public class Truck extends TransportationVehicle {
         setGoodsThatHaveToCarry(goods);
         //delete from warehouse goods that are going to sell
     }
+
+    @Override
+    public String toString() {
+        return "Truck";
+    }
 }

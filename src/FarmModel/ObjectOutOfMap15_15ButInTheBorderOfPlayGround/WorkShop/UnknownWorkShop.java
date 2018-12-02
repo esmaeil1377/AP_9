@@ -13,6 +13,10 @@ public class UnknownWorkShop extends WorkShop {
 
     @Override
     public void UpgradeWorkShop() {
+    }
 
+    @Override
+    public String toString() {
+        return "UnknownWorkShop";
     }
 }

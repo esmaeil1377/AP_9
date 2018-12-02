@@ -22,4 +22,9 @@ public class Grass extends ObjectInMap15_15 {
     public void setTurnTODisapear(int turnTODisApear) {
         this.turnToDisapear = turnTODisApear;
     }
+
+    @Override
+    public String toString() {
+        return "Grass";
+    }
 }

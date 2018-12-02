@@ -52,5 +52,10 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         //decrease money of the user
         //it fill the bucket if it's empty.
     }
+
+    @Override
+    public String toString() {
+        return "Well";
+    }
 }
 

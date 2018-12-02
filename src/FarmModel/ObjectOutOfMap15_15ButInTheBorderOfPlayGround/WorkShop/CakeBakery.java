@@ -13,6 +13,10 @@ public class CakeBakery extends WorkShop{
 
     @Override
     public void UpgradeWorkShop() {
+    }
 
+    @Override
+    public String toString() {
+        return "CakeBakery";
     }
 }

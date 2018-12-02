@@ -20,6 +20,11 @@ public class Cow extends AnimalProducer {
     }
 
     @Override
+    public String toString() {
+        return "Cow";
+    }
+
+    @Override
     public boolean IsHungry() {
         if (getAnimalAmountOfHunger() <=) {
             return true;
