@@ -8,9 +8,8 @@ public class Mission {
     private int TimeTakeForPlayerToPlayTheMap;
     private Farm farm;
     private int time;
-    private boolean isMissionCompletedBefore=false;
-    private HashMap<Object,Integer> requiermentToFinishTheMission=new HashMap<>();
-
+    private boolean isMissionCompletedBefore = false;
+    private HashMap<Object, Integer> requiermentToFinishTheMission = new HashMap<>();
 
 
     public Mission(int reward, int timeTakeForPlayerToPlayTheMap, Farm farm, ArrayList<Object> ObjectForStartingTheMission) {
@@ -38,5 +37,6 @@ public class Mission {
         return farm;
     }
 
-    public void GiveRewardToUser(){}
+    public void GiveRewardToUser() {
+    }
 }
