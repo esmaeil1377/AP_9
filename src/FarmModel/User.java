@@ -11,7 +11,8 @@ public class User {
     private GameShop gameShop = new GameShop();
 
     public User(String acountName) {
-        this.acountName = acountName;
+        setAcountName(acountName);
+        // Add users its missions
     }
 
     public GameShop getGameShop() {
@@ -26,7 +27,7 @@ public class User {
         this.currentPlayingMission = currentPlayingMission;
     }
 
-    public void setAcountName(String acountName) {
+    private void setAcountName(String acountName) {
         this.acountName = acountName;
     }
 
@@ -34,7 +35,7 @@ public class User {
         return acountName;
     }
 
-    public void setMoney(int money) {
+    private void setMoney(int money) {
         this.money = money;
     }
 

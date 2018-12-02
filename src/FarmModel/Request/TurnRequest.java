@@ -10,6 +10,7 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopte
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.User;
 
 import java.util.ArrayList;
 
@@ -55,6 +56,7 @@ public class TurnRequest extends Request {
             MakeCatTakeProduct(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWildAnimalDestroy(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            StopMissionIfItIsFinishedAndIncreaseTimeForPlayerToFinishTheMission();
             //and so on
         }
     }
@@ -245,11 +247,16 @@ public class TurnRequest extends Request {
     }
 
 
-    private void StopMissionIfItIsFinished() {
-        if () {
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setMissionCompletedBefore(true);
+    private void StopMissionIfItIsFinishedAndIncreaseTimeForPlayerToFinishTheMission() {
+        User user=Game.getGameInstance().getCurrentUserAcount();
+        if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
+            user.getCurrentPlayingMission().setMissionCompletion(true);
+            user.AddMoney(user.getCurrentPlayingMission().CalcualteMoneyToGiveUserAfterCompletingTheMission());
+            //Now It should go out of the mission don't know how.
+        }else{
+            user.getCurrentPlayingMission().setTimeTakeForPlayerToFinishTheMap(user.getCurrentPlayingMission().getTimeTakeForPlayerToFinishTheMap()+1);
         }
-        //increase money of the user by the end of this method;
     }
+
 
 }

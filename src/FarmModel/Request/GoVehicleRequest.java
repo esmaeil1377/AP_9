@@ -7,8 +7,26 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 public class GoVehicleRequest extends Request {
     private String vehicleName;
 
-    public GoVehicleRequest(String requestLine) {
+    public GoVehicleRequest(String requestLine)
+    {
         AnalyzeRequestLine(requestLine);
+        if (getVehicleName().equals("truck")) {
+            Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
+            if (!truck.equals(null)) {
+                truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getTurnToMoveObjectToCityAndComeBack());
+                truck.setVehicleActivated(true);
+            } else {
+                //i don't know how to react here.
+            }
+        } else {
+            Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
+            if (!helicopter.equals(null)) {
+                helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack());
+                helicopter.setVehicleActivated(true);
+            } else {
+                //i don't know how to react here.
+            }
+        }
     }
 
     public String getVehicleName() {
@@ -20,22 +38,8 @@ public class GoVehicleRequest extends Request {
     }
 
     public void AnalyzeRequestLine(String requestLine) {
-        int lastIndexOfVehicleName = 0;
-        for (int charindex = 0; charindex < requestLine.length(); charindex++) {
-            if (requestLine.charAt(charindex) == ' ') {
-                lastIndexOfVehicleName = charindex - 1;
-                break;
-            }
-        }
-        String vehicleName = requestLine.substring(0, lastIndexOfVehicleName);
-        if (vehicleName.equals("truck")) {
-            Truck truck=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
-            truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getTurnToMoveObjectToCityAndComeBack());
-            truck.setVehicleActivated(true);
-        } else {
-            Helicopter helicopter=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
-            helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack());
-            helicopter.setVehicleActivated(true);
-        }
+        String vehicleName=requestLine.split(" ")[0];
+        setVehicleName(vehicleName);
     }
+
 }
