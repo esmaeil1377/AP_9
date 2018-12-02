@@ -30,14 +30,7 @@ public class TurnRequest extends Request {
     }
 
     public void AnalyzeRequestLine(String requestLIne) {
-        String turn="";
-        for(int index=0;index<requestLIne.length();index++){
-            if(requestLIne.charAt(index)==' '){
-                turn=requestLIne.substring(index+1,requestLIne.length());
-                break;
-            }
-        }
-        setN(Integer.valueOf(turn));
+        setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
     private void DoWorkByPassingTime(int turn) {
@@ -230,7 +223,7 @@ public class TurnRequest extends Request {
         Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
         if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
             truck.SellObjectToCityAndGetMoneyToUser();
-        } else if(truck.IsVehicleActivated()==true){
+        } else if (truck.IsVehicleActivated() == true) {
             truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
         }
     }
@@ -239,7 +232,7 @@ public class TurnRequest extends Request {
         Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
         if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
             helicopter.GiveObjectToWareHouse();
-        } else if(helicopter.IsVehicleActivated()==true){
+        } else if (helicopter.IsVehicleActivated() == true) {
             helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
         }
     }

@@ -41,6 +41,10 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return WaterOfTheBucket;
     }
 
+    public void setWaterOfTheBucket(int waterOfTheBucket) {
+        WaterOfTheBucket = waterOfTheBucket;
+    }
+
     public void FillTheBucket(int waterOfTheBucket) {
         WaterOfTheBucket = waterOfTheBucket;
     }
