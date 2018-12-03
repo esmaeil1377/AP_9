@@ -1,15 +1,13 @@
 package FarmModel.Request;
 
 import FarmModel.Cell;
-import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Animals;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
-import static FarmModel.Game.*;
+import static FarmModel.Game.getGameInstance;
 
 public class CageRequest extends Request {
     private int x;
@@ -22,7 +20,7 @@ public class CageRequest extends Request {
         for (ObjectInMap15_15 object : cell.getCellObjectInMap1515()) {
             if (object instanceof Lion) {
                 cell.AddCellAMapObject(new Cage((WildAnimals) object));
-            }else if (object instanceof Bear) {
+            } else if (object instanceof Bear) {
                 cell.AddCellAMapObject(new Cage((WildAnimals) object));
             }
         }
