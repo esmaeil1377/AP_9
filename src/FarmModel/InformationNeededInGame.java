@@ -14,33 +14,35 @@ public class InformationNeededInGame {
         informationAndNumber.put("ActivationPriceForTruck", );
         informationAndNumber.put("ActivationPriceForCustomWorkShop", );
         //SpaceNeededInWareHouseForObject
-        informationAndNumber.put("SpaceNeededInWareHouseForCageThatLionIsInIt",20);
-        informationAndNumber.put("SpaceNeededInWareHouseForCageThatBearIsInIt",20);
-        informationAndNumber.put("SpaceNeededInWareHouseForEgg",1 );
+        informationAndNumber.put("SpaceNeededInWareHouseForCageThatLionIsInIt", 20);
+        informationAndNumber.put("SpaceNeededInWareHouseForCageThatBearIsInIt", 20);
+        informationAndNumber.put("SpaceNeededInWareHouseForEgg", 1);
         informationAndNumber.put("SpaceNeededInWareHouseForWool", 5);
         informationAndNumber.put("SpaceNeededInWareHouseForMilk", 10);
         informationAndNumber.put("SpaceNeededInWareHouseForCake", 5);
-        informationAndNumber.put("SpaceNeededInWareHouseForPowder",);
+        informationAndNumber.put("SpaceNeededInWareHouseForPowder", );
         //PriceToBuyProduct
-        informationAndNumber.put("PriceTOBuyWool",200);
-        informationAndNumber.put("PriceToBuyEgg",20);
-        informationAndNumber.put("PriceToBuyMilk",2000);
-        informationAndNumber.put("PriceTOBuyCake",200);
-        informationAndNumber.put("PriceToBuySewing",300);
+        informationAndNumber.put("PriceTOBuyWool", 200);
+        informationAndNumber.put("PriceToBuyEgg", 20);
+        informationAndNumber.put("PriceToBuyMilk", 2000);
+        informationAndNumber.put("PriceTOBuyCake", 200);
+        informationAndNumber.put("PriceToBuySewing", 300);
         //PriceForSellAnimalProduct
-        informationAndNumber.put("PriceForSellEgg",10);
+        informationAndNumber.put("PriceForSellEgg", 10);
         informationAndNumber.put("PriceForSellMilk", 1000);
         informationAndNumber.put("PriceForSellWool", 100);
         informationAndNumber.put("PriceForSellCake", 100);
         informationAndNumber.put("PriceForSellSewing", 150);
         //PriceToBuyAnimal
-        informationAndNumber.put("PriceToBuyChicken",100);
+        informationAndNumber.put("PriceToBuyChicken", 100);
         informationAndNumber.put("PriceToBuyShip", 1000);
-        informationAndNumber.put("PriceToBuyCow",10000 );
+        informationAndNumber.put("PriceToBuyCow", 10000);
         informationAndNumber.put("PriceToBuyCat", 2500);
         informationAndNumber.put("PriceToBuyDog", 2600);
         //PriceToUpgradeCat
-        informationAndNumber.put("PriceToUpgradeCat", );
+        informationAndNumber.put("PriceToUpgradeCatLevel1", );
+        informationAndNumber.put("PriceToUpgradeCatLevel2", );
+        informationAndNumber.put("PriceToUpgradeCatLevel3", );
         //PriceToBuyWorkShop
         informationAndNumber.put("PriceToBuyCakeBakery", );
         informationAndNumber.put("PriceToBuyCookieBakery", );

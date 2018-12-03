@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 public class Farm {
-    private Cell Map[][] = new Cell[15][15];
+    private Cell Map[][] = new Cell[16][16];
     private Truck truck;
     private Helicopter helicopter;
     private ArrayList<WorkShop> workShops = new ArrayList<>();

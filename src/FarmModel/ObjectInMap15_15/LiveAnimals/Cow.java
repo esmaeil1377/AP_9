@@ -6,9 +6,9 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 public class Cow extends AnimalProducer {
 
     public Cow() {
-        setAnimalAmountOfHunger();
-        setMinOfHungerToGoToFindTheGrass();
-        setTurnToProduce();
+        setAnimalAmountOfHunger(8);
+        setMinOfHungerToGoToFindTheGrass(3);
+        setTurnToProduce(18);
 
     }
 
@@ -26,7 +26,7 @@ public class Cow extends AnimalProducer {
 
     @Override
     public boolean IsHungry() {
-        if (getAnimalAmountOfHunger() <=) {
+        if (getAnimalAmountOfHunger() <= getMinOfHungerToGoToFindTheGrass()) {
             return true;
         }
         return false;

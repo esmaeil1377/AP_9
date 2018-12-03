@@ -10,15 +10,16 @@ public class Chicken extends AnimalProducer {
         return "Chicken";
     }
 
-    public Chicken(){
-        setAnimalAmountOfHunger();
-        setMinOfHungerToGoToFindTheGrass();
-        setTurnToProduce();
+    public Chicken() {
+        setAnimalAmountOfHunger(8);
+        setMinOfHungerToGoToFindTheGrass(3);
+        setTurnToProduce(18);
     }
+
     @Override
     public void Produce() {
-        int x=getX();
-        int y=getY();
+        int x = getX();
+        int y = getY();
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].AddCellAMapObject(new Egg());
     }
 
