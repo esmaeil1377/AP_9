@@ -21,12 +21,12 @@ public class Cell {
         this.x = XPosition;
     }
 
-    public int getYPsition() {
+    public int getYPosition() {
         return y;
     }
 
-    public void setYPsition(int YPsition) {
-        this.y = YPsition;
+    public void setYPosition(int YPosition) {
+        this.y = YPosition;
     }
 
     public ArrayList<ObjectInMap15_15> getCellObjectInMap1515() {
