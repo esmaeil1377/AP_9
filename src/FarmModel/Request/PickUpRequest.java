@@ -6,6 +6,7 @@ public class PickUpRequest extends Request {
 
     public PickUpRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
+
     }
 
     public int getX() {
