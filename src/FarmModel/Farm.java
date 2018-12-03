@@ -2,15 +2,8 @@ package FarmModel;
 
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Animals;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.Product;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
