@@ -2,10 +2,12 @@
 <Diagram>
   <ID>JAVA</ID>
   <OriginalElement />
-  <nodes />
+  <nodes>
+    <node x="0.0" y="0.0">FarmModel.User</node>
+  </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="578.909090909091" y="323.3636363636365" />
+  <settings layout="Hierarchic Group" zoom="0.5934731934731934" x="717.7133560221048" y="2167.9066592302124" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>

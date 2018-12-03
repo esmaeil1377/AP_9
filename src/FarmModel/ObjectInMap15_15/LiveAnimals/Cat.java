@@ -38,7 +38,9 @@ public class Cat extends Animals {
         return Level;
     }
 
-    public void UpgradeCat(int level) {
+    public void UpgradeCat()
+    {
+        Level++;
     }
 
     @Override

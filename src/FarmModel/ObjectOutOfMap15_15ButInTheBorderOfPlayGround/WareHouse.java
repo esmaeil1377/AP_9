@@ -1,13 +1,28 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
+import FarmModel.InformationNeededInGame;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level;
-    private ArrayList<Object> StoreList = new ArrayList<>();
+    private ArrayList<Object> wareHouseList = new ArrayList<>();
     private int capacityOfWareHouse;
+    private HashMap<Class, Integer> recordNoteBookThatRecoredEveryThingAndNumbers = new HashMap<>();
 
-    public void setCapacityOfWareHouse(int capacityOfWareHouse) {
+    public WareHouse(){
+        setCapacityOfWareHouse();
+    }
+
+    private void setCapacityOfWareHouse(int capacityOfWareHouse) {
         this.capacityOfWareHouse = capacityOfWareHouse;
     }
 
@@ -16,12 +31,32 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void AddObjectToStore(Object object) {
+        wareHouseList.add(object);
+        RecordThisTransActionThatAddedToWareHouse(object);
+
+
     }
 
-    public void RemoveObjectToStore(Object object) {
+    public void RemoveObjectFromWareHouse(Object object) {
+        wareHouseList.remove(object);
+    }
+
+    public void RecordThisTransActionThatAddedToWareHouse(Object object) {
+        Class classObject=object.getClass();
+        int NumberOfTheObjectThatWereInWareHouseAndThisTime = 0;
+        if(recordNoteBookThatRecoredEveryThingAndNumbers.containsKey(classObject)){
+            recordNoteBookThatRecoredEveryThingAndNumbers.put(classObject,recordNoteBookThatRecoredEveryThingAndNumbers.get(classObject)+1);
+        }
+        else{
+            recordNoteBookThatRecoredEveryThingAndNumbers.put(classObject,1);
+        }
+
     }
 
     public void UpgradadeWareHouse() {
+        Level++;
+        setCapacityOfWareHouse(getCapacityOfWareHouse()*);
+        //upgrade change it's shape.don't forget it.
     }
 
     @Override
