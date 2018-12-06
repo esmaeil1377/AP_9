@@ -10,12 +10,13 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
     private int capacity;
     private int remainTurnToMoveObjectToCityAndComeBack;
     private ArrayList<Object> goodsThatCarry = new ArrayList<>();
-    private boolean isVehicleActivated=false;
+    private boolean isVehicleActivated = false;
 
     public void setVehicleActivated(boolean vehicleActivated) {
         isVehicleActivated = vehicleActivated;
     }
-    public boolean IsVehicleActivated(){
+
+    public boolean IsVehicleActivated() {
         return isVehicleActivated;
     }
 
@@ -56,7 +57,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
     }
 
     public void UpgradeVehicle() {
-        Level=Level+1;
+        Level = Level + 1;
         //decrease in turnToMoveObjectToCityAndComeBack
     }
 }

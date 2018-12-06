@@ -21,6 +21,10 @@ public class Truck extends TransportationVehicle {
         //delete from warehouse goods that are going to sell
     }
 
+    public void UpgradeTruck() {
+
+    }
+
     @Override
     public String toString() {
         return "Truck";
