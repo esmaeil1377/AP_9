@@ -37,14 +37,6 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         return isWorkShopActivatedToMakeProduct;
     }
 
-    public int getNumberOfGettingInput() {
-        return NumberOfGettingInput;
-    }
-
-    public void setNumberOfGettingInput(int numberOfGettingInput) {
-        NumberOfGettingInput = numberOfGettingInput;
-    }
-
     public int getRemainTurnToProduce() {
         return remainTurnToProduce;
     }

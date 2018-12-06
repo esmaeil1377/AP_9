@@ -16,24 +16,6 @@ public class CookieBakery extends WorkShop {
 
     @Override
     public void getProductFromWareHouse() {
-        WareHouse wareHouse= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
-        int NumberOfInputPackageInWareHouse=0;
-        for(Object object:wareHouse.getWareHouseList()){
-            if(object.toString().equals("Powder")){
-                NumberOfInputPackageInWareHouse++;
-            }
-        }
-        if(NumberOfInputPackageInWareHouse<getNumberOfGettingInput()){
-            for(int i=0;i<NumberOfInputPackageInWareHouse;i++){
-                wareHouse.RemoveObjectFromWareHouse(new Powder());
-            }
-        }
-        else{
-            for(int i=0;i<getNumberOfGettingInput();i++){
-                wareHouse.RemoveObjectFromWareHouse(new Powder());
-            }
-        }
-        setWorkShopActivatedToMakeProduct(true);
     }
 
     @Override
@@ -43,9 +25,6 @@ public class CookieBakery extends WorkShop {
 
     @Override
     public void MakeAProductAndPutItInMap() {
-        Cake cake=new Cake();
-        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15][15];
-        cell.AddCellAMapObject(cake);
     }
 
     @Override
