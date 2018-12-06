@@ -53,6 +53,10 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
 
     }
 
+    public ArrayList<Object> getWareHouseList() {
+        return wareHouseList;
+    }
+
     public void UpgradadeWareHouse() {
         Level++;
         setCapacityOfWareHouse(getCapacityOfWareHouse()*);
@@ -64,3 +68,4 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return "WareHouse";
     }
 }
+

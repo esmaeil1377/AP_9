@@ -2,6 +2,9 @@ package FarmModel.Request;
 
 import FarmModel.Farm;
 import FarmModel.Game;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -9,6 +12,7 @@ public class AddVehicleRequest extends Request {
     private String vehicleName;
     private String itemName;
     private int count;
+    private Object object;
 
     public AddVehicleRequest(String request) {
         AnalyzeRequestLine(request);
@@ -16,6 +20,7 @@ public class AddVehicleRequest extends Request {
         WareHouse wareHouse=farm.getWareHouse();
         if(vehicleName.equals("truck")){
             Truck truck=farm.getTruck();
+           for( wareHouse.getWareHouseList() )
 
 
         }else if(vehicleName.equals("helicopter")){
@@ -48,6 +53,14 @@ public class AddVehicleRequest extends Request {
         this.count = count;
     }
 
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
     public void AnalyzeRequestLine(String requestLine){
         String[] request=requestLine.split(" ");
         String vehicleName=request[0];
@@ -56,6 +69,20 @@ public class AddVehicleRequest extends Request {
         setCount(Count);
         setItemName(itemName);
         setVehicleName(vehicleName);
-
+        if(itemName.equals("Egg")){
+            setObject(new Egg());
+        }
+        else if(itemName.equals("Milk")){
+            setObject(new Milk());
+        }
+        else if(itemName.equals("Wool")){
+            setObject(new Wool());
+        }
+        else if(itemName.equals("Cake")){
+            setObject(new Cake());
+        }
+        else if(itemName.equals("Cookie")){}
+        else if(itemName.equals("Powder")){}
+        else if(itemName.equals("Cage")){}
     }
 }
