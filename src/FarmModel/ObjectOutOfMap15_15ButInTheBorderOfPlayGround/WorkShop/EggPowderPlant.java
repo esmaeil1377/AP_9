@@ -39,7 +39,7 @@ public class EggPowderPlant extends WorkShop {
 
     @Override
     public void UpgradeWorkShop() {
-        
+
     }
 
     @Override
