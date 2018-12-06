@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WeavinFactory;
 
@@ -21,14 +22,13 @@ public class StartRequest extends Request {
     public void AnalyzeRequestLine(String requestLine){
         String workShopName=requestLine.substring(6);
         if(workShopName.equals("CakeBakery")){
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops()
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm()
         }else if(workShopName.equals("CookieBakery")){}
         else if(workShopName.equals("EggPowderPlant")){}
         else if(workShopName.equals("SewingFactory")){}
         else if(workShopName.equals("Spinnery")){}
         else if(workShopName.equals("WeavinFactory")){}
-        else {
-
+        else
 
             return;
         }
