@@ -2,9 +2,14 @@ package FarmModel.Request;
 
 import FarmModel.Farm;
 import FarmModel.Game;
+import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -20,11 +25,16 @@ public class AddVehicleRequest extends Request {
         WareHouse wareHouse=farm.getWareHouse();
         if(vehicleName.equals("truck")){
             Truck truck=farm.getTruck();
-           for( wareHouse.getWareHouseList() )
-
+            Object object=farm.getObjectInWareHouse(this.object);
+            for(int i=0 ; i < count ; i++)
+            truck.TakeObjectFromWareHouse(object);
 
         }else if(vehicleName.equals("helicopter")){
-            farm.getHelicopter()
+
+           Helicopter helicopter = farm.getHelicopter();
+           Object object = farm.getObjectInWareHouse(this.object);
+           for(int i=0 ; i < count ; i++)
+           helicopter.BuyObjectFromCityAndGetMoneyFromUser(object);
         }
     }
 
@@ -81,8 +91,14 @@ public class AddVehicleRequest extends Request {
         else if(itemName.equals("Cake")){
             setObject(new Cake());
         }
-        else if(itemName.equals("Cookie")){}
-        else if(itemName.equals("Powder")){}
-        else if(itemName.equals("Cage")){}
+        else if(itemName.equals("Cookie")){
+            setObject(new Cookie());
+        }
+        else if(itemName.equals("Powder")){
+            setObject(new Powder());
+        }
+        else if(itemName.equals("Cage")){
+            setObject(new Cage(null));
+        }
     }
 }
