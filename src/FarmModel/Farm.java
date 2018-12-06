@@ -205,7 +205,7 @@ public class Farm {
         return null;
     }
 
-    public void getObjectInWareHouse(Object object){
+    public Object getObjectInWareHouse(Object object){
         for(Object objectinWareHouse:wareHouse.getWareHouseList()){
             if(object)
         }
