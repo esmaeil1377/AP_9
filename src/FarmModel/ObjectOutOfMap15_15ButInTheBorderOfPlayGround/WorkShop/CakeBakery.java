@@ -10,6 +10,8 @@ public class CakeBakery extends WorkShop{
 
     @Override
     public void getProductFromWareHouse() {
+
+
     }
 
     @Override
