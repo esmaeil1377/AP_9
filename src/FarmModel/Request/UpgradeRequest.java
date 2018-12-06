@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Animals;
@@ -41,7 +42,7 @@ public class UpgradeRequest extends Request {
             Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
             WorkShop workShop = farm.getspecifiedWorkShop(object);
             workShop.UpgradeWorkShop();
-            //at the end we should throw an unknown objectException
+            throw new UnknownObjectException();
         }
     }
 

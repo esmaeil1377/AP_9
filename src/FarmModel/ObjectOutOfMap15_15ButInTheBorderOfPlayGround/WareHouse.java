@@ -40,7 +40,9 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
 
     public void RemoveObjectFromWareHouse(Object object) {
         if(wareHouseList.contains(object)) {
-            wareHouseList.remove(object);
+            for(Object objects:wareHouseList){
+                if(objects.)
+            }
             return;
         }
         throw new ObjectNotFoundInWareHouse();
