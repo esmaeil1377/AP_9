@@ -1,5 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.ObjectNotFoundInWareHouse;
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -20,9 +22,19 @@ public class Truck extends TransportationVehicle {
     }
 
     public void TakeObjectFromWareHouse(Object good) {
-        getGoodsThatHaveToCarry().add(good);
-        WareHouse wareHouse= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().RemoveObjectFromWareHouse();
-        //delete from warehouse goods that are going to sell
+        Farm farm= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        WareHouse wareHouse=farm.getWareHouse();
+        if(wareHouse.getWareHouseList().contains(good)){
+            getGoodsThatHaveToCarry().add(good);
+            wareHouse.RemoveObjectFromWareHouse(good);
+            //delete from warehouse goods that are going to sell
+        }else{
+            throw new ObjectNotFoundInWareHouse();
+        }
+    }
+
+    public void UpgradeTruck() {
+
     }
 
     @Override

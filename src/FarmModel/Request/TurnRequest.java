@@ -44,7 +44,7 @@ public class TurnRequest extends Request {
             MakeWorkShopProduce(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops());
             MakeGrassDisapear(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentGrassInMap());
             FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
-            MakeTruckPassTheWayToCity();
+            MakeTruckPassTheWayToCityOrGiveObjectToCity();
             MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted();
             MakeCatTakeProduct(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -221,11 +221,11 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeTruckPassTheWayToCity() {
+    private void MakeTruckPassTheWayToCityOrGiveObjectToCity() {
         Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
         if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
             truck.SellObjectToCityAndGetMoneyToUser();
-        } else if (truck.IsVehicleActivated() == true) {
+        } else if (truck.IsVehicleActivated()) {
             truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
         }
     }
@@ -234,7 +234,7 @@ public class TurnRequest extends Request {
         Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
         if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
             helicopter.GiveObjectToWareHouse();
-        } else if (helicopter.IsVehicleActivated() == true) {
+        } else if (helicopter.IsVehicleActivated()) {
             helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
         }
     }

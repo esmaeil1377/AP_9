@@ -11,6 +11,7 @@ public class Helicopter extends TransportationVehicle {
         setCapacity();
     }
 
+    //i have to watch out this part because object have not the same space needed and they are .
     public void BuyObjectFromCityAndGetMoneyFromUser(Object good) {
         getGoodsThatHaveToCarry().add(good);
         setRemainTurnToMoveObjectToCityAndComeBack(0);
@@ -21,6 +22,10 @@ public class Helicopter extends TransportationVehicle {
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddObjectToStore(getGoodsThatHaveToCarry());
         setGoodsThatHaveToCarry(null);
         //delete from warehouse goods that are going to sell and something in userMoney
+    }
+
+    public void UpgradeHelicopter() {
+
     }
 
     @Override

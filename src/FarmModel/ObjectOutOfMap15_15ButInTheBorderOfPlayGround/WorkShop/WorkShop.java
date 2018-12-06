@@ -3,12 +3,21 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
+    private int NumberOfGettingInput=1;
     private int turnToProduce;
     private int remainTurnToProduce;
     private boolean isWorkShopActivatedToMakeProduct = false;
     private int level;
     private int NumberOfGettingInput=1;
 
+
+    public int getNumberOfGettingInput() {
+        return NumberOfGettingInput;
+    }
+
+    public void setNumberOfGettingInput(int numberOfGettingInput) {
+        NumberOfGettingInput = numberOfGettingInput;
+    }
 
     public abstract String getWorkShopName();
 
