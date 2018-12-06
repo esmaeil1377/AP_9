@@ -16,9 +16,6 @@ public class WeavinFactory extends WorkShop {
 
     }
 
-    @Override
-    public void UpgradeWorkShop() {
-    }
 
     @Override
     public String toString() {

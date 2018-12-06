@@ -17,10 +17,6 @@ public class SewingFactory extends WorkShop {
     }
 
     @Override
-    public void UpgradeWorkShop() {
-    }
-
-    @Override
     public String toString() {
         return "SewingFactory";
     }

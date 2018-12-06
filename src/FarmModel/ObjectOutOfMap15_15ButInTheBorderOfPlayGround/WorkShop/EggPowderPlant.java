@@ -37,10 +37,6 @@ public class EggPowderPlant extends WorkShop {
         cell.AddCellAMapObject(powder);
     }
 
-    @Override
-    public void UpgradeWorkShop() {
-
-    }
 
     @Override
     public String toString() {
