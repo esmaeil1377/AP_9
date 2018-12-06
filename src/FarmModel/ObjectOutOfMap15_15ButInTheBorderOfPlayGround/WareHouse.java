@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
+import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.InformationNeededInGame;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
@@ -38,7 +39,11 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void RemoveObjectFromWareHouse(Object object) {
-        wareHouseList.remove(object);
+        if(wareHouseList.contains(object)) {
+            wareHouseList.remove(object);
+            return;
+        }
+        throw new ObjectNotFoundInWareHouse();
     }
 
     public void RecordThisTransActionThatAddedToWareHouse(Object object) {
