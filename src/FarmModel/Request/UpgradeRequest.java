@@ -1,10 +1,16 @@
 package FarmModel.Request;
 
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Animals;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cat;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;
 
@@ -14,36 +20,31 @@ public class UpgradeRequest extends Request {
     public UpgradeRequest(String requestLine) {
         AnalyzeRequestlIne(requestLine);
         if (object.equals("cat")) {
-            ArrayList<Animals> animals =  Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm()
+            ArrayList<Animals> animals = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm()
                     .getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal();
             for (Animals animals1 : animals) {
                 if (animals1.toString().equals("Cat")) {
-                    Cat cat = (Cat)animals1;
+                    Cat cat = (Cat) animals1;
                     cat.UpgradeCat();
                 }
             }
         } else if (object.equals("truck")) {
             Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
-            truck
+            truck.UpgradeTruck();
         } else if (object.equals("well")) {
             Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
             well.UpgradeWell();
         } else if (object.equals("helicopter")) {
-
+            Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
+            helicopter.UpgradeHelicopter();
         } else if (object.equals("warehouse")) {
-
-        } else if (object.equals("cakeBakery")) {
-
-        } else if (object.equals("cookieBakery")) {
-
-        } else if (object.equals("eggPowerPlant")) {
-
-        } else if (object.equals("spinnery")) {
-
-        } else if (object.equals("weavinFactory")) {
-
+            WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
+            wareHouse.UpgradadeWareHouse();
         } else {
-            // fill after
+            Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+            WorkShop workShop = farm.getspecifiedWorkShop(object);
+            workShop.UpgradeWorkShop();
+            //at the end we should throw an unknown objectException
         }
     }
 
