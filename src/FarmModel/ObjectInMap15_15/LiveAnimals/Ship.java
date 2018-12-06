@@ -6,9 +6,9 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 public class Ship extends AnimalProducer {
 
     public Ship() {
-        setAnimalAmountOfHunger();
-        setMinOfHungerToGoToFindTheGrass();
-        setTurnToProduce();
+        setAnimalAmountOfHunger(8);
+        setMinOfHungerToGoToFindTheGrass(3);
+        setTurnToProduce(18);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Ship extends AnimalProducer {
 
     @Override
     public boolean IsHungry() {
-        if (getAnimalAmountOfHunger() <=getMinOfHungerToGoToFindTheGrass()) {
+        if (getAnimalAmountOfHunger() <= getMinOfHungerToGoToFindTheGrass()) {
             return true;
         }
         return false;

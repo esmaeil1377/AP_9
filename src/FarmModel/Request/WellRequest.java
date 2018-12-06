@@ -8,7 +8,7 @@ public class WellRequest extends Request {
 
     public WellRequest() {
         Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
-        well.FillTheBucket(5);
+        well.FillTheBucket();
     }
 
     public void setAmountOfWaterInBucket(int amountOfWaterInBucket) {
