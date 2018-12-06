@@ -23,6 +23,10 @@ public class Helicopter extends TransportationVehicle {
         //delete from warehouse goods that are going to sell and something in userMoney
     }
 
+    public void UpgradeHelicopter() {
+
+    }
+
     @Override
     public String toString() {
         return "Helicopter";
