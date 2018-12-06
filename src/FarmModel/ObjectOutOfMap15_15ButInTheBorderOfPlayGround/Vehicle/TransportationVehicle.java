@@ -60,53 +60,40 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
         return turnToMoveObjectToCityAndComeBack;
     }
 
-    public static int CalculatePriceToBuy(ArrayList<Object> goods){
-        int price;
-        for(Object object:goods){
-            if(object.toString().equals("Egg")){}
-            else if(object.toString().equals("Milk")){}
-
-        }
-    }
-    public static int CalculatePriceForSell(ArrayList<Object> goods) {
+    public static int CalculatePriceToBuy(ArrayList<Object> goods) {
         int price;
         for (Object object : goods) {
             if (object.toString().equals("Egg")) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                        .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                        InformationNeededInGame.GetData("PriceForSellEgg"));
             } else if (object.toString().equals("Milk")) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                        .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                        InformationNeededInGame.GetData("PriceForSellMilk"));
+            }
+
+        }
+    }
+
+    public static int CalculatePriceForSell(ArrayList<Object> goods) {
+        int price = 0;
+        for (Object object : goods) {
+            if (object.toString().equals("Egg")) {
+                price += InformationNeededInGame.GetData("PriceForSellEgg");
+            } else if (object.toString().equals("Milk")) {
+                price += InformationNeededInGame.GetData("PriceForSellMilk");
             } else if (object.toString().equals("Wool")) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                        .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                        InformationNeededInGame.GetData("PriceForSellWool"));
+                price += InformationNeededInGame.GetData("PriceForSellWool");
             } else if (object.toString().equals("Cage")) {
                 Cage cage = (Cage) object;
                 if (cage.getWildAnimals().toString().equals("Lion")) {
-                    Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                            .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                            InformationNeededInGame.GetData("PriceForSellCageLion"));
+                    price += InformationNeededInGame.GetData("PriceForSellCageLion");
                 } else if (cage.getWildAnimals().toString().equals("Bear")) {
-                    Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                            .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                            InformationNeededInGame.GetData("PriceForSellCageBear"));
+                    price += InformationNeededInGame.GetData("PriceForSellCageBear");
                 }
             } else if (object.toString().equals("Cake")) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                        .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                        InformationNeededInGame.GetData("PriceForSellCake"));
+                price += InformationNeededInGame.GetData("PriceForSellCake");
             } else if (object.toString().equals("Cookie")) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                        .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                        InformationNeededInGame.GetData("PriceForSellCookie"));
+                price += InformationNeededInGame.GetData("PriceForSellCookie");
             } else if (object.toString().equals("Power")) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game
-                        .getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() +
-                        InformationNeededInGame.GetData("PriceForSellPowder"));
+                price += InformationNeededInGame.GetData("PriceForSellPowder");
             } // add new if for other workshop product
         }
+        return price;
     }
 }
