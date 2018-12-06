@@ -7,6 +7,9 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     private int turnToProduce;
     private int remainTurnToProduce;
     private boolean isWorkShopActivatedToMakeProduct = false;
+    private int level;
+    private int NumberOfGettingInput=1;
+
 
     public int getNumberOfGettingInput() {
         return NumberOfGettingInput;
@@ -30,6 +33,18 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         return isWorkShopActivatedToMakeProduct;
     }
 
+    public boolean isWorkShopActivatedToMakeProduct() {
+        return isWorkShopActivatedToMakeProduct;
+    }
+
+    public int getNumberOfGettingInput() {
+        return NumberOfGettingInput;
+    }
+
+    public void setNumberOfGettingInput(int numberOfGettingInput) {
+        NumberOfGettingInput = numberOfGettingInput;
+    }
+
     public int getRemainTurnToProduce() {
         return remainTurnToProduce;
     }
@@ -43,6 +58,13 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     }
 
     public abstract void getProductFromWareHouse();
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    public int getLevel() {
+        return level;
+    }
 
     public abstract void MakeAProductAndPutItInMap();
 

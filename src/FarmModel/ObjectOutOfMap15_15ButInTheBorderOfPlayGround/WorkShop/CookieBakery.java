@@ -1,7 +1,9 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 
+import FarmModel.Cell;
 import FarmModel.Game;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -31,6 +33,7 @@ public class CookieBakery extends WorkShop {
                 wareHouse.RemoveObjectFromWareHouse(new Powder());
             }
         }
+        setWorkShopActivatedToMakeProduct(true);
     }
 
     @Override
@@ -40,7 +43,9 @@ public class CookieBakery extends WorkShop {
 
     @Override
     public void MakeAProductAndPutItInMap() {
-
+        Cake cake=new Cake();
+        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15][15];
+        cell.AddCellAMapObject(cake);
     }
 
     @Override
