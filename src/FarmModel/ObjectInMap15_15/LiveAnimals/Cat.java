@@ -1,8 +1,11 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
+import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectInMap15_15.Product.Product;
+
+import java.util.ArrayList;
 
 public class Cat extends Animals {
     private int Level = 0;
@@ -17,11 +20,11 @@ public class Cat extends Animals {
     }
 
     public void TakeProduct() {
-        int x = getX();
-        int y = getY();
-        for (ObjectInMap15_15 objectInMap15_15 : Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].getCellObjectInMap1515()) {
+        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
+        ArrayList<ObjectInMap15_15> currentObjectInMap=new ArrayList<>(cell.getCellObjectInMap1515());
+        for (ObjectInMap15_15 objectInMap15_15 : currentObjectInMap) {
             if (objectInMap15_15 instanceof Product) {
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].RemoveCellAMapObject(objectInMap15_15);
+                cell.RemoveCellAMapObject(objectInMap15_15);
                 setProduct((Product) objectInMap15_15);
             }
         }

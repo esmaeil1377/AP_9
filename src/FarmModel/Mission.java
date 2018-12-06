@@ -19,6 +19,14 @@ public class Mission {
         this.startMoneyInMission=startMoneyInMission;
     }
 
+    public int getStartMoneyInMission() {
+        return startMoneyInMission;
+    }
+
+    public void setStartMoneyInMission(int startMoneyInMission) {
+        this.startMoneyInMission = startMoneyInMission;
+    }
+
     public int getTimeTakeForPlayerToFinishTheMap() {
         return TimeTakeForPlayerToFinishTheMap;
     }

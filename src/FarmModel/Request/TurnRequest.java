@@ -245,6 +245,7 @@ public class TurnRequest extends Request {
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
             user.getCurrentPlayingMission().setMissionCompletion(true);
             user.AddMoney(user.getCurrentPlayingMission().CalcualteMoneyToGiveUserAfterCompletingTheMission());
+            Game.getGameInstance().getCurrentUserAcount().setCurrentPlayingMission(null);
             //Now It should go out of the mission don't know how.
         }else{
             user.getCurrentPlayingMission().setTimeTakeForPlayerToFinishTheMap(user.getCurrentPlayingMission().getTimeTakeForPlayerToFinishTheMap()+1);

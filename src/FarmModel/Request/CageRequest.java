@@ -18,10 +18,9 @@ public class CageRequest extends Request {
         Cell cell = getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
 
         for (ObjectInMap15_15 object : cell.getCellObjectInMap1515()) {
-            if (object instanceof Lion) {
+            if (object instanceof WildAnimals) {
                 cell.AddCellAMapObject(new Cage((WildAnimals) object));
-            } else if (object instanceof Bear) {
-                cell.AddCellAMapObject(new Cage((WildAnimals) object));
+                return;
             }
         }
         //cell.AddCellAMapObject(new Cage(cell.getCellObjectInMap1515().));

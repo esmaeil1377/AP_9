@@ -154,7 +154,7 @@ public class Farm {
         return grassInMap;
     }
 
-    public ArrayList<Product> getCurrentProductInMap() {
+    public ArrayList<Product>   AgetCurrentProductInMap() {
         ArrayList<Product> productInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++) {
             for (int y = 0; y < 16; y++) {
@@ -194,6 +194,12 @@ public class Farm {
 
     public static double DistanceBetweenTwoCell(int xCell1, int yCell1, int xCell2, int yCell2) {
         return (Math.pow(Math.pow(xCell1 - xCell2, 2) + Math.pow(yCell1 - yCell2, 2), 0.5));
+    }
+
+    public static WorkShop getspecifiedWorkShop(String WorkshopName){
+        for(WorkShop workshop:Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops()){
+            if(wo)
+        }
     }
 
 

@@ -8,9 +8,9 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 public abstract class AnimalProducer extends Animals {
     private int animalAmountOfHunger;
     private int healthyAnimalAmountOfHunger;
-    private int RemainTurnToProduce;
+    private int remainTurnToProduce;
     private boolean wantToEatGrass = false;
-    private int MinOfHungerToGoToFindTheGrass;
+    private int minOfHungerToGoToFindTheGrass;
     private int turnToProduce;
 
     public int getHealthyAnimalAmountOfHunger() {
@@ -30,11 +30,11 @@ public abstract class AnimalProducer extends Animals {
     }
 
     public int getMinOfHungerToGoToFindTheGrass() {
-        return MinOfHungerToGoToFindTheGrass;
+        return minOfHungerToGoToFindTheGrass;
     }
 
     public void setMinOfHungerToGoToFindTheGrass(int minOfHungerToGoToFindTheGrass) {
-        MinOfHungerToGoToFindTheGrass = minOfHungerToGoToFindTheGrass;
+        this.minOfHungerToGoToFindTheGrass = minOfHungerToGoToFindTheGrass;
     }
 
     public void setWantToEatGrass(boolean wantToEatGrass) {
@@ -75,7 +75,7 @@ public abstract class AnimalProducer extends Animals {
     }
 
     public int getRemainTurnToProduce() {
-        return RemainTurnToProduce;
+        return remainTurnToProduce;
     }
 
     public void setAnimalAmountOfHunger(int animalAmountOfHunger) {
@@ -83,7 +83,7 @@ public abstract class AnimalProducer extends Animals {
     }
 
     public void setRemainTurnToProduce(int remainTurnToProduce) {
-        RemainTurnToProduce = remainTurnToProduce;
+        this.remainTurnToProduce = remainTurnToProduce;
     }
 
     public abstract boolean IsHungry();

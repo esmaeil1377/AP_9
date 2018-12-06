@@ -1,6 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
-public class UnknownWorkShop extends WorkShop {
+public class CustomWorkShop extends WorkShop {
 
     @Override
     public void getProductFromWareHouse() {
@@ -17,6 +17,6 @@ public class UnknownWorkShop extends WorkShop {
 
     @Override
     public String toString() {
-        return "UnknownWorkShop";
+        return "CustomWorkShop";
     }
 }
