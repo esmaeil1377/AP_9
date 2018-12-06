@@ -7,6 +7,7 @@ public class InformationNeededInGame {
     private static HashMap<String, Integer> informationAndNumber = new HashMap<>();
 
     private InformationNeededInGame() {
+        informationAndNumber.put("PriceToFillTheBucket",19);
         //ActivationPrices
         informationAndNumber.put("ActivationPriceForUpgradeWareHouse", );
         informationAndNumber.put("ActivationPriceForUpgradeWorkShop", );

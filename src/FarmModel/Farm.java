@@ -198,7 +198,7 @@ public class Farm {
 
     public static WorkShop getspecifiedWorkShop(String WorkshopName){
         for(WorkShop workshop:Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops()){
-            if(wo)
+            if(workshop.get)
         }
     }
 
