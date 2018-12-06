@@ -4,6 +4,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -16,6 +17,24 @@ public class CookieBakery extends WorkShop {
 
     @Override
     public void getProductFromWareHouse() {
+        WareHouse wareHouse= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
+        int NumberOfInputPackageInWareHouse=0;
+        for(Object object:wareHouse.getWareHouseList()){
+            if(object.toString().equals("Powder")){
+                NumberOfInputPackageInWareHouse++;
+            }
+        }
+        if(NumberOfInputPackageInWareHouse<getNumberOfGettingInput()){
+            for(int i=0;i<NumberOfInputPackageInWareHouse;i++){
+                wareHouse.RemoveObjectFromWareHouse(new Powder());
+            }
+        }
+        else{
+            for(int i=0;i<getNumberOfGettingInput();i++){
+                wareHouse.RemoveObjectFromWareHouse(new Powder());
+            }
+        }
+        setWorkShopActivatedToMakeProduct(true);
     }
 
     @Override
@@ -25,10 +44,9 @@ public class CookieBakery extends WorkShop {
 
     @Override
     public void MakeAProductAndPutItInMap() {
+        Cookie cookie=new Cookie();
+        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15][15];
+        cell.AddCellAMapObject(cookie);
     }
 
-    @Override
-    public void UpgradeWorkShop() {
-
-    }
 }

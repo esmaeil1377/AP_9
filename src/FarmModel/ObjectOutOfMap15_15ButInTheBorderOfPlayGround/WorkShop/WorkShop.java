@@ -59,5 +59,9 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
 
     public abstract void MakeAProductAndPutItInMap();
 
-    public abstract void UpgradeWorkShop();
+    public void UpgradeWorkShop(){
+        setLevel(getLevel()+);
+        setNumberOfGettingInput(getNumberOfGettingInput()+1);
+        setTurnToProduce();
+    }
 }
