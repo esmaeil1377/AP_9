@@ -8,7 +8,6 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     private int remainTurnToProduce;
     private boolean isWorkShopActivatedToMakeProduct = false;
     private int level;
-    private int NumberOfGettingInput=1;
 
 
     public int getNumberOfGettingInput() {
