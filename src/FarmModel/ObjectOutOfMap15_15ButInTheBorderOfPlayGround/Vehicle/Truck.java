@@ -16,8 +16,8 @@ public class Truck extends TransportationVehicle {
         //delete onject from warehouse and increase money;
     }
 
-    public void TakeObjectFromWareHouse(ArrayList<Object> goods) {
-        setGoodsThatHaveToCarry(goods);
+    public void TakeObjectFromWareHouse(Object good) {
+        getGoodsThatHaveToCarry().add(good);
         //delete from warehouse goods that are going to sell
     }
 
