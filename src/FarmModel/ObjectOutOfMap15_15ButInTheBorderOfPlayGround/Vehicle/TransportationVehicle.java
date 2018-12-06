@@ -56,5 +56,12 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
         return turnToMoveObjectToCityAndComeBack;
     }
 
+    public static int CalculatePriceToBuy(ArrayList<Object> goods){
+        int price;
+        for(Object object:goods){
+            if(object.toString().equals("Egg")){}
+            else if(object.toString().equals("Milk")){}
 
+        }
+    }
 }

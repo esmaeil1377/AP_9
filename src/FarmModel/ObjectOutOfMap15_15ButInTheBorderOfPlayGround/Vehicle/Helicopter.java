@@ -11,6 +11,7 @@ public class Helicopter extends TransportationVehicle {
         setCapacity();
     }
 
+    //i have to watch out this part because object have not the same space needed and they are .
     public void BuyObjectFromCityAndGetMoneyFromUser(Object good) {
         getGoodsThatHaveToCarry().add(good);
         setRemainTurnToMoveObjectToCityAndComeBack(0);
