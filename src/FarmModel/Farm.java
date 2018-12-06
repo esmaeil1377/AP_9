@@ -196,10 +196,13 @@ public class Farm {
         return (Math.pow(Math.pow(xCell1 - xCell2, 2) + Math.pow(yCell1 - yCell2, 2), 0.5));
     }
 
-    public static WorkShop getspecifiedWorkShop(String WorkshopName){
+    public WorkShop getspecifiedWorkShop(String WorkshopName){
         for(WorkShop workshop:Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops()){
-            if(workshop.get)
+            if(workshop.getWorkShopName().equals(WorkshopName)){
+                return workshop;
+            }
         }
+        return null;
     }
 
 

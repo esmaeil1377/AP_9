@@ -7,6 +7,8 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     private int remainTurnToProduce;
     private boolean isWorkShopActivatedToMakeProduct = false;
 
+    public abstract String getWorkShopName();
+
     public int getTurnToProduce() {
         return turnToProduce;
     }
