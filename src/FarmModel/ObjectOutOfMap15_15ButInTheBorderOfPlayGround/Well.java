@@ -1,18 +1,23 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
+import FarmModel.Game;
+import FarmModel.InformationNeededInGame;
+
 public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level = 0;
     private int WaterOfTheBucket = 0;
     private int turnToFillTheBucket;
     private int remainTurnToFillTheBucket;
-    private boolean isWellActivatedToFillTheBucket =false;
+    private boolean isWellActivatedToFillTheBucket = false;
 
     public void setWellActivatedToFillTheBucket(boolean wellActivatedToFillTheBucket) {
         isWellActivatedToFillTheBucket = wellActivatedToFillTheBucket;
     }
-    public boolean isWellActivatedToFillTheBucket(){
+
+    public boolean isWellActivatedToFillTheBucket() {
         return isWellActivatedToFillTheBucket;
     }
+
     public void setRemainTurnToFillTheBucket(int remainTurnToFillTheBucket) {
         this.remainTurnToFillTheBucket = remainTurnToFillTheBucket;
     }
@@ -50,9 +55,21 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void UpgradeWell() {
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game.getGameInstance()
+                .getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() - InformationNeededInGame.GetData("PriceToUpgradeWell"));
+        InformationNeededInGame.SetData("PriceToUpgradeWell", );
+        InformationNeededInGame.SetData("PriceToFillTheBucket", InformationNeededInGame.GetData("PriceToFillTheBucket")
+                - 2); // edit after
     }
 
     public void FillTheBucket() {
+        if (getWaterOfTheBucket() == 0 && Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission()
+                >= InformationNeededInGame.GetData("riceToFillTheBucket")) {
+            setWaterOfTheBucket(InformationNeededInGame.GetData("CapacityOfTheBucket"));
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game.getGameInstance()
+                    .getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() - InformationNeededInGame
+                    .GetData("riceToFillTheBucket"));
+        }
         //decrease money of the user
         //it fill the bucket if it's empty.
     }

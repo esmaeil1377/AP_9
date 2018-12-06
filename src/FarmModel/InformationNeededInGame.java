@@ -1,13 +1,16 @@
 package FarmModel;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class InformationNeededInGame {
     private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
     private static HashMap<String, Integer> informationAndNumber = new HashMap<>();
 
     private InformationNeededInGame() {
-        informationAndNumber.put("PriceToFillTheBucket",19);
+        //well information
+        informationAndNumber.put("CapacityOfTheBucket", 5);
+        informationAndNumber.put("PriceToFillTheBucket", 19);
         //ActivationPrices
         informationAndNumber.put("ActivationPriceForUpgradeWareHouse", );
         informationAndNumber.put("ActivationPriceForUpgradeWorkShop", );
@@ -50,7 +53,7 @@ public class InformationNeededInGame {
         informationAndNumber.put("PriceToBuyEggPowderPlant", );
         informationAndNumber.put("PriceToBuySewingFactory", );
         informationAndNumber.put("PriceToBuySpinnery", );
-        informationAndNumber.put("PriceToBuyUnkownWorkShop", );
+        informationAndNumber.put("PriceToBuyUnknownWorkShop", );
         informationAndNumber.put("PriceToBuyWeavingFactory", );
         //PriceToUpgradeWorkShop
         informationAndNumber.put("PriceToUpgradeCakeBakery", );
@@ -72,5 +75,9 @@ public class InformationNeededInGame {
 
     public static int GetData(String strDataName) {
         return informationAndNumber.get(strDataName);
+    }
+
+    public static void SetData(String strDataName, int newSize) {
+        informationAndNumber.put(strDataName, newSize);
     }
 }
