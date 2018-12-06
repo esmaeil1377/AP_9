@@ -55,8 +55,5 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
         return turnToMoveObjectToCityAndComeBack;
     }
 
-    public void UpgradeVehicle() {
-        Level=Level+1;
-        //decrease in turnToMoveObjectToCityAndComeBack
-    }
+
 }

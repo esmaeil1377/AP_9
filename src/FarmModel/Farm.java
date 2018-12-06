@@ -206,9 +206,16 @@ public class Farm {
     }
 
     public Object getObjectInWareHouse(Object object){
+
+    //i don't think that it  could work but i'll look after.
+    public Object getObjectInWareHouse(Object object){
         for(Object objectinWareHouse:wareHouse.getWareHouseList()){
-            if(object)
+           if(objectinWareHouse.toString().equals(object.toString())){
+               return objectinWareHouse;
+            }
         }
+        throw new ObjectNotFoundInWareHouse();
+
     }
 
 }
