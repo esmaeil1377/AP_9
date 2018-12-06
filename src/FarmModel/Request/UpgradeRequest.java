@@ -4,14 +4,11 @@ import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Animals;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cat;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
-
 import java.util.ArrayList;
 
 public class UpgradeRequest extends Request {
