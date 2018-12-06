@@ -1,5 +1,6 @@
 package FarmModel;
 
+import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Animals;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
@@ -205,5 +206,16 @@ public class Farm {
         return null;
     }
 
+
+    //i don't think that it  could work but i'll look after.
+    public Object getObjectInWareHouse(Object object){
+        for(Object objectinWareHouse:wareHouse.getWareHouseList()){
+           if(objectinWareHouse.toString().equals(object.toString())){
+               return objectinWareHouse;
+            }
+        }
+        throw new ObjectNotFoundInWareHouse();
+
+    }
 
 }

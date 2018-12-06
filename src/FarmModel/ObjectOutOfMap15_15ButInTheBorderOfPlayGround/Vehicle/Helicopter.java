@@ -11,8 +11,8 @@ public class Helicopter extends TransportationVehicle {
         setCapacity();
     }
 
-    public void BuyObjectFromCityAndGetMoneyFromUser(ArrayList<Object> goods) {
-        setGoodsThatHaveToCarry(goods);
+    public void BuyObjectFromCityAndGetMoneyFromUser(Object good) {
+        getGoodsThatHaveToCarry().add(good);
         setRemainTurnToMoveObjectToCityAndComeBack(0);
         //delete object from warehouse and increase money;
     }

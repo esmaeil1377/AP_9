@@ -45,7 +45,7 @@ public class TurnRequest extends Request {
             MakeGrassDisapear(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentGrassInMap());
             FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
             MakeTruckPassTheWayToCity();
-            MakeHelicopterPassTheWayToCity();
+            MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted();
             MakeCatTakeProduct(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWildAnimalDestroy(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -230,7 +230,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeHelicopterPassTheWayToCity() {
+    private void MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted() {
         Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
         if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
             helicopter.GiveObjectToWareHouse();
