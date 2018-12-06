@@ -35,8 +35,14 @@ public class InformationNeededInGame {
         informationAndNumber.put("PriceForSellEgg", 10);
         informationAndNumber.put("PriceForSellMilk", 1000);
         informationAndNumber.put("PriceForSellWool", 100);
+        //informationAndNumber.put("PriceForSellSewing", 150);
+        //PriceForSellWorkShopProduct
         informationAndNumber.put("PriceForSellCake", 100);
-        informationAndNumber.put("PriceForSellSewing", 150);
+        informationAndNumber.put("PriceForSellCookie", );
+        informationAndNumber.put("PriceForSellPowder", );
+        //priceForSellCage
+        informationAndNumber.put("PriceForSellCageLion",150);
+        informationAndNumber.put("PriceForSellCageBear",);
         //PriceToBuyAnimal
         informationAndNumber.put("PriceToBuyChicken", 100);
         informationAndNumber.put("PriceToBuyShip", 1000);
