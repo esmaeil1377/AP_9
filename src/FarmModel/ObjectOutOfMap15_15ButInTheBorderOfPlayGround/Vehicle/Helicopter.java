@@ -21,7 +21,7 @@ public class Helicopter extends TransportationVehicle {
     public void GiveObjectToWareHouse() {
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddObjectToStore(getGoodsThatHaveToCarry());
         setGoodsThatHaveToCarry(null);
-        //delete from warehouse goods that are going to sell and something in userMoney
+        //add from warehouse goods that are going to sell and something in userMoney
     }
 
     public void UpgradeHelicopter() {

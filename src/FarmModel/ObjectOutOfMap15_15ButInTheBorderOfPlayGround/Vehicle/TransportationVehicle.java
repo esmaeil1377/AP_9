@@ -1,9 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
-import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 import java.util.ArrayList;
@@ -60,17 +58,35 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
         return turnToMoveObjectToCityAndComeBack;
     }
 
-    public static int CalculatePriceToBuy(ArrayList<Object> goods) {
-        int price;
+    public static int CalculatePriceToBuyForHelicopter(ArrayList<Object> goods) {
+        int price = 0;
         for (Object object : goods) {
             if (object.toString().equals("Egg")) {
+                price += InformationNeededInGame.GetData("PriceToBuyEgg");
             } else if (object.toString().equals("Milk")) {
-            }
-
+                price += InformationNeededInGame.GetData("PriceToBuyMilk");
+            } else if (object.toString().equals("Wool")) {
+                price += InformationNeededInGame.GetData("PriceToBuyWool");
+            } else if (object.toString().equals("Cake")) {
+                price += InformationNeededInGame.GetData("PriceForToBuyCake");
+            } else if (object.toString().equals("Cookie")) {
+                price += InformationNeededInGame.GetData("PriceToBuyCookie");
+            } else if (object.toString().equals("Power")) {
+                price += InformationNeededInGame.GetData("PriceToBuyPowder");
+//            } else if (object.toString().equals("Cage")) {
+//                Cage cage = (Cage) object;
+//                if (cage.getWildAnimals().toString().equals("Lion")) {
+//                    price += InformationNeededInGame.GetData("PriceForSellCageLion");
+//                } else if (cage.getWildAnimals().toString().equals("Bear")) {
+//                    price += InformationNeededInGame.GetData("PriceForSellCageBear");
+//                }
+            }// add new if for other workshop product
+            // we should add something new in this if else structure to Buy.
         }
+        return price;
     }
 
-    public static int CalculatePriceForSell(ArrayList<Object> goods) {
+    public static int CalculatePriceForSellForTruck(ArrayList<Object> goods) {
         int price = 0;
         for (Object object : goods) {
             if (object.toString().equals("Egg")) {
@@ -79,6 +95,12 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
                 price += InformationNeededInGame.GetData("PriceForSellMilk");
             } else if (object.toString().equals("Wool")) {
                 price += InformationNeededInGame.GetData("PriceForSellWool");
+            } else if (object.toString().equals("Cake")) {
+                price += InformationNeededInGame.GetData("PriceForSellCake");
+            } else if (object.toString().equals("Cookie")) {
+                price += InformationNeededInGame.GetData("PriceForSellCookie");
+            } else if (object.toString().equals("Power")) {
+                price += InformationNeededInGame.GetData("PriceForSellPowder");
             } else if (object.toString().equals("Cage")) {
                 Cage cage = (Cage) object;
                 if (cage.getWildAnimals().toString().equals("Lion")) {
@@ -86,12 +108,6 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
                 } else if (cage.getWildAnimals().toString().equals("Bear")) {
                     price += InformationNeededInGame.GetData("PriceForSellCageBear");
                 }
-            } else if (object.toString().equals("Cake")) {
-                price += InformationNeededInGame.GetData("PriceForSellCake");
-            } else if (object.toString().equals("Cookie")) {
-                price += InformationNeededInGame.GetData("PriceForSellCookie");
-            } else if (object.toString().equals("Power")) {
-                price += InformationNeededInGame.GetData("PriceForSellPowder");
             } // add new if for other workshop product
         }
         return price;

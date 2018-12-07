@@ -34,9 +34,12 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     public void AddObjectToStore(Object object) {
         wareHouseList.add(object);
         RecordThisTransActionThatAddedToWareHouse(object);
-
-
     }
+
+    public HashMap<Class, Integer> getRecordNoteBookThatRecoredEveryThingAndNumbers() {
+        return recordNoteBookThatRecoredEveryThingAndNumbers;
+    }
+
 
     public void RemoveObjectFromWareHouse(Object object) {
         if(wareHouseList.contains(object)) {

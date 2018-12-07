@@ -6,19 +6,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameShop {
-    private ArrayList<WorkShop> workshopoffeirng=new ArrayList<>();
+    private HashMap<WorkShop,Integer> workshopoffeirng=new HashMap<>();
+    private HashMap<Object,Integer> Shop=new HashMap<>();
 
-    public class Shop {
-        HashMap<Object,Integer> Shop=new HashMap<>();
-
-        public Shop(){
-            setShop();
-        }
-
-        public void setShop(HashMap<Object, Integer> shop) {
-            Shop = shop;
-        }
-
-        public void showOfferings(){}
+    public  GameShop (){
+        //setOffering to Start GameShop
     }
+
+    public void BuyAWorkShop(String workShopName){}
+
+    public void BuyAnimal(String animalName){
+    }
+    public void showOfferings(){}
 }

@@ -16,6 +16,10 @@ public class UpgradeRequest extends Request {
     private String object;
 
     public UpgradeRequest(String requestLine) {
+        //for every upgrade we should change the HashMap in GameShop because price should change for every upgrade.
+        //
+        //
+        ////
         AnalyzeRequestlIne(requestLine);
         if (object.equals("cat")) {
             ArrayList<Animals> animals = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm()

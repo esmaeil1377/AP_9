@@ -65,34 +65,35 @@ public class Mission {
 
     public boolean CheckIfMissionIsFinished() {
         boolean result = true;
+        Farm farm=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (Object object : requiermentToFinishTheMission.keySet()) {
             if (object.toString().equals("Chicken")) {
-                int numberofchicken = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMaxNumberOfChickenInMapToDetermineIfTheMissionIsFinished();
+                int numberofchicken = farm.getCurrentChickenInMap().size();
                 if (!(numberofchicken < requiermentToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Cow")) {
-                int numberOfCow = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMaxNumberOfCowInMapToDetermineIfTheMissionIsFinished();
+                int numberOfCow = farm.getCurrnetCowInMap().size();
                 if (!(numberOfCow < requiermentToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Ship")) {
-                int numberOfShip = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMaxNumberOfShipInMapToDetermineIfTheMissionIsFinished();
+                int numberOfShip = farm.getCurrnetShipInMap().size();
                 if (!(numberOfShip < requiermentToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Cat")) {
-                int numberOfCat = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMaxNumberOfCatInMapToDetermineIfTheMissionIsFinished();
+                int numberOfCat = farm.getCurrentCatInMap().size();
                 if (!(numberOfCat < requiermentToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Dog")) {
-                int numberOfDog = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMaxNumberOfDogInMapToDetermineIfTheMissionIsFinished();
+                int numberOfDog =farm.getCurrentCatInMap().size();
                 if (!(numberOfDog < requiermentToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else {
-                int numberOfObjectInMapNeededForMissionToBeFinished=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getRecordNoteBookThatRecoredEveryThingAndNumbers().get(object.getClass());
+                int numberOfObjectInMapNeededForMissionToBeFinished=farm.getWareHouse().getRecordNoteBookThatRecoredEveryThingAndNumbers().get(object.getClass());
                 if(numberOfObjectInMapNeededForMissionToBeFinished<requiermentToFinishTheMission.get(object)){
                     result=false;
                 }

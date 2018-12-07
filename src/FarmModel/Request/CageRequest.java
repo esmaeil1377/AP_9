@@ -23,7 +23,6 @@ public class CageRequest extends Request {
                 return;
             }
         }
-        //cell.AddCellAMapObject(new Cage(cell.getCellObjectInMap1515().));
     }
 
     public int getX() {
