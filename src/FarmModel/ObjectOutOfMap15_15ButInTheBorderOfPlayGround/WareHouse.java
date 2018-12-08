@@ -1,26 +1,28 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
+import FarmController.Exceptions.FullWareHouse;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.InformationNeededInGame;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
-    private int Level;
+    private int Level=0;
     private ArrayList<Object> wareHouseList = new ArrayList<>();
-    private int capacityOfWareHouse;
-    private HashMap<Class, Integer> recordNoteBookThatRecoredEveryThingAndNumbers = new HashMap<>();
+    private int capacityOfWareHouse=50;
+    private int remainCapacityOfWareHouse=50;
+    private HashMap<Class, Integer> recordNoteBookThatRecordEveryThingAndNumbers = new HashMap<>();
+
+    public int getRemainCapacityOfWareHouse() {
+        return remainCapacityOfWareHouse;
+    }
+
+    public void setRemainCapacityOfWareHouse(int remainCapacityOfWareHouse) {
+        this.remainCapacityOfWareHouse = remainCapacityOfWareHouse;
+    }
 
     public WareHouse(){
-        setCapacityOfWareHouse();
     }
 
     private void setCapacityOfWareHouse(int capacityOfWareHouse) {
@@ -31,36 +33,41 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return capacityOfWareHouse;
     }
 
-    public void AddObjectToStore(Object object) {
-        wareHouseList.add(object);
-        RecordThisTransActionThatAddedToWareHouse(object);
+    public void AddWholeObjectToStore(Object object) {
+        int spaceNeededForObjectInWareHouse=InformationNeededInGame.GetData();
+        // to improve this we should change Information class to methods to code clearer.
+        if(getRemainCapacityOfWareHouse()> spaceNeededForObjectInWareHouse){
+            wareHouseList.add(object);
+            RecordThisTransActionThatWholeObjectAddedToWareHouse(object);
+            setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse()-spaceNeededForObjectInWareHouse);
+        }
+        throw new FullWareHouse();
     }
 
-    public HashMap<Class, Integer> getRecordNoteBookThatRecoredEveryThingAndNumbers() {
-        return recordNoteBookThatRecoredEveryThingAndNumbers;
+    public HashMap<Class, Integer> getRecordNoteBookThatRecordEveryThingAndNumbers() {
+        return recordNoteBookThatRecordEveryThingAndNumbers;
     }
 
 
-    public void RemoveObjectFromWareHouse(Object object) {
-        if(wareHouseList.contains(object)) {
-            for(Object objects:wareHouseList){
-                if(objects.getClass().equals(object.getClass())){
-                    wareHouseList.remove(objects);
-                }
+    //this will remove warehouse a piece of object not whole of it but
+    public void RemovePieceOfObjectFromWareHouse(Object object) {
+        for(Object objects:wareHouseList){
+            if(objects.toString().equals(object.toString())){
+                wareHouseList.remove(objects);
+                setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse()-1);
+                return;
             }
-            return;
         }
         throw new ObjectNotFoundInWareHouse();
     }
 
-    public void RecordThisTransActionThatAddedToWareHouse(Object object) {
+    public void RecordThisTransActionThatWholeObjectAddedToWareHouse(Object object) {
         Class classObject=object.getClass();
-        int NumberOfTheObjectThatWereInWareHouseAndThisTime = 0;
-        if(recordNoteBookThatRecoredEveryThingAndNumbers.containsKey(classObject)){
-            recordNoteBookThatRecoredEveryThingAndNumbers.put(classObject,recordNoteBookThatRecoredEveryThingAndNumbers.get(classObject)+1);
+        if(recordNoteBookThatRecordEveryThingAndNumbers.containsKey(classObject)){
+            recordNoteBookThatRecordEveryThingAndNumbers.put(classObject, recordNoteBookThatRecordEveryThingAndNumbers.get(classObject)+1);
         }
         else{
-            recordNoteBookThatRecoredEveryThingAndNumbers.put(classObject,1);
+            recordNoteBookThatRecordEveryThingAndNumbers.put(classObject,1);
         }
 
     }
@@ -69,10 +76,19 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return wareHouseList;
     }
 
-    public void UpgradadeWareHouse() {
+    public void UpgradeWareHouse() {
         Level++;
-        setCapacityOfWareHouse(getCapacityOfWareHouse()*);
+        if(Level==1){
+            setCapacityOfWareHouse(150);
+        }
+        else if(Level==2){
+            setCapacityOfWareHouse(300);
+        }
+        else if(Level==3){
+            setCapacityOfWareHouse(600);
+        }
         //upgrade change it's shape.don't forget it.
+        //after all we have to change the price to for upgrading the warehouse in Information class.
     }
 
     @Override

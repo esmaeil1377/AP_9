@@ -41,7 +41,7 @@ public class UpgradeRequest extends Request {
             helicopter.UpgradeHelicopter();
         } else if (object.equals("warehouse")) {
             WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
-            wareHouse.UpgradadeWareHouse();
+            wareHouse.UpgradeWareHouse();
         } else {
             Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
             WorkShop workShop = farm.getspecifiedWorkShop(object);

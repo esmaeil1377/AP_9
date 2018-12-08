@@ -20,7 +20,7 @@ public class PickUpRequest extends Request {
         for (ObjectInMap15_15 object : currentObjectInMap) {
             if (object instanceof Product) {
                 cell.RemoveCellAMapObject(object);
-                wareHouse.AddObjectToStore(object);
+                wareHouse.AddWholeObjectToStore(object);
             }
         }
     }

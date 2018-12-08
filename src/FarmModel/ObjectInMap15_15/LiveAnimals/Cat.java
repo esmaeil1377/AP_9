@@ -32,7 +32,7 @@ public class Cat extends Animals {
 
     public void PutProductInStore() {
         if (getProduct() != null) {
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddObjectToStore(getProduct());
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddWholeObjectToStore(getProduct());
             setProduct(null);
         }
     }

@@ -107,6 +107,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(animals);
         } else {
             //there is a problem.
+            //Actually nothing will happen.it's true.
         }
     }
 
@@ -119,6 +120,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         if (animal instanceof AnimalProducer) {
             PointOfNearestDestination = animal.FindNearGrass();
             if (PointOfNearestDestination.get(0) == -100) {
+                //i call this method because it animal producer has to walk faster than normal state.
+                WalkRandomlyForOneTurn(animal);
                 WalkRandomlyForOneTurn(animal);
                 return;
             }
@@ -144,6 +147,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             PointOfNearestDestination = animal.GivePointOfWareHouse();
         } else {
             ///////what something is missing.
+            //Actually nothing will happen and it's true.
         }
         int xPositionOfTheGrass = PointOfNearestDestination.get(0);
         int yPositionOfTheGrass = PointOfNearestDestination.get(1);

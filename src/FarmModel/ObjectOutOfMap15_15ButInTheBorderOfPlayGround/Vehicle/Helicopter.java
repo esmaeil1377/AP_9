@@ -2,8 +2,6 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
 import FarmModel.Game;
 
-import java.util.ArrayList;
-
 public class Helicopter extends TransportationVehicle {
 
     public Helicopter() {
@@ -19,9 +17,9 @@ public class Helicopter extends TransportationVehicle {
     }
 
     public void GiveObjectToWareHouse() {
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddObjectToStore(getGoodsThatHaveToCarry());
+        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddWholeObjectToStore(getGoodsThatHaveToCarry());
         setGoodsThatHaveToCarry(null);
-        //add from warehouse goods that are going to sell and something in userMoney
+        //add    from warehouse goods that are going to sell and something in userMoney
     }
 
     public void UpgradeHelicopter() {

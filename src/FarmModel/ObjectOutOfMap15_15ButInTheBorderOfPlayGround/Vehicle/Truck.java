@@ -5,8 +5,6 @@ import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
-import java.util.ArrayList;
-
 public class Truck extends TransportationVehicle {
 
 
@@ -26,7 +24,7 @@ public class Truck extends TransportationVehicle {
         WareHouse wareHouse=farm.getWareHouse();
         if(wareHouse.getWareHouseList().contains(good)){
             getGoodsThatHaveToCarry().add(good);
-            wareHouse.RemoveObjectFromWareHouse(good);
+            wareHouse.RemovePieceOfObjectFromWareHouse(good);
             //delete from warehouse goods that are going to sell
         }else{
             throw new ObjectNotFoundInWareHouse();

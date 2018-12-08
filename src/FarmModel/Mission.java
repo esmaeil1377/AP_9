@@ -1,8 +1,5 @@
 package FarmModel;
 
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
-
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -93,7 +90,7 @@ public class Mission {
                     result = false;
                 }
             } else {
-                int numberOfObjectInMapNeededForMissionToBeFinished=farm.getWareHouse().getRecordNoteBookThatRecoredEveryThingAndNumbers().get(object.getClass());
+                int numberOfObjectInMapNeededForMissionToBeFinished=farm.getWareHouse().getRecordNoteBookThatRecordEveryThingAndNumbers().get(object.getClass());
                 if(numberOfObjectInMapNeededForMissionToBeFinished<requiermentToFinishTheMission.get(object)){
                     result=false;
                 }

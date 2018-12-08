@@ -7,6 +7,8 @@ public class InformationNeededInGame {
     private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
     private static HashMap<String, Integer> informationAndNumber = new HashMap<>();
 
+    //we should change the formation of this class it should be methods.
+
     private InformationNeededInGame() {
         //well information
         informationAndNumber.put("CapacityOfTheBucket", 5);
