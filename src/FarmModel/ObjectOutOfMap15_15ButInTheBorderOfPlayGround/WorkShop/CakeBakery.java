@@ -28,7 +28,7 @@ public class CakeBakery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() {
         Cake cake = new Cake();
-        Cell cell =Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[0][15];
+        Cell cell =Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[0][1];
         cell.AddCellAMapObject(cake);
     }
 
