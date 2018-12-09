@@ -1,6 +1,8 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 
+import FarmModel.Cell;
+import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
@@ -25,6 +27,9 @@ public class CakeBakery extends WorkShop {
 
     @Override
     public void MakeAProductAndPutItInMap() {
+        Cake cake = new Cake();
+        Cell cell =Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[0][15];
+        cell.AddCellAMapObject(cake);
     }
 
 

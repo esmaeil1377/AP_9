@@ -3,6 +3,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cloth;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Sewing;
 
 import java.util.HashMap;
 
@@ -14,7 +15,7 @@ public class SewingFactory extends WorkShop {
         objectNeededToProduceOne.put(new Wool(),1);
         objectNeededToProduceOne.put(new );
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);
-        setResultProduct(new Cloth());
+        setResultProduct(new Sewing());
     }
 
     public String getWorkShopName() {
