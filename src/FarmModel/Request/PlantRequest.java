@@ -16,8 +16,8 @@ public class PlantRequest extends Request {
             well.setWaterOfTheBucket(well.getWaterOfTheBucket() - 1);
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    if (getX() + i >= 0 && getX() + i < 16 && getY() + j >= 0 && getY() + j < 16 ) {
-                        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX() + i][getY() + j];
+                    if (getX() + i >= 0 && getX() + i < 16 && getY() + j >= 0 && getY() + j < 16) {
+                        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX() + i][getY() + j];
                         cell.AddCellAMapObject(new Grass());
                     }
                 }

@@ -1,8 +1,6 @@
 package FarmModel.Request;
 
-import FarmModel.Cell;
 import FarmModel.Game;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WeavinFactory;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 public class StartRequest extends Request {
@@ -30,9 +28,9 @@ public class StartRequest extends Request {
         WorkShopName = workShopName;
     }
 
-    public void AnalyzeRequestLine(String requestLine){
-        String workShopName=requestLine.substring(6);
-        WorkShop workShop=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getspecifiedWorkShop(workShopName);
+    public void AnalyzeRequestLine(String requestLine) {
+        String workShopName = requestLine.substring(6);
+        WorkShop workShop = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getspecifiedWorkShop(workShopName);
         setWorkShop(workShop);
         //showing a appropriate notation for error that there is no workshop by this name;
 

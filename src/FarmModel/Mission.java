@@ -15,7 +15,7 @@ public class Mission {
     public Mission(int startMoneyInMission, int timeTakeForPlayerToPlayTheMap, Farm farm) {
         TimeTakeForPlayerToFinishTheMap = timeTakeForPlayerToPlayTheMap;
         this.farm = farm;
-        this.startMoneyInMission=startMoneyInMission;
+        this.startMoneyInMission = startMoneyInMission;
     }
 
     public int getStartMoneyInMission() {
@@ -56,13 +56,13 @@ public class Mission {
     public void GiveRewardToUser() {
     }
 
-    public int CalcualteMoneyToGiveUserAfterCompletingTheMission(){
+    public int CalcualteMoneyToGiveUserAfterCompletingTheMission() {
         //it is a function of timeplayerfinished the mission and other thing that i don't know
     }
 
     public boolean CheckIfMissionIsFinished() {
         boolean result = true;
-        Farm farm=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (Object object : requiermentToFinishTheMission.keySet()) {
             if (object.toString().equals("Chicken")) {
                 int numberofchicken = farm.getCurrentChickenInMap().size();
@@ -85,14 +85,14 @@ public class Mission {
                     result = false;
                 }
             } else if (object.toString().equals("Dog")) {
-                int numberOfDog =farm.getCurrentCatInMap().size();
+                int numberOfDog = farm.getCurrentCatInMap().size();
                 if (!(numberOfDog < requiermentToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else {
-                int numberOfObjectInMapNeededForMissionToBeFinished=farm.getWareHouse().getRecordNoteBookThatRecordEveryThingAndNumbers().get(object.getClass());
-                if(numberOfObjectInMapNeededForMissionToBeFinished<requiermentToFinishTheMission.get(object)){
-                    result=false;
+                int numberOfObjectInMapNeededForMissionToBeFinished = farm.getWareHouse().getRecordNoteBookThatRecordEveryThingAndNumbers().get(object.getClass());
+                if (numberOfObjectInMapNeededForMissionToBeFinished < requiermentToFinishTheMission.get(object)) {
+                    result = false;
                 }
             }
         }

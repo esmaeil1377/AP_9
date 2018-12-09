@@ -3,7 +3,7 @@ package FarmModel.Request;
 public class LoadGameRequest extends Request {
     private String fileName;
 
-    public LoadGameRequest(String requestLine){
+    public LoadGameRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
     }
 
@@ -15,7 +15,8 @@ public class LoadGameRequest extends Request {
         this.fileName = fileName;
     }
 
-    public void AnalyzeRequestLine(String requestLine){}
+    public void AnalyzeRequestLine(String requestLine) {
+    }
 
 
 }

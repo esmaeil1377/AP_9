@@ -1,8 +1,9 @@
 package FarmModel.ObjectInMap15_15.Product.WorkShopProduct;
 
-public class Fibre extends WorkShopProduct {
+public class Flour extends WorkShopProduct {
+
     @Override
     public String toString() {
-        return "Cake";
+        return "Flour";
     }
 }

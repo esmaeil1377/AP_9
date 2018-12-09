@@ -1,5 +1,6 @@
 package FarmController.Exceptions;
 
-public class UnknownObjectException extends RuntimeException{
-    public UnknownObjectException(){}
+public class UnknownObjectException extends RuntimeException {
+    public UnknownObjectException() {
+    }
 }

@@ -7,8 +7,7 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 public class GoVehicleRequest extends Request {
     private String vehicleName;
 
-    public GoVehicleRequest(String requestLine)
-    {
+    public GoVehicleRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
         if (getVehicleName().equals("truck")) {
             Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
@@ -38,7 +37,7 @@ public class GoVehicleRequest extends Request {
     }
 
     public void AnalyzeRequestLine(String requestLine) {
-        String vehicleName=requestLine.split(" ")[0];
+        String vehicleName = requestLine.split(" ")[0];
         setVehicleName(vehicleName);
     }
 

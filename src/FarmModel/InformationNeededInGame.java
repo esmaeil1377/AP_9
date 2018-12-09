@@ -1,7 +1,6 @@
 package FarmModel;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class InformationNeededInGame {
     private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
@@ -43,8 +42,8 @@ public class InformationNeededInGame {
         informationAndNumber.put("PriceForSellCookie", );
         informationAndNumber.put("PriceForSellPowder", );
         //priceForSellCage
-        informationAndNumber.put("PriceForSellCageLion",150);
-        informationAndNumber.put("PriceForSellCageBear",);
+        informationAndNumber.put("PriceForSellCageLion", 150);
+        informationAndNumber.put("PriceForSellCageBear", );
         //PriceToBuyAnimal
         informationAndNumber.put("PriceToBuyChicken", 100);
         informationAndNumber.put("PriceToBuyShip", 1000);

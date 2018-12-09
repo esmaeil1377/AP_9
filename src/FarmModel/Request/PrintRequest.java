@@ -15,5 +15,6 @@ public class PrintRequest extends Request {
         this.commandName = commandName;
     }
 
-    public void AnalyzeRequestLine(String requestLine){}
+    public void AnalyzeRequestLine(String requestLine) {
+    }
 }

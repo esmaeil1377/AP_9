@@ -4,18 +4,17 @@ import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
 public class ClearRequest extends Request {
     private String vehicleName;
 
     public ClearRequest(String request) {
         AnalyzeRequestLine(request);
-        Farm farm= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-        if(vehicleName.equals("truck")){
-            Truck truck=farm.getTruck();
+        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        if (vehicleName.equals("truck")) {
+            Truck truck = farm.getTruck();
             truck.getGoodsThatHaveToCarry().clear();
-        }else if(vehicleName.equals("helicopter")){
+        } else if (vehicleName.equals("helicopter")) {
 
             Helicopter helicopter = farm.getHelicopter();
             helicopter.getGoodsThatHaveToCarry().clear();
@@ -30,8 +29,8 @@ public class ClearRequest extends Request {
         this.vehicleName = vehicleName;
     }
 
-    public void AnalyzeRequestLine(String requestLine){
-        String[] request=requestLine.split(" ");
+    public void AnalyzeRequestLine(String requestLine) {
+        String[] request = requestLine.split(" ");
         String vehicleName = request[0];
     }
 }

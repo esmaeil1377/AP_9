@@ -5,9 +5,9 @@ import FarmModel.ObjectInMap15_15.Product.Product;
 import java.util.HashMap;
 
 public class WeavinFactory extends WorkShop {
-    public final String workShopName="WeavingFactory";
+    public final String workShopName = "WeavingFactory";
 
-    public WeavinFactory(HashMap<Product,Integer> objectNeededToProduceOne, Product resultProduct){
+    public WeavinFactory(HashMap<Product, Integer> objectNeededToProduceOne, Product resultProduct) {
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);
         setResultProduct(resultProduct);
     }

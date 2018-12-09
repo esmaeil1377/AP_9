@@ -1,22 +1,20 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
-import FarmModel.Cell;
-import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cloth;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
 import java.util.HashMap;
 
-import static java.lang.Math.min;
-
 public class SewingFactory extends WorkShop {
-    public final String workShopName="SewingFactory";
+    public final String workShopName = "SewingFactory";
 
-    public SewingFactory(HashMap<Product,Integer> objectNeededToProduceOne, Product resultProduct){
+    public SewingFactory() {
+        HashMap<Product, Integer> objectNeededToProduceOne=new HashMap<>();
+        objectNeededToProduceOne.put(new Wool(),1);
+        objectNeededToProduceOne.put(new );
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);
-        setResultProduct(resultProduct);
+        setResultProduct(new Cloth());
     }
 
     public String getWorkShopName() {

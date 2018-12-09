@@ -20,8 +20,8 @@ public class Cat extends Animals {
     }
 
     public void TakeProduct() {
-        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
-        ArrayList<ObjectInMap15_15> currentObjectInMap=new ArrayList<>(cell.getCellObjectInMap1515());
+        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
+        ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap1515());
         for (ObjectInMap15_15 objectInMap15_15 : currentObjectInMap) {
             if (objectInMap15_15 instanceof Product) {
                 cell.RemoveCellAMapObject(objectInMap15_15);
@@ -41,8 +41,7 @@ public class Cat extends Animals {
         return Level;
     }
 
-    public void UpgradeCat()
-    {
+    public void UpgradeCat() {
         Level++;
     }
 

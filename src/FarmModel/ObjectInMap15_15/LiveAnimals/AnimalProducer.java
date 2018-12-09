@@ -56,12 +56,12 @@ public abstract class AnimalProducer extends Animals {
     public void EatGrass() {
         int x = getX();
         int y = getY();
-        Cell cell=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
-        for(ObjectInMap15_15 objectInMap15_15:cell.getCellObjectInMap1515()){
-            if(objectInMap15_15 instanceof Grass){
+        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+        for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap1515()) {
+            if (objectInMap15_15 instanceof Grass) {
                 cell.RemoveCellAMapObject(objectInMap15_15);
-                setAnimalAmountOfHunger(getAnimalAmountOfHunger()+1);
-                if(getAnimalAmountOfHunger()==healthyAnimalAmountOfHunger){
+                setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 1);
+                if (getAnimalAmountOfHunger() == healthyAnimalAmountOfHunger) {
                     setWantToEatGrass(false);
                 }
                 return;

@@ -152,7 +152,7 @@ public class Farm {
                         animalsInMap.add((Cat) objectInMap15_15);
                     }
                 }
-                return animalsInMap;
+        return animalsInMap;
     }
 
     public ArrayList<Dog> getCurrnetDogInMap() {

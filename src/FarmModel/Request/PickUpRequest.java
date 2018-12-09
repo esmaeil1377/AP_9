@@ -16,7 +16,7 @@ public class PickUpRequest extends Request {
         AnalyzeRequestLine(requestLine);
         Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
         WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
-        ArrayList<ObjectInMap15_15> currentObjectInMap=new ArrayList<>(cell.getCellObjectInMap1515());
+        ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap1515());
         for (ObjectInMap15_15 object : currentObjectInMap) {
             if (object instanceof Product) {
                 cell.RemoveCellAMapObject(object);

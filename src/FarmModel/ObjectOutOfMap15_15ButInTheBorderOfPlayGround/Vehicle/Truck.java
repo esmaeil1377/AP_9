@@ -20,13 +20,13 @@ public class Truck extends TransportationVehicle {
     }
 
     public void TakeObjectFromWareHouse(Object good) {
-        Farm farm= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-        WareHouse wareHouse=farm.getWareHouse();
-        if(wareHouse.getWareHouseList().contains(good)){
+        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        WareHouse wareHouse = farm.getWareHouse();
+        if (wareHouse.getWareHouseList().contains(good)) {
             getGoodsThatHaveToCarry().add(good);
             wareHouse.RemovePieceOfObjectFromWareHouse(good);
             //delete from warehouse goods that are going to sell
-        }else{
+        } else {
             throw new ObjectNotFoundInWareHouse();
         }
     }

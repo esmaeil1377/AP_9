@@ -2,8 +2,6 @@ package FarmModel.Request;
 
 import FarmModel.Cell;
 import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 

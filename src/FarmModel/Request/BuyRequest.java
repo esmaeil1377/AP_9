@@ -16,8 +16,9 @@ public class BuyRequest extends Request {
         this.animalName = animalName;
     }
 
-    public void Buy(String request){}
+    public void Buy(String request) {
+    }
 
-    public void AnalyzeRequestLine(String requestLine){
+    public void AnalyzeRequestLine(String requestLine) {
     }
 }
