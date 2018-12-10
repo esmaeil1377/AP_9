@@ -5,6 +5,7 @@ import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
 import java.util.HashMap;
 
@@ -21,9 +22,10 @@ public class SewingFactory extends WorkShop {
 
     @Override
     public void MakeAProductAndPutItInMap() {
-        Sewing sewing = new Sewing();
-        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15][1];
-        cell.AddCellAMapObject(sewing);
+        for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
+            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15][0];
+            cell.AddCellAMapObject(getResultProduct());
+        }
     }
 
     public String getWorkShopName() {
@@ -32,6 +34,32 @@ public class SewingFactory extends WorkShop {
 
     @Override
     public void getProductFromWareHouse() {
+        int countOfCloth = 0;
+        WareHouse wareHouse = new WareHouse();
+        Cloth cloth = new Cloth();
+        for (Object object : wareHouse.getWareHouseList()) {
+            if (object.toString().equals(cloth.toString()))
+                countOfCloth++;
+        }
+        int countOfDecoration = 0;
+        int min = 0;
+        Decoration decoration = new Decoration();
+        for (Object object : wareHouse.getWareHouseList()) {
+            if (object.toString().equals(decoration.toString()))
+                countOfDecoration++;
+        }
+        if (getMaxNumberOfGettingInput() <= countOfCloth)
+            min = getMaxNumberOfGettingInput() ;
+        else
+            min = countOfCloth;
+        if (min <= countOfDecoration)
+            setCurrentNumberOfProducingProduct(min);
+        else
+            setCurrentNumberOfProducingProduct(countOfDecoration);
+        for(int i = 0 ; i <getCurrentNumberOfProducingProduct();i++)
+            wareHouse.RemovePieceOfObjectFromWareHouse(cloth);
+        for(int i = 0 ; i <getCurrentNumberOfProducingProduct();i++)
+            wareHouse.RemovePieceOfObjectFromWareHouse(decoration);
     }
 
     @Override
