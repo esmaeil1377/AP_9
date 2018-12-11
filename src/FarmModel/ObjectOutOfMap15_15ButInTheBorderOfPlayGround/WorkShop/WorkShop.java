@@ -112,12 +112,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         return level;
     }
 
-    public void MakeAProductAndPutItInMap() {
-        for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[][];
-            cell.AddCellAMapObject(getResultProduct());
-        }
-    }
+    public abstract void MakeAProductAndPutItInMap();
 
     public void setObjectNeededToProduceAProduct(HashMap<Product, Integer> objectNeededToProduceAProduct) {
         this.objectNeededToProduceAProduct = objectNeededToProduceAProduct;

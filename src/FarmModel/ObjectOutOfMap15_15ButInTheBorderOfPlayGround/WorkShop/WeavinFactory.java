@@ -5,10 +5,7 @@ import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cloth;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Decoration;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Fibre;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Sewing;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
 import java.util.HashMap;
@@ -26,7 +23,7 @@ public class WeavinFactory extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15][15];
+            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15 - i][15];
             cell.AddCellAMapObject(getResultProduct());
         }
     }

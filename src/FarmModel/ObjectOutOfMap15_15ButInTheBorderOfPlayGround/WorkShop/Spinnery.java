@@ -4,12 +4,8 @@ import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.Product;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cloth;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Decoration;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Fibre;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Sewing;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
-import com.sun.xml.internal.ws.api.pipe.Fiber;
 
 import java.util.HashMap;
 
@@ -26,7 +22,7 @@ public class Spinnery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15][7];
+            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15 - i][7];
             cell.AddCellAMapObject(getResultProduct());
         }
     }
