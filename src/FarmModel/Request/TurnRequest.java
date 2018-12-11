@@ -233,7 +233,7 @@ public class TurnRequest extends Request {
     private void MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted() {
         Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
         if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
-            helicopter.GiveObjectToWareHouse();
+            helicopter.PutObjectInMapRandomly();
         } else if (helicopter.IsVehicleActivated()) {
             helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
         }
