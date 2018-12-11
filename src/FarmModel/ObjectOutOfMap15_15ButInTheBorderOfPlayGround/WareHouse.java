@@ -55,8 +55,8 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
             if (objects.toString().equals(object.toString())) {
                 wareHouseList.remove(objects);
                 setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse() - 1);
+                return;
             }
-            break;
         }
         throw new ObjectNotFoundInWareHouse();
     }
