@@ -2,6 +2,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
 import FarmModel.InformationNeededInGame;
 import FarmModel.ObjectInMap15_15.Cage;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 import java.util.ArrayList;
