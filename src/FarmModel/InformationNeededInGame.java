@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class InformationNeededInGame {
     private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
+    private static HashMap<String, Integer> informationAndNumber = new HashMap<>();
 
     //we should change the formation of this class it should be methods.
 
@@ -53,29 +54,34 @@ public class InformationNeededInGame {
     informationAndNumber.put("PriceToUpgradeCatLevel2", );
     informationAndNumber.put("PriceToUpgradeCatLevel3", );
     //PriceToBuyWorkShop
-    informationAndNumber.put("PriceToBuyCakeBakery", );
-    informationAndNumber.put("PriceToBuyCookieBakery", );
-    informationAndNumber.put("PriceToBuyEggPowderPlant", );
-    informationAndNumber.put("PriceToBuySewingFactory", );
-    informationAndNumber.put("PriceToBuySpinnery", );
-    informationAndNumber.put("PriceToBuyUnknownWorkShop", );
-    informationAndNumber.put("PriceToBuyWeavingFactory", );
+    public int PriceToBuyEggPowderPlant =;
+    public int PriceToBuySewingFactory =;
+    public int PriceToBuySpinnery = ;
+    public int PriceToBuyUnknownWorkShop = ;
+    public int PriceToBuyWeavingFactory = ;
     //PriceToUpgradeWorkShop
-    informationAndNumber.put("PriceToUpgradeCakeBakery", );
-    informationAndNumber.put("PriceToUpgradeCookieBakery", );
-    informationAndNumber.put("PriceToUpgradeEggPowderPlant", );
-    informationAndNumber.put("PriceToUpgradeSewingFactory", );
-    informationAndNumber.put("PriceToUpgradeSpinnery", );
-    informationAndNumber.put("PriceToUpgradeUnknownWorkShop", );
-    informationAndNumber.put("PriceToUpgradeWeavingFactory", );
+    public int PriceToUpgradeCakeBakery = ;
+    public int PriceToUpgradeCookieBakery =;
+    public int PriceToUpgradeEggPowderPlant = ;
+    public int PriceToUpgradeSewingFactory =
+    public int PriceToUpgradeSpinnery = ;
+    public int PriceToUpgradeUnknownWorkShop = ;
+    public int PriceToUpgradeWeavingFactory = ;
     //PriceToUpgradeWell
-    informationAndNumber.put("PriceToUpgradeWell", );
+    public int PriceToUpgradeWell = ;
     //PriceToUpgradeWareHouse
-    informationAndNumber.put("PriceToUpgradeWareHouse", );
+    public int PriceToUpgradeWareHouse =;
     //AnimalAmountOfHunger
 
 
         //.....
+    }
 
+    public static int GetData(String strDataName) {
+        return informationAndNumber.get(strDataName);
+    }
 
+    public static void SetData(String strDataName, int newSize) {
+        informationAndNumber.put(strDataName, newSize);
+    }
 }

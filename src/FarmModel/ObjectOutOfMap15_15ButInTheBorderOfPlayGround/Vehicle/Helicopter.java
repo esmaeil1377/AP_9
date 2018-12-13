@@ -38,6 +38,7 @@ public class Helicopter extends TransportationVehicle {
     }
 
     public void UpgradeHelicopter() {
+
     }
 
     @Override
