@@ -6,7 +6,7 @@ import FarmModel.Farm;
 import java.util.Scanner;
 
 public class View {
-    public static Scanner scanner = new Scanner(System.in)
+    public static Scanner scanner = new Scanner(System.in);
 
     public static void  getRequest() {
         String input;
@@ -17,9 +17,4 @@ public class View {
         }
     }
 
-    public static void ShowMap() {
-    }
-
-    public static void ShowShop() {
-    }
 }

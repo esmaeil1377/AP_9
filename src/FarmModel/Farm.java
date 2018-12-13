@@ -52,10 +52,10 @@ public class Farm {
         this.workShops = workShops;
     }
 
-    public Farm() {
-        setHelicopter();
-        setTruck();
-        setWorkShops();
+    public Farm(Helicopter helicopter,Truck truck,ArrayList<WorkShop> workShops) {
+        setHelicopter(helicopter);
+        setTruck(truck);
+        setWorkShops(workShops);
     }
 
     public int getRemainTurnToRandomlyAddWildAnimalToMap() {
@@ -303,7 +303,6 @@ public class Farm {
         }
         throw new ObjectNotFoundInWareHouse();
 
-    }
     }
 
 }
