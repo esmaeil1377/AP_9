@@ -10,8 +10,8 @@ public class Truck extends TransportationVehicle {
 
 
     public Truck() {
-        setTurnToMoveObjectToCityAndComeBack();
-        setCapacity();
+        setTurnToMoveObjectToCityAndComeBack(20);
+        setCapacity(20);
     }
 
     public void SellObjectToCityAndGetMoneyToUser() {
@@ -35,8 +35,10 @@ public class Truck extends TransportationVehicle {
         }
     }
 
-    public void UpgradeTruck() {
-
+    public void  UpgradeTruck() {
+        setLevel(getLevel()+1);
+        setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack()-3);
+        setCapacity(getCapacity()+10);
     }
 
     @Override

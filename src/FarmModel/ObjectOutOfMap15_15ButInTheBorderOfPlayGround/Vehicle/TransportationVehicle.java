@@ -15,6 +15,10 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
     private ArrayList<Object> goodsThatCarry = new ArrayList<>();
     private boolean isVehicleActivated = false;
 
+    public void setLevel(int level) {
+        Level = level;
+    }
+
     public void setVehicleActivated(boolean vehicleActivated) {
         isVehicleActivated = vehicleActivated;
     }

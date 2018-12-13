@@ -10,7 +10,12 @@ import java.util.HashMap;
 
 public class InformationNeededInGame {
     private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
-    private static HashMap<String, Integer> informationAndNumber = new HashMap<>();
+
+    private InformationNeededInGame(){ }
+
+    public static InformationNeededInGame getInformationNeededInGame(){
+        return informationNeededInGame;
+    }
 
     //we should change the formation of this class it should be methods.
 
@@ -23,6 +28,29 @@ public class InformationNeededInGame {
     public int ActivationPriceForHelicopter=;
     public int ActivationPriceForTruck=;
     public int ActivationPriceForCustomWorkShop=;
+
+
+    public void IncraesePriceForUpgrade(String str){
+        if (str.equals("CakeBakery"))
+            PriceToUpgradeCakeBakery+=;
+        if (str.equals("EggPowderPlant"))
+            PriceToUpgradeEggPowderPlant+=;
+        if (str.equals("CookieBakery"))
+            PriceToUpgradeCookieBakery+=;
+        if (str.equals("SewingFactory"))
+            PriceToUpgradeSewingFactory+=;
+        if (str.equals("Spinnery"))
+            PriceToUpgradeSpinnery+=;
+        if (str.equals("WeavingFactory"))
+            PriceToUpgradeWeavingFactory+=;
+        if (str.equals("Well"))
+            PriceToUpgradeWell+=;
+        if (str.equals("WareHouse"))
+            PriceToUpgradeWareHouse+=;
+        if (str.equals("CustomWorkShop"))
+            PriceToUpgradeUnknownWorkShop+=;
+        throw new NotDefinedPriceForUpgrade();
+    }
 
     //PriceToBuyProduct
 

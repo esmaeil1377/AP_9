@@ -11,12 +11,13 @@ import java.util.Arrays;
 public class Helicopter extends TransportationVehicle {
 
     public Helicopter() {
-        setTurnToMoveObjectToCityAndComeBack();
-        setCapacity();
+        setTurnToMoveObjectToCityAndComeBack(12);
+        setCapacity(20);
     }
 
     //i have to watch out this part because object have not the same space needed and they are .
     public void BuyObjectFromCityAndGetMoneyFromUser(ObjectInMap15_15 good) {
+        //don'd forget capacity limitation.
         Mission mission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
         int priceToBuyMoney = CalculatePriceToBuyForHelicopter(new ArrayList<>(Arrays.asList(good)));
         if (mission.getStartMoneyInMission() > priceToBuyMoney) {
@@ -38,7 +39,9 @@ public class Helicopter extends TransportationVehicle {
     }
 
     public void UpgradeHelicopter() {
-
+        setLevel(getLevel()+1);
+        setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack()-3);
+        setCapacity(getCapacity()+10);
     }
 
     @Override

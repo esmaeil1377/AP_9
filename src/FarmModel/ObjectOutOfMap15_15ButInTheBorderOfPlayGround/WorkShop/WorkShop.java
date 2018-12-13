@@ -84,7 +84,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
                     numberofProductInWareHouse++;
                 }
             }
-            int spaceNeededInWareHouseForThisProduct = new InformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
+            int spaceNeededInWareHouseForThisProduct =InformationNeededInGame.getInformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
             int numberOfPackageForObjectInWareHouse = (numberofProductInWareHouse
                     / (objectNeededToProduceAProduct.get(productRequirement) * spaceNeededInWareHouseForThisProduct));
             if (numberOfPackageForObjectInWareHouse < numberOfAccessInputPackageInWareHouse) {
@@ -94,7 +94,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
 
         for (int i = 0; i < Math.min(numberOfAccessInputPackageInWareHouse, getMaxNumberOfGettingInput()); i++) {
             for (Product productRequirement : objectNeededToProduceAProduct.keySet()) {
-                int spaceNeededInWareHouseForThisProduct = new  InformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
+                int spaceNeededInWareHouseForThisProduct = InformationNeededInGame.getInformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
                 for (int j = 0; j < spaceNeededInWareHouseForThisProduct; j++) {
                     wareHouse.RemovePieceOfObjectFromWareHouse(productRequirement);
                 }
@@ -121,9 +121,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     public void UpgradeWorkShop() {
         setLevel(getLevel() + 1);
         setMaxNumberOfGettingInput(getMaxNumberOfGettingInput() + 1);
-        setTurnNeededToProduceOneProduct();
-        InformationNeededInGame.SetData();
-        //needed a String);
-        //some change in Information class and data because of changing price for them to upgrade or change.
+        setTurnNeededToProduceOneProduct(20);
+        InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(toString());
     }
 }
