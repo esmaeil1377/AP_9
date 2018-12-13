@@ -6,11 +6,11 @@ import FarmController.Exceptions.UnknownObjectToGetSellPrice;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 
-import java.util.HashMap;
+import FarmModel.ObjectInMap15_15.Cage;
+import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
+
 
 public class InformationNeededInGame {
-    private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
-    private static HashMap<String, Integer> informationAndNumber = new HashMap<>();
 
     //we should change the formation of this class it should be methods.
 
@@ -58,61 +58,11 @@ public class InformationNeededInGame {
     //PriceToUpgradeWareHouse
     public int PriceToUpgradeWareHouse =;
     //AnimalAmountOfHunger
+    public int PriceToUpgradeCat =;
+    public int PriceToUpgradeDog =;
+    public int PriceToUpgradeTruck =;
+    public int PriceToUpgradeHelicopter =;
 
-
-    public int getSpaceNeededInWareHouse(Object object) {
-        if (object.toString().equals("Cage")) {
-            WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
-            if (wildAnimals.toString().equals("Lion"))
-                return SpaceNeededInWareHouseForCageThatLionIsInIt;
-            if (wildAnimals.toString().equals("Bear"))
-                return SpaceNeededInWareHouseForCageThatBearIsInIt;
-        }
-        if (object.toString().equals("Egg"))
-            return SpaceNeededInWareHouseForEgg;
-        else if (object.toString().equals("Milk"))
-            return SpaceNeededInWareHouseForMilk;
-        else if (object.toString().equals("Wool"))
-            return SpaceNeededInWareHouseForWool;
-        else if (object.toString().equals("Cake"))
-            return SpaceNeededInWareHouseForCake;
-        else if (object.toString().equals("Powder"))
-            return SpaceNeededInWareHouseForPowder;
-        else if (object.toString().equals("Flour"))
-            return SpaceNeededInWareHouseForFlour;
-        else if (object.toString().equals("Fiber"))
-            return SpaceNeededInWareHouseForFibre;
-        else if (object.toString().equals("Sewing"))
-            return SpaceNeededInWareHouseForSewing;
-        else if (object.toString().equals("Decoration"))
-            return SpaceNeededInWareHouseForDecoration;
-        else if (object.toString().equals("Cloth"))
-            return SpaceNeededInWareHouseForCloth;
-        else if (object.toString().equals("Cookie"))
-            return SpaceNeededInWareHouseForCookie;
-        throw new NotDefinedSpaceForObject();
-    }
-    public int getPriceForUpgrade(Object object) {
-        if (object.toString().equals("CakeBakery"))
-            return PriceToUpgradeCakeBakery;
-        if (object.toString().equals("EggPowderPlant"))
-            return PriceToUpgradeEggPowderPlant;
-        if (object.toString().equals("CookieBakery"))
-            return PriceToUpgradeCookieBakery;
-        if (object.toString().equals("SewingFactory"))
-            return PriceToUpgradeSewingFactory;
-        if (object.toString().equals("Spinnery"))
-            return PriceToUpgradeSpinnery;
-        if (object.toString().equals("WeavingFactory"))
-            return PriceToUpgradeWeavingFactory;
-        if (object.toString().equals("Well"))
-            return PriceToUpgradeWell;
-        if (object.toString().equals("WareHouse"))
-            return PriceToUpgradeWareHouse;
-        if (object.toString().equals("CustomWorkShop"))
-            return PriceToUpgradeUnknownWorkShop;
-        throw new NotDefinedPriceForUpgrade();
-    }
 
 
 
@@ -135,7 +85,7 @@ public class InformationNeededInGame {
     public int PriceToBuyEgg=20;
     public int PriceToBuyMilk=2000;
     public int PriceTOBuyCake=200;
-    public int PriceToBuySewing= 300);
+    public int PriceToBuySewing= 300;
 
     public int getPriceToBuy(Object object){
         if(object.toString().equals("Chicken")){
@@ -178,7 +128,7 @@ public class InformationNeededInGame {
         }else if(object.toString().equals("Milk")){
             return PriceToBuyMilk;
         }
-
+    throw new NotDefinedPriceToBuy();
     }
 
 
@@ -202,6 +152,73 @@ public class InformationNeededInGame {
     public int PriceForSellCloth=;
     public int PriceForSellDecoration=;
     public int PriceForSellFibre=;
+    //PriceToBuyAnimal
+    //PriceToUpgradeCat
+
+        //.....
+    }
+
+public int getSpaceNeededInWareHouse(Object object) {
+    if (object.toString().equals("Cage")) {
+        WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
+        if (wildAnimals.toString().equals("Lion"))
+            return SpaceNeededInWareHouseForCageThatLionIsInIt;
+        if (wildAnimals.toString().equals("Bear"))
+            return SpaceNeededInWareHouseForCageThatBearIsInIt;
+    }
+    if (object.toString().equals("Egg"))
+        return SpaceNeededInWareHouseForEgg;
+    else if (object.toString().equals("Milk"))
+        return SpaceNeededInWareHouseForMilk;
+    else if (object.toString().equals("Wool"))
+        return SpaceNeededInWareHouseForWool;
+    else if (object.toString().equals("Cake"))
+        return SpaceNeededInWareHouseForCake;
+    else if (object.toString().equals("Powder"))
+        return SpaceNeededInWareHouseForPowder;
+    else if (object.toString().equals("Flour"))
+        return SpaceNeededInWareHouseForFlour;
+    else if (object.toString().equals("Fiber"))
+        return SpaceNeededInWareHouseForFibre;
+    else if (object.toString().equals("Sewing"))
+        return SpaceNeededInWareHouseForSewing;
+    else if (object.toString().equals("Decoration"))
+        return SpaceNeededInWareHouseForDecoration;
+    else if (object.toString().equals("Cloth"))
+        return SpaceNeededInWareHouseForCloth;
+    else if (object.toString().equals("Cookie"))
+        return SpaceNeededInWareHouseForCookie;
+    throw new NotDefinedSpaceForObject();
+}
+public int getPriceToUpgrade(Object object) {
+    if (object.toString().equals("CakeBakery"))
+        return PriceToUpgradeCakeBakery;
+    if (object.toString().equals("EggPowderPlant"))
+        return PriceToUpgradeEggPowderPlant;
+    if (object.toString().equals("CookieBakery"))
+        return PriceToUpgradeCookieBakery;
+    if (object.toString().equals("SewingFactory"))
+        return PriceToUpgradeSewingFactory;
+    if (object.toString().equals("Spinnery"))
+        return PriceToUpgradeSpinnery;
+    if (object.toString().equals("WeavingFactory"))
+        return PriceToUpgradeWeavingFactory;
+    if (object.toString().equals("Well"))
+        return PriceToUpgradeWell;
+    if (object.toString().equals("WareHouse"))
+        return PriceToUpgradeWareHouse;
+    if (object.toString().equals("CustomWorkShop"))
+        return PriceToUpgradeUnknownWorkShop;
+    if (object.toString().equals("Cat"))
+        return PriceToUpgradeCat;
+    if (object.toString().equals("Dog"))
+        return PriceToUpgradeDog;
+    if (object.toString().equals("Truck"))
+        return PriceToUpgradeTruck;
+    if (object.toString().equals("Helicopter"))
+        return PriceToUpgradeHelicopter;
+    throw new NotDefinedPriceForUpgrade();
+}
 
     public int getPriceForSell(Object object) {
         if (object.toString().equals("Chicken")) {
