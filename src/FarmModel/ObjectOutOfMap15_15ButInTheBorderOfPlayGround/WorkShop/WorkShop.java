@@ -84,7 +84,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
                     numberofProductInWareHouse++;
                 }
             }
-            int spaceNeededInWareHouseForThisProduct = InformationNeededInGame.Spa;
+            int spaceNeededInWareHouseForThisProduct = new InformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
             int numberOfPackageForObjectInWareHouse = (numberofProductInWareHouse
                     / (objectNeededToProduceAProduct.get(productRequirement) * spaceNeededInWareHouseForThisProduct));
             if (numberOfPackageForObjectInWareHouse < numberOfAccessInputPackageInWareHouse) {
@@ -94,7 +94,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
 
         for (int i = 0; i < Math.min(numberOfAccessInputPackageInWareHouse, getMaxNumberOfGettingInput()); i++) {
             for (Product productRequirement : objectNeededToProduceAProduct.keySet()) {
-                int spaceNeededInWareHouseForThisProduct = InformationNeededInGame.GetData();
+                int spaceNeededInWareHouseForThisProduct = new  InformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
                 for (int j = 0; j < spaceNeededInWareHouseForThisProduct; j++) {
                     wareHouse.RemovePieceOfObjectFromWareHouse(productRequirement);
                 }

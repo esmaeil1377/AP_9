@@ -23,6 +23,9 @@ public class InformationNeededInGame {
     public int ActivationPriceForHelicopter=;
     public int ActivationPriceForTruck=;
     public int ActivationPriceForCustomWorkShop=;
+
+    //PriceToBuyProduct
+
     //SpaceNeededInWareHouseForObject
     public int SpaceNeededInWareHouseForCageThatLionIsInIt= 20;
     public int SpaceNeededInWareHouseForCageThatBearIsInIt=20;
@@ -37,9 +40,6 @@ public class InformationNeededInGame {
     public int SpaceNeededInWareHouseForDecoration=;
     public int SpaceNeededInWareHouseForCloth=;
     public int SpaceNeededInWareHouseForCookie=;
-    //PriceToBuyProduct
-
-
 
     //PriceToUpgradeCat
     public int PriceToUpgradeCatLevel1=;
@@ -57,8 +57,6 @@ public class InformationNeededInGame {
     public int PriceToUpgradeWell = ;
     //PriceToUpgradeWareHouse
     public int PriceToUpgradeWareHouse =;
-    //AnimalAmountOfHunger
-
 
     public int getSpaceNeededInWareHouse(Object object) {
         if (object.toString().equals("Cage")) {
@@ -134,8 +132,6 @@ public class InformationNeededInGame {
     public int PriceTOBuyWool=200;
     public int PriceToBuyEgg=20;
     public int PriceToBuyMilk=2000;
-    public int PriceTOBuyCake=200;
-    public int PriceToBuySewing= 300);
 
     public int getPriceToBuy(Object object){
         if(object.toString().equals("Chicken")){
@@ -195,7 +191,7 @@ public class InformationNeededInGame {
     //priceForSellCage
     public int PriceForSellCageLion = 150 ;
     public int PriceForSellCageBear=;
-    public int PriceForSellChicken=;\
+    public int PriceForSellChicken=;
     public int PriceForSellCow=;
     public int PriceForSellShip=;
     public int PriceForSellFlour=;
