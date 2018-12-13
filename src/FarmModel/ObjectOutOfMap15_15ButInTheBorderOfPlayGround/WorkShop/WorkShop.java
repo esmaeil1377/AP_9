@@ -84,7 +84,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
                     numberofProductInWareHouse++;
                 }
             }
-            int spaceNeededInWareHouseForThisProduct = InformationNeededInGame.GetData();
+            int spaceNeededInWareHouseForThisProduct = InformationNeededInGame.Spa;
             int numberOfPackageForObjectInWareHouse = (numberofProductInWareHouse
                     / (objectNeededToProduceAProduct.get(productRequirement) * spaceNeededInWareHouseForThisProduct));
             if (numberOfPackageForObjectInWareHouse < numberOfAccessInputPackageInWareHouse) {

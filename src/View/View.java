@@ -6,9 +6,9 @@ import FarmModel.Farm;
 import java.util.Scanner;
 
 public class View {
-    public Scanner scanner = new Scanner(System.in)
+    public static Scanner scanner = new Scanner(System.in)
 
-    public void getRequest() {
+    public static void  getRequest() {
         String input;
         while(true){
             input =scanner.nextLine();
