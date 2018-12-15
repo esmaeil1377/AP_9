@@ -1,7 +1,9 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Farm;
 import FarmModel.Game;
+import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
@@ -36,12 +38,6 @@ public class Helicopter extends TransportationVehicle {
         }
         setGoodsThatHaveToCarry(null);
         //add from warehouse goods that are going to sell and something in userMoney
-    }
-
-    public void UpgradeHelicopter() {
-        setLevel(getLevel()+1);
-        setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack()-3);
-        setCapacity(getCapacity()+10);
     }
 
     @Override

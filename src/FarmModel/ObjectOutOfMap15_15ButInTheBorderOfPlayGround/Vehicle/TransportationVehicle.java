@@ -1,5 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
@@ -69,6 +71,21 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
             price+=InformationNeededInGame.getInformationNeededInGame().getPriceToBuy(object);
         }
         return price;
+    }
+
+    public void UpgradeVehicle(){
+        // don't think this this bellow could work correctly.
+        int priceNeeded= InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
+        int missionMoney= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
+
+        if(missionMoney>priceNeeded) {
+            setLevel(getLevel() + 1);
+            setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack() - 3);
+            setCapacity(getCapacity() + 10);
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney-priceNeeded);
+        }else {
+            throw new NotEnoughMoney();
+        }
     }
 
     public static int CalculatePriceForSellForTruck(ArrayList<Object> goods) {

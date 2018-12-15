@@ -1,8 +1,10 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.Farm;
 import FarmModel.Game;
+import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -33,12 +35,6 @@ public class Truck extends TransportationVehicle {
         } else {
             throw new ObjectNotFoundInWareHouse();
         }
-    }
-
-    public void  UpgradeTruck() {
-        setLevel(getLevel()+1);
-        setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack()-3);
-        setCapacity(getCapacity()+10);
     }
 
     @Override

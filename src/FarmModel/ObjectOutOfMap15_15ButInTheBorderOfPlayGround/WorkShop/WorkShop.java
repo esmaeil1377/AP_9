@@ -1,7 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.NotEnoughMoney;
-import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
@@ -86,7 +85,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
                     numberofProductInWareHouse++;
                 }
             }
-            int spaceNeededInWareHouseForThisProduct =InformationNeededInGame.getInformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
+            int spaceNeededInWareHouseForThisProduct = InformationNeededInGame.getInformationNeededInGame().getSpaceNeededInWareHouse(productRequirement);
             int numberOfPackageForObjectInWareHouse = (numberofProductInWareHouse
                     / (objectNeededToProduceAProduct.get(productRequirement) * spaceNeededInWareHouseForThisProduct));
             if (numberOfPackageForObjectInWareHouse < numberOfAccessInputPackageInWareHouse) {
@@ -121,11 +120,11 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     }
 
     public void UpgradeWorkShop() {
-        int priceNeeded=InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
-        Mission mission=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
-        int missionMoney=mission.getStartMoneyInMission();
+        int priceNeeded = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
+        Mission mission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
+        int missionMoney = mission.getStartMoneyInMission();
 
-        if(missionMoney>priceNeeded) {
+        if (missionMoney > priceNeeded) {
             setLevel(getLevel() + 1);
             setMaxNumberOfGettingInput(getMaxNumberOfGettingInput() + 1);
             if (getLevel() == 1) {
@@ -138,8 +137,8 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
                 setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 3);
             }
             InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(toString());
-            mission.setStartMoneyInMission(missionMoney-priceNeeded);
-        }else{
+            mission.setStartMoneyInMission(missionMoney - priceNeeded);
+        } else {
             throw new NotEnoughMoney();
         }
     }
