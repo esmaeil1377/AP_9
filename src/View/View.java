@@ -4,7 +4,7 @@ import java.util.Scanner;
 import static FarmController.RequestAnalayzer.RequestAnalayzer;
 
 public class View {
-    public static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void  getRequest() {
         String input;

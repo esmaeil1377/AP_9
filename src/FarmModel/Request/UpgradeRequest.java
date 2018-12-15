@@ -17,10 +17,6 @@ public class UpgradeRequest extends Request {
     private String object;
 
     public UpgradeRequest(String requestLine) {
-        //for every upgrade we should change the HashMap in GameShop because price should change for every upgrade.
-        //
-        //
-        ////
         AnalyzeRequestlIne(requestLine);
         if (object.equals("cat")) {
             ArrayList<Animals> animals = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm()
@@ -33,13 +29,13 @@ public class UpgradeRequest extends Request {
             }
         } else if (object.equals("truck")) {
             Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
-            truck.UpgradeTruck();
+            truck.UpgradeVehicle();
         } else if (object.equals("well")) {
             Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
             well.UpgradeWell();
         } else if (object.equals("helicopter")) {
             Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
-            helicopter.UpgradeHelicopter();
+            helicopter.UpgradeVehicle();
         } else if (object.equals("warehouse")) {
             WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
             wareHouse.UpgradeWareHouse();

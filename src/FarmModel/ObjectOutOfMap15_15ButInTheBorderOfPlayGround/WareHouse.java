@@ -34,7 +34,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void AddWholeObjectToStore(Object object) {
-        int spaceNeededForObjectInWareHouse = InformationNeededInGame.GetData();
+        int spaceNeededForObjectInWareHouse = InformationNeededInGame.getInformationNeededInGame().getSpaceNeededInWareHouse(object);
         // to improve this we should change Information class to methods to code clearer.
         if (getRemainCapacityOfWareHouse() > spaceNeededForObjectInWareHouse) {
             wareHouseList.add(object);
