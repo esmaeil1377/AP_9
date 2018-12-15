@@ -1,8 +1,10 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
+import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
+import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
@@ -119,9 +121,26 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     }
 
     public void UpgradeWorkShop() {
-        setLevel(getLevel() + 1);
-        setMaxNumberOfGettingInput(getMaxNumberOfGettingInput() + 1);
-        setTurnNeededToProduceOneProduct(20);
-        InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(toString());
+        int priceNeeded=InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
+        Mission mission=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
+        int missionMoney=mission.getStartMoneyInMission();
+
+        if(missionMoney>priceNeeded) {
+            setLevel(getLevel() + 1);
+            setMaxNumberOfGettingInput(getMaxNumberOfGettingInput() + 1);
+            if (getLevel() == 1) {
+                setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 1);
+            } else if (getLevel() == 2) {
+                setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 1);
+            } else if (getLevel() == 3) {
+                setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 2);
+            } else if (getLevel() == 4) {
+                setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 3);
+            }
+            InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(toString());
+            mission.setStartMoneyInMission(missionMoney-priceNeeded);
+        }else{
+            throw new NotEnoughMoney();
+        }
     }
 }

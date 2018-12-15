@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
+import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
@@ -57,9 +58,16 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
 
     public void UpgradeWell() {
         Mission currentMission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
-        currentMission.setStartMoneyInMission(currentMission.getStartMoneyInMission() - InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this));
-        InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(this.toString());
-        InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket -= 2;
+        int missionMoney=currentMission.getStartMoneyInMission();
+        int priceTOUpgradeWell=InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
+        if(missionMoney>priceTOUpgradeWell){
+            currentMission.setStartMoneyInMission(missionMoney - priceTOUpgradeWell);
+            InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(this.toString());
+            InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket -= 2;
+        }else {
+            throw new NotEnoughMoney();
+        }
+
         // edit after
     }
 
