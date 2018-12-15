@@ -15,10 +15,10 @@ public class InformationNeededInGame {
     public static InformationNeededInGame getInformationNeededInGame() {
         return informationNeededInGame;
     }
+
     //well information
     public int CapacityOfTheBucket = 5;
     public int PriceToFillTheBucket = 19;
-
 
 
     //ActivationPrices
@@ -30,24 +30,25 @@ public class InformationNeededInGame {
 
 
     public void IncraesePriceForUpgrade(String str) {
-        if (str.equals("CakeBakery"))
+        if (str.equals("CakeBakery")) {
             PriceToUpgradeCakeBakery +=;
-        if (str.equals("EggPowderPlant"))
+        } else if (str.equals("EggPowderPlant")) {
             PriceToUpgradeEggPowderPlant +=;
-        if (str.equals("CookieBakery"))
+        } else if (str.equals("CookieBakery")) {
             PriceToUpgradeCookieBakery +=;
-        if (str.equals("SewingFactory"))
+        } else if (str.equals("SewingFactory")) {
             PriceToUpgradeSewingFactory +=;
-        if (str.equals("Spinnery"))
+        } else if (str.equals("Spinnery")) {
             PriceToUpgradeSpinnery +=;
-        if (str.equals("WeavingFactory"))
+        } else if (str.equals("WeavingFactory")) {
             PriceToUpgradeWeavingFactory +=;
-        if (str.equals("Well"))
+        } else if (str.equals("Well")) {
             PriceToUpgradeWell +=;
-        if (str.equals("WareHouse"))
+        } else if (str.equals("WareHouse")) {
             PriceToUpgradeWareHouse +=;
-        if (str.equals("CustomWorkShop"))
+        } else if (str.equals("CustomWorkShop")) {
             PriceToUpgradeUnknownWorkShop +=;
+        }
         throw new NotDefinedPriceForUpgrade();
     }
 

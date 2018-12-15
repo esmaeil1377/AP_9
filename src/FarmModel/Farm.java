@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 public class Farm {
-    private Cell Map[][] = new Cell[16][16];
+    private Cell Map[][] = new Cell[30][30];
     private Truck truck;
     private Helicopter helicopter;
     private ArrayList<WorkShop> workShops = new ArrayList<>();
