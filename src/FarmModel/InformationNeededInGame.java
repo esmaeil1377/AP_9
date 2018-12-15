@@ -167,7 +167,7 @@ public class InformationNeededInGame {
         } else if (object.toString().equals("Cow")) {
             return PriceToBuyCow;
         } else if (object.toString().equals("Ship")) {
-            return PriceToBuyShip
+            return PriceToBuyShip;
         } else if (object.toString().equals("Cat")) {
             return PriceToBuyCat;
         } else if (object.toString().equals("Dog")) {
