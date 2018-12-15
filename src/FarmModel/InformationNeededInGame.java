@@ -6,76 +6,75 @@ import FarmController.Exceptions.UnknownObjectToGetSellPrice;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 
-import java.util.HashMap;
-
 public class InformationNeededInGame {
     private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
 
-    private InformationNeededInGame(){ }
-
-    public static InformationNeededInGame getInformationNeededInGame(){
-        return informationNeededInGame;
+    private InformationNeededInGame() {
     }
 
-    //we should change the formation of this class it should be methods.
-
+    public static InformationNeededInGame getInformationNeededInGame() {
+        return informationNeededInGame;
+    }
     //well information
-    public int CapacityOfTheBucket= 5;
-    public int PriceToFillTheBucket=19;
+    public int CapacityOfTheBucket = 5;
+    public int PriceToFillTheBucket = 19;
+
+
+
     //ActivationPrices
-    public int ActivationPriceForUpgradeWareHouse=;
-    public int intActivationPriceForUpgradeWorkShop= ;
-    public int ActivationPriceForHelicopter=;
-    public int ActivationPriceForTruck=;
-    public int ActivationPriceForCustomWorkShop=;
+    public int ActivationPriceForUpgradeWareHouse = ;
+    public int intActivationPriceForUpgradeWorkShop = ;
+    public int ActivationPriceForHelicopter = ;
+    public int ActivationPriceForTruck = ;
+    public int ActivationPriceForCustomWorkShop = ;
 
 
-    public void IncraesePriceForUpgrade(String str){
+    public void IncraesePriceForUpgrade(String str) {
         if (str.equals("CakeBakery"))
-            PriceToUpgradeCakeBakery+=;
+            PriceToUpgradeCakeBakery +=;
         if (str.equals("EggPowderPlant"))
-            PriceToUpgradeEggPowderPlant+=;
+            PriceToUpgradeEggPowderPlant +=;
         if (str.equals("CookieBakery"))
-            PriceToUpgradeCookieBakery+=;
+            PriceToUpgradeCookieBakery +=;
         if (str.equals("SewingFactory"))
-            PriceToUpgradeSewingFactory+=;
+            PriceToUpgradeSewingFactory +=;
         if (str.equals("Spinnery"))
-            PriceToUpgradeSpinnery+=;
+            PriceToUpgradeSpinnery +=;
         if (str.equals("WeavingFactory"))
-            PriceToUpgradeWeavingFactory+=;
+            PriceToUpgradeWeavingFactory +=;
         if (str.equals("Well"))
-            PriceToUpgradeWell+=;
+            PriceToUpgradeWell +=;
         if (str.equals("WareHouse"))
-            PriceToUpgradeWareHouse+=;
+            PriceToUpgradeWareHouse +=;
         if (str.equals("CustomWorkShop"))
-            PriceToUpgradeUnknownWorkShop+=;
+            PriceToUpgradeUnknownWorkShop +=;
         throw new NotDefinedPriceForUpgrade();
     }
 
     //PriceToBuyProduct
 
     //SpaceNeededInWareHouseForObject
-    public int SpaceNeededInWareHouseForCageThatLionIsInIt= 20;
-    public int SpaceNeededInWareHouseForCageThatBearIsInIt=20;
-    public int SpaceNeededInWareHouseForEgg=1;
-    public int SpaceNeededInWareHouseForWool=5;
-    public int SpaceNeededInWareHouseForMilk=10;
-    public int SpaceNeededInWareHouseForCake=5;
-    public int SpaceNeededInWareHouseForPowder=;
-    public int SpaceNeededInWareHouseForFlour=;
-    public int SpaceNeededInWareHouseForFibre=;
-    public int SpaceNeededInWareHouseForSewing=;
-    public int SpaceNeededInWareHouseForDecoration=;
-    public int SpaceNeededInWareHouseForCloth=;
-    public int SpaceNeededInWareHouseForCookie=;
+    public int SpaceNeededInWareHouseForCageThatLionIsInIt = 20;
+    public int SpaceNeededInWareHouseForCageThatBearIsInIt = 20;
+    public int SpaceNeededInWareHouseForEgg = 1;
+    public int SpaceNeededInWareHouseForWool = 5;
+    public int SpaceNeededInWareHouseForMilk = 10;
+    public int SpaceNeededInWareHouseForCake = 5;
+    public int SpaceNeededInWareHouseForPowder = ;
+    public int SpaceNeededInWareHouseForFlour = ;
+    public int SpaceNeededInWareHouseForFibre = ;
+    public int SpaceNeededInWareHouseForSewing = ;
+    public int SpaceNeededInWareHouseForDecoration = ;
+    public int SpaceNeededInWareHouseForCloth = ;
+    public int SpaceNeededInWareHouseForCookie = ;
 
     //PriceToUpgradeCat
-    public int PriceToUpgradeCatLevel1=;
+    public int PriceToUpgradeCatLevel1 = ;
     //PriceToBuyWorkShop
 
     //PriceToUpgradeWorkShop
     public int PriceToUpgradeCakeBakery = ;
-    public int PriceToUpgradeCookieBakery =;
+    public int PriceToUpgradeCookieBakery = ;
     public int PriceToUpgradeEggPowderPlant = ;
     public int PriceToUpgradeSewingFactory =
     public int PriceToUpgradeSpinnery = ;
@@ -84,7 +83,7 @@ public class InformationNeededInGame {
     //PriceToUpgradeWell
     public int PriceToUpgradeWell = ;
     //PriceToUpgradeWareHouse
-    public int PriceToUpgradeWareHouse =;
+    public int PriceToUpgradeWareHouse = ;
 
     public int getSpaceNeededInWareHouse(Object object) {
         if (object.toString().equals("Cage")) {
@@ -118,6 +117,7 @@ public class InformationNeededInGame {
             return SpaceNeededInWareHouseForCookie;
         throw new NotDefinedSpaceForObject();
     }
+
     public int getPriceForUpgrade(Object object) {
         if (object.toString().equals("CakeBakery"))
             return PriceToUpgradeCakeBakery;
@@ -141,7 +141,6 @@ public class InformationNeededInGame {
     }
 
 
-
     public int PriceToBuyChicken = 100;
     public int PriceToBuyShip = 1000;
     public int PriceToBuyCow = 10000;
@@ -149,83 +148,73 @@ public class InformationNeededInGame {
     public int PriceToBuyCat = 2500;
     public int PriceToBuyDog = 2600;
 
-    public int PriceToBuyEggPowderPlant =;
-    public int PriceToBuySewingFactory =;
+    public int PriceToBuyEggPowderPlant = ;
+    public int PriceToBuySewingFactory = ;
     public int PriceToBuySpinnery = ;
     public int PriceToBuyUnknownWorkShop = ;
     public int PriceToBuyWeavingFactory = ;
     public int PriceToBuyCakeBakery = ;
     public int PriceToBuyCookieBakery = ;
 
-    public int PriceTOBuyWool=200;
-    public int PriceToBuyEgg=20;
-    public int PriceToBuyMilk=2000;
+    public int PriceTOBuyWool = 200;
+    public int PriceToBuyEgg = 20;
+    public int PriceToBuyMilk = 2000;
 
-    public int getPriceToBuy(Object object){
-        if(object.toString().equals("Chicken")){
+    public int getPriceToBuy(Object object) {
+        if (object.toString().equals("Chicken")) {
             return PriceToBuyChicken;
-        }else if(object.toString().equals("Cow")){
+        } else if (object.toString().equals("Cow")) {
             return PriceToBuyCow;
-        }
-        else if(object.toString().equals("Ship")){
+        } else if (object.toString().equals("Ship")) {
             return PriceToBuyShip
-        }
-        else if(object.toString().equals("Cat")){
+        } else if (object.toString().equals("Cat")) {
             return PriceToBuyCat;
-        }
-        else if(object.toString().equals("Dog")){
+        } else if (object.toString().equals("Dog")) {
             return PriceToBuyDog;
-        }
-        else if(object.toString().equals("EggPowderPlant")){
+        } else if (object.toString().equals("EggPowderPlant")) {
             return PriceToBuyEggPowderPlant;
-        }
-        else if(object.toString().equals("SewingFactory")){
+        } else if (object.toString().equals("SewingFactory")) {
             return PriceToBuySewingFactory;
-        }
-        else if(object.toString().equals("Spinnery")){
+        } else if (object.toString().equals("Spinnery")) {
             return PriceToBuySpinnery;
-        }
-        else if(object.toString().equals("UnknownWorkShop")){
+        } else if (object.toString().equals("UnknownWorkShop")) {
             return PriceToBuyUnknownWorkShop;
-        }
-        else if(object.toString().equals("WeavingFactory")){
+        } else if (object.toString().equals("WeavingFactory")) {
             return PriceToBuyWeavingFactory;
-        }
-        else if(object.toString().equals("CakeBakery")){
+        } else if (object.toString().equals("CakeBakery")) {
             return PriceToBuyCakeBakery;
-        }else if(object.toString().equals("CookieBakery")){
+        } else if (object.toString().equals("CookieBakery")) {
             return PriceToBuyCookieBakery;
-        }else if(object.toString().equals("Egg")){
+        } else if (object.toString().equals("Egg")) {
             return PriceToBuyEgg;
-        }else if(object.toString().equals("Wool")){
+        } else if (object.toString().equals("Wool")) {
             return PriceTOBuyWool;
-        }else if(object.toString().equals("Milk")){
+        } else if (object.toString().equals("Milk")) {
             return PriceToBuyMilk;
         }
 
     }
 
 
-
     //PriceForSellAnimalProduct
-    public int PriceForSellEgg=10;
-    public int PriceForSellMilk=1000;
+    public int PriceForSellEgg = 10;
+    public int PriceForSellMilk = 1000;
     public int PriceForSellWool = 100;
     //PriceForSellWorkShopProduct
-    public int PriceForSellCake=100;
-    public int PriceForSellCookie=;
+    public int PriceForSellCake = 100;
+    public int PriceForSellCookie = ;
     public int PriceForSellPowder = ;
-    public int PriceForSellSewing =150;
+    public int PriceForSellSewing = 150;
     //priceForSellCage
-    public int PriceForSellCageLion = 150 ;
-    public int PriceForSellCageBear=;
-    public int PriceForSellChicken=;
-    public int PriceForSellCow=;
-    public int PriceForSellShip=;
-    public int PriceForSellFlour=;
-    public int PriceForSellCloth=;
-    public int PriceForSellDecoration=;
-    public int PriceForSellFibre=;
+    public int PriceForSellCageLion = 150;
+    public int PriceForSellCageBear = ;
+    public int PriceForSellChicken = ;
+    public int PriceForSellCow = ;
+    public int PriceForSellShip = ;
+    public int PriceForSellFlour = ;
+    public int PriceForSellCloth = ;
+    public int PriceForSellDecoration = ;
+    public int PriceForSellFibre = ;
 
     public int getPriceForSell(Object object) {
         if (object.toString().equals("Chicken")) {

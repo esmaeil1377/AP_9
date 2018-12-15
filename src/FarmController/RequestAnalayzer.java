@@ -3,22 +3,26 @@ package FarmController;
 import FarmModel.Request.*;
 
 public class RequestAnalayzer {
-    private String BuyAnimals = "buy (cat|dog)";
-    private String PickUp = " pickup [0-9] [0-9]";
-    private String Cage = "cage [0-9][0-9]";
-    private String Plant = "plant [0-9][0-9]";
-    private String Well = "well";
-    private String StartWorkShop = "start .*";
-    private String Upgrade = "upgrade .*";
-    private String LoadCustom = "load custom .*";
-    private String RunMap = "run .*";
-    private String SaveGame = "save game .*";
-    private String LoadGame = "load game .*";
-    private String Print = "print .*";
-    private String Turn = "turn [0-9]*";
-    private String GoVehicle = "(truck|helicopter) go";
+    private RequestAnalayzer requestAnalayzer=new RequestAnalayzer();
+    private RequestAnalayzer(){}
 
-    public void RequestAnalayzer(String requestString) {
+
+    private static String BuyAnimals = "buy (cat|dog)";
+    private static String PickUp = " pickup [0-9] [0-9]";
+    private static String Cage = "cage [0-9][0-9]";
+    private static String Plant = "plant [0-9][0-9]";
+    private static String Well = "well";
+    private static String StartWorkShop = "start .*";
+    private static String Upgrade = "upgrade .*";
+    private static String LoadCustom = "load custom .*";
+    private static String RunMap = "run .*";
+    private static String SaveGame = "save game .*";
+    private static String LoadGame = "load game .*";
+    private static String Print = "print .*";
+    private static String Turn = "turn [0-9]*";
+    private static String GoVehicle = "(truck|helicopter) go";
+
+    public static void RequestAnalayzer(String requestString) {
         if (requestString.matches(BuyAnimals)) {
             new BuyRequest(requestString);
         } else if (requestString.matches(PickUp)) {

@@ -1,9 +1,7 @@
 package View;
-
-import FarmController.RequestAnalayzer;
-import FarmModel.Farm;
-
 import java.util.Scanner;
+
+import static FarmController.RequestAnalayzer.RequestAnalayzer;
 
 public class View {
     public static Scanner scanner = new Scanner(System.in);
@@ -12,8 +10,7 @@ public class View {
         String input;
         while(true){
             input =scanner.nextLine();
-            RequestAnalayzer requestAnalayzer = new RequestAnalayzer();
-            requestAnalayzer.RequestAnalayzer(input);
+            RequestAnalayzer(input);
         }
     }
 

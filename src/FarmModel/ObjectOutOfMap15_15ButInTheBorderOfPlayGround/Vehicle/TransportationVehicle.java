@@ -66,27 +66,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
     public static int CalculatePriceToBuyForHelicopter(ArrayList<Object> goods) {
         int price = 0;
         for (Object object : goods) {
-            if (object.toString().equals("Egg")) {
-                price += InformationNeededInGame.GetData("PriceToBuyEgg");
-            } else if (object.toString().equals("Milk")) {
-                price += InformationNeededInGame.GetData("PriceToBuyMilk");
-            } else if (object.toString().equals("Wool")) {
-                price += InformationNeededInGame.GetData("PriceToBuyWool");
-            } else if (object.toString().equals("Cake")) {
-                price += InformationNeededInGame.GetData("PriceForToBuyCake");
-            } else if (object.toString().equals("Cookie")) {
-                price += InformationNeededInGame.GetData("PriceToBuyCookie");
-            } else if (object.toString().equals("Power")) {
-                price += InformationNeededInGame.GetData("PriceToBuyPowder");
-//            } else if (object.toString().equals("Cage")) {
-//                Cage cage = (Cage) object;
-//                if (cage.getWildAnimals().toString().equals("Lion")) {
-//                    price += InformationNeededInGame.GetData("PriceForSellCageLion");
-//                } else if (cage.getWildAnimals().toString().equals("Bear")) {
-//                    price += InformationNeededInGame.GetData("PriceForSellCageBear");
-//                }
-            }// add new if for other workshop product
-            // we should add something new in this if else structure to Buy.
+            price+=InformationNeededInGame.getInformationNeededInGame().getPriceToBuy(object);
         }
         return price;
     }
@@ -94,26 +74,8 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
     public static int CalculatePriceForSellForTruck(ArrayList<Object> goods) {
         int price = 0;
         for (Object object : goods) {
-            if (object.toString().equals("Egg")) {
-                price += InformationNeededInGame.GetData("PriceForSellEgg");
-            } else if (object.toString().equals("Milk")) {
-                price += InformationNeededInGame.GetData("PriceForSellMilk");
-            } else if (object.toString().equals("Wool")) {
-                price += InformationNeededInGame.GetData("PriceForSellWool");
-            } else if (object.toString().equals("Cake")) {
-                price += InformationNeededInGame.GetData("PriceForSellCake");
-            } else if (object.toString().equals("Cookie")) {
-                price += InformationNeededInGame.GetData("PriceForSellCookie");
-            } else if (object.toString().equals("Power")) {
-                price += InformationNeededInGame.GetData("PriceForSellPowder");
-            } else if (object.toString().equals("Cage")) {
-                Cage cage = (Cage) object;
-                if (cage.getWildAnimals().toString().equals("Lion")) {
-                    price += InformationNeededInGame.GetData("PriceForSellCageLion");
-                } else if (cage.getWildAnimals().toString().equals("Bear")) {
-                    price += InformationNeededInGame.GetData("PriceForSellCageBear");
-                }
-            } // add new if for other workshop product
+            price+=InformationNeededInGame.getInformationNeededInGame().getPriceForSell(object);
+            // add new if for other workshop product
         }
         return price;
     }

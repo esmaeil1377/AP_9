@@ -2,6 +2,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
+import FarmModel.Mission;
 
 public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     private int Level = 0;
@@ -55,23 +56,21 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void UpgradeWell() {
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game.getGameInstance()
-                .getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() - InformationNeededInGame.GetData("PriceToUpgradeWell"));
-        InformationNeededInGame.SetData("PriceToUpgradeWell", );
-        InformationNeededInGame.SetData("PriceToFillTheBucket", InformationNeededInGame.GetData("PriceToFillTheBucket")
-                - 2); // edit after
+        Mission currentMission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
+        currentMission.setStartMoneyInMission(currentMission.getStartMoneyInMission() - InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this));
+        InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(this.toString());
+        InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket -= 2;
+        // edit after
     }
 
     public void FillTheBucket() {
-        if (getWaterOfTheBucket() == 0 && Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission()
-                >= InformationNeededInGame.GetData("riceToFillTheBucket")) {
-            setWaterOfTheBucket(InformationNeededInGame.GetData("CapacityOfTheBucket"));
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(Game.getGameInstance()
-                    .getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission() - InformationNeededInGame
-                    .GetData("riceToFillTheBucket"));
+        Mission currentMission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
+        int priceToFillTheBucket = InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket;
+
+        if (getWaterOfTheBucket() == 0 && currentMission.getStartMoneyInMission() >= priceToFillTheBucket) {
+            setWaterOfTheBucket(InformationNeededInGame.getInformationNeededInGame().CapacityOfTheBucket);
+            currentMission.setStartMoneyInMission(currentMission.getStartMoneyInMission() - priceToFillTheBucket);
         }
-        //decrease money of the user
-        //it fill the bucket if it's empty.
     }
 
     @Override
