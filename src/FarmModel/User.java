@@ -1,5 +1,4 @@
 package FarmModel;
-
 import java.util.ArrayList;
 
 public class User {
