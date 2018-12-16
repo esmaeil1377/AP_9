@@ -86,8 +86,10 @@ public class PrintRequest extends Request {
 
     public void PrintWorkShop() {
         ArrayList<WorkShop> workShops = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops();
-        for (:) {
-
+        for (WorkShop workShop:workShops) {
+            System.out.println(workShop.toString() + "Output Product: "+workShop.getResultProduct());
+            for(Object object:workShop.getObjectNeededToProduceAProduct().keySet())
+                System.out.println(workShop.toString() + "Input Product: "+workShop.getResultProduct());
         }
 
     }

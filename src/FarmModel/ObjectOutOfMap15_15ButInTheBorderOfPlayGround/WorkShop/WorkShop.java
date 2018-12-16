@@ -21,6 +21,10 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     private HashMap<Product, Integer> objectNeededToProduceAProduct = new HashMap<>();
     private Product resultProduct;
 
+    public HashMap<Product, Integer> getObjectNeededToProduceAProduct() {
+        return objectNeededToProduceAProduct;
+    }
+
     public void setCurrentNumberOfProducingProduct(int currentNumberOfProducingProduct) {
         this.currentNumberOfProducingProduct = currentNumberOfProducingProduct;
     }
