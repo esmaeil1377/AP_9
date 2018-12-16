@@ -1,6 +1,9 @@
 package FarmModel;
 
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.CityShop;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Mission {
@@ -10,7 +13,14 @@ public class Mission {
     private Farm farm;
     private boolean isMissionCompletedBefore = false;
     private HashMap<Object, Integer> requiermentToFinishTheMission = new HashMap<>();
+    //determine for first mission what to buy from the city.
+    private CityShop cityShop =new CityShop(new ArrayList<>(Arrays.asList()));
+    // add time for player where is the time.
 
+
+    public CityShop getCityShop() {
+        return cityShop;
+    }
 
     public Mission(int startMoneyInMission, int timeTakeForPlayerToPlayTheMap, Farm farm) {
         TimeTakeForPlayerToFinishTheMap = timeTakeForPlayerToPlayTheMap;

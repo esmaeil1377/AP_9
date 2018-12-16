@@ -1,6 +1,7 @@
 package FarmModel.Request;
 
 import FarmModel.Cell;
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
@@ -35,35 +36,37 @@ public class TurnRequest extends Request {
     }
 
     private void DoWorkByPassingTime(int turn) {
+        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             AddWildAnimalsToMapAfterOneMinute();
-            MoveObject(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            KillAnimalsThatAreVeryHungeryOrMakeThemHungrierOrEat(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            MakeProductDisapearOrDecreaseRemainTurnToDisapear(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentProductInMap());
-            MakeAnimalProduce(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            MakeWorkShopProduce(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops());
-            MakeGrassDisapear(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentGrassInMap());
+            MoveObject(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            KillAnimalsThatAreVeryHungeryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeProductDisapearOrDecreaseRemainTurnToDisapear(farm.getCurrentProductInMap());
+            MakeAnimalProduce(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeWorkShopProduce(farm.getWorkShops());
+            MakeGrassDisapear(farm.getCurrentGrassInMap());
             FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
             MakeTruckPassTheWayToCityOrGiveObjectToCity();
             MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted();
-            MakeCatTakeProduct(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            MakeDogKillWildAnimal(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            MakeWildAnimalDestroy(Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeCatTakeProduct(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeDogKillWildAnimal(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeWildAnimalDestroy(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             StopMissionIfItIsFinishedAndIncreaseTimeForPlayerToFinishTheMission();
             //and so on
         }
     }
 
     private void AddWildAnimalsToMapAfterOneMinute() {
+        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         int randomX = ((int) (Math.random() * 16));
         int randomY = ((int) (Math.random() * 16));
-        Cell randomCell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[randomX][randomY];
-        if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getRemainTurnToRandomlyAddWildAnimalToMap() == 0) {
+        Cell randomCell = farm.getMap()[randomX][randomY];
+        if (farm.getRemainTurnToRandomlyAddWildAnimalToMap() == 0) {
             randomCell.AddCellAMapObject(new Lion());
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().setRemainTurnToRandomlyAddWildAnimalToMap(60);
+            farm.setRemainTurnToRandomlyAddWildAnimalToMap(60);
         } else {
-            int remainTrurnNeededToAddNewWildAnimal = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getRemainTurnToRandomlyAddWildAnimalToMap();
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().setRemainTurnToRandomlyAddWildAnimalToMap(remainTrurnNeededToAddNewWildAnimal - 1);
+            int remainTrurnNeededToAddNewWildAnimal =farm.getRemainTurnToRandomlyAddWildAnimalToMap();
+            farm.setRemainTurnToRandomlyAddWildAnimalToMap(remainTrurnNeededToAddNewWildAnimal - 1);
         }
         //When we should add bear to map.
     }

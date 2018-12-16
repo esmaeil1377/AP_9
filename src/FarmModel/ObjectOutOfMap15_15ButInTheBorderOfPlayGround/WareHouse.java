@@ -25,6 +25,10 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     public WareHouse() {
     }
 
+    public int getLevel() {
+        return Level;
+    }
+
     private void setCapacityOfWareHouse(int capacityOfWareHouse) {
         this.capacityOfWareHouse = capacityOfWareHouse;
     }

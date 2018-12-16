@@ -5,6 +5,7 @@ import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -20,6 +21,10 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     private int level;
     private HashMap<Product, Integer> objectNeededToProduceAProduct = new HashMap<>();
     private Product resultProduct;
+
+    public HashMap<Product, Integer> getObjectNeededToProduceAProduct() {
+        return objectNeededToProduceAProduct;
+    }
 
     public void setCurrentNumberOfProducingProduct(int currentNumberOfProducingProduct) {
         this.currentNumberOfProducingProduct = currentNumberOfProducingProduct;
@@ -136,10 +141,34 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
             } else if (getLevel() == 4) {
                 setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 3);
             }
-            InformationNeededInGame.getInformationNeededInGame().IncraesePriceForUpgrade(toString());
             mission.setStartMoneyInMission(missionMoney - priceNeeded);
         } else {
             throw new NotEnoughMoney();
         }
+    }
+
+    public Product getNewProductByType(Product product){
+        if(product instanceof Cake){
+            return new Cake();
+        }
+        else if(product instanceof CarnivalDress){
+            return new CarnivalDress();
+        }
+        else if(product instanceof Cookie){
+            return new Cookie();
+        }
+        else if(product instanceof Decoration){
+            return new Decoration();
+        }
+        else if(product instanceof Fabric){
+            return new Fabric();
+        }
+        else if(product instanceof Sewing) {
+            return new Sewing();
+        }
+        else if(product instanceof Powder){
+            return new Powder();
+        }
+        return null;
     }
 }

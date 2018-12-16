@@ -29,8 +29,8 @@ public class CakeBakery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[0 + i][0];
-            cell.AddCellAMapObject(getResultProduct());
+            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[i][0];
+            cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
         }
     }
     public void getProductFromWareHouse() {

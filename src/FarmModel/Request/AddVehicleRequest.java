@@ -9,6 +9,7 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.CityShop;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
@@ -32,9 +33,9 @@ public class AddVehicleRequest extends Request {
         } else if (vehicleName.equals("helicopter")) {
 
             Helicopter helicopter = farm.getHelicopter();
-            Object object = farm.getObjectInWareHouse(this.object);
+            CityShop cityShop = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getCityShop();
             for (int i = 0; i < count; i++)
-                helicopter.BuyObjectFromCityAndGetMoneyFromUser(object);
+                cityShop.getObjectTypeFrom(getObject().toString());
         }
     }
 

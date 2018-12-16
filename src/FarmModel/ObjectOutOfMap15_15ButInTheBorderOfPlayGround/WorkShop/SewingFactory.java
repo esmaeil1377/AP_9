@@ -13,17 +13,17 @@ public class SewingFactory extends WorkShop {
 
     public SewingFactory() {
         HashMap<Product, Integer> objectNeededToProduceOne=new HashMap<>();
-        objectNeededToProduceOne.put(new Cloth(),1);
+        objectNeededToProduceOne.put(new Fabric(),1);
         objectNeededToProduceOne.put(new Decoration(),1);
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);
-        setResultProduct(new Sewing());
+        setResultProduct(new CarnivalDress());
     }
 
     @Override
     public void MakeAProductAndPutItInMap() {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
             Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15 - i][0];
-            cell.AddCellAMapObject(getResultProduct());
+            cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
         }
     }
 
@@ -35,9 +35,9 @@ public class SewingFactory extends WorkShop {
     public void getProductFromWareHouse() {
         int countOfCloth = 0;
         WareHouse wareHouse = new WareHouse();
-        Cloth cloth = new Cloth();
+        CarnivalDress carnivalDress = new CarnivalDress();
         for (Object object : wareHouse.getWareHouseList()) {
-            if (object.toString().equals(cloth.toString()))
+            if (object.toString().equals(carnivalDress.toString()))
                 countOfCloth++;
         }
         int countOfDecoration = 0;
@@ -56,7 +56,7 @@ public class SewingFactory extends WorkShop {
         else
             setCurrentNumberOfProducingProduct(countOfDecoration);
         for(int i = 0 ; i <getCurrentNumberOfProducingProduct();i++)
-            wareHouse.RemovePieceOfObjectFromWareHouse(cloth);
+            wareHouse.RemovePieceOfObjectFromWareHouse(carnivalDress);
         for(int i = 0 ; i <getCurrentNumberOfProducingProduct();i++)
             wareHouse.RemovePieceOfObjectFromWareHouse(decoration);
     }

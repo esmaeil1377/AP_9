@@ -23,7 +23,7 @@ public class EggPowderPlant extends WorkShop {
     public void MakeAProductAndPutItInMap() {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
             Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[0 + i][15];
-            cell.AddCellAMapObject(getResultProduct());
+            cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
         }
     }
     public void getProductFromWareHouse() {
