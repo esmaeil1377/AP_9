@@ -22,8 +22,8 @@ public class EggPowderPlant extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[0 + i][15];
-            cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
+            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[ i][29];
+            cell.AddCellAMapObject(getResultProduct());
         }
     }
     public void getProductFromWareHouse() {

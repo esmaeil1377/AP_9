@@ -1,6 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmModel.Cell;
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.CarnivalDress;
