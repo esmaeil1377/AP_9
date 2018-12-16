@@ -2,6 +2,10 @@ package FarmModel.Request;
 
 import FarmModel.Cell;
 import FarmModel.Game;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;
 
@@ -48,13 +52,17 @@ public class PrintRequest extends Request {
 
     public void PrintMap() {
         //Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[2][3];
-        String[][] map = new String[30][30];
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
                 Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[i][j];
-                ArrayList cellObject = cell.getCellObjectInMap1515();
-
+                ArrayList<ObjectInMap15_15> cellObject = cell.getCellObjectInMap1515();
+                System.out.print("[");
+                for (ObjectInMap15_15 objectInMap15_15 :cellObject) {
+                    System.out.print(objectInMap15_15.toString()+",");
+                }
+                System.out.print("]  ");
             }
+            System.out.println();
         }
     }
 
@@ -63,14 +71,24 @@ public class PrintRequest extends Request {
     }
 
     public void PrintWareHouse() {
-
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
+        ArrayList<Object> wareHouseList = wareHouse.getWareHouseList();
+        for (Object object: wareHouseList) {
+            System.out.println(object.toString());
+        }
     }
 
     public void PrintWell() {
-
+        Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
+        System.out.println("water of bucket:" + well.getWaterOfTheBucket());
+        System.out.println("activated or No " + well.isWellActivatedToFillTheBucket());
     }
 
     public void PrintWorkShop() {
+        ArrayList<WorkShop> workShops = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops();
+        for (:) {
+
+        }
 
     }
 

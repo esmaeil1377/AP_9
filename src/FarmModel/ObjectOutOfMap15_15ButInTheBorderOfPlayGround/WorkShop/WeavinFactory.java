@@ -23,7 +23,7 @@ public class WeavinFactory extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15 - i][15];
+            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[29 - i][29];
             cell.AddCellAMapObject(getResultProduct());
         }
     }
