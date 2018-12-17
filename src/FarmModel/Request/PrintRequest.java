@@ -65,8 +65,8 @@ public class PrintRequest extends Request {
                 Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[i][j];
                 ArrayList<ObjectInMap15_15> cellObject = cell.getCellObjectInMap1515();
                 System.out.print("[");
-                for (ObjectInMap15_15 objectInMap15_15 :cellObject) {
-                    System.out.print(objectInMap15_15.toString()+",");
+                for (ObjectInMap15_15 objectInMap15_15 : cellObject) {
+                    System.out.print(objectInMap15_15.toString() + ",");
                 }
                 System.out.print("]  ");
             }
@@ -75,27 +75,27 @@ public class PrintRequest extends Request {
     }
 
     public void PrintLevels() {
-        Farm farm=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-        WareHouse wareHouse=farm.getWareHouse();
-        Truck truck=farm.getTruck();
-        Helicopter helicopter=farm.getHelicopter();
-        Well well =farm.getWell();
-        ArrayList<WorkShop> workShops=farm.getWorkShops();
-        ArrayList<Cat> catInMap= farm.getCurrentCatInMap();
-        System.out.println("WareHosue Level: "+wareHouse.getLevel());
-        System.out.println("Truck Level: "+truck.getLevel());
-        System.out.println("Helicopter Level :"+helicopter.getLevel());
-        System.out.println("Well Level:"+well.getLevel());
-        System.out.println("Cat Level: "+catInMap.get(0).getLevel());
-        for(WorkShop workShop:workShops){
-            System.out.println(workShop.toString()+" Level :"+workShop.getLevel());
+        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        WareHouse wareHouse = farm.getWareHouse();
+        Truck truck = farm.getTruck();
+        Helicopter helicopter = farm.getHelicopter();
+        Well well = farm.getWell();
+        ArrayList<WorkShop> workShops = farm.getWorkShops();
+        ArrayList<Cat> catInMap = farm.getCurrentCatInMap();
+        System.out.println("WareHosue Level: " + wareHouse.getLevel());
+        System.out.println("Truck Level: " + truck.getLevel());
+        System.out.println("Helicopter Level :" + helicopter.getLevel());
+        System.out.println("Well Level:" + well.getLevel());
+        System.out.println("Cat Level: " + catInMap.get(0).getLevel());
+        for (WorkShop workShop : workShops) {
+            System.out.println(workShop.toString() + " Level :" + workShop.getLevel());
         }
     }
 
     public void PrintWareHouse() {
         WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
         ArrayList<Object> wareHouseList = wareHouse.getWareHouseList();
-        for (Object object: wareHouseList) {
+        for (Object object : wareHouseList) {
             System.out.println(object.toString());
         }
     }
@@ -108,10 +108,10 @@ public class PrintRequest extends Request {
 
     public void PrintWorkShop() {
         ArrayList<WorkShop> workShops = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops();
-        for (WorkShop workShop:workShops) {
-            System.out.println(workShop.toString() + "Output Product: "+workShop.getResultProduct());
-            for(Object object:workShop.getObjectNeededToProduceAProduct().keySet())
-                System.out.println(workShop.toString() + "Input Product: "+workShop.getResultProduct());
+        for (WorkShop workShop : workShops) {
+            System.out.println(workShop.toString() + "Output Product: " + workShop.getResultProduct());
+            for (Object object : workShop.getObjectNeededToProduceAProduct().keySet())
+                System.out.println(workShop.toString() + "Input Product: " + workShop.getResultProduct());
         }
 
     }
@@ -119,7 +119,7 @@ public class PrintRequest extends Request {
     public void PrintTruck() {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         Truck truck = farm.getTruck();
-        for(Object object:truck.getGoodsThatHaveToCarry()){
+        for (Object object : truck.getGoodsThatHaveToCarry()) {
             System.out.println(object.toString());
         }
     }
@@ -127,7 +127,7 @@ public class PrintRequest extends Request {
     public void PrintHelicopter() {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         Helicopter helicopter = farm.getHelicopter();
-        for(Object object:helicopter.getGoodsThatHaveToCarry()){
+        for (Object object : helicopter.getGoodsThatHaveToCarry()) {
             System.out.println(object.toString());
         }
     }

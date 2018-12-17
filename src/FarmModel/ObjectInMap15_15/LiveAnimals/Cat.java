@@ -44,12 +44,12 @@ public class Cat extends Animals {
     }
 
     public void UpgradeCat() {
-        int priceNeede= InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
-        int missionMoey=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
-        if(priceNeede<missionMoey) {
+        int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
+        int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
+        if (priceNeed < missionMoney) {
             Level++;
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoey-priceNeede);
-        }else {
+            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeed);
+        } else {
             throw new NotEnoughMoney();
         }
     }

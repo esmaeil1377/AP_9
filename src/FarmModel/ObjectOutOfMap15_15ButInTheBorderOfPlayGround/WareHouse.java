@@ -1,7 +1,9 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 import FarmController.Exceptions.FullWareHouse;
+import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
+import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 
 import java.util.ArrayList;
@@ -80,13 +82,26 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
     }
 
     public void UpgradeWareHouse() {
-        Level++;
-        if (Level == 1) {
-            setCapacityOfWareHouse(150);
-        } else if (Level == 2) {
-            setCapacityOfWareHouse(300);
-        } else if (Level == 3) {
-            setCapacityOfWareHouse(600);
+//        Level++;
+//        if (Level == 1) {
+//            setCapacityOfWareHouse(150);
+//        } else if (Level == 2) {
+//            setCapacityOfWareHouse(300);
+//        } else if (Level == 3) {
+//            setCapacityOfWareHouse(600);
+//        }
+        int maxLevel = 3;
+        int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
+        int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
+        if (Level < maxLevel) {
+            if (priceNeed < missionMoney) {
+                Level++;
+                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeed);
+            } else {
+                throw new NotEnoughMoney();
+            }
+        } else {
+            throw new // something
         }
         //upgrade change it's shape.don't forget it.
         //after all we have to change the price to for upgrading the warehouse in Information class.
