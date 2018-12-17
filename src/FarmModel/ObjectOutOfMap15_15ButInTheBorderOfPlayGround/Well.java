@@ -58,16 +58,20 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
 
     public void UpgradeWell() {
         Mission currentMission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
-        int missionMoney=currentMission.getStartMoneyInMission();
-        int priceTOUpgradeWell=InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
-        if(missionMoney>priceTOUpgradeWell){
-            currentMission.setStartMoneyInMission(missionMoney - priceTOUpgradeWell);
-            InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket -= 2;
-            set
-        }else {
-            throw new NotEnoughMoney();
+        int maxLevel = 3;
+        int missionMoney = currentMission.getStartMoneyInMission();
+        int priceTOUpgradeWell = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
+        if (getLevel() < maxLevel) {
+            if (missionMoney > priceTOUpgradeWell) {
+                currentMission.setStartMoneyInMission(missionMoney - priceTOUpgradeWell);
+                InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket -= 2;
+                setLevel(getLevel() + 1);
+            } else {
+                throw new NotEnoughMoney();
+            }
+        } else {
+            throw new // something
         }
-
         // edit after
     }
 

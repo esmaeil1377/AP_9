@@ -75,16 +75,20 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
 
     public void UpgradeVehicle(){
         // don't think this this bellow could work correctly.
+        int maxLevel = 3;
         int priceNeeded= InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         int missionMoney= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
-
-        if(missionMoney>priceNeeded) {
-            setLevel(getLevel() + 1);
-            setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack() - 3);
-            setCapacity(getCapacity() + 10);
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney-priceNeeded);
-        }else {
-            throw new NotEnoughMoney();
+        if (getLevel() < maxLevel) {
+            if (missionMoney > priceNeeded) {
+                setLevel(getLevel() + 1);
+                setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack() - 3);
+                setCapacity(getCapacity() + 10);
+                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeeded);
+            } else {
+                throw new NotEnoughMoney();
+            }
+        } else {
+            throw new // something
         }
     }
 
