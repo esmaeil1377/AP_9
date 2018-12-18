@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
+import FarmController.Exceptions.FullLevel;
 import FarmController.Exceptions.FullWareHouse;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
@@ -101,7 +102,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
                 throw new NotEnoughMoney();
             }
         } else {
-            throw new // something
+            throw new FullLevel();
         }
         //upgrade change it's shape.don't forget it.
         //after all we have to change the price to for upgrading the warehouse in Information class.

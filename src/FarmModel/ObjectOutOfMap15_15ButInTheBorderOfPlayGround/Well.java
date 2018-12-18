@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
+import FarmController.Exceptions.FullLevel;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
@@ -70,7 +71,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
                 throw new NotEnoughMoney();
             }
         } else {
-            throw new // something
+            throw new FullLevel();
         }
         // edit after
     }

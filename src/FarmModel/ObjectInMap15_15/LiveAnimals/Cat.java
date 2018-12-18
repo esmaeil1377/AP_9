@@ -1,5 +1,6 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
+import FarmController.Exceptions.FullLevel;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Cell;
 import FarmModel.Game;
@@ -44,13 +45,18 @@ public class Cat extends Animals {
     }
 
     public void UpgradeCat() {
+        int maxLevel = 4; // edit maxLevel
         int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
-        if (priceNeed < missionMoney) {
-            Level++;
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeed);
-        } else {
-            throw new NotEnoughMoney();
+        if (Level < maxLevel) {
+            if (priceNeed < missionMoney) {
+                Level++;
+                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeed);
+            } else {
+                throw new NotEnoughMoney();
+            }
+        }else {
+            throw new FullLevel();
         }
     }
 

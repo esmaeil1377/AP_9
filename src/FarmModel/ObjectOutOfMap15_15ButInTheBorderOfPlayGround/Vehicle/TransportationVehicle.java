@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.FullLevel;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
@@ -88,7 +89,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
                 throw new NotEnoughMoney();
             }
         } else {
-            throw new // something
+            throw new FullLevel();
         }
     }
 
