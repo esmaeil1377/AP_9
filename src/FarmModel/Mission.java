@@ -2,11 +2,12 @@ package FarmModel;
 
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.CityShop;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Mission {
+public class Mission implements Serializable {
     private int startMoneyInMission;
     private int constantRewardAfterFinishingtheMission;
     private int TimeTakeForPlayerToFinishTheMap;
