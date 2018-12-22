@@ -88,7 +88,7 @@ public class Mission implements Serializable {
                 if (!(numberOfCow < requiermentToFinishTheMission.get(object))) {
                     result = false;
                 }
-            } else if (object.toString().equals("Ship")) {
+            } else if (object.toString().equals("Sheep")) {
                 int numberOfShip = farm.getCurrnetShipInMap().size();
                 if (!(numberOfShip < requiermentToFinishTheMission.get(object))) {
                     result = false;

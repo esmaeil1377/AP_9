@@ -33,8 +33,8 @@ public class Helicopter extends TransportationVehicle {
     public void PutObjectInMapRandomly() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (Object objectInMap15_15 : getGoodsThatHaveToCarry()) {
-            int x = (int) (Math.random() * 16) + 1;
-            int y = (int) (Math.random() * 16) + 1;
+            int x = (int) (Math.random() * 30) + 1;
+            int y = (int) (Math.random() * 30) + 1;
             farm.getMap()[x][y].AddCellAMapObject((ObjectInMap15_15)objectInMap15_15);
         }
         setGoodsThatHaveToCarry(null);

@@ -4,9 +4,9 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 
-public class Ship extends AnimalProducer {
+public class Sheep extends AnimalProducer {
 
-    public Ship() {
+    public Sheep() {
         setAnimalAmountOfHunger(8);
         setMinOfHungerToGoToFindTheGrass(3);
         setTurnToProduce(18);
@@ -29,6 +29,6 @@ public class Ship extends AnimalProducer {
 
     @Override
     public String toString() {
-        return "Ship";
+        return "Sheep";
     }
 }

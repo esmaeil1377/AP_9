@@ -115,7 +115,7 @@ public class Farm {
 //                            currentNumberOfChickenInMapToDetermineIfTheMissionIsFinished += 1;
 //                        else if (objectInMap15_15.getClass().equals("Cow"))
 //                            currentNumberOfCowInMapToDetermineIfTheMissionIsFinished += 1;
-//                        else if (objectInMap15_15.getClass().equals("Ship"))
+//                        else if (objectInMap15_15.getClass().equals("Sheep"))
 //                            currentNumberOfShipInMapToDetermineIfTheMissionIsFinished += 1;
 //                        else if (objectInMap15_15.getClass().equals("Cat"))
 //                            currentNumberOfCatInMapToDetermineIfTheMissionIsFinished += 1;
@@ -193,13 +193,13 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Ship> getCurrnetShipInMap() throws MissionNotLoaded {
-        ArrayList<Ship> animalsInMap = new ArrayList<>();
+    public ArrayList<Sheep> getCurrnetShipInMap() {
+        ArrayList<Sheep> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
                 for (ObjectInMap15_15 objectInMap15_15 : Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].getCellObjectInMap1515()) {
-                    if (objectInMap15_15 instanceof Ship) {
-                        animalsInMap.add((Ship) objectInMap15_15);
+                    if (objectInMap15_15 instanceof Sheep) {
+                        animalsInMap.add((Sheep) objectInMap15_15);
                     }
                 }
         return animalsInMap;

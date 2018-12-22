@@ -29,6 +29,7 @@ public class Cat extends Animals {
             if (objectInMap15_15 instanceof Product) {
                 cell.RemoveCellAMapObject(objectInMap15_15);
                 setProduct((Product) objectInMap15_15);
+                return;
             }
         }
     }

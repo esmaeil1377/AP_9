@@ -1,7 +1,5 @@
 package FarmModel.Request;
 
-import FarmController.Exceptions.MaxLevelExceeded;
-import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -68,6 +66,6 @@ public class UpgradeRequest extends Request {
 
     public void AnalyzeRequestlIne(String requestLine) {
         String[] params = requestLine.split(" ");
-        setObjectString(params[1].substring(1, params[1].length() - 1));
+        setObjectString(params[1]);
     }
 }
