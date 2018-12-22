@@ -51,7 +51,7 @@ public class PrintRequest extends Request {
 
     public void AnalyzeRequestLine(String requestLine) {
         String[] params = requestLine.split(" ");
-        setCommandName(params[1].substring(1, params[1].length() - 1));
+        setCommandName(params[1]);
     }
 
     public void PrintInfo() {

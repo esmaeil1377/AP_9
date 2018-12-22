@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.FullWareHouse;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
@@ -19,8 +20,12 @@ public class PickUpRequest extends Request {
         ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap1515());
         for (ObjectInMap15_15 object : currentObjectInMap) {
             if (object instanceof Product) {
-                cell.RemoveCellAMapObject(object);
-                wareHouse.AddWholeObjectToStore(object);
+                try {
+                    wareHouse.AddWholeObjectToStore(object);
+                    cell.RemoveCellAMapObject(object);
+                }catch (FullWareHouse e){
+                    e.printStackTrace();
+                }
             }
         }
     }

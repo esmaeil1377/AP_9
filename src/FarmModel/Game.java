@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
     private static Game game = new Game();
-    private User currentUserAcount;
+    private User currentUserAcount=new User("Mosio");
     ArrayList<User> userAcount = new ArrayList<>();
 
     private Game() {
@@ -23,7 +23,12 @@ public class Game {
     }
 
     public User getCurrentUserAcount() {
-        return currentUserAcount;
+        if(currentUserAcount!=null) {
+            return currentUserAcount;
+        }else {
+//            throw new
+        }
+        return null;
     }
 
     public void setUserAcount(ArrayList<User> userAcount) {

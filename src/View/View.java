@@ -10,7 +10,11 @@ public class View {
         String input;
         while(true){
             input =scanner.nextLine();
-            RequestAnalayzer(input);
+            try {
+                RequestAnalayzer(input);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

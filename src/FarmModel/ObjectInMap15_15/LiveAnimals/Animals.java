@@ -111,7 +111,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         }
     }
 
-    public static void WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(Animals animal) {
+    private static void WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(Animals animal) {
         int currentX = animal.getX();
         int currentY = animal.getY();
         int nextX;
@@ -149,25 +149,18 @@ public abstract class Animals extends ObjectInMap15_15 {
             ///////what something is missing.
             //Actually nothing will happen and it's true.
         }
-        int xPositionOfTheGrass = PointOfNearestDestination.get(0);
-        int yPositionOfTheGrass = PointOfNearestDestination.get(1);
-        if (xPositionOfTheGrass < currentX) {
-            nextX = currentX - 1;
-        } else {
-            nextX = currentX + 1;
-        }
-        if (yPositionOfTheGrass < currentY) {
-            nextY = currentY - 1;
-        } else {
-            nextY = currentY + 1;
-        }
+        int xPositionOfTheGoal = PointOfNearestDestination.get(0);
+        int yPositionOfTheGoal = PointOfNearestDestination.get(1);
+        nextX=getNext(currentX,xPositionOfTheGoal);
+        nextY=getNext(currentY,yPositionOfTheGoal);
+
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[currentX][currentY].RemoveCellAMapObject(animal);
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[nextX][nextY].AddCellAMapObject(animal);
         animal.setX(nextX);
         animal.setY(nextY);
     }
 
-    public ArrayList<Integer> FindNearGrass() {
+    private ArrayList<Integer> FindNearGrass() {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfGrassInMap = new HashMap<>();
@@ -191,7 +184,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return new ArrayList<>(Arrays.asList(nearestXGrass, nearestYGrass));
     }
 
-    public ArrayList<Integer> FindNearestProduct() {
+    private ArrayList<Integer> FindNearestProduct() {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
@@ -215,7 +208,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return new ArrayList<>(Arrays.asList(nearestXProduct, nearestYProduct));
     }
 
-    public ArrayList<Integer> FindNearestWildAnimal() {
+    private ArrayList<Integer> FindNearestWildAnimal() {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfWildAnimalInMap = new HashMap<>();
@@ -239,9 +232,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return new ArrayList<>(Arrays.asList(nearestXWildAnimal, nearestYWildAnimal));
     }
 
-    public ArrayList<Integer> FindProductForCatRandomly() {
-        int currentX = getX();
-        int currentY = getY();
+    private ArrayList<Integer> FindProductForCatRandomly() {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
@@ -262,8 +253,25 @@ public abstract class Animals extends ObjectInMap15_15 {
         }
     }
 
-    public ArrayList<Integer> GivePointOfWareHouse() {
+    private ArrayList<Integer> GivePointOfWareHouse() {
         return new ArrayList<>(Arrays.asList(5, 0));
+    }
+    private static int getNext(int current,int goal){
+        int next;
+        if (goal < current) {
+            if(current-goal>1){
+                next = current - 2;
+            }else{
+                next=current-1;
+            }
+        } else {
+            if (goal - current > 1) {
+                next = current + 2;
+            } else {
+                next = current + 1;
+            }
+        }
+        return next;
     }
 
 }
