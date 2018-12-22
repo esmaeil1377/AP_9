@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -22,7 +23,7 @@ public class BuyRequest extends Request {
         this.animalName = animalName;
     }
 
-    public void Buy(String request) {
+    public void Buy(String request) throws MissionNotLoaded, NotEnoughMoney {
         AnalyzeRequestLine(request);
         int currentMoney= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
         InformationNeededInGame priceToBuyObject = InformationNeededInGame.getInformationNeededInGame();

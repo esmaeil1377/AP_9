@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class TurnRequest extends Request {
     private int n;
 
-    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded {
+    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded, FullWareHouse {
         AnalyzeRequestLine(requestLine);
         DoWorkByPassingTime(getN());
     }

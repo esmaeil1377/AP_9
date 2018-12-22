@@ -7,13 +7,13 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 public class Dog extends Animals {
 
-    public static void KillWildAnimalAndDie(Dog dog) throws MissionNotLoaded {
-        int x = dog.getX();
-        int y = dog.getY();
+    public  void KillWildAnimalAndDie() throws MissionNotLoaded {
+        int x = getX();
+        int y = getY();
         Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
-        cell.RemoveCellAMapObject(dog);
         for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap1515()) {
             if (objectInMap15_15 instanceof WildAnimals) {
+                cell.RemoveCellAMapObject(this);
                 cell.RemoveCellAMapObject(objectInMap15_15);
                 //below return means that dog just kill one WildAnimal in the cell
                 return;
