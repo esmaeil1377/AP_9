@@ -3,6 +3,7 @@ package FarmModel.Request;
 import FarmModel.Game;
 import FarmModel.Mission;
 import com.gilecode.yagson.YaGson;
+import com.oracle.tools.packager.IOUtils;
 
 import java.io.*;
 
@@ -13,13 +14,18 @@ public class LoadGameRequest extends Request {
         AnalyzeRequestLine(requestLine);
         FileInputStream fileInputStream;
         try {
-            fileInputStream = new FileInputStream(pathToJsonFile);
+            fileInputStream = new FileInputStream(getPathToJsonFile());
             Mission currentMission;
             YaGson mapper = new YaGson();
-            String missinString=fileInputStream.toString();
+            byte missionByte[]=fileInputStream.readAllBytes();
+            StringBuilder stringBuilder=new StringBuilder();
+            for(byte b:missionByte){
+                stringBuilder.append(String.valueOf((char)b));
+            }
+            String missionString=stringBuilder.toString();
             fileInputStream.close();
 
-            currentMission=(Mission)mapper.fromJson(missinString,Mission.class);
+            currentMission=mapper.fromJson(missionString,Mission.class);
             Game.getGameInstance().getCurrentUserAcount().setCurrentPlayingMission(currentMission);
             Game.getGameInstance().getCurrentUserAcount().AddMissionToMissionsForUser(currentMission);
 

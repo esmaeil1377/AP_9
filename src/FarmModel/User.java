@@ -42,7 +42,7 @@ public class User {
         return acountName;
     }
 
-    public void setMoney(int money) {
+    private void setMoney(int money) {
         this.money = money;
     }
 
@@ -54,7 +54,7 @@ public class User {
         this.gameShop = gameShop;
     }
 
-    public int getMoney() {
+    private int getMoney() {
         return money;
     }
 
