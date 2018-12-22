@@ -1,5 +1,6 @@
 package FarmController;
 
+import FarmController.Exceptions.BucketIsEmptyException;
 import FarmController.Exceptions.FullWareHouse;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.UnknownObjectException;
@@ -25,7 +26,7 @@ public class RequestAnalayzer {
     private static String Turn = "turn [0-9]*";
     private static String GoVehicle = "(truck|helicopter) go";
 
-    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse {
+    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException {
         if (requestString.matches(BuyAnimals)) {
             new BuyRequest(requestString);
         } else if (requestString.matches(PickUp)) {

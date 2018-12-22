@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
     private static Game game = new Game();
+    //just for the first user account:Mosio
     private User currentUserAcount=new User("Mosio");
     ArrayList<User> userAcount = new ArrayList<>();
 
@@ -18,8 +19,8 @@ public class Game {
         return userAcount;
     }
 
-    public void setCurrentUserAcount(User currentUserAcount) {
-        this.currentUserAcount = currentUserAcount;
+    public void setCurrentUserAcount(User currentUserAccount) {
+        this.currentUserAcount = currentUserAccount;
     }
 
     public User getCurrentUserAcount() {
@@ -31,7 +32,7 @@ public class Game {
         return null;
     }
 
-    public void setUserAcount(ArrayList<User> userAcount) {
-        this.userAcount = userAcount;
+    public void setUserAcount(ArrayList<User> userAccount) {
+        this.userAcount = userAccount;
     }
 }
