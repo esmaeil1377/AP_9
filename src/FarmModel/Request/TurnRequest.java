@@ -51,7 +51,7 @@ public class TurnRequest extends Request {
             MakeCatTakeProduct(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWildAnimalDestroy(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            StopMissionIfItIsFinishedAndIncreaseTimeForPlayerToFinishTheMission();
+            StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission();
             //and so on
         }
     }
@@ -243,7 +243,7 @@ public class TurnRequest extends Request {
     }
 
 
-    private void StopMissionIfItIsFinishedAndIncreaseTimeForPlayerToFinishTheMission() {
+    private void StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission() {
         User user = Game.getGameInstance().getCurrentUserAcount();
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
             user.getCurrentPlayingMission().setMissionCompletion(true);
@@ -254,6 +254,7 @@ public class TurnRequest extends Request {
             user.getCurrentPlayingMission().setTimeTakeForPlayerToFinishTheMap(user.getCurrentPlayingMission().getTimeTakeForPlayerToFinishTheMap() + 1);
         }
     }
+
 
 
 }

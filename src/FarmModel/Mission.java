@@ -69,6 +69,8 @@ public class Mission implements Serializable {
 
     public int CalcualteMoneyToGiveUserAfterCompletingTheMission() {
         //it is a function of timeplayerfinished the mission and other thing that i don't know
+        int money=getStartMoneyInMission()+100*(1/getTimeTakeForPlayerToFinishTheMap());
+        return money;
     }
 
     public boolean CheckIfMissionIsFinished() {

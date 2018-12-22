@@ -243,7 +243,7 @@ public class Farm {
         return grassInMap;
     }
 
-    public ArrayList<Product> AgetCurrentProductInMap() {
+    public ArrayList<Product> getCurrentProductInMap() {
         ArrayList<Product> productInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++) {
             for (int y = 0; y < 16; y++) {
