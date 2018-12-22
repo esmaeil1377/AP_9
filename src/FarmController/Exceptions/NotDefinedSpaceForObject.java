@@ -1,4 +1,4 @@
 package FarmController.Exceptions;
 
-public class NotDefinedSpaceForObject extends RuntimeException{
+public class NotDefinedSpaceForObject extends Exception{
 }
