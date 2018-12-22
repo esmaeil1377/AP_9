@@ -19,13 +19,6 @@ public class Sheep extends AnimalProducer {
         Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].AddCellAMapObject(new Wool());
     }
 
-    @Override
-    public boolean IsHungry() {
-        if (getAnimalAmountOfHunger() <= getMinOfHungerToGoToFindTheGrass()) {
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public String toString() {

@@ -193,7 +193,7 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Sheep> getCurrnetShipInMap() {
+    public ArrayList<Sheep> getCurrnetShipInMap() throws MissionNotLoaded {
         ArrayList<Sheep> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)

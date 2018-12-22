@@ -25,13 +25,4 @@ public class Cow extends AnimalProducer {
         return "Cow";
     }
 
-    @Override
-    public boolean IsHungry() {
-        if (getAnimalAmountOfHunger() <= getMinOfHungerToGoToFindTheGrass()) {
-            return true;
-        }
-        return false;
-    }
-
-
 }

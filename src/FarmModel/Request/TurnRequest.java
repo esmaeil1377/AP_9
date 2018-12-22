@@ -38,7 +38,7 @@ public class TurnRequest extends Request {
         setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
-    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded {
+    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             AddWildAnimalsToMapAfterOneMinute();
