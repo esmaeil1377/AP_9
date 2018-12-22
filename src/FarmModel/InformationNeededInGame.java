@@ -13,6 +13,10 @@ public class InformationNeededInGame {
     private InformationNeededInGame() {
     }
 
+    public int getPriceToBuyCakeBakeryLevel0() {
+        return PriceToBuyCakeBakeryLevel0;
+    }
+
     public static InformationNeededInGame getInformationNeededInGame() {
         return informationNeededInGame;
     }
@@ -172,7 +176,7 @@ public class InformationNeededInGame {
             return PriceToBuyChicken;
         } else if (object.toString().equals("Cow")) {
             return PriceToBuyCow;
-        } else if (object.toString().equals("Ship")) {
+        } else if (object.toString().equals("Sheep")) {
             return PriceToBuyShip;
         } else if (object.toString().equals("Cat")) {
             return PriceToBuyCat;

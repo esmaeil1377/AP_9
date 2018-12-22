@@ -86,5 +86,4 @@ public abstract class AnimalProducer extends Animals {
         this.remainTurnToProduce = remainTurnToProduce;
     }
 
-    public abstract boolean IsHungry();
 }

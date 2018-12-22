@@ -57,6 +57,6 @@ public class UpgradeRequest extends Request {
 
     public void AnalyzeRequestlIne(String requestLine) {
         String[] params = requestLine.split(" ");
-        setObject(params[1].substring(1, params[1].length() - 1));
+        setObject(params[1]);
     }
 }
