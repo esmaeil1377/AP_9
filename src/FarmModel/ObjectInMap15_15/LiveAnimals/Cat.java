@@ -14,6 +14,7 @@ public class Cat extends Animals {
     private static int Level = 0;
     private Product productThatCarryToPutInWareHouse;
 
+
     public void setProduct(Product product) {
         this.productThatCarryToPutInWareHouse = product;
     }

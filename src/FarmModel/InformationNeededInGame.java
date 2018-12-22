@@ -23,11 +23,12 @@ public class InformationNeededInGame {
 
 
     //ActivationPrices
-    public int ActivationPriceForUpgradeWareHouse = ;
-    public int intActivationPriceForUpgradeWorkShop = ;
-    public int ActivationPriceForHelicopter = ;
-    public int ActivationPriceForTruck = ;
-    public int ActivationPriceForCustomWorkShop = ;
+    // random price
+    public int ActivationPriceForUpgradeWareHouse = 100;
+    public int intActivationPriceForUpgradeWorkShop = 100;
+    public int ActivationPriceForHelicopter = 100;
+    public int ActivationPriceForTruck = 100;
+    public int ActivationPriceForCustomWorkShop = 100;
 
 
 //    public void IncraesePriceForUpgrade(String str) {
@@ -61,13 +62,13 @@ public class InformationNeededInGame {
     public int SpaceNeededInWareHouseForWool = 5;
     public int SpaceNeededInWareHouseForMilk = 10;
     public int SpaceNeededInWareHouseForCake = 5;
-    public int SpaceNeededInWareHouseForPowder = ;
+    public int SpaceNeededInWareHouseForPowder = 4; // random
     public int SpaceNeededInWareHouseForFlour = 2;
     public int SpaceNeededInWareHouseForFabric = 6;
     public int SpaceNeededInWareHouseForSewing = 3;
-    public int SpaceNeededInWareHouseForDecoration = ;
-    public int SpaceNeededInWareHouseForCloth = ;
-    public int SpaceNeededInWareHouseForCookie = ;
+    public int SpaceNeededInWareHouseForDecoration = 2; // random
+    public int SpaceNeededInWareHouseForCloth = 3; // random
+    public int SpaceNeededInWareHouseForCookie = 2; // random
 
     //PriceToUpgradeCat
     public int PriceToUpgradeCatLevel1 =500 ;
@@ -116,9 +117,9 @@ public class InformationNeededInGame {
     public int PriceToUpgradeUnknownWorkShop =1000 ;
     public int PriceToUpgradeWeavingFactory = 1500;
     //PriceToUpgradeWell
-    public int PriceToUpgradeWell = ;
+    public int PriceToUpgradeWell = 1000; // random
     //PriceToUpgradeWareHouse
-    public int PriceToUpgradeWareHouse = ;
+    public int PriceToUpgradeWareHouse = 1500; // random
 
     public int getPriceForUpgrade(Object object) {
         if (object.toString().equals("Well")) {
@@ -157,7 +158,7 @@ public class InformationNeededInGame {
     public int PriceToBuyEggPowderPlantLevel0 = 150;
     public int PriceToBuySewingFactoryLevel0 = 2500;
     public int PriceToBuySpinneryLevel0 = 2000;
-    public int PriceToBuyUnknownWorkShopLevel0 = ;
+    public int PriceToBuyUnknownWorkShopLevel0 = 2000; // random
     public int PriceToBuyWeavingFactoryLevel0 = 2000;
     public int PriceToBuyCakeBakeryLevel0 = 300;
     public int PriceToBuyCookieBakeryLevel0 = 200;
@@ -212,12 +213,12 @@ public class InformationNeededInGame {
     public int PriceForSellWool = 100;
     //PriceForSellWorkShopProduct
     public int PriceForSellCake = 100;
-    public int PriceForSellCookie = ;
-    public int PriceForSellPowder = ;
+    public int PriceForSellCookie = 100; // random
+    public int PriceForSellPowder = 150; // random
     public int PriceForSellSewing = 150;
     public int PriceForSellFlour = 10;
-    public int PriceForSellCloth = ;
-    public int PriceForSellDecoration = ;
+    public int PriceForSellCloth = 50; // random
+    public int PriceForSellDecoration = 40; // random
     public int PriceForSellFabric = 300;
     //priceForSellCage
     public int PriceForSellCageLion = 150;
