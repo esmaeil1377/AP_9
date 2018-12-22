@@ -17,7 +17,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         int nextX = 0;
         int nextY = 0;
         int nextRandomDirection = getNextRandomDirection(currentX, currentY);
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[currentX][currentY].RemoveCellAMapObject(animals);
+        Farm.getCellByPosition(currentX,currentY).RemoveCellAMapObject(animals);
         if (nextRandomDirection == 1) {
             nextX = currentX + 1;
             nextY = currentY;
@@ -43,7 +43,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             nextX = currentX + 1;
             nextY = currentY - 1;
         }
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[nextX][nextY].AddCellAMapObject(animals);
+        Farm.getCellByPosition(nextX,nextY).AddCellAMapObject(animals);
         animals.setX(nextX);
         animals.setY(nextY);
     }
@@ -155,8 +155,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         nextX=getNext(currentX,xPositionOfTheGoal);
         nextY=getNext(currentY,yPositionOfTheGoal);
 
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[currentX][currentY].RemoveCellAMapObject(animal);
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[nextX][nextY].AddCellAMapObject(animal);
+        Farm.getCellByPosition(currentX,currentY).RemoveCellAMapObject(animal);
+        Farm.getCellByPosition(nextX,nextY).AddCellAMapObject(animal);
         animal.setX(nextX);
         animal.setY(nextY);
     }
@@ -167,7 +167,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfGrassInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasGrass()) {
+                if (Farm.getCellByPosition(currentX,currentY).HasGrass()) {
                     XAndYOfGrassInMap.put(x, y);
                 }
             }
@@ -191,7 +191,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasProduct()) {
+                if (Farm.getCellByPosition(currentX,currentY).HasProduct()) {
                     XAndYOfProductInMap.put(x, y);
                 }
             }
@@ -215,7 +215,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfWildAnimalInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasWildAnimal()) {
+                if (Farm.getCellByPosition(currentX,currentY).HasWildAnimal()) {
                     XAndYOfWildAnimalInMap.put(x, y);
                 }
             }
@@ -237,7 +237,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].HasProduct()) {
+                if (Farm.getCellByPosition(x,y).HasProduct()) {
                     XAndYOfProductInMap.put(x, y);
                 }
             }

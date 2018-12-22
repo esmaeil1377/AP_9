@@ -12,7 +12,7 @@ public class GoVehicleRequest extends Request {
         AnalyzeRequestLine(requestLine);
         if (getVehicleName().equals("truck")) {
             Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
-            if (!truck.equals(null)) {
+            if (truck!=null) {
                 truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getTurnToMoveObjectToCityAndComeBack());
                 truck.setVehicleActivated(true);
             } else {
@@ -20,7 +20,7 @@ public class GoVehicleRequest extends Request {
             }
         } else {
             Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
-            if (!helicopter.equals(null)) {
+            if (helicopter!=null) {
                 helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack());
                 helicopter.setVehicleActivated(true);
             } else {

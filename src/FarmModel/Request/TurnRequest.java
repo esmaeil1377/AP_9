@@ -153,7 +153,7 @@ public class TurnRequest extends Request {
             if (product.getRemainTurnToDisapear() == 0) {
                 int x = product.getX();
                 int y = product.getY();
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].RemoveCellAMapObject(product);
+                Farm.getCellByPosition(x,y).RemoveCellAMapObject(product);
             } else {
                 product.setRemainTurnToDisapear(product.getRemainTurnToDisapear() - 1);
             }
@@ -189,7 +189,7 @@ public class TurnRequest extends Request {
             if (grass.getRemainTurnToDisApear() == 0) {
                 int x = grass.getX();
                 int y = grass.getY();
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].RemoveCellAMapObject(grass);
+                Farm.getCellByPosition(x,y).RemoveCellAMapObject(grass);
             } else {
                 grass.setRemainTurnToDisApear(grass.getRemainTurnToDisApear() - 1);
             }
@@ -212,7 +212,7 @@ public class TurnRequest extends Request {
             if (animals instanceof WildAnimals) {
                 int x = animals.getX();
                 int y = animals.getY();
-                Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+                Cell cell = Farm.getCellByPosition(x,y);
                 ArrayList<ObjectInMap15_15> copyOfObjectInCell = new ArrayList<>(cell.getCellObjectInMap1515());
                 for (ObjectInMap15_15 objectInMap15_15 : copyOfObjectInCell) {
                     if (!(objectInMap15_15 instanceof Grass) && !(objectInMap15_15 instanceof WildAnimals)) {
@@ -246,7 +246,7 @@ public class TurnRequest extends Request {
         User user = Game.getGameInstance().getCurrentUserAcount();
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
             user.getCurrentPlayingMission().setMissionCompletion(true);
-            user.AddMoney(user.getCurrentPlayingMission().CalcualteMoneyToGiveUserAfterCompletingTheMission());
+            user.AddMoney(user.getCurrentPlayingMission().CalculateMoneyToGiveUserAfterCompletingTheMission());
             Game.getGameInstance().getCurrentUserAcount().setCurrentPlayingMission(null);
             //Now It should go out of the mission don't know how.
         } else {

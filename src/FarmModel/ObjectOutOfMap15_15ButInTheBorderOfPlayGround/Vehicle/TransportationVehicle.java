@@ -74,7 +74,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
         return price;
     }
 
-    public void UpgradeVehicle() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
+    public void Upgrade() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
         // don't think this this bellow could work correctly.
         int maxLevel = 3;
         int priceNeeded= InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);

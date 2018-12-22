@@ -20,11 +20,5 @@ public abstract class ObjectInMap15_15 {
         this.y = y;
     }
 
-    public void AddToFarmMap() {
-    }
-
-    public void RemoveFromMap() {
-    }
-
     public abstract String toString();
 }

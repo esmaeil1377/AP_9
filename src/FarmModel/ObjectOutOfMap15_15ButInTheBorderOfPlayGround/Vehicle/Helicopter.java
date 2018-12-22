@@ -2,6 +2,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Interfaces.Upgradeable;
 import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
@@ -11,7 +12,7 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Helicopter extends TransportationVehicle {
+public class Helicopter extends TransportationVehicle implements Upgradeable {
 
     public Helicopter() {
         setTurnToMoveObjectToCityAndComeBack(12);

@@ -1,13 +1,14 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 import FarmController.Exceptions.*;
+import FarmController.Interfaces.Upgradeable;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
+public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implements Upgradeable {
     private int Level = 0;
     private ArrayList<Object> wareHouseList = new ArrayList<>();
     private int capacityOfWareHouse = 50;
@@ -83,7 +84,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return wareHouseList;
     }
 
-    public void UpgradeWareHouse() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
+    public void Upgrade() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
 //        Level++;
 //        if (Level == 1) {
 //            setCapacityOfWareHouse(150);

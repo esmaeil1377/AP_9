@@ -1,6 +1,7 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 
@@ -21,7 +22,7 @@ public class Chicken extends AnimalProducer {
     public void Produce() throws MissionNotLoaded {
         int x = getX();
         int y = getY();
-        Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y].AddCellAMapObject(new Egg());
+        Farm.getCellByPosition(x,y).AddCellAMapObject(new Egg());
     }
 
     public boolean IsHungry() {

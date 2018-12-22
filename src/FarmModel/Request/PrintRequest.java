@@ -4,7 +4,6 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Animals;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cat;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
@@ -12,10 +11,6 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
-
 import java.util.ArrayList;
 
 public class PrintRequest extends Request {
@@ -63,7 +58,7 @@ public class PrintRequest extends Request {
         //Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[2][3];
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[i][j];
+                Cell cell = Farm.getCellByPosition(i,j);
                 ArrayList<ObjectInMap15_15> cellObject = cell.getCellObjectInMap1515();
                 System.out.print("[");
                 for (ObjectInMap15_15 objectInMap15_15 : cellObject) {
@@ -75,7 +70,7 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintLevels() throws MissionNotLoaded {
+    private void PrintLevels() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         WareHouse wareHouse = farm.getWareHouse();
         Truck truck = farm.getTruck();
@@ -93,7 +88,7 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintWareHouse() throws MissionNotLoaded {
+    private void PrintWareHouse() throws MissionNotLoaded {
         WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
         ArrayList<Object> wareHouseList = wareHouse.getWareHouseList();
         for (Object object : wareHouseList) {
@@ -101,13 +96,13 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintWell() throws MissionNotLoaded {
+    private void PrintWell() throws MissionNotLoaded {
         Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
         System.out.println("water of bucket:" + well.getWaterOfTheBucket());
         System.out.println("activated or No " + well.isWellActivatedToFillTheBucket());
     }
 
-    public void PrintWorkShop() throws MissionNotLoaded {
+    private void PrintWorkShop() throws MissionNotLoaded {
         ArrayList<WorkShop> workShops = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops();
         for (WorkShop workShop : workShops) {
             System.out.println(workShop.toString() + "Output Product: " + workShop.getResultProduct());
@@ -117,7 +112,7 @@ public class PrintRequest extends Request {
 
     }
 
-    public void PrintTruck() throws MissionNotLoaded {
+    private void PrintTruck() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         Truck truck = farm.getTruck();
         for (Object object : truck.getGoodsThatHaveToCarry()) {
@@ -125,7 +120,7 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintHelicopter() throws MissionNotLoaded {
+    private void PrintHelicopter() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         Helicopter helicopter = farm.getHelicopter();
         for (Object object : helicopter.getGoodsThatHaveToCarry()) {

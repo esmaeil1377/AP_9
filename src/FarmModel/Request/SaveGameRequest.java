@@ -19,7 +19,7 @@ public class SaveGameRequest extends Request {
     public SaveGameRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
 
-        File file = new File(pathToJsonFile);
+        File file = new File(getPathToJsonFile());
         FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);

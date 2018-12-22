@@ -1,6 +1,7 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
 import FarmController.Exceptions.*;
+import FarmController.Interfaces.Upgradeable;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
@@ -9,7 +10,7 @@ import FarmModel.ObjectInMap15_15.Product.Product;
 
 import java.util.ArrayList;
 
-public class Cat extends Animals {
+public class Cat extends Animals implements Upgradeable {
     private static int Level = 0;
     private Product productThatCarryToPutInWareHouse;
 
@@ -45,7 +46,8 @@ public class Cat extends Animals {
         return Level;
     }
 
-    public void UpgradeCat() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
+
+    public void Upgrade() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
         int maxLevel = 4; // edit maxLevel
         int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();

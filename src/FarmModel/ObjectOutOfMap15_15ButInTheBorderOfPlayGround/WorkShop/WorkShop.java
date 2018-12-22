@@ -126,7 +126,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         this.objectNeededToProduceAProduct = objectNeededToProduceAProduct;
     }
 
-    public void UpgradeWorkShop() throws NotEnoughMoney, UnknownObjectException, MissionNotLoaded {
+    public void Upgrade() throws NotEnoughMoney, UnknownObjectException, MissionNotLoaded {
         int priceNeeded = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         Mission mission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
         int missionMoney = mission.getStartMoneyInMission();

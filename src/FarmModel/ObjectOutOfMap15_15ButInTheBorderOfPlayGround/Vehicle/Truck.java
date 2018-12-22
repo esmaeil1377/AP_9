@@ -4,13 +4,14 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmController.Exceptions.UnknownObjectException;
+import FarmController.Interfaces.Upgradeable;
 import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
-public class Truck extends TransportationVehicle {
+public class Truck extends TransportationVehicle implements Upgradeable {
 
 
     public Truck() {

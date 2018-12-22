@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Mission implements Serializable {
+    private String missionName;
     private int startMoneyInMission;
-    private int constantRewardAfterFinishingtheMission;
     private int TimeTakeForPlayerToFinishTheMap;
     private Farm farm;
     private boolean isMissionCompletedBefore = false;
-    private HashMap<Object, Integer> requiermentToFinishTheMission = new HashMap<>();
+    private HashMap<Object, Integer> requirementToFinishTheMission = new HashMap<>();
     //determine for first mission what to buy from the city.
     private CityShop cityShop =new CityShop(new ArrayList<>(Arrays.asList()));
     // add time for player where is the time.
@@ -24,7 +24,8 @@ public class Mission implements Serializable {
         return cityShop;
     }
 
-    public Mission(int startMoneyInMission, int timeTakeForPlayerToPlayTheMap, Farm farm) {
+    public Mission(String missionName,int startMoneyInMission, int timeTakeForPlayerToPlayTheMap, Farm farm) {
+        this.missionName=missionName;
         TimeTakeForPlayerToFinishTheMap = timeTakeForPlayerToPlayTheMap;
         this.farm = farm;
         this.startMoneyInMission = startMoneyInMission;
@@ -65,10 +66,8 @@ public class Mission implements Serializable {
         return farm;
     }
 
-    public void GiveRewardToUser() {
-    }
 
-    public int CalcualteMoneyToGiveUserAfterCompletingTheMission() {
+    public int CalculateMoneyToGiveUserAfterCompletingTheMission() {
         //it is a function of timeplayerfinished the mission and other thing that i don't know
         int money=getStartMoneyInMission()+100*(1/getTimeTakeForPlayerToFinishTheMap());
         return money;
@@ -77,35 +76,35 @@ public class Mission implements Serializable {
     public boolean CheckIfMissionIsFinished() throws MissionNotLoaded {
         boolean result = true;
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-        for (Object object : requiermentToFinishTheMission.keySet()) {
+        for (Object object : requirementToFinishTheMission.keySet()) {
             if (object.toString().equals("Chicken")) {
                 int numberofchicken = farm.getCurrentChickenInMap().size();
-                if (!(numberofchicken < requiermentToFinishTheMission.get(object))) {
+                if (!(numberofchicken < requirementToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Cow")) {
                 int numberOfCow = farm.getCurrnetCowInMap().size();
-                if (!(numberOfCow < requiermentToFinishTheMission.get(object))) {
+                if (!(numberOfCow < requirementToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Sheep")) {
                 int numberOfShip = farm.getCurrnetShipInMap().size();
-                if (!(numberOfShip < requiermentToFinishTheMission.get(object))) {
+                if (!(numberOfShip < requirementToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Cat")) {
                 int numberOfCat = farm.getCurrentCatInMap().size();
-                if (!(numberOfCat < requiermentToFinishTheMission.get(object))) {
+                if (!(numberOfCat < requirementToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else if (object.toString().equals("Dog")) {
                 int numberOfDog = farm.getCurrentCatInMap().size();
-                if (!(numberOfDog < requiermentToFinishTheMission.get(object))) {
+                if (!(numberOfDog < requirementToFinishTheMission.get(object))) {
                     result = false;
                 }
             } else {
                 int numberOfObjectInMapNeededForMissionToBeFinished = farm.getWareHouse().getRecordNoteBookThatRecordEveryThingAndNumbers().get(object.getClass());
-                if (numberOfObjectInMapNeededForMissionToBeFinished < requiermentToFinishTheMission.get(object)) {
+                if (numberOfObjectInMapNeededForMissionToBeFinished < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }
             }
