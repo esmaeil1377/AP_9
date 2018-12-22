@@ -1,6 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
@@ -124,7 +125,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         this.objectNeededToProduceAProduct = objectNeededToProduceAProduct;
     }
 
-    public void UpgradeWorkShop() {
+    public void UpgradeWorkShop() throws NotEnoughMoney, UnknownObjectException {
         int priceNeeded = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         Mission mission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
         int missionMoney = mission.getStartMoneyInMission();

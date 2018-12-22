@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class TurnRequest extends Request {
     private int n;
 
-    public TurnRequest(String requestLine) {
+    public TurnRequest(String requestLine) throws UnknownObjectException {
         AnalyzeRequestLine(requestLine);
         DoWorkByPassingTime(getN());
     }
@@ -35,7 +36,7 @@ public class TurnRequest extends Request {
         setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
-    private void DoWorkByPassingTime(int turn) {
+    private void DoWorkByPassingTime(int turn) throws UnknownObjectException {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             AddWildAnimalsToMapAfterOneMinute();
@@ -224,7 +225,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeTruckPassTheWayToCityOrGiveObjectToCity() {
+    private void MakeTruckPassTheWayToCityOrGiveObjectToCity() throws UnknownObjectException {
         Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
         if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
             truck.SellObjectToCityAndGetMoneyToUser();

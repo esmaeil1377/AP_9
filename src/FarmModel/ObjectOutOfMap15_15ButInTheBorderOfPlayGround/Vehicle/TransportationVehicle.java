@@ -1,11 +1,10 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
-import FarmController.Exceptions.FullLevel;
+import FarmController.Exceptions.MaxLevelExceeded;
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
-import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
 import java.util.ArrayList;
@@ -74,7 +73,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
         return price;
     }
 
-    public void UpgradeVehicle(){
+    public void UpgradeVehicle() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException {
         // don't think this this bellow could work correctly.
         int maxLevel = 3;
         int priceNeeded= InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
@@ -89,11 +88,11 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
                 throw new NotEnoughMoney();
             }
         } else {
-            throw new FullLevel();
+            throw new MaxLevelExceeded();
         }
     }
 
-    public static int CalculatePriceForSellForTruck(ArrayList<Object> goods) {
+    public static int CalculatePriceForSellForTruck(ArrayList<Object> goods) throws UnknownObjectException {
         int price = 0;
         for (Object object : goods) {
             price+=InformationNeededInGame.getInformationNeededInGame().getPriceForSell(object);

@@ -1,4 +1,4 @@
 package FarmController.Exceptions;
 
-public class MissionNotLoaded extends RuntimeException  {
+public class MissionNotLoaded extends Exception  {
 }

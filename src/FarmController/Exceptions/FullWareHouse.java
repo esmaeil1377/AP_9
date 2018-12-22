@@ -1,4 +1,4 @@
 package FarmController.Exceptions;
 
-public class FullWareHouse extends RuntimeException {
+public class FullWareHouse extends Exception {
 }

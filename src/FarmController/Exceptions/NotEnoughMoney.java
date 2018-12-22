@@ -1,4 +1,4 @@
 package FarmController.Exceptions;
 
-public class NotEnoughMoney extends RuntimeException {
+public class NotEnoughMoney extends Exception {
 }

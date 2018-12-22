@@ -1,9 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
-import FarmController.Exceptions.FullLevel;
-import FarmController.Exceptions.FullWareHouse;
-import FarmController.Exceptions.NotEnoughMoney;
-import FarmController.Exceptions.ObjectNotFoundInWareHouse;
+import FarmController.Exceptions.*;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 
@@ -40,7 +37,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return capacityOfWareHouse;
     }
 
-    public void AddWholeObjectToStore(Object object) {
+    public void AddWholeObjectToStore(Object object) throws FullWareHouse {
         int spaceNeededForObjectInWareHouse = InformationNeededInGame.getInformationNeededInGame().getSpaceNeededInWareHouse(object);
         // to improve this we should change Information class to methods to code clearer.
         if (getRemainCapacityOfWareHouse() > spaceNeededForObjectInWareHouse) {
@@ -65,7 +62,11 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
                 return;
             }
         }
-        throw new ObjectNotFoundInWareHouse();
+        try {
+            throw new ObjectNotFoundInWareHouse();
+        }catch (ObjectNotFoundInWareHouse e){
+            e.printStackTrace();
+        }
     }
 
     public void RecordThisTransActionThatWholeObjectAddedToWareHouse(Object object) {
@@ -82,7 +83,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         return wareHouseList;
     }
 
-    public void UpgradeWareHouse() {
+    public void UpgradeWareHouse() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException {
 //        Level++;
 //        if (Level == 1) {
 //            setCapacityOfWareHouse(150);
@@ -94,7 +95,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
         int maxLevel = 3;
         int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
-        if (Level < maxLevel) {
+        if (getLevel() < maxLevel) {
             if (priceNeed < missionMoney) {
                 Level++;
                 Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeed);
@@ -102,7 +103,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround {
                 throw new NotEnoughMoney();
             }
         } else {
-            throw new FullLevel();
+            throw new MaxLevelExceeded();
         }
         //upgrade change it's shape.don't forget it.
         //after all we have to change the price to for upgrading the warehouse in Information class.

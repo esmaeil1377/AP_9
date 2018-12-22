@@ -12,51 +12,60 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class UpgradeRequest extends Request {
-    private String object;
+    private String objectString;
 
-    public UpgradeRequest(String requestLine) {
-        AnalyzeRequestlIne(requestLine);
-        if (object.equals("cat")) {
-            ArrayList<Animals> animals = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm()
-                    .getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal();
-            for (Animals animals1 : animals) {
-                if (animals1.toString().equals("Cat")) {
-                    Cat cat = (Cat) animals1;
-                    cat.UpgradeCat();
+    public UpgradeRequest(String requestLine) throws UnknownObjectException {
+        try {
+            AnalyzeRequestlIne(requestLine);
+            if (objectString.equals("cat")) {
+                ArrayList<Animals> animals = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm()
+                        .getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal();
+                for (Animals animals1 : animals) {
+                    if (animals1.toString().equals("Cat")) {
+                        Cat cat = (Cat) animals1;
+                        cat.UpgradeCat();
+                    }
+                }
+            } else if (objectString.equals("truck")) {
+                Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
+                truck.UpgradeVehicle();
+            } else if (objectString.equals("well")) {
+                Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
+                well.UpgradeWell();
+            } else if (objectString.equals("helicopter")) {
+                Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
+                helicopter.UpgradeVehicle();
+            } else if (objectString.equals("warehouse")) {
+                WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
+                wareHouse.UpgradeWareHouse();
+            } else {
+                Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+                WorkShop workShop = farm.getspecifiedWorkShop(objectString);
+                workShop.UpgradeWorkShop();
+                try {
+                    Objects.requireNonNull(workShop);
+                } catch (NullPointerException e) {
+                    throw new UnknownObjectException();
                 }
             }
-        } else if (object.equals("truck")) {
-            Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
-            truck.UpgradeVehicle();
-        } else if (object.equals("well")) {
-            Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
-            well.UpgradeWell();
-        } else if (object.equals("helicopter")) {
-            Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
-            helicopter.UpgradeVehicle();
-        } else if (object.equals("warehouse")) {
-            WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
-            wareHouse.UpgradeWareHouse();
-        } else {
-            Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-            WorkShop workShop = farm.getspecifiedWorkShop(object);
-            workShop.UpgradeWorkShop();
-            throw new UnknownObjectException();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    public String getObject() {
-        return object;
+    public String getObjectString() {
+        return objectString;
     }
 
-    public void setObject(String object) {
-        this.object = object;
+    public void setObjectString(String objectString) {
+        this.objectString = objectString;
     }
 
     public void AnalyzeRequestlIne(String requestLine) {
         String[] params = requestLine.split(" ");
-        setObject(params[1]);
+        setObjectString(params[1]);
     }
 }

@@ -11,8 +11,8 @@ public class User {
     private ArrayList<Mission> Missions = new ArrayList<>();
     private GameShop gameShop = new GameShop();
 
-    public User(String acountName) {
-        setAcountName(acountName);
+    public User(String accountName) {
+        setAccountName(accountName);
         // Add users its missions
     }
 
@@ -20,7 +20,7 @@ public class User {
         return gameShop;
     }
 
-    public Mission getCurrentPlayingMission() {
+    public Mission getCurrentPlayingMission() throws MissionNotLoaded {
         try {
             int startMoney=currentPlayingMission.getStartMoneyInMission();
             return currentPlayingMission;
@@ -34,7 +34,7 @@ public class User {
         this.currentPlayingMission = currentPlayingMission;
     }
 
-    private void setAcountName(String acountName) {
+    private void setAccountName(String acountName) {
         this.acountName = acountName;
     }
 

@@ -5,7 +5,7 @@ public class Grass extends ObjectInMap15_15 {
     private int remainTurnToDisApear;
 
     public Grass() {
-        setTurnTODisapear();
+        setTurnToDisapear(30);
     }
 
     public int getRemainTurnToDisApear() {
@@ -20,7 +20,7 @@ public class Grass extends ObjectInMap15_15 {
         return turnToDisapear;
     }
 
-    public void setTurnTODisapear(int turnTODisApear) {
+    public void setTurnToDisapear(int turnTODisApear) {
         this.turnToDisapear = turnTODisApear;
     }
 

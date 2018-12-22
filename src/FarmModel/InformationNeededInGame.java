@@ -1,8 +1,6 @@
 package FarmModel;
 
-import FarmController.Exceptions.NotDefinedPriceForUpgrade;
-import FarmController.Exceptions.NotDefinedSpaceForObject;
-import FarmController.Exceptions.UnknownObjectToGetSellPrice;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
@@ -75,11 +73,11 @@ public class InformationNeededInGame {
     public int SpaceNeededInWareHouseForCookie = 2; // random
 
     //PriceToUpgradeCat
-    public int PriceToUpgradeCatLevel1 =500 ;
+    public int PriceToUpgradeCatLevel1 = 500;
     //PriceToBuyWorkShop
 
 
-    public int getSpaceNeededInWareHouse(Object object) throws Exception{
+    public int getSpaceNeededInWareHouse(Object object){
         if (object.toString().equals("Cage")) {
             WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
             if (wildAnimals.toString().equals("Lion"))
@@ -109,7 +107,9 @@ public class InformationNeededInGame {
             return SpaceNeededInWareHouseForCloth;
         else if (object.toString().equals("Cookie"))
             return SpaceNeededInWareHouseForCookie;
-        throw new NotDefinedSpaceForObject();
+//        throw new NotDefinedSpaceForObject();
+        //don't forget.
+        return -1;
     }
 
     //PriceToUpgradeWorkShop
@@ -118,36 +118,36 @@ public class InformationNeededInGame {
     public int PriceToUpgradeEggPowderPlant = 100;
     public int PriceToUpgradeSewingFactory = 2000;
     public int PriceToUpgradeSpinnery = 1000;
-    public int PriceToUpgradeUnknownWorkShop =1000 ;
+    public int PriceToUpgradeUnknownWorkShop = 1000;
     public int PriceToUpgradeWeavingFactory = 1500;
     //PriceToUpgradeWell
     public int PriceToUpgradeWell = 1000; // random
     //PriceToUpgradeWareHouse
     public int PriceToUpgradeWareHouse = 1500; // random
 
-    public int getPriceForUpgrade(Object object) {
+    public int getPriceForUpgrade(Object object) throws UnknownObjectException {
         if (object.toString().equals("Well")) {
             return PriceToUpgradeWell;
-        }else if (object.toString().equals("WareHouse")) {
+        } else if (object.toString().equals("WareHouse")) {
             return PriceToUpgradeWareHouse;
-        }else {
-            int level=((WorkShop)object).getLevel();
+        } else {
+            int level = ((WorkShop) object).getLevel();
             if (object.toString().equals("CakeBakery")) {
-                return PriceToUpgradeCakeBakery+100*(level);
+                return PriceToUpgradeCakeBakery + 100 * (level);
             } else if (object.toString().equals("EggPowderPlant")) {
-                return PriceToUpgradeEggPowderPlant+100*level;
+                return PriceToUpgradeEggPowderPlant + 100 * level;
             } else if (object.toString().equals("CookieBakery")) {
-                return PriceToUpgradeCookieBakery+100*level;
+                return PriceToUpgradeCookieBakery + 100 * level;
             } else if (object.toString().equals("SewingFactory")) {
-                return PriceToUpgradeSewingFactory+100*level;
+                return PriceToUpgradeSewingFactory + 100 * level;
             } else if (object.toString().equals("Spinnery")) {
-                return PriceToUpgradeSpinnery+100*level;
+                return PriceToUpgradeSpinnery + 100 * level;
             } else if (object.toString().equals("WeavingFactory")) {
-                return PriceToUpgradeWeavingFactory+100*level;
+                return PriceToUpgradeWeavingFactory + 100 * level;
             } else if (object.toString().equals("CustomWorkShop")) {
-                return PriceToUpgradeUnknownWorkShop+100*level;
+                return PriceToUpgradeUnknownWorkShop + 100 * level;
             } else
-                throw new NotDefinedPriceForUpgrade();
+                throw new UnknownObjectException();
         }
     }
 
@@ -229,7 +229,7 @@ public class InformationNeededInGame {
     public int PriceForSellCageBear = 100;
 
 
-    public int getPriceForSell(Object object) {
+    public int getPriceForSell(Object object) throws UnknownObjectException {
         if (object.toString().equals("Wool")) {
             return PriceForSellWool;
         } else if (object.toString().equals("Milk")) {
@@ -260,10 +260,8 @@ public class InformationNeededInGame {
                 return PriceForSellCageBear;
             }
         }
-        throw new UnknownObjectToGetSellPrice();
+        throw new UnknownObjectException();
     }
-
-
 
 
 }

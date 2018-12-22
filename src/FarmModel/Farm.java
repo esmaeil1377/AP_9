@@ -301,8 +301,12 @@ public class Farm {
                 return objectinWareHouse;
             }
         }
-        throw new ObjectNotFoundInWareHouse();
-
+        try {
+            throw new ObjectNotFoundInWareHouse();
+        }catch (ObjectNotFoundInWareHouse e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
