@@ -11,7 +11,7 @@ import FarmModel.ObjectInMap15_15.Product.Product;
 import java.util.ArrayList;
 
 public class Cat extends Animals {
-    private int Level = 0;
+    private static int Level = 0;
     private Product productThatCarryToPutInWareHouse;
 
     public void setProduct(Product product) {

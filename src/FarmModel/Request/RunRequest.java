@@ -15,6 +15,8 @@ public class RunRequest extends Request {
         this.mapName = mapName;
     }
 
-    public void AnalyzeRequestLine(String rewuestLine) {
+    public void AnalyzeRequestLine(String requestLine) {
+        String MapName=requestLine.substring(4);
+        setMapName(MapName);
     }
 }

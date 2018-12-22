@@ -1,4 +1,6 @@
 package FarmModel;
+import FarmController.Exceptions.MissionNotLoaded;
+
 import java.util.ArrayList;
 
 public class User {
@@ -19,7 +21,13 @@ public class User {
     }
 
     public Mission getCurrentPlayingMission() {
-        return currentPlayingMission;
+        try {
+            int startMoney=currentPlayingMission.getStartMoneyInMission();
+            return currentPlayingMission;
+
+        }catch (NullPointerException e){
+            throw new MissionNotLoaded();
+        }
     }
 
     public void setCurrentPlayingMission(Mission currentPlayingMission) {
