@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Cage;
@@ -20,7 +21,7 @@ public class AddVehicleRequest extends Request {
     private int count;
     private Object object;
 
-    public AddVehicleRequest(String request) {
+    public AddVehicleRequest(String request) throws MissionNotLoaded {
         AnalyzeRequestLine(request);
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         WareHouse wareHouse = farm.getWareHouse();

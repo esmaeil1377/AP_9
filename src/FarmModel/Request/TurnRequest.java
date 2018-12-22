@@ -1,5 +1,7 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.FullWareHouse;
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Farm;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 public class TurnRequest extends Request {
     private int n;
 
-    public TurnRequest(String requestLine) throws UnknownObjectException {
+    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
         DoWorkByPassingTime(getN());
     }
@@ -36,20 +38,20 @@ public class TurnRequest extends Request {
         setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
-    private void DoWorkByPassingTime(int turn) throws UnknownObjectException {
+    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             AddWildAnimalsToMapAfterOneMinute();
             MoveObject(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            KillAnimalsThatAreVeryHungeryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            MakeProductDisapearOrDecreaseRemainTurnToDisapear(farm.getCurrentProductInMap());
+            KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeProductDisappearOrDecreaseRemainTurnToDisappear(farm.getCurrentProductInMap());
             MakeAnimalProduce(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWorkShopProduce(farm.getWorkShops());
             MakeGrassDisapear(farm.getCurrentGrassInMap());
             FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
             MakeTruckPassTheWayToCityOrGiveObjectToCity();
             MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted();
-            MakeCatTakeProduct(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeCatTakeProductOrPutProductToWareHouseIfItWasNearWareHouse(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWildAnimalDestroy(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission();
@@ -57,7 +59,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void AddWildAnimalsToMapAfterOneMinute() {
+    private void AddWildAnimalsToMapAfterOneMinute() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         int randomX = ((int) (Math.random() * 16));
         int randomY = ((int) (Math.random() * 16));
@@ -72,13 +74,13 @@ public class TurnRequest extends Request {
         //When we should add bear to map.
     }
 
-    private void MoveObject(ArrayList<Animals> currentAnimalsInMap) {
+    private void MoveObject(ArrayList<Animals> currentAnimalsInMap) throws MissionNotLoaded {
         for (Animals animals : currentAnimalsInMap) {
             Animals.Walk(animals);
         }
     }
 
-    private void KillAnimalsThatAreVeryHungeryOrMakeThemHungrierOrEat(ArrayList<Animals> currentAnimalInMap) {
+    private void KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(ArrayList<Animals> currentAnimalInMap) throws MissionNotLoaded {
         for (Animals animals : currentAnimalInMap) {
             if (animals instanceof AnimalProducer) {
                 int x = animals.getX();
@@ -111,7 +113,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeDogKillWildAnimal(ArrayList<Animals> currentAnimalInMap) {
+    private void MakeDogKillWildAnimal(ArrayList<Animals> currentAnimalInMap) throws MissionNotLoaded {
         for (Animals animals : currentAnimalInMap) {
             if (animals instanceof Dog) {
                 int x = animals.getX();
@@ -131,26 +133,22 @@ public class TurnRequest extends Request {
 
     }
 
-    private void MakeCatTakeProduct(ArrayList<Animals> currentAnimalInMap) {
+    private void MakeCatTakeProductOrPutProductToWareHouseIfItWasNearWareHouse(ArrayList<Animals> currentAnimalInMap) throws MissionNotLoaded, FullWareHouse {
         for (Animals animals : currentAnimalInMap) {
             if (animals instanceof Cat) {
-                int x = animals.getX();
-                int y = animals.getY();
-                Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
-                if (cell.HasProduct()) {
-                    for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap1515()) {
-                        if (objectInMap15_15 instanceof Product) {
-                            cell.RemoveCellAMapObject(objectInMap15_15);
-                            ((Cat) animals).setProduct((Product) objectInMap15_15);
-                            break;
-                        }
-                    }
+                if(animals.getX()==15 && animals.getY()==0 && ((Cat) animals).getProduct()!=null){
+                    ((Cat) animals).PutProductInStore();
+                }
+                else {
+                    ((Cat) animals).TakeProduct();
                 }
             }
         }
     }
 
-    private void MakeProductDisapearOrDecreaseRemainTurnToDisapear(ArrayList<Product> currentProductInMap) {
+
+
+    private void MakeProductDisappearOrDecreaseRemainTurnToDisappear(ArrayList<Product> currentProductInMap) throws MissionNotLoaded {
         for (Product product : currentProductInMap) {
             if (product.getRemainTurnToDisapear() == 0) {
                 int x = product.getX();
@@ -162,7 +160,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeWorkShopProduce(ArrayList<WorkShop> currentWorkShopInMap) {
+    private void MakeWorkShopProduce(ArrayList<WorkShop> currentWorkShopInMap) throws MissionNotLoaded {
         for (WorkShop workShop : currentWorkShopInMap) {
             if (workShop.getRemainTurnToProduce() == 0 && workShop.IsWorkshopActivatedToMakeProduct()) {
                 workShop.MakeAProductAndPutItInMap();
@@ -173,7 +171,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeAnimalProduce(ArrayList<Animals> currentAnimalsInMap) {
+    private void MakeAnimalProduce(ArrayList<Animals> currentAnimalsInMap) throws MissionNotLoaded {
         for (Animals animals : currentAnimalsInMap) {
             if (animals instanceof AnimalProducer) {
                 if (((AnimalProducer) animals).getRemainTurnToProduce() == 0) {
@@ -186,7 +184,7 @@ public class TurnRequest extends Request {
 
     }
 
-    private void MakeGrassDisapear(ArrayList<Grass> currentGrassInMap) {
+    private void MakeGrassDisapear(ArrayList<Grass> currentGrassInMap) throws MissionNotLoaded {
         for (Grass grass : currentGrassInMap) {
             if (grass.getRemainTurnToDisApear() == 0) {
                 int x = grass.getX();
@@ -198,7 +196,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() {
+    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() throws MissionNotLoaded {
         Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
         if (well.getRemainTurnToFillTheBucket() == 0 && well.isWellActivatedToFillTheBucket()) {
             well.FillTheBucket();
@@ -209,7 +207,7 @@ public class TurnRequest extends Request {
     }
 
 
-    private void MakeWildAnimalDestroy(ArrayList<Animals> currnetAnimlInMap) {
+    private void MakeWildAnimalDestroy(ArrayList<Animals> currnetAnimlInMap) throws MissionNotLoaded {
         for (Animals animals : currnetAnimlInMap) {
             if (animals instanceof WildAnimals) {
                 int x = animals.getX();
@@ -225,7 +223,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeTruckPassTheWayToCityOrGiveObjectToCity() throws UnknownObjectException {
+    private void MakeTruckPassTheWayToCityOrGiveObjectToCity() throws UnknownObjectException, MissionNotLoaded {
         Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
         if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
             truck.SellObjectToCityAndGetMoneyToUser();
@@ -234,7 +232,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted() {
+    private void MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted() throws MissionNotLoaded {
         Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
         if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
             helicopter.PutObjectInMapRandomly();
@@ -244,7 +242,7 @@ public class TurnRequest extends Request {
     }
 
 
-    private void StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission() {
+    private void StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission() throws MissionNotLoaded {
         User user = Game.getGameInstance().getCurrentUserAcount();
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
             user.getCurrentPlayingMission().setMissionCompletion(true);

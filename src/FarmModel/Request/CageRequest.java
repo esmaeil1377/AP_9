@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
@@ -11,7 +12,7 @@ public class CageRequest extends Request {
     private int x;
     private int y;
 
-    public CageRequest(String requestLine) {
+    public CageRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
         Cell cell = getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
 

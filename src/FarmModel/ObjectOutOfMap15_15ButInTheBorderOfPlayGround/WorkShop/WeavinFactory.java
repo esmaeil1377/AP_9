@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -22,7 +23,7 @@ public class WeavinFactory extends WorkShop {
     }
 
     @Override
-    public void MakeAProductAndPutItInMap() {
+    public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
             Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15 - i][15];
             cell.AddCellAMapObject(getNewProductByType(getResultProduct()));

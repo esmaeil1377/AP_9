@@ -1,9 +1,6 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
-import FarmController.Exceptions.FullWareHouse;
-import FarmController.Exceptions.MaxLevelExceeded;
-import FarmController.Exceptions.NotEnoughMoney;
-import FarmController.Exceptions.UnknownObjectException;
+import FarmController.Exceptions.*;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
@@ -25,7 +22,7 @@ public class Cat extends Animals {
         return productThatCarryToPutInWareHouse;
     }
 
-    public void TakeProduct() {
+    public void TakeProduct() throws MissionNotLoaded {
         Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
         ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap1515());
         for (ObjectInMap15_15 objectInMap15_15 : currentObjectInMap) {
@@ -36,7 +33,7 @@ public class Cat extends Animals {
         }
     }
 
-    public void PutProductInStore() throws FullWareHouse {
+    public void PutProductInStore() throws FullWareHouse, MissionNotLoaded {
         if (getProduct() != null) {
             Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddWholeObjectToStore(getProduct());
             setProduct(null);
@@ -47,7 +44,7 @@ public class Cat extends Animals {
         return Level;
     }
 
-    public void UpgradeCat() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException {
+    public void UpgradeCat() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
         int maxLevel = 4; // edit maxLevel
         int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();

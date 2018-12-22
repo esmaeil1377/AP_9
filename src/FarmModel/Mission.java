@@ -1,5 +1,6 @@
 package FarmModel;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.CityShop;
 
 import java.io.Serializable;
@@ -73,7 +74,7 @@ public class Mission implements Serializable {
         return money;
     }
 
-    public boolean CheckIfMissionIsFinished() {
+    public boolean CheckIfMissionIsFinished() throws MissionNotLoaded {
         boolean result = true;
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (Object object : requiermentToFinishTheMission.keySet()) {

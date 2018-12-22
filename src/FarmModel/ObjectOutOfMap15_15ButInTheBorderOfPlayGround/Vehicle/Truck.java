@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmController.Exceptions.UnknownObjectException;
@@ -17,7 +18,7 @@ public class Truck extends TransportationVehicle {
         setCapacity(20);
     }
 
-    public void SellObjectToCityAndGetMoneyToUser() throws UnknownObjectException {
+    public void SellObjectToCityAndGetMoneyToUser() throws UnknownObjectException, MissionNotLoaded {
         int priceToSellTheObject=CalculatePriceForSellForTruck(getGoodsThatHaveToCarry());
         Mission mission=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
         mission.setStartMoneyInMission(mission.getStartMoneyInMission()+priceToSellTheObject);
@@ -26,7 +27,7 @@ public class Truck extends TransportationVehicle {
         //delete object from ware  house and increase money;
     }
 
-    public void TakeObjectFromWareHouse(Object good){
+    public void TakeObjectFromWareHouse(Object good) throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         WareHouse wareHouse = farm.getWareHouse();
         if (wareHouse.getWareHouseList().contains(good)) {

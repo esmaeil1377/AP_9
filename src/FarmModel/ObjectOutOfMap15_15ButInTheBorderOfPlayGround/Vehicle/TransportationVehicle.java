@@ -1,6 +1,7 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
 import FarmController.Exceptions.MaxLevelExceeded;
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
@@ -73,7 +74,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
         return price;
     }
 
-    public void UpgradeVehicle() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException {
+    public void UpgradeVehicle() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
         // don't think this this bellow could work correctly.
         int maxLevel = 3;
         int priceNeeded= InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
@@ -83,7 +84,8 @@ public abstract class TransportationVehicle extends ObjectOutOfMap15_15ButInTheB
                 setLevel(getLevel() + 1);
                 setTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack() - 3);
                 setCapacity(getCapacity() + 10);
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeeded);
+                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission
+                        ().setStartMoneyInMission(missionMoney - priceNeeded);
             } else {
                 throw new NotEnoughMoney();
             }

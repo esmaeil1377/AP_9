@@ -1,5 +1,6 @@
 package FarmModel;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
@@ -98,7 +99,7 @@ public class Farm {
 //        this.maxNumberOfDogInMapToDetermineIfTheMissionIsFinished = maxNumberOfDogInMapToDetermineIfTheMissionIsFinished;
 //    }
 
-    public ArrayList<Animals> getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal() {
+    public ArrayList<Animals> getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal() throws MissionNotLoaded {
 //        int currentNumberOfChickenInMapToDetermineIfTheMissionIsFinished = 0;
 //        int currentNumberOfCowInMapToDetermineIfTheMissionIsFinished = 0;
 //        int currentNumberOfShipInMapToDetermineIfTheMissionIsFinished = 0;
@@ -143,7 +144,7 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Cat> getCurrentCatInMap() {
+    public ArrayList<Cat> getCurrentCatInMap() throws MissionNotLoaded {
         ArrayList<Cat> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
@@ -155,7 +156,7 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Dog> getCurrnetDogInMap() {
+    public ArrayList<Dog> getCurrnetDogInMap() throws MissionNotLoaded {
         ArrayList<Dog> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
@@ -168,7 +169,7 @@ public class Farm {
 
     }
 
-    public ArrayList<Chicken> getCurrentChickenInMap() {
+    public ArrayList<Chicken> getCurrentChickenInMap() throws MissionNotLoaded {
         ArrayList<Chicken> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
@@ -180,7 +181,7 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Cow> getCurrnetCowInMap() {
+    public ArrayList<Cow> getCurrnetCowInMap() throws MissionNotLoaded {
         ArrayList<Cow> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
@@ -192,7 +193,7 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Ship> getCurrnetShipInMap() {
+    public ArrayList<Ship> getCurrnetShipInMap() throws MissionNotLoaded {
         ArrayList<Ship> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
@@ -204,7 +205,7 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Lion> getCurrnetLionInMap() {
+    public ArrayList<Lion> getCurrnetLionInMap() throws MissionNotLoaded {
         ArrayList<Lion> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
@@ -216,7 +217,7 @@ public class Farm {
         return animalsInMap;
     }
 
-    public ArrayList<Bear> getCurrentBearInMap() {
+    public ArrayList<Bear> getCurrentBearInMap() throws MissionNotLoaded {
         ArrayList<Bear> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++)
             for (int y = 0; y < 16; y++)
@@ -229,7 +230,7 @@ public class Farm {
     }
 
 
-    public ArrayList<Grass> getCurrentGrassInMap() {
+    public ArrayList<Grass> getCurrentGrassInMap() throws MissionNotLoaded {
         ArrayList<Grass> grassInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++) {
             for (int y = 0; y < 16; y++) {
@@ -243,7 +244,7 @@ public class Farm {
         return grassInMap;
     }
 
-    public ArrayList<Product> getCurrentProductInMap() {
+    public ArrayList<Product> getCurrentProductInMap() throws MissionNotLoaded {
         ArrayList<Product> productInMap = new ArrayList<>();
         for (int x = 0; x < 16; x++) {
             for (int y = 0; y < 16; y++) {
@@ -285,7 +286,7 @@ public class Farm {
         return (Math.pow(Math.pow(xCell1 - xCell2, 2) + Math.pow(yCell1 - yCell2, 2), 0.5));
     }
 
-    public WorkShop getspecifiedWorkShop(String WorkshopName) {
+    public WorkShop getspecifiedWorkShop(String WorkshopName) throws MissionNotLoaded {
         for (WorkShop workshop : Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops()) {
             if (workshop.getWorkShopName().equals(WorkshopName)) {
                 return workshop;

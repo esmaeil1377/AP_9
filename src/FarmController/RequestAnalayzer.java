@@ -1,5 +1,6 @@
 package FarmController;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Request.*;
 
@@ -23,7 +24,7 @@ public class RequestAnalayzer {
     private static String Turn = "turn [0-9]*";
     private static String GoVehicle = "(truck|helicopter) go";
 
-    public static void RequestAnalayzer(String requestString) throws UnknownObjectException {
+    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded {
         if (requestString.matches(BuyAnimals)) {
             new BuyRequest(requestString);
         } else if (requestString.matches(PickUp)) {

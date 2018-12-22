@@ -1,12 +1,13 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 public class Dog extends Animals {
 
-    public static void KillWildAnimalAndDie(Dog dog) {
+    public static void KillWildAnimalAndDie(Dog dog) throws MissionNotLoaded {
         int x = dog.getX();
         int y = dog.getY();
         Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];

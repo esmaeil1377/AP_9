@@ -1,5 +1,6 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 
 public abstract class Animals extends ObjectInMap15_15 {
 
-    public static void WalkRandomlyForOneTurn(Animals animals) {
+    public static void WalkRandomlyForOneTurn(Animals animals) throws MissionNotLoaded {
         int currentX = animals.getX();
         int currentY = animals.getY();
         int nextX = 0;
@@ -89,7 +90,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return ((int) (Math.random() * 8) + 1);
     }
 
-    public static void Walk(Animals animals) {
+    public static void Walk(Animals animals) throws MissionNotLoaded {
         if (animals instanceof AnimalProducer) {
             if (((AnimalProducer) animals).WantToEat()) {
                 WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(animals);
@@ -111,7 +112,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         }
     }
 
-    private static void WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(Animals animal) {
+    private static void WalkWithEveryTurnWhenTheyAreHungryOrForDogOrForIntelligenceCat(Animals animal) throws MissionNotLoaded {
         int currentX = animal.getX();
         int currentY = animal.getY();
         int nextX;
@@ -160,7 +161,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         animal.setY(nextY);
     }
 
-    private ArrayList<Integer> FindNearGrass() {
+    private ArrayList<Integer> FindNearGrass() throws MissionNotLoaded {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfGrassInMap = new HashMap<>();
@@ -184,7 +185,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return new ArrayList<>(Arrays.asList(nearestXGrass, nearestYGrass));
     }
 
-    private ArrayList<Integer> FindNearestProduct() {
+    private ArrayList<Integer> FindNearestProduct() throws MissionNotLoaded {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
@@ -208,7 +209,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return new ArrayList<>(Arrays.asList(nearestXProduct, nearestYProduct));
     }
 
-    private ArrayList<Integer> FindNearestWildAnimal() {
+    private ArrayList<Integer> FindNearestWildAnimal() throws MissionNotLoaded {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfWildAnimalInMap = new HashMap<>();
@@ -232,7 +233,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return new ArrayList<>(Arrays.asList(nearestXWildAnimal, nearestYWildAnimal));
     }
 
-    private ArrayList<Integer> FindProductForCatRandomly() {
+    private ArrayList<Integer> FindProductForCatRandomly() throws MissionNotLoaded {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
@@ -254,7 +255,7 @@ public abstract class Animals extends ObjectInMap15_15 {
     }
 
     private ArrayList<Integer> GivePointOfWareHouse() {
-        return new ArrayList<>(Arrays.asList(5, 0));
+        return new ArrayList<>(Arrays.asList(15, 0));
     }
     private static int getNext(int current,int goal){
         int next;

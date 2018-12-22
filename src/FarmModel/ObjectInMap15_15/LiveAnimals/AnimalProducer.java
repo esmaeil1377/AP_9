@@ -1,5 +1,6 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Grass;
@@ -51,9 +52,9 @@ public abstract class AnimalProducer extends Animals {
     }
 
 
-    public abstract void Produce();
+    public abstract void Produce() throws MissionNotLoaded;
 
-    public void EatGrass() {
+    public void EatGrass() throws MissionNotLoaded {
         int x = getX();
         int y = getY();
         Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];

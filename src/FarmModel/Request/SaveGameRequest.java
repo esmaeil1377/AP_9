@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
 import FarmModel.Mission;
 import com.gilecode.yagson.YaGson;
@@ -26,13 +27,15 @@ public class SaveGameRequest extends Request {
             YaGson mapper = new YaGson();
             String objectJson = mapper.toJson(currentMission, Mission.class);
 
-            byte[] bytesobject = objectJson.getBytes();
-            fileOutputStream.write(bytesobject);
+            byte[] bytesObject = objectJson.getBytes();
+            fileOutputStream.write(bytesObject);
             fileOutputStream.close();
 
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (IOException e2) {
+        } catch (MissionNotLoaded missionNotLoaded) {
+            missionNotLoaded.printStackTrace();
         }
     }
 

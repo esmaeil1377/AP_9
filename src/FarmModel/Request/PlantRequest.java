@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Grass;
@@ -9,7 +10,7 @@ public class PlantRequest extends Request {
     private int x;
     private int y;
 
-    public PlantRequest(String requestlIne) {
+    public PlantRequest(String requestlIne) throws MissionNotLoaded {
         AnalyzeRequestLine(requestlIne);
         Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
         if (well.getWaterOfTheBucket() > 0) {

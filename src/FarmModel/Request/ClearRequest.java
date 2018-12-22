@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
@@ -8,7 +9,7 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 public class ClearRequest extends Request {
     private String vehicleName;
 
-    public ClearRequest(String request) {
+    public ClearRequest(String request) throws MissionNotLoaded {
         AnalyzeRequestLine(request);
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         if (vehicleName.equals("truck")) {

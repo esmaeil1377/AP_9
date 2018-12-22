@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -18,7 +19,7 @@ public class Helicopter extends TransportationVehicle {
     }
 
     //i have to watch out this part because object have not the same space needed and they are .
-    public void BuyObjectFromCityAndGetMoneyFromUser(ObjectInMap15_15 good) {
+    public void BuyObjectFromCityAndGetMoneyFromUser(ObjectInMap15_15 good) throws MissionNotLoaded {
         //don'd forget capacity limitation.
         Mission mission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
         int priceToBuyMoney = CalculatePriceToBuyForHelicopter(new ArrayList<>(Arrays.asList(good)));
@@ -29,7 +30,7 @@ public class Helicopter extends TransportationVehicle {
         }
     }
 
-    public void PutObjectInMapRandomly() {
+    public void PutObjectInMapRandomly() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         for (Object objectInMap15_15 : getGoodsThatHaveToCarry()) {
             int x = (int) (Math.random() * 16) + 1;

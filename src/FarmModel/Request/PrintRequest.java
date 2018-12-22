@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 public class PrintRequest extends Request {
     private String commandName;
 
-    public PrintRequest(String requestLine) {
+    public PrintRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
         if (commandName.equals("info")) {
             PrintInfo();
@@ -58,7 +59,7 @@ public class PrintRequest extends Request {
 
     }
 
-    public void PrintMap() {
+    public void PrintMap() throws MissionNotLoaded {
         //Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[2][3];
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -74,7 +75,7 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintLevels() {
+    public void PrintLevels() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         WareHouse wareHouse = farm.getWareHouse();
         Truck truck = farm.getTruck();
@@ -92,7 +93,7 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintWareHouse() {
+    public void PrintWareHouse() throws MissionNotLoaded {
         WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
         ArrayList<Object> wareHouseList = wareHouse.getWareHouseList();
         for (Object object : wareHouseList) {
@@ -100,13 +101,13 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintWell() {
+    public void PrintWell() throws MissionNotLoaded {
         Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
         System.out.println("water of bucket:" + well.getWaterOfTheBucket());
         System.out.println("activated or No " + well.isWellActivatedToFillTheBucket());
     }
 
-    public void PrintWorkShop() {
+    public void PrintWorkShop() throws MissionNotLoaded {
         ArrayList<WorkShop> workShops = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops();
         for (WorkShop workShop : workShops) {
             System.out.println(workShop.toString() + "Output Product: " + workShop.getResultProduct());
@@ -116,7 +117,7 @@ public class PrintRequest extends Request {
 
     }
 
-    public void PrintTruck() {
+    public void PrintTruck() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         Truck truck = farm.getTruck();
         for (Object object : truck.getGoodsThatHaveToCarry()) {
@@ -124,7 +125,7 @@ public class PrintRequest extends Request {
         }
     }
 
-    public void PrintHelicopter() {
+    public void PrintHelicopter() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
         Helicopter helicopter = farm.getHelicopter();
         for (Object object : helicopter.getGoodsThatHaveToCarry()) {

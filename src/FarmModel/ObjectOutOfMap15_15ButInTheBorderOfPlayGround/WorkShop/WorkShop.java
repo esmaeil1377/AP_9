@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
@@ -81,7 +82,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         this.remainTurnToProduce = remainTurnToProduce;
     }
 
-    public void getProductFromWareHouse() {
+    public void getProductFromWareHouse() throws MissionNotLoaded {
         WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
         int numberOfAccessInputPackageInWareHouse = getMaxNumberOfGettingInput();
         for (Product productRequirement : objectNeededToProduceAProduct.keySet()) {
@@ -119,13 +120,13 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         return level;
     }
 
-    public abstract void MakeAProductAndPutItInMap();
+    public abstract void MakeAProductAndPutItInMap() throws MissionNotLoaded;
 
     public void setObjectNeededToProduceAProduct(HashMap<Product, Integer> objectNeededToProduceAProduct) {
         this.objectNeededToProduceAProduct = objectNeededToProduceAProduct;
     }
 
-    public void UpgradeWorkShop() throws NotEnoughMoney, UnknownObjectException {
+    public void UpgradeWorkShop() throws NotEnoughMoney, UnknownObjectException, MissionNotLoaded {
         int priceNeeded = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         Mission mission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
         int missionMoney = mission.getStartMoneyInMission();

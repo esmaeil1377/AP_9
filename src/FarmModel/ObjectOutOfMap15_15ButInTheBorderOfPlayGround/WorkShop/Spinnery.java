@@ -1,5 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
@@ -21,7 +22,7 @@ public class Spinnery extends WorkShop {
     }
 
     @Override
-    public void MakeAProductAndPutItInMap() {
+    public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
             Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15 - i][7];
             cell.AddCellAMapObject(getNewProductByType(getResultProduct()));

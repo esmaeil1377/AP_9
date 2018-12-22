@@ -1,5 +1,6 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
@@ -15,8 +16,10 @@ public class StartRequest extends Request {
         return workShop;
     }
 
-    public StartRequest(String requestLine) {
+    public StartRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
+        WorkShop workShop = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getspecifiedWorkShop(getWorkShopName());
+        setWorkShop(workShop);
         workShop.setWorkShopActivatedToMakeProduct(true);
     }
 
@@ -28,10 +31,10 @@ public class StartRequest extends Request {
         WorkShopName = workShopName;
     }
 
-    public void AnalyzeRequestLine(String requestLine) {
+    public void AnalyzeRequestLine(String requestLine){
         String workShopName = requestLine.substring(6);
-        WorkShop workShop = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getspecifiedWorkShop(workShopName);
-        setWorkShop(workShop);
+        setWorkShopName(workShopName);
+
         //showing a appropriate notation for error that there is no workshop by this name;
 
     }

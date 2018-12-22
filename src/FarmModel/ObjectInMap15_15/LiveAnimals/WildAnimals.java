@@ -1,5 +1,6 @@
 package FarmModel.ObjectInMap15_15.LiveAnimals;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Grass;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 
 public abstract class WildAnimals extends Animals {
 
-    public void Destroyed() {
+    public void Destroyed() throws MissionNotLoaded {
         int x = getX();
         int y = getY();
         Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
