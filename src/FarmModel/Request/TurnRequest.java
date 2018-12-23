@@ -265,10 +265,9 @@ public class TurnRequest extends Request {
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
             user.getCurrentPlayingMission().setMissionCompletion(true);
             user.AddMoney(user.getCurrentPlayingMission().CalculateMoneyToGiveUserAfterCompletingTheMission());
+            System.out.println(user.getCurrentPlayingMission().getMissionName()+" ended.");
             Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(null);
             //Now It should go out of the mission don't know how.
         }
     }
-
-
 }
