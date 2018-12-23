@@ -1,5 +1,9 @@
 package FarmModel;
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Chicken;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Cow;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery;
@@ -11,7 +15,7 @@ import java.util.Arrays;
 public class User {
     private String acountName;
     private int money;
-    private Mission mission1=new Mission("mission1",1000,new Farm(null,null,null));
+    private Mission mission1=new Mission("mission1",500,new Farm(null,null,null));
     private Mission mission2=new Mission("mission2",1000,new Farm(null,null,new ArrayList<WorkShop>(Arrays.asList(new CakeBakery()))));
     private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null));
     private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null));
@@ -21,6 +25,10 @@ public class User {
     private GameShop gameShop = new GameShop();
 
     public User(String accountName) {
+        mission1.Addrequirement(new Egg(),10);
+        mission2.Addrequirement(new Chicken(),2);
+        mission3.Addrequirement(new Powder(),5);
+        mission4.Addrequirement(new Cow(),3);
         setAccountName(accountName);
         AddMissionToMissionsForUser(mission1);
         AddMissionToMissionsForUser(mission2);

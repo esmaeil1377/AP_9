@@ -19,6 +19,10 @@ public class Mission implements Serializable {
     private CityShop cityShop =new CityShop(new ArrayList<>(Arrays.asList()));
     // add time for player where is the time.
 
+    public void Addrequirement(Object object,int number){
+        requirementToFinishTheMission.put(object,number);
+    }
+
 
     public CityShop getCityShop() {
         return cityShop;
