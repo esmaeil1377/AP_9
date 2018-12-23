@@ -95,11 +95,11 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
 //        }
         int maxLevel = 3;
         int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
-        int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
+        int missionMoney = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getMissionMoney();
         if (getLevel() < maxLevel) {
             if (priceNeed < missionMoney) {
                 Level++;
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeed);
+                Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().setMissionMoney(missionMoney - priceNeed);
             } else {
                 throw new NotEnoughMoney();
             }

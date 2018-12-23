@@ -61,14 +61,14 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
     }
 
     public void Upgrade() throws MaxLevelExceeded, NotEnoughMoney, UnknownObjectException, MissionNotLoaded {
-        Mission currentMission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
+        Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
         int maxLevel = 3;
-        int missionMoney = currentMission.getStartMoneyInMission();
+        int missionMoney = currentMission.getMissionMoney();
         int priceTOUpgradeWell = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
         if (getLevel() < maxLevel) {
             if (missionMoney > priceTOUpgradeWell) {
-                currentMission.setStartMoneyInMission(missionMoney - priceTOUpgradeWell);
-                InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket -= 2;
+                currentMission.setMissionMoney(missionMoney - priceTOUpgradeWell);
+                InformationNeededInGame.PriceToFillTheBucket -= 2;
                 setLevel(getLevel() + 1);
             } else {
                 throw new NotEnoughMoney();
@@ -80,12 +80,12 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
     }
 
     public void FillTheBucket() throws MissionNotLoaded {
-        Mission currentMission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
-        int priceToFillTheBucket = InformationNeededInGame.getInformationNeededInGame().PriceToFillTheBucket;
+        Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+        int priceToFillTheBucket = InformationNeededInGame.PriceToFillTheBucket;
 
-        if (getWaterOfTheBucket() == 0 && currentMission.getStartMoneyInMission() >= priceToFillTheBucket) {
-            setWaterOfTheBucket(InformationNeededInGame.getInformationNeededInGame().CapacityOfTheBucket);
-            currentMission.setStartMoneyInMission(currentMission.getStartMoneyInMission() - priceToFillTheBucket);
+        if (getWaterOfTheBucket() == 0 && currentMission.getMissionMoney() >= priceToFillTheBucket) {
+            setWaterOfTheBucket(InformationNeededInGame.CapacityOfTheBucket);
+            currentMission.setMissionMoney(currentMission.getMissionMoney() - priceToFillTheBucket);
         }
     }
 

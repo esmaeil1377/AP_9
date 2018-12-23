@@ -11,7 +11,7 @@ public class ClearRequest extends Request {
 
     public ClearRequest(String request) throws MissionNotLoaded {
         AnalyzeRequestLine(request);
-        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         if (vehicleName.equals("truck")) {
             Truck truck = farm.getTruck();
             truck.getGoodsThatHaveToCarry().clear();

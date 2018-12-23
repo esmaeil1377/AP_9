@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class Mission implements Serializable {
     private String missionName;
-    private int startMoneyInMission;
+    private int missionMoney;
     private int TimeTakeForPlayerToFinishTheMap;
     private Farm farm;
     private boolean isMissionCompletedBefore = false;
@@ -27,20 +27,23 @@ public class Mission implements Serializable {
     public String getMissionName() {
         return missionName;
     }
+    public void ChangeMissionMoney(int Money){
+        missionMoney+=Money;
+    }
 
 
-    public Mission(String missionName, int startMoneyInMission, Farm farm) {
+    public Mission(String missionName, int missionMoney, Farm farm) {
         this.missionName=missionName;
         this.farm = farm;
-        this.startMoneyInMission = startMoneyInMission;
+        this.missionMoney = missionMoney;
     }
 
-    public int getStartMoneyInMission() {
-        return startMoneyInMission;
+    public int getMissionMoney() {
+        return missionMoney;
     }
 
-    public void setStartMoneyInMission(int startMoneyInMission) {
-        this.startMoneyInMission = startMoneyInMission;
+    public void setMissionMoney(int missionMoney) {
+        this.missionMoney = missionMoney;
     }
 
     public int getTimeTakeForPlayerToFinishTheMap() {
@@ -73,13 +76,13 @@ public class Mission implements Serializable {
 
     public int CalculateMoneyToGiveUserAfterCompletingTheMission() {
         //it is a function of timeplayerfinished the mission and other thing that i don't know
-        int money=getStartMoneyInMission()+100*(1/getTimeTakeForPlayerToFinishTheMap());
+        int money= getMissionMoney()+100*(1/getTimeTakeForPlayerToFinishTheMap());
         return money;
     }
 
     public boolean CheckIfMissionIsFinished() throws MissionNotLoaded {
         boolean result = true;
-        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (Object object : requirementToFinishTheMission.keySet()) {
             if (object.toString().equals("Chicken")) {
                 int numberofchicken = farm.getCurrentChickenInMap().size();

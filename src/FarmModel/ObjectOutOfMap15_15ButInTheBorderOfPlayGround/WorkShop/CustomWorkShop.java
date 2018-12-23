@@ -28,7 +28,7 @@ public class CustomWorkShop extends WorkShop {
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
             // allocate later location for this factory.
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[7+i][7];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[7+i][7];
             cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
         }
     }

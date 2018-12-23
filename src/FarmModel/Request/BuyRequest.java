@@ -4,16 +4,13 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.InformationNeededInGame;
+import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
+
+import static FarmModel.InformationNeededInGame.getPriceToBuy;
 
 public class BuyRequest extends Request {
     private String animalName;
-
-    public BuyRequest(String requestLine) {
-        AnalyzeRequestLine(animalName);
-
-    }
 
     public String getAnimalName() {
         return animalName;
@@ -23,61 +20,59 @@ public class BuyRequest extends Request {
         this.animalName = animalName;
     }
 
-    public void Buy(String request) throws MissionNotLoaded, NotEnoughMoney {
+    public BuyRequest(String request) throws MissionNotLoaded, NotEnoughMoney {
         AnalyzeRequestLine(request);
-        int currentMoney= Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
-        InformationNeededInGame priceToBuyObject = InformationNeededInGame.getInformationNeededInGame();
+        Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+        Farm farm = mission.getFarm();
+        int currentMoney= mission.getMissionMoney();
+        int x = (int) (Math.random() * 30);
+        int y = (int) (Math.random() * 30);
         if(getAnimalName().equals("Cat")){
-            if(currentMoney >= priceToBuyObject.getPriceToBuy(new Cat())){
-                Game.getGameInstance().getCurrentUserAcount().AddMoney(priceToBuyObject.getPriceToBuy(new Cat()));
-                Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-                int x = (int) (Math.random() * 30) + 1;
-                int y = (int) (Math.random() * 30) + 1;
-                farm.getMap()[x][y].AddCellAMapObject(new Cat());
+            Cat cat=new Cat();
+            int price=getPriceToBuy(cat);
+            if(currentMoney >= price){
+                mission.ChangeMissionMoney(-price);
+                farm.getMap()[x][y].AddCellAMapObject(cat);
             }
             else
                 throw new NotEnoughMoney();
         }
-        if(getAnimalName().equals("Dog")){
-            if(currentMoney >= priceToBuyObject.getPriceToBuy(new Dog())){
-                Game.getGameInstance().getCurrentUserAcount().AddMoney(priceToBuyObject.getPriceToBuy(new Dog()));
-                Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-                int x = (int) (Math.random() * 30) + 1;
-                int y = (int) (Math.random() * 30) + 1;
-                farm.getMap()[x][y].AddCellAMapObject(new Dog());
+        else if(getAnimalName().equals("Dog")){
+            Dog dog=new Dog();
+            int price=getPriceToBuy(dog);
+            if(currentMoney >= price){
+                mission.ChangeMissionMoney(-price);
+                farm.getMap()[x][y].AddCellAMapObject(dog);
             }
             else
                 throw new NotEnoughMoney();
         }
-        if(getAnimalName().equals("Chicken")){
-            if(currentMoney >= priceToBuyObject.getPriceToBuy(new Chicken())){
-                Game.getGameInstance().getCurrentUserAcount().AddMoney(priceToBuyObject.getPriceToBuy(new Chicken()));
-                Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-                int x = (int) (Math.random() * 30) + 1;
-                int y = (int) (Math.random() * 30) + 1;
-                farm.getMap()[x][y].AddCellAMapObject(new Chicken());
+        else if(getAnimalName().equals("Chicken")){
+            Chicken chicken=new Chicken();
+            int price=getPriceToBuy(chicken);
+            if(currentMoney >= price){
+                mission.ChangeMissionMoney(-price);
+                farm.getMap()[x][y].AddCellAMapObject(chicken);
             }
             else
                 throw new NotEnoughMoney();
         }
-        if(getAnimalName().equals("Sheep")){
-            if(currentMoney >= priceToBuyObject.getPriceToBuy(new Sheep())){
-                Game.getGameInstance().getCurrentUserAcount().AddMoney(priceToBuyObject.getPriceToBuy(new Sheep()));
-                Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-                int x = (int) (Math.random() * 30) + 1;
-                int y = (int) (Math.random() * 30) + 1;
-                farm.getMap()[x][y].AddCellAMapObject(new Sheep());
+        else if(getAnimalName().equals("Sheep")){
+            Sheep sheep=new Sheep();
+            int price=getPriceToBuy(sheep);
+            if(currentMoney >= price){
+                mission.ChangeMissionMoney(-price);
+                farm.getMap()[x][y].AddCellAMapObject(sheep);
             }
             else
                 throw new NotEnoughMoney();
         }
         if(getAnimalName().equals("Cow")){
-            if(currentMoney >= priceToBuyObject.getPriceToBuy(new Cow())){
-                Game.getGameInstance().getCurrentUserAcount().AddMoney(priceToBuyObject.getPriceToBuy(new Cow()));
-                Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
-                int x = (int) (Math.random() * 30) + 1;
-                int y = (int) (Math.random() * 30) + 1;
-                farm.getMap()[x][y].AddCellAMapObject(new Cow());
+            Cow cow=new Cow();
+            int price=getPriceToBuy(cow);
+            if(currentMoney >= price){
+                mission.ChangeMissionMoney(-price);
+                farm.getMap()[x][y].AddCellAMapObject(cow);
             }
             else
                 throw new NotEnoughMoney();
@@ -87,6 +82,6 @@ public class BuyRequest extends Request {
 
     public void AnalyzeRequestLine(String requestLine) {
         String[] params = requestLine.split(" ");
-        setAnimalName(params[1].substring(1, params[1].length() - 1));
+        setAnimalName(params[1]);
     }
 }

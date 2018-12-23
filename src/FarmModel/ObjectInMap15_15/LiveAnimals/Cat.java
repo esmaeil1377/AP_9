@@ -24,7 +24,7 @@ public class Cat extends Animals implements Upgradeable {
     }
 
     public void TakeProduct() throws MissionNotLoaded {
-        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
+        Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
         ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap1515());
         for (ObjectInMap15_15 objectInMap15_15 : currentObjectInMap) {
             if (objectInMap15_15 instanceof Product) {
@@ -37,7 +37,7 @@ public class Cat extends Animals implements Upgradeable {
 
     public void PutProductInStore() throws FullWareHouse, MissionNotLoaded {
         if (getProduct() != null) {
-            Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse().AddWholeObjectToStore(getProduct());
+            Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse().AddWholeObjectToStore(getProduct());
             setProduct(null);
         }
     }
@@ -50,11 +50,11 @@ public class Cat extends Animals implements Upgradeable {
     public void Upgrade() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
         int maxLevel = 4; // edit maxLevel
         int priceNeed = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
-        int missionMoney = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getStartMoneyInMission();
+        int missionMoney = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getMissionMoney();
         if (Level < maxLevel) {
             if (priceNeed < missionMoney) {
                 Level++;
-                Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().setStartMoneyInMission(missionMoney - priceNeed);
+                Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().setMissionMoney(missionMoney - priceNeed);
             } else {
                 throw new NotEnoughMoney();
             }

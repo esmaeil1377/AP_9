@@ -8,7 +8,6 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 public class Sheep extends AnimalProducer {
 
     public Sheep() {
-        setAnimalAmountOfHunger(8);
         setMinOfHungerToGoToFindTheGrass(3);
         setTurnToProduce(18);
     }

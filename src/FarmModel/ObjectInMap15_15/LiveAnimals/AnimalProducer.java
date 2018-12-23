@@ -7,7 +7,7 @@ import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 
 public abstract class AnimalProducer extends Animals {
-    private int animalAmountOfHunger;
+    private int animalAmountOfHunger=8;
     private int healthyAnimalAmountOfHunger;
     private int remainTurnToProduce;
     private boolean wantToEatGrass = false;
@@ -57,7 +57,7 @@ public abstract class AnimalProducer extends Animals {
     public void EatGrass() throws MissionNotLoaded {
         int x = getX();
         int y = getY();
-        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+        Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
         for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap1515()) {
             if (objectInMap15_15 instanceof Grass) {
                 cell.RemoveCellAMapObject(objectInMap15_15);

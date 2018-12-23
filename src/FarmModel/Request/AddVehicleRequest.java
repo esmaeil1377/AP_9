@@ -23,7 +23,7 @@ public class AddVehicleRequest extends Request {
 
     public AddVehicleRequest(String request) throws MissionNotLoaded {
         AnalyzeRequestLine(request);
-        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         WareHouse wareHouse = farm.getWareHouse();
         if (vehicleName.equals("truck")) {
             Truck truck = farm.getTruck();
@@ -34,7 +34,7 @@ public class AddVehicleRequest extends Request {
         } else if (vehicleName.equals("helicopter")) {
 
             Helicopter helicopter = farm.getHelicopter();
-            CityShop cityShop = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getCityShop();
+            CityShop cityShop = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getCityShop();
             for (int i = 0; i < count; i++)
                 cityShop.getObjectTypeFrom(getObject().toString());
         }

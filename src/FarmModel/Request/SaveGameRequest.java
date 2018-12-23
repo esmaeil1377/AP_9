@@ -23,7 +23,7 @@ public class SaveGameRequest extends Request {
         FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
-            Mission currentMission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
+            Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
             YaGson mapper = new YaGson();
             String objectJson = mapper.toJson(currentMission, Mission.class);
 

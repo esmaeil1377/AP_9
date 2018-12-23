@@ -19,7 +19,7 @@ public class UpgradeRequest extends Request{
 
     public UpgradeRequest(String requestLine) throws UnknownObjectException {
         try {
-            Farm farm=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+            Farm farm=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
             AnalyzeRequestlIne(requestLine);
             if (objectString.equals("cat")) {
                 ArrayList<Animals> animals = farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal();

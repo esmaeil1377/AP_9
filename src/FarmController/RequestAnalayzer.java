@@ -1,9 +1,6 @@
 package FarmController;
 
-import FarmController.Exceptions.BucketIsEmptyException;
-import FarmController.Exceptions.FullWareHouse;
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.UnknownObjectException;
+import FarmController.Exceptions.*;
 import FarmModel.Request.*;
 
 public class RequestAnalayzer {
@@ -11,10 +8,10 @@ public class RequestAnalayzer {
     private RequestAnalayzer(){}
 
 
-    private static String BuyAnimals = "buy (cat|dog)";
-    private static String PickUp = " pickup [0-9] [0-9]";
-    private static String Cage = "cage [0-9][0-9]";
-    private static String Plant = "plant [0-9][0-9]";
+    private static String BuyAnimals = "buy (Cat|Dog|Chicken|Sheep|Cow)";
+    private static String PickUp = " pickup [0-9]* [0-9]*";
+    private static String Cage = "cage [0-9]* [0-9]*";
+    private static String Plant = "plant [0-9]* [0-9]*";
     private static String Well = "well";
     private static String StartWorkShop = "start .*";
     private static String Upgrade = "upgrade .*";
@@ -24,9 +21,9 @@ public class RequestAnalayzer {
     private static String LoadGame = "load game .*";
     private static String Print = "print .*";
     private static String Turn = "turn [0-9]*";
-    private static String GoVehicle = "(truck|helicopter) go";
+    private static String GoVehicle = "(Truck|Helicopter) go";
 
-    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException {
+    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney {
         if (requestString.matches(BuyAnimals)) {
             new BuyRequest(requestString);
         } else if (requestString.matches(PickUp)) {
@@ -55,6 +52,8 @@ public class RequestAnalayzer {
             new TurnRequest(requestString);
         } else if (requestString.matches(GoVehicle)) {
             new GoVehicleRequest(requestString);
+        }else{
+            System.out.println("Unknown Request");
         }
     }
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 public class Farm {
-    private Cell Map[][] = new Cell[30][30];
+    private Cell map[][] = new Cell[30][30];
     private Truck truck;
     private Helicopter helicopter;
     private ArrayList<WorkShop> workShops = new ArrayList<>();
@@ -57,6 +57,11 @@ public class Farm {
         setHelicopter(helicopter);
         setTruck(truck);
         setWorkShops(workShops);
+        for(int i=0;i<30;i++){
+            for(int j=0;j<30;j++){
+                getMap()[i][j]=new Cell();
+            }
+        }
     }
 
     public int getRemainTurnToRandomlyAddWildAnimalToMap() {
@@ -194,7 +199,7 @@ public class Farm {
     }
 
     public static Cell getCellByPosition(int x,int y) throws MissionNotLoaded {
-        return Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+        return Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
     }
 
     public ArrayList<Sheep> getCurrnetShipInMap() throws MissionNotLoaded {
@@ -267,7 +272,7 @@ public class Farm {
     }
 
     public Cell[][] getMap() {
-        return Map;
+        return map;
     }
 
     public ArrayList<WorkShop> getWorkShops() {
@@ -291,7 +296,7 @@ public class Farm {
     }
 
     public WorkShop getspecifiedWorkShop(String WorkshopName) throws MissionNotLoaded {
-        Farm farm=Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (WorkShop workshop : farm.getWorkShops()) {
             if (workshop.getWorkShopName().equals(WorkshopName)) {
                 return workshop;

@@ -3,7 +3,6 @@ package FarmModel.Request;
 import FarmModel.Game;
 import FarmModel.Mission;
 import com.gilecode.yagson.YaGson;
-import com.oracle.tools.packager.IOUtils;
 
 import java.io.*;
 
@@ -28,8 +27,8 @@ public class LoadGameRequest extends Request {
             fileInputStream.close();
 
             currentMission=mapper.fromJson(missionString,Mission.class);
-            Game.getGameInstance().getCurrentUserAcount().setCurrentPlayingMission(currentMission);
-            Game.getGameInstance().getCurrentUserAcount().AddMissionToMissionsForUser(currentMission);
+            Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(currentMission);
+            Game.getGameInstance().getCurrentUserAccount().AddMissionToMissionsForUser(currentMission);
 
 
         } catch (FileNotFoundException e1) {

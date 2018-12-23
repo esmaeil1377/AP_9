@@ -11,7 +11,7 @@ public class GoVehicleRequest extends Request {
     public GoVehicleRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
         if (getVehicleName().equals("truck")) {
-            Truck truck = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getTruck();
+            Truck truck = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
             if (truck!=null) {
                 truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getTurnToMoveObjectToCityAndComeBack());
                 truck.setVehicleActivated(true);
@@ -19,7 +19,7 @@ public class GoVehicleRequest extends Request {
                 //i don't know how to react here.
             }
         } else {
-            Helicopter helicopter = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getHelicopter();
+            Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
             if (helicopter!=null) {
                 helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack());
                 helicopter.setVehicleActivated(true);

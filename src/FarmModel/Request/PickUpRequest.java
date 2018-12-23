@@ -18,7 +18,7 @@ public class PickUpRequest extends Request {
     public PickUpRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
         Cell cell = Farm.getCellByPosition(getX(),getY());
-        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap1515());
         for (ObjectInMap15_15 object : currentObjectInMap) {
             if (object instanceof Product) {

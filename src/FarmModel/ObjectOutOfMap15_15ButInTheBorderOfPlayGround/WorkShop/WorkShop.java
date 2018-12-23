@@ -20,7 +20,8 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     private int turnNeededToProduceOneProduct = 18;
     private int remainTurnToProduce;
     private boolean isWorkShopActivatedToMakeProduct = false;
-    private int level;
+    //it is static because it should save the level
+    private static int level;
     private HashMap<Product, Integer> objectNeededToProduceAProduct = new HashMap<>();
     private Product resultProduct;
 
@@ -83,7 +84,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     }
 
     public void getProductFromWareHouse() throws MissionNotLoaded {
-        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         int numberOfAccessInputPackageInWareHouse = getMaxNumberOfGettingInput();
         for (Product productRequirement : objectNeededToProduceAProduct.keySet()) {
             int numberofProductInWareHouse = 0;
@@ -128,8 +129,8 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
 
     public void Upgrade() throws NotEnoughMoney, UnknownObjectException, MissionNotLoaded {
         int priceNeeded = InformationNeededInGame.getInformationNeededInGame().getPriceForUpgrade(this);
-        Mission mission = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission();
-        int missionMoney = mission.getStartMoneyInMission();
+        Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+        int missionMoney = mission.getMissionMoney();
 
         if (missionMoney > priceNeeded) {
             setLevel(getLevel() + 1);
@@ -143,7 +144,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
             } else if (getLevel() == 4) {
                 setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 3);
             }
-            mission.setStartMoneyInMission(missionMoney - priceNeeded);
+            mission.setMissionMoney(missionMoney - priceNeeded);
         } else {
             throw new NotEnoughMoney();
         }

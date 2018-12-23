@@ -35,7 +35,7 @@ public class User {
 
     public Mission getCurrentPlayingMission() throws MissionNotLoaded {
         try {
-            int startMoney=currentPlayingMission.getStartMoneyInMission();
+            int startMoney=currentPlayingMission.getMissionMoney();
             return currentPlayingMission;
 
         }catch (NullPointerException e){

@@ -70,7 +70,7 @@ public class PrintRequest extends Request {
     }
 
     private void PrintLevels() throws MissionNotLoaded {
-        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         WareHouse wareHouse = farm.getWareHouse();
         Truck truck = farm.getTruck();
         Helicopter helicopter = farm.getHelicopter();
@@ -88,7 +88,7 @@ public class PrintRequest extends Request {
     }
 
     private void PrintWareHouse() throws MissionNotLoaded {
-        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         ArrayList<Object> wareHouseList = wareHouse.getWareHouseList();
         for (Object object : wareHouseList) {
             System.out.println(object.toString());
@@ -96,13 +96,13 @@ public class PrintRequest extends Request {
     }
 
     private void PrintWell() throws MissionNotLoaded {
-        Well well = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWell();
+        Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
         System.out.println("water of bucket:" + well.getWaterOfTheBucket());
         System.out.println("activated or No " + well.isWellActivatedToFillTheBucket());
     }
 
     private void PrintWorkShop() throws MissionNotLoaded {
-        ArrayList<WorkShop> workShops = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getWorkShops();
+        ArrayList<WorkShop> workShops = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWorkShops();
         for (WorkShop workShop : workShops) {
             System.out.println(workShop.toString() + "Output Product: " + workShop.getResultProduct());
             for (Object object : workShop.getObjectNeededToProduceAProduct().keySet())
@@ -112,7 +112,7 @@ public class PrintRequest extends Request {
     }
 
     private void PrintTruck() throws MissionNotLoaded {
-        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         Truck truck = farm.getTruck();
         for (Object object : truck.getGoodsThatHaveToCarry()) {
             System.out.println(object.toString());
@@ -120,7 +120,7 @@ public class PrintRequest extends Request {
     }
 
     private void PrintHelicopter() throws MissionNotLoaded {
-        Farm farm = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         Helicopter helicopter = farm.getHelicopter();
         for (Object object : helicopter.getGoodsThatHaveToCarry()) {
             System.out.println(object.toString());

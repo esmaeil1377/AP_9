@@ -9,9 +9,9 @@ public class RunRequest extends Request {
 
     public RunRequest(String requestLine) throws UnknownObjectException {
         AnalyzeRequestLine(requestLine);
-        for(Mission mission: Game.getGameInstance().getCurrentUserAcount().getMissions()){
+        for(Mission mission: Game.getGameInstance().getCurrentUserAccount().getMissions()){
             if(mission.getMissionName().equals(getMapName())){
-                Game.getGameInstance().getCurrentUserAcount().setCurrentPlayingMission(mission);
+                Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(mission);
                 return;
             }
         }

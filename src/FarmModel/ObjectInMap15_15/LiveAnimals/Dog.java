@@ -10,7 +10,7 @@ public class Dog extends Animals {
     public  void KillWildAnimalAndDie() throws MissionNotLoaded {
         int x = getX();
         int y = getY();
-        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+        Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
         for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap1515()) {
             if (objectInMap15_15 instanceof WildAnimals) {
                 cell.RemoveCellAMapObject(this);

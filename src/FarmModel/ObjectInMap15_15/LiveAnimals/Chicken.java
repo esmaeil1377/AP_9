@@ -13,7 +13,6 @@ public class Chicken extends AnimalProducer {
     }
 
     public Chicken() {
-        setAnimalAmountOfHunger(8);
         setMinOfHungerToGoToFindTheGrass(3);
         setTurnToProduce(18);
     }

@@ -5,7 +5,6 @@ import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.Product;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Fabric;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Sewing;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
@@ -24,7 +23,7 @@ public class Spinnery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[15 - i][7];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[15 - i][7];
             cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
         }
     }

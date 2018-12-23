@@ -13,7 +13,7 @@ public abstract class WildAnimals extends Animals {
     public void Destroyed() throws MissionNotLoaded {
         int x = getX();
         int y = getY();
-        Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+        Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
         ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap1515());
         for (ObjectInMap15_15 objectInMap15_15 : currentObjectInMap) {
             if (!(objectInMap15_15 instanceof WildAnimals) && !(objectInMap15_15 instanceof Grass)) {
