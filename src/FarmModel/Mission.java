@@ -24,9 +24,13 @@ public class Mission implements Serializable {
         return cityShop;
     }
 
-    public Mission(String missionName,int startMoneyInMission, int timeTakeForPlayerToPlayTheMap, Farm farm) {
+    public String getMissionName() {
+        return missionName;
+    }
+
+
+    public Mission(String missionName, int startMoneyInMission, Farm farm) {
         this.missionName=missionName;
-        TimeTakeForPlayerToFinishTheMap = timeTakeForPlayerToPlayTheMap;
         this.farm = farm;
         this.startMoneyInMission = startMoneyInMission;
     }
