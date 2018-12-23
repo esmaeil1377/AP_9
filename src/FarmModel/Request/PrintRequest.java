@@ -37,11 +37,11 @@ public class PrintRequest extends Request {
         }
     }
 
-    public String getCommandName() {
+    private String getCommandName() {
         return commandName;
     }
 
-    public void setCommandName(String commandName) {
+    private void setCommandName(String commandName) {
         this.commandName = commandName;
     }
 
@@ -50,12 +50,11 @@ public class PrintRequest extends Request {
         setCommandName(params[1]);
     }
 
-    public void PrintInfo() {
+    private void PrintInfo() {
 
     }
 
-    public void PrintMap() throws MissionNotLoaded {
-        //Cell cell = Game.getGameInstance().getCurrentUserAcount().getCurrentPlayingMission().getFarm().getMap()[2][3];
+    private void PrintMap() throws MissionNotLoaded {
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
                 Cell cell = Farm.getCellByPosition(i,j);

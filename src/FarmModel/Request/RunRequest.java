@@ -1,12 +1,13 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.Mission;
 
 public class RunRequest extends Request {
     private String mapName;
 
-    public RunRequest(String requestLine) {
+    public RunRequest(String requestLine) throws UnknownObjectException {
         AnalyzeRequestLine(requestLine);
         for(Mission mission: Game.getGameInstance().getCurrentUserAcount().getMissions()){
             if(mission.getMissionName().equals(getMapName())){
@@ -14,7 +15,8 @@ public class RunRequest extends Request {
                 return;
             }
         }
-    }
+        throw new UnknownObjectException();
+     }
 
     public String getMapName() {
         return mapName;

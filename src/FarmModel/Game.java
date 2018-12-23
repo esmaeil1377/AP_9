@@ -8,8 +8,7 @@ public class Game {
     private User currentUserAcount=new User("Mosio");
     ArrayList<User> userAcount = new ArrayList<>();
 
-    private Game() {
-    }
+    private Game() {}
 
     public static Game getGameInstance() {
         return game;
