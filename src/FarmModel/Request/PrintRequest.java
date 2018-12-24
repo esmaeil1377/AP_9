@@ -70,7 +70,7 @@ public class PrintRequest extends Request {
             for (int j = 0; j < 30; j++) {
                 Cell cell = Farm.getCellByPosition(i,j);
                 ArrayList<ObjectInMap15_15> cellObject = cell.getCellObjectInMap1515();
-                System.out.print("["+j+":");
+                System.out.print("[");
                 int numOfCellObject=cellObject.size();
                 for (ObjectInMap15_15 objectInMap15_15 : cellObject) {
                     System.out.print(objectInMap15_15.toString() + ",");
