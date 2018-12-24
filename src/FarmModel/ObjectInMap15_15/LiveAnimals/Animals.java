@@ -54,15 +54,15 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 4 || nextDir == 5 || nextDir == 6 || nextDir == 7 || nextDir == 8) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 0 && currentY == 14) {
+        } else if (currentX == 0 && currentY == 29) {
             while (nextDir == 2 || nextDir == 3 || nextDir == 4 || nextDir == 5 || nextDir == 6) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 14 && currentY == 0) {
+        } else if (currentX == 29 && currentY == 0) {
             while (nextDir == 6 || nextDir == 7 || nextDir == 8 || nextDir == 1 || nextDir == 2) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 14 && currentY == 14) {
+        } else if (currentX == 29 && currentY == 29) {
             while (nextDir == 8 || nextDir == 1 || nextDir == 2 || nextDir == 3 || nextDir == 4) {
                 nextDir = getNumberBetween0_9();
             }
@@ -70,7 +70,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 4 || nextDir == 5 || nextDir == 6) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 14) {
+        } else if (currentX == 29) {
             while (nextDir == 8 || nextDir == 1 || nextDir == 2) {
                 nextDir = getNumberBetween0_9();
             }
@@ -78,7 +78,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 6 || nextDir == 7 || nextDir == 8) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentY == 14) {
+        } else if (currentY == 29) {
             while (nextDir == 2 || nextDir == 3 || nextDir == 4) {
                 nextDir = getNumberBetween0_9();
             }
