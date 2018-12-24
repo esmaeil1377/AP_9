@@ -9,10 +9,10 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 public abstract class AnimalProducer extends Animals {
     private int animalAmountOfHunger=8;
     private int healthyAnimalAmountOfHunger;
-    private int remainTurnToProduce;
+    private int remainTurnToProduce=18;
     private boolean wantToEatGrass = false;
     private int minOfHungerToGoToFindTheGrass;
-    private int turnToProduce;
+    private final int turnToProduce=18;
 
     public int getHealthyAnimalAmountOfHunger() {
         return healthyAnimalAmountOfHunger;
@@ -22,9 +22,6 @@ public abstract class AnimalProducer extends Animals {
         this.healthyAnimalAmountOfHunger = healthyAnimalAmountOfHunger;
     }
 
-    public void setTurnToProduce(int turnToProduce) {
-        this.turnToProduce = turnToProduce;
-    }
 
     public int getTurnToProduce() {
         return turnToProduce;

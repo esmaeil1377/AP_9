@@ -9,7 +9,6 @@ public class Cow extends AnimalProducer {
 
     public Cow() {
         setMinOfHungerToGoToFindTheGrass(3);
-        setTurnToProduce(18);
 
     }
 

@@ -9,7 +9,6 @@ public class Sheep extends AnimalProducer {
 
     public Sheep() {
         setMinOfHungerToGoToFindTheGrass(3);
-        setTurnToProduce(18);
     }
 
     @Override

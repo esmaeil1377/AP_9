@@ -185,6 +185,7 @@ public class TurnRequest extends Request {
                 if (animals instanceof AnimalProducer) {
                     if (((AnimalProducer) animals).getRemainTurnToProduce() == 0) {
                         ((AnimalProducer) animals).Produce();
+                        ((AnimalProducer) animals).setRemainTurnToProduce(((AnimalProducer) animals).getTurnToProduce());
                     } else {
                         ((AnimalProducer) animals).setRemainTurnToProduce(((AnimalProducer) animals).getRemainTurnToProduce() - 1);
                     }

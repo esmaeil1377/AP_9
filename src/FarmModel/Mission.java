@@ -90,27 +90,27 @@ public class Mission implements Serializable {
         for (Object object : requirementToFinishTheMission.keySet()) {
             if (object.toString().equals("Chicken")) {
                 int numberofchicken = farm.getCurrentChickenInMap().size();
-                if (!(numberofchicken < requirementToFinishTheMission.get(object))) {
+                if (numberofchicken < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }
             } else if (object.toString().equals("Cow")) {
                 int numberOfCow = farm.getCurrnetCowInMap().size();
-                if (!(numberOfCow < requirementToFinishTheMission.get(object))) {
+                if (numberOfCow < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }
             } else if (object.toString().equals("Sheep")) {
                 int numberOfShip = farm.getCurrnetShipInMap().size();
-                if (!(numberOfShip < requirementToFinishTheMission.get(object))) {
+                if (numberOfShip < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }
             } else if (object.toString().equals("Cat")) {
                 int numberOfCat = farm.getCurrentCatInMap().size();
-                if (!(numberOfCat < requirementToFinishTheMission.get(object))) {
+                if (numberOfCat < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }
             } else if (object.toString().equals("Dog")) {
                 int numberOfDog = farm.getCurrentCatInMap().size();
-                if (!(numberOfDog < requirementToFinishTheMission.get(object))) {
+                if (numberOfDog < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }
             } else {
