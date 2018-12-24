@@ -1,6 +1,6 @@
 package FarmModel.ObjectInMap15_15;
 
-public abstract class ObjectInMap15_15 {
+public abstract class ObjectInMap30_30 {
     private int x;
     private int y;
 

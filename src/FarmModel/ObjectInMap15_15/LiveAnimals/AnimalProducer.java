@@ -4,7 +4,7 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Grass;
-import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
 
 public abstract class AnimalProducer extends Animals {
     private int animalAmountOfHunger=8;
@@ -55,7 +55,7 @@ public abstract class AnimalProducer extends Animals {
         int x = getX();
         int y = getY();
         Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
-        for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap1515()) {
+        for (ObjectInMap30_30 objectInMap15_15 : cell.getCellObjectInMap30_30()) {
             if (objectInMap15_15 instanceof Grass) {
                 cell.RemoveCellAMapObject(objectInMap15_15);
                 setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 1);

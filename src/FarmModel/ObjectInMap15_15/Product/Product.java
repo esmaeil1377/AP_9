@@ -1,18 +1,10 @@
 package FarmModel.ObjectInMap15_15.Product;
 
-import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
 
-public abstract class Product extends ObjectInMap15_15 {
-    private int turnToDisapear;
-    private int remainTurnToDisapear;
+public abstract class Product extends ObjectInMap30_30 {
+    private int remainTurnToDisapear=20;
 
-    public void setTurnToDisapear(int turnToDisapear) {
-        this.turnToDisapear = turnToDisapear;
-    }
-
-    public int getTurnToDisapear() {
-        return turnToDisapear;
-    }
 
     public int getRemainTurnToDisapear() {
         return remainTurnToDisapear;

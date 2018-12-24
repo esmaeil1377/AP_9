@@ -2,14 +2,13 @@ package FarmModel.ObjectInMap15_15.LiveAnimals;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
-import FarmModel.Game;
-import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public abstract class Animals extends ObjectInMap15_15 {
+public abstract class Animals extends ObjectInMap30_30 {
 
     public static void WalkRandomlyForOneTurn(Animals animals) throws MissionNotLoaded {
         int currentX = animals.getX();

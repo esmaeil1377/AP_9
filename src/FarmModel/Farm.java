@@ -4,7 +4,7 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
-import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
@@ -113,7 +113,7 @@ public class Farm {
         ArrayList<Animals> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++) {
             for (int y = 0; y < 30; y++) {
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Animals) {
                         animalsInMap.add((Animals) objectInMap15_15);
 //                        if (objectInMap15_15.toString().equals("Chicken"))
@@ -153,7 +153,7 @@ public class Farm {
         ArrayList<Cat> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Cat) {
                         animalsInMap.add((Cat) objectInMap15_15);
                     }
@@ -165,7 +165,7 @@ public class Farm {
         ArrayList<Dog> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Dog) {
                         animalsInMap.add((Dog) objectInMap15_15);
                     }
@@ -178,7 +178,7 @@ public class Farm {
         ArrayList<Chicken> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Chicken) {
                         animalsInMap.add((Chicken) objectInMap15_15);
                     }
@@ -190,7 +190,7 @@ public class Farm {
         ArrayList<Cow> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Cow) {
                         animalsInMap.add((Cow) objectInMap15_15);
                     }
@@ -206,7 +206,7 @@ public class Farm {
         ArrayList<Sheep> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Sheep) {
                         animalsInMap.add((Sheep) objectInMap15_15);
                     }
@@ -218,7 +218,7 @@ public class Farm {
         ArrayList<Lion> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Lion) {
                         animalsInMap.add((Lion) objectInMap15_15);
                     }
@@ -230,7 +230,7 @@ public class Farm {
         ArrayList<Bear> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Bear) {
                         animalsInMap.add((Bear) objectInMap15_15);
                     }
@@ -243,7 +243,7 @@ public class Farm {
         ArrayList<Grass> grassInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++) {
             for (int y = 0; y < 30; y++) {
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Grass) {
                         grassInMap.add((Grass) objectInMap15_15);
                     }
@@ -257,7 +257,7 @@ public class Farm {
         ArrayList<Product> productInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++) {
             for (int y = 0; y < 30; y++) {
-                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap1515()) {
+                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
                     if (objectInMap15_15 instanceof Product) {
                         productInMap.add((Product) objectInMap15_15);
                     }

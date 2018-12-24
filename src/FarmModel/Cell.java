@@ -2,7 +2,7 @@ package FarmModel;
 
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
-import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
 import FarmModel.ObjectInMap15_15.Product.Product;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Cell {
     private int x;
     private int y;
-    ArrayList<ObjectInMap15_15> cellObjectInMap1515 = new ArrayList<>();
+    ArrayList<ObjectInMap30_30> cellObjectInMap30_30 = new ArrayList<>();
 
 
     public int getXPosition() {
@@ -29,26 +29,26 @@ public class Cell {
         this.y = YPosition;
     }
 
-    public ArrayList<ObjectInMap15_15> getCellObjectInMap1515() {
-        return cellObjectInMap1515;
+    public ArrayList<ObjectInMap30_30> getCellObjectInMap30_30() {
+        return cellObjectInMap30_30;
     }
 
-    public void AddCellAMapObject(ObjectInMap15_15 objectInMap15_15) {
-        cellObjectInMap1515.add(objectInMap15_15);
+    public void AddCellAMapObject(ObjectInMap30_30 objectInMap30_30) {
+        cellObjectInMap30_30.add(objectInMap30_30);
     }
 
-    public void RemoveCellAMapObject(ObjectInMap15_15 objectInMap15_15) {
-        for (ObjectInMap15_15 objectInMap15_15s : cellObjectInMap1515) {
-            if (objectInMap15_15.equals(objectInMap15_15s)) {
-                cellObjectInMap1515.remove(objectInMap15_15s);
+    public void RemoveCellAMapObject(ObjectInMap30_30 objectInMap30_30) {
+        for (ObjectInMap30_30 objectInMap30_30s : cellObjectInMap30_30) {
+            if (objectInMap30_30.equals(objectInMap30_30s)) {
+                cellObjectInMap30_30.remove(objectInMap30_30s);
                 return;
             }
         }
     }
 
     public boolean HasGrass() {
-        for (ObjectInMap15_15 objectInMap15_15 : cellObjectInMap1515) {
-            if (objectInMap15_15 instanceof Grass) {
+        for (ObjectInMap30_30 objectInMap30_30 : cellObjectInMap30_30) {
+            if (objectInMap30_30 instanceof Grass) {
                 return true;
             }
         }
@@ -56,7 +56,7 @@ public class Cell {
     }
 
     public boolean HasProduct() {
-        for (ObjectInMap15_15 objectInMap15_15 : cellObjectInMap1515) {
+        for (ObjectInMap30_30 objectInMap15_15 : cellObjectInMap30_30) {
             if (objectInMap15_15 instanceof Product) {
                 return true;
             }
@@ -65,8 +65,8 @@ public class Cell {
     }
 
     public boolean HasWildAnimal() {
-        for (ObjectInMap15_15 objectInMap15_15 : cellObjectInMap1515) {
-            if (objectInMap15_15 instanceof WildAnimals) {
+        for (ObjectInMap30_30 objectInMap30_30 : cellObjectInMap30_30) {
+            if (objectInMap30_30 instanceof WildAnimals) {
                 return true;
             }
         }
