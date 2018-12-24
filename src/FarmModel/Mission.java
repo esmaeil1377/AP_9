@@ -116,7 +116,10 @@ public class Mission implements Serializable {
                     result = false;
                 }
             } else {
-                int numberOfObjectInMapNeededForMissionToBeFinished = farm.getWareHouse().getRecordNoteBookThatRecordEveryThingAndNumbers().get(object.getClass());
+                int numberOfObjectInMapNeededForMissionToBeFinished =0;
+                try {
+                    numberOfObjectInMapNeededForMissionToBeFinished = farm.getWareHouse().getRecordNoteBookThatRecordEveryThingAndNumbers().get(object.getClass());
+                }catch (Exception e){}
                 if (numberOfObjectInMapNeededForMissionToBeFinished < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }

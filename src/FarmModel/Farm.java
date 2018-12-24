@@ -59,7 +59,10 @@ public class Farm {
         setWorkShops(workShops);
         for(int i=0;i<30;i++){
             for(int j=0;j<30;j++){
-                getMap()[i][j]=new Cell();
+                Cell cell=new Cell();
+                cell.setXPosition(i);
+                cell.setYPosition(j);
+                getMap()[i][j]=cell;
             }
         }
     }

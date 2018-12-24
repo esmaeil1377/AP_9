@@ -47,8 +47,8 @@ public class Cell {
     }
 
     public boolean HasGrass() {
-        for (ObjectInMap30_30 objectInMap30_30 : cellObjectInMap30_30) {
-            if (objectInMap30_30 instanceof Grass) {
+        for (ObjectInMap15_15 objectInMap15_15 : getCellObjectInMap1515()) {
+            if (objectInMap15_15.toString().equals("Grass")) {
                 return true;
             }
         }
