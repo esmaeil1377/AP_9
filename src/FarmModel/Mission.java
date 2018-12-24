@@ -101,7 +101,7 @@ public class Mission implements Serializable {
                     result = false;
                 }
             } else if (object.toString().equals("Sheep")) {
-                int numberOfShip = farm.getCurrnetShipInMap().size();
+                int numberOfShip = farm.getCurrentShipInMap().size();
                 if (numberOfShip < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }

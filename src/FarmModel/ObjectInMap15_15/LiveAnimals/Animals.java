@@ -165,8 +165,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfGrassInMap = new HashMap<>();
-        for (int x = 0; x < 15; x++) {
-            for (int y = 0; y < 15; y++) {
+        for (int x = 0; x < 30; x++) {
+            for (int y = 0; y < 30; y++) {
                 if (Farm.getCellByPosition(currentX,currentY).HasGrass()) {
                     XAndYOfGrassInMap.put(x, y);
                 }
@@ -189,8 +189,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
-        for (int x = 0; x < 15; x++) {
-            for (int y = 0; y < 15; y++) {
+        for (int x = 0; x < 30; x++) {
+            for (int y = 0; y < 30; y++) {
                 if (Farm.getCellByPosition(currentX,currentY).HasProduct()) {
                     XAndYOfProductInMap.put(x, y);
                 }
@@ -213,8 +213,8 @@ public abstract class Animals extends ObjectInMap15_15 {
         int currentX = getX();
         int currentY = getY();
         HashMap<Integer, Integer> XAndYOfWildAnimalInMap = new HashMap<>();
-        for (int x = 0; x < 15; x++) {
-            for (int y = 0; y < 15; y++) {
+        for (int x = 0; x < 30; x++) {
+            for (int y = 0; y < 30; y++) {
                 if (Farm.getCellByPosition(currentX,currentY).HasWildAnimal()) {
                     XAndYOfWildAnimalInMap.put(x, y);
                 }
@@ -235,8 +235,8 @@ public abstract class Animals extends ObjectInMap15_15 {
 
     private ArrayList<Integer> FindProductForCatRandomly() throws MissionNotLoaded {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
-        for (int x = 0; x < 15; x++) {
-            for (int y = 0; y < 15; y++) {
+        for (int x = 0; x < 30; x++) {
+            for (int y = 0; y < 30; y++) {
                 if (Farm.getCellByPosition(x,y).HasProduct()) {
                     XAndYOfProductInMap.put(x, y);
                 }

@@ -202,7 +202,7 @@ public class Farm {
         return Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
     }
 
-    public ArrayList<Sheep> getCurrnetShipInMap() throws MissionNotLoaded {
+    public ArrayList<Sheep> getCurrentShipInMap() throws MissionNotLoaded {
         ArrayList<Sheep> animalsInMap = new ArrayList<>();
         for (int x = 0; x < 30; x++)
             for (int y = 0; y < 30; y++)
