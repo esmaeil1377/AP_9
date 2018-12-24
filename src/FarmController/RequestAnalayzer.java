@@ -9,9 +9,9 @@ public class RequestAnalayzer {
 
 
     private static String Buy_Animals_Regex = "buy (Cat|Dog|Chicken|Sheep|Cow)";
-    private static String Pick_Up_Regex = " pickup [0-9]* [0-9]*";
-    private static String Cage__Regex = "cage [0-9]* [0-9]*";
-    private static String Plant__Regex = "plant [0-9]* [0-9]*";
+    private static String Pick_Up_Regex = "pickup [0-9]+ [0-9]+";
+    private static String Cage__Regex = "cage [0-9]+ [0-9]+";
+    private static String Plant__Regex = "plant [0-9]+ [0-9]+";
     private static String Well_Regex = "well";
     private static String Start_WorkShop__Regex = "start .*";
     private static String Upgrade_Regex = "upgrade .*";
@@ -53,7 +53,7 @@ public class RequestAnalayzer {
         } else if (requestString.matches(Go_Vehicle_Regex)) {
             new GoVehicleRequest(requestString);
         }else{
-            System.out.println("Unknown Request");
+            System.out.println("Unknown1 Request");
         }
     }
 }

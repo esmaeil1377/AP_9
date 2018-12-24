@@ -8,8 +8,6 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 public class Cow extends AnimalProducer {
 
     public Cow() {
-        setMinOfHungerToGoToFindTheGrass(3);
-
     }
 
     @Override

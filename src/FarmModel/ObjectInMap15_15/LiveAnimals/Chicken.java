@@ -13,7 +13,6 @@ public class Chicken extends AnimalProducer {
     }
 
     public Chicken() {
-        setMinOfHungerToGoToFindTheGrass(3);
     }
 
     @Override

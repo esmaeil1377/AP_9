@@ -263,13 +263,13 @@ public abstract class Animals extends ObjectInMap30_30 {
         if (goal < current) {
             if(current-goal>1){
                 next = current - 2;
-            }else{
+            }else if(current-goal==1){
                 next=current-1;
             }
         } else {
             if (goal - current > 1) {
                 next = current + 2;
-            } else {
+            } else if(goal-current==1){
                 next = current + 1;
             }
         }

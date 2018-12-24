@@ -7,12 +7,15 @@ import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
 
 public abstract class AnimalProducer extends Animals {
-    private int animalAmountOfHunger=8;
+    //*2 is just for better playing
+    private final int minOfHungerToGoToFindTheGrass=3*2;
+    private  int animalAmountOfHunger=8*2;
     private int healthyAnimalAmountOfHunger;
-    private int remainTurnToProduce=18;
     private boolean wantToEatGrass = false;
-    private int minOfHungerToGoToFindTheGrass;
+    private int remainTurnToProduce=18;
     private final int turnToProduce=18;
+    private final int turnNeededToEatGrassInTheCell=1;
+    private int remainTurnNeededTOeatGrassInTheCell=1;
 
     public int getHealthyAnimalAmountOfHunger() {
         return healthyAnimalAmountOfHunger;
@@ -29,10 +32,6 @@ public abstract class AnimalProducer extends Animals {
 
     public int getMinOfHungerToGoToFindTheGrass() {
         return minOfHungerToGoToFindTheGrass;
-    }
-
-    public void setMinOfHungerToGoToFindTheGrass(int minOfHungerToGoToFindTheGrass) {
-        this.minOfHungerToGoToFindTheGrass = minOfHungerToGoToFindTheGrass;
     }
 
     public void setWantToEatGrass(boolean wantToEatGrass) {
@@ -52,18 +51,24 @@ public abstract class AnimalProducer extends Animals {
     public abstract void Produce() throws MissionNotLoaded;
 
     public void EatGrass() throws MissionNotLoaded {
-        int x = getX();
-        int y = getY();
-        Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
-        for (ObjectInMap30_30 objectInMap15_15 : cell.getCellObjectInMap30_30()) {
-            if (objectInMap15_15 instanceof Grass) {
-                cell.RemoveCellAMapObject(objectInMap15_15);
-                setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 1);
-                if (getAnimalAmountOfHunger() == healthyAnimalAmountOfHunger) {
-                    setWantToEatGrass(false);
+        if(remainTurnNeededTOeatGrassInTheCell==0) {
+            int x = getX();
+            int y = getY();
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
+            for (ObjectInMap30_30 objectInMap15_15 : cell.getCellObjectInMap30_30()) {
+                if (objectInMap15_15 instanceof Grass) {
+                    cell.RemoveCellAMapObject(objectInMap15_15);
+                    setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 1);
+                    if (getAnimalAmountOfHunger() == healthyAnimalAmountOfHunger) {
+                        setWantToEatGrass(false);
+                    }
+                    return;
                 }
-                return;
             }
+            remainTurnNeededTOeatGrassInTheCell=1;
+        }else{
+            remainTurnNeededTOeatGrassInTheCell-=1;
+
         }
     }
 

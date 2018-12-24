@@ -43,8 +43,8 @@ public class TurnRequest extends Request {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             AddWildAnimalsToMapAfterOneMinute();
-            MoveObject(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MoveObject(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeProductDisappearOrDecreaseRemainTurnToDisappear(farm.getCurrentProductInMap());
             MakeAnimalProduce(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWorkShopProduce(farm.getWorkShops());
@@ -63,8 +63,8 @@ public class TurnRequest extends Request {
     private void AddWildAnimalsToMapAfterOneMinute() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         if (farm.getRemainTurnToRandomlyAddWildAnimalToMap() == 0) {
-            int randomX = ((int) (Math.random() * 16));
-            int randomY = ((int) (Math.random() * 16));
+            int randomX = ((int) (Math.random() * 30));
+            int randomY = ((int) (Math.random() * 30));
             Cell randomCell = farm.getMap()[randomX][randomY];
             randomCell.AddCellAMapObject(new Lion());
             farm.setRemainTurnToRandomlyAddWildAnimalToMap(60);
@@ -125,9 +125,9 @@ public class TurnRequest extends Request {
                     Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
                     if (cell.HasWildAnimal()) {
                         cell.RemoveCellAMapObject(animals);
-                        for (ObjectInMap30_30 objectInMap15_15 : cell.getCellObjectInMap30_30()) {
-                            if (objectInMap15_15 instanceof WildAnimals) {
-                                cell.RemoveCellAMapObject(objectInMap15_15);
+                        for (ObjectInMap30_30 objectInMap30_30 : cell.getCellObjectInMap30_30()) {
+                            if (objectInMap30_30 instanceof WildAnimals) {
+                                cell.RemoveCellAMapObject(objectInMap30_30);
                                 break;
                             }
                         }
@@ -228,9 +228,9 @@ public class TurnRequest extends Request {
                     int y = animals.getY();
                     Cell cell = Farm.getCellByPosition(x, y);
                     ArrayList<ObjectInMap30_30> copyOfObjectInCell = new ArrayList<>(cell.getCellObjectInMap30_30());
-                    for (ObjectInMap30_30 objectInMap15_15 : copyOfObjectInCell) {
-                        if (!(objectInMap15_15 instanceof Grass) && !(objectInMap15_15 instanceof WildAnimals)) {
-                            cell.RemoveCellAMapObject(objectInMap15_15);
+                    for (ObjectInMap30_30 objectInMap30_30 : copyOfObjectInCell) {
+                        if (!(objectInMap30_30 instanceof Grass) && !(objectInMap30_30 instanceof WildAnimals)) {
+                            cell.RemoveCellAMapObject(objectInMap30_30);
                         }
                     }
                 }

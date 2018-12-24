@@ -41,12 +41,13 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
     public void AddWholeObjectToStore(Object object) throws FullWareHouse {
         int spaceNeededForObjectInWareHouse = InformationNeededInGame.getInformationNeededInGame().getSpaceNeededInWareHouse(object);
         // to improve this we should change Information class to methods to code clearer.
-        if (getRemainCapacityOfWareHouse() > spaceNeededForObjectInWareHouse) {
+        if (getRemainCapacityOfWareHouse() >= spaceNeededForObjectInWareHouse) {
             wareHouseList.add(object);
             RecordThisTransActionThatWholeObjectAddedToWareHouse(object);
             setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse() - spaceNeededForObjectInWareHouse);
+        }else {
+            throw new FullWareHouse();
         }
-        throw new FullWareHouse();
     }
 
     public HashMap<Class, Integer> getRecordNoteBookThatRecordEveryThingAndNumbers() {
