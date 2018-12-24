@@ -174,12 +174,14 @@ public abstract class Animals extends ObjectInMap15_15 {
         }
         int nearestXGrass = -100;
         int nearestYGrass = -100;
+        //10000 is just a big number to compare
+        double distanceBetweenAnimalAndNearestGrass = 10000;
         for (Integer xGrass : XAndYOfGrassInMap.keySet()) {
-            double distanceBetweenAnimalAndNearestGrass = Farm.DistanceBetweenTwoCell(nearestXGrass, nearestYGrass, currentX, currentY);
             double distanceBetweenAnimalAndGrass = Farm.DistanceBetweenTwoCell(xGrass, XAndYOfGrassInMap.get(xGrass), currentX, currentY);
             if (distanceBetweenAnimalAndGrass < distanceBetweenAnimalAndNearestGrass) {
                 nearestXGrass = xGrass;
                 nearestYGrass = XAndYOfGrassInMap.get(xGrass);
+                distanceBetweenAnimalAndNearestGrass=distanceBetweenAnimalAndGrass;
             }
         }
         return new ArrayList<>(Arrays.asList(nearestXGrass, nearestYGrass));
@@ -258,7 +260,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         return new ArrayList<>(Arrays.asList(15, 0));
     }
     private static int getNext(int current,int goal){
-        int next;
+        int next=current;
         if (goal < current) {
             if(current-goal>1){
                 next = current - 2;

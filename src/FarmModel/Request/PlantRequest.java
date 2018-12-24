@@ -23,10 +23,10 @@ public class PlantRequest extends Request {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         if (x + i >= 0 && x + i < 30 && y + j >= 0 && y + j < 30) {
-                            Cell cell = Farm.getCellByPosition(x + i, y + j);
+                            Cell cell = Farm.getCellByPosition(y + j, x + i);
                             Grass grass=new Grass();
-                            grass.setX(x+i);
-                            grass.setY(y+j);
+                            grass.setX(y+j);
+                            grass.setY(x+i);
                             cell.AddCellAMapObject(grass);
                         }
                     }
