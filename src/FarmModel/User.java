@@ -82,6 +82,13 @@ public class User {
     }
 
     public void AddMissionToMissionsForUser(Mission mission) {
+        for(Mission missions:getMissions()){
+            if(missions.getMissionName().equals(mission.getMissionName())){
+                getMissions().remove(missions);
+                getMissions().add(mission);
+                return;
+            }
+        }
         missions.add(mission);
     }
 
