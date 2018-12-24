@@ -1,13 +1,14 @@
 package FarmModel.Request;
 
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEmptyWell;
 import FarmModel.Game;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 
 public class WellRequest extends Request {
     private int AmountOfWaterInBucket;
 
-    public WellRequest() throws MissionNotLoaded {
+    public WellRequest() throws MissionNotLoaded, NotEmptyWell {
         Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
         well.FillTheBucket();
     }

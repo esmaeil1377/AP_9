@@ -1,9 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 
-import FarmController.Exceptions.MaxLevelExceeded;
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.NotEnoughMoney;
-import FarmController.Exceptions.UnknownObjectException;
+import FarmController.Exceptions.*;
 import FarmController.Interfaces.Upgradeable;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
@@ -79,13 +76,16 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
         // edit after
     }
 
-    public void FillTheBucket() throws MissionNotLoaded {
+    public void FillTheBucket() throws MissionNotLoaded, NotEmptyWell {
         Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
         int priceToFillTheBucket = InformationNeededInGame.PriceToFillTheBucket;
 
         if (getWaterOfTheBucket() == 0 && currentMission.getMissionMoney() >= priceToFillTheBucket) {
             setWaterOfTheBucket(InformationNeededInGame.CapacityOfTheBucket);
             currentMission.setMissionMoney(currentMission.getMissionMoney() - priceToFillTheBucket);
+        }
+        else{
+            throw new NotEmptyWell();
         }
     }
 

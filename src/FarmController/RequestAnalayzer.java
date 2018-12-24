@@ -23,7 +23,7 @@ public class RequestAnalayzer {
     private static String Turn_Regex = "turn [0-9]*";
     private static String Go_Vehicle_Regex = "(Truck|Helicopter) go";
 
-    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney {
+    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney, NotEmptyWell {
         if (requestString.matches(Buy_Animals_Regex)) {
             new BuyRequest(requestString);
         } else if (requestString.matches(Pick_Up_Regex)) {
