@@ -20,6 +20,7 @@ public class CageRequest extends Request {
         for (ObjectInMap15_15 object : cell.getCellObjectInMap1515()) {
             if (object instanceof WildAnimals) {
                 cell.AddCellAMapObject(new Cage((WildAnimals) object));
+                cell.RemoveCellAMapObject(object);
                 return;
             }
         }

@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class User {
     private String acountName;
     private int money;
-    private Mission mission1=new Mission("mission1",500,new Farm(null,null,null));
+    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null));
     private Mission mission2=new Mission("mission2",1000,new Farm(null,null,new ArrayList<WorkShop>(Arrays.asList(new CakeBakery()))));
     private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null));
     private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null));

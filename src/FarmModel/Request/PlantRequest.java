@@ -17,9 +17,9 @@ public class PlantRequest extends Request {
         Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
         if (well.getWaterOfTheBucket() > 0) {
             well.setWaterOfTheBucket(well.getWaterOfTheBucket() - 1);
-            int x=getX()-1;
-            int y=getY()-1;
-            if(getX()<=30 && getX()>0 && getY()<=30 && getY()>0) {
+            int x = getX();
+            int y = getY();
+            if (getX() < 30 && getX() >= 0 && getY() < 30 && getY() >= 0) {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         if (x + i >= 0 && x + i < 30 && y + j >= 0 && y + j < 30) {
@@ -31,7 +31,7 @@ public class PlantRequest extends Request {
                         }
                     }
                 }
-            }else {
+            } else {
                 System.out.println("Wrong Input");
             }
         } else {
