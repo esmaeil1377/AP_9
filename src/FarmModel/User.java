@@ -42,13 +42,10 @@ public class User {
     }
 
     public Mission getCurrentPlayingMission() throws MissionNotLoaded {
-        try {
-            int startMoney=currentPlayingMission.getMissionMoney();
+        if(currentPlayingMission!=null){
             return currentPlayingMission;
-
-        }catch (NullPointerException e){
-            throw new MissionNotLoaded();
         }
+        throw new MissionNotLoaded();
     }
 
     public void setCurrentPlayingMission(Mission currentPlayingMission) {

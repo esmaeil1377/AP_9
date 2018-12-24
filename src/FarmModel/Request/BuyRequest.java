@@ -31,6 +31,8 @@ public class BuyRequest extends Request {
             Cat cat=new Cat();
             int price=getPriceToBuy(cat);
             if(currentMoney >= price){
+                cat.setX(x);
+                cat.setY(y);
                 mission.ChangeMissionMoney(-price);
                 farm.getMap()[x][y].AddCellAMapObject(cat);
             }
@@ -41,6 +43,8 @@ public class BuyRequest extends Request {
             Dog dog=new Dog();
             int price=getPriceToBuy(dog);
             if(currentMoney >= price){
+                dog.setX(x);
+                dog.setY(y);
                 mission.ChangeMissionMoney(-price);
                 farm.getMap()[x][y].AddCellAMapObject(dog);
             }
@@ -51,6 +55,8 @@ public class BuyRequest extends Request {
             Chicken chicken=new Chicken();
             int price=getPriceToBuy(chicken);
             if(currentMoney >= price){
+                chicken.setX(x);
+                chicken.setY(y);
                 mission.ChangeMissionMoney(-price);
                 farm.getMap()[x][y].AddCellAMapObject(chicken);
             }
@@ -61,6 +67,8 @@ public class BuyRequest extends Request {
             Sheep sheep=new Sheep();
             int price=getPriceToBuy(sheep);
             if(currentMoney >= price){
+                sheep.setX(x);
+                sheep.setY(y);
                 mission.ChangeMissionMoney(-price);
                 farm.getMap()[x][y].AddCellAMapObject(sheep);
             }
@@ -71,6 +79,8 @@ public class BuyRequest extends Request {
             Cow cow=new Cow();
             int price=getPriceToBuy(cow);
             if(currentMoney >= price){
+                cow.setX(x);
+                cow.setY(y);
                 mission.ChangeMissionMoney(-price);
                 farm.getMap()[x][y].AddCellAMapObject(cow);
             }

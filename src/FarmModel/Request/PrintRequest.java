@@ -66,14 +66,21 @@ public class PrintRequest extends Request {
 
     private void PrintMap() throws MissionNotLoaded {
         for (int i = 0; i < 30; i++) {
+            System.out.print(i+":");
             for (int j = 0; j < 30; j++) {
                 Cell cell = Farm.getCellByPosition(i,j);
                 ArrayList<ObjectInMap15_15> cellObject = cell.getCellObjectInMap1515();
-                System.out.print("[");
+                System.out.print("["+j+":");
+                int numOfCellObject=cellObject.size();
                 for (ObjectInMap15_15 objectInMap15_15 : cellObject) {
                     System.out.print(objectInMap15_15.toString() + ",");
                 }
-                System.out.print("]  ");
+//                if(numOfCellObject<3){
+//                    for(int ii=0;ii<3-numOfCellObject;ii++){
+//                        System.out.print("   ,");
+//                    }
+//                }
+                System.out.print("]");
             }
             System.out.println();
         }
@@ -87,7 +94,7 @@ public class PrintRequest extends Request {
         Well well = farm.getWell();
         ArrayList<WorkShop> workShops = farm.getWorkShops();
         ArrayList<Cat> catInMap = farm.getCurrentCatInMap();
-        System.out.println("WareHosue Level: " + wareHouse.getLevel());
+        System.out.println("WareHouse Level: " + wareHouse.getLevel());
         System.out.println("Truck Level: " + truck.getLevel());
         System.out.println("Helicopter Level :" + helicopter.getLevel());
         System.out.println("Well Level:" + well.getLevel());
