@@ -12,6 +12,8 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PrintRequest extends Request {
     private String commandName;
@@ -50,8 +52,16 @@ public class PrintRequest extends Request {
         setCommandName(params[1]);
     }
 
-    private void PrintInfo() {
-
+    private void PrintInfo() throws MissionNotLoaded {
+        System.out.println("Money : " + Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getMissionMoney());
+        System.out.println("Turn : " + Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getTimeTakeForPlayerToFinishTheMap());
+        System.out.print("Requirement : ");
+        HashMap<Object, Integer> hashMap = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getRequirementToFinishTheMission();
+        for (Map.Entry<Object, Integer> entry : hashMap.entrySet()) {
+            System.out.print(entry.getKey() + " : " + entry.getValue());
+            System.out.print(" ");
+        }
+        System.out.println();
     }
 
     private void PrintMap() throws MissionNotLoaded {

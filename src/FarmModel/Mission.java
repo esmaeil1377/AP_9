@@ -23,6 +23,8 @@ public class Mission implements Serializable {
         requirementToFinishTheMission.put(object,number);
     }
 
+    public HashMap<Object, Integer> getRequirementToFinishTheMission() { return requirementToFinishTheMission; }
+
 
     public CityShop getCityShop() {
         return cityShop;
