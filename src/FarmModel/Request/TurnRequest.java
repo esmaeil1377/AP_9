@@ -197,12 +197,12 @@ public class TurnRequest extends Request {
     private void MakeGrassDisapear(ArrayList<Grass> currentGrassInMap) throws MissionNotLoaded {
         if(currentGrassInMap!=null) {
             for (Grass grass : currentGrassInMap) {
-                if (grass.getRemainTurnToDisApear() == 0) {
+                if (grass.getRemainTurnToDisAppear() == 0) {
                     int x = grass.getX();
                     int y = grass.getY();
                     Farm.getCellByPosition(x, y).RemoveCellAMapObject(grass);
                 } else {
-                    grass.setRemainTurnToDisApear(grass.getRemainTurnToDisApear() - 1);
+                    grass.setRemainTurnToDisAppear(grass.getRemainTurnToDisAppear() - 1);
                 }
             }
         }

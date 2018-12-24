@@ -167,7 +167,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         HashMap<Integer, Integer> XAndYOfGrassInMap = new HashMap<>();
         for (int x = 0; x < 30; x++) {
             for (int y = 0; y < 30; y++) {
-                if (Farm.getCellByPosition(currentX,currentY).HasGrass()) {
+                if (Farm.getCellByPosition(x,y).HasGrass()) {
                     XAndYOfGrassInMap.put(x, y);
                 }
             }

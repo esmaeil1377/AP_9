@@ -25,8 +25,8 @@ public class PlantRequest extends Request {
                         if (x + i >= 0 && x + i < 30 && y + j >= 0 && y + j < 30) {
                             Cell cell = Farm.getCellByPosition(x + i, y + j);
                             Grass grass=new Grass();
-                            grass.setX(x);
-                            grass.setY(y);
+                            grass.setX(x+i);
+                            grass.setY(y+j);
                             cell.AddCellAMapObject(grass);
                         }
                     }
