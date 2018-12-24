@@ -192,7 +192,7 @@ public abstract class Animals extends ObjectInMap30_30 {
         HashMap<Integer, Integer> XAndYOfProductInMap = new HashMap<>();
         for (int x = 0; x < 30; x++) {
             for (int y = 0; y < 30; y++) {
-                if (Farm.getCellByPosition(currentX,currentY).HasProduct()) {
+                if (Farm.getCellByPosition(x,y).HasProduct()) {
                     XAndYOfProductInMap.put(x, y);
                 }
             }
@@ -216,7 +216,7 @@ public abstract class Animals extends ObjectInMap30_30 {
         HashMap<Integer, Integer> XAndYOfWildAnimalInMap = new HashMap<>();
         for (int x = 0; x < 30; x++) {
             for (int y = 0; y < 30; y++) {
-                if (Farm.getCellByPosition(currentX,currentY).HasWildAnimal()) {
+                if (Farm.getCellByPosition(x,y).HasWildAnimal()) {
                     XAndYOfWildAnimalInMap.put(x, y);
                 }
             }
