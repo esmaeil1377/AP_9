@@ -16,14 +16,14 @@ public class SaveGameRequest extends Request {
     private String pathToJsonFile;
 
 
-    public SaveGameRequest(String requestLine) {
+    public SaveGameRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
 
-        File file = new File(getPathToJsonFile());
+        Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+        File file = new File(getPathToJsonFile()+"\\"+currentMission.getMissionName()+".txt");
         FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
-            Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
             YaGson mapper = new YaGson();
             String objectJson = mapper.toJson(currentMission, Mission.class);
 
@@ -34,8 +34,6 @@ public class SaveGameRequest extends Request {
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (IOException e2) {
-        } catch (MissionNotLoaded missionNotLoaded) {
-            missionNotLoaded.printStackTrace();
         }
     }
 
@@ -50,5 +48,14 @@ public class SaveGameRequest extends Request {
     private void AnalyzeRequestLine(String requestLine) {
         String pathToJsonFile = requestLine.substring(10);
         setPathToJsonFile(pathToJsonFile);
+    }
+    private String changeToPath(String path){
+        String res="";
+        for(int character=0;character<path.length();character++){
+            if(path.charAt(character)=='\\'){
+
+            }
+        }
+        return res;
     }
 }
