@@ -123,7 +123,7 @@ public class PrintRequest extends Request {
     private void PrintWell() throws MissionNotLoaded {
         Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
         System.out.println("water of bucket:" + well.getWaterOfTheBucket());
-        System.out.println("activated or No " + well.isWellActivatedToFillTheBucket());
+        System.out.println("activated: " + well.isWellActivatedToFillTheBucket());
     }
 
     private void PrintWorkShop() throws MissionNotLoaded {
