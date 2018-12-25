@@ -76,8 +76,8 @@ public class AddVehicleRequest extends Request {
     public void AnalyzeRequestLine(String requestLine) {
         String[] request = requestLine.split(" ");
         String vehicleName = request[0];
-        String itemName = request[2];
-        int Count = Integer.valueOf(request[3]);
+        String itemName = request[1];
+        int Count = Integer.valueOf(request[2]);
         setCount(Count);
         setItemName(itemName);
         setVehicleName(vehicleName);
