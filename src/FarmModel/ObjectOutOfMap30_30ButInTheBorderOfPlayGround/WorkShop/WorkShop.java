@@ -21,7 +21,7 @@ public abstract class WorkShop extends ObjectOutOfMap30_30ButInTheBorderOfPlayGr
     private int remainTurnToProduce;
     private boolean isWorkShopActivatedToMakeProduct = false;
     //it is static because it should save the level
-    private static int level;
+    private int level;
     private HashMap<Product, Integer> objectNeededToProduceAProduct = new HashMap<>();
     private Product resultProduct;
 

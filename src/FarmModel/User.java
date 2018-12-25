@@ -16,10 +16,10 @@ import java.util.Arrays;
 public class User {
     private String acountName;
     private int money;
-    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null));
-    private Mission mission2=new Mission("mission2",1000,new Farm(new Helicopter(),new Truck(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(),new CakeBakery()))));
-    private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null));
-    private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null));
+    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,null));
+    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(),new Truck(),new Well(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(),new CakeBakery(),new SewingFactory()))));
+    private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null,null));
+    private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null,null));
     private Mission currentPlayingMission;
     private ArrayList<WorkShop> customWorkShops=new ArrayList<>();
     //inja bayad tamam mission ha ro baraye missions az rouye ye pushe bezarim.

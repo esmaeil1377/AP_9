@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 public class CakeBakery extends WorkShop {
     public final String WorkShopName = "CakeBakery";
+    int levelCakeBakery = 0;
 
     public CakeBakery() {
         HashMap<Product, Integer> objectNeededToProduceOne=new HashMap<>();
