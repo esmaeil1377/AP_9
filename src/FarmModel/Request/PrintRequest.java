@@ -30,7 +30,7 @@ public class PrintRequest extends Request {
             PrintWareHouse();
         } else if (commandName.equals("well")) {
             PrintWell();
-        } else if (commandName.equals("workshop")) {
+        } else if (commandName.equals("workshops")) {
             PrintWorkShop();
         } else if (commandName.equals("truck")) {
             PrintTruck();
@@ -66,7 +66,7 @@ public class PrintRequest extends Request {
 
     private void PrintMap() throws MissionNotLoaded {
         for (int i = 0; i < 30; i++) {
-            System.out.print((i+1)+":");
+            System.out.print((i)+":");
             for (int j = 0; j < 30; j++) {
                 Cell cell = Farm.getCellByPosition(i,j);
                 ArrayList<ObjectInMap30_30> cellObject = cell.getCellObjectInMap30_30();

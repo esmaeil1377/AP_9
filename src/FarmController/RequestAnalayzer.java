@@ -8,20 +8,20 @@ public class RequestAnalayzer {
     private RequestAnalayzer(){}
 
 
-    private static String Buy_Animals_Regex = "buy (Cat|Dog|Chicken|Sheep|Cow)";
-    private static String Pick_Up_Regex = "pickup [0-9]+ [0-9]+";
-    private static String Cage__Regex = "cage [0-9]+ [0-9]+";
-    private static String Plant__Regex = "plant [0-9]+ [0-9]+";
-    private static String Well_Regex = "well";
-    private static String Start_WorkShop__Regex = "start .*";
-    private static String Upgrade_Regex = "upgrade .*";
-    private static String Load_Custom_Regex = "load custom .*";
-    private static String Run_Map_Regex = "run .*";
-    private static String Save_Game_Regex = "save game .*";
-    private static String Load_Game_Regex = "load game .*";
-    private static String Print_Regex = "print (info|map|levels|warehouse|well|workshops|truck|helicopter)";
-    private static String Turn_Regex = "turn [0-9]*";
-    private static String Go_Vehicle_Regex = "(Truck|Helicopter) go";
+    private static final String Buy_Animals_Regex = "buy (Cat|Dog|Chicken|Sheep|Cow)";
+    private static final String Pick_Up_Regex = "pickup [0-9]+ [0-9]+";
+    private static final String Cage__Regex = "cage [0-9]+ [0-9]+";
+    private static final String Plant__Regex = "plant [0-9]+ [0-9]+";
+    private static final String Well_Regex = "well";
+    private static final String Start_WorkShop__Regex = "start .*";
+    private static final String Upgrade_Regex = "upgrade .*";
+    private static final String Load_Custom_Regex = "load custom .*";
+    private static final String Run_Map_Regex = "run .*";
+    private static final String Save_Game_Regex = "save game .*";
+    private static final String Load_Game_Regex = "load game .*";
+    private static final String Print_Regex = "print (info|map|levels|warehouse|well|workshops|truck|helicopter)";
+    private static final String Turn_Regex = "turn [0-9]*";
+    private static final String Go_Vehicle_Regex = "(Truck|Helicopter) go";
 
     public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney, NotEmptyWell {
         if (requestString.matches(Buy_Animals_Regex)) {

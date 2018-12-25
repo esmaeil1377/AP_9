@@ -7,6 +7,7 @@ import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.EggPowderPlant;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class User {
     private String acountName;
     private int money;
     private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null));
-    private Mission mission2=new Mission("mission2",1000,new Farm(null,null,new ArrayList<WorkShop>(Arrays.asList(new CakeBakery()))));
+    private Mission mission2=new Mission("mission2",1000,new Farm(null,null,new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(),new CakeBakery()))));
     private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null));
     private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null));
     private Mission currentPlayingMission;
