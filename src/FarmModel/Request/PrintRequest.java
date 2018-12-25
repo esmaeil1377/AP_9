@@ -72,8 +72,13 @@ public class PrintRequest extends Request {
                 ArrayList<ObjectInMap30_30> cellObject = cell.getCellObjectInMap30_30();
                 System.out.print("[");
                 int numOfCellObject=cellObject.size();
+                int count = 0;
                 for (ObjectInMap30_30 objectInMap15_15 : cellObject) {
-                    System.out.print(objectInMap15_15.toString() + ",");
+                    System.out.print(objectInMap15_15.toString());
+                    if (count < numOfCellObject - 1) {
+                        System.out.print(",");
+                    }
+                    count++;
                 }
 //                if(numOfCellObject<3){
 //                    for(int ii=0;ii<3-numOfCellObject;ii++){

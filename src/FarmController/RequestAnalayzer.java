@@ -4,8 +4,10 @@ import FarmController.Exceptions.*;
 import FarmModel.Request.*;
 
 public class RequestAnalayzer {
-    private RequestAnalayzer requestAnalayzer=new RequestAnalayzer();
-    private RequestAnalayzer(){}
+    private RequestAnalayzer requestAnalayzer = new RequestAnalayzer();
+
+    private RequestAnalayzer() {
+    }
 
 
     private static final String Buy_Animals_Regex = "buy (Cat|Dog|Chicken|Sheep|Cow)";
@@ -22,6 +24,7 @@ public class RequestAnalayzer {
     private static final String Print_Regex = "print (info|map|levels|warehouse|well|workshops|truck|helicopter)";
     private static final String Turn_Regex = "turn [0-9]*";
     private static final String Go_Vehicle_Regex = "(Truck|Helicopter) go";
+    public static final String Add_Item_To_Vehicle = "(Truck|Helicopter) .* [0-9]+";
 
     public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney, NotEmptyWell {
         if (requestString.matches(Buy_Animals_Regex)) {
@@ -52,7 +55,9 @@ public class RequestAnalayzer {
             new TurnRequest(requestString);
         } else if (requestString.matches(Go_Vehicle_Regex)) {
             new GoVehicleRequest(requestString);
-        }else{
+        } else if (requestString.matches(Add_Item_To_Vehicle)) {
+            new AddVehicleRequest(requestString);
+        } else {
             System.out.println("Unknown1 Request");
         }
     }
