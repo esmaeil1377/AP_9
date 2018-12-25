@@ -46,7 +46,7 @@ public class LoadGameRequest extends Request {
     }
 
     public void AnalyzeRequestLine(String requestLine) {
-        String pathToJsonFile = requestLine.substring(12);
+        String pathToJsonFile = requestLine.substring(10);
         setPathToJsonFile(pathToJsonFile);
     }
 
