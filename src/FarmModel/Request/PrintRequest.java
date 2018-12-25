@@ -103,7 +103,10 @@ public class PrintRequest extends Request {
         System.out.println("Truck Level: " + truck.getLevel());
         System.out.println("Helicopter Level :" + helicopter.getLevel());
         System.out.println("Well Level:" + well.getLevel());
+        if(catInMap.size() != 0)
         System.out.println("Cat Level: " + catInMap.get(0).getLevel());
+        else
+            System.out.println("There are not cats in map");
         for (WorkShop workShop : workShops) {
             System.out.println(workShop.toString() + " Level :" + workShop.getLevel());
         }
@@ -128,7 +131,7 @@ public class PrintRequest extends Request {
         for (WorkShop workShop : workShops) {
             System.out.println(workShop.toString() + "Output Product: " + workShop.getResultProduct());
             for (Object object : workShop.getObjectNeededToProduceAProduct().keySet())
-                System.out.println(workShop.toString() + "Input Product: " + workShop.getResultProduct());
+                System.out.println(workShop.toString() + "Input Product: " + object.toString());
         }
 
     }

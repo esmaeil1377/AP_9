@@ -53,7 +53,7 @@ public class Farm {
         this.workShops = workShops;
     }
 
-    public Farm(Helicopter helicopter,Truck truck,ArrayList<WorkShop> workShops) {
+    public Farm(Helicopter helicopter,Truck truck,Well well ,ArrayList<WorkShop> workShops) {
         setHelicopter(helicopter);
         setTruck(truck);
         setWorkShops(workShops);
