@@ -12,7 +12,7 @@ public class LoadGameRequest extends Request {
     public LoadGameRequest(String requestLine) {
         AnalyzeRequestLine(requestLine);
         //We should consider something liked this
-//        for(File file:new File(getPathToJsonFile()))
+//        for(File file:new File(getPathToJsonFiles()))
         FileInputStream fileInputStream;
         try {
             fileInputStream = new FileInputStream(getPathToJsonFile());

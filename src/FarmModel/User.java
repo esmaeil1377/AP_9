@@ -21,6 +21,7 @@ public class User {
     private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null));
     private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null));
     private Mission currentPlayingMission;
+    private ArrayList<WorkShop> customWorkShops=new ArrayList<>();
     //inja bayad tamam mission ha ro baraye missions az rouye ye pushe bezarim.
     private ArrayList<Mission> missions = new ArrayList<>();
     private GameShop gameShop = new GameShop();
@@ -28,6 +29,9 @@ public class User {
 
     public InformationNeededInGame getInformationNeededInGame() {
         return informationNeededInGame;
+    }
+    public void AddcustomWorkshops(WorkShop custom){
+        customWorkShops.add(custom);
     }
 
     public User(String accountName) {

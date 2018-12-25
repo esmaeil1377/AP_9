@@ -7,12 +7,6 @@ import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop
 
 public class InformationNeededInGame {
 
-
-    public int getPriceToBuyCakeBakeryLevel0() {
-        return PriceToBuyCakeBakeryLevel0;
-    }
-
-
     //well information
     public static int CapacityOfTheBucket = 5;
     public static int PriceToFillTheBucket = 19;
@@ -20,12 +14,11 @@ public class InformationNeededInGame {
 
     //ActivationPrices
     // random price
-    private static int ActivationPriceForUpgradeWareHouse = 100;
-    private static int intActivationPriceForUpgradeWorkShop = 100;
-    private static int ActivationPriceForHelicopter = 100;
-    private static int ActivationPriceForTruck = 100;
-    private static int ActivationPriceForCustomWorkShop = 100;
-
+//    private static int ActivationPriceForUpgradeWareHouse = 100;
+//    private static int intActivationPriceForUpgradeWorkShop = 100;
+//    private static int ActivationPriceForHelicopter = 100;
+//    private static int ActivationPriceForTruck = 100;
+//    private static int ActivationPriceForCustomWorkShop = 100;
 
 //    public void IncraesePriceForUpgrade(String str) {
 //        if (str.equals("CakeBakery")) {
@@ -52,26 +45,24 @@ public class InformationNeededInGame {
 
 
     //SpaceNeededInWareHouseForObject
-    private static int SpaceNeededInWareHouseForCageThatLionIsInIt = 20;
-    private static int SpaceNeededInWareHouseForCageThatBearIsInIt = 20;
-    private static int SpaceNeededInWareHouseForEgg = 1;
-    private static int SpaceNeededInWareHouseForWool = 5;
-    private static int SpaceNeededInWareHouseForMilk = 10;
-    private static int SpaceNeededInWareHouseForCake = 5;
-    private static int SpaceNeededInWareHouseForPowder = 4; // random
-    private static int SpaceNeededInWareHouseForFlour = 2;
-    private static int SpaceNeededInWareHouseForFabric = 6;
-    private static int SpaceNeededInWareHouseForSewing = 3;
-    private static int SpaceNeededInWareHouseForDecoration = 2; // random
-    private static int SpaceNeededInWareHouseForCloth = 3; // random
-    private static int SpaceNeededInWareHouseForCookie = 2; // random
+    private final static int SpaceNeededInWareHouseForCageThatLionIsInIt = 20;
+    private final static int SpaceNeededInWareHouseForCageThatBearIsInIt = 20;
+    private final static int SpaceNeededInWareHouseForEgg = 1;
+    private final static int SpaceNeededInWareHouseForWool = 5;
+    private final static int SpaceNeededInWareHouseForMilk = 10;
+    private final static int SpaceNeededInWareHouseForCake = 5;
+    private final static int SpaceNeededInWareHouseForPowder = 4; // random
+    private final static int SpaceNeededInWareHouseForFlour = 2;
+    private final static int SpaceNeededInWareHouseForFabric = 6;
+    private final static int SpaceNeededInWareHouseForSewing = 3;
+    private final static int SpaceNeededInWareHouseForDecoration = 2; // random
+    private final static int SpaceNeededInWareHouseForCloth = 3; // random
+    private final static int SpaceNeededInWareHouseForCookie = 2; // random
 
     //PriceToUpgradeCat
-    public int PriceToUpgradeCatLevel1 = 500;
     //PriceToBuyWorkShop
 
-
-    public int getSpaceNeededInWareHouse(Object object){
+    public int getSpaceNeededInWareHouse(Object object) {
         if (object.toString().equals("Cage")) {
             WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
             if (wildAnimals.toString().equals("Lion"))
@@ -106,22 +97,26 @@ public class InformationNeededInGame {
         return -1;
     }
 
+
+    private final static int PriceToUpgradeCatLevel1 = 500;
     //PriceToUpgradeWorkShop
-    private static int PriceToUpgradeCakeBakery = 300;
-    private static int PriceToUpgradeCookieBakery = 200;
-    private static int PriceToUpgradeEggPowderPlant = 100;
-    private static int PriceToUpgradeSewingFactory = 2000;
-    private static int PriceToUpgradeSpinnery = 1000;
-    private static int PriceToUpgradeUnknownWorkShop = 1000;
-    private static int PriceToUpgradeWeavingFactory = 1500;
+    private final static int PriceToUpgradeCakeBakery = 300;
+    private final static int PriceToUpgradeCookieBakery = 200;
+    private final static int PriceToUpgradeEggPowderPlant = 100;
+    private final static int PriceToUpgradeSewingFactory = 2000;
+    private final static int PriceToUpgradeSpinnery = 1000;
+    private final static int PriceToUpgradeUnknownWorkShop = 1000;
+    private final static int PriceToUpgradeWeavingFactory = 1500;
     //PriceToUpgradeWell
-    private static int PriceToUpgradeWell = 1000; // random
+    private final static int PriceToUpgradeWell = 1000; // random
     //PriceToUpgradeWareHouse
-    private static int PriceToUpgradeWareHouse = 1500; // random
+    private final static int PriceToUpgradeWareHouse = 1500; // random
 
     public int getPriceForUpgrade(Object object) throws UnknownObjectException {
         if (object.toString().equals("Well")) {
             return PriceToUpgradeWell;
+        } else if (object.toString().equals("Cat")) {
+            return PriceToUpgradeCatLevel1;
         } else if (object.toString().equals("WareHouse")) {
             return PriceToUpgradeWareHouse;
         } else {
@@ -146,26 +141,36 @@ public class InformationNeededInGame {
     }
 
 
-    private static int PriceToBuyChicken = 100;
-    private static int PriceToBuyShip = 1000;
-    private static int PriceToBuyCow = 10000;
+    private final static int PriceToBuyChicken = 100;
+    private final static int PriceToBuyShip = 1000;
+    private final static int PriceToBuyCow = 10000;
 
-    private static int PriceToBuyCat = 2500;
-    private static int PriceToBuyDog = 2600;
+    private final static int PriceToBuyCat = 2500;
+    private final static int PriceToBuyDog = 2600;
 
-    private static int PriceToBuyEggPowderPlantLevel0 = 150;
-    private static int PriceToBuySewingFactoryLevel0 = 2500;
-    private static int PriceToBuySpinneryLevel0 = 2000;
-    private static int PriceToBuyUnknownWorkShopLevel0 = 2000; // random
-    private static int PriceToBuyWeavingFactoryLevel0 = 2000;
-    private static int PriceToBuyCakeBakeryLevel0 = 300;
-    private static int PriceToBuyCookieBakeryLevel0 = 200;
+    private final static int PriceToBuyEggPowderPlantLevel0 = 150;
+    private final static int PriceToBuySewingFactoryLevel0 = 2500;
+    private final static int PriceToBuySpinneryLevel0 = 2000;
+    private final static int PriceToBuyUnknownWorkShopLevel0 = 2000; // random
+    private final static int PriceToBuyWeavingFactoryLevel0 = 2000;
+    private final static int PriceToBuyCakeBakeryLevel0 = 300;
+    private final static int PriceToBuyCookieBakeryLevel0 = 200;
 
-    private static int PriceTOBuyWool = 200;
-    private static int PriceToBuyEgg = 20;
-    private static int PriceToBuyMilk = 2000;
+    private final static int PriceTOBuyWool = 200;
+    private final static int PriceToBuyEgg = 20;
+    private final static int PriceToBuyMilk = 2000;
 
-        public int getPriceToBuy(Object object) {
+    private final static int PriceToBuyCake=200;
+    private final static int PriceToBuyCarnivalDress=1400;
+    //cookie and decoration toye file dade shode naboud khodam dadam
+    private final static int PriceToBuyCookie=200;
+    private final static int PriceToBuyDecoration=800;
+    private final static int PriceToBuyFabric=400;
+    private final static int PriceToBuyFlour=20;
+    private final static int PriceToBuyPowder=300;
+    private final static int PriceToBuySewing=200;
+
+    public int getPriceToBuy(Object object) {
         if (object.toString().equals("Chicken")) {
             return PriceToBuyChicken;
         } else if (object.toString().equals("Cow")) {
@@ -184,7 +189,21 @@ public class InformationNeededInGame {
             return PriceTOBuyWool;
         } else if (object.toString().equals("Milk")) {
             return PriceToBuyMilk;
-        } else {
+        }else if(object.toString().equals("Cake")){
+            return PriceToBuyCake;
+        }else if(object.toString().equals("Cookie")){
+            return PriceToBuyCookie;
+        } else if(object.toString().equals("Sewing")){
+            return PriceToBuySewing;
+        }else if(object.toString().equals("Powder")){
+            return PriceToBuyPowder;
+        }else if(object.toString().equals("Decoration")){
+            return PriceToBuyDecoration;
+        }else if(object.toString().equals("Flour")){
+            return PriceToBuyFlour;
+        }else if(object.toString().equals("Fabric")){
+            return PriceToBuyFabric;
+        }else {
             if (object.toString().equals("EggPowderPlant")) {
                 return PriceToBuyEggPowderPlantLevel0 + 100 * (((WorkShop) object).getLevel());
             } else if (object.toString().equals("SewingFactory")) {
@@ -206,21 +225,21 @@ public class InformationNeededInGame {
 
 
     //PriceForSellAnimalProduct
-    private static int PriceForSellEgg = 10;
-    private static int PriceForSellMilk = 1000;
-    private static int PriceForSellWool = 100;
+    private final static int PriceForSellEgg = 10;
+    private final static int PriceForSellMilk = 1000;
+    private final static int PriceForSellWool = 100;
     //PriceForSellWorkShopProduct
-    private static int PriceForSellCake = 100;
-    private static int PriceForSellCookie = 100; // random
-    private static int PriceForSellPowder = 150; // random
-    private static int PriceForSellSewing = 150;
-    private static int PriceForSellFlour = 10;
-    private static int PriceForSellCloth = 50; // random
-    private static int PriceForSellDecoration = 40; // random
-    private static int PriceForSellFabric = 300;
+    private final static int PriceForSellCake = 100;
+    private final static int PriceForSellCookie = 100; // random
+    private final static int PriceForSellPowder = 150; // random
+    private final static int PriceForSellSewing = 150;
+    private final static int PriceForSellFlour = 10;
+    private final static int PriceForSellCloth = 50; // random
+    private final static int PriceForSellDecoration = 40; // random
+    private final static int PriceForSellFabric = 300;
     //priceForSellCage
-    private static int PriceForSellCageLion = 150;
-    private static int PriceForSellCageBear = 100;
+    private final static int PriceForSellCageLion = 150;
+    private final static int PriceForSellCageBear = 100;
 
 
     public int getPriceForSell(Object object) throws UnknownObjectException {
