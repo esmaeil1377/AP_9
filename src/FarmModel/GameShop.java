@@ -1,6 +1,6 @@
 package FarmModel;
 
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.HashMap;
 

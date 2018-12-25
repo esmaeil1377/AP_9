@@ -2,38 +2,38 @@ package FarmModel.Request;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
 
 public class GoVehicleRequest extends Request {
     private String vehicleName;
 
     public GoVehicleRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
-        if (getVehicleName().equals("truck")) {
+        if (getVehicleName().equals("Truck")) {
             Truck truck = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
             if (truck!=null) {
                 truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getTurnToMoveObjectToCityAndComeBack());
                 truck.setVehicleActivated(true);
             } else {
-                //i don't know how to react here.
+                System.out.println("Mission don't have truck");
             }
         } else {
             Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
             if (helicopter!=null) {
-                helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack());
+                helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getTurnToMoveObjectToCityAndComeBack());
                 helicopter.setVehicleActivated(true);
             } else {
-                //i don't know how to react here.
+                System.out.println("Mission don't have helicopter");
             }
         }
     }
 
-    public String getVehicleName() {
+    private String getVehicleName() {
         return vehicleName;
     }
 
-    public void setVehicleName(String vehicleName) {
+    private void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
     }
 

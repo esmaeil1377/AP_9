@@ -7,14 +7,14 @@ import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap15_15.Grass;
-import FarmModel.ObjectInMap15_15.LiveAnimals.*;
-import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
-import FarmModel.ObjectInMap15_15.Product.Product;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectInMap30_30.Grass;
+import FarmModel.ObjectInMap30_30.LiveAnimals.*;
+import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.Product.Product;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import FarmModel.User;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class TurnRequest extends Request {
             MakeGrassDisapear(farm.getCurrentGrassInMap());
             FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
             MakeTruckPassTheWayToCityOrGiveObjectToCity();
-            MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted();
+            MakeHelicopterPassTheWayToCityOrPutThemOnMap();
             MakeCatTakeProductOrPutProductToWareHouseIfItWasNearWareHouse(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWildAnimalDestroy(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -66,11 +66,14 @@ public class TurnRequest extends Request {
             int randomX = ((int) (Math.random() * 30));
             int randomY = ((int) (Math.random() * 30));
             Cell randomCell = farm.getMap()[randomX][randomY];
-            randomCell.AddCellAMapObject(new Lion());
+            Lion lion=new Lion();
+            lion.setX(randomX);
+            lion.setY(randomY);
+            randomCell.AddCellAMapObject(lion);
             farm.setRemainTurnToRandomlyAddWildAnimalToMap(60);
         } else {
-            int remainTrurnNeededToAddNewWildAnimal =farm.getRemainTurnToRandomlyAddWildAnimalToMap();
-            farm.setRemainTurnToRandomlyAddWildAnimalToMap(remainTrurnNeededToAddNewWildAnimal - 1);
+            int remainTurnNeededToAddNewWildAnimal =farm.getRemainTurnToRandomlyAddWildAnimalToMap();
+            farm.setRemainTurnToRandomlyAddWildAnimalToMap(remainTurnNeededToAddNewWildAnimal - 1);
         }
         //When we should add bear to map.
     }
@@ -243,17 +246,23 @@ public class TurnRequest extends Request {
         if(truck!=null) {
             if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
                 truck.SellObjectToCityAndGetMoneyToUser();
+                truck.setVehicleActivated(false);
             } else if (truck.IsVehicleActivated()) {
                 truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
             }
         }
     }
 
-    private void MakeHelicopterPassTheWayToCityOrGiveWareHouseWhatItWanted() throws MissionNotLoaded {
+    private void MakeHelicopterPassTheWayToCityOrPutThemOnMap() throws MissionNotLoaded {
         Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
         if(helicopter!=null) {
             if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
-                helicopter.PutObjectInMapRandomly();
+                try {
+                    helicopter.PutObjectInMapRandomly();
+                }catch (NullPointerException e){}
+                finally {
+                    helicopter.setVehicleActivated(false);
+                }
             } else if (helicopter.IsVehicleActivated()) {
                 helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
             }

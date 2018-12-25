@@ -3,83 +3,65 @@ package FarmModel.Request;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.CityShop;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectInMap30_30.Cage;
+import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Milk;
+import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Wool;
+import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Cake;
+import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Cookie;
+import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Powder;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.CityShop;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
 
 public class AddVehicleRequest extends Request {
     private String vehicleName;
-    private String itemName;
     private int count;
-    private Object object;
+    private ObjectInMap30_30 object;
 
     public AddVehicleRequest(String request) throws MissionNotLoaded {
         AnalyzeRequestLine(request);
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         WareHouse wareHouse = farm.getWareHouse();
-        if (vehicleName.equals("truck")) {
+        if (vehicleName.equals("Truck")) {
             Truck truck = farm.getTruck();
             Object object = farm.getObjectInWareHouse(this.object);
             for (int i = 0; i < count; i++)
                 truck.TakeObjectFromWareHouse(object);
 
-        } else if (vehicleName.equals("helicopter")) {
+        } else if (vehicleName.equals("Helicopter")) {
 
             Helicopter helicopter = farm.getHelicopter();
-            CityShop cityShop = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getCityShop();
+//            CityShop cityShop = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getCityShop();
             for (int i = 0; i < count; i++)
-                cityShop.getObjectTypeFrom(getObject().toString());
+                helicopter.BuyObjectFromCityAndGetMoneyFromUser(getObject());
         }
-    }
-
-
-    public String getVehicleName() {
-        return vehicleName;
     }
 
     public void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
     }
 
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
     public void setCount(int count) {
         this.count = count;
     }
 
-    public void setObject(Object object) {
+    public void setObject(ObjectInMap30_30 object) {
         this.object = object;
     }
 
-    public Object getObject() {
+    public ObjectInMap30_30 getObject() {
         return object;
     }
 
     public void AnalyzeRequestLine(String requestLine) {
         String[] request = requestLine.split(" ");
         String vehicleName = request[0];
-        String itemName = request[1];
-        int Count = Integer.valueOf(request[2]);
+        String itemName = request[2];
+        int Count = Integer.valueOf(request[3]);
         setCount(Count);
-        setItemName(itemName);
         setVehicleName(vehicleName);
         if (itemName.equals("Egg")) {
             setObject(new Egg());

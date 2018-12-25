@@ -1,9 +1,8 @@
 package FarmModel;
 
-import FarmModel.ObjectInMap15_15.Grass;
-import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
-import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
-import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectInMap30_30.LiveAnimals.WildAnimals;
+import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.Product.Product;
 
 import java.util.ArrayList;
 

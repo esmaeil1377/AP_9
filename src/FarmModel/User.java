@@ -1,14 +1,14 @@
 package FarmModel;
 import FarmController.Exceptions.MissionNotLoaded;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Chicken;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Cow;
-import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CakeBakery;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.EggPowderPlant;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectInMap30_30.LiveAnimals.Chicken;
+import FarmModel.ObjectInMap30_30.LiveAnimals.Cow;
+import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Powder;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.CakeBakery;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.EggPowderPlant;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +24,11 @@ public class User {
     //inja bayad tamam mission ha ro baraye missions az rouye ye pushe bezarim.
     private ArrayList<Mission> missions = new ArrayList<>();
     private GameShop gameShop = new GameShop();
+    private InformationNeededInGame informationNeededInGame=new InformationNeededInGame();
+
+    public InformationNeededInGame getInformationNeededInGame() {
+        return informationNeededInGame;
+    }
 
     public User(String accountName) {
         mission1.Addrequirement(new Egg(),10);

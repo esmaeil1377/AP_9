@@ -5,8 +5,8 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap15_15.Grass;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectInMap30_30.Grass;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
 
 public class PlantRequest extends Request {
     private int x;

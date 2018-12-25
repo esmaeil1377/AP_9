@@ -3,9 +3,9 @@ package FarmModel.Request;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Farm;
-import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
-import FarmModel.ObjectInMap15_15.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.Cage;
+import FarmModel.ObjectInMap30_30.LiveAnimals.WildAnimals;
+import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
 
 public class CageRequest extends Request {
     private int x;

@@ -1,23 +1,17 @@
 package FarmModel;
 
 import FarmController.Exceptions.UnknownObjectException;
-import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectInMap30_30.Cage;
+import FarmModel.ObjectInMap30_30.LiveAnimals.WildAnimals;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 public class InformationNeededInGame {
-    private static InformationNeededInGame informationNeededInGame = new InformationNeededInGame();
 
-    private InformationNeededInGame() {
-    }
 
     public int getPriceToBuyCakeBakeryLevel0() {
         return PriceToBuyCakeBakeryLevel0;
     }
 
-    public static InformationNeededInGame getInformationNeededInGame() {
-        return informationNeededInGame;
-    }
 
     //well information
     public static int CapacityOfTheBucket = 5;
@@ -77,7 +71,7 @@ public class InformationNeededInGame {
     //PriceToBuyWorkShop
 
 
-    public static int getSpaceNeededInWareHouse(Object object){
+    public int getSpaceNeededInWareHouse(Object object){
         if (object.toString().equals("Cage")) {
             WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
             if (wildAnimals.toString().equals("Lion"))
@@ -125,7 +119,7 @@ public class InformationNeededInGame {
     //PriceToUpgradeWareHouse
     private static int PriceToUpgradeWareHouse = 1500; // random
 
-    public static int getPriceForUpgrade(Object object) throws UnknownObjectException {
+    public int getPriceForUpgrade(Object object) throws UnknownObjectException {
         if (object.toString().equals("Well")) {
             return PriceToUpgradeWell;
         } else if (object.toString().equals("WareHouse")) {
@@ -171,7 +165,7 @@ public class InformationNeededInGame {
     private static int PriceToBuyEgg = 20;
     private static int PriceToBuyMilk = 2000;
 
-    public static int getPriceToBuy(Object object) {
+        public int getPriceToBuy(Object object) {
         if (object.toString().equals("Chicken")) {
             return PriceToBuyChicken;
         } else if (object.toString().equals("Cow")) {
@@ -229,7 +223,7 @@ public class InformationNeededInGame {
     private static int PriceForSellCageBear = 100;
 
 
-    public static int getPriceForSell(Object object) throws UnknownObjectException {
+    public int getPriceForSell(Object object) throws UnknownObjectException {
         if (object.toString().equals("Wool")) {
             return PriceForSellWool;
         } else if (object.toString().equals("Milk")) {
