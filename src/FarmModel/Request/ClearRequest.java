@@ -22,11 +22,11 @@ public class ClearRequest extends Request {
         }
     }
 
-    public String getVehicleName() {
+    private String getVehicleName() {
         return vehicleName;
     }
 
-    public void setVehicleName(String vehicleName) {
+    private void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
     }
 

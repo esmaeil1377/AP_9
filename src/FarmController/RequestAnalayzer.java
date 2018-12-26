@@ -24,7 +24,8 @@ public class RequestAnalayzer {
     private static final String Print_Regex = "print (info|map|levels|warehouse|well|workshops|truck|helicopter)";
     private static final String Turn_Regex = "turn [0-9]*";
     private static final String Go_Vehicle_Regex = "(Truck|Helicopter) go";
-    public static final String Add_Item_To_Vehicle = "(Truck|Helicopter) .* [0-9]+";
+    private static final String Clear_Request="(truck|helicopter) clear";
+    private static final String Add_Item_To_Vehicle = "(Truck|Helicopter) .* [0-9]+";
 
     public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney, NotEmptyWell {
         if (requestString.matches(Buy_Animals_Regex)) {
@@ -57,6 +58,8 @@ public class RequestAnalayzer {
             new GoVehicleRequest(requestString);
         } else if (requestString.matches(Add_Item_To_Vehicle)) {
             new AddVehicleRequest(requestString);
+        }else if(requestString.matches(Clear_Request)){
+            new ClearRequest(requestString);
         } else {
             System.out.println("Unknown1 Request");
         }

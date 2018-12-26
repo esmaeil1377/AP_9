@@ -9,22 +9,14 @@ import java.util.ArrayList;
 public class Cell {
     private int x;
     private int y;
-    ArrayList<ObjectInMap30_30> cellObjectInMap30_30 = new ArrayList<>();
+    private ArrayList<ObjectInMap30_30> cellObjectInMap30_30 = new ArrayList<>();
 
 
-    public int getXPosition() {
-        return x;
-    }
-
-    public void setXPosition(int XPosition) {
+    void setXPosition(int XPosition) {
         this.x = XPosition;
     }
 
-    public int getYPosition() {
-        return y;
-    }
-
-    public void setYPosition(int YPosition) {
+    void setYPosition(int YPosition) {
         this.y = YPosition;
     }
 

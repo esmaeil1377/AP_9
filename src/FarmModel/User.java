@@ -37,10 +37,10 @@ public class User {
     }
 
     public User(String accountName) {
-        mission1.Addrequirement(new Egg(),10);
-        mission2.Addrequirement(new Chicken(),15);
-        mission3.Addrequirement(new Powder(),5);
-        mission4.Addrequirement(new Cow(),3);
+        mission1.Addrequierment(new Egg(),10);
+        mission2.Addrequierment(new Chicken(),15);
+        mission3.Addrequierment(new Powder(),5);
+        mission4.Addrequierment(new Cow(),3);
         setAccountName(accountName);
         AddMissionToMissionsForUser(mission1);
         AddMissionToMissionsForUser(mission2);
