@@ -6,8 +6,10 @@ import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.CakeBakery;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.EggPowderPlant;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.SewingFactory;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;

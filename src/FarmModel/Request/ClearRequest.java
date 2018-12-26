@@ -12,7 +12,7 @@ public class ClearRequest extends Request {
     public ClearRequest(String request) throws MissionNotLoaded {
         AnalyzeRequestLine(request);
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
-        if (vehicleName.equals("truck")) {
+        if (getVehicleName().equals("truck")) {
             Truck truck = farm.getTruck();
             truck.getGoodsThatHaveToCarry().clear();
         } else if (vehicleName.equals("helicopter")) {
@@ -32,6 +32,6 @@ public class ClearRequest extends Request {
 
     public void AnalyzeRequestLine(String requestLine) {
         String[] request = requestLine.split(" ");
-        String vehicleName = request[0];
+        setVehicleName(request[0]);
     }
 }
