@@ -3,8 +3,13 @@ package FarmModel.Request;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
+import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class ClearRequest extends Request {
     private String vehicleName;
@@ -14,11 +19,18 @@ public class ClearRequest extends Request {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         if (getVehicleName().equals("truck")) {
             Truck truck = farm.getTruck();
-            truck.getGoodsThatHaveToCarry().clear();
+            if(!truck.IsVehicleActivated()) {
+                truck.getGoodsThatHaveToCarry().clear();
+            }
         } else if (vehicleName.equals("helicopter")) {
-
             Helicopter helicopter = farm.getHelicopter();
-            helicopter.getGoodsThatHaveToCarry().clear();
+            //here we should add money to user
+            ArrayList<Object> list=helicopter.getGoodsThatHaveToCarry();
+            int price= TransportationVehicle.CalculatePriceToBuyForHelicopter(list);
+            if(!helicopter.IsVehicleActivated()) {
+                helicopter.getGoodsThatHaveToCarry().clear();
+            }
+            Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().ChangeMissionMoney(price);
         }
     }
 

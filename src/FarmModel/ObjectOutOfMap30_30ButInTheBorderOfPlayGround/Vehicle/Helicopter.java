@@ -18,7 +18,7 @@ public class Helicopter extends TransportationVehicle implements Upgradeable {
     }
 
     //i have to watch out this part because object have not the same space needed and they are .
-    public void  BuyObjectFromCityAndGetMoneyFromUser(ObjectInMap30_30 good) throws MissionNotLoaded {
+    public void AddObjectToListForBuyToHelicopterAndGetMoneyFromUser(ObjectInMap30_30 good) throws MissionNotLoaded {
         //don'd forget capacity limitation.
         Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
         int priceToBuy = CalculatePriceToBuyForHelicopter(new ArrayList<>(Arrays.asList(good)));

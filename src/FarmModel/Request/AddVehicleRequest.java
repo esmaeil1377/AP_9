@@ -11,7 +11,6 @@ import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Cake;
 import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Cookie;
 import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Powder;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.CityShop;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
@@ -27,16 +26,17 @@ public class AddVehicleRequest extends Request {
         WareHouse wareHouse = farm.getWareHouse();
         if (vehicleName.equals("Truck")) {
             Truck truck = farm.getTruck();
-            Object object = farm.getObjectInWareHouse(this.object);
-            for (int i = 0; i < count; i++)
-                truck.TakeObjectFromWareHouse(object);
-
+            if(!truck.IsVehicleActivated()) {
+                Object object = farm.getObjectInWareHouse(this.object);
+                for (int i = 0; i < count; i++)
+                    truck.TakeObjectFromWareHouse(object);
+            }
         } else if (vehicleName.equals("Helicopter")) {
-
             Helicopter helicopter = farm.getHelicopter();
-//            CityShop cityShop = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getCityShop();
-            for (int i = 0; i < count; i++)
-                helicopter.BuyObjectFromCityAndGetMoneyFromUser(getObject());
+            if(!helicopter.IsVehicleActivated()) {
+                for (int i = 0; i < count; i++)
+                    helicopter.AddObjectToListForBuyToHelicopterAndGetMoneyFromUser(getObject());
+            }
         }
     }
 

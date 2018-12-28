@@ -18,6 +18,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap30_30ButInTheB
     private ArrayList<Object> goodsThatCarry = new ArrayList<>();
     private boolean isVehicleActivated = false;
 
+
     public void setLevel(int level) {
         Level = level;
     }
@@ -68,7 +69,7 @@ public abstract class TransportationVehicle extends ObjectOutOfMap30_30ButInTheB
         return turnToMoveObjectToCityAndComeBack;
     }
 
-    static int CalculatePriceToBuyForHelicopter(ArrayList<Object> goods) {
+    public static int CalculatePriceToBuyForHelicopter(ArrayList<Object> goods) {
         User user=Game.getGameInstance().getCurrentUserAccount();
         int price = 0;
         for (Object object : goods) {
