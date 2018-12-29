@@ -119,10 +119,11 @@ public class PrintRequest extends Request {
     }
 
     private void PrintWareHouse() throws MissionNotLoaded {
+        System.out.print("Warehouse: ");
         WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         ArrayList<Object> wareHouseList = wareHouse.getWareHouseList();
         for (Object object : wareHouseList) {
-            System.out.println(object.toString());
+            System.out.print(object.toString());
         }
     }
 
