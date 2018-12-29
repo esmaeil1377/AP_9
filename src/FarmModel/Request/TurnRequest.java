@@ -42,8 +42,8 @@ public class TurnRequest extends Request {
     private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, NotEmptyWell {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
-            AddWildAnimalsToMapAfterOneMinute();
             KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            MakeWildAnimalDestroy(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MoveObject(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeProductDisappearOrDecreaseRemainTurnToDisappear(farm.getCurrentProductInMap());
             MakeAnimalProduce(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -54,7 +54,7 @@ public class TurnRequest extends Request {
             MakeHelicopterPassTheWayToCityOrPutThemOnMap();
             MakeCatTakeProductOrPutProductToWareHouseIfItWasNearWareHouse(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            MakeWildAnimalDestroy(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
+            AddWildAnimalsToMapAfterOneMinute();
             StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission();
             //and so on
         }
