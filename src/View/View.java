@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 import static FarmController.RequestAnalayzer.RequestAnalayzer;
 
-public class View {
+public abstract class View {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void  getRequest() {
@@ -17,5 +17,7 @@ public class View {
             }
         }
     }
+
+    public abstract void Start();
 
 }

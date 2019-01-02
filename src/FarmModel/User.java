@@ -68,7 +68,7 @@ public class User {
         this.acountName = acountName;
     }
 
-    public String getAcountName() {
+    public String getAccountName() {
         return acountName;
     }
 
