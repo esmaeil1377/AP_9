@@ -1,7 +1,9 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MaxLevelExceeded;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.*;
 import FarmModel.ObjectInMap30_30.LiveAnimals.*;
 
@@ -17,7 +19,7 @@ public class BuyRequest extends Request {
         this.animalName = animalName;
     }
 
-    public BuyRequest(String request) throws MissionNotLoaded, NotEnoughMoney {
+    public BuyRequest(String request) throws MissionNotLoaded, NotEnoughMoney, UnknownObjectException, MaxLevelExceeded {
         AnalyzeRequestLine(request);
         User user=Game.getGameInstance().getCurrentUserAccount();
         Mission mission=user.getCurrentPlayingMission();
@@ -27,7 +29,7 @@ public class BuyRequest extends Request {
         int x = (int) (Math.random() * 30);
         int y = (int) (Math.random() * 30);
         if(getAnimalName().equals("Cat")){
-            Cat cat=new Cat();
+            Cat cat=new Cat(Game.getGameInstance().getCurrentUserAccount().getCatLevel());
             int price=informationNeededInGame.getPriceToBuy(cat);
             if(currentMoney >= price){
                 cat.setX(x);

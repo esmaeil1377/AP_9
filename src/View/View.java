@@ -1,4 +1,6 @@
 package View;
+import javafx.stage.Stage;
+
 import java.util.Scanner;
 
 import static FarmController.RequestAnalayzer.RequestAnalayzer;
@@ -18,6 +20,6 @@ public abstract class View {
         }
     }
 
-    public abstract void Start();
+    public abstract void Start(Stage primaryStage);
 
 }

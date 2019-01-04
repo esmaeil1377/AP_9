@@ -10,6 +10,7 @@ import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.User;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -29,6 +30,8 @@ public class UpgradeRequest extends Request{
                         cat.Upgrade();
                     }
                 }
+                User user=Game.getGameInstance().getCurrentUserAccount();
+                user.setCatLevel(user.getCatLevel()+1);
             } else if (objectString.equals("truck")) {
                 Truck truck = farm.getTruck();
                 truck.Upgrade();
@@ -44,6 +47,7 @@ public class UpgradeRequest extends Request{
             } else {
                 WorkShop workShop = farm.getspecifiedWorkShop(objectString);
                 workShop.Upgrade();
+                SetLevelInUserForWorkShops(workShop);
                 try {
                     Objects.requireNonNull(workShop);
                 } catch (NullPointerException e) {
@@ -66,5 +70,24 @@ public class UpgradeRequest extends Request{
     public void AnalyzeRequestlIne(String requestLine) {
         String[] params = requestLine.split(" ");
         setObjectString(params[1]);
+    }
+
+    private void SetLevelInUserForWorkShops(WorkShop workShop) throws UnknownObjectException {
+        User user=Game.getGameInstance().getCurrentUserAccount();
+        if(workShop.getWorkShopName().equals("CakeBakery")){
+            user.setCakeBakeryLevel(user.getCakeBakeryLevel()+1);
+        }else if(workShop.getWorkShopName().equals("CookieBakery")){
+            user.setCookieBakeryLevel(user.getCookieBakeryLevel()+1);
+        }else if(workShop.getWorkShopName().equals("EggPowderPlant")){
+            user.setEggPOwderPlantLevel(user.getEggPOwderPlantLevel()+1);
+        }else if(workShop.getWorkShopName().equals("SewingFactory")){
+            user.setWeavingFactoryLevel(user.getSewingFactoryLevel()+1);
+        }else if(workShop.getWorkShopName().equals("Spinnery")){
+            user.setSpinneryLevel(user.getSpinneryLevel()+1);
+        }else if(workShop.getWorkShopName().equals("WeavingFactory")){
+            user.setWeavingFactoryLevel(user.getWeavingFactoryLevel()+1);
+        }else{
+            throw new UnknownObjectException();
+        }
     }
 }

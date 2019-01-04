@@ -1,14 +1,31 @@
 package FarmModel;
 
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
+
 import java.util.ArrayList;
 
 public class Game {
-    private static Game game = new Game();
+    private static Game game;
+
+    static {
+        try {
+            game = new Game();
+        } catch (UnknownObjectException e) {
+            e.printStackTrace();
+        } catch (NotEnoughMoney notEnoughMoney) {
+            notEnoughMoney.printStackTrace();
+        } catch (MissionNotLoaded missionNotLoaded) {
+            missionNotLoaded.printStackTrace();
+        }
+    }
+
     //just for the first user account:Mosio
     private User currentUserAcount=new User("Mosio");
     ArrayList<User> userAcount = new ArrayList<>();
 
-    private Game() { }
+    private Game() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded { }
 
     public static Game getGameInstance() {
         return game;

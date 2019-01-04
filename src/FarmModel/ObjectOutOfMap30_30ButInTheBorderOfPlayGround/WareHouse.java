@@ -94,12 +94,12 @@ public class WareHouse extends ObjectOutOfMap30_30ButInTheBorderOfPlayGround imp
     }
 
     public void Upgrade() throws NotEnoughMoney, MaxLevelExceeded, UnknownObjectException, MissionNotLoaded {
-//        Level++;
-//        if (Level == 1) {
+//        level++;
+//        if (level == 1) {
 //            setCapacityOfWareHouse(150);
-//        } else if (Level == 2) {
+//        } else if (level == 2) {
 //            setCapacityOfWareHouse(300);
-//        } else if (Level == 3) {
+//        } else if (level == 3) {
 //            setCapacityOfWareHouse(600);
 //        }
         int maxLevel = 3;

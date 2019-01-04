@@ -1,6 +1,8 @@
 package FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap30_30.Product.Product;
@@ -17,7 +19,10 @@ public class CustomWorkShop extends WorkShop {
     }
 
 
-    public CustomWorkShop(String WorkshopName, HashMap<Product, Integer> objectNeededToProduceOne, Product resultProduct) {
+    public CustomWorkShop(int currentLeve,String WorkshopName, HashMap<Product, Integer> objectNeededToProduceOne, Product resultProduct) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
+        for(int i=0;i<currentLeve;i++){
+            Upgrade();
+        }
         workShopName = WorkshopName;
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);
         setResultProduct(resultProduct);

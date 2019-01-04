@@ -2,6 +2,8 @@ package FarmModel.Request;
 
 import FarmModel.Game;
 import FarmModel.Mission;
+import FarmModel.ObjectInMap30_30.LiveAnimals.Cat;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import com.gilecode.yagson.YaGson;
 
 import java.io.*;
@@ -49,6 +51,5 @@ public class LoadGameRequest extends Request {
         String pathToJsonFile = requestLine.substring(10);
         setPathToJsonFile(pathToJsonFile);
     }
-
 
 }

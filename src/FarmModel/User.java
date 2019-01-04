@@ -1,5 +1,7 @@
 package FarmModel;
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.ObjectInMap30_30.LiveAnimals.Chicken;
 import FarmModel.ObjectInMap30_30.LiveAnimals.Cow;
 import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
@@ -18,8 +20,72 @@ import java.util.Arrays;
 public class User {
     private String acountName;
     private int money;
+    private int CatLevel;
+    private int CakeBakeryLevel;
+    private int CookieBakeryLevel;
+    private int EggPOwderPlantLevel;
+    private int SeewingFactoryLevel;
+    private int SpinneryLevel;
+    private int WeavingFactoryLevel;
+
+    public int getCatLevel() {
+        return CatLevel;
+    }
+
+    public void setCatLevel(int catLevel) {
+        CatLevel = catLevel;
+    }
+
+    public int getCakeBakeryLevel() {
+        return CakeBakeryLevel;
+    }
+
+    public void setCakeBakeryLevel(int cakeBakeryLevel) {
+        CakeBakeryLevel = cakeBakeryLevel;
+    }
+
+    public int getCookieBakeryLevel() {
+        return CookieBakeryLevel;
+    }
+
+    public void setCookieBakeryLevel(int cookieBakeryLevel) {
+        CookieBakeryLevel = cookieBakeryLevel;
+    }
+
+    public int getEggPOwderPlantLevel() {
+        return EggPOwderPlantLevel;
+    }
+
+    public void setEggPOwderPlantLevel(int eggPOwderPlantLevel) {
+        EggPOwderPlantLevel = eggPOwderPlantLevel;
+    }
+
+    public int getSewingFactoryLevel() {
+        return SeewingFactoryLevel;
+    }
+
+    public void setSeewingFactoryLevel(int seewingFactoryLevel) {
+        SeewingFactoryLevel = seewingFactoryLevel;
+    }
+
+    public int getSpinneryLevel() {
+        return SpinneryLevel;
+    }
+
+    public void setSpinneryLevel(int spinneryLevel) {
+        SpinneryLevel = spinneryLevel;
+    }
+
+    public int getWeavingFactoryLevel() {
+        return WeavingFactoryLevel;
+    }
+
+    public void setWeavingFactoryLevel(int weavingFactoryLevel) {
+        WeavingFactoryLevel = weavingFactoryLevel;
+    }
+
     private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,null));
-    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(),new Truck(),new Well(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(),new CakeBakery(),new SewingFactory()))));
+    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(),new Truck(),new Well(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0),new CakeBakery(0),new SewingFactory(0)))));
     private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null,null));
     private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null,null));
     private Mission currentPlayingMission;
@@ -36,7 +102,7 @@ public class User {
         customWorkShops.add(custom);
     }
 
-    public User(String accountName) {
+    public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
         mission1.Addrequierment(new Egg(),10);
         mission2.Addrequierment(new Chicken(),15);
         mission3.Addrequierment(new Powder(),5);

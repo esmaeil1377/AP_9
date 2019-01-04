@@ -1,6 +1,8 @@
 package FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Wool;
@@ -13,7 +15,10 @@ import java.util.HashMap;
 public class Spinnery extends WorkShop {
     public final String workShopName = "Spinnnery";
 
-    public Spinnery() {
+    public Spinnery(int currentLevel) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
+        for(int i=0;i<currentLevel;i++){
+            Upgrade();
+        }
         HashMap<Product, Integer> objectNeededToProduceOne=new HashMap<>();
         objectNeededToProduceOne.put(new Wool(),getMaxNumberOfGettingInput());
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);

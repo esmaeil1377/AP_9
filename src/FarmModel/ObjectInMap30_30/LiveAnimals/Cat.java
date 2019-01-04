@@ -11,8 +11,15 @@ import FarmModel.User;
 import java.util.ArrayList;
 
 public class Cat extends Animals implements Upgradeable {
-    private static int Level = 0;
+    public int level = 0;
     private Product productThatCarryToPutInWareHouse;
+
+
+    public Cat(int currentLevel) throws UnknownObjectException, NotEnoughMoney, MaxLevelExceeded, MissionNotLoaded {
+        for(int i=0;i<currentLevel;i++){
+            Upgrade();
+        }
+    }
 
 
     public void setProduct(Product product) {
@@ -43,7 +50,7 @@ public class Cat extends Animals implements Upgradeable {
     }
 
     public int getLevel() {
-        return Level;
+        return level;
     }
 
 
@@ -52,9 +59,9 @@ public class Cat extends Animals implements Upgradeable {
         User user=Game.getGameInstance().getCurrentUserAccount();
         int priceNeed = user.getInformationNeededInGame().getPriceForUpgrade(this);
         int missionMoney = user.getCurrentPlayingMission().getMissionMoney();
-        if (Level < maxLevel) {
+        if (level < maxLevel) {
             if (priceNeed < missionMoney) {
-                Level++;
+                level++;
                 user.getCurrentPlayingMission().setMissionMoney(missionMoney - priceNeed);
             } else {
                 throw new NotEnoughMoney();

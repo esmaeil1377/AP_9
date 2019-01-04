@@ -105,16 +105,16 @@ public class PrintRequest extends Request {
         Well well = farm.getWell();
         ArrayList<WorkShop> workShops = farm.getWorkShops();
         ArrayList<Cat> catInMap = farm.getCurrentCatInMap();
-        System.out.println("WareHouse Level: " + wareHouse.getLevel());
-        System.out.println("Truck Level: " + truck.getLevel());
-        System.out.println("Helicopter Level :" + helicopter.getLevel());
-        System.out.println("Well Level:" + well.getLevel());
+        System.out.println("WareHouse level: " + wareHouse.getLevel());
+        System.out.println("Truck level: " + truck.getLevel());
+        System.out.println("Helicopter level :" + helicopter.getLevel());
+        System.out.println("Well level:" + well.getLevel());
         if(catInMap.size() != 0)
-        System.out.println("Cat Level: " + catInMap.get(0).getLevel());
+        System.out.println("Cat level: " + catInMap.get(0).getLevel());
         else
             System.out.println("There are not cats in map");
         for (WorkShop workShop : workShops) {
-            System.out.println(workShop.toString() + " Level :" + workShop.getLevel());
+            System.out.println(workShop.toString() + " level :" + workShop.getLevel());
         }
     }
 
