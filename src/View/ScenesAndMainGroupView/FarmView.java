@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -38,9 +39,11 @@ public class FarmView extends View {
 
         AddMenuClick(primaryStage);
 
-        MakeWellMoving(primaryStage);
+        AddMovingWell(primaryStage);
 
+        AddMovingWareHouse(primaryStage);
 
+        AddPavement(primaryStage);
 
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
@@ -244,17 +247,18 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(cloudView);
     }
 
-    private void MakeWellMoving(Stage primaryStage){
-        File wellFile=new File("Data\\Well.png");
+    private void AddMovingWell(Stage primaryStage){
+        File wellFile=new File("Data\\Textures\\Service\\Well\\01.png");
         Image wellImage=new Image(wellFile.toURI().toString());
         ImageView wellView=new ImageView(wellImage);
-        wellView.relocate(-38,64);
+        wellView.relocate(-38,68);
         wellView.setFitHeight(310);
         wellView.setFitWidth(315);
+        wellView.setViewport(new Rectangle2D(0,0 , 150, 150));
         wellView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                wellView.relocate(-34,69);
+                wellView.relocate(-34,76);
                 wellView.setFitHeight(298);
                 wellView.setFitWidth(308);
             }
@@ -262,7 +266,7 @@ public class FarmView extends View {
         wellView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                wellView.relocate(-38,64);
+                wellView.relocate(-38,68);
                 wellView.setFitHeight(310);
                 wellView.setFitWidth(315);
             }
@@ -270,12 +274,75 @@ public class FarmView extends View {
         wellView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                String path="Data\\Voice\\Bubble.mp3";
+                String path1= Paths.get(path).toUri().toString();
+                Media voiceMedia = new Media(path1);
+                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
+                mediaPlayer.play();
+                //ifs
+//                SpriteAnimation spriteAnimation=new SpriteAnimation(wellView,Duration.seconds(10),1,2,100,100,150,150);
+//                spriteAnimation.interpolate(2);
 
             }
         });
-
-
         rootFarmView.getChildren().addAll(wellView);
+    }
+
+    private void AddMovingWareHouse(Stage primaryStage){
+        File wareHouseFile=new File("Data\\Textures\\Service\\Depot\\01.png");
+        Image wareHouseImage=new Image(wareHouseFile.toURI().toString());
+        ImageView wareHouseView=new ImageView(wareHouseImage);
+        wareHouseView.relocate(500,580);
+        wareHouseView.setFitHeight(310);
+        wareHouseView.setFitWidth(315);
+//        wellView.setViewport(new Rectangle2D(0,0 , 150, 150));
+        wareHouseView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wareHouseView.relocate(504,588);
+                wareHouseView.setFitHeight(298);
+                wareHouseView.setFitWidth(308);
+            }
+        });
+        wareHouseView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wareHouseView.relocate(500,580);
+                wareHouseView.setFitHeight(310);
+                wareHouseView.setFitWidth(315);
+            }
+        });
+        wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String path="Data\\Voice\\Bubble.mp3";
+                String path1= Paths.get(path).toUri().toString();
+                Media voiceMedia = new Media(path1);
+                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
+                mediaPlayer.play();
+                //ifs
+//                SpriteAnimation spriteAnimation=new SpriteAnimation(wellView,Duration.seconds(10),1,2,100,100,150,150);
+//                spriteAnimation.interpolate(2);
+
+            }
+        });
+        rootFarmView.getChildren().addAll(wareHouseView);
+    }
+
+    private void AddPavement(Stage primaryStage){
+        File pavementFile=new File("C:Data\\Pavement.png");
+        Image pavementImage=new Image(pavementFile.toURI().toString());
+        ImageView pavementViewHelicopter=new ImageView(pavementImage);
+        pavementViewHelicopter.relocate(190,520);
+        pavementViewHelicopter.setFitHeight(500);
+        pavementViewHelicopter.setFitWidth(300);
+
+        ImageView pavementViewTruck=new ImageView(pavementImage);
+        pavementViewTruck.relocate(825,520);
+        pavementViewTruck.setFitHeight(500);
+        pavementViewTruck.setFitWidth(300);
+
+        rootFarmView.getChildren().addAll(pavementViewHelicopter,pavementViewTruck);
     }
 
 }
