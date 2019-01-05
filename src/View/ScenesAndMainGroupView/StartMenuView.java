@@ -72,11 +72,7 @@ public class StartMenuView extends View {
         playClickView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String path="Data\\Voice\\Bubble.mp3";
-                String path1= Paths.get(path).toUri().toString();
-                Media voiceMedia = new Media(path1);
-                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
-                mediaPlayer.play();
+                PlayBubbleSound();
 //                primaryStage.setScene();
                 primaryStage.setFullScreen(true);
             }
@@ -110,11 +106,7 @@ public class StartMenuView extends View {
         settingImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String path="Data\\Voice\\Bubble.mp3";
-                String path1= Paths.get(path).toUri().toString();
-                Media voiceMedia = new Media(path1);
-                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
-                mediaPlayer.play();
+                PlayBubbleSound();
                 //...
             }
         });
@@ -147,11 +139,7 @@ public class StartMenuView extends View {
         exitImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String path="Data\\Voice\\Bubble.mp3";
-                String path1= Paths.get(path).toUri().toString();
-                Media voiceMedia = new Media(path1);
-                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
-                mediaPlayer.play();
+                PlayBubbleSound();
                 primaryStage.close();
             }
         });

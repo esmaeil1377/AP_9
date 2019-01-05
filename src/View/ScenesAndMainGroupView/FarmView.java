@@ -11,8 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -37,13 +35,17 @@ public class FarmView extends View {
 
         ShowMovingCloud(primaryStage);
 
-        AddMenuClick(primaryStage);
-
         AddMovingWell(primaryStage);
 
         AddMovingWareHouse(primaryStage);
 
         AddPavement(primaryStage);
+
+        AddBuyItems(primaryStage);
+
+        AddThreePavementForWorkshop(primaryStage);
+
+        AddMenuClick(primaryStage);
 
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
@@ -63,33 +65,9 @@ public class FarmView extends View {
     }
 
     private void AddMenuClick(Stage primaryStage){
-        Circle menuCircle=new Circle(80,800,10);
+        Circle menuCircle=new Circle(80,800,0);
         menuCircle.setOpacity(0.8);
         menuCircle.setFill(Color.rgb(216,218,34));
-
-
-
-        Circle continueCircle=new Circle(80,550,0);
-        continueCircle.setOpacity(0.6);
-        continueCircle.setFill(Color.rgb(64,45,67));
-        continueCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                continueCircle.setOpacity(0.8);
-            }
-        });
-        continueCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                continueCircle.setOpacity(0.6);
-            }
-        });
-        continueCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
 
         Circle mainMenuCircle=new Circle(205,583.495,0);
         mainMenuCircle.setOpacity(0.6);
@@ -158,7 +136,60 @@ public class FarmView extends View {
         });
 
 
+        Circle continueCircle=new Circle(80,550,0);
+        continueCircle.setOpacity(0.6);
+        continueCircle.setFill(Color.rgb(64,45,67));
+        continueCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                continueCircle.setOpacity(0.8);
+            }
+        });
+        continueCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                continueCircle.setOpacity(0.6);
+            }
+        });
+        continueCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),0);
+                KeyFrame continueCircleFrame=new KeyFrame(Duration.seconds(1),continueCircleKey);
+                Timeline continueCircleTimeLine=new Timeline(continueCircleFrame);
+                continueCircleTimeLine.getKeyFrames().addAll(continueCircleFrame);
+                continueCircleTimeLine.play();
 
+                KeyValue mainMenuKey=new KeyValue(mainMenuCircle.radiusProperty(),0);
+                KeyFrame mainMenuFrame=new KeyFrame(Duration.seconds(1),mainMenuKey);
+                Timeline mainMenuTimeLine=new Timeline(mainMenuFrame);
+                mainMenuTimeLine.getKeyFrames().addAll(mainMenuFrame);
+                mainMenuTimeLine.play();
+
+                KeyValue restartCircleKey=new KeyValue(restartCircle.radiusProperty(),0);
+                KeyFrame restartCircleFrame=new KeyFrame(Duration.seconds(1),restartCircleKey);
+                Timeline restartCircleTimeLine=new Timeline(restartCircleFrame);
+                restartCircleTimeLine.getKeyFrames().addAll(restartCircleFrame);
+                restartCircleTimeLine.play();
+
+                KeyValue mapCircleKey=new KeyValue(mapCircle.radiusProperty(),0);
+                KeyFrame mapCircleFrame=new KeyFrame(Duration.seconds(1),mapCircleKey);
+                Timeline mapCircleTimeLine=new Timeline(mapCircleFrame);
+                mapCircleTimeLine.getKeyFrames().addAll(mapCircleFrame);
+                mapCircleTimeLine.play();
+
+
+                PlayBubbleSound();
+
+                KeyValue x=new KeyValue(menuCircle.radiusProperty(),0);
+                KeyFrame keyFrame=new KeyFrame(Duration.millis(500),x);
+                Timeline timeline=new Timeline(keyFrame);
+                timeline.getKeyFrames().addAll(keyFrame);
+                timeline.play();
+            }
+        });
+
+        rootFarmView.getChildren().addAll(menuCircle,continueCircle,mainMenuCircle,restartCircle,mapCircle);
 
         File menuFile=new File("Data\\Click\\Menu.png");
         Image menuImage=new Image(menuFile.toURI().toString());
@@ -169,41 +200,36 @@ public class FarmView extends View {
         MenuView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                rootFarmView.getChildren().addAll(menuCircle,continueCircle,mainMenuCircle,restartCircle,mapCircle);
 
                 KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),60);
-                KeyFrame continueCircleFrame=new KeyFrame(Duration.seconds(1),continueCircleKey);
+                KeyFrame continueCircleFrame=new KeyFrame(Duration.millis(500),continueCircleKey);
                 Timeline continueCircleTimeLine=new Timeline(continueCircleFrame);
                 continueCircleTimeLine.getKeyFrames().addAll(continueCircleFrame);
                 continueCircleTimeLine.play();
 
                 KeyValue mainMenuKey=new KeyValue(mainMenuCircle.radiusProperty(),60);
-                KeyFrame mainMenuFrame=new KeyFrame(Duration.seconds(1),mainMenuKey);
+                KeyFrame mainMenuFrame=new KeyFrame(Duration.millis(500),mainMenuKey);
                 Timeline mainMenuTimeLine=new Timeline(mainMenuFrame);
                 mainMenuTimeLine.getKeyFrames().addAll(mainMenuFrame);
                 mainMenuTimeLine.play();
 
                 KeyValue restartCircleKey=new KeyValue(restartCircle.radiusProperty(),60);
-                KeyFrame restartCircleFrame=new KeyFrame(Duration.seconds(1),restartCircleKey);
+                KeyFrame restartCircleFrame=new KeyFrame(Duration.millis(500),restartCircleKey);
                 Timeline restartCircleTimeLine=new Timeline(restartCircleFrame);
                 restartCircleTimeLine.getKeyFrames().addAll(restartCircleFrame);
                 restartCircleTimeLine.play();
 
                 KeyValue mapCircleKey=new KeyValue(mapCircle.radiusProperty(),60);
-                KeyFrame mapCircleFrame=new KeyFrame(Duration.seconds(1),mapCircleKey);
+                KeyFrame mapCircleFrame=new KeyFrame(Duration.millis(500),mapCircleKey);
                 Timeline mapCircleTimeLine=new Timeline(mapCircleFrame);
                 mapCircleTimeLine.getKeyFrames().addAll(mapCircleFrame);
                 mapCircleTimeLine.play();
 
 
-                String path="Data\\Voice\\Bubble.mp3";
-                String path1= Paths.get(path).toUri().toString();
-                Media voiceMedia = new Media(path1);
-                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
-                mediaPlayer.play();
+                PlayBubbleSound();
 
-                KeyValue x=new KeyValue(menuCircle.radiusProperty(),350);
-                KeyFrame keyFrame=new KeyFrame(Duration.seconds(1),x);
+                KeyValue x=new KeyValue(menuCircle.radiusProperty(),2000);
+                KeyFrame keyFrame=new KeyFrame(Duration.millis(500),x);
                 Timeline timeline=new Timeline(keyFrame);
                 timeline.getKeyFrames().addAll(keyFrame);
                 timeline.play();
@@ -274,11 +300,7 @@ public class FarmView extends View {
         wellView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String path="Data\\Voice\\Bubble.mp3";
-                String path1= Paths.get(path).toUri().toString();
-                Media voiceMedia = new Media(path1);
-                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
-                mediaPlayer.play();
+                PlayBubbleSound();
                 //ifs
 //                SpriteAnimation spriteAnimation=new SpriteAnimation(wellView,Duration.seconds(10),1,2,100,100,150,150);
 //                spriteAnimation.interpolate(2);
@@ -315,11 +337,7 @@ public class FarmView extends View {
         wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String path="Data\\Voice\\Bubble.mp3";
-                String path1= Paths.get(path).toUri().toString();
-                Media voiceMedia = new Media(path1);
-                MediaPlayer mediaPlayer = new MediaPlayer(voiceMedia);
-                mediaPlayer.play();
+                PlayBubbleSound();
                 //ifs
 //                SpriteAnimation spriteAnimation=new SpriteAnimation(wellView,Duration.seconds(10),1,2,100,100,150,150);
 //                spriteAnimation.interpolate(2);
@@ -343,6 +361,291 @@ public class FarmView extends View {
         pavementViewTruck.setFitWidth(300);
 
         rootFarmView.getChildren().addAll(pavementViewHelicopter,pavementViewTruck);
+    }
+
+    private void AddBuyItems(Stage primaryStage){
+        Circle chickenCircle=new Circle(1450,270,50,Color.rgb(255,201,0));
+        chickenCircle.setOpacity(0.85);
+        chickenCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.95);
+            }
+        });
+        chickenCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.85);
+            }
+        });
+        chickenCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                PlayBubbleSound();
+                //some thing ti buy
+            }
+        });
+
+        Circle shipCircle=new Circle(1450,390,50,Color.rgb(255,201,0));
+        shipCircle.setOpacity(0.85);
+        shipCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shipCircle.setOpacity(0.95);
+            }
+        });
+        shipCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shipCircle.setOpacity(0.85);
+            }
+        });
+        shipCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                PlayBubbleSound();
+                //something to by
+            }
+        });
+
+        Circle cowCircle=new Circle(1450,510,50,Color.rgb(255,201,0));
+        cowCircle.setOpacity(0.85);
+        cowCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cowCircle.setOpacity(0.95);
+            }
+        });
+        cowCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cowCircle.setOpacity(0.85);
+            }
+        });
+        cowCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                PlayBubbleSound();
+                //something to buy
+            }
+        });
+
+        Circle catCircle=new Circle(1450,630,50,Color.rgb(255,201,0));
+        catCircle.setOpacity(0.85);
+        catCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                catCircle.setOpacity(0.95);
+            }
+        });
+        catCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                catCircle.setOpacity(0.85);
+            }
+        });
+        catCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                PlayBubbleSound();
+                //something to buy
+            }
+        });
+
+        Circle dogCircle=new Circle(1450,750,50,Color.rgb(255,201,0));
+        dogCircle.setOpacity(0.85);
+        dogCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dogCircle.setOpacity(0.95);
+            }
+        });
+        dogCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dogCircle.setOpacity(0.85);
+            }
+        });
+        dogCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                PlayBubbleSound();
+                //something to buy
+            }
+        });
+
+        File chickenFile=new File("Data\\Textures\\BuyIconNotHead\\Chicken.png");
+        Image chickenImage=new Image(chickenFile.toURI().toString());
+        ImageView chickenView=new ImageView(chickenImage);
+        chickenView.relocate(1405,235);
+        chickenView.setFitHeight(80);
+        chickenView.setFitWidth(80);
+        chickenView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.95);
+            }
+        });
+        chickenView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.85);
+            }
+        });
+        chickenView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                PlayBubbleSound();
+                //something to buy
+
+            }
+        });
+
+
+        File shipFile=new File("Data\\Textures\\BuyIconNotHead\\Ship.png");
+        Image shipImage=new Image(shipFile.toURI().toString());
+        ImageView shipView=new ImageView(shipImage);
+        shipView.relocate(1408,353);
+        shipView.setFitHeight(80);
+        shipView.setFitWidth(80);
+        shipView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.95);
+            }
+        });
+        shipView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.85);
+            }
+        });
+        shipView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        File cowFile=new File("Data\\Textures\\BuyIconNotHead\\Cow.png");
+        Image cowImage=new Image(cowFile.toURI().toString());
+        ImageView cowView=new ImageView(cowImage);
+        cowView.relocate(1412,474);
+        cowView.setFitHeight(80);
+        cowView.setFitWidth(80);
+        cowView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.95);
+            }
+        });
+        cowView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.85);
+            }
+        });
+        cowView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        File catFile=new File("Data\\Textures\\BuyIconNotHead\\Cat.png");
+        Image catImage=new Image(catFile.toURI().toString());
+        ImageView catView=new ImageView(catImage);
+        catView.relocate(1408,590);
+        catView.setFitHeight(80);
+        catView.setFitWidth(80);
+        catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.95);
+            }
+        });
+        catView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.85);
+            }
+        });
+        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        File dogFile=new File("Data\\Textures\\BuyIconNotHead\\Dog.png");
+        Image dogImage=new Image(dogFile.toURI().toString());
+        ImageView dogView=new ImageView(dogImage);
+        dogView.relocate(1410,703);
+        dogView.setFitHeight(90);
+        dogView.setFitWidth(80);
+        dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.95);
+            }
+        });
+        dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                chickenCircle.setOpacity(0.85);
+            }
+        });
+        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+
+        rootFarmView.getChildren().addAll(chickenCircle,shipCircle,cowCircle,catCircle,dogCircle,chickenView,shipView,cowView,catView,dogView);
+    }
+
+    private void AddThreePavementForWorkshop(Stage primaryStage){
+        File pavementFile=new File("Data\\WorkShopPavement.png");
+        Image pavementImage=new Image(pavementFile.toURI().toString());
+
+        int xDelta=950;
+        int yDelta=150;
+        int baseX=50;
+        int baseY=220;
+
+        ImageView pavementView1=new ImageView(pavementImage);
+        pavementView1.relocate(baseX+40,baseY);
+        pavementView1.setFitHeight(100);
+        pavementView1.setFitWidth(220);
+
+        ImageView pavementView2=new ImageView(pavementImage);
+        pavementView2.relocate(baseX+20,baseY+yDelta*1);
+        pavementView2.setFitHeight(110);
+        pavementView2.setFitWidth(230);
+
+        ImageView pavementView3=new ImageView(pavementImage);
+        pavementView3.relocate(baseX,baseY+yDelta*2);
+        pavementView3.setFitHeight(120);
+        pavementView3.setFitWidth(240);
+
+        ImageView pavementView4=new ImageView(pavementImage);
+        pavementView4.relocate(baseX+xDelta-20,baseY);
+        pavementView4.setFitHeight(100);
+        pavementView4.setFitWidth(220);
+
+        ImageView pavementView5=new ImageView(pavementImage);
+        pavementView5.relocate(baseX+xDelta-10,baseY+yDelta);
+        pavementView5.setFitHeight(110);
+        pavementView5.setFitWidth(230);
+
+        ImageView pavementView6=new ImageView(pavementImage);
+        pavementView6.relocate(baseX+xDelta,baseY+yDelta*2);
+        pavementView6.setFitHeight(120);
+        pavementView6.setFitWidth(240);
+
+        rootFarmView.getChildren().addAll(pavementView1,pavementView2,pavementView3,pavementView4,pavementView5,pavementView6);
     }
 
 }
