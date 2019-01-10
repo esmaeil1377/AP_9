@@ -42,13 +42,25 @@ public class MissionSelectionView extends View {
         File restartFile = new File("Data\\Mission\\Map.jpeg");
         Image restartImage = new Image(restartFile.toURI().toString());
         ImageView restartImageView = new ImageView(restartImage);
-        restartImageView.relocate(1200,500);
+        restartImageView.relocate(1230,550);
         primaryStage.setFullScreen(true);
-        restartImageView.setFitHeight(200);
-        restartImageView.setFitWidth(200);
-        Circle circle = new Circle(1200, 500, 150); // cast to Circle
+        restartImageView.setFitHeight(120);
+        restartImageView.setFitWidth(120);
+        //Circle circle = new Circle(1200, 500, 150); // cast to Circle
         //circle.setFill(restartImageView);
         rootMissionSelectionView.getChildren().addAll(restartImageView);
+    }
+
+    private void FarmerOfFarm(Stage primaryStage) {
+        File farmerFile = new File("Data\\Gif\\Farmer.gif");
+        Image farmerImage = new Image(farmerFile.toURI().toString());
+        ImageView farmerImageView = new ImageView(farmerImage);
+        farmerImageView.relocate(1270,410);
+        primaryStage.setFullScreen(true);
+        farmerImageView.setFitHeight(230);
+        farmerImageView.setFitWidth(90);
+        rootMissionSelectionView.getChildren().addAll(farmerImageView);
+        primaryStage.show();
     }
 
     private void NumberOfMission(Stage primaryStage) {
