@@ -15,10 +15,10 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class MissionSelectionView extends View {
-    private Group rootMissionSelectionView=new Group();
-    private Scene sceneSelectionView=new Scene(rootMissionSelectionView,1600,900);
+    private Group rootMissionSelectionView = new Group();
+    private Scene sceneSelectionView = new Scene(rootMissionSelectionView, 1600, 900);
 
-    public MissionSelectionView(Stage primaryStage){
+    public MissionSelectionView(Stage primaryStage) {
         Start(primaryStage);
     }
 
@@ -27,7 +27,7 @@ public class MissionSelectionView extends View {
 
     }
 
-    private void AddBackGround (Stage primaryStage) {
+    private void AddBackGround(Stage primaryStage) {
         File backGroundFile = new File("Data\\Mission\\mapofmission.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
@@ -35,5 +35,18 @@ public class MissionSelectionView extends View {
         BackGroundView.setFitHeight(870);
         BackGroundView.setFitWidth(1540);
         rootMissionSelectionView.getChildren().addAll(BackGroundView);
+    }
+
+    private void BeachOfMan(Stage primaryStage) {
+        File restartFile = new File("Data\\Mission\\Map.jpeg");
+        Image restartImage = new Image(restartFile.toURI().toString());
+        ImageView restartImageView = new ImageView(restartImage);
+        restartImageView.relocate(1200,500);
+        primaryStage.setFullScreen(true);
+        restartImageView.setFitHeight(200);
+        restartImageView.setFitWidth(200);
+        Circle circle = new Circle(1200, 500, 150); // cast to Circle
+        //circle.setFill(restartImageView);
+        rootMissionSelectionView.getChildren().addAll(restartImageView);
     }
 }
