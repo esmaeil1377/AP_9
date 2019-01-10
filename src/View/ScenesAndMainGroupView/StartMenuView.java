@@ -46,6 +46,8 @@ public class StartMenuView extends View {
 
         AddNewUser(primaryStage);
 
+        AddLookingGif(primaryStage);
+
 
         primaryStage.setScene(sceneStartMenuView);
         primaryStage.setFullScreen(true);
@@ -237,6 +239,17 @@ public class StartMenuView extends View {
 
             }
         });
+    }
+
+    private void AddLookingGif(Stage primaryStage){
+        File chickenFile=new File("Data\\Gif\\LookingChicken.gif");
+        Image chickenImage=new Image(chickenFile.toURI().toString());
+        ImageView LookingChickeImage=new ImageView(chickenImage);
+        LookingChickeImage.relocate(250,680);
+        LookingChickeImage.setFitHeight(150);
+        LookingChickeImage.setFitWidth(150);
+
+        rootStartMenuView.getChildren().addAll(LookingChickeImage);
     }
 
 }
