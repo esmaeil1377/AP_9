@@ -65,6 +65,38 @@ public class FarmView extends View {
     }
 
     private void AddMenuClick(Stage primaryStage){
+        File restartFile=new File("Data\\MenuClick\\Restart.png");
+        Image restartImage=new Image(restartFile.toURI().toString());
+        ImageView restartImageView=new ImageView(restartImage);
+        restartImageView.relocate(266,655);
+        primaryStage.setFullScreen(true);
+        restartImageView.setFitHeight(40);
+        restartImageView.setFitWidth(60);
+
+        File continueFile=new File("Data\\MenuClick\\Continue.png");
+        Image continueImage=new Image(continueFile .toURI().toString());
+        ImageView continueImageView=new ImageView(continueImage);
+        continueImageView.relocate(50,530);
+        primaryStage.setFullScreen(true);
+        continueImageView.setFitHeight(40);
+        continueImageView.setFitWidth(60);
+
+        File mapFile=new File("Data\\MenuClick\\Map.png");
+        Image optionImage=new Image(mapFile.toURI().toString());
+        ImageView optionImageView=new ImageView(optionImage);
+        optionImageView.relocate(300,780);
+        primaryStage.setFullScreen(true);
+        optionImageView.setFitHeight(30);
+        optionImageView.setFitWidth(50);
+
+        File menuTextFile=new File("Data\\MenuClick\\MainMenu.png");
+        Image menuTextImage=new Image(menuTextFile.toURI().toString());
+        ImageView menuTextImageView=new ImageView(menuTextImage);
+        menuTextImageView.relocate(175,563.495);
+        primaryStage.setFullScreen(true);
+        menuTextImageView.setFitHeight(40);
+        menuTextImageView.setFitWidth(70);
+
         Circle menuCircle=new Circle(80,800,0);
         menuCircle.setOpacity(0.8);
         menuCircle.setFill(Color.rgb(216,218,34));
@@ -135,7 +167,6 @@ public class FarmView extends View {
             }
         });
 
-
         Circle continueCircle=new Circle(80,550,0);
         continueCircle.setOpacity(0.6);
         continueCircle.setFill(Color.rgb(64,45,67));
@@ -154,6 +185,7 @@ public class FarmView extends View {
         continueCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                rootFarmView.getChildren().removeAll(menuTextImageView,optionImageView,continueImageView,restartImageView);
                 KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),0);
                 KeyFrame continueCircleFrame=new KeyFrame(Duration.seconds(1),continueCircleKey);
                 Timeline continueCircleTimeLine=new Timeline(continueCircleFrame);
@@ -200,6 +232,7 @@ public class FarmView extends View {
         MenuView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                rootFarmView.getChildren().addAll(menuTextImageView,optionImageView,continueImageView,restartImageView);
 
                 KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),60);
                 KeyFrame continueCircleFrame=new KeyFrame(Duration.millis(500),continueCircleKey);
