@@ -1,6 +1,7 @@
 package View.ScenesAndMainGroupView;
 
 import View.View;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -37,7 +38,7 @@ public class MissionSelectionView extends View {
         rootMissionSelectionView.getChildren().addAll(BackGroundView);
     }
 
-    private void BeachOfMan(Stage primaryStage) {
+    private void BeachOfMission(Stage primaryStage) {
         File restartFile = new File("Data\\Mission\\Map.jpeg");
         Image restartImage = new Image(restartFile.toURI().toString());
         ImageView restartImageView = new ImageView(restartImage);
@@ -48,5 +49,38 @@ public class MissionSelectionView extends View {
         Circle circle = new Circle(1200, 500, 150); // cast to Circle
         //circle.setFill(restartImageView);
         rootMissionSelectionView.getChildren().addAll(restartImageView);
+    }
+
+    private void NumberOfMission(Stage primaryStage) {
+        File numberFile = new File("Data\\Mission\\hob.png");
+        Image numberImage = new Image(numberFile.toURI().toString());
+        //ImageView numberImageView = new ImageView(numberImage);
+        ImageView[] numberImageView = new ImageView[15];
+        for (int i = 0; i < 15; i++) {
+            if (i < 7) {
+                numberImageView[i] = new ImageView(numberImage);
+                numberImageView[i].relocate(1130, 450 + 40 * i);
+                primaryStage.setFullScreen(true);
+                numberImageView[i].setFitWidth(30);
+                numberImageView[i].setFitHeight(30);
+                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
+            }
+            if (i > 7) {
+                numberImageView[i] = new ImageView(numberImage);
+                numberImageView[i].relocate(1130 + (i - 7) * 40, 450 + 40 * 7 + 10);
+                primaryStage.setFullScreen(true);
+                numberImageView[i].setFitWidth(30);
+                numberImageView[i].setFitHeight(30);
+                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
+            }
+        }
+        for (int i = 0; i < 15; i++) {
+            numberImageView[i].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                }
+            });
+        }
     }
 }
