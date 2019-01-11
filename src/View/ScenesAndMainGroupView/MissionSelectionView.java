@@ -1,6 +1,9 @@
 package View.ScenesAndMainGroupView;
 
 import View.View;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -95,4 +98,230 @@ public class MissionSelectionView extends View {
             });
         }
     }
+
+    private void AddMenuClick(Stage primaryStage) {
+        File restartFile1=new File("Data\\MenuClick\\Restart.png");
+        Image restartImage1=new Image(restartFile1.toURI().toString());
+        ImageView restartImageView1=new ImageView(restartImage1);
+        restartImageView1.relocate(266,655);
+        primaryStage.setFullScreen(true);
+        restartImageView1.setFitHeight(40);
+        restartImageView1.setFitWidth(60);
+
+        File continueFile=new File("Data\\MenuClick\\Continue.png");
+        Image continueImage=new Image(continueFile .toURI().toString());
+        ImageView continueImageView=new ImageView(continueImage);
+        continueImageView.relocate(50,530);
+        primaryStage.setFullScreen(true);
+        continueImageView.setFitHeight(40);
+        continueImageView.setFitWidth(60);
+
+        File mapFile=new File("Data\\MenuClick\\Map.png");
+        Image optionImage=new Image(mapFile.toURI().toString());
+        ImageView optionImageView=new ImageView(optionImage);
+        optionImageView.relocate(300,780);
+        primaryStage.setFullScreen(true);
+        optionImageView.setFitHeight(30);
+        optionImageView.setFitWidth(50);
+
+        File menuTextFile=new File("Data\\MenuClick\\MainMenu.png");
+        Image menuTextImage=new Image(menuTextFile.toURI().toString());
+        ImageView menuTextImageView=new ImageView(menuTextImage);
+        menuTextImageView.relocate(175,563.495);
+        primaryStage.setFullScreen(true);
+        menuTextImageView.setFitHeight(40);
+        menuTextImageView.setFitWidth(70);
+
+        Circle menuCircle=new Circle(80,800,0);
+        menuCircle.setOpacity(0.8);
+        menuCircle.setFill(Color.rgb(216,218,34));
+
+        Circle mainMenuCircle=new Circle(205,583.495,0);
+        mainMenuCircle.setOpacity(0.6);
+        mainMenuCircle.setFill(Color.rgb(64,45,67));
+        mainMenuCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mainMenuCircle.setOpacity(0.8);
+            }
+        });
+        mainMenuCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mainMenuCircle.setOpacity(0.6);
+            }
+        });
+        mainMenuCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        Circle restartCircle =new Circle(296.505,675,0);
+        restartCircle.setOpacity(0.6);
+        restartCircle.setFill(Color.rgb(64,45,67));
+        restartCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                restartCircle.setOpacity(0.8);
+            }
+        });
+        restartCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                restartCircle.setOpacity(0.6);
+            }
+        });
+        restartCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        Circle mapCircle =new Circle(330,800,0);
+        mapCircle.setOpacity(0.6);
+        mapCircle.setFill(Color.rgb(64,45,67));
+        mapCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mapCircle.setOpacity(0.8);
+            }
+        });
+        mapCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mapCircle.setOpacity(0.6);
+            }
+        });
+        restartCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        Circle continueCircle=new Circle(80,550,0);
+        continueCircle.setOpacity(0.6);
+        continueCircle.setFill(Color.rgb(64,45,67));
+        continueCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                continueCircle.setOpacity(0.8);
+            }
+        });
+        continueCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                continueCircle.setOpacity(0.6);
+            }
+        });
+        continueCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rootMissionSelectionView.getChildren().removeAll(menuTextImageView,optionImageView,continueImageView,restartImageView1);
+                KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),0);
+                KeyFrame continueCircleFrame=new KeyFrame(Duration.seconds(1),continueCircleKey);
+                Timeline continueCircleTimeLine=new Timeline(continueCircleFrame);
+                continueCircleTimeLine.getKeyFrames().addAll(continueCircleFrame);
+                continueCircleTimeLine.play();
+
+                KeyValue mainMenuKey=new KeyValue(mainMenuCircle.radiusProperty(),0);
+                KeyFrame mainMenuFrame=new KeyFrame(Duration.seconds(1),mainMenuKey);
+                Timeline mainMenuTimeLine=new Timeline(mainMenuFrame);
+                mainMenuTimeLine.getKeyFrames().addAll(mainMenuFrame);
+                mainMenuTimeLine.play();
+
+                KeyValue restartCircleKey=new KeyValue(restartCircle.radiusProperty(),0);
+                KeyFrame restartCircleFrame=new KeyFrame(Duration.seconds(1),restartCircleKey);
+                Timeline restartCircleTimeLine=new Timeline(restartCircleFrame);
+                restartCircleTimeLine.getKeyFrames().addAll(restartCircleFrame);
+                restartCircleTimeLine.play();
+
+                KeyValue mapCircleKey=new KeyValue(mapCircle.radiusProperty(),0);
+                KeyFrame mapCircleFrame=new KeyFrame(Duration.seconds(1),mapCircleKey);
+                Timeline mapCircleTimeLine=new Timeline(mapCircleFrame);
+                mapCircleTimeLine.getKeyFrames().addAll(mapCircleFrame);
+                mapCircleTimeLine.play();
+
+
+                //PlayBubbleSound();
+
+                KeyValue x=new KeyValue(menuCircle.radiusProperty(),0);
+                KeyFrame keyFrame=new KeyFrame(Duration.millis(500),x);
+                Timeline timeline=new Timeline(keyFrame);
+                timeline.getKeyFrames().addAll(keyFrame);
+                timeline.play();
+            }
+        });
+
+        rootMissionSelectionView.getChildren().addAll(menuCircle,continueCircle,mainMenuCircle,restartCircle,mapCircle);
+
+        File menuFile=new File("Data\\Click\\Menu.png");
+        Image menuImage1=new Image(menuFile.toURI().toString());
+        ImageView MenuView=new ImageView(menuImage1);
+        MenuView.relocate(30,750);
+        MenuView.setFitHeight(100);
+        MenuView.setFitWidth(100);
+        MenuView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rootMissionSelectionView.getChildren().addAll(menuTextImageView,optionImageView,continueImageView,restartImageView1);
+
+                KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),60);
+                KeyFrame continueCircleFrame=new KeyFrame(Duration.millis(500),continueCircleKey);
+                Timeline continueCircleTimeLine=new Timeline(continueCircleFrame);
+                continueCircleTimeLine.getKeyFrames().addAll(continueCircleFrame);
+                continueCircleTimeLine.play();
+
+                KeyValue mainMenuKey=new KeyValue(mainMenuCircle.radiusProperty(),60);
+                KeyFrame mainMenuFrame=new KeyFrame(Duration.millis(500),mainMenuKey);
+                Timeline mainMenuTimeLine=new Timeline(mainMenuFrame);
+                mainMenuTimeLine.getKeyFrames().addAll(mainMenuFrame);
+                mainMenuTimeLine.play();
+
+                KeyValue restartCircleKey=new KeyValue(restartCircle.radiusProperty(),60);
+                KeyFrame restartCircleFrame=new KeyFrame(Duration.millis(500),restartCircleKey);
+                Timeline restartCircleTimeLine=new Timeline(restartCircleFrame);
+                restartCircleTimeLine.getKeyFrames().addAll(restartCircleFrame);
+                restartCircleTimeLine.play();
+
+                KeyValue mapCircleKey=new KeyValue(mapCircle.radiusProperty(),60);
+                KeyFrame mapCircleFrame=new KeyFrame(Duration.millis(500),mapCircleKey);
+                Timeline mapCircleTimeLine=new Timeline(mapCircleFrame);
+                mapCircleTimeLine.getKeyFrames().addAll(mapCircleFrame);
+                mapCircleTimeLine.play();
+
+
+                //PlayBubbleSound();
+
+                KeyValue x=new KeyValue(menuCircle.radiusProperty(),2000);
+                KeyFrame keyFrame=new KeyFrame(Duration.millis(500),x);
+                Timeline timeline=new Timeline(keyFrame);
+                timeline.getKeyFrames().addAll(keyFrame);
+                timeline.play();
+
+            }
+        });
+        MenuView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MenuView.relocate(35,755);
+                MenuView.setFitHeight(90);
+                MenuView.setFitWidth(90);
+            }
+        });
+        MenuView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MenuView.relocate(30,750);
+                MenuView.setFitHeight(100);
+                MenuView.setFitWidth(100);
+            }
+        });
+        rootMissionSelectionView.getChildren().addAll(MenuView);
+
+    }
+
 }
