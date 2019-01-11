@@ -324,4 +324,22 @@ public class MissionSelectionView extends View {
 
     }
 
+    private void AddShopClick(Stage primaryStage) {
+        File shopFile = new File("Data\\Mission\\Shop.png");
+        Image shopImage = new Image(shopFile.toURI().toString());
+        ImageView shopImageView = new ImageView(shopImage);
+        shopImageView.relocate(1430 , 760);
+        primaryStage.setFullScreen(true);
+        shopImageView.setFitHeight(90);
+        shopImageView.setFitWidth(90);
+
+        shopImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+        rootMissionSelectionView.getChildren().addAll(shopImageView);
+    }
+
 }
