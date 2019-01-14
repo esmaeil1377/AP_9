@@ -76,26 +76,66 @@ public class MissionSelectionView extends View {
                 numberImageView[i] = new ImageView(numberImage);
                 numberImageView[i].relocate(1130, 450 + 40 * i);
                 primaryStage.setFullScreen(true);
-                numberImageView[i].setFitWidth(30);
-                numberImageView[i].setFitHeight(30);
+                numberImageView[i].setFitWidth(35);
+                numberImageView[i].setFitHeight(35);
                 rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
             }
-            if (i > 7) {
+            if (i >= 7) {
                 numberImageView[i] = new ImageView(numberImage);
                 numberImageView[i].relocate(1130 + (i - 7) * 40, 450 + 40 * 7 + 10);
                 primaryStage.setFullScreen(true);
-                numberImageView[i].setFitWidth(30);
-                numberImageView[i].setFitHeight(30);
+                numberImageView[i].setFitWidth(35);
+                numberImageView[i].setFitHeight(35);
                 rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
             }
         }
-        for (int i = 0; i < 15; i++) {
-            numberImageView[i].setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
+        try {
+            for (int i = 0; i < 15; i++) {
+                final int ai = i;
+                numberImageView[ai].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
 
+                    }
+                });
+                if (ai < 7) {
+                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130 + 5, 450 + 40 * ai + 5);
+                            numberImageView[ai].setFitWidth(30);
+                            numberImageView[ai].setFitHeight(30);
+                        }
+                    });
+                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130, 450 + 40 * ai);
+                            numberImageView[ai].setFitWidth(35);
+                            numberImageView[ai].setFitHeight(35);
+                        }
+                    });
+                } else {
+                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130 + (ai - 7) * 40 + 5, 450 + 40 * 7 + 10 + 5);
+                            numberImageView[ai].setFitWidth(30);
+                            numberImageView[ai].setFitHeight(30);
+                        }
+                    });
+                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130 + (ai - 7) * 40, 450 + 40 * 7 + 10);
+                            numberImageView[ai].setFitWidth(35);
+                            numberImageView[ai].setFitHeight(35);
+                        }
+                    });
                 }
-            });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -337,6 +377,24 @@ public class MissionSelectionView extends View {
             @Override
             public void handle(MouseEvent event) {
 
+            }
+        });
+
+        shopImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shopImageView.relocate(1435 , 765);
+                shopImageView.setFitHeight(80);
+                shopImageView.setFitWidth(80);
+            }
+        });
+
+        shopImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shopImageView.relocate(1430 , 760);
+                shopImageView.setFitHeight(90);
+                shopImageView.setFitWidth(90);
             }
         });
         rootMissionSelectionView.getChildren().addAll(shopImageView);
