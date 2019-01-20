@@ -28,7 +28,7 @@ public class CookieBakery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[ i][15];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[i][15];
             cell.AddCellAMapObject(getResultProduct());
         }
     }

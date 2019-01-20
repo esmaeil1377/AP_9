@@ -4,6 +4,7 @@ import View.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,9 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -21,11 +22,23 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.nio.file.Paths;
 
 public class StartMenuView extends View {
+    private int gameSpeed=10;
     private Group rootStartMenuView=new Group();
     private Scene sceneStartMenuView=new Scene(rootStartMenuView,1600,900);
+
+    public void setGameSpeed(int gameSpeed) {
+        this.gameSpeed = gameSpeed;
+    }
+
+    public Group getRootStartMenuView() {
+        return rootStartMenuView;
+    }
+
+    public Scene getSceneStartMenuView() {
+        return sceneStartMenuView;
+    }
 
     public StartMenuView(Stage primaryStage){
         Start(primaryStage);
@@ -46,7 +59,7 @@ public class StartMenuView extends View {
 
         AddNewUser(primaryStage);
 
-        AddLookingGif(primaryStage);
+//        AddJumpingRabbit(primaryStage);
 
 
         primaryStage.setScene(sceneStartMenuView);
@@ -82,34 +95,105 @@ public class StartMenuView extends View {
         playClickView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                playClickView.relocate(705,355);
                 playClickView.setFitWidth(160);
                 playClickView.setFitHeight(160);
-                playClickView.relocate(710,360);
             }
         });
         playClickView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                playClickView.relocate(700,350);
                 playClickView.setFitWidth(170);
                 playClickView.setFitHeight(170);
-                playClickView.relocate(700,350);
             }
         });
         rootStartMenuView.getChildren().addAll(playClickView);
     }
 
     private void AddSettingClick(Stage primaryStage){
+        Circle speedCircle=new Circle(1450,750,45, Paint.valueOf("White"));
+        speedCircle.setOpacity(0.15);
+        speedCircle.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+            }
+        });
+        speedCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                speedCircle.setOpacity(0.4);
+            }
+        });
+        speedCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                speedCircle.setOpacity(0.1);
+            }
+        });
+
+        Text text=new Text("Speed\n   10");
+        text.setStyle("-fx-font-weight: bold");
+        text.setFont(Font.font(20));
+        text.relocate(1420,720);
+        text.setFill(Color.rgb(50,100,120));
+
+        speedCircle.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+               int speed=Integer.valueOf(text.getText().substring(text.getText().length()-2));
+                if(speed>=11 && speed<=98) {
+                    text.setText("Speed\n   " + String.valueOf((int)(speed + event.getDeltaY()/32)));
+                    setGameSpeed((int)(speed + event.getDeltaY()/32));
+                }else if(speed==10 && event.getDeltaY()>0){
+                    text.setText("Speed\n   " + String.valueOf(speed + 1));
+                    setGameSpeed(speed+1);
+                }
+                else if(speed==99 && event.getDeltaY()<0){
+                    text.setText("Speed\n   " + String.valueOf(speed - 1));
+                    setGameSpeed(speed-1);
+                }
+            }
+        });
+
         File settingClick=new File("Data\\Click\\SettingClick.png");
         Image settingImage=new Image(settingClick.toURI().toString());
         ImageView settingImageView=new ImageView(settingImage);
         settingImageView.relocate(1400,700);
         settingImageView.setFitHeight(100);
         settingImageView.setFitWidth(100);
+
         settingImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                //...
+
+                if(rootStartMenuView.getChildren().contains(speedCircle)){
+                    KeyValue yText = new KeyValue(text.yProperty(), 0);
+                    KeyValue y = new KeyValue(speedCircle.centerYProperty(), 750);
+                    KeyFrame speedCircleKeyFrame = new KeyFrame(Duration.millis(500), yText, y);
+                    Timeline speedCircleTimeLine = new Timeline(speedCircleKeyFrame);
+                    speedCircleTimeLine.getKeyFrames().addAll(speedCircleKeyFrame);
+                    speedCircleTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            rootStartMenuView.getChildren().removeAll(text,speedCircle);
+                        }
+                    });
+                    speedCircleTimeLine.play();
+
+                }else {
+                    rootStartMenuView.getChildren().addAll(text);
+                    rootStartMenuView.getChildren().addAll(speedCircle);
+
+                    KeyValue yTextForStarting = new KeyValue(text.yProperty(), -118);
+                    KeyValue yForStarting = new KeyValue(speedCircle.centerYProperty(), 630);
+                    KeyFrame speedCircleKeyFrame = new KeyFrame(Duration.millis(500), yTextForStarting, yForStarting);
+                    Timeline continueCircleTimeLine = new Timeline(speedCircleKeyFrame);
+                    continueCircleTimeLine.getKeyFrames().addAll(speedCircleKeyFrame);
+                    continueCircleTimeLine.play();
+                }
+
             }
         });
         settingImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -148,7 +232,7 @@ public class StartMenuView extends View {
         exitImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                exitImageView.relocate(1410,60);
+                exitImageView.relocate(1405,55);
                 exitImageView.setFitHeight(90);
                 exitImageView.setFitWidth(90);
             }
@@ -156,7 +240,7 @@ public class StartMenuView extends View {
         exitImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                exitImageView.relocate(1400,60);
+                exitImageView.relocate(1400,50);
                 exitImageView.setFitHeight(100);
                 exitImageView.setFitWidth(100);
             }
@@ -183,7 +267,8 @@ public class StartMenuView extends View {
 
     private void AddNewUser(Stage primaryStage){
         Circle circleSun=new Circle(367,364,30, Color.rgb(254,216,130));
-        Circle circleUserMenu=new Circle(367,364,20,Color.rgb(255,255,255));
+        Circle circleUserMenu=new Circle(367,364,20,Color.rgb(240,240,255));
+        circleUserMenu.setOpacity(0.5);
         TextField enterYourUser=new TextField();
         enterYourUser.relocate(290,420);
 
@@ -198,7 +283,7 @@ public class StartMenuView extends View {
             @Override
             public void handle(MouseEvent event) {
                 KeyValue radius1=new KeyValue(circleUserMenu.radiusProperty(),200);
-                KeyValue color1=new KeyValue(circleUserMenu.fillProperty(),Color.rgb(240,240,255));
+                KeyValue color1=new KeyValue(circleUserMenu.fillProperty(),Color.rgb(255,120,120));
                 KeyFrame keyFrame1=new KeyFrame(Duration.millis(500),radius1,color1);
                 Timeline timeline1=new Timeline(keyFrame1);
                 timeline1.getKeyFrames().addAll(keyFrame1);
@@ -241,15 +326,5 @@ public class StartMenuView extends View {
         });
     }
 
-    private void AddLookingGif(Stage primaryStage){
-        File chickenFile=new File("Data\\Gif\\LookingChicken.gif");
-        Image chickenImage=new Image(chickenFile.toURI().toString());
-        ImageView LookingChickeImage=new ImageView(chickenImage);
-        LookingChickeImage.relocate(250,680);
-        LookingChickeImage.setFitHeight(150);
-        LookingChickeImage.setFitWidth(150);
-
-        rootStartMenuView.getChildren().addAll(LookingChickeImage);
-    }
 
 }
