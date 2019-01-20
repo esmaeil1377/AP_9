@@ -277,7 +277,7 @@ public class StartMenuView extends View {
         text1.relocate(335,356);
         text1.setFill(Color.rgb(255,15,255  ));
         text1.setStyle("-fx-font-weight: bold");
-        text1.setFont(Font.font("Blackadder ITC",40));
+        text1.setFont(Font.font(25));
 
         text1.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override

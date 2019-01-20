@@ -1409,4 +1409,224 @@ public class FarmView extends View {
         return position;
     }
 
+    void ShowChickenMoving(int xcell1,int yCell1,int xCell2,int yCell2){
+        File chickenFile=null;
+        Image chickenImage=null;
+        ImageView chickenView=null;
+        Animation chickenAnimation=null;
+        final ImageView[] chickenArrayView=new ImageView[1];
+
+        if(xcell1==xCell2){
+            if(yCell1>yCell2){
+                chickenFile=new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\up.png");
+                chickenImage=new Image(chickenFile.toURI().toString());
+                chickenView=new ImageView(chickenImage);
+                chickenAnimation=new SpriteAnimation(chickenView,Duration.millis(1000),24,5,0,0,64,84);
+                chickenView.setViewport(new Rectangle2D(0,0,64,84));
+            }else {
+                chickenFile=new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\down.png");
+                chickenImage=new Image(chickenFile.toURI().toString());
+                chickenView=new ImageView(chickenImage);
+                chickenAnimation=new SpriteAnimation(chickenView,Duration.millis(1000),24,5,0,0,66,72);
+                chickenView.setViewport(new Rectangle2D(0,0,66,72));
+            }
+        }
+        else if(yCell1==yCell2){
+            chickenFile=new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\left.png");
+            chickenImage=new Image(chickenFile.toURI().toString());
+            chickenView=new ImageView(chickenImage);
+            chickenAnimation=new SpriteAnimation(chickenView,Duration.millis(1000),24,5,0,0,80,74);
+            chickenView.setViewport(new Rectangle2D(0,0,80,74));
+            if(xcell1<xCell2){
+                chickenView.setScaleX(-1);
+            }
+        }else if(yCell2> yCell1){
+            chickenFile=new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\down_left.png");
+            chickenImage=new Image(chickenFile.toURI().toString());
+            chickenView=new ImageView(chickenImage);
+            chickenAnimation=new SpriteAnimation(chickenView,Duration.millis(1000),24,5,0,0,70,72);
+            chickenView.setViewport(new Rectangle2D(0,0,70,72));
+            if(xcell1<xCell2){
+                chickenView.setScaleX(-1);
+            }
+        }else if(yCell1>yCell2){
+            chickenFile=new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\up_left.png");
+            chickenImage=new Image(chickenFile.toURI().toString());
+            chickenView=new ImageView(chickenImage);
+            chickenAnimation=new SpriteAnimation(chickenView,Duration.millis(1000),24,5,0,0,68,80);
+            chickenView.setViewport(new Rectangle2D(0,0,68,80));
+            if(xcell1<xCell2){
+                chickenView.setScaleX(-1);
+            }
+        }
+        int[] position1=getPositionByCellPosition(xcell1,yCell1);
+        int[] position2=getPositionByCellPosition(xCell2,yCell2);
+        int x1Position=position1[0];
+        int y1Position=position1[1];
+        int x2Position=position2[0];
+        int y2Position=position2[1];
+        chickenView.relocate(x1Position,y1Position);
+        rootFarmView.getChildren().addAll(chickenView);
+        chickenArrayView[0]=chickenView;
+
+        KeyValue xChicken=new KeyValue(chickenView.xProperty(),x2Position-x1Position);
+        KeyValue yChicken=new KeyValue(chickenView.yProperty(),y2Position-y1Position);
+        KeyFrame xChickenFrame=new KeyFrame(Duration.millis(1000),xChicken,yChicken);
+        Timeline chickenTimeLine=new Timeline(xChickenFrame);
+        chickenTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(chickenArrayView[0]);
+            }
+        });
+        chickenAnimation.play();
+        chickenTimeLine.play();
+    }
+    void ShowCowMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        File cowFile=null;
+        Image cowImage=null;
+        ImageView cowView=null;
+        Animation cowAnimation=null;
+        final ImageView[] cowArrayView=new ImageView[1];
+
+        if(xCell1==xCell2){
+            if(yCell1>yCell2){
+                cowFile=new File("Data\\Textures\\Cow\\up.png");
+                cowImage=new Image(cowFile.toURI().toString());
+                cowView=new ImageView(cowImage);
+                cowAnimation=new SpriteAnimation(cowView,Duration.millis(1000),24,4,0,0,114,132);
+                cowView.setViewport(new Rectangle2D(0,0,114,132));
+            }else {
+                cowFile=new File("Data\\Textures\\Cow\\down.png");
+                cowImage=new Image(cowFile.toURI().toString());
+                cowView=new ImageView(cowImage);
+                cowAnimation=new SpriteAnimation(cowView,Duration.millis(1000),24,3,0,0,118,110);
+                cowView.setViewport(new Rectangle2D(0,0,118,110));
+            }
+        }
+        else if(yCell1==yCell2){
+            cowFile=new File("Data\\Textures\\Cow\\left.png");
+            cowImage=new Image(cowFile.toURI().toString());
+            cowView=new ImageView(cowImage);
+            cowAnimation=new SpriteAnimation(cowView,Duration.millis(1000),24,3,0,0,160,110);
+            cowView.setViewport(new Rectangle2D(0,0,160,110));
+            if(xCell1<xCell2){
+                cowView.setScaleX(-1);
+            }
+        }else if(yCell2> yCell1){
+            cowFile=new File("Data\\Textures\\Cow\\down_left.png");
+            cowImage=new Image(cowFile.toURI().toString());
+            cowView=new ImageView(cowImage);
+            cowAnimation=new SpriteAnimation(cowView,Duration.millis(1000),24,3,0,0,140,100);
+            cowView.setViewport(new Rectangle2D(0,0,140,100));
+            if(xCell1<xCell2){
+                cowView.setScaleX(-1);
+            }
+        }else if(yCell1>yCell2){
+            cowFile=new File("Data\\Textures\\Cow\\up_left.png");
+            cowImage=new Image(cowFile.toURI().toString());
+            cowView=new ImageView(cowImage);
+            cowAnimation=new SpriteAnimation(cowView,Duration.millis(1000),24,3,0,0,138,128);
+            cowView.setViewport(new Rectangle2D(0,0,138,128));
+            if(xCell1<xCell2){
+                cowView.setScaleX(-1);
+            }
+        }
+        int[] position1=getPositionByCellPosition(xCell1,yCell1);
+        int[] position2=getPositionByCellPosition(xCell2,yCell2);
+        int x1Position=position1[0];
+        int y1Position=position1[1];
+        int x2Position=position2[0];
+        int y2Position=position2[1];
+        cowView.relocate(x1Position,y1Position);
+        rootFarmView.getChildren().addAll(cowView);
+        cowArrayView[0]=cowView;
+
+        KeyValue xSheep=new KeyValue(cowView.xProperty(),x2Position-x1Position);
+        KeyValue ySheep=new KeyValue(cowView.yProperty(),y2Position-y1Position);
+        KeyFrame xSheepFrame=new KeyFrame(Duration.millis(1000),xSheep,ySheep);
+        Timeline sheepTimeLine=new Timeline(xSheepFrame);
+        sheepTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(cowArrayView[0]);
+            }
+        });
+        cowAnimation.play();
+        sheepTimeLine.play();
+    }
+    void ShowSheepMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        File sheepFile=null;
+        Image sheepImage=null;
+        ImageView sheepView=null;
+        Animation sheepAnimation=null;
+        final ImageView[] sheepArrayView=new ImageView[1];
+
+        if(xCell1==xCell2){
+            if(yCell1>yCell2){
+                sheepFile=new File("Data\\Textures\\Sheep\\up.png");
+                sheepImage=new Image(sheepFile.toURI().toString());
+                sheepView=new ImageView(sheepImage);
+                sheepAnimation=new SpriteAnimation(sheepView,Duration.millis(1000),24,5,0,0,82,96);
+                sheepView.setViewport(new Rectangle2D(0,0,82,96));
+            }else {
+                sheepFile=new File("Data\\Textures\\Sheep\\down.png");
+                sheepImage=new Image(sheepFile.toURI().toString());
+                sheepView=new ImageView(sheepImage);
+                sheepAnimation=new SpriteAnimation(sheepView,Duration.millis(1000),24,5,0,0,84,102);
+                sheepView.setViewport(new Rectangle2D(0,0,84,102));
+            }
+        }
+        else if(yCell1==yCell2){
+            sheepFile=new File("Data\\Textures\\Sheep\\left.png");
+            sheepImage=new Image(sheepFile.toURI().toString());
+            sheepView=new ImageView(sheepImage);
+            sheepAnimation=new SpriteAnimation(sheepView,Duration.millis(1000),24,4,0,0,130,78);
+            sheepView.setViewport(new Rectangle2D(0,0,130,78));
+            if(xCell1<xCell2){
+                sheepView.setScaleX(-1);
+            }
+        }else if(yCell2> yCell1){
+            sheepFile=new File("Data\\Textures\\Sheep\\down_left.png");
+            sheepImage=new Image(sheepFile.toURI().toString());
+            sheepView=new ImageView(sheepImage);
+            sheepAnimation=new SpriteAnimation(sheepView,Duration.millis(1000),24,4,0,0,104,90);
+            sheepView.setViewport(new Rectangle2D(0,0,104,90));
+            if(xCell1<xCell2){
+                sheepView.setScaleX(-1);
+            }
+        }else if(yCell1>yCell2){
+            sheepFile=new File("Data\\Textures\\Sheep\\up_left.png");
+            sheepImage=new Image(sheepFile.toURI().toString());
+            sheepView=new ImageView(sheepImage);
+            sheepAnimation=new SpriteAnimation(sheepView,Duration.millis(1000),24,5,0,0,102,88);
+            sheepView.setViewport(new Rectangle2D(0,0,102,88));
+            if(xCell1<xCell2){
+                sheepView.setScaleX(-1);
+            }
+        }
+        int[] position1=getPositionByCellPosition(xCell1,yCell1);
+        int[] position2=getPositionByCellPosition(xCell2,yCell2);
+        int x1Position=position1[0];
+        int y1Position=position1[1];
+        int x2Position=position2[0];
+        int y2Position=position2[1];
+        sheepView.relocate(x1Position,y1Position);
+        rootFarmView.getChildren().addAll(sheepView);
+        sheepArrayView[0]=sheepView;
+
+        KeyValue xSheep=new KeyValue(sheepView.xProperty(),x2Position-x1Position);
+        KeyValue ySheep=new KeyValue(sheepView.yProperty(),y2Position-y1Position);
+        KeyFrame xSheepFrame=new KeyFrame(Duration.millis(1000),xSheep,ySheep);
+        Timeline sheepTimeLine=new Timeline(xSheepFrame);
+        sheepTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(sheepArrayView[0]);
+            }
+        });
+        sheepAnimation.play();
+        sheepTimeLine.play();
+    }
+
 }
