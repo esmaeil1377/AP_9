@@ -5,7 +5,9 @@ import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.ObjectInMap30_30.Grass;
 import FarmModel.ObjectInMap30_30.LiveAnimals.*;
 import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap30_30.Product.Product;
+import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Flour;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
@@ -53,7 +55,7 @@ public class Farm {
         this.workShops = workShops;
     }
 
-    public Farm(Helicopter helicopter,Truck truck,Well well ,ArrayList<WorkShop> workShops) {
+    public Farm(Helicopter helicopter, Truck truck, Well well , ArrayList<WorkShop> workShops) {
         setHelicopter(helicopter);
         setTruck(truck);
         setWorkShops(workShops);

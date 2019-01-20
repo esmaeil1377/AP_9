@@ -7,15 +7,17 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="0.5934731934731934" x="717.7133560221048" y="2167.9066592302124" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="1.0" x="204.5" y="233.77777777777771" />
+  <SelectedNodes>
+    <node>FarmModel.User</node>
+  </SelectedNodes>
   <Categories>
-    <Category>Fields</Category>
     <Category>Constructors</Category>
     <Category>Methods</Category>
     <Category>Properties</Category>
+    <Category>Fields</Category>
   </Categories>
   <SCOPE>All</SCOPE>
-  <VISIBILITY>private</VISIBILITY>
+  <VISIBILITY>public</VISIBILITY>
 </Diagram>
 

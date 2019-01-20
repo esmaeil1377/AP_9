@@ -12,10 +12,10 @@ import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
 
 import java.util.HashMap;
 
-public class WeavinFactory extends WorkShop {
+public class WeavingFactory extends WorkShop {
     public final String workShopName = "WeavingFactory";
 
-    public WeavinFactory(int currentLevel) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
+    public WeavingFactory(int currentLevel) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
         for(int i=0;i<currentLevel;i++){
             Upgrade();
         }
@@ -55,6 +55,6 @@ public class WeavinFactory extends WorkShop {
 
     @Override
     public String toString() {
-        return "WeavinFactory";
+        return "WeavingFactory";
     }
 }
