@@ -45,7 +45,7 @@ public class UpgradeRequest extends Request{
                 WareHouse wareHouse = farm.getWareHouse();
                 wareHouse.Upgrade();
             } else {
-                WorkShop workShop = farm.getspecifiedWorkShop(objectString);
+                WorkShop workShop = farm.getSpecifiedWorkShop(objectString);
                 workShop.Upgrade();
                 SetLevelInUserForWorkShops(workShop);
                 try {

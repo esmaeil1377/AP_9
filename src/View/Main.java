@@ -16,9 +16,6 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
     }
 
-//    public static void main(String[] args) {
-//        getRequest();
-//    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {

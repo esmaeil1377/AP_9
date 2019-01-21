@@ -28,7 +28,9 @@ import javafx.util.Duration;
 
 import java.io.File;
 
-public class StartMenuView extends View {
+import static View.View.PlayBubbleSound;
+
+public class StartMenuView {
     private int gameSpeed=10;
     private Circle circleSun;
     private TextField enterYourUser;
@@ -51,7 +53,6 @@ public class StartMenuView extends View {
         Start(primaryStage);
     }
 
-    @Override
     public void Start(Stage primaryStage) {
 
         AddBackGround(primaryStage);

@@ -1,4 +1,5 @@
 package View;
+import View.ScenesAndMainGroupView.FarmView;
 import View.ScenesAndMainGroupView.GameShopView;
 import View.ScenesAndMainGroupView.MissionSelectionView;
 import View.ScenesAndMainGroupView.StartMenuView;
@@ -9,7 +10,14 @@ public class GameView {
     private StartMenuView startMenuView=new StartMenuView(Main.getPrimaryStage());
     private MissionSelectionView missionSelectionView=new MissionSelectionView(Main.getPrimaryStage());
     private GameShopView gameShopView=new GameShopView(Main.getPrimaryStage());
+    private FarmView farmView;
 
+    public void setFarmView(FarmView farmView) {
+        this.farmView = farmView;
+    }
+    public FarmView getFarmView() {
+        return farmView;
+    }
     public GameShopView getGameShopView() {
         return gameShopView;
     }

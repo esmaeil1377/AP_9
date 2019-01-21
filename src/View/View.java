@@ -1,5 +1,8 @@
 package View;
 
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmModel.Mission;
+import FarmModel.User;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -25,7 +28,7 @@ public abstract class View {
 //        }
 //    }
 
-    public abstract void Start(Stage primaryStage);
+    public abstract void Start(Stage primaryStage) throws MissionNotLoaded;
 
     public static void PlayBubbleSound() {
         String path = "Data\\Voice\\Bubble.mp3";

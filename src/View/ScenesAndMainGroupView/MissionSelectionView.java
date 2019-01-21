@@ -1,5 +1,7 @@
 package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 
+import FarmModel.Game;
+import FarmModel.Mission;
 import View.View;
 import javafx.application.Application;
 import View.GameView;
@@ -201,37 +203,45 @@ public class MissionSelectionView extends View {
         //ImageView numberImageView = new ImageView(numberImage);
         ImageView[] numberImageView = new ImageView[10];
         for (int i = 20; i < 30; i++) {
-            numberImageView[i - 20] = new ImageView(numberImage);
-            numberImageView[i - 20].relocate(1300 - 300 * Math.cos(i * 3.14 / 11), 550 - 300 * Math.sin(i * 3.14 / 11));
-            primaryStage.setFullScreen(true);
-            numberImageView[i - 20].setFitWidth(50);
-            numberImageView[i - 20].setFitHeight(50);
-            rootMissionSelectionView.getChildren().addAll(numberImageView[i - 20]);
+            ImageView bubbleImageView=new ImageView(numberImage);
+            numberImageView[i - 20] = bubbleImageView;
+            bubbleImageView.relocate(1300 - 300 * Math.cos(i * 3.14 / 11), 550 - 300 * Math.sin(i * 3.14 / 11));
+            bubbleImageView.setFitWidth(50);
+            bubbleImageView.setFitHeight(50);
+            rootMissionSelectionView.getChildren().addAll(bubbleImageView);
         }
         try {
             for (int i = 20; i < 30; i++) {
-                final int ai = i;
-                numberImageView[ai - 20].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                final int finali = i;
+                numberImageView[finali - 20].setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-
+                        Mission mission=Game.getGameInstance().getCurrentUserAccount().getMissions().get(finali-20);
+                        Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(mission);
+                        try {
+                            GameView.getGameView().setFarmView(new FarmView(primaryStage));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                        primaryStage.setFullScreen(true);
                     }
                 });
 
-                numberImageView[ai - 20].setOnMouseEntered(new EventHandler<MouseEvent>() {
+                numberImageView[finali - 20].setOnMouseEntered(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        numberImageView[ai - 20].relocate(1300 - 300 * Math.cos(ai * 3.14 / 11) + 5, 550 - 300 * Math.sin(ai * 3.14 / 11) + 5);
-                        numberImageView[ai - 20].setFitWidth(40);
-                        numberImageView[ai - 20].setFitHeight(40);
+                        numberImageView[finali - 20].relocate(1300 - 300 * Math.cos(finali * 3.14 / 11) + 5, 550 - 300 * Math.sin(finali * 3.14 / 11) + 5);
+                        numberImageView[finali - 20].setFitWidth(40);
+                        numberImageView[finali - 20].setFitHeight(40);
                     }
                 });
-                numberImageView[ai - 20].setOnMouseExited(new EventHandler<MouseEvent>() {
+                numberImageView[finali - 20].setOnMouseExited(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        numberImageView[ai - 20].relocate(1300 - 300 * Math.cos(ai * 3.14 / 11), 550 - 300 * Math.sin(ai * 3.14 / 11));
-                        numberImageView[ai - 20].setFitWidth(50);
-                        numberImageView[ai - 20].setFitHeight(50);
+                        numberImageView[finali - 20].relocate(1300 - 300 * Math.cos(finali * 3.14 / 11), 550 - 300 * Math.sin(finali * 3.14 / 11));
+                        numberImageView[finali - 20].setFitWidth(50);
+                        numberImageView[finali - 20].setFitHeight(50);
                     }
                 });
             }
