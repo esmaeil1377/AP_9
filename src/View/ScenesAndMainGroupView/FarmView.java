@@ -1527,7 +1527,7 @@ public class FarmView extends View {
         return position;
     }
 
-    void ShowChickenMoving(int xcell1,int yCell1,int xCell2,int yCell2){
+    public void ShowChickenMoving(int xcell1,int yCell1,int xCell2,int yCell2){
         File chickenFile=null;
         Image chickenImage=null;
         ImageView chickenView=null;
@@ -1600,7 +1600,7 @@ public class FarmView extends View {
         chickenAnimation.play();
         chickenTimeLine.play();
     }
-    void ShowCowMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+    public void ShowCowMoving(int xCell1,int yCell1,int xCell2,int yCell2){
         File cowFile=null;
         Image cowImage=null;
         ImageView cowView=null;
@@ -1673,7 +1673,7 @@ public class FarmView extends View {
         cowAnimation.play();
         sheepTimeLine.play();
     }
-    void ShowSheepMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+    public void ShowSheepMoving(int xCell1,int yCell1,int xCell2,int yCell2){
         File sheepFile=null;
         Image sheepImage=null;
         ImageView sheepView=null;
@@ -1745,6 +1745,150 @@ public class FarmView extends View {
         });
         sheepAnimation.play();
         sheepTimeLine.play();
+    }
+    public void ShowDogMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        File dogFile = null;
+        Image dogImage = null;
+        ImageView dogView = null;
+        Animation dogAnimation = null;
+        final ImageView[] dogArrayView = new ImageView[1];
+
+        if (xCell1 == xCell2) {
+            if (yCell1 > yCell2) {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\up.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 66, 100);
+                dogView.setViewport(new Rectangle2D(0, 0, 66, 100));
+            } else {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\down.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 66, 84);
+                dogView.setViewport(new Rectangle2D(0, 0, 66, 84));
+            }
+        } else if (yCell1 == yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 108, 86);
+            dogView.setViewport(new Rectangle2D(0, 0, 108, 86));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell2 > yCell1) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\down_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 5, 0, 0, 92, 84);
+            dogView.setViewport(new Rectangle2D(0, 0, 92, 84));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell1 > yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\up_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 5, 0, 0, 92, 98);
+            dogView.setViewport(new Rectangle2D(0, 0, 92, 98));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        }
+        int[] position1 = getPositionByCellPosition(xCell1, yCell1);
+        int[] position2 = getPositionByCellPosition(xCell2, yCell2);
+        int x1Position = position1[0];
+        int y1Position = position1[1];
+        int x2Position = position2[0];
+        int y2Position = position2[1];
+        dogView.relocate(x1Position, y1Position);
+        rootFarmView.getChildren().addAll(dogView);
+        dogArrayView[0] = dogView;
+
+        KeyValue xDog = new KeyValue(dogView.xProperty(), x2Position - x1Position);
+        KeyValue yDog = new KeyValue(dogView.yProperty(), y2Position - y1Position);
+        KeyFrame xDogFrame = new KeyFrame(Duration.millis(1000), xDog, yDog);
+        Timeline dogTimeLine = new Timeline(xDogFrame);
+        dogTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(dogArrayView[0]);
+            }
+        });
+        dogAnimation.play();
+        dogTimeLine.play();
+    }
+    public void ShowCatMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        File dogFile = null;
+        Image dogImage = null;
+        ImageView dogView = null;
+        Animation dogAnimation = null;
+        final ImageView[] dogArrayView = new ImageView[1];
+
+        if (xCell1 == xCell2) {
+            if (yCell1 > yCell2) {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\up.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 48, 84);
+                dogView.setViewport(new Rectangle2D(0, 0, 48, 84));
+            } else {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\down.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 50, 92);
+                dogView.setViewport(new Rectangle2D(0, 0, 50, 92));
+            }
+        } else if (yCell1 == yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 4, 0, 0, 88, 68);
+            dogView.setViewport(new Rectangle2D(0, 0, 88, 68));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell2 > yCell1) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\down_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 72, 84);
+            dogView.setViewport(new Rectangle2D(0, 0, 72, 84));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell1 > yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\up_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 72, 80);
+            dogView.setViewport(new Rectangle2D(0, 0, 72, 80));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        }
+        int[] position1 = getPositionByCellPosition(xCell1, yCell1);
+        int[] position2 = getPositionByCellPosition(xCell2, yCell2);
+        int x1Position = position1[0];
+        int y1Position = position1[1];
+        int x2Position = position2[0];
+        int y2Position = position2[1];
+        dogView.relocate(x1Position, y1Position);
+        rootFarmView.getChildren().addAll(dogView);
+        dogArrayView[0] = dogView;
+
+        KeyValue xDog = new KeyValue(dogView.xProperty(), x2Position - x1Position);
+        KeyValue yDog = new KeyValue(dogView.yProperty(), y2Position - y1Position);
+        KeyFrame xDogFrame = new KeyFrame(Duration.millis(1000), xDog, yDog);
+        Timeline dogTimeLine = new Timeline(xDogFrame);
+        dogTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(dogArrayView[0]);
+            }
+        });
+        dogAnimation.play();
+        dogTimeLine.play();
     }
 
 }

@@ -316,7 +316,9 @@ public class StartMenuView {
                 Timeline timeline1=new Timeline(keyFrame1);
                 timeline1.getKeyFrames().addAll(keyFrame1);
                 timeline1.play();
-                rootStartMenuView.getChildren().addAll(enterYourUser);
+                if(!rootStartMenuView.getChildren().contains(enterYourUser)) {
+                    rootStartMenuView.getChildren().addAll(enterYourUser);
+                }
             }
         });
 

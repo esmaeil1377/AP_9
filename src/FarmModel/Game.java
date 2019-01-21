@@ -64,7 +64,7 @@ public class Game {
             File[] contentDirectory=userAccountFolder.listFiles();
             for(File file:contentDirectory){
                 if (file.getName().equals(userString+".txt")){
-                    LoadGameRequest loadGameRequest=new LoadGameRequest("load game UsersAccount\\"+userString+"txt");
+                    LoadGameRequest loadGameRequest=new LoadGameRequest("load game UsersAccount\\"+userString+".txt");
                     isUserLoaded=true;
                 }
             }

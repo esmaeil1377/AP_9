@@ -3,6 +3,7 @@ package FarmModel.ObjectInMap30_30.LiveAnimals;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
+import View.GameView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,13 @@ public abstract class Animals extends ObjectInMap15_15 {
         Farm.getCellByPosition(nextX,nextY).AddCellAMapObject(animals);
         animals.setX(nextX);
         animals.setY(nextY);
+        if(animals instanceof Chicken) {
+            GameView.getGameView().getFarmView().ShowChickenMoving(currentX,currentY,nextX,nextY);
+        }else if(animals instanceof Cow){
+            GameView.getGameView().getFarmView().ShowCowMoving(currentX,currentY,nextX,nextY);
+        }else if(animals instanceof Sheep){
+            GameView.getGameView().getFarmView().ShowSheepMoving(currentX,currentY,nextX,nextY);
+        }
     }
 
     public static int getNextRandomDirection(int currentX, int currentY) {
@@ -158,6 +166,12 @@ public abstract class Animals extends ObjectInMap15_15 {
         Farm.getCellByPosition(nextX,nextY).AddCellAMapObject(animal);
         animal.setX(nextX);
         animal.setY(nextY);
+        if (animal instanceof Cat){
+            GameView.getGameView().getFarmView().ShowCatMoving(currentX,currentY,nextX,nextY);
+        }
+        else if(animal instanceof Dog){
+            GameView.getGameView().getFarmView().ShowDogMoving(currentX,currentY,nextX,nextY);
+        }
     }
 
     private ArrayList<Integer> FindNearGrass() throws MissionNotLoaded {
