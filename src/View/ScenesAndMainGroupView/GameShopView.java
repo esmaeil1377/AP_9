@@ -53,21 +53,21 @@ public class GameShopView extends View {
         cookieBakeryRect.setArcHeight((int) (70 * yShift));
         cookieBakeryRect.setArcWidth((int) (70 * xShift));
         cookieBakeryRect.setFill(Color.rgb(64, 45, 67));
-        cookieBakeryRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        cookieBakeryRect.relocate((int) (500 * xShift), (int) (110 * yShift));
 
         Rectangle cakeBakeryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         cakeBakeryRect.setOpacity(0.6);
         cakeBakeryRect.setArcHeight((int) (70 * yShift));
         cakeBakeryRect.setArcWidth((int) (70 * xShift));
         cakeBakeryRect.setFill(Color.rgb(64, 45, 67));
-        cakeBakeryRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        cakeBakeryRect.relocate((int) (980 * xShift), (int) (110 * yShift));
 
         Rectangle spinneryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         spinneryRect.setOpacity(0.6);
         spinneryRect.setArcHeight((int) (70 * yShift));
         spinneryRect.setArcWidth((int) (70 * xShift));
         spinneryRect.setFill(Color.rgb(64, 45, 67));
-        spinneryRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        spinneryRect.relocate((int) (1460 * xShift), (int) (110 * yShift));
 
 
         Rectangle sewingFactoryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
@@ -75,56 +75,56 @@ public class GameShopView extends View {
         sewingFactoryRect.setArcHeight((int) (70 * yShift));
         sewingFactoryRect.setArcWidth((int) (70 * xShift));
         sewingFactoryRect.setFill(Color.rgb(64, 45, 67));
-        sewingFactoryRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        sewingFactoryRect.relocate((int) (20 * xShift), (int) (430 * yShift));
 
         Rectangle weavingFactoryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         weavingFactoryRect.setOpacity(0.6);
         weavingFactoryRect.setArcHeight((int) (70 * yShift));
         weavingFactoryRect.setArcWidth((int) (70 * xShift));
         weavingFactoryRect.setFill(Color.rgb(64, 45, 67));
-        weavingFactoryRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        weavingFactoryRect.relocate((int) (500 * xShift), (int) (430 * yShift));
 
         Rectangle wareHouseRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         wareHouseRect.setOpacity(0.6);
         wareHouseRect.setArcHeight((int) (70 * yShift));
         wareHouseRect.setArcWidth((int) (70 * xShift));
         wareHouseRect.setFill(Color.rgb(64, 45, 67));
-        wareHouseRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        wareHouseRect.relocate((int) (980 * xShift), (int) (430 * yShift));
 
         Rectangle truckRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         truckRect.setOpacity(0.6);
         truckRect.setArcHeight((int) (70 * yShift));
         truckRect.setArcWidth((int) (70 * xShift));
         truckRect.setFill(Color.rgb(64, 45, 67));
-        truckRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        truckRect.relocate((int) (1460 * xShift), (int) (430 * yShift));
 
         Rectangle wellRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         wellRect.setOpacity(0.6);
         wellRect.setArcHeight((int) (70 * yShift));
         wellRect.setArcWidth((int) (70 * xShift));
         wellRect.setFill(Color.rgb(64, 45, 67));
-        wellRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        wellRect.relocate((int) (20 * xShift), (int) (750 * yShift));
 
         Rectangle helicopterRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         helicopterRect.setOpacity(0.6);
         helicopterRect.setArcHeight((int) (70 * yShift));
         helicopterRect.setArcWidth((int) (70 * xShift));
         helicopterRect.setFill(Color.rgb(64, 45, 67));
-        helicopterRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        helicopterRect.relocate((int) (500 * xShift), (int) (750 * yShift));
 
         Rectangle dogRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         dogRect.setOpacity(0.6);
         dogRect.setArcHeight((int) (70 * yShift));
         dogRect.setArcWidth((int) (70 * xShift));
         dogRect.setFill(Color.rgb(64, 45, 67));
-        dogRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        dogRect.relocate((int) (980 * xShift), (int) (750 * yShift));
 
         Rectangle catRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         catRect.setOpacity(0.6);
         catRect.setArcHeight((int) (70 * yShift));
         catRect.setArcWidth((int) (70 * xShift));
         catRect.setFill(Color.rgb(64, 45, 67));
-        catRect.relocate((int) (20 * xShift), (int) (110 * yShift));
+        catRect.relocate((int) (1460 * xShift), (int) (750 * yShift));
 
         rootGameShopView.getChildren().addAll(eggPowderPlantRect, cookieBakeryRect, cakeBakeryRect, spinneryRect, truckRect, weavingFactoryRect, wellRect, sewingFactoryRect, wareHouseRect, dogRect, catRect, helicopterRect);
 
