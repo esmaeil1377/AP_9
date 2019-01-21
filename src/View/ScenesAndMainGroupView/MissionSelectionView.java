@@ -41,103 +41,7 @@ package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 //        rootMissionSelectionView.getChildren().addAll(BackGroundView);
 //    }
 //
-//    private void BeachOfMission(Stage primaryStage) {
-//        File restartFile = new File("Data\\Mission\\Map.jpeg");
-//        Image restartImage = new Image(restartFile.toURI().toString());
-//        ImageView restartImageView = new ImageView(restartImage);
-//        restartImageView.relocate(1230,550);
-//        primaryStage.setFullScreen(true);
-//        restartImageView.setFitHeight(120);
-//        restartImageView.setFitWidth(120);
-//        //Circle circle = new Circle(1200, 500, 150); // cast to Circle
-//        //circle.setFill(restartImageView);
-//        rootMissionSelectionView.getChildren().addAll(restartImageView);
-//    }
-//
-//    private void FarmerOfFarm(Stage primaryStage) {
-//        File farmerFile = new File("Data\\Gif\\Farmer.gif");
-//        Image farmerImage = new Image(farmerFile.toURI().toString());
-//        ImageView farmerImageView = new ImageView(farmerImage);
-//        farmerImageView.relocate(1270,410);
-//        primaryStage.setFullScreen(true);
-//        farmerImageView.setFitHeight(230);
-//        farmerImageView.setFitWidth(90);
-//        rootMissionSelectionView.getChildren().addAll(farmerImageView);
-//        primaryStage.show();
-//    }
-//
-//    private void NumberOfMission(Stage primaryStage) {
-//        File numberFile = new File("Data\\Mission\\hob.png");
-//        Image numberImage = new Image(numberFile.toURI().toString());
-//        //ImageView numberImageView = new ImageView(numberImage);
-//        ImageView[] numberImageView = new ImageView[15];
-//        for (int i = 0; i < 15; i++) {
-//            if (i < 7) {
-//                numberImageView[i] = new ImageView(numberImage);
-//                numberImageView[i].relocate(1130, 450 + 40 * i);
-//                primaryStage.setFullScreen(true);
-//                numberImageView[i].setFitWidth(35);
-//                numberImageView[i].setFitHeight(35);
-//                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
-//            }
-//            if (i >= 7) {
-//                numberImageView[i] = new ImageView(numberImage);
-//                numberImageView[i].relocate(1130 + (i - 7) * 40, 450 + 40 * 7 + 10);
-//                primaryStage.setFullScreen(true);
-//                numberImageView[i].setFitWidth(35);
-//                numberImageView[i].setFitHeight(35);
-//                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
-//            }
-//        }
-//        try {
-//            for (int i = 0; i < 15; i++) {
-//                final int ai = i;
-//                numberImageView[ai].setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//
-//                    }
-//                });
-//                if (ai < 7) {
-//                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            numberImageView[ai].relocate(1130 + 5, 450 + 40 * ai + 5);
-//                            numberImageView[ai].setFitWidth(30);
-//                            numberImageView[ai].setFitHeight(30);
-//                        }
-//                    });
-//                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            numberImageView[ai].relocate(1130, 450 + 40 * ai);
-//                            numberImageView[ai].setFitWidth(35);
-//                            numberImageView[ai].setFitHeight(35);
-//                        }
-//                    });
-//                } else {
-//                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            numberImageView[ai].relocate(1130 + (ai - 7) * 40 + 5, 450 + 40 * 7 + 10 + 5);
-//                            numberImageView[ai].setFitWidth(30);
-//                            numberImageView[ai].setFitHeight(30);
-//                        }
-//                    });
-//                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            numberImageView[ai].relocate(1130 + (ai - 7) * 40, 450 + 40 * 7 + 10);
-//                            numberImageView[ai].setFitWidth(35);
-//                            numberImageView[ai].setFitHeight(35);
-//                        }
-//                    });
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 //
 //    private void AddMenuClick(Stage primaryStage) {
 //        File restartFile1=new File("Data\\MenuClick\\Restart.png");
@@ -401,6 +305,7 @@ package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 //    }
 //
 //}
+
 import View.View;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -417,7 +322,7 @@ public class MissionSelectionView extends View {
     private Group rootMissionSelectionView = new Group();
     private Scene sceneSelectionView = new Scene(rootMissionSelectionView, 1600, 900);
 
-    public MissionSelectionView(Stage primaryStage){
+    public MissionSelectionView(Stage primaryStage) {
         Start(primaryStage);
     }
 
@@ -425,9 +330,12 @@ public class MissionSelectionView extends View {
     public void Start(Stage primaryStage) {
         AddBackGround(primaryStage);
         AddItem(primaryStage);
-        AddBubble(1025,820);
-        AddBubble(1075,650);
-        AddBubble(1200,500);
+//        AddBubble(1025, 820);
+//        AddBubble(1075, 650);
+//        AddBubble(1200, 500);
+        BeachOfMission(primaryStage);
+        NumberOfMission(primaryStage);
+        FarmerOfFarm(primaryStage);
 
     }
 
@@ -443,7 +351,8 @@ public class MissionSelectionView extends View {
         primaryStage.setFullScreen(true);
         primaryStage.show();
     }
-    private void AddItem(Stage primaryStage){
+
+    private void AddItem(Stage primaryStage) {
         File menuButton = new File("Data\\Textures\\Service\\OkButton.png");
         Image menuButtonImage = new Image(menuButton.toURI().toString());
         ImageView menuButtonView = new ImageView(menuButtonImage);
@@ -467,7 +376,6 @@ public class MissionSelectionView extends View {
             }
         });
         rootMissionSelectionView.getChildren().addAll(menuButtonView);
-
 
 
         File shopButton = new File("Data\\Textures\\Service\\OkButton.png");
@@ -542,33 +450,132 @@ public class MissionSelectionView extends View {
         });
         rootMissionSelectionView.getChildren().addAll(menuTextView);
     }
-    private void AddBubble(int x , int y){
-        File bubble = new File("Data\\Bubble.png");
-        Image bubbleImage = new Image(bubble.toURI().toString());
-        ImageView bubbleView = new ImageView(bubbleImage);
-        bubbleView.setFitHeight(80);
-        bubbleView.setFitWidth(80);
-        bubbleView.relocate(x, y);
-        bubbleView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                bubbleView.relocate(x-5,y-5 );
-                bubbleView.setFitHeight(90);
-                bubbleView.setFitWidth(90);
+
+    private void AddBubble(int x, int y) {
+
+//        File bubble = new File("Data\\Bubble.png");
+//        Image bubbleImage = new Image(bubble.toURI().toString());
+//        ImageView bubbleView = new ImageView(bubbleImage);
+//        bubbleView.setFitHeight(80);
+//        bubbleView.setFitWidth(80);
+//        bubbleView.relocate(x, y);
+//        bubbleView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                bubbleView.relocate(x - 5, y - 5);
+//                bubbleView.setFitHeight(90);
+//                bubbleView.setFitWidth(90);
+//            }
+//        });
+//        bubbleView.setOnMouseExited(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                bubbleView.setFitHeight(80);
+//                bubbleView.setFitWidth(80);
+//                bubbleView.relocate(x, y);
+//            }
+//        });
+//        rootMissionSelectionView.getChildren().addAll(bubbleView);
+
+
+    }
+
+    private void BeachOfMission(Stage primaryStage) {
+        File restartFile = new File("Data\\Mission\\Map.jpeg");
+        Image restartImage = new Image(restartFile.toURI().toString());
+        ImageView restartImageView = new ImageView(restartImage);
+        restartImageView.relocate(1230,550);
+        primaryStage.setFullScreen(true);
+        restartImageView.setFitHeight(120);
+        restartImageView.setFitWidth(120);
+        //Circle circle = new Circle(1200, 500, 150); // cast to Circle
+        //circle.setFill(restartImageView);
+        rootMissionSelectionView.getChildren().addAll(restartImageView);
+    }
+
+    private void FarmerOfFarm(Stage primaryStage) {
+        File farmerFile = new File("Data\\Gif\\Farmer.gif");
+        Image farmerImage = new Image(farmerFile.toURI().toString());
+        ImageView farmerImageView = new ImageView(farmerImage);
+        farmerImageView.relocate(1270,410);
+        primaryStage.setFullScreen(true);
+        farmerImageView.setFitHeight(230);
+        farmerImageView.setFitWidth(90);
+        rootMissionSelectionView.getChildren().addAll(farmerImageView);
+        primaryStage.show();
+    }
+
+    private void NumberOfMission(Stage primaryStage) {
+        File numberFile = new File("Data\\Mission\\hob.png");
+        Image numberImage = new Image(numberFile.toURI().toString());
+        //ImageView numberImageView = new ImageView(numberImage);
+        ImageView[] numberImageView = new ImageView[15];
+        for (int i = 0; i < 15; i++) {
+            if (i < 7) {
+                numberImageView[i] = new ImageView(numberImage);
+                numberImageView[i].relocate(1130, 450 + 40 * i);
+                primaryStage.setFullScreen(true);
+                numberImageView[i].setFitWidth(35);
+                numberImageView[i].setFitHeight(35);
+                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
             }
-        });
-        bubbleView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                bubbleView.setFitHeight(80);
-                bubbleView.setFitWidth(80);
-                bubbleView.relocate(x, y);
+            if (i >= 7) {
+                numberImageView[i] = new ImageView(numberImage);
+                numberImageView[i].relocate(1130 + (i - 7) * 40, 450 + 40 * 7 + 10);
+                primaryStage.setFullScreen(true);
+                numberImageView[i].setFitWidth(35);
+                numberImageView[i].setFitHeight(35);
+                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
             }
-        });
-        rootMissionSelectionView.getChildren().addAll(bubbleView);
+        }
+        try {
+            for (int i = 0; i < 15; i++) {
+                final int ai = i;
+                numberImageView[ai].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
 
-
-
+                    }
+                });
+                if (ai < 7) {
+                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130 + 5, 450 + 40 * ai + 5);
+                            numberImageView[ai].setFitWidth(30);
+                            numberImageView[ai].setFitHeight(30);
+                        }
+                    });
+                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130, 450 + 40 * ai);
+                            numberImageView[ai].setFitWidth(35);
+                            numberImageView[ai].setFitHeight(35);
+                        }
+                    });
+                } else {
+                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130 + (ai - 7) * 40 + 5, 450 + 40 * 7 + 10 + 5);
+                            numberImageView[ai].setFitWidth(30);
+                            numberImageView[ai].setFitHeight(30);
+                        }
+                    });
+                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            numberImageView[ai].relocate(1130 + (ai - 7) * 40, 450 + 40 * 7 + 10);
+                            numberImageView[ai].setFitWidth(35);
+                            numberImageView[ai].setFitHeight(35);
+                        }
+                    });
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

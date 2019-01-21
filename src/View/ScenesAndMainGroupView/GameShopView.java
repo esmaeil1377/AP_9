@@ -72,7 +72,6 @@ public class GameShopView extends View {
         sewingFactoryRect.setFill(Color.rgb(64, 45, 67));
         sewingFactoryRect.relocate(20, 430);
 
-
         Rectangle weavingFactoryRect = new Rectangle(470, 300);
         weavingFactoryRect.setOpacity(0.6);
         weavingFactoryRect.setArcHeight(70);
@@ -93,7 +92,6 @@ public class GameShopView extends View {
         truckRect.setArcWidth(70);
         truckRect.setFill(Color.rgb(64, 45, 67));
         truckRect.relocate(1460, 430);
-
 
         Rectangle wellRect = new Rectangle(470, 300);
         wellRect.setOpacity(0.6);
@@ -137,9 +135,9 @@ public class GameShopView extends View {
         BackGroundView.setFitWidth(2000);
         rootGameShopView.getChildren().addAll(BackGroundView);
     }
-    public static void main(String[] arg){
-        launch(arg);
-    }
+//    public static void main(String[] arg){
+//        launch(arg);
+//    }
 
 
     private void AddItems() {

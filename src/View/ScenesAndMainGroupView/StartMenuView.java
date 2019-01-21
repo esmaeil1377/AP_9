@@ -216,7 +216,7 @@ public class StartMenuView extends View {
     }
 
     private void AddExitClick(Stage primaryStage){
-        File exitFile=new File("Data\\Click\\ExitClick.png");
+        File exitFile=new File("Data\\Click\\Exit.png");
         Image exitImage=new Image(exitFile.toURI().toString());
         ImageView exitImageView=new ImageView(exitImage);
         exitImageView.relocate(1400,50);
