@@ -5,7 +5,7 @@ import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.ObjectInMap30_30.Cage;
 import FarmModel.ObjectInMap30_30.LiveAnimals.WildAnimals;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 
 public class CageRequest extends Request {
     private int x;
@@ -15,7 +15,7 @@ public class CageRequest extends Request {
         AnalyzeRequestLine(requestLine);
         Cell cell = Farm.getCellByPosition(getX(),getY());
 
-        for (ObjectInMap30_30 object : cell.getCellObjectInMap30_30()) {
+        for (ObjectInMap15_15 object : cell.getCellObjectInMap15_15()) {
             if (object instanceof WildAnimals) {
                 cell.AddCellAMapObject(new Cage((WildAnimals) object));
                 cell.RemoveCellAMapObject(object);

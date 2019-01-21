@@ -4,10 +4,8 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmModel.ObjectInMap30_30.Grass;
 import FarmModel.ObjectInMap30_30.LiveAnimals.*;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
-import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 import FarmModel.ObjectInMap30_30.Product.Product;
-import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Flour;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 
 
 public class Farm {
-    private Cell map[][] = new Cell[30][30];
+    private Cell map[][] = new Cell[15][15];
     private Truck truck;
     private Helicopter helicopter;
     private ArrayList<WorkShop> workShops = new ArrayList<>();
@@ -55,16 +53,16 @@ public class Farm {
         this.workShops = workShops;
     }
 
-    public Farm(Helicopter helicopter, Truck truck, Well well , ArrayList<WorkShop> workShops) {
+    public Farm(Helicopter helicopter, Truck truck, Well well, ArrayList<WorkShop> workShops) {
         setHelicopter(helicopter);
         setTruck(truck);
         setWorkShops(workShops);
-        for(int i=0;i<30;i++){
-            for(int j=0;j<30;j++){
-                Cell cell=new Cell();
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                Cell cell = new Cell();
                 cell.setXPosition(i);
                 cell.setYPosition(j);
-                getMap()[i][j]=cell;
+                getMap()[i][j] = cell;
             }
         }
     }
@@ -116,9 +114,9 @@ public class Farm {
 //        int currentNumberOfCatInMapToDetermineIfTheMissionIsFinished = 0;
 //        int currentNumberOfDogInMapToDetermineIfTheMissionIsFinished = 0;
         ArrayList<Animals> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++) {
-            for (int y = 0; y < 30; y++) {
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++) {
+            for (int y = 0; y < 15; y++) {
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Animals) {
                         animalsInMap.add((Animals) objectInMap15_15);
 //                        if (objectInMap15_15.toString().equals("Chicken"))
@@ -156,9 +154,9 @@ public class Farm {
 
     public ArrayList<Cat> getCurrentCatInMap() throws MissionNotLoaded {
         ArrayList<Cat> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++)
-            for (int y = 0; y < 30; y++)
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++)
+            for (int y = 0; y < 15; y++)
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Cat) {
                         animalsInMap.add((Cat) objectInMap15_15);
                     }
@@ -168,9 +166,9 @@ public class Farm {
 
     public ArrayList<Dog> getCurrnetDogInMap() throws MissionNotLoaded {
         ArrayList<Dog> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++)
-            for (int y = 0; y < 30; y++)
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++)
+            for (int y = 0; y < 15; y++)
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Dog) {
                         animalsInMap.add((Dog) objectInMap15_15);
                     }
@@ -181,9 +179,9 @@ public class Farm {
 
     public ArrayList<Chicken> getCurrentChickenInMap() throws MissionNotLoaded {
         ArrayList<Chicken> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++)
-            for (int y = 0; y < 30; y++)
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++)
+            for (int y = 0; y < 15; y++)
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Chicken) {
                         animalsInMap.add((Chicken) objectInMap15_15);
                     }
@@ -193,9 +191,9 @@ public class Farm {
 
     public ArrayList<Cow> getCurrnetCowInMap() throws MissionNotLoaded {
         ArrayList<Cow> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++)
-            for (int y = 0; y < 30; y++)
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++)
+            for (int y = 0; y < 15; y++)
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Cow) {
                         animalsInMap.add((Cow) objectInMap15_15);
                     }
@@ -203,15 +201,15 @@ public class Farm {
         return animalsInMap;
     }
 
-    public static Cell getCellByPosition(int x,int y) throws MissionNotLoaded {
+    public static Cell getCellByPosition(int x, int y) throws MissionNotLoaded {
         return Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
     }
 
     public ArrayList<Sheep> getCurrentShipInMap() throws MissionNotLoaded {
         ArrayList<Sheep> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++)
-            for (int y = 0; y < 30; y++)
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++)
+            for (int y = 0; y < 15; y++)
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Sheep) {
                         animalsInMap.add((Sheep) objectInMap15_15);
                     }
@@ -221,9 +219,9 @@ public class Farm {
 
     public ArrayList<Lion> getCurrnetLionInMap() throws MissionNotLoaded {
         ArrayList<Lion> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++)
-            for (int y = 0; y < 30; y++)
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++)
+            for (int y = 0; y < 15; y++)
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Lion) {
                         animalsInMap.add((Lion) objectInMap15_15);
                     }
@@ -233,9 +231,9 @@ public class Farm {
 
     public ArrayList<Bear> getCurrentBearInMap() throws MissionNotLoaded {
         ArrayList<Bear> animalsInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++)
-            for (int y = 0; y < 30; y++)
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++)
+            for (int y = 0; y < 15; y++)
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Bear) {
                         animalsInMap.add((Bear) objectInMap15_15);
                     }
@@ -246,9 +244,9 @@ public class Farm {
 
     public ArrayList<Grass> getCurrentGrassInMap() throws MissionNotLoaded {
         ArrayList<Grass> grassInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++) {
-            for (int y = 0; y < 30; y++) {
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++) {
+            for (int y = 0; y < 15; y++) {
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Grass) {
                         grassInMap.add((Grass) objectInMap15_15);
                     }
@@ -260,9 +258,9 @@ public class Farm {
 
     public ArrayList<Product> getCurrentProductInMap() throws MissionNotLoaded {
         ArrayList<Product> productInMap = new ArrayList<>();
-        for (int x = 0; x < 30; x++) {
-            for (int y = 0; y < 30; y++) {
-                for (ObjectInMap30_30 objectInMap15_15 : getCellByPosition(x,y).getCellObjectInMap30_30()) {
+        for (int x = 0; x < 15; x++) {
+            for (int y = 0; y < 15; y++) {
+                for (ObjectInMap15_15 objectInMap15_15 : getCellByPosition(x, y).getCellObjectInMap15_15()) {
                     if (objectInMap15_15 instanceof Product) {
                         productInMap.add((Product) objectInMap15_15);
                     }
@@ -301,7 +299,7 @@ public class Farm {
     }
 
     public WorkShop getspecifiedWorkShop(String WorkshopName) throws MissionNotLoaded {
-        Farm farm=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (WorkShop workshop : farm.getWorkShops()) {
             if (workshop.getWorkShopName().equals(WorkshopName)) {
                 return workshop;
@@ -310,8 +308,8 @@ public class Farm {
         return null;
     }
 
-        //i don't think that it  could work but i'll look after.
-    public Object getObjectInWareHouse(Object object){
+    //i don't think that it  could work but i'll look after.
+    public Object getObjectInWareHouse(Object object) {
         for (Object objectinWareHouse : wareHouse.getWareHouseList()) {
             if (objectinWareHouse.toString().equals(object.toString())) {
                 return objectinWareHouse;
@@ -319,7 +317,7 @@ public class Farm {
         }
         try {
             throw new ObjectNotFoundInWareHouse();
-        }catch (ObjectNotFoundInWareHouse e){
+        } catch (ObjectNotFoundInWareHouse e) {
             e.printStackTrace();
         }
         return null;

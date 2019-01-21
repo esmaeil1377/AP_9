@@ -10,7 +10,7 @@ import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,11 +75,11 @@ public class PrintRequest extends Request {
             System.out.print((i)+":");
             for (int j = 0; j < 30; j++) {
                 Cell cell = Farm.getCellByPosition(i,j);
-                ArrayList<ObjectInMap30_30> cellObject = cell.getCellObjectInMap30_30();
+                ArrayList<ObjectInMap15_15> cellObject = cell.getCellObjectInMap15_15();
                 System.out.print("[");
                 int numOfCellObject=cellObject.size();
                 int count = 0;
-                for (ObjectInMap30_30 objectInMap15_15 : cellObject) {
+                for (ObjectInMap15_15 objectInMap15_15 : cellObject) {
                     System.out.print(objectInMap15_15.toString());
                     if (count < numOfCellObject - 1) {
                         System.out.print(",");

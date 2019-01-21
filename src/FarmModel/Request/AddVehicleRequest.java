@@ -4,7 +4,7 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap30_30.Cage;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Wool;
@@ -18,7 +18,7 @@ import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
 public class AddVehicleRequest extends Request {
     private String vehicleName;
     private int count;
-    private ObjectInMap30_30 object;
+    private ObjectInMap15_15 object;
 
     public AddVehicleRequest(String request) throws MissionNotLoaded {
         AnalyzeRequestLine(request);
@@ -48,11 +48,11 @@ public class AddVehicleRequest extends Request {
         this.count = count;
     }
 
-    public void setObject(ObjectInMap30_30 object) {
+    public void setObject(ObjectInMap15_15 object) {
         this.object = object;
     }
 
-    public ObjectInMap30_30 getObject() {
+    public ObjectInMap15_15 getObject() {
         return object;
     }
 

@@ -4,7 +4,7 @@ import FarmController.Exceptions.*;
 import FarmController.Interfaces.Upgradeable;
 import FarmModel.Cell;
 import FarmModel.Game;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 import FarmModel.ObjectInMap30_30.Product.Product;
 import FarmModel.User;
 
@@ -32,8 +32,8 @@ public class Cat extends Animals implements Upgradeable {
 
     public void TakeProduct() throws MissionNotLoaded {
         Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[getX()][getY()];
-        ArrayList<ObjectInMap30_30> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap30_30());
-        for (ObjectInMap30_30 objectInMap15_15 : currentObjectInMap) {
+        ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap15_15());
+        for (ObjectInMap15_15 objectInMap15_15 : currentObjectInMap) {
             if (objectInMap15_15 instanceof Product && getProduct() == null ) {
                 cell.RemoveCellAMapObject(objectInMap15_15);
                 setProduct((Product) objectInMap15_15);

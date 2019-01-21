@@ -1,6 +1,6 @@
 package FarmModel.ObjectInMap30_30;
 
-public class Grass extends ObjectInMap30_30 {
+public class Grass extends ObjectInMap15_15 {
     private int turnToDisappear;
     private int remainTurnToDisAppear;
 

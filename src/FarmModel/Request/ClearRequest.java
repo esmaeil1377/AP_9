@@ -3,12 +3,10 @@ package FarmModel.Request;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ClearRequest extends Request {

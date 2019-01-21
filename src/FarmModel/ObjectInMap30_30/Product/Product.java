@@ -1,8 +1,8 @@
 package FarmModel.ObjectInMap30_30.Product;
 
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 
-public abstract class Product extends ObjectInMap30_30 {
+public abstract class Product extends ObjectInMap15_15 {
     private int remainTurnToDisapear=20;
 
 
