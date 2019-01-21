@@ -19,8 +19,8 @@ import java.io.File;
 import static javafx.application.Application.launch;
 
 public class GameShopView extends View {
-    double xShift = 0.8;
-    double yShift = 0.8;
+    double xShift = 0.788;
+    double yShift = 0.788;
     private Group rootGameShopView = new Group();
     private Scene sceneGameShopView = new Scene(rootGameShopView, (int) (1500 * xShift), (int) (700 * yShift));
 
@@ -146,7 +146,7 @@ public class GameShopView extends View {
 
 
     private void AddItems() {
-        File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs (Egg Powder Plant)\\01.png");
+        File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\01.png");
         Image eggPowderPlantImage = new Image(eggPowderPlant.toURI().toString());
         ImageView eggPowderPlantView = new ImageView(eggPowderPlantImage);
         eggPowderPlantView.setFitHeight((int) (175 * yShift));
@@ -154,8 +154,30 @@ public class GameShopView extends View {
         eggPowderPlantView.setViewport(new Rectangle2D(0, 0, 130, 110));
         eggPowderPlantView.relocate((int) (23 * xShift), (int) (210 * yShift));
         rootGameShopView.getChildren().addAll(eggPowderPlantView);
+        eggPowderPlantView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
-        File cookieBakery = new File("Data\\Textures\\Workshops\\Cake (Cookie Bakery)\\01.png");
+            }
+        });
+        eggPowderPlantView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                eggPowderPlantView.setFitHeight((int) (175 * yShift) + 10);
+                eggPowderPlantView.setFitWidth((int) (250 * xShift) + 10);
+                eggPowderPlantView.relocate((int) (23 * xShift) - 5, (int) (210 * yShift) - 5);
+            }
+        });
+        eggPowderPlantView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                eggPowderPlantView.setFitHeight((int) (175 * yShift));
+                eggPowderPlantView.setFitWidth((int) (250 * xShift));
+                eggPowderPlantView.relocate((int) (23 * xShift), (int) (210 * yShift));
+            }
+        });
+
+        File cookieBakery = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\01.png");
         Image cookieBakeryImage = new Image(cookieBakery.toURI().toString());
         ImageView cookieBakeryView = new ImageView(cookieBakeryImage);
         cookieBakeryView.setFitHeight((int) (175 * yShift));
@@ -163,8 +185,30 @@ public class GameShopView extends View {
         cookieBakeryView.setViewport(new Rectangle2D(0, 0, 130, 130));
         cookieBakeryView.relocate((int) (525 * xShift), (int) (200 * yShift));
         rootGameShopView.getChildren().addAll(cookieBakeryView);
+        cookieBakeryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
-        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake (Cake Bakery)\\01.png");
+            }
+        });
+        cookieBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cookieBakeryView.setFitHeight((int) (175 * yShift) + 10);
+                cookieBakeryView.setFitWidth((int) (250 * xShift) + 10);
+                cookieBakeryView.relocate((int) (525 * xShift) - 5, (int) (200 * yShift) - 5);
+            }
+        });
+        cookieBakeryView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cookieBakeryView.setFitHeight((int) (175 * yShift));
+                cookieBakeryView.setFitWidth((int) (250 * xShift));
+                cookieBakeryView.relocate((int) (525 * xShift), (int) (200 * yShift));
+            }
+        });
+
+        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\01.png");
         Image cakeBakeryImage = new Image(cakeBakery.toURI().toString());
         ImageView cakeBakeryView = new ImageView(cakeBakeryImage);
         cakeBakeryView.setFitHeight((int) (210 * yShift));
@@ -172,8 +216,31 @@ public class GameShopView extends View {
         cakeBakeryView.setViewport(new Rectangle2D(0, 0, 190, 170));
         cakeBakeryView.relocate((int) (970 * xShift), (int) (185 * yShift));
         rootGameShopView.getChildren().addAll(cakeBakeryView);
+        cakeBakeryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
-        File spinnery = new File("Data\\Textures\\Workshops\\Spinnery (Spinnery)\\01.png");
+            }
+        });
+        cakeBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+                cakeBakeryView.setFitHeight((int) (210 * yShift) + 10);
+                cakeBakeryView.setFitWidth((int) (300 * xShift) + 10);
+                cakeBakeryView.relocate((int) (970 * xShift) - 5, (int) (185 * yShift) - 5);
+            }
+        });
+        cakeBakeryView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cakeBakeryView.setFitHeight((int) (210 * yShift));
+                cakeBakeryView.setFitWidth((int) (300 * xShift));
+                cakeBakeryView.relocate((int) (970 * xShift), (int) (185 * yShift));
+            }
+        });
+
+        File spinnery = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\01.png");
         Image spinneryImage = new Image(spinnery.toURI().toString());
         ImageView spinneryView = new ImageView(spinneryImage);
         spinneryView.setFitHeight((int) (160 * yShift));
@@ -181,9 +248,30 @@ public class GameShopView extends View {
         spinneryView.setViewport(new Rectangle2D(0, 0, 140, 100));
         spinneryView.relocate((int) (1480 * xShift), (int) (218 * yShift));
         rootGameShopView.getChildren().addAll(spinneryView);
+        spinneryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
+            }
+        });
+        spinneryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                spinneryView.setFitHeight((int) (160 * yShift) + 10);
+                spinneryView.setFitWidth((int) (230 * xShift) + 10);
+                spinneryView.relocate((int) (1480 * xShift) - 5, (int) (218 * yShift) - 5);
+            }
+        });
+        spinneryView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                spinneryView.setFitHeight((int) (160 * yShift));
+                spinneryView.setFitWidth((int) (230 * xShift));
+                spinneryView.relocate((int) (1480 * xShift), (int) (218 * yShift));
+            }
+        });
 
-        File sewingFactory = new File("Data\\Textures\\Workshops\\CarnivalDress (Sewing Factory)\\01.png");
+        File sewingFactory = new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\01.png");
         Image sewingFactoryImage = new Image(sewingFactory.toURI().toString());
         ImageView sewingFactoryView = new ImageView(sewingFactoryImage);
         sewingFactoryView.setFitHeight((int) (160 * yShift));
@@ -191,8 +279,30 @@ public class GameShopView extends View {
         sewingFactoryView.setViewport(new Rectangle2D(0, 0, 150, 130));
         sewingFactoryView.relocate((int) (23 * xShift), (int) (540 * yShift));
         rootGameShopView.getChildren().addAll(sewingFactoryView);
+        sewingFactoryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
-        File weavingFavtory = new File("Data\\Textures\\Workshops\\Weaving (Weaving Factory)\\01.png");
+            }
+        });
+        sewingFactoryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                sewingFactoryView.setFitHeight((int) (160 * yShift) + 10);
+                sewingFactoryView.setFitWidth((int) (230 * xShift) + 10);
+                sewingFactoryView.relocate((int) (23 * xShift) - 5, (int) (540 * yShift) - 5);
+            }
+        });
+        sewingFactoryView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                sewingFactoryView.setFitHeight((int) (160 * yShift));
+                sewingFactoryView.setFitWidth((int) (230 * xShift));
+                sewingFactoryView.relocate((int) (23 * xShift), (int) (540 * yShift));
+            }
+        });
+
+        File weavingFavtory = new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\01.png");
         Image weavingFactoryImage = new Image(weavingFavtory.toURI().toString());
         ImageView weavingFactoryView = new ImageView(weavingFactoryImage);
         weavingFactoryView.setFitHeight((int) (175 * yShift));
@@ -200,6 +310,28 @@ public class GameShopView extends View {
         weavingFactoryView.setViewport(new Rectangle2D(0, 0, 150, 110));
         weavingFactoryView.relocate((int) (525 * xShift), (int) (530 * yShift));
         rootGameShopView.getChildren().addAll(weavingFactoryView);
+        weavingFactoryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+        weavingFactoryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                weavingFactoryView.setFitHeight((int) (175 * yShift) + 10);
+                weavingFactoryView.setFitWidth((int) (250 * xShift) + 10);
+                weavingFactoryView.relocate((int) (525 * xShift) - 5, (int) (530 * yShift) - 5);
+            }
+        });
+        weavingFactoryView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                weavingFactoryView.setFitHeight((int) (175 * yShift));
+                weavingFactoryView.setFitWidth((int) (250 * xShift));
+                weavingFactoryView.relocate((int) (525 * xShift), (int) (530 * yShift));
+            }
+        });
 
         File wareHouse = new File("Data\\Textures\\Service\\Depot\\01.png");
         Image wareHouseImage = new Image(wareHouse.toURI().toString());
@@ -209,16 +341,59 @@ public class GameShopView extends View {
         wareHouseView.setViewport(new Rectangle2D(0, 0, 190, 170));
         wareHouseView.relocate((int) (1000 * xShift), (int) (540 * yShift));
         rootGameShopView.getChildren().addAll(wareHouseView);
+        wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+        wareHouseView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wareHouseView.setFitHeight((int) (175 * yShift) + 10);
+                wareHouseView.setFitWidth((int) (250 * xShift) + 10);
+                wareHouseView.relocate((int) (1000 * xShift) - 5, (int) (540 * yShift) - 5);
+            }
+        });
+        wareHouseView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wareHouseView.setFitHeight((int) (175 * yShift));
+                wareHouseView.setFitWidth((int) (250 * xShift));
+                wareHouseView.relocate((int) (1000 * xShift), (int) (540 * yShift));
+            }
+        });
 
         File truck = new File("Data\\Textures\\Service\\Truck\\01.png");
         Image truckImage = new Image(truck.toURI().toString());
         ImageView truckView = new ImageView(truckImage);
         truckView.setFitHeight((int) (220 * yShift));
-        truckView.setFitWidth(300 * (int) (300 * xShift));
+        truckView.setFitWidth((int) (300 * xShift));
         truckView.setViewport(new Rectangle2D(0, 0, 170, 130));
         truckView.relocate((int) (1480 * xShift), (int) (495 * yShift));
         rootGameShopView.getChildren().addAll(truckView);
+        truckView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
+            }
+        });
+        truckView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                truckView.setFitHeight((int) (220 * yShift) + 10);
+                truckView.setFitWidth((int) (300 * xShift) + 10);
+                truckView.relocate((int) (1480 * xShift) - 5, (int) (495 * yShift) - 5);
+            }
+        });
+        truckView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                truckView.setFitHeight((int) (220 * yShift));
+                truckView.setFitWidth((int) (300 * xShift));
+                truckView.relocate((int) (1480 * xShift), (int) (495 * yShift));
+            }
+        });
 
         File well = new File("Data\\Textures\\Service\\Well\\01.png");
         Image wellImage = new Image(well.toURI().toString());
@@ -228,6 +403,28 @@ public class GameShopView extends View {
         wellView.setViewport(new Rectangle2D(0, 0, 150, 130));
         wellView.relocate((int) (23 * xShift), (int) (800 * yShift));
         rootGameShopView.getChildren().addAll(wellView);
+        wellView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+        wellView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wellView.setFitHeight((int) (220 * yShift) + 10);
+                wellView.setFitWidth((int) (260 * xShift) + 10);
+                wellView.relocate((int) (23 * xShift) - 5, (int) (800 * yShift) - 5);
+            }
+        });
+        wellView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wellView.setFitHeight((int) (220 * yShift));
+                wellView.setFitWidth((int) (260 * xShift));
+                wellView.relocate((int) (23 * xShift), (int) (800 * yShift));
+            }
+        });
 
         File helicopter = new File("Data\\Textures\\Service\\Helicopter\\01.png");
         Image helicopterImage = new Image(helicopter.toURI().toString());
@@ -237,6 +434,28 @@ public class GameShopView extends View {
         helicopterView.setViewport(new Rectangle2D(0, 0, 150, 160));
         helicopterView.relocate((int) (500 * xShift), (int) (805 * yShift));
         rootGameShopView.getChildren().addAll(helicopterView);
+        helicopterView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+        helicopterView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                helicopterView.setFitHeight((int) (230 * yShift) + 10);
+                helicopterView.setFitWidth((int) (270 * xShift) + 10);
+                helicopterView.relocate((int) (500 * xShift) - 5, (int) (805 * yShift) -5);
+            }
+        });
+        helicopterView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                helicopterView.setFitHeight((int) (230 * yShift));
+                helicopterView.setFitWidth((int) (270 * xShift));
+                helicopterView.relocate((int) (500 * xShift), (int) (805 * yShift));
+            }
+        });
 
         File dog = new File("Data\\Textures\\Service\\Dog.png");
         Image dogImage = new Image(dog.toURI().toString());
@@ -245,15 +464,58 @@ public class GameShopView extends View {
         dogView.setFitWidth((int) (250 * xShift));
         dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
         rootGameShopView.getChildren().addAll(dogView);
+        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
-        File cat = new File("Data\\Textures\\Service\\BuyIconNotHead\\Cat.png");
+            }
+        });
+        dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dogView.setFitHeight((int) (200 * yShift) + 10);
+                dogView.setFitWidth((int) (250 * xShift) + 10);
+                dogView.relocate((int) (980 * xShift) - 5, (int) (840 * yShift) - 5);
+            }
+        });
+        dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dogView.setFitHeight((int) (200 * yShift));
+                dogView.setFitWidth((int) (250 * xShift));
+                dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
+            }
+        });
+
+        File cat = new File("Data\\Textures\\Service\\Cat.png");
         Image catImage = new Image(cat.toURI().toString());
         ImageView catView = new ImageView(catImage);
         catView.setFitHeight((int) (160 * yShift));
         catView.setFitWidth((int) (200 * xShift));
         catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
         rootGameShopView.getChildren().addAll(catView);
+        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
+            }
+        });
+        catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                catView.setFitHeight((int) (160 * yShift) + 10);
+                catView.setFitWidth((int) (200 * xShift) + 10);
+                catView.relocate((int) (1480 * xShift) - 5, (int) (860 * yShift) - 5);
+            }
+        });
+        catView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                catView.setFitHeight((int) (160 * yShift));
+                catView.setFitWidth((int) (200 * xShift));
+                catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+            }
+        });
 
         File shopText = new File("Data\\Textures\\Service\\ShopText.png");
         Image shopTextImage = new Image(shopText.toURI().toString());
