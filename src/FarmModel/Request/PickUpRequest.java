@@ -5,7 +5,7 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 import FarmModel.ObjectInMap30_30.Product.Product;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
 
@@ -19,8 +19,8 @@ public class PickUpRequest extends Request {
         AnalyzeRequestLine(requestLine);
         Cell cell = Farm.getCellByPosition(getX(),getY());
         WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
-        ArrayList<ObjectInMap30_30> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap30_30());
-        for (ObjectInMap30_30 object : currentObjectInMap) {
+        ArrayList<ObjectInMap15_15> currentObjectInMap = new ArrayList<>(cell.getCellObjectInMap15_15());
+        for (ObjectInMap15_15 object : currentObjectInMap) {
             if (object instanceof Product) {
                 try {
                     wareHouse.AddWholeObjectToStore(object);

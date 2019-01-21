@@ -9,7 +9,7 @@ import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap30_30.Grass;
 import FarmModel.ObjectInMap30_30.LiveAnimals.*;
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 import FarmModel.ObjectInMap30_30.Product.Product;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
@@ -128,7 +128,7 @@ public class TurnRequest extends Request {
                     Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
                     if (cell.HasWildAnimal()) {
                         cell.RemoveCellAMapObject(animals);
-                        for (ObjectInMap30_30 objectInMap30_30 : cell.getCellObjectInMap30_30()) {
+                        for (ObjectInMap15_15 objectInMap30_30 : cell.getCellObjectInMap15_15()) {
                             if (objectInMap30_30 instanceof WildAnimals) {
                                 cell.RemoveCellAMapObject(objectInMap30_30);
                                 break;
@@ -230,8 +230,8 @@ public class TurnRequest extends Request {
                     int x = animals.getX();
                     int y = animals.getY();
                     Cell cell = Farm.getCellByPosition(x, y);
-                    ArrayList<ObjectInMap30_30> copyOfObjectInCell = new ArrayList<>(cell.getCellObjectInMap30_30());
-                    for (ObjectInMap30_30 objectInMap30_30 : copyOfObjectInCell) {
+                    ArrayList<ObjectInMap15_15> copyOfObjectInCell = new ArrayList<>(cell.getCellObjectInMap15_15());
+                    for (ObjectInMap15_15 objectInMap30_30 : copyOfObjectInCell) {
                         if (!(objectInMap30_30 instanceof Grass) && !(objectInMap30_30 instanceof WildAnimals)) {
                             cell.RemoveCellAMapObject(objectInMap30_30);
                         }

@@ -1,19 +1,19 @@
 package FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround;
 
-import FarmModel.ObjectInMap30_30.ObjectInMap30_30;
+import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
 import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.*;
 
 import java.util.ArrayList;
 
 public class CityShop {
-    private ArrayList<ObjectInMap30_30> cityOfferingProduct =new ArrayList<>();
+    private ArrayList<ObjectInMap15_15> cityOfferingProduct =new ArrayList<>();
 
-    public CityShop(ArrayList<ObjectInMap30_30> cityOfferingProduct){
+    public CityShop(ArrayList<ObjectInMap15_15> cityOfferingProduct){
         this.cityOfferingProduct=cityOfferingProduct;
     }
 
-    public ObjectInMap30_30 getObjectTypeFromCityShop(String className){
-        for(ObjectInMap30_30 objectInMap15_15: cityOfferingProduct){
+    public ObjectInMap15_15 getObjectTypeFromCityShop(String className){
+        for(ObjectInMap15_15 objectInMap15_15: cityOfferingProduct){
             if(objectInMap15_15.toString().equals(className)){
                 if(className.equals("Cake")){
                     return new Cake();

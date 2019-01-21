@@ -2,7 +2,7 @@ package FarmModel.ObjectInMap30_30;
 
 import FarmModel.ObjectInMap30_30.LiveAnimals.WildAnimals;
 
-public class Cage extends ObjectInMap30_30 {
+public class Cage extends ObjectInMap15_15 {
     private WildAnimals wildAnimals;
 
     public Cage(WildAnimals wildAnimals) {
