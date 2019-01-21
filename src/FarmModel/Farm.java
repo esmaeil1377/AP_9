@@ -2,15 +2,15 @@ package FarmModel;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.ObjectNotFoundInWareHouse;
-import FarmModel.ObjectInMap30_30.Grass;
-import FarmModel.ObjectInMap30_30.LiveAnimals.*;
-import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
-import FarmModel.ObjectInMap30_30.Product.Product;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectInMap15_15.Grass;
+import FarmModel.ObjectInMap15_15.LiveAnimals.*;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@ package FarmModel.Request;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 public class StartRequest extends Request {
     private String WorkShopName;

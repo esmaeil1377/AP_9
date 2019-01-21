@@ -3,7 +3,7 @@ package FarmModel.Request;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEmptyWell;
 import FarmModel.Game;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 
 public class WellRequest extends Request {
     private int AmountOfWaterInBucket;

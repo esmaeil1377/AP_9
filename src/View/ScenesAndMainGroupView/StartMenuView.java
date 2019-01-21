@@ -34,8 +34,13 @@ public class StartMenuView {
     private int gameSpeed=10;
     private Circle circleSun;
     private TextField enterYourUser;
+    private Text text;
     private Group rootStartMenuView=new Group();
     private Scene sceneStartMenuView=new Scene(rootStartMenuView,1600,900);
+
+    public Text getText() {
+        return text;
+    }
 
     public void setGameSpeed(int gameSpeed) {
         this.gameSpeed = gameSpeed;
@@ -159,7 +164,7 @@ public class StartMenuView {
             }
         });
 
-        Text text=new Text("Speed\n   10");
+        text=new Text("Speed\n   10");
         text.setStyle("-fx-font-weight: bold");
         text.setFont(Font.font(20));
         text.relocate(1420,720);

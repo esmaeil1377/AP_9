@@ -7,14 +7,14 @@ import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap30_30.Grass;
-import FarmModel.ObjectInMap30_30.LiveAnimals.*;
-import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
-import FarmModel.ObjectInMap30_30.Product.Product;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectInMap15_15.Grass;
+import FarmModel.ObjectInMap15_15.LiveAnimals.*;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import FarmModel.User;
 
 import java.util.ArrayList;
@@ -63,8 +63,8 @@ public class TurnRequest extends Request {
     private void AddWildAnimalsToMapAfterOneMinute() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         if (farm.getRemainTurnToRandomlyAddWildAnimalToMap() == 0) {
-            int randomX = ((int) (Math.random() * 30));
-            int randomY = ((int) (Math.random() * 30));
+            int randomX = ((int) (Math.random() * 15));
+            int randomY = ((int) (Math.random() * 15));
             Cell randomCell = farm.getMap()[randomX][randomY];
             Lion lion=new Lion();
             lion.setX(randomX);
@@ -128,9 +128,9 @@ public class TurnRequest extends Request {
                     Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
                     if (cell.HasWildAnimal()) {
                         cell.RemoveCellAMapObject(animals);
-                        for (ObjectInMap15_15 objectInMap30_30 : cell.getCellObjectInMap15_15()) {
-                            if (objectInMap30_30 instanceof WildAnimals) {
-                                cell.RemoveCellAMapObject(objectInMap30_30);
+                        for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap15_15()) {
+                            if (objectInMap15_15 instanceof WildAnimals) {
+                                cell.RemoveCellAMapObject(objectInMap15_15);
                                 break;
                             }
                         }
@@ -231,9 +231,9 @@ public class TurnRequest extends Request {
                     int y = animals.getY();
                     Cell cell = Farm.getCellByPosition(x, y);
                     ArrayList<ObjectInMap15_15> copyOfObjectInCell = new ArrayList<>(cell.getCellObjectInMap15_15());
-                    for (ObjectInMap15_15 objectInMap30_30 : copyOfObjectInCell) {
-                        if (!(objectInMap30_30 instanceof Grass) && !(objectInMap30_30 instanceof WildAnimals)) {
-                            cell.RemoveCellAMapObject(objectInMap30_30);
+                    for (ObjectInMap15_15 objectInMap15_15 : copyOfObjectInCell) {
+                        if (!(objectInMap15_15 instanceof Grass) && !(objectInMap15_15 instanceof WildAnimals)) {
+                            cell.RemoveCellAMapObject(objectInMap15_15);
                         }
                     }
                 }

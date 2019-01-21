@@ -2,7 +2,7 @@ package FarmModel.Request;
 
 import FarmModel.Game;
 import FarmModel.Mission;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import com.gilecode.yagson.YaGson;
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package FarmModel;
 
 import FarmController.Exceptions.MissionNotLoaded;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.CityShop;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.CityShop;
 
 import java.io.Serializable;
 import java.util.ArrayList;

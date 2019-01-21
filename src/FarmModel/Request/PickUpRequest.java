@@ -5,9 +5,9 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
-import FarmModel.ObjectInMap30_30.Product.Product;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
 import java.util.ArrayList;
 

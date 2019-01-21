@@ -5,7 +5,7 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.*;
-import FarmModel.ObjectInMap30_30.LiveAnimals.*;
+import FarmModel.ObjectInMap15_15.LiveAnimals.*;
 
 
 public class BuyRequest extends Request {
@@ -26,8 +26,8 @@ public class BuyRequest extends Request {
         Farm farm = mission.getFarm();
         InformationNeededInGame informationNeededInGame=user.getInformationNeededInGame();
         int currentMoney= mission.getMissionMoney();
-        int x = (int) (Math.random() * 30);
-        int y = (int) (Math.random() * 30);
+        int x = (int) (Math.random() * 15);
+        int y = (int) (Math.random() * 15);
         if(getAnimalName().equals("Cat")){
             Cat cat=new Cat(Game.getGameInstance().getCurrentUserAccount().getCatLevel());
             int price=informationNeededInGame.getPriceToBuy(cat);

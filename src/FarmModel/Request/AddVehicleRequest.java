@@ -3,17 +3,17 @@ package FarmModel.Request;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
 import FarmModel.Game;
-import FarmModel.ObjectInMap30_30.Cage;
-import FarmModel.ObjectInMap30_30.ObjectInMap15_15;
-import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
-import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Milk;
-import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Wool;
-import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Cake;
-import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Cookie;
-import FarmModel.ObjectInMap30_30.Product.WorkShopProduct.Powder;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectInMap15_15.Cage;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
 public class AddVehicleRequest extends Request {
     private String vehicleName;

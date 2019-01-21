@@ -2,7 +2,9 @@ package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 
 import FarmModel.Game;
 import FarmModel.Mission;
+import FarmModel.Request.TurnRequest;
 import View.View;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import View.GameView;
 import javafx.event.EventHandler;
@@ -34,6 +36,7 @@ public class MissionSelectionView extends View {
         NumberOfMission(primaryStage);
         FarmerOfFarm(primaryStage);
         AddItem(primaryStage);
+
 
     }
 

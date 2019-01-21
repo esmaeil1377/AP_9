@@ -1,9 +1,9 @@
 package FarmModel;
 
 import FarmController.Exceptions.UnknownObjectException;
-import FarmModel.ObjectInMap30_30.Cage;
-import FarmModel.ObjectInMap30_30.LiveAnimals.WildAnimals;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.WorkShop;
+import FarmModel.ObjectInMap15_15.Cage;
+import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
 public class InformationNeededInGame {
 

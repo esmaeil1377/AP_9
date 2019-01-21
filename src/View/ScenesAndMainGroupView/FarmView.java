@@ -2,21 +2,17 @@ package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
+import View.GameView;
 import FarmModel.Game;
 import FarmModel.Mission;
-import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.*;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.*;
+import FarmModel.Request.BuyRequest;
 import FarmModel.Request.SaveGameRequest;
+import FarmModel.Request.TurnRequest;
 import FarmModel.User;
 import View.View;
 import View.SpriteAnimation;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -27,7 +23,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
@@ -55,6 +50,28 @@ public class FarmView extends View {
         SewingFactory sewingFactory=(SewingFactory)farm.getSpecifiedWorkShop("SewingFactory") ;
         Spinnery spinnery=(Spinnery)farm.getSpecifiedWorkShop("Spinnery");
         WeavingFactory weavingFactory=(WeavingFactory)farm.getSpecifiedWorkShop("WeavingFactory");
+
+        AnimationTimer animationTimer=new AnimationTimer() {
+            long time=-1;
+
+            @Override
+            public void handle(long now) {
+                String speedText=GameView.getGameView().getStartMenuView().getText().getText()  ;
+                System.out.println(speedText);
+                int speed=Integer.valueOf(speedText.substring(speedText.length()-2));
+                if(time==-1) time=now;
+                if(now-time>1000000000*(speed/30)){
+                    time=now;
+                    try {
+                        new TurnRequest("turn 1");
+                        System.out.println("one turn passed");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        animationTimer.start();
 
 
 
@@ -585,7 +602,7 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(wareHouseView);
     }
     private void AddBuyItems(){
-        Circle chickenCircle=new Circle(1450,270,50,Color.rgb(255,201,0));
+        Circle chickenCircle=new Circle(1450,270,50,Color.rgb(39,221,255));
         chickenCircle.setOpacity(0.85);
         chickenCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -603,29 +620,37 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                //some thing ti buy
+                try {
+                    new BuyRequest("buy Chicken");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-        Circle shipCircle=new Circle(1450,390,50,Color.rgb(255,201,0));
-        shipCircle.setOpacity(0.85);
-        shipCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        Circle sheepCircle=new Circle(1450,390,50,Color.rgb(39,221,255));
+        sheepCircle.setOpacity(0.85);
+        sheepCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                shipCircle.setOpacity(0.95);
+                sheepCircle.setOpacity(0.95);
             }
         });
-        shipCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        sheepCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                shipCircle.setOpacity(0.85);
+                sheepCircle.setOpacity(0.85);
             }
         });
-        shipCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        sheepCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                //something to by
+                try {
+                    new BuyRequest("buy Sheep");
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -647,7 +672,9 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                //something to buy
+                try {
+                    new BuyRequest("buy Cow");
+                }catch (Exception e){}
             }
         });
 
@@ -669,7 +696,9 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                //something to buy
+                try {
+                    new BuyRequest("buy Cat");
+                }catch (Exception e){}
             }
         });
 
@@ -691,7 +720,9 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                //something to buy
+                try{
+                    new BuyRequest("buy Dog");
+                }catch (Exception e){}
             }
         });
 
@@ -717,34 +748,39 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                //something to buy
+                try {
+                    new BuyRequest("buy Chicken");
+                }catch (Exception e){}
 
             }
         });
 
 
-        File shipFile=new File("Data\\Textures\\BuyIconNotHead\\Ship.png");
-        Image shipImage=new Image(shipFile.toURI().toString());
-        ImageView shipView=new ImageView(shipImage);
-        shipView.relocate(1408,353);
-        shipView.setFitHeight(80);
-        shipView.setFitWidth(80);
-        shipView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        File sheepFile=new File("Data\\Textures\\BuyIconNotHead\\Ship.png");
+        Image sheepImage=new Image(sheepFile.toURI().toString());
+        ImageView sheepView=new ImageView(sheepImage);
+        sheepView.relocate(1408,353);
+        sheepView.setFitHeight(80);
+        sheepView.setFitWidth(80);
+        sheepView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.95);
+                sheepCircle.setOpacity(0.95);
             }
         });
-        shipView.setOnMouseExited(new EventHandler<MouseEvent>() {
+        sheepView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.85);
+                sheepCircle.setOpacity(0.85);
             }
         });
-        shipView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        sheepView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                PlayBubbleSound();
+                try{
+                    new BuyRequest("buy Sheep");
+                }catch (Exception e){}
             }
         });
 
@@ -757,19 +793,22 @@ public class FarmView extends View {
         cowView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.95);
+                cowCircle.setOpacity(0.95);
             }
         });
         cowView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.85);
+                cowCircle.setOpacity(0.85);
             }
         });
         cowView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                PlayBubbleSound();
+                try{
+                    new BuyRequest("buy Cow");
+                }catch (Exception e){}
             }
         });
 
@@ -782,19 +821,22 @@ public class FarmView extends View {
         catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.95);
+                catCircle.setOpacity(0.95);
             }
         });
         catView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.85);
+                catCircle.setOpacity(0.85);
             }
         });
         catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                PlayBubbleSound();
+                try{
+                    new BuyRequest("buy Cat");
+                }catch (Exception e){}
             }
         });
 
@@ -807,24 +849,27 @@ public class FarmView extends View {
         dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.95);
+                dogCircle.setOpacity(0.95);
             }
         });
         dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.85);
+                dogCircle.setOpacity(0.85);
             }
         });
         dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                PlayBubbleSound();
+                try {
+                    new BuyRequest("buy Dog");
+                }catch (Exception e){}
             }
         });
 
 
-        rootFarmView.getChildren().addAll(chickenCircle,shipCircle,cowCircle,catCircle,dogCircle,chickenView,shipView,cowView,catView,dogView);
+        rootFarmView.getChildren().addAll(chickenCircle,sheepCircle,cowCircle,catCircle,dogCircle,chickenView,sheepView,cowView,catView,dogView);
     }
 
 

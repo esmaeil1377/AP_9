@@ -27,24 +27,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         setPrimaryStage(primaryStage);
 
-        AnimationTimer animationTimer=new AnimationTimer() {
-            long time=-1;
-
-            @Override
-            public void handle(long now) {
-                if(time==-1) time=now;
-                if(now-time>1000000000){
-                    time=now;
-                    try {
-                        new TurnRequest("turn 1");
-                        System.out.println("one turn passed");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-
         primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
         primaryStage.setFullScreen(true);
         primaryStage.show();

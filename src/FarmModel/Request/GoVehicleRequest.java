@@ -2,8 +2,8 @@ package FarmModel.Request;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Helicopter;
-import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 
 public class GoVehicleRequest extends Request {
     private String vehicleName;
