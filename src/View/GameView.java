@@ -1,4 +1,5 @@
 package View;
+import View.ScenesAndMainGroupView.GameShopView;
 import View.ScenesAndMainGroupView.MissionSelectionView;
 import View.ScenesAndMainGroupView.StartMenuView;
 
@@ -7,7 +8,14 @@ public class GameView {
     private static GameView gameView=new GameView();
     private StartMenuView startMenuView=new StartMenuView(Main.getPrimaryStage());
     private MissionSelectionView missionSelectionView=new MissionSelectionView(Main.getPrimaryStage());
+    private GameShopView gameShopView=new GameShopView(Main.getPrimaryStage());
 
+    public GameShopView getGameShopView() {
+        return gameShopView;
+    }
+    public void setGameShopView(GameShopView gameShopView) {
+        this.gameShopView = gameShopView;
+    }
     public StartMenuView getStartMenuView() {
         return startMenuView;
     }

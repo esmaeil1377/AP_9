@@ -22,6 +22,10 @@ public class GameShopView extends View {
     private Group rootGameShopView =new Group();
     private Scene sceneGameShopView=new Scene(rootGameShopView,1600,900);
 
+    public Scene getSceneGameShopView() {
+        return sceneGameShopView;
+    }
+
     public GameShopView(Stage primaryStage){
         Start(primaryStage);
     }

@@ -20,6 +20,7 @@ import java.util.Arrays;
 public class User {
     private String acountName;
     private int money;
+
     private int CatLevel;
     private int CakeBakeryLevel;
     private int CookieBakeryLevel;
@@ -27,6 +28,30 @@ public class User {
     private int SeewingFactoryLevel;
     private int SpinneryLevel;
     private int WeavingFactoryLevel;
+    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,null));
+    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(),new Truck(),new Well(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0),new CakeBakery(0),new SewingFactory(0)))));
+    private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null,null));
+    private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null,null));
+    private Mission currentPlayingMission;
+    private ArrayList<WorkShop> customWorkShops=new ArrayList<>();
+    //inja bayad tamam mission ha ro baraye missions az rouye ye pushe bezarim.
+    private ArrayList<Mission> missions = new ArrayList<>();
+    private GameShop gameShop = new GameShop();
+    private InformationNeededInGame informationNeededInGame=new InformationNeededInGame();
+
+
+    public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
+        mission1.Addrequierment(new Egg(),10);
+        mission2.Addrequierment(new Chicken(),15);
+        mission3.Addrequierment(new Powder(),5);
+        mission4.Addrequierment(new Cow(),3);
+        setAccountName(accountName);
+        AddMissionToMissionsForUser(mission1);
+        AddMissionToMissionsForUser(mission2);
+        AddMissionToMissionsForUser(mission3);
+        AddMissionToMissionsForUser(mission4);
+        // Add users its missions
+    }
 
     public int getCatLevel() {
         return CatLevel;
@@ -83,36 +108,12 @@ public class User {
     public void setWeavingFactoryLevel(int weavingFactoryLevel) {
         WeavingFactoryLevel = weavingFactoryLevel;
     }
-
-    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,null));
-    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(),new Truck(),new Well(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0),new CakeBakery(0),new SewingFactory(0)))));
-    private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null,null));
-    private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null,null));
-    private Mission currentPlayingMission;
-    private ArrayList<WorkShop> customWorkShops=new ArrayList<>();
-    //inja bayad tamam mission ha ro baraye missions az rouye ye pushe bezarim.
-    private ArrayList<Mission> missions = new ArrayList<>();
-    private GameShop gameShop = new GameShop();
-    private InformationNeededInGame informationNeededInGame=new InformationNeededInGame();
-
     public InformationNeededInGame getInformationNeededInGame() {
         return informationNeededInGame;
     }
+
     public void AddcustomWorkshops(WorkShop custom){
         customWorkShops.add(custom);
-    }
-
-    public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
-        mission1.Addrequierment(new Egg(),10);
-        mission2.Addrequierment(new Chicken(),15);
-        mission3.Addrequierment(new Powder(),5);
-        mission4.Addrequierment(new Cow(),3);
-        setAccountName(accountName);
-        AddMissionToMissionsForUser(mission1);
-        AddMissionToMissionsForUser(mission2);
-        AddMissionToMissionsForUser(mission3);
-        AddMissionToMissionsForUser(mission4);
-        // Add users its missions
     }
 
     public GameShop getGameShop() {
