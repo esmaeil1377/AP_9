@@ -484,7 +484,7 @@ public class MissionSelectionView extends View {
         File restartFile = new File("Data\\Mission\\Map.jpeg");
         Image restartImage = new Image(restartFile.toURI().toString());
         ImageView restartImageView = new ImageView(restartImage);
-        restartImageView.relocate(1230,550);
+        restartImageView.relocate(1230, 550);
         primaryStage.setFullScreen(true);
         restartImageView.setFitHeight(120);
         restartImageView.setFitWidth(120);
@@ -497,7 +497,7 @@ public class MissionSelectionView extends View {
         File farmerFile = new File("Data\\Gif\\Farmer.gif");
         Image farmerImage = new Image(farmerFile.toURI().toString());
         ImageView farmerImageView = new ImageView(farmerImage);
-        farmerImageView.relocate(1270,410);
+        farmerImageView.relocate(1270, 410);
         primaryStage.setFullScreen(true);
         farmerImageView.setFitHeight(230);
         farmerImageView.setFitWidth(90);
@@ -509,69 +509,41 @@ public class MissionSelectionView extends View {
         File numberFile = new File("Data\\Mission\\hob.png");
         Image numberImage = new Image(numberFile.toURI().toString());
         //ImageView numberImageView = new ImageView(numberImage);
-        ImageView[] numberImageView = new ImageView[15];
-        for (int i = 0; i < 15; i++) {
-            if (i < 7) {
-                numberImageView[i] = new ImageView(numberImage);
-                numberImageView[i].relocate(1130, 450 + 40 * i);
-                primaryStage.setFullScreen(true);
-                numberImageView[i].setFitWidth(35);
-                numberImageView[i].setFitHeight(35);
-                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
-            }
-            if (i >= 7) {
-                numberImageView[i] = new ImageView(numberImage);
-                numberImageView[i].relocate(1130 + (i - 7) * 40, 450 + 40 * 7 + 10);
-                primaryStage.setFullScreen(true);
-                numberImageView[i].setFitWidth(35);
-                numberImageView[i].setFitHeight(35);
-                rootMissionSelectionView.getChildren().addAll(numberImageView[i]);
-            }
+        ImageView[] numberImageView = new ImageView[10];
+        for (int i = 20; i < 30; i++) {
+            numberImageView[i - 20] = new ImageView(numberImage);
+            numberImageView[i - 20].relocate(1300 - 300 * Math.cos(i * 3.14 / 11), 550 - 300 * Math.sin(i * 3.14 / 11));
+            primaryStage.setFullScreen(true);
+            numberImageView[i - 20].setFitWidth(50);
+            numberImageView[i - 20].setFitHeight(50);
+            rootMissionSelectionView.getChildren().addAll(numberImageView[i - 20]);
         }
         try {
-            for (int i = 0; i < 15; i++) {
+            for (int i = 20; i < 30; i++) {
                 final int ai = i;
-                numberImageView[ai].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                numberImageView[ai - 20].setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
 
                     }
                 });
-                if (ai < 7) {
-                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            numberImageView[ai].relocate(1130 + 5, 450 + 40 * ai + 5);
-                            numberImageView[ai].setFitWidth(30);
-                            numberImageView[ai].setFitHeight(30);
-                        }
-                    });
-                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            numberImageView[ai].relocate(1130, 450 + 40 * ai);
-                            numberImageView[ai].setFitWidth(35);
-                            numberImageView[ai].setFitHeight(35);
-                        }
-                    });
-                } else {
-                    numberImageView[ai].setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            numberImageView[ai].relocate(1130 + (ai - 7) * 40 + 5, 450 + 40 * 7 + 10 + 5);
-                            numberImageView[ai].setFitWidth(30);
-                            numberImageView[ai].setFitHeight(30);
-                        }
-                    });
-                    numberImageView[ai].setOnMouseExited(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            numberImageView[ai].relocate(1130 + (ai - 7) * 40, 450 + 40 * 7 + 10);
-                            numberImageView[ai].setFitWidth(35);
-                            numberImageView[ai].setFitHeight(35);
-                        }
-                    });
-                }
+
+                numberImageView[ai - 20].setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        numberImageView[ai - 20].relocate(1300 - 300 * Math.cos(ai * 3.14 / 11) + 5, 550 - 300 * Math.sin(ai * 3.14 / 11) + 5);
+                        numberImageView[ai - 20].setFitWidth(40);
+                        numberImageView[ai - 20].setFitHeight(40);
+                    }
+                });
+                numberImageView[ai - 20].setOnMouseExited(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        numberImageView[ai - 20].relocate(1300 - 300 * Math.cos(ai * 3.14 / 11), 550 - 300 * Math.sin(ai * 3.14 / 11));
+                        numberImageView[ai - 20].setFitWidth(50);
+                        numberImageView[ai - 20].setFitHeight(50);
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
