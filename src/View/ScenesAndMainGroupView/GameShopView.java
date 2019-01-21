@@ -285,6 +285,7 @@ public class GameShopView extends View {
             }
         });
         rootGameShopView.getChildren().addAll(okButtonView);
+
         File okText = new File("Data\\Textures\\Service\\OkText.png");
         Image okTextImage = new Image(okText.toURI().toString());
         ImageView okTextView = new ImageView(okTextImage);
