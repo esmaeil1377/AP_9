@@ -1,5 +1,10 @@
 package View.ScenesAndMainGroupView;
 
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
+import FarmModel.Game;
+import View.GameView;
 import View.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -23,8 +28,12 @@ import javafx.util.Duration;
 
 import java.io.File;
 
-public class StartMenuView extends View {
+import static View.View.PlayBubbleSound;
+
+public class StartMenuView {
     private int gameSpeed=10;
+    private Circle circleSun;
+    private TextField enterYourUser;
     private Group rootStartMenuView=new Group();
     private Scene sceneStartMenuView=new Scene(rootStartMenuView,1600,900);
 
@@ -44,7 +53,6 @@ public class StartMenuView extends View {
         Start(primaryStage);
     }
 
-    @Override
     public void Start(Stage primaryStage) {
 
         AddBackGround(primaryStage);
@@ -88,7 +96,26 @@ public class StartMenuView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-//                primaryStage.setScene();
+                if(!enterYourUser.getText().equals("")){
+                    try {
+                        Game.getGameInstance().NewUserStringWantToStartTheGame(enterYourUser.getText());
+                    } catch (UnknownObjectException e) {
+                        e.printStackTrace();
+                    } catch (NotEnoughMoney notEnoughMoney) {
+                        notEnoughMoney.printStackTrace();
+                    } catch (MissionNotLoaded missionNotLoaded) {
+                        missionNotLoaded.printStackTrace();
+                    }
+                    primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
+                    primaryStage.setFullScreen(true);
+                }else{
+                    KeyValue circleSunError=new KeyValue(circleSun.fillProperty(),Color.rgb(100,0,0));
+                    KeyFrame circleSunFram=new KeyFrame(Duration.millis(500),circleSunError);
+                    Timeline circleSunTimeline=new Timeline(circleSunFram);
+                    circleSunTimeline.setAutoReverse(true);
+                    circleSunTimeline.play();
+                }
+
                 primaryStage.setFullScreen(true);
             }
         });
@@ -216,7 +243,7 @@ public class StartMenuView extends View {
     }
 
     private void AddExitClick(Stage primaryStage){
-        File exitFile=new File("Data\\Click\\ExitClick.png");
+        File exitFile=new File("Data\\Click\\Exit.png");
         Image exitImage=new Image(exitFile.toURI().toString());
         ImageView exitImageView=new ImageView(exitImage);
         exitImageView.relocate(1400,50);
@@ -266,10 +293,11 @@ public class StartMenuView extends View {
     }
 
     private void AddNewUser(Stage primaryStage){
-        Circle circleSun=new Circle(367,364,30, Color.rgb(254,216,130));
+        circleSun=new Circle(367,364,30, Color.rgb(254,216,130));
         Circle circleUserMenu=new Circle(367,364,20,Color.rgb(240,240,255));
         circleUserMenu.setOpacity(0.5);
-        TextField enterYourUser=new TextField();
+
+        enterYourUser=new TextField();
         enterYourUser.relocate(290,420);
 
 
@@ -288,7 +316,9 @@ public class StartMenuView extends View {
                 Timeline timeline1=new Timeline(keyFrame1);
                 timeline1.getKeyFrames().addAll(keyFrame1);
                 timeline1.play();
-                rootStartMenuView.getChildren().addAll(enterYourUser);
+                if(!rootStartMenuView.getChildren().contains(enterYourUser)) {
+                    rootStartMenuView.getChildren().addAll(enterYourUser);
+                }
             }
         });
 

@@ -4,6 +4,7 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
 import FarmModel.Mission;
 import com.gilecode.yagson.YaGson;
+import FarmModel.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,13 +20,13 @@ public class SaveGameRequest extends Request {
     public SaveGameRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
 
-        Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
-        File file = new File(getPathToJsonFile()+"\\"+currentMission.getMissionName()+".txt");
+        User currentUser = Game.getGameInstance().getCurrentUserAccount();
+        File file = new File(getPathToJsonFile()+"\\"+currentUser.getAccountName()+".txt");
         FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
             YaGson mapper = new YaGson();
-            String objectJson = mapper.toJson(currentMission, Mission.class);
+            String objectJson = mapper.toJson(currentUser, User.class);
 
             byte[] bytesObject = objectJson.getBytes();
             fileOutputStream.write(bytesObject);

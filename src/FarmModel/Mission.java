@@ -96,7 +96,7 @@ public class Mission implements Serializable {
                     result = false;
                 }
             } else if (object.toString().equals("Cow")) {
-                int numberOfCow = farm.getCurrnetCowInMap().size();
+                int numberOfCow = farm.getCurrentCowInMap().size();
                 if (numberOfCow < requirementToFinishTheMission.get(object)) {
                     result = false;
                 }

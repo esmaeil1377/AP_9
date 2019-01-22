@@ -18,7 +18,7 @@ public class StartRequest extends Request {
 
     public StartRequest(String requestLine) throws MissionNotLoaded {
         AnalyzeRequestLine(requestLine);
-        WorkShop workShop = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getspecifiedWorkShop(getWorkShopName());
+        WorkShop workShop = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop(getWorkShopName());
         setWorkShop(workShop);
         workShop.setWorkShopActivatedToMakeProduct(true);
     }

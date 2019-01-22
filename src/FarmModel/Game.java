@@ -3,11 +3,18 @@ package FarmModel;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
+import FarmModel.Request.LoadGameRequest;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Game {
     private static Game game;
+    private User currentUserAcount=new User("Mosio");
+    ArrayList<User> userAcounts = new ArrayList<>();
+
 
     static {
         try {
@@ -20,10 +27,7 @@ public class Game {
             missionNotLoaded.printStackTrace();
         }
     }
-
     //just for the first user account:Mosio
-    private User currentUserAcount=new User("Mosio");
-    ArrayList<User> userAcount = new ArrayList<>();
 
     private Game() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded { }
 
@@ -31,11 +35,11 @@ public class Game {
         return game;
     }
 
-    public ArrayList<User> getUserAcount() {
-        return userAcount;
+    public ArrayList<User> getUserAccounts() {
+        return userAcounts;
     }
 
-    public void setCurrentUserAcount(User currentUserAccount) {
+    public void setCurrentUserAccount(User currentUserAccount) {
         this.currentUserAcount = currentUserAccount;
     }
 
@@ -48,7 +52,29 @@ public class Game {
         return null;
     }
 
-    public void setUserAcount(ArrayList<User> userAccount) {
-        this.userAcount = userAccount;
+    public void setUserAcounts(ArrayList<User> userAccount) {
+        this.userAcounts = userAccount;
+    }
+
+    public void NewUserStringWantToStartTheGame(String userString) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
+        boolean isUserLoaded=false;
+        File userAccountFolder;
+        try{
+            userAccountFolder=new File("UsersAccount");
+            File[] contentDirectory=userAccountFolder.listFiles();
+            for(File file:contentDirectory){
+                if (file.getName().equals(userString+".txt")){
+                    LoadGameRequest loadGameRequest=new LoadGameRequest("load game UsersAccount\\"+userString+".txt");
+                    isUserLoaded=true;
+                }
+            }
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
+        if(!isUserLoaded){
+            User user=new User(userString);
+            userAcounts.add(user);
+            setCurrentUserAccount(user);
+        }
     }
 }

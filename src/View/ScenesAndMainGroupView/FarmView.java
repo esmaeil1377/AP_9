@@ -1,5 +1,16 @@
 package View.ScenesAndMainGroupView;
 
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmModel.Farm;
+import FarmModel.Game;
+import FarmModel.Mission;
+import FarmModel.ObjectInMap30_30.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap30_30ButInTheBorderOfPlayGround.WorkShop.*;
+import FarmModel.Request.SaveGameRequest;
+import FarmModel.User;
 import View.View;
 import View.SpriteAnimation;
 import javafx.animation.Animation;
@@ -29,21 +40,49 @@ public class FarmView extends View {
         Start(primaryStage);
     }
 
+    public Scene getSceneFarmView() {
+        return sceneFarmView;
+    }
+
     @Override
-    public void Start(Stage primaryStage) {
+    public void Start(Stage primaryStage) throws MissionNotLoaded {
+        User user= Game.getGameInstance().getCurrentUserAccount();
+        Mission mission=user.getCurrentPlayingMission();
+        Farm farm=mission.getFarm();
+        CakeBakery cakeBakery=(CakeBakery)farm.getSpecifiedWorkShop("CakeBakery");
+        CookieBakery cookieBakery=(CookieBakery)farm.getSpecifiedWorkShop("CookieBakery");
+        EggPowderPlant eggPowderPlant=(EggPowderPlant)farm.getSpecifiedWorkShop("EggPowderPlant") ;
+        SewingFactory sewingFactory=(SewingFactory)farm.getSpecifiedWorkShop("SewingFactory") ;
+        Spinnery spinnery=(Spinnery)farm.getSpecifiedWorkShop("Spinnery");
+        WeavingFactory weavingFactory=(WeavingFactory)farm.getSpecifiedWorkShop("WeavingFactory");
+
 
 
         AddBackGround(primaryStage);
 
         ShowMovingCloud();
 
-        AddMovingWell();
+        AddMovingWell(farm.getWell().getLevel());
 
-        AddMovingWareHouse();
+        AddMovingWareHouse(farm.getWareHouse().getLevel());
 
         AddPavement();
 
         AddBuyItems();
+
+        AddLookingGIf();
+
+        if(farm.getTruck()!=null) AddTruck(farm.getTruck().getLevel());
+
+        if(farm.getHelicopter()!=null) AddHelicopter(farm.getHelicopter().getLevel());
+
+        if(cakeBakery!=null) AddCakeBakery(cakeBakery.getLevel());
+        if(cookieBakery!=null) AddCookieBakery(cookieBakery.getLevel());
+        if(eggPowderPlant!=null) AddEggPowderPlant(eggPowderPlant.getLevel());
+        if(sewingFactory!=null) AddSewingFactory(sewingFactory.getLevel());
+        if(spinnery!=null) AddSpinnery(spinnery.getLevel());
+        if(weavingFactory!=null) AddWeavingFactory(weavingFactory.getLevel());
+
 
 //        AddThreePavementForWorkshop();
 
@@ -65,47 +104,137 @@ public class FarmView extends View {
         BackGroundView.setFitWidth(1540);
         rootFarmView.getChildren().addAll(BackGroundView);
     }
-    private void AddMenuClick(Stage primaryStage){
-        File restartFile=new File("Data\\MenuClick\\Restart.png");
-        Image restartImage=new Image(restartFile.toURI().toString());
-        ImageView restartImageView=new ImageView(restartImage);
-        restartImageView.relocate(266,655);
-        primaryStage.setFullScreen(true);
+    private void AddMenuClick(Stage primaryStage) {
+        File settingFile = new File("Data\\MenuClick\\Setting.png");
+        Image settingImage = new Image(settingFile.toURI().toString());
+        ImageView settingView = new ImageView(settingImage);
+        settingView.relocate(440, 680);
+        settingView.setFitHeight(30);
+        settingView.setFitWidth(55);
+
+        File saveFile = new File("Data\\MenuClick\\Save.png");
+        Image saveImage = new Image(saveFile.toURI().toString());
+        ImageView saveView = new ImageView(saveImage);
+        saveView.relocate(168, 400);
+        saveView.setFitHeight(25);
+        saveView.setFitWidth(35);
+        saveView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new SaveGameRequest("save game UsersAccount");
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
+            }
+        });
+
+        File restartFile = new File("Data\\MenuClick\\Restart.png");
+        Image restartImage = new Image(restartFile.toURI().toString());
+        ImageView restartImageView = new ImageView(restartImage);
+        restartImageView.relocate(266, 655);
         restartImageView.setFitHeight(40);
         restartImageView.setFitWidth(60);
 
 
-        File continueFile=new File("Data\\MenuClick\\Continue.png");
-        Image continueImage=new Image(continueFile .toURI().toString());
-        ImageView continueImageView=new ImageView(continueImage);
-        continueImageView.relocate(50,530);
-        primaryStage.setFullScreen(true);
+        File continueFile = new File("Data\\MenuClick\\Continue.png");
+        Image continueImage = new Image(continueFile.toURI().toString());
+        ImageView continueImageView = new ImageView(continueImage);
+        continueImageView.relocate(50, 530);
         continueImageView.setFitHeight(40);
         continueImageView.setFitWidth(60);
 
-        File mapFile=new File("Data\\MenuClick\\Map.png");
-        Image optionImage=new Image(mapFile.toURI().toString());
-        ImageView optionImageView=new ImageView(optionImage);
-        optionImageView.relocate(300,780);
-        primaryStage.setFullScreen(true);
+        File mapFile = new File("Data\\MenuClick\\Map.png");
+        Image optionImage = new Image(mapFile.toURI().toString());
+        ImageView optionImageView = new ImageView(optionImage);
+        optionImageView.relocate(300, 780);
         optionImageView.setFitHeight(30);
         optionImageView.setFitWidth(50);
 
-        File menuTextFile=new File("Data\\MenuClick\\MainMenu.png");
-        Image menuTextImage=new Image(menuTextFile.toURI().toString());
-        ImageView menuTextImageView=new ImageView(menuTextImage);
-        menuTextImageView.relocate(175,563.495);
-        primaryStage.setFullScreen(true);
+        File menuTextFile = new File("Data\\MenuClick\\MainMenu.png");
+        Image menuTextImage = new Image(menuTextFile.toURI().toString());
+        ImageView menuTextImageView = new ImageView(menuTextImage);
+        menuTextImageView.relocate(175, 563.495);
         menuTextImageView.setFitHeight(40);
         menuTextImageView.setFitWidth(70);
 
-        Circle menuCircle=new Circle(80,800,0);
+        Circle menuCircle = new Circle(80, 800, 0);
         menuCircle.setOpacity(0.6);
-        menuCircle.setFill(Color.rgb(216,218,34));
+        menuCircle.setFill(Color.rgb(216, 218, 34));
 
-        Circle mainMenuCircle=new Circle(205,583.495,0);
+        Circle emptyCircle = new Circle(390.84, 502.16, 0);
+        emptyCircle.setOpacity(0.6);
+        emptyCircle.setFill(Color.rgb(64, 45, 67));
+        emptyCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                emptyCircle.setOpacity(0.8);
+            }
+        });
+        emptyCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                emptyCircle.setOpacity(0.6);
+            }
+        });
+        emptyCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        Circle savecircle = new Circle(183, 414, 0);
+        savecircle.setOpacity(0.6);
+        savecircle.setFill(Color.rgb(64, 45, 67));
+        savecircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                savecircle.setOpacity(0.8);
+            }
+        });
+        savecircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                savecircle.setOpacity(0.6);
+            }
+        });
+        savecircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new SaveGameRequest("save game UsersAccount");
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
+            }
+        });
+
+        Circle settingcircle = new Circle(466, 697, 0);
+        settingcircle.setOpacity(0.6);
+        settingcircle.setFill(Color.rgb(64, 45, 67));
+        settingcircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                settingcircle.setOpacity(0.8);
+            }
+        });
+        settingcircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                settingcircle.setOpacity(0.6);
+            }
+        });
+        settingcircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        Circle mainMenuCircle = new Circle(205, 583.495, 0);
         mainMenuCircle.setOpacity(0.6);
-        mainMenuCircle.setFill(Color.rgb(64,45,67));
+        mainMenuCircle.setFill(Color.rgb(64, 45, 67));
         mainMenuCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -125,9 +254,9 @@ public class FarmView extends View {
             }
         });
 
-        Circle restartCircle =new Circle(296.505,675,0);
+        Circle restartCircle = new Circle(296.505, 675, 0);
         restartCircle.setOpacity(0.6);
-        restartCircle.setFill(Color.rgb(64,45,67));
+        restartCircle.setFill(Color.rgb(64, 45, 67));
         restartCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -147,9 +276,9 @@ public class FarmView extends View {
             }
         });
 
-        Circle mapCircle =new Circle(330,800,0);
+        Circle mapCircle = new Circle(330, 800, 0);
         mapCircle.setOpacity(0.6);
-        mapCircle.setFill(Color.rgb(64,45,67));
+        mapCircle.setFill(Color.rgb(64, 45, 67));
         mapCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -169,9 +298,9 @@ public class FarmView extends View {
             }
         });
 
-        Circle continueCircle=new Circle(80,550,0);
+        Circle continueCircle = new Circle(80, 550, 0);
         continueCircle.setOpacity(0.6);
-        continueCircle.setFill(Color.rgb(64,45,67));
+        continueCircle.setFill(Color.rgb(64, 45, 67));
         continueCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -187,54 +316,73 @@ public class FarmView extends View {
         continueCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                rootFarmView.getChildren().removeAll(menuTextImageView,optionImageView,continueImageView,restartImageView);
-                KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),0);
-                KeyFrame continueCircleFrame=new KeyFrame(Duration.seconds(1),continueCircleKey);
-                Timeline continueCircleTimeLine=new Timeline(continueCircleFrame);
+                rootFarmView.getChildren().removeAll(menuTextImageView, optionImageView, continueImageView, restartImageView, saveView, settingView);
+
+                KeyValue emptyValue = new KeyValue(emptyCircle.radiusProperty(), 0);
+                KeyFrame emptyFrame = new KeyFrame(Duration.millis(500), emptyValue);
+                Timeline emptyTimeLine = new Timeline(emptyFrame);
+                emptyTimeLine.getKeyFrames().addAll(emptyFrame);
+                emptyTimeLine.play();
+
+                KeyValue saveCircleKey = new KeyValue(savecircle.radiusProperty(), 0);
+                KeyFrame saveCircleFrame = new KeyFrame(Duration.millis(500), saveCircleKey);
+                Timeline saveCircleTimeLine = new Timeline(saveCircleFrame);
+                saveCircleTimeLine.getKeyFrames().addAll(saveCircleFrame);
+                saveCircleTimeLine.play();
+
+                KeyValue settingCircleValue = new KeyValue(settingcircle.radiusProperty(), 0);
+                KeyFrame settingFrame = new KeyFrame(Duration.millis(500), settingCircleValue);
+                Timeline settingTimeLine = new Timeline(settingFrame);
+                settingTimeLine.getKeyFrames().addAll(settingFrame);
+                settingTimeLine.play();
+
+                KeyValue continueCircleKey = new KeyValue(continueCircle.radiusProperty(), 0);
+                KeyFrame continueCircleFrame = new KeyFrame(Duration.seconds(1), continueCircleKey);
+                Timeline continueCircleTimeLine = new Timeline(continueCircleFrame);
                 continueCircleTimeLine.getKeyFrames().addAll(continueCircleFrame);
                 continueCircleTimeLine.play();
 
-                KeyValue mainMenuKey=new KeyValue(mainMenuCircle.radiusProperty(),0);
-                KeyFrame mainMenuFrame=new KeyFrame(Duration.seconds(1),mainMenuKey);
-                Timeline mainMenuTimeLine=new Timeline(mainMenuFrame);
+                KeyValue mainMenuKey = new KeyValue(mainMenuCircle.radiusProperty(), 0);
+                KeyFrame mainMenuFrame = new KeyFrame(Duration.seconds(1), mainMenuKey);
+                Timeline mainMenuTimeLine = new Timeline(mainMenuFrame);
                 mainMenuTimeLine.getKeyFrames().addAll(mainMenuFrame);
                 mainMenuTimeLine.play();
 
-                KeyValue restartCircleKey=new KeyValue(restartCircle.radiusProperty(),0);
-                KeyFrame restartCircleFrame=new KeyFrame(Duration.seconds(1),restartCircleKey);
-                Timeline restartCircleTimeLine=new Timeline(restartCircleFrame);
+                KeyValue restartCircleKey = new KeyValue(restartCircle.radiusProperty(), 0);
+                KeyFrame restartCircleFrame = new KeyFrame(Duration.seconds(1), restartCircleKey);
+                Timeline restartCircleTimeLine = new Timeline(restartCircleFrame);
                 restartCircleTimeLine.getKeyFrames().addAll(restartCircleFrame);
                 restartCircleTimeLine.play();
 
-                KeyValue mapCircleKey=new KeyValue(mapCircle.radiusProperty(),0);
-                KeyFrame mapCircleFrame=new KeyFrame(Duration.seconds(1),mapCircleKey);
-                Timeline mapCircleTimeLine=new Timeline(mapCircleFrame);
+                KeyValue mapCircleKey = new KeyValue(mapCircle.radiusProperty(), 0);
+                KeyFrame mapCircleFrame = new KeyFrame(Duration.seconds(1), mapCircleKey);
+                Timeline mapCircleTimeLine = new Timeline(mapCircleFrame);
                 mapCircleTimeLine.getKeyFrames().addAll(mapCircleFrame);
                 mapCircleTimeLine.play();
 
 
                 PlayBubbleSound();
 
-                KeyValue x=new KeyValue(menuCircle.radiusProperty(),0);
-                KeyFrame keyFrame=new KeyFrame(Duration.millis(500),x);
-                Timeline timeline=new Timeline(keyFrame);
+                KeyValue x = new KeyValue(menuCircle.radiusProperty(), 0);
+                KeyFrame keyFrame = new KeyFrame(Duration.millis(500), x);
+                Timeline timeline = new Timeline(keyFrame);
                 timeline.getKeyFrames().addAll(keyFrame);
                 timeline.play();
             }
         });
 
-        rootFarmView.getChildren().addAll(menuCircle,continueCircle,mainMenuCircle,restartCircle,mapCircle);
+        rootFarmView.getChildren().addAll(menuCircle, continueCircle, mainMenuCircle, restartCircle, mapCircle, settingcircle, savecircle, emptyCircle);
 
-        File menuFile=new File("Data\\Click\\Menu.png");
-        Image menuImage=new Image(menuFile.toURI().toString());
-        ImageView MenuView=new ImageView(menuImage);
-        MenuView.relocate(30,750);
+        File menuFile = new File("Data\\Click\\Menu.png");
+        Image menuImage = new Image(menuFile.toURI().toString());
+        ImageView MenuView = new ImageView(menuImage);
+        MenuView.relocate(30, 750);
         MenuView.setFitHeight(100);
         MenuView.setFitWidth(100);
         MenuView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MenuView.relocate(35,755);
+                MenuView.relocate(35, 755);
                 MenuView.setFitHeight(90);
                 MenuView.setFitWidth(90);
             }
@@ -242,7 +390,7 @@ public class FarmView extends View {
         MenuView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MenuView.relocate(30,750);
+                MenuView.relocate(30, 750);
                 MenuView.setFitHeight(100);
                 MenuView.setFitWidth(100);
             }
@@ -250,38 +398,56 @@ public class FarmView extends View {
         MenuView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                rootFarmView.getChildren().addAll(menuTextImageView,optionImageView,continueImageView,restartImageView);
+                rootFarmView.getChildren().addAll(menuTextImageView, optionImageView, continueImageView, restartImageView, settingView, saveView);
 
-                KeyValue continueCircleKey=new KeyValue(continueCircle.radiusProperty(),60);
-                KeyFrame continueCircleFrame=new KeyFrame(Duration.millis(500),continueCircleKey);
-                Timeline continueCircleTimeLine=new Timeline(continueCircleFrame);
+                KeyValue emptyValue = new KeyValue(emptyCircle.radiusProperty(), 90);
+                KeyFrame emptyFrame = new KeyFrame(Duration.millis(500), emptyValue);
+                Timeline emptyTimeLine = new Timeline(emptyFrame);
+                emptyTimeLine.getKeyFrames().addAll(emptyFrame);
+                emptyTimeLine.play();
+
+                KeyValue saveCircleKey = new KeyValue(savecircle.radiusProperty(), 60);
+                KeyFrame saveCircleFrame = new KeyFrame(Duration.millis(500), saveCircleKey);
+                Timeline saveCircleTimeLine = new Timeline(saveCircleFrame);
+                saveCircleTimeLine.getKeyFrames().addAll(saveCircleFrame);
+                saveCircleTimeLine.play();
+
+                KeyValue settingCircleValue = new KeyValue(settingcircle.radiusProperty(), 60);
+                KeyFrame settingFrame = new KeyFrame(Duration.millis(500), settingCircleValue);
+                Timeline settingTimeLine = new Timeline(settingFrame);
+                settingTimeLine.getKeyFrames().addAll(settingFrame);
+                settingTimeLine.play();
+
+                KeyValue continueCircleKey = new KeyValue(continueCircle.radiusProperty(), 60);
+                KeyFrame continueCircleFrame = new KeyFrame(Duration.millis(500), continueCircleKey);
+                Timeline continueCircleTimeLine = new Timeline(continueCircleFrame);
                 continueCircleTimeLine.getKeyFrames().addAll(continueCircleFrame);
                 continueCircleTimeLine.play();
 
-                KeyValue mainMenuKey=new KeyValue(mainMenuCircle.radiusProperty(),60);
-                KeyFrame mainMenuFrame=new KeyFrame(Duration.millis(500),mainMenuKey);
-                Timeline mainMenuTimeLine=new Timeline(mainMenuFrame);
+                KeyValue mainMenuKey = new KeyValue(mainMenuCircle.radiusProperty(), 60);
+                KeyFrame mainMenuFrame = new KeyFrame(Duration.millis(500), mainMenuKey);
+                Timeline mainMenuTimeLine = new Timeline(mainMenuFrame);
                 mainMenuTimeLine.getKeyFrames().addAll(mainMenuFrame);
                 mainMenuTimeLine.play();
 
-                KeyValue restartCircleKey=new KeyValue(restartCircle.radiusProperty(),60);
-                KeyFrame restartCircleFrame=new KeyFrame(Duration.millis(500),restartCircleKey);
-                Timeline restartCircleTimeLine=new Timeline(restartCircleFrame);
+                KeyValue restartCircleKey = new KeyValue(restartCircle.radiusProperty(), 60);
+                KeyFrame restartCircleFrame = new KeyFrame(Duration.millis(500), restartCircleKey);
+                Timeline restartCircleTimeLine = new Timeline(restartCircleFrame);
                 restartCircleTimeLine.getKeyFrames().addAll(restartCircleFrame);
                 restartCircleTimeLine.play();
 
-                KeyValue mapCircleKey=new KeyValue(mapCircle.radiusProperty(),60);
-                KeyFrame mapCircleFrame=new KeyFrame(Duration.millis(500),mapCircleKey);
-                Timeline mapCircleTimeLine=new Timeline(mapCircleFrame);
+                KeyValue mapCircleKey = new KeyValue(mapCircle.radiusProperty(), 60);
+                KeyFrame mapCircleFrame = new KeyFrame(Duration.millis(500), mapCircleKey);
+                Timeline mapCircleTimeLine = new Timeline(mapCircleFrame);
                 mapCircleTimeLine.getKeyFrames().addAll(mapCircleFrame);
                 mapCircleTimeLine.play();
 
 
                 PlayBubbleSound();
 
-                KeyValue x=new KeyValue(menuCircle.radiusProperty(),2000);
-                KeyFrame keyFrame=new KeyFrame(Duration.millis(500),x);
-                Timeline timeline=new Timeline(keyFrame);
+                KeyValue x = new KeyValue(menuCircle.radiusProperty(), 2000);
+                KeyFrame keyFrame = new KeyFrame(Duration.millis(500), x);
+                Timeline timeline = new Timeline(keyFrame);
                 timeline.getKeyFrames().addAll(keyFrame);
                 timeline.play();
 
@@ -323,8 +489,8 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(cloudView);
     }
 
-    private void AddMovingWell(){
-        File wellFile=new File("Data\\Textures\\Service\\Well\\01.png");
+    private void AddMovingWell(int level){
+        File wellFile=new File("Data\\Textures\\Service\\Well\\0"+String.valueOf(level+1)+".png");
         Image wellImage=new Image(wellFile.toURI().toString());
         ImageView wellView=new ImageView(wellImage);
         wellView.relocate(1120,500);
@@ -366,8 +532,8 @@ public class FarmView extends View {
         });
         rootFarmView.getChildren().addAll(wellView);
     }
-    private void AddMovingWareHouse(){
-        File wareHouseFile=new File("Data\\Textures\\Service\\Depot\\01.png");
+    private void AddMovingWareHouse(int level){
+        File wareHouseFile=new File("Data\\Textures\\Service\\Depot\\0"+String.valueOf(level+1)+".png");
         Image wareHouseImage=new Image(wareHouseFile.toURI().toString());
         ImageView wareHouseView=new ImageView(wareHouseImage);
         wareHouseView.relocate(500,600);
@@ -661,50 +827,9 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(chickenCircle,shipCircle,cowCircle,catCircle,dogCircle,chickenView,shipView,cowView,catView,dogView);
     }
 
-    private void AddThreePavementForWorkshop(){
-        File pavementFile=new File("Data\\WorkShopPavement.png");
-        Image pavementImage=new Image(pavementFile.toURI().toString());
 
-        int xDelta=950;
-        int yDelta=150;
-        int baseX=50;
-        int baseY=220;
-
-        ImageView pavementView1=new ImageView(pavementImage);
-        pavementView1.relocate(baseX+40,baseY);
-        pavementView1.setFitHeight(100);
-        pavementView1.setFitWidth(220);
-
-        ImageView pavementView2=new ImageView(pavementImage);
-        pavementView2.relocate(baseX+20,baseY+yDelta*1);
-        pavementView2.setFitHeight(110);
-        pavementView2.setFitWidth(230);
-
-        ImageView pavementView3=new ImageView(pavementImage);
-        pavementView3.relocate(baseX,baseY+yDelta*2);
-        pavementView3.setFitHeight(120);
-        pavementView3.setFitWidth(240);
-
-        ImageView pavementView4=new ImageView(pavementImage);
-        pavementView4.relocate(baseX+xDelta-20,baseY);
-        pavementView4.setFitHeight(100);
-        pavementView4.setFitWidth(220);
-
-        ImageView pavementView5=new ImageView(pavementImage);
-        pavementView5.relocate(baseX+xDelta-10,baseY+yDelta);
-        pavementView5.setFitHeight(110);
-        pavementView5.setFitWidth(230);
-
-        ImageView pavementView6=new ImageView(pavementImage);
-        pavementView6.relocate(baseX+xDelta,baseY+yDelta*2);
-        pavementView6.setFitHeight(120);
-        pavementView6.setFitWidth(240);
-
-        rootFarmView.getChildren().addAll(pavementView1,pavementView2,pavementView3,pavementView4,pavementView5,pavementView6);
-    }
-
-    private void AddSpinnery(){
-        File spinneryFile =new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\01.png");
+    private void AddSpinnery(int level){
+        File spinneryFile =new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\0"+String.valueOf(level+1)+".png");
         Image spinneryImage=new Image(spinneryFile.toURI().toString());
         ImageView spinneryView=new ImageView(spinneryImage);
         spinneryView.relocate(100,200);
@@ -746,8 +871,8 @@ public class FarmView extends View {
         });
         rootFarmView.getChildren().addAll(spinneryView);
     }
-    private void AddCakeBakery(){
-        File cakeBakeryFile=new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\01.png");
+    private void AddCakeBakery(int level){
+        File cakeBakeryFile=new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\0"+String.valueOf(level+1)+".png");
         Image cakeBakeryImage=new Image(cakeBakeryFile.toURI().toString());
         ImageView cakeBakeryVeiw=new ImageView(cakeBakeryImage);
         cakeBakeryVeiw.relocate(100,350);
@@ -789,8 +914,8 @@ public class FarmView extends View {
         });
         rootFarmView.getChildren().addAll(cakeBakeryVeiw);
     }
-    private void AddSewingFactory(){
-        File sewingFactoryFile =new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\01.png");
+    private void AddSewingFactory(int level){
+        File sewingFactoryFile =new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\0"+String.valueOf(level+1)+".png");
         Image sewingFactoryImage=new Image(sewingFactoryFile.toURI().toString());
         ImageView sewingFactoryView=new ImageView(sewingFactoryImage);
         sewingFactoryView.relocate(100,500);
@@ -833,8 +958,8 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(sewingFactoryView);
     }
 
-    private void AddWeavingFactory(){
-        File WeavingFile =new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\01.png");
+    private void AddWeavingFactory(int level){
+        File WeavingFile =new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\0"+String.valueOf(level+1)+".png");
         Image WeavingImage=new Image(WeavingFile.toURI().toString());
         ImageView WeavingView=new ImageView(WeavingImage);
         WeavingView.relocate(1000,200);
@@ -876,8 +1001,8 @@ public class FarmView extends View {
         });
         rootFarmView.getChildren().addAll(WeavingView);
     }
-    private void AddCookieBakery(){
-        File cakeBakeryFile=new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\01.png");
+    private void AddCookieBakery(int level){
+        File cakeBakeryFile=new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\0"+String.valueOf(level+1)+".png");
         Image cakeBakeryImage=new Image(cakeBakeryFile.toURI().toString());
         ImageView cakeBakeryVeiw=new ImageView(cakeBakeryImage);
         cakeBakeryVeiw.relocate(1000,350);
@@ -919,8 +1044,8 @@ public class FarmView extends View {
         });
         rootFarmView.getChildren().addAll(cakeBakeryVeiw);
     }
-    private void AddEggPowderPlant(){
-        File cakeBakeryFile=new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\01.png");
+    private void AddEggPowderPlant(int level){
+        File cakeBakeryFile=new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\0"+String.valueOf(level+1)+".png");
         Image cakeBakeryImage=new Image(cakeBakeryFile.toURI().toString());
         ImageView cakeBakeryVeiw=new ImageView(cakeBakeryImage);
         cakeBakeryVeiw.relocate(1000,500);
@@ -965,8 +1090,8 @@ public class FarmView extends View {
 
     private void AddCustomWorkShop(){}
 
-    private void AddTruck(){
-        File truckFile=new File("Data\\Textures\\Service\\Truck\\01.png");
+    private void AddTruck(int level){
+        File truckFile=new File("Data\\Textures\\Service\\Truck\\0"+String.valueOf(level+1)+".png");
         Image truckImage=new Image(truckFile.toURI().toString());
         ImageView truckView=new ImageView(truckImage);
         truckView.relocate(880,620);
@@ -1033,8 +1158,8 @@ public class FarmView extends View {
 
         rootFarmView.getChildren().addAll(truckView);
     }
-    private void AddHelicopter(){
-        File helicopterFile=new File("Data\\Textures\\Service\\Helicopter\\01.png");
+    private void AddHelicopter(int level){
+        File helicopterFile=new File("Data\\Textures\\Service\\Helicopter\\0"+String.valueOf(level+1)+".png");
         Image helicopterImage=new Image(helicopterFile.toURI().toString());
         ImageView helicopterView=new ImageView(helicopterImage);
         helicopterView.relocate(250,600);
@@ -1110,11 +1235,6 @@ public class FarmView extends View {
         LookingChickenImage.setFitWidth(180);
 
         rootFarmView.getChildren().addAll(LookingChickenImage);
-    }
-    private void AddRectangleForPosition(){
-        Rectangle rectangle=new Rectangle(650,410);
-        rectangle.relocate(320 ,205);
-        rootFarmView.getChildren().addAll(rectangle);
     }
 
     private void PlantGrass(int xCell,int yCell){
@@ -1378,8 +1498,6 @@ public class FarmView extends View {
         });
     }
 
-    private void AnimationForChicken(int x1,int xy1,int x2,int y2){}
-
     private static int[] getCellPositionByPosition(int x,int y){
         int[] position=new int[2];
         int standardX=x-330;
@@ -1409,7 +1527,7 @@ public class FarmView extends View {
         return position;
     }
 
-    void ShowChickenMoving(int xcell1,int yCell1,int xCell2,int yCell2){
+    public void ShowChickenMoving(int xcell1,int yCell1,int xCell2,int yCell2){
         File chickenFile=null;
         Image chickenImage=null;
         ImageView chickenView=null;
@@ -1482,7 +1600,7 @@ public class FarmView extends View {
         chickenAnimation.play();
         chickenTimeLine.play();
     }
-    void ShowCowMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+    public void ShowCowMoving(int xCell1,int yCell1,int xCell2,int yCell2){
         File cowFile=null;
         Image cowImage=null;
         ImageView cowView=null;
@@ -1555,7 +1673,7 @@ public class FarmView extends View {
         cowAnimation.play();
         sheepTimeLine.play();
     }
-    void ShowSheepMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+    public void ShowSheepMoving(int xCell1,int yCell1,int xCell2,int yCell2){
         File sheepFile=null;
         Image sheepImage=null;
         ImageView sheepView=null;
@@ -1627,6 +1745,150 @@ public class FarmView extends View {
         });
         sheepAnimation.play();
         sheepTimeLine.play();
+    }
+    public void ShowDogMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        File dogFile = null;
+        Image dogImage = null;
+        ImageView dogView = null;
+        Animation dogAnimation = null;
+        final ImageView[] dogArrayView = new ImageView[1];
+
+        if (xCell1 == xCell2) {
+            if (yCell1 > yCell2) {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\up.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 66, 100);
+                dogView.setViewport(new Rectangle2D(0, 0, 66, 100));
+            } else {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\down.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 66, 84);
+                dogView.setViewport(new Rectangle2D(0, 0, 66, 84));
+            }
+        } else if (yCell1 == yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 108, 86);
+            dogView.setViewport(new Rectangle2D(0, 0, 108, 86));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell2 > yCell1) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\down_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 5, 0, 0, 92, 84);
+            dogView.setViewport(new Rectangle2D(0, 0, 92, 84));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell1 > yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Dog\\up_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 5, 0, 0, 92, 98);
+            dogView.setViewport(new Rectangle2D(0, 0, 92, 98));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        }
+        int[] position1 = getPositionByCellPosition(xCell1, yCell1);
+        int[] position2 = getPositionByCellPosition(xCell2, yCell2);
+        int x1Position = position1[0];
+        int y1Position = position1[1];
+        int x2Position = position2[0];
+        int y2Position = position2[1];
+        dogView.relocate(x1Position, y1Position);
+        rootFarmView.getChildren().addAll(dogView);
+        dogArrayView[0] = dogView;
+
+        KeyValue xDog = new KeyValue(dogView.xProperty(), x2Position - x1Position);
+        KeyValue yDog = new KeyValue(dogView.yProperty(), y2Position - y1Position);
+        KeyFrame xDogFrame = new KeyFrame(Duration.millis(1000), xDog, yDog);
+        Timeline dogTimeLine = new Timeline(xDogFrame);
+        dogTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(dogArrayView[0]);
+            }
+        });
+        dogAnimation.play();
+        dogTimeLine.play();
+    }
+    public void ShowCatMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        File dogFile = null;
+        Image dogImage = null;
+        ImageView dogView = null;
+        Animation dogAnimation = null;
+        final ImageView[] dogArrayView = new ImageView[1];
+
+        if (xCell1 == xCell2) {
+            if (yCell1 > yCell2) {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\up.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 48, 84);
+                dogView.setViewport(new Rectangle2D(0, 0, 48, 84));
+            } else {
+                dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\down.png");
+                dogImage = new Image(dogFile.toURI().toString());
+                dogView = new ImageView(dogImage);
+                dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 50, 92);
+                dogView.setViewport(new Rectangle2D(0, 0, 50, 92));
+            }
+        } else if (yCell1 == yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 4, 0, 0, 88, 68);
+            dogView.setViewport(new Rectangle2D(0, 0, 88, 68));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell2 > yCell1) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\down_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 72, 84);
+            dogView.setViewport(new Rectangle2D(0, 0, 72, 84));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        } else if (yCell1 > yCell2) {
+            dogFile = new File("Data\\Textures\\Animals\\Africa\\Cat\\up_left.png");
+            dogImage = new Image(dogFile.toURI().toString());
+            dogView = new ImageView(dogImage);
+            dogAnimation = new SpriteAnimation(dogView, Duration.millis(1000), 24, 6, 0, 0, 72, 80);
+            dogView.setViewport(new Rectangle2D(0, 0, 72, 80));
+            if (xCell1 < xCell2) {
+                dogView.setScaleX(-1);
+            }
+        }
+        int[] position1 = getPositionByCellPosition(xCell1, yCell1);
+        int[] position2 = getPositionByCellPosition(xCell2, yCell2);
+        int x1Position = position1[0];
+        int y1Position = position1[1];
+        int x2Position = position2[0];
+        int y2Position = position2[1];
+        dogView.relocate(x1Position, y1Position);
+        rootFarmView.getChildren().addAll(dogView);
+        dogArrayView[0] = dogView;
+
+        KeyValue xDog = new KeyValue(dogView.xProperty(), x2Position - x1Position);
+        KeyValue yDog = new KeyValue(dogView.yProperty(), y2Position - y1Position);
+        KeyFrame xDogFrame = new KeyFrame(Duration.millis(1000), xDog, yDog);
+        Timeline dogTimeLine = new Timeline(xDogFrame);
+        dogTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(dogArrayView[0]);
+            }
+        });
+        dogAnimation.play();
+        dogTimeLine.play();
     }
 
 }
