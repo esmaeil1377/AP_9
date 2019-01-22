@@ -73,6 +73,34 @@ public class ProductInTruckView extends View {
         rect_4.setArcWidth(70);
         rect_4.setFill(Color.rgb(64, 45, 67));
         rect_4.relocate((int)xShift * 1225, (int)yShift * 900);
+
+        Rectangle rect_5 = new Rectangle((int)xShift * 450, (int)yShift * 750);
+        rect_5.setOpacity(0.6);
+        rect_5.setArcHeight(50);
+        rect_5.setArcWidth(50);
+        rect_5.setFill(Color.rgb(64, 45, 67));
+        rect_5.relocate((int)xShift * 175, (int)yShift * 200);
+
+        Rectangle rect_6 = new Rectangle((int)xShift * 450, (int)yShift * 750);
+        rect_6.setOpacity(0.6);
+        rect_6.setArcHeight(50);
+        rect_6.setArcWidth(50);
+        rect_6.setFill(Color.rgb(64, 45, 67));
+        rect_6.relocate((int)xShift * 695, (int)yShift * 200);
+
+        Rectangle rect_7 = new Rectangle((int)xShift * 450, (int)yShift * 175);
+        rect_7.setOpacity(0.6);
+        rect_7.setArcHeight(50);
+        rect_7.setArcWidth(50);
+        rect_7.setFill(Color.rgb(64, 45, 67));
+        rect_7.relocate((int)xShift * 1215, (int)yShift * 200);
+
+        Rectangle rect_8 = new Rectangle((int)xShift * 450, (int)yShift * 75);
+        rect_8.setOpacity(0.6);
+        rect_8.setArcHeight(50);
+        rect_8.setArcWidth(50);
+        rect_8.setFill(Color.rgb(64, 45, 67));
+        rect_8.relocate((int)xShift * 1250, (int)yShift * 915);
         rootProductTruckViewView.getChildren().addAll(rect_1, rect_2, rect_3,rect_4);
     }
 
