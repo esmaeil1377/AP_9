@@ -17,10 +17,14 @@ import java.io.File;
 
 
 public class ProductInTruckView extends View {
-    double xShift = 1;
-    double yShift = 1;
+    double xShift = 0.788;
+    double yShift = 0.788;
     private Group rootProductTruckViewView = new Group();
     private Scene sceneProductTruckView = new Scene(rootProductTruckViewView, (int) (xShift * 1600), (int) (yShift * 900));
+
+    public Scene getSceneProductTruckView() {
+        return sceneProductTruckView;
+    }
 
     public ProductInTruckView(Stage primaryStage) {Start(primaryStage); }
     @Override
@@ -31,7 +35,7 @@ public class ProductInTruckView extends View {
     }
 
     private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\GameShop.jpg");
+        File backGroundFile = new File("Data\\ShopBackGround.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
         primaryStage.setFullScreen(true);
@@ -44,8 +48,6 @@ public class ProductInTruckView extends View {
     }
 
     private void AddIcons() {
-
-
         Rectangle rect_1 = new Rectangle((int)(xShift * 500), (int) (yShift * 875));
         rect_1.setOpacity(0.6);
         rect_1.setArcHeight(70);
@@ -104,7 +106,6 @@ public class ProductInTruckView extends View {
         rootProductTruckViewView.getChildren().addAll(rect_1, rect_2, rect_3,rect_4,rect_5,rect_6,rect_7,rect_8);
     }
 
-
     private void AddItems() {
         File truck = new File("Data\\Textures\\UI\\Truck\\01.png");
         Image truckImage = new Image(truck.toURI().toString());
@@ -113,7 +114,7 @@ public class ProductInTruckView extends View {
         truckView.setFitWidth((int)(xShift * 600));
         truckView.relocate((int)(xShift * 1175), (int)(yShift * 300));
 
-        File coin = new File("Data\\Coin.png");
+        File coin = new File("Data\\Shop\\Coin.png");
         Image coinImage = new Image(coin.toURI().toString());
         ImageView coinView = new ImageView(coinImage);
         coinView.setFitHeight((int)(yShift * 50));
@@ -126,7 +127,7 @@ public class ProductInTruckView extends View {
         coinText.setStyle("-fx-font-weight: bold");
         coinText.setFill(Color.rgb(244,240,16));
 
-        File shipProductText = new File("Data\\ShipProductsText.png");
+        File shipProductText = new File("Data\\Shop\\ShipProductsText.png");
         Image shipProductTextImage = new Image(shipProductText.toURI().toString());
         ImageView shipProductTextView = new ImageView(shipProductTextImage);
         shipProductTextView.setFitHeight((int)yShift * 125);
@@ -134,49 +135,49 @@ public class ProductInTruckView extends View {
         shipProductTextView.relocate((int)xShift * 700, (int)yShift * (-10));
 
 
-        File goodsText = new File("Data\\Goods.png");
+        File goodsText = new File("Data\\Shop\\GoodsText.png");
         Image goodsTextImage = new Image(goodsText.toURI().toString());
         ImageView goodsTextView = new ImageView(goodsTextImage);
         goodsTextView.setFitHeight((int)(yShift * 40));
         goodsTextView.setFitWidth((int)(xShift * 75));
         goodsTextView.relocate((int)(xShift * 200), (int)(yShift * 150));
 
-        File priceText = new File("Data\\Price.png");
+        File priceText = new File("Data\\Shop\\PriceText.png");
         Image priceTextImage = new Image(priceText.toURI().toString());
         ImageView priceTextView = new ImageView(priceTextImage);
         priceTextView.setFitHeight((int)(yShift * 40));
         priceTextView.setFitWidth((int)(xShift * 75));
         priceTextView.relocate((int)(xShift * 350), (int)(yShift * 150));
 
-        File shipText = new File("Data\\Ship.png");
+        File shipText = new File("Data\\Shop\\ShipText.png");
         Image shipTextImage = new Image(shipText.toURI().toString());
         ImageView shipTextView = new ImageView(shipTextImage);
         shipTextView.setFitHeight((int)(yShift * 40));
         shipTextView.setFitWidth((int)(xShift * 75));
         shipTextView.relocate((int)(xShift * 500), (int)(yShift * 150));
 
-        File goodsText_1 = new File("Data\\Goods.png");
+        File goodsText_1 = new File("Data\\Shop\\Goods.png");
         Image goodsTextImage_1 = new Image(goodsText_1.toURI().toString());
         ImageView goodsTextView_1 = new ImageView(goodsTextImage_1);
         goodsTextView_1.setFitHeight((int)(yShift * 40));
         goodsTextView_1.setFitWidth((int)(xShift * 75));
         goodsTextView_1.relocate((int)(xShift * 725), (int)(yShift * 150));
 
-        File priceText_1 = new File("Data\\Price.png");
+        File priceText_1 = new File("Data\\Shop\\Price.png");
         Image priceTextImage_1 = new Image(priceText_1.toURI().toString());
         ImageView priceTextView_1 = new ImageView(priceTextImage_1);
         priceTextView_1.setFitHeight((int)(yShift * 40));
         priceTextView_1.setFitWidth((int)(xShift * 75));
         priceTextView_1.relocate((int)(xShift * 875), (int)(yShift * 150));
 
-        File shipText_1 = new File("Data\\Ship.png");
+        File shipText_1 = new File("Data\\Shop\\Ship.png");
         Image shipTextImage_1 = new Image(shipText_1.toURI().toString());
         ImageView shipTextView_1 = new ImageView(shipTextImage_1);
         shipTextView_1.setFitHeight((int)(yShift  * 40));
         shipTextView_1.setFitWidth((int)(xShift * 75));
         shipTextView_1.relocate((int)(xShift * 1025), (int)(yShift * 150));
 
-        File animalsText = new File("Data\\Animals.png");
+        File animalsText = new File("Data\\Shop\\Animals.png");
         Image animalsTextImage = new Image(animalsText.toURI().toString());
         ImageView animalsTextView = new ImageView(animalsTextImage);
         animalsTextView.setFitHeight((int)(yShift  * 40));
@@ -190,14 +191,14 @@ public class ProductInTruckView extends View {
         priceTextView_2.setFitWidth((int)(xShift * 75));
         priceTextView_2.relocate((int)(xShift * 1400), (int)(yShift * 150));
 
-        File shipText_2 = new File("Data\\Ship.png");
+        File shipText_2 = new File("Data\\Shop\\Ship.png");
         Image shipTextImage_2 = new Image(shipText_2.toURI().toString());
         ImageView shipTextView_2 = new ImageView(shipTextImage_2);
         shipTextView_2.setFitHeight((int)(yShift * 40));
         shipTextView_2.setFitWidth((int)(xShift * 75));
         shipTextView_2.relocate((int)(xShift * 1550), (int)(yShift * 150));
 
-        File okButton = new File("Data\\Textures\\Service\\OkButton.png");
+        File okButton = new File("Data\\Click\\OkButton.png");
         Image okButtonImage = new Image(okButton.toURI().toString());
         ImageView okButtonView = new ImageView(okButtonImage);
         okButtonView.setFitHeight((int)(yShift * 75));
@@ -221,7 +222,7 @@ public class ProductInTruckView extends View {
             }
         });
 
-        File okText = new File("Data\\Textures\\Service\\OkText.png");
+        File okText = new File("Data\\Shop\\OkText.png");
         Image okTextImage = new Image(okText.toURI().toString());
         ImageView okTextView = new ImageView(okTextImage);
         okTextView.setFitHeight((int)(yShift * 30));
@@ -244,7 +245,7 @@ public class ProductInTruckView extends View {
             }
         });
 
-        File cancelButton = new File("Data\\Textures\\Service\\OkButton.png");
+        File cancelButton = new File("Data\\Click\\OkButton.png");
         Image cancelButtonImage = new Image(cancelButton.toURI().toString());
         ImageView cancelButtonView = new ImageView(cancelButtonImage);
         cancelButtonView.setFitHeight((int)(yShift * 75));
@@ -256,19 +257,18 @@ public class ProductInTruckView extends View {
                 cancelButtonView.relocate((int)(xShift * 920), (int)(yShift * 995));
                 cancelButtonView.setFitHeight((int)(yShift * 85));
                 cancelButtonView.setFitWidth((int)(xShift * 170));
-                cancelButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        cancelButtonView.setFitHeight((int)(yShift * 75));
-                        cancelButtonView.setFitWidth((int)(xShift * 160));
-                        cancelButtonView.relocate((int)(xShift * 925), (int)(yShift * 1000));
-                    }
-                });
-
+            }
+        });
+        cancelButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cancelButtonView.setFitHeight((int)(yShift * 75));
+                cancelButtonView.setFitWidth((int)(xShift * 160));
+                cancelButtonView.relocate((int)(xShift * 925), (int)(yShift * 1000));
             }
         });
 
-        File cancelText = new File("Data\\Cancel.png");
+        File cancelText = new File("Data\\Shop\\CancelText.png");
         Image cancelTextImage = new Image(cancelText.toURI().toString());
         ImageView cancelTextView = new ImageView(cancelTextImage);
         cancelTextView.setFitHeight((int)(yShift * 50));

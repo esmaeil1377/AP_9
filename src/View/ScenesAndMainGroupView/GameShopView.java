@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 import static javafx.application.Application.launch;
+import View.GameView;
 
 public class GameShopView extends View {
     double xShift = 0.788;
@@ -37,6 +38,9 @@ public class GameShopView extends View {
         AddBackGround(primaryStage);
         AddIcons(primaryStage);
         AddItems();
+        AddShopText();
+        AddStarAndMoneyText();
+        AddOkText(primaryStage);
     }
 
     private void AddIcons(Stage primaryStage) {
@@ -130,20 +134,15 @@ public class GameShopView extends View {
 
     }
 
-
     private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\GameShop.jpg");
+        File backGroundFile = new File("Data\\ShopBackground.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
         primaryStage.setFullScreen(true);
-        BackGroundView.setFitHeight((int) (1200 * yShift));
-        BackGroundView.setFitWidth((int) (2000 * xShift)); // /////////////////////////////////////////////////////////////////////////
+        BackGroundView.setFitHeight(primaryStage.getHeight());
+        BackGroundView.setFitWidth(primaryStage.getWidth());
         rootGameShopView.getChildren().addAll(BackGroundView);
     }
-//    public static void main(String[] arg){
-//        launch(arg);
-//    }
-
 
     private void AddItems() {
         File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\01.png");
@@ -445,7 +444,7 @@ public class GameShopView extends View {
             public void handle(MouseEvent event) {
                 helicopterView.setFitHeight((int) (230 * yShift) + 10);
                 helicopterView.setFitWidth((int) (270 * xShift) + 10);
-                helicopterView.relocate((int) (500 * xShift) - 5, (int) (805 * yShift) - 5);
+                helicopterView.relocate((int) (500 * xShift) - 5, (int) (805 * yShift) -5);
             }
         });
         helicopterView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -516,17 +515,35 @@ public class GameShopView extends View {
                 catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
             }
         });
+    }
 
-        File shopText = new File("Data\\Textures\\Service\\ShopText.png");
+    private void AddShopText(){
+        File shopText = new File("Data\\MenuClick\\ShopText.png");
         Image shopTextImage = new Image(shopText.toURI().toString());
         ImageView shopTextView = new ImageView(shopTextImage);
         shopTextView.setFitHeight((int) (100 * yShift));
         shopTextView.setFitWidth((int) (200 * xShift));
-        //shopTextView.setViewport(new Rectangle2D(0,0,130,110));
         shopTextView.relocate((int) (890 * xShift), (int) (0 * yShift));
         rootGameShopView.getChildren().addAll(shopTextView);
+    }
 
-        File okButton = new File("Data\\Textures\\Service\\OkButton.png");
+    private void AddStarAndMoneyText(){
+        File star = new File("Data\\Gif\\RotatingStar.gif");
+        Image starImage = new Image(star.toURI().toString());
+        ImageView starView = new ImageView(starImage);
+        starView.setFitHeight((int) (50 * yShift));
+        starView.setFitWidth((int) (50 * xShift));
+        starView.relocate((int) (30 * xShift), (int) (30 * yShift));
+        rootGameShopView.getChildren().addAll(starView);
+        Text starText = new Text("0");
+        starText.relocate((int) (100 * xShift), (int) (50 * yShift));
+        starText.setFont(Font.font(30));
+        starText.setStyle("-fx-font-weight: bold");
+        rootGameShopView.getChildren().addAll(starText);
+    }
+
+    private void AddOkText(Stage primaryStage){
+        File okButton = new File("Data\\Click\\OkButton.png");
         Image okButtonImage = new Image(okButton.toURI().toString());
         ImageView okButtonView = new ImageView(okButtonImage);
         okButtonView.setFitHeight((int) (75 * yShift));
@@ -535,9 +552,9 @@ public class GameShopView extends View {
         okButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.relocate((int) (1700 * xShift) - 5, (int) (20 * yShift) - 5);
-                okButtonView.setFitHeight((int) (75 * yShift) + 10);
-                okButtonView.setFitWidth((int) (150 * xShift) + 10);
+                okButtonView.relocate((int) (1698 * xShift), (int) (18 * yShift));
+                okButtonView.setFitHeight((int) (80 * yShift));
+                okButtonView.setFitWidth((int) (150 * xShift));
             }
         });
         okButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -548,9 +565,15 @@ public class GameShopView extends View {
                 okButtonView.relocate((int) (1700 * xShift), (int) (20 * yShift));
             }
         });
+        okButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
+                primaryStage.setFullScreen(true);
+            }
+        });
         rootGameShopView.getChildren().addAll(okButtonView);
-
-        File okText = new File("Data\\Textures\\Service\\OkText.png");
+        File okText = new File("Data\\MenuClick\\OkText.png");
         Image okTextImage = new Image(okText.toURI().toString());
         ImageView okTextView = new ImageView(okTextImage);
         okTextView.setFitHeight((int) (30 * yShift));
@@ -572,20 +595,13 @@ public class GameShopView extends View {
                 okButtonView.relocate((int) (1700 * xShift), (int) (20 * yShift));
             }
         });
+        okTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
+                primaryStage.setFullScreen(true);
+            }
+        });
         rootGameShopView.getChildren().addAll(okTextView);
-
-        File star = new File("Data\\Textures\\Service\\Star.gif");
-        Image starImage = new Image(star.toURI().toString());
-        ImageView starView = new ImageView(starImage);
-        starView.setFitHeight((int) (50 * yShift));
-        starView.setFitWidth((int) (50 * xShift));
-        starView.relocate((int) (30 * xShift), (int) (30 * yShift));
-        rootGameShopView.getChildren().addAll(starView);
-        Text starText = new Text("0");
-        starText.relocate((int) (100 * xShift), (int) (50 * yShift));
-        starText.setFont(Font.font(30));
-        starText.setStyle("-fx-font-weight: bold");
-        rootGameShopView.getChildren().addAll(starText);
-
     }
 }

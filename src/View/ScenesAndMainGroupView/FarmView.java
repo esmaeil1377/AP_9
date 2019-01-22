@@ -21,15 +21,30 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
 
 public class FarmView extends View {
+    private Text text;
+    private Circle speedCircle;
     private Group rootFarmView=new Group();
     private Scene sceneFarmView=new Scene(rootFarmView,1600,900);
+    private AnimationTimer animationTimer;
+
+    public Text getText() {
+        return text;
+    }
+
+    public AnimationTimer getAnimationTimer() {
+        return animationTimer;
+    }
 
     public FarmView(Stage primaryStage) throws Exception {
         Start(primaryStage);
@@ -51,16 +66,19 @@ public class FarmView extends View {
         Spinnery spinnery=(Spinnery)farm.getSpecifiedWorkShop("Spinnery");
         WeavingFactory weavingFactory=(WeavingFactory)farm.getSpecifiedWorkShop("WeavingFactory");
 
-        AnimationTimer animationTimer=new AnimationTimer() {
-            long time=-1;
+        GameView.getGameView().setProductInHelicopterView(new ProductInHelicopterView(primaryStage));
+        GameView.getGameView().setProductInTruckView(new ProductInTruckView(primaryStage));
 
+        animationTimer=new AnimationTimer() {
+            long time=-1;
             @Override
             public void handle(long now) {
                 String speedText=GameView.getGameView().getStartMenuView().getText().getText()  ;
                 System.out.println(speedText);
                 int speed=Integer.valueOf(speedText.substring(speedText.length()-2));
                 if(time==-1) time=now;
-                if(now-time>1000000000*(speed/30)){
+                if(now-time>1000000000/10*(speed/30)){
+                    System.out.println(now);
                     time=now;
                     try {
                         new TurnRequest("turn 1");
@@ -89,9 +107,9 @@ public class FarmView extends View {
 
         AddLookingGIf();
 
-        if(farm.getTruck()!=null) AddTruck(farm.getTruck().getLevel());
+        if(farm.getTruck()!=null) AddTruck(primaryStage,farm.getTruck().getLevel());
 
-        if(farm.getHelicopter()!=null) AddHelicopter(farm.getHelicopter().getLevel());
+        if(farm.getHelicopter()!=null) AddHelicopter(primaryStage,farm.getHelicopter().getLevel());
 
         if(cakeBakery!=null) AddCakeBakery(cakeBakery.getLevel());
         if(cookieBakery!=null) AddCookieBakery(cookieBakery.getLevel());
@@ -245,7 +263,13 @@ public class FarmView extends View {
         settingcircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                System.out.println("hello");
+                rootFarmView.getChildren().addAll(text,speedCircle);
+                KeyValue xSpeed=new KeyValue(speedCircle.centerXProperty(),614.55);
+                KeyValue ySpeed=new KeyValue(speedCircle.centerYProperty(),747.25848);
+                KeyFrame speedcircleFrame=new KeyFrame(Duration.millis(500),xSpeed,ySpeed);
+                Timeline speedCircleTimeLine=new Timeline(speedcircleFrame);
+                speedCircleTimeLine.play();
             }
         });
 
@@ -267,7 +291,9 @@ public class FarmView extends View {
         mainMenuCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                animationTimer.stop();
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
+                primaryStage.setFullScreen(true);
             }
         });
 
@@ -1135,7 +1161,7 @@ public class FarmView extends View {
 
     private void AddCustomWorkShop(){}
 
-    private void AddTruck(int level){
+    private void AddTruck(Stage primaryStage,int level){
         File truckFile=new File("Data\\Textures\\Service\\Truck\\0"+String.valueOf(level+1)+".png");
         Image truckImage=new Image(truckFile.toURI().toString());
         ImageView truckView=new ImageView(truckImage);
@@ -1156,6 +1182,14 @@ public class FarmView extends View {
                 truckView.relocate(880,620);
                 truckView.setFitHeight(200);
                 truckView.setFitWidth(200);
+            }
+        });
+        truckView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                animationTimer.stop();
+                primaryStage.setScene(GameView.getGameView().getProductInTruckView().getSceneProductTruckView());
+                primaryStage.setFullScreen(true);
             }
         });
         rootFarmView.getChildren().addAll(truckView);
@@ -1203,7 +1237,7 @@ public class FarmView extends View {
 
         rootFarmView.getChildren().addAll(truckView);
     }
-    private void AddHelicopter(int level){
+    private void AddHelicopter(Stage primaryStage,int level){
         File helicopterFile=new File("Data\\Textures\\Service\\Helicopter\\0"+String.valueOf(level+1)+".png");
         Image helicopterImage=new Image(helicopterFile.toURI().toString());
         ImageView helicopterView=new ImageView(helicopterImage);
@@ -1224,6 +1258,14 @@ public class FarmView extends View {
                 helicopterView.relocate(250,600);
                 helicopterView.setFitHeight(200);
                 helicopterView.setFitWidth(200);
+            }
+        });
+        helicopterView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                animationTimer.stop();
+                primaryStage.setScene(GameView.getGameView().getProductInHelicopterView().getSceneProductHelicopterView());
+                primaryStage.setFullScreen(true);
             }
         });
         rootFarmView.getChildren().addAll(helicopterView);
@@ -1934,6 +1976,52 @@ public class FarmView extends View {
         });
         dogAnimation.play();
         dogTimeLine.play();
+    }
+
+    private void AddSpeedCircleToSettingInFarm(Stage primaryStage){
+        speedCircle=new Circle(466,797,50, Paint.valueOf("Black"));
+        speedCircle.setOpacity(0.15);
+        speedCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                speedCircle.setOpacity(0.4);
+            }
+        });
+        speedCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                speedCircle.setOpacity(0.1);
+            }
+        });
+        text=new Text("Speed\n   "+String.valueOf(GameView.getGameView().getStartMenuView().getGameSpeed()));
+        text.setStyle("-fx-font-weight: bold");
+        text.setFont(Font.font(20));
+        text.relocate(1420,720);
+        text.setFill(Color.rgb(50,100,120));
+
+        speedCircle.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                int speed=Integer.valueOf(text.getText().substring(text.getText().length()-2));
+                if(speed>=11 && speed<=98) {
+                    text.setText("Speed\n   " + String.valueOf((int)(speed + event.getDeltaY()/32)));
+                    GameView.getGameView().getStartMenuView().setGameSpeed((int)(speed + event.getDeltaY()/32));
+                    Text startMenuText=GameView.getGameView().getStartMenuView().getText();
+                    startMenuText.setText("Speed\n   " + String.valueOf((int)(speed + event.getDeltaY()/32)));
+                }else if(speed==10 && event.getDeltaY()>0){
+                    text.setText("Speed\n   " + String.valueOf(speed + 1));
+                    GameView.getGameView().getStartMenuView().setGameSpeed(speed+1);
+                    Text startMenuText=GameView.getGameView().getStartMenuView().getText();
+                    startMenuText.setText("Speed\n   " + String.valueOf(speed + 1));
+                }
+                else if(speed==99 && event.getDeltaY()<0){
+                    text.setText("Speed\n   " + String.valueOf(speed - 1));
+                    GameView.getGameView().getStartMenuView().setGameSpeed(speed-1);
+                    Text startMenuText=GameView.getGameView().getStartMenuView().getText();
+                    startMenuText.setText("Speed\n   " + String.valueOf(speed - 1));
+                }
+            }
+        });
     }
 
 }

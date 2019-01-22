@@ -14,7 +14,6 @@ import java.util.Scanner;
 import static FarmController.RequestAnalayzer.RequestAnalayzer;
 
 public abstract class View {
-    private static Scanner scanner = new Scanner(System.in);
 
 //    public static void getRequest() {
 //        String input;

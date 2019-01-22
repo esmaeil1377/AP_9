@@ -34,64 +34,33 @@ public class ProductInHelicopterView extends View {
     private Group rootProductHelicopterView = new Group();
     private Scene sceneProductHelicopterView = new Scene(rootProductHelicopterView, 1600, 900);
 
-    public void ProductInHelicopterView(Stage primaryStage) {
+    public Scene getSceneProductHelicopterView() {
+        return sceneProductHelicopterView;
+    }
+
+    public  ProductInHelicopterView(Stage primaryStage) {
         Start(primaryStage);
     }
 
     @Override
     public void Start(Stage primaryStage) {
-        AddBackGround(primaryStage);
-        AddIcons();
-        AddItems();
-    }
-
-    private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\GameShop.jpg");
+//        Scene sceneSelectionView = new Scene(rootMissionSelectionView, 1600, 900);
+        File backGroundFile = new File("Data\\ShopBackground.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
-        primaryStage.setFullScreen(true);
         BackGroundView.setFitHeight(900);
         BackGroundView.setFitWidth(1600);
         rootProductHelicopterView.getChildren().addAll(BackGroundView);
-        primaryStage.setScene(sceneProductHelicopterView);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
-    }
 
-    private void AddIcons() {
-        Rectangle rect_1 = new Rectangle(500, 875);
+        Rectangle rect_1 = new Rectangle(400, 800);
         rect_1.setOpacity(0.6);
         rect_1.setArcHeight(70);
         rect_1.setArcWidth(70);
         rect_1.setFill(Color.rgb(64, 45, 67));
-        rect_1.relocate(150, 110);
+        rect_1.relocate(150, 50);
         rootProductHelicopterView.getChildren().addAll(rect_1);
 
-        Rectangle rectangle = new Rectangle(350 , 450);
-        rectangle.setOpacity(0.6);
-        rectangle.setArcHeight(50);
-        rectangle.setArcWidth(50);
-        rectangle.setFill(Color.rgb(64, 45, 67));
-        rectangle.relocate(175, 120);
-        rootProductHelicopterView.getChildren().addAll(rectangle);
-
-        Rectangle rectangle1 = new Rectangle(350 , 100);
-        rectangle1.setOpacity(0.6);
-        rectangle1.setArcHeight(50);
-        rectangle1.setArcWidth(50);
-        rectangle1.setFill(Color.rgb(64, 45, 67));
-        rectangle1.relocate(175 , 580);
-        rootProductHelicopterView.getChildren().addAll(rectangle1);
-
-        Rectangle rectangle2 = new Rectangle(350 , 50);
-        rectangle2.setOpacity(0.6);
-        rectangle2.setArcHeight(50);
-        rectangle2.setArcWidth(50);
-        rectangle2.setFill(Color.rgb(64, 45, 67));
-        rectangle2.relocate(175 , 690);
-        rootProductHelicopterView.getChildren().addAll(rectangle2);
-
-        File goodsFile = new File("Data\\Textures\\Service\\Goods.png");
+        File goodsFile = new File("Data\\Shop\\GoodsText.png");
         Image goodsImage = new Image(goodsFile.toURI().toString());
         ImageView goodsImageView = new ImageView(goodsImage);
         goodsImageView.setFitHeight(30);
@@ -99,7 +68,7 @@ public class ProductInHelicopterView extends View {
         goodsImageView.relocate(180 , 90);
         rootProductHelicopterView.getChildren().addAll(goodsImageView);
 
-        File priceFile = new File("Data\\Textures\\Service\\Price.png");
+        File priceFile = new File("Data\\Shop\\PriceText.png");
         Image priceImage = new Image(priceFile.toURI().toString());
         ImageView priceImageView = new ImageView(priceImage);
         priceImageView.setFitHeight(30);
@@ -107,7 +76,7 @@ public class ProductInHelicopterView extends View {
         priceImageView.relocate(300 , 90);
         rootProductHelicopterView.getChildren().addAll(priceImageView);
 
-        File orderFile = new File("Data\\Textures\\Service\\Order.png");
+        File orderFile = new File("Data\\Shop\\OrderText.png");
         Image orderImage = new Image(orderFile.toURI().toString());
         ImageView orderImageView = new ImageView(orderImage);
         orderImageView.setFitHeight(30);
@@ -123,7 +92,7 @@ public class ProductInHelicopterView extends View {
         helicopterView.relocate(700, 400);
         rootProductHelicopterView.getChildren().addAll(helicopterView);
 
-        File buttonFile = new File("Data\\Textures\\Service\\OrderGoods.png");
+        File buttonFile = new File("Data\\Shop\\OrderGoodsText.png");
         Image buttonImage = new Image(buttonFile.toURI().toString());
         ImageView buttonImageView = new ImageView(buttonImage);
         buttonImageView.setFitHeight(60);
@@ -131,7 +100,7 @@ public class ProductInHelicopterView extends View {
         buttonImageView.relocate(230, 28);
         rootProductHelicopterView.getChildren().addAll(buttonImageView);
 
-        File buttonOkFile = new File("Data\\Textures\\Service\\OkButton.png");
+        File buttonOkFile = new File("Data\\Click\\OkButton.png");
         Image buttonOkImage = new Image(buttonOkFile.toURI().toString());
         ImageView buttonOkImageView = new ImageView(buttonOkImage);
         buttonOkImageView.setFitHeight(60);
@@ -162,7 +131,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        File okText = new File("Data\\Textures\\Service\\OkText.png");
+        File okText = new File("Data\\Shop\\OkText.png");
         Image okImage = new Image(okText.toURI().toString());
         ImageView okImageView = new ImageView(okImage);
         okImageView.setFitWidth(80);
@@ -193,7 +162,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        File buttonCancelFile = new File("Data\\Textures\\Service\\OkButton.png");
+        File buttonCancelFile = new File("Data\\Click\\OkButton.png");
         Image buttonCancelImage = new Image(buttonCancelFile.toURI().toString());
         ImageView buttonCancelImageView = new ImageView(buttonCancelImage);
         buttonCancelImageView.setFitHeight(60);
@@ -224,7 +193,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        File cancelText = new File("Data\\Textures\\Service\\Cancel.png");
+        File cancelText = new File("Data\\Shop\\CancelText.png");
         Image cancelImage = new Image(cancelText.toURI().toString());
         ImageView cancelImageView = new ImageView(cancelImage);
         cancelImageView.setFitWidth(80);
@@ -255,18 +224,31 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-    }
+        Rectangle rectangle = new Rectangle(350 , 450);
+        rectangle.setOpacity(0.6);
+        rectangle.setArcHeight(50);
+        rectangle.setArcWidth(50);
+        rectangle.setFill(Color.rgb(64, 45, 67));
+        rectangle.relocate(175, 120);
+        rootProductHelicopterView.getChildren().addAll(rectangle);
 
-    private void AddItems() {
-        File helicopter = new File("Data\\Textures\\UI\\Helicopter\\01.png");
-        Image helicopterImage = new Image(helicopter.toURI().toString());
-        ImageView helicopterView = new ImageView(helicopterImage);
-        helicopterView.setFitHeight(500);
-        helicopterView.setFitWidth(750);
-        helicopterView.relocate(1175, 500);
-        rootProductHelicopterView.getChildren().addAll(helicopterView);
+        Rectangle rectangle1 = new Rectangle(350 , 100);
+        rectangle1.setOpacity(0.6);
+        rectangle1.setArcHeight(50);
+        rectangle1.setArcWidth(50);
+        rectangle1.setFill(Color.rgb(64, 45, 67));
+        rectangle1.relocate(175 , 580);
+        rootProductHelicopterView.getChildren().addAll(rectangle1);
 
-        File coin = new File("Data\\Textures\\Service\\Coin.png");
+        Rectangle rectangle2 = new Rectangle(350 , 50);
+        rectangle2.setOpacity(0.6);
+        rectangle2.setArcHeight(50);
+        rectangle2.setArcWidth(50);
+        rectangle2.setFill(Color.rgb(64, 45, 67));
+        rectangle2.relocate(175 , 690);
+        rootProductHelicopterView.getChildren().addAll(rectangle2);
+
+        File coin = new File("Data\\Shop\\Coin.png");
         Image coinImage = new Image(coin.toURI().toString());
         ImageView coinView = new ImageView(coinImage);
         coinView.setFitHeight(50);

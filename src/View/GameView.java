@@ -1,8 +1,5 @@
 package View;
-import View.ScenesAndMainGroupView.FarmView;
-import View.ScenesAndMainGroupView.GameShopView;
-import View.ScenesAndMainGroupView.MissionSelectionView;
-import View.ScenesAndMainGroupView.StartMenuView;
+import View.ScenesAndMainGroupView.*;
 
 
 public class GameView {
@@ -11,7 +8,24 @@ public class GameView {
     private MissionSelectionView missionSelectionView=new MissionSelectionView(Main.getPrimaryStage());
     private GameShopView gameShopView=new GameShopView(Main.getPrimaryStage());
     private FarmView farmView;
+    private ProductInTruckView productInTruckView;
+    private ProductInHelicopterView productInHelicopterView;
 
+    public void setProductInTruckView(ProductInTruckView productInTruckView) {
+        this.productInTruckView = productInTruckView;
+    }
+    public void setProductInHelicopterView(ProductInHelicopterView productInHelicopterView) {
+        this.productInHelicopterView = productInHelicopterView;
+    }
+    public ProductInHelicopterView getProductInHelicopterView() {
+        return productInHelicopterView;
+    }
+    public static void setGameView(GameView gameView) {
+        GameView.gameView = gameView;
+    }
+    public ProductInTruckView getProductInTruckView() {
+        return productInTruckView;
+    }
     public void setFarmView(FarmView farmView) {
         this.farmView = farmView;
     }
