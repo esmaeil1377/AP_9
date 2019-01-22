@@ -12,15 +12,18 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.File;
 
+import java.io.File;
 
 
 public class ProductInTruckView extends View {
     private Group rootProductTruckViewView = new Group();
     private Scene sceneProductTruckView = new Scene(rootProductTruckViewView, 1600, 900);
 
-    public ProductInTruckView(Stage primaryStage) {Start(primaryStage); }
+    public void ProductInTruckView(Stage primaryStage) {
+        Start(primaryStage);
+    }
+
     @Override
     public void Start(Stage primaryStage) {
         AddBackGround(primaryStage);
@@ -71,7 +74,7 @@ public class ProductInTruckView extends View {
         rect_4.setArcWidth(70);
         rect_4.setFill(Color.rgb(64, 45, 67));
         rect_4.relocate(1225, 900);
-        rootProductTruckViewView.getChildren().addAll(rect_1, rect_2, rect_3,rect_4);
+        rootProductTruckViewView.getChildren().addAll(rect_1, rect_2, rect_3, rect_4);
     }
 
 
@@ -91,10 +94,10 @@ public class ProductInTruckView extends View {
         coinView.relocate(1275, 925);
 
         Text coinText = new Text("0");
-        coinText.relocate(1475,945);
+        coinText.relocate(1475, 945);
         coinText.setFont(Font.font(30));
         coinText.setStyle("-fx-font-weight: bold");
-        coinText.setFill(Color.rgb(244,240,16));
+        coinText.setFill(Color.rgb(244, 240, 16));
 
         File shipProductText = new File("Data\\ShipProductsText.png");
         Image shipProductTextImage = new Image(shipProductText.toURI().toString());
@@ -200,7 +203,7 @@ public class ProductInTruckView extends View {
         okTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.relocate(745,995);
+                okButtonView.relocate(745, 995);
                 okButtonView.setFitHeight(85);
                 okButtonView.setFitWidth(170);
             }
@@ -247,7 +250,7 @@ public class ProductInTruckView extends View {
         cancelTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cancelButtonView.relocate(920,995);
+                cancelButtonView.relocate(920, 995);
                 cancelButtonView.setFitHeight(85);
                 cancelButtonView.setFitWidth(170);
             }
@@ -260,10 +263,10 @@ public class ProductInTruckView extends View {
                 cancelButtonView.relocate(925, 1000);
             }
         });
-        rootProductTruckViewView.getChildren().addAll(truckView,coinView,coinText,shipProductTextView,shipTextView);
-        rootProductTruckViewView.getChildren().addAll(goodsTextView,priceTextView,shipTextView_1,priceTextView_1,goodsTextView_1);
-        rootProductTruckViewView.getChildren().addAll(animalsTextView,priceTextView_2,shipTextView_2,okButtonView,okTextView);
-        rootProductTruckViewView.getChildren().addAll(cancelButtonView,cancelTextView);
+        rootProductTruckViewView.getChildren().addAll(truckView, coinView, coinText, shipProductTextView, shipTextView);
+        rootProductTruckViewView.getChildren().addAll(goodsTextView, priceTextView, shipTextView_1, priceTextView_1, goodsTextView_1);
+        rootProductTruckViewView.getChildren().addAll(animalsTextView, priceTextView_2, shipTextView_2, okButtonView, okTextView);
+        rootProductTruckViewView.getChildren().addAll(cancelButtonView, cancelTextView);
 
     }
 }

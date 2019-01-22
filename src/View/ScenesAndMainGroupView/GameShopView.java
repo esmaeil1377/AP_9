@@ -445,7 +445,7 @@ public class GameShopView extends View {
             public void handle(MouseEvent event) {
                 helicopterView.setFitHeight((int) (230 * yShift) + 10);
                 helicopterView.setFitWidth((int) (270 * xShift) + 10);
-                helicopterView.relocate((int) (500 * xShift) - 5, (int) (805 * yShift) -5);
+                helicopterView.relocate((int) (500 * xShift) - 5, (int) (805 * yShift) - 5);
             }
         });
         helicopterView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -535,18 +535,17 @@ public class GameShopView extends View {
         okButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.relocate((int) (1698 * xShift), (int) (18 * yShift));
-                okButtonView.setFitHeight((int) (80 * yShift));
+                okButtonView.relocate((int) (1700 * xShift) - 5, (int) (20 * yShift) - 5);
+                okButtonView.setFitHeight((int) (75 * yShift) + 10);
+                okButtonView.setFitWidth((int) (150 * xShift) + 10);
+            }
+        });
+        okButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                okButtonView.setFitHeight((int) (75 * yShift));
                 okButtonView.setFitWidth((int) (150 * xShift));
-                okButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        okButtonView.setFitHeight((int) (75 * yShift));
-                        okButtonView.setFitWidth((int) (150 * xShift));
-                        okButtonView.relocate((int) (1700 * xShift), (int) (20 * yShift));
-                    }
-                });
-
+                okButtonView.relocate((int) (1700 * xShift), (int) (20 * yShift));
             }
         });
         rootGameShopView.getChildren().addAll(okButtonView);
