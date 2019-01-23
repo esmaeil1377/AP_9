@@ -1,6 +1,7 @@
 package View.ScenesAndMainGroupView;
 
 import View.View;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import View.GameView;
 
 import java.io.File;
 
@@ -164,32 +166,34 @@ public class ProductInHelicopterView extends View {
 
         File buttonCancelFile = new File("Data\\Click\\OkButton.png");
         Image buttonCancelImage = new Image(buttonCancelFile.toURI().toString());
-        ImageView buttonCancelImageView = new ImageView(buttonCancelImage);
-        buttonCancelImageView.setFitHeight(60);
-        buttonCancelImageView.setFitWidth(100);
-        buttonCancelImageView.relocate(400, 760);
-        rootProductHelicopterView.getChildren().addAll(buttonCancelImageView);
-
-        buttonCancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        ImageView cancelButtonView = new ImageView(buttonCancelImage);
+        cancelButtonView.setFitHeight(60);
+        cancelButtonView.setFitWidth(100);
+        cancelButtonView.relocate(400, 760);
+        rootProductHelicopterView.getChildren().addAll(cancelButtonView);
+        cancelButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                cancelButtonView.setFitHeight(70);
+                cancelButtonView.setFitWidth(110);
+                cancelButtonView.relocate(400 - 5, 760 - 5);
             }
         });
-        buttonCancelImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        cancelButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(70);
-                buttonCancelImageView.setFitWidth(110);
-                buttonCancelImageView.relocate(400 - 5, 760 - 5);
+                cancelButtonView.setFitHeight(60);
+                cancelButtonView.setFitWidth(100);
+                cancelButtonView.relocate(400, 760);
             }
         });
-        buttonCancelImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+        cancelButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(60);
-                buttonCancelImageView.setFitWidth(100);
-                buttonCancelImageView.relocate(400, 760);
+                AnimationTimer animationTimer= GameView.getGameView().getFarmView().getAnimationTimer();
+                animationTimer.start();
+                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setFullScreen(true);
             }
         });
 
@@ -204,23 +208,26 @@ public class ProductInHelicopterView extends View {
         cancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                AnimationTimer animationTimer= GameView.getGameView().getFarmView().getAnimationTimer();
+                animationTimer.start();
+                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setFullScreen(true);
             }
         });
         cancelImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(70);
-                buttonCancelImageView.setFitWidth(110);
-                buttonCancelImageView.relocate(400 - 5, 760 - 5);
+                cancelButtonView.setFitHeight(70);
+                cancelButtonView.setFitWidth(110);
+                cancelButtonView.relocate(400 - 5, 760 - 5);
             }
         });
         cancelImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(60);
-                buttonCancelImageView.setFitWidth(100);
-                buttonCancelImageView.relocate(400, 760);
+                cancelButtonView.setFitHeight(60);
+                cancelButtonView.setFitWidth(100);
+                cancelButtonView.relocate(400, 760);
             }
         });
 

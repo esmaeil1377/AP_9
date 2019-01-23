@@ -44,12 +44,7 @@ public class Game {
     }
 
     public User getCurrentUserAccount() {
-        if(currentUserAcount!=null) {
-            return currentUserAcount;
-        }else {
-//            throw new
-        }
-        return null;
+        return currentUserAcount;
     }
 
     public void setUserAcounts(ArrayList<User> userAccount) {

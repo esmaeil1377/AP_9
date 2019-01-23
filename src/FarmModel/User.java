@@ -53,6 +53,22 @@ public class User {
         // Add users its missions
     }
 
+    public Mission getMission1() {
+        return mission1;
+    }
+
+    public Mission getMission2() {
+        return mission2;
+    }
+
+    public Mission getMission3() {
+        return mission3;
+    }
+
+    public Mission getMission4() {
+        return mission4;
+    }
+
     public int getCatLevel() {
         return CatLevel;
     }
@@ -151,7 +167,7 @@ public class User {
         this.gameShop = gameShop;
     }
 
-    private int getMoney() {
+    public int getMoney() {
         return money;
     }
 

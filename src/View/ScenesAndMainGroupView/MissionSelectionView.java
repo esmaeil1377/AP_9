@@ -2,10 +2,7 @@ package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 
 import FarmModel.Game;
 import FarmModel.Mission;
-import FarmModel.Request.TurnRequest;
 import View.View;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import View.GameView;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -35,7 +32,8 @@ public class MissionSelectionView extends View {
         BeachOfMission(primaryStage);
         NumberOfMission(primaryStage);
         FarmerOfFarm(primaryStage);
-        AddItem(primaryStage);
+        AddMainMenu(primaryStage);
+        AddShopButton(primaryStage);
 
 
     }
@@ -44,136 +42,12 @@ public class MissionSelectionView extends View {
         File backGroundFile = new File("Data\\Mission\\MissionBackGround.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
-        primaryStage.setFullScreen(true);
         BackGroundView.setFitHeight(900);
         BackGroundView.setFitWidth(1600);
         rootMissionSelectionView.getChildren().addAll(BackGroundView);
-        primaryStage.setScene(sceneSelectionView);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
+        AddGando();
     }
 
-    private void AddItem(Stage primaryStage) {
-        File menuButton = new File("Data\\Mission\\OkButton.png");
-        Image menuButtonImage = new Image(menuButton.toURI().toString());
-        ImageView menuButtonView = new ImageView(menuButtonImage);
-        menuButtonView.setFitHeight(75);
-        menuButtonView.setFitWidth(150);
-        menuButtonView.relocate(1350, 760);
-        menuButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                menuButtonView.relocate(1345, 755);
-                menuButtonView.setFitHeight(85);
-                menuButtonView.setFitWidth(160);
-            }
-        });
-        menuButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                menuButtonView.setFitHeight(75);
-                menuButtonView.setFitWidth(150);
-                menuButtonView.relocate(1350, 760);
-            }
-        });
-        menuButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
-                primaryStage.setFullScreen(true);
-            }
-        });
-
-        ImageView shopButtonView = new ImageView(menuButtonImage);
-        shopButtonView.setFitHeight(75);
-        shopButtonView.setFitWidth(150);
-        shopButtonView.relocate(15, 760);
-        shopButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                shopButtonView.relocate(10, 755);
-                shopButtonView.setFitHeight(85);
-                shopButtonView.setFitWidth(160);
-            }
-        });
-        shopButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                shopButtonView.setFitHeight(75);
-                shopButtonView.setFitWidth(150);
-                shopButtonView.relocate(15, 760);
-            }
-        });
-        shopButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getGameShopView().getSceneGameShopView());
-                primaryStage.setFullScreen(true);
-            }
-        });
-
-        File shopText = new File("Data\\Mission\\ShopText.png");
-        Image shopTextImage = new Image(shopText.toURI().toString());
-        ImageView shopTextView = new ImageView(shopTextImage);
-        shopTextView.setFitHeight(50);
-        shopTextView.setFitWidth(100);
-        shopTextView.relocate(40, 772);
-        shopTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                shopButtonView.relocate(10, 755);
-                shopButtonView.setFitHeight(85);
-                shopButtonView.setFitWidth(160);
-            }
-        });
-        shopTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                shopButtonView.setFitHeight(75);
-                shopButtonView.setFitWidth(150);
-                shopButtonView.relocate(15, 760);
-            }
-        });
-        shopTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getGameShopView().getSceneGameShopView());
-                primaryStage.setFullScreen(true);
-            }
-        });
-
-        File menuText = new File("Data\\Mission\\MenuText.png");
-        Image menuTextImage = new Image(menuText.toURI().toString());
-        ImageView menuTextView = new ImageView(menuTextImage);
-        menuTextView.setFitHeight(50);
-        menuTextView.setFitWidth(100);
-        menuTextView.relocate(1378, 770);
-        menuTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                menuButtonView.relocate(1345, 755);
-                menuButtonView.setFitHeight(85);
-                menuButtonView.setFitWidth(160);
-            }
-        });
-        menuTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                menuButtonView.setFitHeight(75);
-                menuButtonView.setFitWidth(150);
-                menuButtonView.relocate(1350, 760);
-            }
-        });
-        menuTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
-                primaryStage.setFullScreen(true);
-            }
-        });
-
-        rootMissionSelectionView.getChildren().addAll(shopButtonView,menuButtonView,menuTextView,shopTextView);
-    }
 
     private void BeachOfMission(Stage primaryStage) {
         File restartFile = new File("Data\\Mission\\Map.jpeg");
@@ -251,6 +125,140 @@ public class MissionSelectionView extends View {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void AddGando(){
+        File restartFile = new File("Data\\Gif\\Gando.gif");
+        Image restartImage = new Image(restartFile.toURI().toString());
+        ImageView restartImageView = new ImageView(restartImage);
+        restartImageView.relocate(450, 250);
+        restartImageView.setFitHeight(200);
+        restartImageView.setFitWidth(200);
+        rootMissionSelectionView.getChildren().addAll(restartImageView);
+    }
+
+    private void AddMainMenu(Stage primaryStage){
+        File menuButton = new File("Data\\Mission\\OkButton.png");
+        Image menuButtonImage = new Image(menuButton.toURI().toString());
+        ImageView menuButtonView = new ImageView(menuButtonImage);
+        menuButtonView.setFitHeight(75);
+        menuButtonView.setFitWidth(150);
+        menuButtonView.relocate(1350, 760);
+        menuButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                menuButtonView.relocate(1345, 755);
+                menuButtonView.setFitHeight(85);
+                menuButtonView.setFitWidth(160);
+            }
+        });
+        menuButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                menuButtonView.setFitHeight(75);
+                menuButtonView.setFitWidth(150);
+                menuButtonView.relocate(1350, 760);
+            }
+        });
+        menuButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
+                primaryStage.setFullScreen(true);
+            }
+        });
+        File menuText = new File("Data\\Mission\\MenuText.png");
+        Image menuTextImage = new Image(menuText.toURI().toString());
+        ImageView menuTextView = new ImageView(menuTextImage);
+        menuTextView.setFitHeight(50);
+        menuTextView.setFitWidth(100);
+        menuTextView.relocate(1378, 770);
+        menuTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                menuButtonView.relocate(1345, 755);
+                menuButtonView.setFitHeight(85);
+                menuButtonView.setFitWidth(160);
+            }
+        });
+        menuTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                menuButtonView.setFitHeight(75);
+                menuButtonView.setFitWidth(150);
+                menuButtonView.relocate(1350, 760);
+            }
+        });
+        menuTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
+                primaryStage.setFullScreen(true);
+            }
+        });
+        rootMissionSelectionView.getChildren().addAll(menuButtonView,menuTextView);
+    }
+    private void AddShopButton(Stage primaryStage){
+        File menuButton = new File("Data\\Mission\\OkButton.png");
+        Image menuButtonImage = new Image(menuButton.toURI().toString());
+        ImageView shopButtonView = new ImageView(menuButtonImage);
+        shopButtonView.setFitHeight(75);
+        shopButtonView.setFitWidth(150);
+        shopButtonView.relocate(15, 760);
+        shopButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shopButtonView.relocate(10, 755);
+                shopButtonView.setFitHeight(85);
+                shopButtonView.setFitWidth(160);
+            }
+        });
+        shopButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shopButtonView.setFitHeight(75);
+                shopButtonView.setFitWidth(150);
+                shopButtonView.relocate(15, 760);
+            }
+        });
+        ShowShopScene(primaryStage, shopButtonView);
+
+        File shopText = new File("Data\\Mission\\ShopText.png");
+        Image shopTextImage = new Image(shopText.toURI().toString());
+        ImageView shopTextView = new ImageView(shopTextImage);
+        shopTextView.setFitHeight(50);
+        shopTextView.setFitWidth(100);
+        shopTextView.relocate(40, 772);
+        shopTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shopButtonView.relocate(10, 755);
+                shopButtonView.setFitHeight(85);
+                shopButtonView.setFitWidth(160);
+            }
+        });
+        shopTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                shopButtonView.setFitHeight(75);
+                shopButtonView.setFitWidth(150);
+                shopButtonView.relocate(15, 760);
+            }
+        });
+        ShowShopScene(primaryStage, shopTextView);
+        rootMissionSelectionView.getChildren().addAll(shopButtonView,shopTextView);
+    }
+
+    private void ShowShopScene(Stage primaryStage, ImageView shopTextView) {
+        shopTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                GameShopView gameShopView=new GameShopView(primaryStage);
+                GameView.getGameView().setGameShopView(gameShopView);
+                primaryStage.setScene(gameShopView.getSceneGameShopView());
+                primaryStage.setFullScreen(true);
+            }
+        });
     }
 
 }

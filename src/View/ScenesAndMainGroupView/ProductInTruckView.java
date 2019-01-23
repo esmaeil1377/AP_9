@@ -1,6 +1,7 @@
 package View.ScenesAndMainGroupView;
 
 import View.View;
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,7 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.File;
-
+import View.GameView;
 
 
 public class ProductInTruckView extends View {
@@ -32,6 +33,7 @@ public class ProductInTruckView extends View {
         AddBackGround(primaryStage);
         AddIcons();
         AddItems();
+        AddOkAndCancelButton(primaryStage);
     }
 
     private void AddBackGround(Stage primaryStage) {
@@ -198,31 +200,38 @@ public class ProductInTruckView extends View {
         shipTextView_2.setFitWidth((int)(xShift * 75));
         shipTextView_2.relocate((int)(xShift * 1550), (int)(yShift * 150));
 
-        File okButton = new File("Data\\Click\\OkButton.png");
-        Image okButtonImage = new Image(okButton.toURI().toString());
-        ImageView okButtonView = new ImageView(okButtonImage);
-        okButtonView.setFitHeight((int)(yShift * 75));
-        okButtonView.setFitWidth((int)(xShift * 160));
-        okButtonView.relocate((int)(xShift * 750), (int)(yShift * 1000));
-        okButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+
+        rootProductTruckViewView.getChildren().addAll(truckView,coinView,coinText,shipProductTextView,shipTextView);
+        rootProductTruckViewView.getChildren().addAll(goodsTextView,priceTextView,shipTextView_1,priceTextView_1,goodsTextView_1);
+        rootProductTruckViewView.getChildren().addAll(animalsTextView,priceTextView_2,shipTextView_2);
+
+    }
+
+    private void AddOkAndCancelButton(Stage primaryStage){
+        File button = new File("Data\\Click\\OkButton.png");
+        Image buttonImage = new Image(button.toURI().toString());
+        ImageView buttonView = new ImageView(buttonImage);
+        buttonView.setFitHeight((int)(yShift * 75));
+        buttonView.setFitWidth((int)(xShift * 160));
+        buttonView.relocate((int)(xShift * 750), (int)(yShift * 1000));
+        buttonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.relocate((int)(xShift * 745), (int)(yShift * 995));
-                okButtonView.setFitHeight((int)(yShift * 85));
-                okButtonView.setFitWidth((int)(xShift * 170));
-                okButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        okButtonView.setFitHeight((int)(yShift * 75));
-                        okButtonView.setFitWidth((int)(xShift * 160));
-                        okButtonView.relocate((int)(xShift * 750), (int)(yShift * 1000));
-                    }
-                });
-
+                buttonView.relocate((int)(xShift * 745), (int)(yShift * 995));
+                buttonView.setFitHeight((int)(yShift * 85));
+                buttonView.setFitWidth((int)(xShift * 170));
             }
         });
-
+        buttonView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                buttonView.setFitHeight((int)(yShift * 75));
+                buttonView.setFitWidth((int)(xShift * 160));
+                buttonView.relocate((int)(xShift * 750), (int)(yShift * 1000));
+            }
+        });
         File okText = new File("Data\\Shop\\OkText.png");
+
         Image okTextImage = new Image(okText.toURI().toString());
         ImageView okTextView = new ImageView(okTextImage);
         okTextView.setFitHeight((int)(yShift * 30));
@@ -231,23 +240,22 @@ public class ProductInTruckView extends View {
         okTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.relocate((int)(xShift * 745),(int)(yShift * 995));
-                okButtonView.setFitHeight((int)(yShift * 85));
-                okButtonView.setFitWidth((int)(xShift * 170));
+                buttonView.relocate((int)(xShift * 745),(int)(yShift * 995));
+                buttonView.setFitHeight((int)(yShift * 85));
+                buttonView.setFitWidth((int)(xShift * 170));
             }
         });
         okTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.setFitHeight((int)(yShift * 75));
-                okButtonView.setFitWidth((int)(xShift * 150));
-                okButtonView.relocate((int)(xShift * 750), (int)(yShift * 1000));
+                buttonView.setFitHeight((int)(yShift * 75));
+                buttonView.setFitWidth((int)(xShift * 150));
+                buttonView.relocate((int)(xShift * 750), (int)(yShift * 1000));
             }
         });
 
-        File cancelButton = new File("Data\\Click\\OkButton.png");
-        Image cancelButtonImage = new Image(cancelButton.toURI().toString());
-        ImageView cancelButtonView = new ImageView(cancelButtonImage);
+
+        ImageView cancelButtonView = new ImageView(buttonImage);
         cancelButtonView.setFitHeight((int)(yShift * 75));
         cancelButtonView.setFitWidth((int)(xShift * 160));
         cancelButtonView.relocate((int)(xShift * 925), (int)(yShift * 1000));
@@ -267,6 +275,15 @@ public class ProductInTruckView extends View {
                 cancelButtonView.relocate((int)(xShift * 925), (int)(yShift * 1000));
             }
         });
+        cancelButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                AnimationTimer animationTimer= GameView.getGameView().getFarmView().getAnimationTimer();
+                animationTimer.start();
+                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setFullScreen(true);
+            }
+        });
 
         File cancelText = new File("Data\\Shop\\CancelText.png");
         Image cancelTextImage = new Image(cancelText.toURI().toString());
@@ -282,18 +299,17 @@ public class ProductInTruckView extends View {
                 cancelButtonView.setFitWidth((int)(xShift * 170));
             }
         });
-        okTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
+        cancelTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cancelButtonView.setFitHeight((int)(yShift * 75));
-                cancelButtonView.setFitWidth((int)(xShift * 160));
-                cancelButtonView.relocate((int)(xShift * 925), (int)(yShift * 1000));
+                AnimationTimer animationTimer= GameView.getGameView().getFarmView().getAnimationTimer();
+                animationTimer.start();
+                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setFullScreen(true);
             }
         });
-        rootProductTruckViewView.getChildren().addAll(truckView,coinView,coinText,shipProductTextView,shipTextView);
-        rootProductTruckViewView.getChildren().addAll(goodsTextView,priceTextView,shipTextView_1,priceTextView_1,goodsTextView_1);
-        rootProductTruckViewView.getChildren().addAll(animalsTextView,priceTextView_2,shipTextView_2,okButtonView,okTextView);
-        rootProductTruckViewView.getChildren().addAll(cancelButtonView,cancelTextView);
 
+        rootProductTruckViewView.getChildren().addAll(buttonView,okTextView,cancelButtonView,cancelTextView);
     }
+
 }

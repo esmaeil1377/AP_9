@@ -6,7 +6,7 @@ public class GameView {
     private static GameView gameView=new GameView();
     private StartMenuView startMenuView=new StartMenuView(Main.getPrimaryStage());
     private MissionSelectionView missionSelectionView=new MissionSelectionView(Main.getPrimaryStage());
-    private GameShopView gameShopView=new GameShopView(Main.getPrimaryStage());
+    private GameShopView gameShopView;
     private FarmView farmView;
     private ProductInTruckView productInTruckView;
     private ProductInHelicopterView productInHelicopterView;

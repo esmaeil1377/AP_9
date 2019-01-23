@@ -150,11 +150,6 @@ public class StartMenuView {
     private void AddSettingClick(Stage primaryStage) {
         Circle speedCircle = new Circle(1450, 750, 45, Paint.valueOf("White"));
         speedCircle.setOpacity(0.15);
-        speedCircle.setOnScroll(new EventHandler<ScrollEvent>() {
-            @Override
-            public void handle(ScrollEvent event) {
-            }
-        });
         speedCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -167,17 +162,12 @@ public class StartMenuView {
                 speedCircle.setOpacity(0.1);
             }
         });
-        text = new Text("Speed\n   10");
-        text.setStyle("-fx-font-weight: bold");
-        text.setFont(Font.font(20));
-        text.relocate(1420, 720);
-        text.setFill(Color.rgb(50, 100, 120));
-
         speedCircle.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
                 int speed = Integer.valueOf(text.getText().substring(text.getText().length() - 2));
                 if (speed >= 11 && speed <= 98) {
+                    if((speed+event.getDeltaY()/32)>9 && (speed+event.getDeltaY()/32)<100)
                     text.setText("Speed\n   " + String.valueOf((int) (speed + event.getDeltaY() / 32)));
                     setGameSpeed((int) (speed + event.getDeltaY() / 32));
                 } else if (speed == 10 && event.getDeltaY() > 0) {
@@ -189,6 +179,12 @@ public class StartMenuView {
                 }
             }
         });
+        text = new Text("Speed\n   10");
+        text.setStyle("-fx-font-weight: bold");
+        text.setFont(Font.font(20));
+        text.relocate(1420, 720);
+        text.setFill(Color.rgb(50, 100, 120));
+
 
         File settingClick = new File("Data\\Click\\SettingClick.png");
         Image settingImage = new Image(settingClick.toURI().toString());
@@ -250,7 +246,7 @@ public class StartMenuView {
     }
 
     private void AddExitClick(Stage primaryStage) {
-        File exitFile = new File("Data\\Click\\Exit.png");
+        File exitFile = new File("Data\\Click\\ExitClick.png");
         Image exitImage = new Image(exitFile.toURI().toString());
         ImageView exitImageView = new ImageView(exitImage);
         exitImageView.relocate(1400, 50);

@@ -1,6 +1,14 @@
 package View.ScenesAndMainGroupView;
 
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
+import FarmModel.Game;
+import FarmModel.Request.UpgradeRequest;
 import View.View;
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -9,6 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -18,10 +28,12 @@ import java.io.File;
 
 import static javafx.application.Application.launch;
 import View.GameView;
+import javafx.util.Duration;
 
 public class GameShopView extends View {
     double xShift = 0.788;
     double yShift = 0.788;
+    private Text moneyText=new Text();
     private Group rootGameShopView = new Group();
     private Scene sceneGameShopView = new Scene(rootGameShopView, (int) (1500 * xShift), (int) (700 * yShift));
 
@@ -35,6 +47,7 @@ public class GameShopView extends View {
 
     @Override
     public void Start(Stage primaryStage) {
+        UpdateMoneyText();
         AddBackGround(primaryStage);
         AddIcons(primaryStage);
         AddItems();
@@ -153,12 +166,6 @@ public class GameShopView extends View {
         eggPowderPlantView.setViewport(new Rectangle2D(0, 0, 130, 110));
         eggPowderPlantView.relocate((int) (23 * xShift), (int) (210 * yShift));
         rootGameShopView.getChildren().addAll(eggPowderPlantView);
-        eggPowderPlantView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         eggPowderPlantView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -175,6 +182,19 @@ public class GameShopView extends View {
                 eggPowderPlantView.relocate((int) (23 * xShift), (int) (210 * yShift));
             }
         });
+        eggPowderPlantView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade EggPowderPlant");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e2){
+                  ShowNotEnoughMoneyError();
+                }catch (Exception e3){
+                    e3.printStackTrace();
+                }
+            }
+        });
 
         File cookieBakery = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\01.png");
         Image cookieBakeryImage = new Image(cookieBakery.toURI().toString());
@@ -184,12 +204,6 @@ public class GameShopView extends View {
         cookieBakeryView.setViewport(new Rectangle2D(0, 0, 130, 130));
         cookieBakeryView.relocate((int) (525 * xShift), (int) (200 * yShift));
         rootGameShopView.getChildren().addAll(cookieBakeryView);
-        cookieBakeryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         cookieBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -206,6 +220,19 @@ public class GameShopView extends View {
                 cookieBakeryView.relocate((int) (525 * xShift), (int) (200 * yShift));
             }
         });
+        cookieBakeryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade CookieBakery");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                   ShowNotEnoughMoneyError();
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                }
+            }
+        });
 
         File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\01.png");
         Image cakeBakeryImage = new Image(cakeBakery.toURI().toString());
@@ -215,12 +242,6 @@ public class GameShopView extends View {
         cakeBakeryView.setViewport(new Rectangle2D(0, 0, 190, 170));
         cakeBakeryView.relocate((int) (970 * xShift), (int) (185 * yShift));
         rootGameShopView.getChildren().addAll(cakeBakeryView);
-        cakeBakeryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         cakeBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -238,6 +259,19 @@ public class GameShopView extends View {
                 cakeBakeryView.relocate((int) (970 * xShift), (int) (185 * yShift));
             }
         });
+        cakeBakeryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade CakeBakery");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    e.printStackTrace();
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                }
+            }
+        });
 
         File spinnery = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\01.png");
         Image spinneryImage = new Image(spinnery.toURI().toString());
@@ -247,12 +281,6 @@ public class GameShopView extends View {
         spinneryView.setViewport(new Rectangle2D(0, 0, 140, 100));
         spinneryView.relocate((int) (1480 * xShift), (int) (218 * yShift));
         rootGameShopView.getChildren().addAll(spinneryView);
-        spinneryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         spinneryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -269,6 +297,19 @@ public class GameShopView extends View {
                 spinneryView.relocate((int) (1480 * xShift), (int) (218 * yShift));
             }
         });
+        spinneryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade Spinnery");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
         File sewingFactory = new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\01.png");
         Image sewingFactoryImage = new Image(sewingFactory.toURI().toString());
@@ -278,12 +319,6 @@ public class GameShopView extends View {
         sewingFactoryView.setViewport(new Rectangle2D(0, 0, 150, 130));
         sewingFactoryView.relocate((int) (23 * xShift), (int) (540 * yShift));
         rootGameShopView.getChildren().addAll(sewingFactoryView);
-        sewingFactoryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         sewingFactoryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -300,21 +335,28 @@ public class GameShopView extends View {
                 sewingFactoryView.relocate((int) (23 * xShift), (int) (540 * yShift));
             }
         });
+        sewingFactoryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade SewingFactory");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
-        File weavingFavtory = new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\01.png");
-        Image weavingFactoryImage = new Image(weavingFavtory.toURI().toString());
+        File weavingFactory = new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\01.png");
+        Image weavingFactoryImage = new Image(weavingFactory.toURI().toString());
         ImageView weavingFactoryView = new ImageView(weavingFactoryImage);
         weavingFactoryView.setFitHeight((int) (175 * yShift));
         weavingFactoryView.setFitWidth((int) (250 * xShift));
         weavingFactoryView.setViewport(new Rectangle2D(0, 0, 150, 110));
         weavingFactoryView.relocate((int) (525 * xShift), (int) (530 * yShift));
         rootGameShopView.getChildren().addAll(weavingFactoryView);
-        weavingFactoryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         weavingFactoryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -331,6 +373,19 @@ public class GameShopView extends View {
                 weavingFactoryView.relocate((int) (525 * xShift), (int) (530 * yShift));
             }
         });
+        weavingFactoryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade WeavingFactory");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
         File wareHouse = new File("Data\\Textures\\Service\\Depot\\01.png");
         Image wareHouseImage = new Image(wareHouse.toURI().toString());
@@ -340,12 +395,6 @@ public class GameShopView extends View {
         wareHouseView.setViewport(new Rectangle2D(0, 0, 190, 170));
         wareHouseView.relocate((int) (1000 * xShift), (int) (540 * yShift));
         rootGameShopView.getChildren().addAll(wareHouseView);
-        wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         wareHouseView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -362,6 +411,19 @@ public class GameShopView extends View {
                 wareHouseView.relocate((int) (1000 * xShift), (int) (540 * yShift));
             }
         });
+        wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade Warehouse");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
         File truck = new File("Data\\Textures\\Service\\Truck\\01.png");
         Image truckImage = new Image(truck.toURI().toString());
@@ -371,12 +433,6 @@ public class GameShopView extends View {
         truckView.setViewport(new Rectangle2D(0, 0, 170, 130));
         truckView.relocate((int) (1480 * xShift), (int) (495 * yShift));
         rootGameShopView.getChildren().addAll(truckView);
-        truckView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         truckView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -393,6 +449,19 @@ public class GameShopView extends View {
                 truckView.relocate((int) (1480 * xShift), (int) (495 * yShift));
             }
         });
+        truckView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade Truck");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
         File well = new File("Data\\Textures\\Service\\Well\\01.png");
         Image wellImage = new Image(well.toURI().toString());
@@ -402,12 +471,6 @@ public class GameShopView extends View {
         wellView.setViewport(new Rectangle2D(0, 0, 150, 130));
         wellView.relocate((int) (23 * xShift), (int) (800 * yShift));
         rootGameShopView.getChildren().addAll(wellView);
-        wellView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         wellView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -424,6 +487,19 @@ public class GameShopView extends View {
                 wellView.relocate((int) (23 * xShift), (int) (800 * yShift));
             }
         });
+        wellView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade Well");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
         File helicopter = new File("Data\\Textures\\Service\\Helicopter\\01.png");
         Image helicopterImage = new Image(helicopter.toURI().toString());
@@ -433,12 +509,6 @@ public class GameShopView extends View {
         helicopterView.setViewport(new Rectangle2D(0, 0, 150, 160));
         helicopterView.relocate((int) (500 * xShift), (int) (805 * yShift));
         rootGameShopView.getChildren().addAll(helicopterView);
-        helicopterView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         helicopterView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -455,6 +525,19 @@ public class GameShopView extends View {
                 helicopterView.relocate((int) (500 * xShift), (int) (805 * yShift));
             }
         });
+        helicopterView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade Helicopter");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
         File dog = new File("Data\\Textures\\Service\\Dog.png");
         Image dogImage = new Image(dog.toURI().toString());
@@ -463,12 +546,6 @@ public class GameShopView extends View {
         dogView.setFitWidth((int) (250 * xShift));
         dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
         rootGameShopView.getChildren().addAll(dogView);
-        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -485,6 +562,19 @@ public class GameShopView extends View {
                 dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
             }
         });
+        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade Dog");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
 
         File cat = new File("Data\\Textures\\Service\\Cat.png");
         Image catImage = new Image(cat.toURI().toString());
@@ -493,12 +583,6 @@ public class GameShopView extends View {
         catView.setFitWidth((int) (200 * xShift));
         catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
         rootGameShopView.getChildren().addAll(catView);
-        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
         catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -513,6 +597,19 @@ public class GameShopView extends View {
                 catView.setFitHeight((int) (160 * yShift));
                 catView.setFitWidth((int) (200 * xShift));
                 catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+            }
+        });
+        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new UpgradeRequest("upgrade Cat");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
             }
         });
     }
@@ -535,11 +632,10 @@ public class GameShopView extends View {
         starView.setFitWidth((int) (50 * xShift));
         starView.relocate((int) (30 * xShift), (int) (30 * yShift));
         rootGameShopView.getChildren().addAll(starView);
-        Text starText = new Text("0");
-        starText.relocate((int) (100 * xShift), (int) (50 * yShift));
-        starText.setFont(Font.font(30));
-        starText.setStyle("-fx-font-weight: bold");
-        rootGameShopView.getChildren().addAll(starText);
+        moneyText.relocate((int) (100 * xShift), (int) (50 * yShift));
+        moneyText.setFont(Font.font(30));
+        moneyText.setStyle("-fx-font-weight: bold");
+        rootGameShopView.getChildren().addAll(moneyText);
     }
 
     private void AddOkText(Stage primaryStage){
@@ -603,5 +699,21 @@ public class GameShopView extends View {
             }
         });
         rootGameShopView.getChildren().addAll(okTextView);
+    }
+
+    private void ShowNotEnoughMoneyError(){
+        Circle circle=new Circle(35,35,0, Paint.valueOf("Red"));
+        circle.setOpacity(0.5);
+        rootGameShopView.getChildren().addAll(circle);
+        KeyValue radiusValue=new KeyValue(circle.radiusProperty(),30);
+        KeyValue opacityValue=new KeyValue(circle.opacityProperty(),0);
+        KeyFrame circleFrame=new KeyFrame(Duration.seconds(1),opacityValue,radiusValue);
+        Timeline circleTimeLine=new Timeline(circleFrame);
+        circleTimeLine.play();
+    }
+    private void UpdateMoneyText(){
+        int userMoney= Game.getGameInstance().getCurrentUserAccount().getMoney();
+        moneyText.setText(String.valueOf(userMoney));
+
     }
 }

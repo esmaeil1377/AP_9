@@ -1,5 +1,8 @@
 package FarmModel.Request;
 
+import FarmController.Exceptions.MaxLevelExceeded;
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -18,45 +21,42 @@ import java.util.Objects;
 public class UpgradeRequest extends Request{
     private String objectString;
 
-    public UpgradeRequest(String requestLine) throws UnknownObjectException {
-        try {
-            Farm farm=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
-            AnalyzeRequestlIne(requestLine);
-            if (objectString.equals("cat")) {
-                ArrayList<Animals> animals = farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal();
-                for (Animals animals1 : animals) {
-                    if (animals1.toString().equals("Cat")) {
-                        Cat cat = (Cat) animals1;
-                        cat.Upgrade();
-                    }
-                }
-                User user=Game.getGameInstance().getCurrentUserAccount();
-                user.setCatLevel(user.getCatLevel()+1);
-            } else if (objectString.equals("truck")) {
-                Truck truck = farm.getTruck();
-                truck.Upgrade();
-            } else if (objectString.equals("well")) {
-                Well well = farm.getWell();
-                well.Upgrade();
-            } else if (objectString.equals("helicopter")) {
-                Helicopter helicopter = farm.getHelicopter();
-                helicopter.Upgrade();
-            } else if (objectString.equals("warehouse")) {
-                WareHouse wareHouse = farm.getWareHouse();
-                wareHouse.Upgrade();
-            } else {
-                WorkShop workShop = farm.getSpecifiedWorkShop(objectString);
-                workShop.Upgrade();
-                SetLevelInUserForWorkShops(workShop);
-                try {
-                    Objects.requireNonNull(workShop);
-                } catch (NullPointerException e) {
-                    throw new UnknownObjectException();
+    public UpgradeRequest(String requestLine) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
+
+        Farm farm=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
+        AnalyzeRequestlIne(requestLine);
+        if (objectString.equals("cat")) {
+            ArrayList<Animals> animals = farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal();
+            for (Animals animals1 : animals) {
+                if (animals1.toString().equals("Cat")) {
+                    Cat cat = (Cat) animals1;
+                    cat.Upgrade();
                 }
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+            User user=Game.getGameInstance().getCurrentUserAccount();
+            user.setCatLevel(user.getCatLevel()+1);
+        } else if (objectString.equals("truck")) {
+            Truck truck = farm.getTruck();
+            truck.Upgrade();
+        } else if (objectString.equals("well")) {
+            Well well = farm.getWell();
+            well.Upgrade();
+        } else if (objectString.equals("helicopter")) {
+            Helicopter helicopter = farm.getHelicopter();
+            helicopter.Upgrade();
+        } else if (objectString.equals("warehouse")) {
+            WareHouse wareHouse = farm.getWareHouse();
+            wareHouse.Upgrade();
+        } else {
+            WorkShop workShop = farm.getSpecifiedWorkShop(objectString);
+            workShop.Upgrade();
+            SetLevelInUserForWorkShops(workShop);
+            try {
+                Objects.requireNonNull(workShop);
+            } catch (NullPointerException e) {
+                throw new UnknownObjectException();
+            }
+            }
     }
 
     public String getObjectString() {
