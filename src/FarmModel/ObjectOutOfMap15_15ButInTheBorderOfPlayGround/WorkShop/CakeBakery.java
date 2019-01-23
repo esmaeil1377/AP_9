@@ -11,6 +11,7 @@ import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Flour;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import View.GameView;
 
 import java.util.HashMap;
 
@@ -38,6 +39,7 @@ public class CakeBakery extends WorkShop {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
             Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[i][0];
             cell.AddCellAMapObject(getResultProduct());
+            GameView.getGameView().getFarmView().AddCake(i,0);
         }
     }
     public void getProductFromWareHouse() {

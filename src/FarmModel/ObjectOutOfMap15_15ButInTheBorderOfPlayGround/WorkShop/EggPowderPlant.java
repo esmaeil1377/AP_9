@@ -9,6 +9,7 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import View.GameView;
 
 import java.util.HashMap;
 
@@ -28,8 +29,9 @@ public class EggPowderPlant extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[ i][29];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[ i][15];
             cell.AddCellAMapObject(getResultProduct());
+            GameView.getGameView().getFarmView().AddEggPowder(i,15);
         }
     }
     public void getProductFromWareHouse() {
