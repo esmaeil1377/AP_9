@@ -1,11 +1,9 @@
 package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.NotEnoughMoney;
-import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.Request.UpgradeRequest;
 import View.View;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -54,6 +52,18 @@ public class GameShopView extends View {
         AddShopText();
         AddStarAndMoneyText();
         AddOkText(primaryStage);
+//        AddEggPowerPlantLevel(3);
+//        AddCookieBakeryLevel(3);
+//        AddSpinneryLevel(3);
+//        AddCakeBakeryLevel(3);
+//        AddSewingFactoryLevel(3);
+//        AddCatLevel(3);
+//        AddTruckLevel(4);
+//        AddWellLevel(3);
+//        AddWareHouseLevel(3);
+//        AddHelicopterLevel(3);
+//        AddDogLevel(3);
+  //      AddWeavingFactoryLevel(3);
     }
 
     private void AddIcons(Stage primaryStage) {
@@ -613,6 +623,176 @@ public class GameShopView extends View {
             }
         });
     }
+
+    public void AddEggPowerPlantLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(270 , 190 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddCookieBakeryLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(650 , 190 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddCakeBakeryLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(1030 , 190 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddSpinneryLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(1410 , 190 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddSewingFactoryLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(270 , 440 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddWeavingFactoryLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(650 , 440 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddWareHouseLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(1030 , 440 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddTruckLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(1410 , 440 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddWellLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(270 , 690 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddHelicopterLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(650 , 690 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddDogLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(1030 , 690 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+    public void AddCatLevel(int level) {
+        File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
+        Image UpgradeArrowImage = new Image(UpgradeArrow.toURI().toString());
+        ImageView[] UpgradeArrowImageView = new ImageView[level];
+
+        for (int i = 0; i < level; i++) {
+            UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
+            UpgradeArrowImageView[i].setFitWidth(70);
+            UpgradeArrowImageView[i].setFitHeight(50);
+            UpgradeArrowImageView[i].relocate(1410 , 690 + i * 20);
+            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+        }
+    }
+
+
 
     private void AddShopText(){
         File shopText = new File("Data\\MenuClick\\ShopText.png");
