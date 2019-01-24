@@ -2,6 +2,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Game;
@@ -29,9 +30,9 @@ public class SewingFactory extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[15 - i][0];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[14 - i][0];
             cell.AddCellAMapObject(getResultProduct());
-            GameView.getGameView().getFarmView().AddFabric(15-i,0);
+            GameView.getGameView().getFarmView().AddFabric(14-i,0);
         }
     }
 
@@ -39,8 +40,7 @@ public class SewingFactory extends WorkShop {
         return workShopName;
     }
 
-    @Override
-    public void getProductFromWareHouse() {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
         int countOfCloth = 0;
         WareHouse wareHouse = new WareHouse();
         CarnivalDress carnivalDress = new CarnivalDress();
@@ -55,6 +55,9 @@ public class SewingFactory extends WorkShop {
             if (object.toString().equals(decoration.toString()))
                 countOfDecoration++;
         }
+        if (countOfCloth==0 | countOfDecoration==0){
+            throw new ObjectNotFoundInWareHouse();
+        }
         if (getMaxNumberOfGettingInput() <= countOfCloth)
             min = getMaxNumberOfGettingInput() ;
         else
@@ -67,6 +70,11 @@ public class SewingFactory extends WorkShop {
             wareHouse.RemovePieceOfObjectFromWareHouse(carnivalDress);
         for(int i = 0 ; i <getCurrentNumberOfProducingProduct();i++)
             wareHouse.RemovePieceOfObjectFromWareHouse(decoration);
+    }
+    @Override
+    public void ActiveWorkShop() throws MissionNotLoaded, ObjectNotFoundInWareHouse {
+        getProductFromWareHouse();
+        MakeAProductAndPutItInMap();
     }
 
     @Override

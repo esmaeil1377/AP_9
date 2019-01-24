@@ -6,6 +6,8 @@ import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
 import java.util.HashMap;
 
@@ -37,7 +39,27 @@ public class CustomWorkShop extends WorkShop {
             cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
         }
     }
+    public void getProductFromWareHouse() {
+//        int countOfPowder = 0;
+//        WareHouse wareHouse = new WareHouse();
+//        Powder powder = new Powder();
+//        for (Object object : wareHouse.getWareHouseList()) {
+//            if (object.toString().equals(powder.toString()))
+//                countOfPowder++;
+//        }
+//        if (getMaxNumberOfGettingInput() <= countOfPowder)
+//            setCurrentNumberOfProducingProduct(getMaxNumberOfGettingInput());
+//        else
+//            setCurrentNumberOfProducingProduct(countOfPowder);
+//        for(int i = 0 ; i <getCurrentNumberOfProducingProduct();i++)
+//            wareHouse.RemovePieceOfObjectFromWareHouse(powder);
+    }
 
+    @Override
+    public void ActiveWorkShop() throws MissionNotLoaded {
+        getProductFromWareHouse();
+        MakeAProductAndPutItInMap();
+    }
 
     @Override
     public String toString() {

@@ -2,6 +2,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Game;
@@ -29,18 +30,21 @@ public class Spinnery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[15 - i][7];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[14 - i][7];
             cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
-            GameView.getGameView().getFarmView().AddCarnivalDress(15-i,7);
+            GameView.getGameView().getFarmView().AddCarnivalDress(14-i,7);
         }
     }
-    public void getProductFromWareHouse() {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
         int countOfWool = 0;
         WareHouse wareHouse = new WareHouse();
         Wool wool = new Wool();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(wool.toString()))
                 countOfWool++;
+        }
+        if (countOfWool==0){
+            throw new ObjectNotFoundInWareHouse();
         }
         if (getMaxNumberOfGettingInput() <= countOfWool)
             setCurrentNumberOfProducingProduct(getMaxNumberOfGettingInput());
@@ -56,5 +60,10 @@ public class Spinnery extends WorkShop {
     @Override
     public String toString() {
         return "Spinnery";
+    }
+    @Override
+    public void ActiveWorkShop() throws MissionNotLoaded, ObjectNotFoundInWareHouse {
+        getProductFromWareHouse();
+        MakeAProductAndPutItInMap();
     }
 }

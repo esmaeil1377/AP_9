@@ -47,7 +47,7 @@ public class TurnRequest extends Request {
             MoveObject(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeProductDisappearOrDecreaseRemainTurnToDisappear(farm.getCurrentProductInMap());
             MakeAnimalProduce(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
-            MakeWorkShopProduce(farm.getWorkShops());
+//            MakeWorkShopProduce(farm.getWorkShops());
             MakeGrassDisappear(farm.getCurrentGrassInMap());
 //            FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
             MakeTruckPassTheWayToCityOrGiveObjectToCity();
@@ -171,18 +171,18 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeWorkShopProduce(ArrayList<WorkShop> currentWorkShopInMap) throws MissionNotLoaded {
-        if(currentWorkShopInMap!=null) {
-            for (WorkShop workShop : currentWorkShopInMap) {
-                if (workShop.getRemainTurnToProduce() == 0 && workShop.IsWorkshopActivatedToMakeProduct()) {
-                    workShop.MakeAProductAndPutItInMap();
-                    workShop.setWorkShopActivatedToMakeProduct(false);
-                } else if (workShop.getRemainTurnToProduce() != 0 && workShop.IsWorkshopActivatedToMakeProduct()) {
-                    workShop.setRemainTurnToProduce(workShop.getRemainTurnToProduce() - 1);
-                }
-            }
-        }
-    }
+//    private void MakeWorkShopProduce(ArrayList<WorkShop> currentWorkShopInMap) throws MissionNotLoaded {
+//        if(currentWorkShopInMap!=null) {
+//            for (WorkShop workShop : currentWorkShopInMap) {
+//                if (workShop.getRemainTurnToProduce() == 0 && workShop.IsWorkshopActivatedToMakeProduct()) {
+//                    workShop.MakeAProductAndPutItInMap();
+//                    workShop.setWorkShopActivatedToMakeProduct(false);
+//                } else if (workShop.getRemainTurnToProduce() != 0 && workShop.IsWorkshopActivatedToMakeProduct()) {
+//                    workShop.setRemainTurnToProduce(workShop.getRemainTurnToProduce() - 1);
+//                }
+//            }
+//        }
+//    }
 
     private void MakeAnimalProduce(ArrayList<Animals> currentAnimalsInMap) throws MissionNotLoaded {
         if(currentAnimalsInMap!=null) {

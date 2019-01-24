@@ -3,6 +3,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Game;
@@ -34,13 +35,16 @@ public class CookieBakery extends WorkShop {
             GameView.getGameView().getFarmView().AddFlouryCake(i,7);
         }
     }
-    public void getProductFromWareHouse() {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
         int countOfPowder = 0;
         WareHouse wareHouse = new WareHouse();
         Powder powder = new Powder();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(powder.toString()))
                 countOfPowder++;
+        }
+        if (countOfPowder==0){
+            throw new ObjectNotFoundInWareHouse();
         }
         if (getMaxNumberOfGettingInput() <= countOfPowder)
             setCurrentNumberOfProducingProduct(getMaxNumberOfGettingInput());
@@ -57,5 +61,11 @@ public class CookieBakery extends WorkShop {
     @Override
     public String toString() {
         return "CookieBakery";
+    }
+
+    @Override
+    public void ActiveWorkShop() throws MissionNotLoaded, ObjectNotFoundInWareHouse {
+        getProductFromWareHouse();
+        MakeAProductAndPutItInMap();
     }
 }
