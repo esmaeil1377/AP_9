@@ -145,7 +145,6 @@ public class FarmView extends View {
 
         AddMenuClick(primaryStage);
 
-        AddLevelBucketToWell(2 , 3);
 
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
@@ -2700,17 +2699,27 @@ public class FarmView extends View {
 
     }
 
-    private void AddLevelBucketToWell(int level , int num) {
+    private void CheckWellBucketWater() throws MissionNotLoaded {
+        Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
+        int waterOfBucket = well.getWaterOfTheBucket();
+        AddLevelBucketToWell(waterOfBucket);
+    }
+
+    private void AddLevelBucketToWell(int num) {
         int x = 1160;
         int y = 660;
         Rectangle rectangle = new Rectangle(20, 115);
         rectangle.relocate(x, y);
         rectangle.setFill(Color.GOLD);
+        rectangle.setArcHeight(5);
+        rectangle.setArcWidth(5);
         rootFarmView.getChildren().addAll(rectangle);
         for (int i = 0; i < num; i++) {
             Rectangle rectangle1 = new Rectangle(20 , 20);
             rectangle1.relocate(x , y + 95 - i * 23);
             rectangle1.setFill(Color.BLUE);
+            rectangle1.setArcWidth(5);
+            rectangle1.setArcHeight(5);
             rootFarmView.getChildren().addAll(rectangle1);
         }
     }
