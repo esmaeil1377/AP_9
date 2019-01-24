@@ -78,7 +78,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
         // edit after
     }
 
-    public void FillTheBucket() throws MissionNotLoaded, NotEmptyWell {
+    public void FillTheBucket() throws MissionNotLoaded, WellIsNotEmpty {
         Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
         int priceToFillTheBucket = InformationNeededInGame.PriceToFillTheBucket;
 
@@ -87,7 +87,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
             currentMission.setMissionMoney(currentMission.getMissionMoney() - priceToFillTheBucket);
         }
         else{
-            throw new NotEmptyWell();
+            throw new WellIsNotEmpty();
         }
     }
 

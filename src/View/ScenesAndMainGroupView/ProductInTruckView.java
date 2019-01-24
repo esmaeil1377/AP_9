@@ -1,5 +1,7 @@
 package View.ScenesAndMainGroupView;
 
+import FarmModel.Game;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import View.View;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
@@ -44,9 +46,6 @@ public class ProductInTruckView extends View {
         BackGroundView.setFitHeight((int)(yShift * 1200));
         BackGroundView.setFitWidth((int)(xShift * 2000));
         rootProductTruckViewView.getChildren().addAll(BackGroundView);
-        primaryStage.setScene(sceneProductTruckView);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
     }
 
     private void AddIcons() {
@@ -311,5 +310,6 @@ public class ProductInTruckView extends View {
 
         rootProductTruckViewView.getChildren().addAll(buttonView,okTextView,cancelButtonView,cancelTextView);
     }
+
 
 }

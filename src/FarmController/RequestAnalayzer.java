@@ -27,7 +27,7 @@ public class RequestAnalayzer {
     private static final String Clear_Request="(truck|helicopter) clear";
     private static final String Add_Item_To_Vehicle = "(Truck|Helicopter) .* [0-9]+";
 
-    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney, NotEmptyWell, MaxLevelExceeded {
+    public static void RequestAnalayzer(String requestString) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, BucketIsEmptyException, NotEnoughMoney, WellIsNotEmpty, MaxLevelExceeded {
         if (requestString.matches(Buy_Animals_Regex)) {
             new BuyRequest(requestString);
         } else if (requestString.matches(Pick_Up_Regex)) {

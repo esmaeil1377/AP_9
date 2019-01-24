@@ -2,7 +2,7 @@ package FarmModel.Request;
 
 import FarmController.Exceptions.FullWareHouse;
 import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.NotEmptyWell;
+import FarmController.Exceptions.WellIsNotEmpty;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Farm;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class TurnRequest extends Request {
     private int n;
 
-    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, NotEmptyWell {
+    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, WellIsNotEmpty {
         AnalyzeRequestLine(requestLine);
         DoWorkByPassingTime(getN());
     }
@@ -39,7 +39,7 @@ public class TurnRequest extends Request {
         setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
-    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, NotEmptyWell {
+    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, WellIsNotEmpty {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -212,7 +212,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() throws MissionNotLoaded, NotEmptyWell {
+    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() throws MissionNotLoaded, WellIsNotEmpty {
         Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
         if (well.getRemainTurnToFillTheBucket() == 0 && well.isWellActivatedToFillTheBucket()) {
             well.FillTheBucket();

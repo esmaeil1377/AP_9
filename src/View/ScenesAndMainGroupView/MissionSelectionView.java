@@ -2,8 +2,8 @@ package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 
 import FarmModel.Game;
 import FarmModel.Mission;
-import View.View;
 import View.GameView;
+import View.View;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,7 +29,7 @@ public class MissionSelectionView extends View {
     @Override
     public void Start(Stage primaryStage) {
         AddBackGround(primaryStage);
-        BeachOfMission(primaryStage);
+//        BeachOfMission(primaryStage);
         NumberOfMission(primaryStage);
         FarmerOfFarm(primaryStage);
         AddMainMenu(primaryStage);
@@ -49,18 +49,18 @@ public class MissionSelectionView extends View {
     }
 
 
-    private void BeachOfMission(Stage primaryStage) {
-        File restartFile = new File("Data\\Mission\\Map.jpeg");
-        Image restartImage = new Image(restartFile.toURI().toString());
-        ImageView restartImageView = new ImageView(restartImage);
-        restartImageView.relocate(1230, 550);
-        primaryStage.setFullScreen(true);
-        restartImageView.setFitHeight(120);
-        restartImageView.setFitWidth(120);
-        //Circle circle = new Circle(1200, 500, 150); // cast to Circle
-        //circle.setFill(restartImageView);
-        rootMissionSelectionView.getChildren().addAll(restartImageView);
-    }
+//    private void BeachOfMission(Stage primaryStage) {
+//        File restartFile = new File("Data\\Mission\\Map.jpeg");
+//        Image restartImage = new Image(restartFile.toURI().toString());
+//        ImageView restartImageView = new ImageView(restartImage);
+//        restartImageView.relocate(1230, 550);
+//        primaryStage.setFullScreen(true);
+//        restartImageView.setFitHeight(120);
+//        restartImageView.setFitWidth(120);
+//        //Circle circle = new Circle(1200, 500, 150); // cast to Circle
+//        //circle.setFill(restartImageView);
+//        rootMissionSelectionView.getChildren().addAll(restartImageView);
+//    }
 
     private void FarmerOfFarm(Stage primaryStage) {
         File farmerFile = new File("Data\\Gif\\Farmer.gif");
@@ -80,7 +80,7 @@ public class MissionSelectionView extends View {
         //ImageView numberImageView = new ImageView(numberImage);
         ImageView[] numberImageView = new ImageView[10];
         for (int i = 20; i < 30; i++) {
-            ImageView bubbleImageView=new ImageView(numberImage);
+            ImageView bubbleImageView = new ImageView(numberImage);
             numberImageView[i - 20] = bubbleImageView;
             bubbleImageView.relocate(1300 - 300 * Math.cos(i * 3.14 / 11), 550 - 300 * Math.sin(i * 3.14 / 11));
             bubbleImageView.setFitWidth(50);
@@ -93,7 +93,7 @@ public class MissionSelectionView extends View {
                 numberImageView[finali - 20].setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        Mission mission=Game.getGameInstance().getCurrentUserAccount().getMissions().get(finali-20);
+                        Mission mission = Game.getGameInstance().getCurrentUserAccount().getMissions().get(finali - 20);
                         Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(mission);
                         try {
                             GameView.getGameView().setFarmView(new FarmView(primaryStage));
@@ -127,7 +127,7 @@ public class MissionSelectionView extends View {
         }
     }
 
-    private void AddGando(){
+    private void AddGando() {
         File restartFile = new File("Data\\Gif\\Gando.gif");
         Image restartImage = new Image(restartFile.toURI().toString());
         ImageView restartImageView = new ImageView(restartImage);
@@ -137,7 +137,7 @@ public class MissionSelectionView extends View {
         rootMissionSelectionView.getChildren().addAll(restartImageView);
     }
 
-    private void AddMainMenu(Stage primaryStage){
+    private void AddMainMenu(Stage primaryStage) {
         File menuButton = new File("Data\\Mission\\OkButton.png");
         Image menuButtonImage = new Image(menuButton.toURI().toString());
         ImageView menuButtonView = new ImageView(menuButtonImage);
@@ -196,9 +196,10 @@ public class MissionSelectionView extends View {
                 primaryStage.setFullScreen(true);
             }
         });
-        rootMissionSelectionView.getChildren().addAll(menuButtonView,menuTextView);
+        rootMissionSelectionView.getChildren().addAll(menuButtonView, menuTextView);
     }
-    private void AddShopButton(Stage primaryStage){
+
+    private void AddShopButton(Stage primaryStage) {
         File menuButton = new File("Data\\Mission\\OkButton.png");
         Image menuButtonImage = new Image(menuButton.toURI().toString());
         ImageView shopButtonView = new ImageView(menuButtonImage);
@@ -246,14 +247,14 @@ public class MissionSelectionView extends View {
             }
         });
         ShowShopScene(primaryStage, shopTextView);
-        rootMissionSelectionView.getChildren().addAll(shopButtonView,shopTextView);
+        rootMissionSelectionView.getChildren().addAll(shopButtonView, shopTextView);
     }
 
     private void ShowShopScene(Stage primaryStage, ImageView shopTextView) {
         shopTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                GameShopView gameShopView=new GameShopView(primaryStage);
+                GameShopView gameShopView = new GameShopView(primaryStage);
                 GameView.getGameView().setGameShopView(gameShopView);
                 primaryStage.setScene(gameShopView.getSceneGameShopView());
                 primaryStage.setFullScreen(true);

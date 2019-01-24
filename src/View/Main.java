@@ -1,11 +1,5 @@
 package View;
 
-import FarmController.Exceptions.FullWareHouse;
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.NotEmptyWell;
-import FarmController.Exceptions.UnknownObjectException;
-import FarmModel.Request.TurnRequest;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

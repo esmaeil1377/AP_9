@@ -36,4 +36,11 @@ public abstract class View {
         audioClip.play();
     }
 
+    public static void PlayErrorSound(){
+        String path = "Data\\Voice\\Error.mp3";
+        String path1 = Paths.get(path).toUri().toString();
+        AudioClip audioClip = new AudioClip(path1);
+        audioClip.play();
+    }
+
 }

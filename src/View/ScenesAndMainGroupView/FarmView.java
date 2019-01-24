@@ -2,15 +2,23 @@ package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.BucketIsEmptyException;
 import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.NotEmptyWell;
-import FarmModel.Farm;
-import FarmModel.Game;
-import FarmModel.Mission;
+import FarmController.Exceptions.WellIsNotEmpty;
+import FarmModel.*;
+import FarmModel.ObjectInMap15_15.Cage;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.CarnivalDress;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Fabric;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.*;
 import FarmModel.Request.*;
-import FarmModel.User;
 import View.GameView;
 import View.SpriteAnimation;
 import View.View;
@@ -21,7 +29,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -37,7 +44,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 public class FarmView extends View {
@@ -273,11 +279,13 @@ public class FarmView extends View {
         savecircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                PlayBubbleSound();
                 try {
                     new SaveGameRequest("save game UsersAccount");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
+                PlayBubbleSound();
             }
         });
 
@@ -299,12 +307,14 @@ public class FarmView extends View {
         settingCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                rootFarmView.getChildren().addAll(text, speedCircle);
-                KeyValue xSpeed = new KeyValue(speedCircle.centerXProperty(), 630);
-                KeyValue ySpeed = new KeyValue(speedCircle.centerYProperty(), 610);
-                KeyFrame speedCircleFrame = new KeyFrame(Duration.millis(500), xSpeed, ySpeed);
-                Timeline speedCircleTimeLine = new Timeline(speedCircleFrame);
-                speedCircleTimeLine.play();
+                if (!rootFarmView.getChildren().contains(text)) {
+                    rootFarmView.getChildren().addAll(text, speedCircle);
+                    KeyValue xSpeed = new KeyValue(speedCircle.centerXProperty(), 630);
+                    KeyValue ySpeed = new KeyValue(speedCircle.centerYProperty(), 610);
+                    KeyFrame speedCircleFrame = new KeyFrame(Duration.millis(500), xSpeed, ySpeed);
+                    Timeline speedCircleTimeLine = new Timeline(speedCircleFrame);
+                    speedCircleTimeLine.play();
+                }
             }
         });
 
@@ -594,8 +604,8 @@ public class FarmView extends View {
                     animation.play();
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
-                } catch (NotEmptyWell notEmptyWell) {
-                    notEmptyWell.printStackTrace();
+                } catch (WellIsNotEmpty wellIsNotEmpty) {
+                    wellIsNotEmpty.printStackTrace();
                 }
             }
         });
@@ -630,9 +640,12 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-//                ShowChickenMoving(10,10,11,11);
-                ShowCatMoving(10, 10, 11, 11);
-                ShowDogMoving(5, 5, 6, 5);
+                try {
+                    AddNumberOfIconsInWarehouse("Lion");
+//                    AddNumberOfIconsInWarehouse("Bear");
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
             }
         });
         rootFarmView.getChildren().addAll(wareHouseView);
@@ -1418,8 +1431,9 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(eggView);
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
+                    rootFarmView.getChildren().removeAll(eggView);
+                    AddNumberOfIconsInWarehouse("Egg");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
@@ -1461,6 +1475,7 @@ public class FarmView extends View {
                 try {
                     new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(milkView);
+                    AddNumberOfIconsInWarehouse("Milk");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
@@ -1501,6 +1516,7 @@ public class FarmView extends View {
                 try {
                     new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(woolView);
+                    AddNumberOfIconsInWarehouse("Wool");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
@@ -1542,6 +1558,7 @@ public class FarmView extends View {
                 try {
                     new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(eggPowderView);
+                    AddNumberOfIconsInWarehouse("EggPowder");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
@@ -1582,6 +1599,7 @@ public class FarmView extends View {
                 try {
                     new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(carnivalDressView);
+                    AddNumberOfIconsInWarehouse("CarnivalDress");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
@@ -1622,6 +1640,7 @@ public class FarmView extends View {
                 try {
                     new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(cakeView);
+                    AddNumberOfIconsInWarehouse("Cake");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
@@ -1662,6 +1681,7 @@ public class FarmView extends View {
                 try {
                     new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(fabricView);
+                    AddNumberOfIconsInWarehouse("Fabric");
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
@@ -1688,7 +1708,6 @@ public class FarmView extends View {
                 flouryCkae.setFitWidth(45);
             }
         });
-
         flouryCkae.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -1697,8 +1716,20 @@ public class FarmView extends View {
                 flouryCkae.setFitWidth(40);
             }
         });
+        flouryCkae.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new PickUpRequest("pickup " + String.valueOf(xCell) + String.valueOf(yCell));
+                    rootFarmView.getChildren().addAll(flouryCkae);
+                    AddNumberOfIconsInWarehouse("FlouryCake");
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
+            }
+        });
     }
-    public void Flour(int xCell,int yCell){
+    public void AddFlour(int xCell,int yCell){
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
         int yPosition = position[1];
@@ -2310,6 +2341,60 @@ public class FarmView extends View {
             for (int j=startY;j<=endY;j++){
                 PlantGrass(i,j);
             }
+        }
+    }
+
+    private void AddNumberOfIconsInWarehouse(String iconName) throws MissionNotLoaded {
+        File file=null;
+        int numberOfIconWeNeedToAdd=0;
+        User user=Game.getGameInstance().getCurrentUserAccount();
+        WareHouse wareHouse=user.getCurrentPlayingMission().getFarm().getWareHouse();
+        InformationNeededInGame informationNeededInGame=user.getInformationNeededInGame();
+        int occupiedSpace=wareHouse.getCapacityOfWareHouse()-wareHouse.getRemainCapacityOfWareHouse();
+        if(iconName.equals("Bear")){
+            file=new File("Data\\Textures\\Products\\CagedBrownBear.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Bear()));
+        }else if(iconName.equals("Lion")){
+            file=new File("Data\\Textures\\Products\\CagedLion.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Lion()));
+        }else if(iconName.equals("Egg")){
+            file=new File("Data\\Textures\\Products\\Egg\\normal_1.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Egg());
+        }else if(iconName.equals("Milk")){
+            file=new File("Data\\Textures\\Products\\Milk.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Milk());
+        }else if(iconName.equals("Wool")){
+            file=new File("Data\\Textures\\Products\\Wool\\normal.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Wool());
+        }else if(iconName.equals("FlouryCake")){
+            file=new File("Data\\Textures\\Products\\FlouryCake.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cake());;
+        }else if(iconName.equals("Cookie")){
+            file=new File("Data\\Textures\\Products\\Cake.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cookie());
+        }else if(iconName.equals("Fabric")){
+            file=new File("Data\\Textures\\Products\\Fabric.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Fabric());
+        }else if(iconName.equals("CarnivalDress")){
+            file=new File("Data\\Textures\\Products\\CarnivalDress.png");
+            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
+        }
+//        else if(iconName.equals("EggPowder")){
+//            file=new File("Data\\Textures\\Products\\EggPowder.png");
+//            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new EggPow());
+//        }else if(iconName.equals("Flour")){
+//            file=new File("Data\\Textures\\Products\\Flour.png");
+//        }
+        Image iconImage=new Image(file.toURI().toString());
+        for (int icon=0;icon<numberOfIconWeNeedToAdd;icon++){
+            ImageView iconView=new ImageView(iconImage);
+            iconView.setFitWidth(19);
+            iconView.setFitHeight(19);
+            int row=occupiedSpace%7;
+            int column=(int)(((float)occupiedSpace)/10.0);
+            occupiedSpace++;
+            iconView.relocate(column*19+560,825-row*19);
+            rootFarmView.getChildren().addAll(iconView);
         }
     }
 

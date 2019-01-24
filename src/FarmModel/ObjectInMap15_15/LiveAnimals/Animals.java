@@ -18,30 +18,35 @@ public abstract class Animals extends ObjectInMap15_15 {
         int nextY = 0;
         int nextRandomDirection = getNextRandomDirection(currentX, currentY);
         Farm.getCellByPosition(currentX,currentY).RemoveCellAMapObject(animals);
-        if (nextRandomDirection == 1) {
-            nextX = currentX + 1;
-            nextY = currentY;
-        } else if (nextRandomDirection == 2) {
-            nextX = currentX + 1;
-            nextY = currentY + 1;
-        } else if (nextRandomDirection == 3) {
-            nextX = currentX;
-            nextY = currentY + 1;
-        } else if (nextRandomDirection == 4) {
-            nextX = currentX - 1;
-            nextY = currentY + 1;
-        } else if (nextRandomDirection == 5) {
-            nextX = currentX - 1;
-            nextY = currentY;
-        } else if (nextRandomDirection == 6) {
-            nextX = currentX - 1;
-            nextY = currentY - 1;
-        } else if (nextRandomDirection == 7) {
-            nextX = currentX;
-            nextY = currentY - 1;
-        } else if (nextRandomDirection == 8) {
-            nextX = currentX + 1;
-            nextY = currentY - 1;
+        if ((currentX+currentY)%5!=4 | (currentX+currentY)%5!=3) {
+            if (nextRandomDirection == 1) {
+                nextX = currentX + 1;
+                nextY = currentY;
+            } else if (nextRandomDirection == 2) {
+                nextX = currentX + 1;
+                nextY = currentY + 1;
+            } else if (nextRandomDirection == 3) {
+                nextX = currentX;
+                nextY = currentY + 1;
+            } else if (nextRandomDirection == 4) {
+                nextX = currentX - 1;
+                nextY = currentY + 1;
+            } else if (nextRandomDirection == 5) {
+                nextX = currentX - 1;
+                nextY = currentY;
+            } else if (nextRandomDirection == 6) {
+                nextX = currentX - 1;
+                nextY = currentY - 1;
+            } else if (nextRandomDirection == 7) {
+                nextX = currentX;
+                nextY = currentY - 1;
+            } else if (nextRandomDirection == 8) {
+                nextX = currentX + 1;
+                nextY = currentY - 1;
+            }
+        }else{
+            nextX=currentX;
+            nextY=currentY+1;
         }
         Farm.getCellByPosition(nextX,nextY).AddCellAMapObject(animals);
         animals.setX(nextX);
@@ -61,15 +66,15 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 4 || nextDir == 5 || nextDir == 6 || nextDir == 7 || nextDir == 8) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 0 && currentY == 29) {
+        } else if (currentX == 0 && currentY == 14) {
             while (nextDir == 2 || nextDir == 3 || nextDir == 4 || nextDir == 5 || nextDir == 6) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 29 && currentY == 0) {
+        } else if (currentX == 14 && currentY == 0) {
             while (nextDir == 6 || nextDir == 7 || nextDir == 8 || nextDir == 1 || nextDir == 2) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 29 && currentY == 29) {
+        } else if (currentX == 14 && currentY == 14) {
             while (nextDir == 8 || nextDir == 1 || nextDir == 2 || nextDir == 3 || nextDir == 4) {
                 nextDir = getNumberBetween0_9();
             }
@@ -77,7 +82,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 4 || nextDir == 5 || nextDir == 6) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 29) {
+        } else if (currentX == 14) {
             while (nextDir == 8 || nextDir == 1 || nextDir == 2) {
                 nextDir = getNumberBetween0_9();
             }
@@ -85,7 +90,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 6 || nextDir == 7 || nextDir == 8) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentY == 29) {
+        } else if (currentY == 14) {
             while (nextDir == 2 || nextDir == 3 || nextDir == 4) {
                 nextDir = getNumberBetween0_9();
             }
@@ -289,5 +294,4 @@ public abstract class Animals extends ObjectInMap15_15 {
         }
         return next;
     }
-
 }
