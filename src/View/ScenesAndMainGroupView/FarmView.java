@@ -33,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -143,6 +144,8 @@ public class FarmView extends View {
 //        AddThreePavementForWorkshop();
 
         AddMenuClick(primaryStage);
+
+        AddLevelBucketToWell(2 , 3);
 
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
@@ -527,7 +530,7 @@ public class FarmView extends View {
     }
 
     private void AddPavement() {
-        File pavementFile = new File("C:Data\\Pavement.png");
+        File pavementFile = new File("Data\\Pavement.png");
         Image pavementImage = new Image(pavementFile.toURI().toString());
         ImageView pavementViewHelicopter = new ImageView(pavementImage);
         pavementViewHelicopter.relocate(190, 520);
@@ -2695,6 +2698,21 @@ public class FarmView extends View {
             }
         }
 
+    }
+
+    private void AddLevelBucketToWell(int level , int num) {
+        int x = 1160;
+        int y = 660;
+        Rectangle rectangle = new Rectangle(20, 115);
+        rectangle.relocate(x, y);
+        rectangle.setFill(Color.GOLD);
+        rootFarmView.getChildren().addAll(rectangle);
+        for (int i = 0; i < num; i++) {
+            Rectangle rectangle1 = new Rectangle(20 , 20);
+            rectangle1.relocate(x , y + 95 - i * 23);
+            rectangle1.setFill(Color.BLUE);
+            rootFarmView.getChildren().addAll(rectangle1);
+        }
     }
 
 
