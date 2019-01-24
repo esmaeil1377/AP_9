@@ -3,37 +3,22 @@ package View.ScenesAndMainGroupView;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import View.View;
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import View.GameView;
-
-import java.io.File;
 
 import java.io.File;
 
@@ -52,15 +37,33 @@ public class ProductInHelicopterView extends View {
 
     @Override
     public void Start(Stage primaryStage) {
-//        Scene sceneSelectionView = new Scene(rootMissionSelectionView, 1600, 900);
+        try {
+            AddBackGround();
+            AddItemToBackGround(primaryStage);
+            AddItemToBuyCake();
+            AddItemToBuyCookie();
+            AddItemToBuyCarnivalDress();
+            AddItemToBuyFlour();
+            AddItemToBuyPowder();
+            AddItemToBuyDecoration();
+            AddItemToBuySewing();
+            AddItemToBuySewing();
+            AddItemToBuyFabric();
+        } catch (UnknownObjectException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void AddBackGround() {
         File backGroundFile = new File("Data\\ShopBackground.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
         BackGroundView.setFitHeight(900);
         BackGroundView.setFitWidth(1600);
         rootProductHelicopterView.getChildren().addAll(BackGroundView);
+    }
 
+    private void AddItemToBackGround(Stage primaryStage) {
         Rectangle rect_1 = new Rectangle(400, 800);
         rect_1.setOpacity(0.6);
         rect_1.setArcHeight(70);
@@ -276,15 +279,9 @@ public class ProductInHelicopterView extends View {
         coinText.setStyle("-fx-font-weight: bold");
         coinText.setFill(Color.rgb(244, 240, 16));
         rootProductHelicopterView.getChildren().addAll(coinText);
-
-        try {
-            AddItemToBuyCake();
-        } catch (UnknownObjectException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void AddItemToBuyCake() throws UnknownObjectException {
+    private void AddItemToBuyCake() throws UnknownObjectException {
         File fileIcon = new File("Data\\Textures\\Products\\FlouryCake.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -372,9 +369,9 @@ public class ProductInHelicopterView extends View {
 
     }
 
-    public void AddItemToBuyCookie() throws UnknownObjectException {
+    private void AddItemToBuyCookie() throws UnknownObjectException {
         int shift = 50 ;
-        File fileIcon = new File("Data\\Textures\\Products\\Cake.png.png");
+        File fileIcon = new File("Data\\Textures\\Products\\Cake.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
@@ -459,4 +456,533 @@ public class ProductInHelicopterView extends View {
 
         rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
     }
+
+    private void AddItemToBuyFlour() throws UnknownObjectException {
+        int shift = 100 ;
+        File fileIcon = new File("Data\\Textures\\Products\\Flour.png");
+        Image imageIcon = new Image(fileIcon.toURI().toString());
+        ImageView imageViewIcon = new ImageView(imageIcon);
+        imageViewIcon.setFitHeight(30);
+        imageViewIcon.setFitWidth(30);
+        imageViewIcon.relocate(200, 130 + shift);
+
+        InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+
+        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Flour()))); // price of egg
+        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.setTextFill(Color.BLACK);
+        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+        ImageView imageViewCoin = new ImageView(imageOfCoin);
+        imageViewCoin.setFitWidth(30);
+        imageViewCoin.setFitHeight(30);
+        imageViewCoin.relocate(355, 130 + shift);
+
+        File fileButton1 = new File("Data\\Click\\OkButton.png");
+        Image imageButton1 = new Image(fileButton1.toURI().toString());
+        ImageView imageViewButton1 = new ImageView(imageButton1);
+        imageViewButton1.setFitHeight(35);
+        imageViewButton1.setFitWidth(35);
+        imageViewButton1.relocate(445, 130 + shift);
+
+        Label labelButton1 = new Label("1");
+        labelButton1.relocate(455, 130 + 5 + shift);
+        labelButton1.setTextFill(Color.BLACK);
+        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+    }
+
+    private void AddItemToBuyPowder() throws UnknownObjectException {
+        int shift = 150 ;
+        File fileIcon = new File("Data\\Textures\\Products\\EggPowder.png");
+        Image imageIcon = new Image(fileIcon.toURI().toString());
+        ImageView imageViewIcon = new ImageView(imageIcon);
+        imageViewIcon.setFitHeight(30);
+        imageViewIcon.setFitWidth(30);
+        imageViewIcon.relocate(200, 130 + shift);
+
+        InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+
+        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Powder()))); // price of egg
+        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.setTextFill(Color.BLACK);
+        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+        ImageView imageViewCoin = new ImageView(imageOfCoin);
+        imageViewCoin.setFitWidth(30);
+        imageViewCoin.setFitHeight(30);
+        imageViewCoin.relocate(355, 130 + shift);
+
+        File fileButton1 = new File("Data\\Click\\OkButton.png");
+        Image imageButton1 = new Image(fileButton1.toURI().toString());
+        ImageView imageViewButton1 = new ImageView(imageButton1);
+        imageViewButton1.setFitHeight(35);
+        imageViewButton1.setFitWidth(35);
+        imageViewButton1.relocate(445, 130 + shift);
+
+        Label labelButton1 = new Label("1");
+        labelButton1.relocate(455, 130 + 5 + shift);
+        labelButton1.setTextFill(Color.BLACK);
+        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+    }
+
+    private void AddItemToBuyCarnivalDress() throws UnknownObjectException {
+        int shift = 200 ;
+        File fileIcon = new File("Data\\Textures\\Products\\CarnivalDress.png");
+        Image imageIcon = new Image(fileIcon.toURI().toString());
+        ImageView imageViewIcon = new ImageView(imageIcon);
+        imageViewIcon.setFitHeight(30);
+        imageViewIcon.setFitWidth(30);
+        imageViewIcon.relocate(200, 130 + shift);
+
+        InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+
+        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new CarnivalDress()))); // price of egg
+        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.setTextFill(Color.BLACK);
+        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+        ImageView imageViewCoin = new ImageView(imageOfCoin);
+        imageViewCoin.setFitWidth(30);
+        imageViewCoin.setFitHeight(30);
+        imageViewCoin.relocate(355, 130 + shift);
+
+        File fileButton1 = new File("Data\\Click\\OkButton.png");
+        Image imageButton1 = new Image(fileButton1.toURI().toString());
+        ImageView imageViewButton1 = new ImageView(imageButton1);
+        imageViewButton1.setFitHeight(35);
+        imageViewButton1.setFitWidth(35);
+        imageViewButton1.relocate(445, 130 + shift);
+
+        Label labelButton1 = new Label("1");
+        labelButton1.relocate(455, 130 + 5 + shift);
+        labelButton1.setTextFill(Color.BLACK);
+        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+    }
+
+    private void AddItemToBuyDecoration() throws UnknownObjectException {
+        int shift = 250 ;
+        File fileIcon = new File("Data\\Textures\\Products\\Decoration.png");
+        Image imageIcon = new Image(fileIcon.toURI().toString());
+        ImageView imageViewIcon = new ImageView(imageIcon);
+        imageViewIcon.setFitHeight(30);
+        imageViewIcon.setFitWidth(30);
+        imageViewIcon.relocate(200, 130 + shift);
+
+        InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+
+        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Decoration()))); // price of egg
+        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.setTextFill(Color.BLACK);
+        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+        ImageView imageViewCoin = new ImageView(imageOfCoin);
+        imageViewCoin.setFitWidth(30);
+        imageViewCoin.setFitHeight(30);
+        imageViewCoin.relocate(355, 130 + shift);
+
+        File fileButton1 = new File("Data\\Click\\OkButton.png");
+        Image imageButton1 = new Image(fileButton1.toURI().toString());
+        ImageView imageViewButton1 = new ImageView(imageButton1);
+        imageViewButton1.setFitHeight(35);
+        imageViewButton1.setFitWidth(35);
+        imageViewButton1.relocate(445, 130 + shift);
+
+        Label labelButton1 = new Label("1");
+        labelButton1.relocate(455, 130 + 5 + shift);
+        labelButton1.setTextFill(Color.BLACK);
+        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+    }
+
+    private void AddItemToBuyFabric() throws UnknownObjectException {
+        int shift = 300 ;
+        File fileIcon = new File("Data\\Textures\\Products\\Fabric.png");
+        Image imageIcon = new Image(fileIcon.toURI().toString());
+        ImageView imageViewIcon = new ImageView(imageIcon);
+        imageViewIcon.setFitHeight(30);
+        imageViewIcon.setFitWidth(30);
+        imageViewIcon.relocate(200, 130 + shift);
+
+        InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+
+        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Fabric()))); // price of egg
+        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.setTextFill(Color.BLACK);
+        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+        ImageView imageViewCoin = new ImageView(imageOfCoin);
+        imageViewCoin.setFitWidth(30);
+        imageViewCoin.setFitHeight(30);
+        imageViewCoin.relocate(355, 130 + shift);
+
+        File fileButton1 = new File("Data\\Click\\OkButton.png");
+        Image imageButton1 = new Image(fileButton1.toURI().toString());
+        ImageView imageViewButton1 = new ImageView(imageButton1);
+        imageViewButton1.setFitHeight(35);
+        imageViewButton1.setFitWidth(35);
+        imageViewButton1.relocate(445, 130 + shift);
+
+        Label labelButton1 = new Label("1");
+        labelButton1.relocate(455, 130 + 5 + shift);
+        labelButton1.setTextFill(Color.BLACK);
+        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+    }
+
+    private void AddItemToBuySewing() throws UnknownObjectException {
+        int shift = 350 ;
+        File fileIcon = new File("Data\\Textures\\Products\\Sewing.png");
+        Image imageIcon = new Image(fileIcon.toURI().toString());
+        ImageView imageViewIcon = new ImageView(imageIcon);
+        imageViewIcon.setFitHeight(30);
+        imageViewIcon.setFitWidth(30);
+        imageViewIcon.relocate(200, 130 + shift);
+
+        InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+
+        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Sewing()))); // price of egg
+        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.setTextFill(Color.BLACK);
+        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+        ImageView imageViewCoin = new ImageView(imageOfCoin);
+        imageViewCoin.setFitWidth(30);
+        imageViewCoin.setFitHeight(30);
+        imageViewCoin.relocate(355, 130 + shift);
+
+        File fileButton1 = new File("Data\\Click\\OkButton.png");
+        Image imageButton1 = new Image(fileButton1.toURI().toString());
+        ImageView imageViewButton1 = new ImageView(imageButton1);
+        imageViewButton1.setFitHeight(35);
+        imageViewButton1.setFitWidth(35);
+        imageViewButton1.relocate(445, 130 + shift);
+
+        Label labelButton1 = new Label("1");
+        labelButton1.relocate(455, 130 + 5 + shift);
+        labelButton1.setTextFill(Color.BLACK);
+        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+
+        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35 + 5);
+                imageViewButton1.setFitWidth(35 + 5);
+                imageViewButton1.relocate(445 - 2.5, 130 - 2.5 + shift);
+            }
+        });
+
+        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageViewButton1.setFitHeight(35);
+                imageViewButton1.setFitWidth(35);
+                imageViewButton1.relocate(445, 130 + shift);
+            }
+        });
+
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+    }
+
 }
