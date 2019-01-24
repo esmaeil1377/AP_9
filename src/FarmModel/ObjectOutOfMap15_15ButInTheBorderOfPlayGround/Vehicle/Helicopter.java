@@ -6,6 +6,7 @@ import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import View.GameView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,7 @@ public class Helicopter extends TransportationVehicle implements Upgradeable {
             int x = (int) (Math.random() * 15) + 1;
             int y = (int) (Math.random() * 15) + 1;
             farm.getMap()[x][y].AddCellAMapObject((ObjectInMap15_15)objectInMap15_15);
+            GameView.getGameView().getFarmView().AddMapObjectIcon(objectInMap15_15,x,y);
         }
         setGoodsThatHaveToCarry(null);
         //add from warehouse goods that are going to sell and something in userMoney
