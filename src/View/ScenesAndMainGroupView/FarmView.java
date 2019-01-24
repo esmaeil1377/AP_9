@@ -13,6 +13,7 @@ import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.*;
 import FarmModel.Request.*;
 import View.GameView;
@@ -37,15 +38,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 public class FarmView extends View {
-    HashMap<int[],HashMap<String,Node>> cells=new HashMap<>();
+    HashMap<ArrayList<Integer>,HashMap<String,Node>> cells=new HashMap<>();
     private Text text = new Text("Speed\n   " + String.valueOf(GameView.getGameView().getStartMenuView().getGameSpeed()));
     private Circle speedCircle;
     private Group rootFarmView = new Group();
@@ -71,6 +70,7 @@ public class FarmView extends View {
 
     @Override
     public void Start(Stage primaryStage) throws MissionNotLoaded {
+        LoadMapIconTharWereBefore();
         InitializeTheCells();
         User user = Game.getGameInstance().getCurrentUserAccount();
         Mission mission = user.getCurrentPlayingMission();
@@ -162,7 +162,7 @@ public class FarmView extends View {
             public void handle(MouseEvent event) {
                 double xPosition=event.getX();
                 double yPosition=event.getY();
-                if(xPosition<(649.999+330) && xPosition>330 &&  yPosition<(220+649.9999) &&  yPosition>230) {
+                if(xPosition<(649.999+330) && xPosition>330 &&  yPosition<(220+375) &&  yPosition>230) {
                     int[] cellPosition = getCellPositionByPosition((int) xPosition, (int) yPosition);
                     int xCell = cellPosition[0];
                     int yCell = cellPosition[1];
@@ -589,24 +589,36 @@ public class FarmView extends View {
         wellView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                PlayBubbleSound();
                 try {
-                    new WellRequest();
-                    UpdateMoneyText();
-                    Animation animation = new SpriteAnimation(wellView, Duration.millis(1000), 12, 4, 0, 0, 150, 136);
-                    animation.setCycleCount(3);
-                    animation.setOnFinished(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            wellView.setViewport(new Rectangle2D(0, 0, 150, 136));
-                        }
-                    });
-                    animation.setDelay(Duration.millis(83));
-                    animation.play();
+                    Well well=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
+                    if (!well.isWellActivatedToFillTheBucket()) {
+                        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+                        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+                        PlayBubbleSound();
+                        well.setWellActivatedToFillTheBucket(true);
+                        UpdateMoneyText();
+                        Animation animation = new SpriteAnimation(wellView, Duration.millis(duration), 12, 4, 0, 0, 150, 136);
+                        animation.setCycleCount(3);
+                        animation.setDelay(Duration.millis(500));
+                        animation.setOnFinished(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                wellView.setViewport(new Rectangle2D(0, 0, 150, 136));
+                                try {
+                                    new WellRequest();
+                                    well.setWellActivatedToFillTheBucket(false);
+                                } catch (MissionNotLoaded missionNotLoaded) {
+                                    missionNotLoaded.printStackTrace();
+                                } catch (WellIsNotEmpty wellIsNotEmpty) {
+                                    wellIsNotEmpty.printStackTrace();
+                                }
+                            }
+                        });
+                        animation.setDelay(Duration.millis(83));
+                        animation.play();
+                    }
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
-                } catch (WellIsNotEmpty wellIsNotEmpty) {
-                    wellIsNotEmpty.printStackTrace();
                 }
             }
         });
@@ -1385,7 +1397,7 @@ public class FarmView extends View {
         Animation animation = new SpriteAnimation(grassView, Duration.millis(1000), 12, 4, 0, 0, 48, 48);
         animation.play();
         rootFarmView.getChildren().addAll(grassView);
-        cells.get(new int[]{xCell,yCell}).put("Grass",grassView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Grass",grassView);
     }
 
     public void AddEgg(int xCell, int yCell) {
@@ -1427,7 +1439,7 @@ public class FarmView extends View {
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("Egg",eggView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Egg",eggView);
     }
     public void AddMilk(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
@@ -1462,14 +1474,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(milkView);
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
+                    rootFarmView.getChildren().removeAll(milkView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("Milk",milkView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Milk",milkView);
     }
     public void AddWool(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
@@ -1503,14 +1515,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(woolView);
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
+                    rootFarmView.getChildren().removeAll(woolView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("Wool",woolView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Wool",woolView);
     }
 
     public void AddEggPowder(int xCell, int yCell) {
@@ -1545,14 +1557,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(eggPowderView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("EggPowder",eggPowderView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("EggPowder",eggPowderView);
     }
     public void AddCarnivalDress(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
@@ -1586,14 +1598,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(carnivalDressView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("CarnivalDress",carnivalDressView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("CarnivalDress",carnivalDressView);
     }
     public void AddCake(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
@@ -1627,14 +1639,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(cakeView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("Cake",cakeView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Cake",cakeView);
     }
     public void AddFabric(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
@@ -1668,14 +1680,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+String.valueOf(yCell));
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(fabricView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("Fabric",fabricView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Fabric",fabricView);
     }
     public void AddFlouryCake(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
@@ -1709,14 +1721,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup " + String.valueOf(xCell) + String.valueOf(yCell));
+                    new PickUpRequest("pickup " + String.valueOf(xCell) +" "+String.valueOf(yCell));
                     rootFarmView.getChildren().addAll(flouryCake);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("FlouryCake",flouryCake);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("FlouryCake",flouryCake);
     }
     public void AddFlour(int xCell,int yCell){
         int[] position = getPositionByCellPosition(xCell, yCell);
@@ -1746,7 +1758,7 @@ public class FarmView extends View {
                 flourView.setFitWidth(40);
             }
         });
-        cells.get(new int[]{xCell,yCell}).put("Flour",flourView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Flour",flourView);
     }
 
     private static int[] getCellPositionByPosition(int x, int y) {
@@ -1831,10 +1843,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xcell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0];
-        int y1Position = position1[1];
-        int x2Position = position2[0];
-        int y2Position = position2[1];
+        int x1Position = position1[0]-30;
+        int y1Position = position1[1]-30;
+        int x2Position = position2[0]-30;
+        int y2Position = position2[1]-30;
         chickenView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(chickenView);
         chickenArrayView[0] = chickenView;
@@ -1906,10 +1918,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0];
-        int y1Position = position1[1];
-        int x2Position = position2[0];
-        int y2Position = position2[1];
+        int x1Position = position1[0]-50;
+        int y1Position = position1[1]-50;
+        int x2Position = position2[0]-50;
+        int y2Position = position2[1]-50;
         cowView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(cowView);
         cowArrayView[0] = cowView;
@@ -1981,10 +1993,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0];
-        int y1Position = position1[1];
-        int x2Position = position2[0];
-        int y2Position = position2[1];
+        int x1Position = position1[0]-50;
+        int y1Position = position1[1]-50;
+        int x2Position = position2[0]-50;
+        int y2Position = position2[1]-50;
         sheepView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(sheepView);
         sheepArrayView[0] = sheepView;
@@ -2057,10 +2069,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0];
-        int y1Position = position1[1];
-        int x2Position = position2[0];
-        int y2Position = position2[1];
+        int x1Position = position1[0]-40;
+        int y1Position = position1[1]-40;
+        int x2Position = position2[0]-40;
+        int y2Position = position2[1]-40;
         dogView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(dogView);
         dogArrayView[0] = dogView;
@@ -2132,10 +2144,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0];
-        int y1Position = position1[1];
-        int x2Position = position2[0];
-        int y2Position = position2[1];
+        int x1Position = position1[0]-35;
+        int y1Position = position1[1]-35;
+        int x2Position = position2[0]-35;
+        int y2Position = position2[1]-35;
         dogView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(dogView);
         dogArrayView[0] = dogView;
@@ -2207,10 +2219,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0];
-        int y1Position = position1[1];
-        int x2Position = position2[0];
-        int y2Position = position2[1];
+        int x1Position = position1[0]-50;
+        int y1Position = position1[1]-50;
+        int x2Position = position2[0]-50;
+        int y2Position = position2[1]-50;
         lionView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(lionView);
         dogArrayView[0] = lionView;
@@ -2282,10 +2294,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0];
-        int y1Position = position1[1];
-        int x2Position = position2[0];
-        int y2Position = position2[1];
+        int x1Position = position1[0]-55;
+        int y1Position = position1[1]-55;
+        int x2Position = position2[0]-55;
+        int y2Position = position2[1]-55;
         bearView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(bearView);
         dogArrayView[0] = bearView;
@@ -2583,7 +2595,6 @@ public class FarmView extends View {
                 PlantGrass(i,j);
             }
         }
-//        PlantGrass(xCell,yCell);
     }
 
     public void AddNumberOfIconsInWarehouse(String iconName) throws MissionNotLoaded {
@@ -2641,15 +2652,16 @@ public class FarmView extends View {
     }
 
     private void InitializeTheCells(){
-        for(int i=0;i<14;i++){
-            for(int j=0;j<14;j++){
-              cells.put(new int[]{i,j},new HashMap<>());
+        for(int i=0;i<15;i++){
+            for(int j=0;j<15;j++){
+              cells.put(new ArrayList<>(Arrays.asList(i,j)),new HashMap<>());
             }
         }
+        System.out.println(cells.keySet());
     }
 
     public void RemoveGrassAndProductFromMap(String nodeName,int xCell,int yCell){
-        HashMap<String,Node> cellNodes=cells.get(new int[]{xCell,yCell});
+        HashMap<String,Node> cellNodes=cells.get(new ArrayList<>(Arrays.asList(xCell,yCell)));
         Node node=cellNodes.get(nodeName);
         rootFarmView.getChildren().removeAll(node);
         cellNodes.remove(nodeName);
@@ -2670,6 +2682,19 @@ public class FarmView extends View {
         }else if (object instanceof Cookie){
             AddCake(xCell,yCell);
         }
+    }
+
+    private void LoadMapIconTharWereBefore() throws MissionNotLoaded {
+        Cell[][] map=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap();
+        for(int xCell=0;xCell<15;xCell++){
+            for(int yCell=0;yCell<15;yCell++){
+                Cell cell=map[xCell][yCell];
+                for(Object object:cell.getCellObjectInMap15_15()){
+                    AddMapObjectIcon(object,xCell,yCell);
+                }
+            }
+        }
+
     }
 
 

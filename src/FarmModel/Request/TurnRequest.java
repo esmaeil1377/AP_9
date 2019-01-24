@@ -13,7 +13,6 @@ import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import FarmModel.User;
 import View.GameView;
@@ -49,8 +48,8 @@ public class TurnRequest extends Request {
             MakeProductDisappearOrDecreaseRemainTurnToDisappear(farm.getCurrentProductInMap());
             MakeAnimalProduce(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeWorkShopProduce(farm.getWorkShops());
-            MakeGrassDisapear(farm.getCurrentGrassInMap());
-            FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
+            MakeGrassDisappear(farm.getCurrentGrassInMap());
+//            FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
             MakeTruckPassTheWayToCityOrGiveObjectToCity();
             MakeHelicopterPassTheWayToCityOrPutThemOnMap();
             MakeCatTakeProductOrPutProductToWareHouseIfItWasNearWareHouse(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -157,8 +156,6 @@ public class TurnRequest extends Request {
         }
     }
 
-
-
     private void MakeProductDisappearOrDecreaseRemainTurnToDisappear(ArrayList<Product> currentProductInMap) throws MissionNotLoaded {
         if(currentProductInMap!=null) {
             for (Product product : currentProductInMap) {
@@ -192,7 +189,9 @@ public class TurnRequest extends Request {
             for (Animals animals : currentAnimalsInMap) {
                 if (animals instanceof AnimalProducer) {
                     if (((AnimalProducer) animals).getRemainTurnToProduce() == 0) {
-                        ((AnimalProducer) animals).Produce();
+                        try {
+                            ((AnimalProducer) animals).Produce();
+                        }catch (Exception e){}
                         ((AnimalProducer) animals).setRemainTurnToProduce(((AnimalProducer) animals).getTurnToProduce());
                     } else {
                         ((AnimalProducer) animals).setRemainTurnToProduce(((AnimalProducer) animals).getRemainTurnToProduce() - 1);
@@ -202,7 +201,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeGrassDisapear(ArrayList<Grass> currentGrassInMap) throws MissionNotLoaded {
+    private void MakeGrassDisappear(ArrayList<Grass> currentGrassInMap) throws MissionNotLoaded {
         if(currentGrassInMap!=null) {
             for (Grass grass : currentGrassInMap) {
                 if (grass.getRemainTurnToDisAppear() == 0) {
@@ -217,16 +216,15 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() throws MissionNotLoaded, WellIsNotEmpty {
-        Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
-        if (well.getRemainTurnToFillTheBucket() == 0 && well.isWellActivatedToFillTheBucket()) {
-            well.FillTheBucket();
-            well.setWellActivatedToFillTheBucket(false);
-        } else if (well.getRemainTurnToFillTheBucket() != 0 && well.isWellActivatedToFillTheBucket()) {
-            well.setRemainTurnToFillTheBucket(well.getRemainTurnToFillTheBucket() - 1);
-        }
-    }
-
+//    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() throws MissionNotLoaded, WellIsNotEmpty {
+//        Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
+//        if (well.getRemainTurnToFillTheBucket() == 0 && well.isWellActivatedToFillTheBucket()) {
+//            well.FillTheBucket();
+//            well.setWellActivatedToFillTheBucket(false);
+//        } else if (well.getRemainTurnToFillTheBucket() != 0 && well.isWellActivatedToFillTheBucket()) {
+//            well.setRemainTurnToFillTheBucket(well.getRemainTurnToFillTheBucket() - 1);
+//        }
+//    }
 
     private void MakeWildAnimalDestroy(ArrayList<Animals> currentAnimlInMap) throws MissionNotLoaded {
         if(currentAnimlInMap!=null) {
@@ -239,7 +237,9 @@ public class TurnRequest extends Request {
                     for (ObjectInMap15_15 objectInMap15_15 : copyOfObjectInCell) {
                         if (!(objectInMap15_15 instanceof Grass) && !(objectInMap15_15 instanceof WildAnimals)) {
                             cell.RemoveCellAMapObject(objectInMap15_15);
-                            GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap(objectInMap15_15.toString(),x,y);
+                            if (!objectInMap15_15.toString().equals("Cat") & !objectInMap15_15.toString().equals("Cow") & !objectInMap15_15.toString().equals("Chicken") & !objectInMap15_15.toString().equals("Sheep")) {
+                                GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap(objectInMap15_15.toString(), x, y);
+                            }
                         }
                     }
                 }

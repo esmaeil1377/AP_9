@@ -5,6 +5,7 @@ import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import View.GameView;
 
 public abstract class AnimalProducer extends Animals {
     //*2 is just for better playing
@@ -58,7 +59,8 @@ public abstract class AnimalProducer extends Animals {
             for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap15_15()) {
                 if (objectInMap15_15 instanceof Grass) {
                     cell.RemoveCellAMapObject(objectInMap15_15);
-                    setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 1);
+                    GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap("Grass",x,y);
+                    setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 3);
                     if (getAnimalAmountOfHunger() == healthyAnimalAmountOfHunger) {
                         setWantToEatGrass(false);
                     }

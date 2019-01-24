@@ -16,6 +16,7 @@ public class Sheep extends AnimalProducer {
         int y = getY();
         GameView.getGameView().getFarmView().AddWool(x,y);
         Farm.getCellByPosition(x,y).AddCellAMapObject(new Wool());
+        setRemainTurnToProduce(getTurnToProduce());
     }
 
 
