@@ -5,9 +5,7 @@ import FarmModel.Farm;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import View.GameView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public abstract class Animals extends ObjectInMap15_15 {
 
@@ -18,45 +16,51 @@ public abstract class Animals extends ObjectInMap15_15 {
         int nextY = 0;
         int nextRandomDirection = getNextRandomDirection(currentX, currentY);
         Farm.getCellByPosition(currentX,currentY).RemoveCellAMapObject(animals);
-        if ((currentX+currentY)%5!=4 | (currentX+currentY)%5!=3) {
-            if (nextRandomDirection == 1) {
-                nextX = currentX + 1;
-                nextY = currentY;
-            } else if (nextRandomDirection == 2) {
-                nextX = currentX + 1;
-                nextY = currentY + 1;
-            } else if (nextRandomDirection == 3) {
-                nextX = currentX;
-                nextY = currentY + 1;
-            } else if (nextRandomDirection == 4) {
-                nextX = currentX - 1;
-                nextY = currentY + 1;
-            } else if (nextRandomDirection == 5) {
-                nextX = currentX - 1;
-                nextY = currentY;
-            } else if (nextRandomDirection == 6) {
-                nextX = currentX - 1;
-                nextY = currentY - 1;
-            } else if (nextRandomDirection == 7) {
-                nextX = currentX;
-                nextY = currentY - 1;
-            } else if (nextRandomDirection == 8) {
-                nextX = currentX + 1;
-                nextY = currentY - 1;
-            }
-        }else{
-            nextX=currentX;
-            nextY=currentY+1;
+        if (nextRandomDirection == 1) {
+            nextX = currentX + 1;
+            nextY = currentY;
+        } else if (nextRandomDirection == 2) {
+            nextX = currentX + 1;
+            nextY = currentY + 1;
+        } else if (nextRandomDirection == 3) {
+            nextX = currentX;
+            nextY = currentY + 1;
+        } else if (nextRandomDirection == 4) {
+            nextX = currentX - 1;
+            nextY = currentY + 1;
+        } else if (nextRandomDirection == 5) {
+            nextX = currentX - 1;
+            nextY = currentY;
+        } else if (nextRandomDirection == 6) {
+            nextX = currentX - 1;
+            nextY = currentY - 1;
+        } else if (nextRandomDirection == 7) {
+            nextX = currentX;
+            nextY = currentY - 1;
+        } else if (nextRandomDirection == 8) {
+            nextX = currentX + 1;
+            nextY = currentY - 1;
         }
+
+
         Farm.getCellByPosition(nextX,nextY).AddCellAMapObject(animals);
         animals.setX(nextX);
         animals.setY(nextY);
         if(animals instanceof Chicken) {
             GameView.getGameView().getFarmView().ShowChickenMoving(currentX,currentY,nextX,nextY);
+            System.out.println("show chicken moving");
         }else if(animals instanceof Cow){
             GameView.getGameView().getFarmView().ShowCowMoving(currentX,currentY,nextX,nextY);
         }else if(animals instanceof Sheep){
             GameView.getGameView().getFarmView().ShowSheepMoving(currentX,currentY,nextX,nextY);
+        }else if (animals instanceof Cat){
+            GameView.getGameView().getFarmView().ShowCatMoving(currentX,currentY,nextX,nextY);
+        }else if (animals instanceof Dog){
+            GameView.getGameView().getFarmView().ShowDogMoving(currentX,currentY,nextX,nextY);
+        }else if(animals instanceof Lion){
+            GameView.getGameView().getFarmView().ShowLionMoving(currentX,currentY,nextX,nextY);
+        }else if (animals instanceof Bear){
+            GameView.getGameView().getFarmView().ShowBearMoving(currentX,currentY,nextX,nextY);
         }
     }
 

@@ -3,6 +3,9 @@ package View;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import static View.View.PlayErrorSound;
+import static View.View.PlayStartingSound;
+
 //import static View.View.getRequest;
 
 public class Main extends Application {
@@ -19,6 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        PlayStartingSound();
         setPrimaryStage(primaryStage);
 
         primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());

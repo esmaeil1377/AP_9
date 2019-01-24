@@ -16,6 +16,7 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import FarmModel.User;
+import View.GameView;
 
 import java.util.ArrayList;
 
@@ -97,6 +98,7 @@ public class TurnRequest extends Request {
                             ((AnimalProducer) animals).EatGrass();
                         } else {
                             cell.RemoveCellAMapObject(animals);
+                            GameView.getGameView().getFarmView().ShowDingAnimal(animals,x,y);
                         }
                     } else if (((AnimalProducer) animals).getAnimalAmountOfHunger() <= ((AnimalProducer) animals).getMinOfHungerToGoToFindTheGrass()) {
                         ((AnimalProducer) animals).setWantToEatGrass(true);
@@ -127,6 +129,7 @@ public class TurnRequest extends Request {
                     int y = animals.getY();
                     Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
                     if (cell.HasWildAnimal()) {
+                        GameView.getGameView().getFarmView().ShowFightBetweenDogAndWildAnimal(x,y);
                         cell.RemoveCellAMapObject(animals);
                         for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap15_15()) {
                             if (objectInMap15_15 instanceof WildAnimals) {

@@ -5,8 +5,7 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.WellIsNotEmpty;
 import FarmModel.*;
 import FarmModel.ObjectInMap15_15.Cage;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
-import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
+import FarmModel.ObjectInMap15_15.LiveAnimals.*;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
@@ -96,7 +95,7 @@ public class FarmView extends View {
                 String speedText = GameView.getGameView().getStartMenuView().getText().getText();
                 int speed = Integer.valueOf(speedText.substring(speedText.length() - 2));
                 if (time == -1) time = now;
-                if (now - time > (2000000000) - (speed * 11181818)) {
+                if (now - time > (2000000000) - (speed * 15881818)) {
                     System.out.print(speed + ":speed");
                     System.out.println(now);
                     time = now;
@@ -543,7 +542,7 @@ public class FarmView extends View {
 
     private void ShowMovingCloud() {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
-        int duration = (int) (((2000000000) - (speed * 11181818)) / 1000000);
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File cloudFile = new File("Data\\Cloud.png");
         Image cloudImage = new Image(cloudFile.toURI().toString());
         ImageView cloudView = new ImageView(cloudImage);
@@ -640,11 +639,9 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
-                try {
-                    AddNumberOfIconsInWarehouse("Lion");
-//                    AddNumberOfIconsInWarehouse("Bear");
-                } catch (MissionNotLoaded missionNotLoaded) {
-                    missionNotLoaded.printStackTrace();
+                for(int i = 0 ;i<15;i++){
+                    AddEgg(i,14);
+                    AddEgg(i,0);
                 }
             }
         });
@@ -653,19 +650,19 @@ public class FarmView extends View {
 
     private void AddBuyItems() {
         Circle chickenCircle = new Circle(1450, 270, 50, Color.rgb(39, 221, 255));
-        chickenCircle.setOpacity(0.6);
+        chickenCircle.setOpacity(0.4);
 
         Circle sheepCircle = new Circle(1450, 390, 50, Color.rgb(39, 221, 255));
-        sheepCircle.setOpacity(0.6);
+        sheepCircle.setOpacity(0.4);
 
-        Circle cowCircle = new Circle(1450, 510, 50, Color.rgb(255, 201, 0));
-        cowCircle.setOpacity(0.6);
+        Circle cowCircle = new Circle(1450, 510, 50, Color.rgb(39, 221, 255));
+        cowCircle.setOpacity(0.4);
 
-        Circle catCircle = new Circle(1450, 630, 50, Color.rgb(255, 201, 0));
-        catCircle.setOpacity(0.6);
+        Circle catCircle = new Circle(1450, 630, 50, Color.rgb(39, 221, 255));
+        catCircle.setOpacity(0.4);
 
-        Circle dogCircle = new Circle(1450, 750, 50, Color.rgb(255, 201, 0));
-        dogCircle.setOpacity(0.6);
+        Circle dogCircle = new Circle(1450, 750, 50, Color.rgb(39, 221, 255));
+        dogCircle.setOpacity(0.4);
 
         File chickenFile = new File("Data\\Textures\\BuyIconNotHead\\Chicken.png");
         Image chickenImage = new Image(chickenFile.toURI().toString());
@@ -676,13 +673,13 @@ public class FarmView extends View {
         chickenView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.95);
+                chickenCircle.setOpacity(0.8);
             }
         });
         chickenView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.6);
+                chickenCircle.setOpacity(0.4);
             }
         });
         chickenView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -693,6 +690,7 @@ public class FarmView extends View {
                     new BuyRequest("buy Chicken");
                     UpdateMoneyText();
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -700,13 +698,13 @@ public class FarmView extends View {
         chickenCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.95);
+                chickenCircle.setOpacity(0.8);
             }
         });
         chickenCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.6);
+                chickenCircle.setOpacity(0.4);
             }
         });
         chickenCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -723,7 +721,7 @@ public class FarmView extends View {
         });
 
 
-        File sheepFile = new File("Data\\Textures\\BuyIconNotHead\\Ship.png");
+        File sheepFile = new File("Data\\Textures\\BuyIconNotHead\\Sheep.png");
         Image sheepImage = new Image(sheepFile.toURI().toString());
         ImageView sheepView = new ImageView(sheepImage);
         sheepView.relocate(1408, 353);
@@ -732,13 +730,13 @@ public class FarmView extends View {
         sheepView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                sheepCircle.setOpacity(0.95);
+                sheepCircle.setOpacity(0.8);
             }
         });
         sheepView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                sheepCircle.setOpacity(0.6);
+                sheepCircle.setOpacity(0.4);
             }
         });
         sheepView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -749,6 +747,7 @@ public class FarmView extends View {
                     new BuyRequest("buy Sheep");
                     UpdateMoneyText();
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -761,7 +760,7 @@ public class FarmView extends View {
         sheepCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                sheepCircle.setOpacity(0.6);
+                sheepCircle.setOpacity(0.4);
             }
         });
         sheepCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -786,13 +785,13 @@ public class FarmView extends View {
         cowView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.95);
+                cowCircle.setOpacity(0.8);
             }
         });
         cowView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.6);
+                cowCircle.setOpacity(0.4);
             }
         });
         cowView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -809,13 +808,13 @@ public class FarmView extends View {
         cowCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.95);
+                cowCircle.setOpacity(0.8);
             }
         });
         cowCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.6);
+                cowCircle.setOpacity(0.4);
             }
         });
         cowCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -839,13 +838,13 @@ public class FarmView extends View {
         catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.95);
+                catCircle.setOpacity(0.8);
             }
         });
         catView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.6);
+                catCircle.setOpacity(0.4);
             }
         });
         catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -862,13 +861,13 @@ public class FarmView extends View {
         catCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.95);
+                catCircle.setOpacity(0.8);
             }
         });
         catCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.6);
+                catCircle.setOpacity(0.4);
             }
         });
         catCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -892,13 +891,13 @@ public class FarmView extends View {
         dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.95);
+                dogCircle.setOpacity(0.8);
             }
         });
         dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.6);
+                dogCircle.setOpacity(0.4);
             }
         });
         dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -915,13 +914,13 @@ public class FarmView extends View {
         dogCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.95);
+                dogCircle.setOpacity(0.8);
             }
         });
         dogCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.6);
+                dogCircle.setOpacity(0.4);
             }
         });
         dogCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1246,7 +1245,7 @@ public class FarmView extends View {
         int turnToMoveObjectToCityAndComeBack=truck.getTurnToMoveObjectToCityAndComeBack();
 
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
-        int duration = (int) (((2000000000) - (speed * 11181818)) / 1000000);
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File truckFile = new File("Data\\Textures\\UI\\Truck\\01_mini.png");
         Image truckImage = new Image(truckFile.toURI().toString());
         ImageView truckView = new ImageView(truckImage);
@@ -1261,23 +1260,7 @@ public class FarmView extends View {
         KeyFrame going = new KeyFrame(Duration.millis(turnToMoveObjectToCityAndComeBack * 1000 * duration), xForGoing);
         Timeline timeLineGoing = new Timeline(going);
         timeLineGoing.getKeyFrames().addAll(going);
-        timeLineGoing.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                truckView.setScaleX(1);
-                KeyValue xForComing = new KeyValue(truckView.xProperty(), 0);
-                KeyFrame coming = new KeyFrame(Duration.millis(turnToMoveObjectToCityAndComeBack * 1000), xForComing);
-                Timeline timeLineComing = new Timeline(coming);
-                timeLineComing.getKeyFrames().addAll(coming);
-                timeLineComing.setOnFinished(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        rootFarmView.getChildren().removeAll(truckView);
-                    }
-                });
-                timeLineComing.play();
-            }
-        });
+        VehicleTimeLine(turnToMoveObjectToCityAndComeBack, truckView, timeLineGoing);
         timeLineGoing.play();
 
 
@@ -1341,6 +1324,19 @@ public class FarmView extends View {
         KeyFrame going = new KeyFrame(Duration.millis(timeToGoToCityAndComeBack * 1000), xForGoing);
         Timeline timeLineGoing = new Timeline(going);
         timeLineGoing.getKeyFrames().addAll(going);
+        VehicleTimeLine(timeToGoToCityAndComeBack, helicopterView, timeLineGoing);
+        timeLineGoing.play();
+
+        helicopterView.setViewport(new Rectangle2D(0, 0, 48, 48));
+
+        Animation animation = new SpriteAnimation(helicopterView, Duration.millis(100), 6, 3, 0, 0, 48, 48);
+        animation.setCycleCount(100000);
+        animation.play();
+
+        rootFarmView.getChildren().addAll(helicopterView);
+    }
+
+    private void VehicleTimeLine(int timeToGoToCityAndComeBack, ImageView helicopterView, Timeline timeLineGoing) {
         timeLineGoing.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -1358,15 +1354,6 @@ public class FarmView extends View {
                 timeLineComing.play();
             }
         });
-        timeLineGoing.play();
-
-        helicopterView.setViewport(new Rectangle2D(0, 0, 48, 48));
-
-        Animation animation = new SpriteAnimation(helicopterView, Duration.millis(100), 6, 3, 0, 0, 48, 48);
-        animation.setCycleCount(100000);
-        animation.play();
-
-        rootFarmView.getChildren().addAll(helicopterView);
     }
 
     private void AddLookingGIf() {
@@ -1381,7 +1368,6 @@ public class FarmView extends View {
     }
 
     private void PlantGrass(int xCell, int yCell) {
-        PlayBubbleSound();
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
         int yPosition = position[1];
@@ -1394,7 +1380,7 @@ public class FarmView extends View {
         spinneryView.setFitWidth(48);
         spinneryView.setViewport(new Rectangle2D(0, 0, 48, 48));
 
-        Animation animation = new SpriteAnimation(spinneryView, Duration.millis(500), 12, 4, 0, 0, 48, 48);
+        Animation animation = new SpriteAnimation(spinneryView, Duration.millis(1000), 12, 4, 0, 0, 48, 48);
         animation.play();
         rootFarmView.getChildren().addAll(spinneryView);
     }
@@ -1762,7 +1748,7 @@ public class FarmView extends View {
     private static int[] getCellPositionByPosition(int x, int y) {
         int[] position = new int[2];
         int standardX = x - 330;
-        int standardY = y - 230;
+        int standardY = y - 190;
         boolean isXSet = false;
         boolean isYSet = false;
         for (int i = 0; i < 14; i++) {
@@ -1770,7 +1756,7 @@ public class FarmView extends View {
                 position[0] = i;
                 isXSet = true;
             }
-            if (i * 27.33333 < standardY && standardY < (i + 1) * 27.33333) {
+            if (i * 25 < standardY && standardY < (i + 1) * 25) {
                 position[1] = i;
                 isYSet = true;
             }
@@ -1784,13 +1770,13 @@ public class FarmView extends View {
     private static int[] getPositionByCellPosition(int xCell, int yCell) {
         int[] position = new int[2];
         position[0] = (int) (320 + (xCell + 0.5) * 43.33333);
-        position[1] = (int) (205 + (yCell + 0.5) * 27.33333);
+        position[1] = (int) (190 + (yCell + 0.5) * 25);
         return position;
     }
 
     public void ShowChickenMoving(int xcell1, int yCell1, int xCell2, int yCell2) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
-        int duration = (int) (((2000000000) - (speed * 11181818)) / 1000000);
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File chickenFile = null;
         Image chickenImage = null;
         ImageView chickenView = null;
@@ -1865,7 +1851,7 @@ public class FarmView extends View {
 
     public void ShowCowMoving(int xCell1, int yCell1, int xCell2, int yCell2) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
-        int duration = (int) (((2000000000) - (speed * 11181818)) / 1000000);
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File cowFile = null;
         Image cowImage = null;
         ImageView cowView = null;
@@ -1940,7 +1926,7 @@ public class FarmView extends View {
 
     public void ShowSheepMoving(int xCell1, int yCell1, int xCell2, int yCell2) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
-        int duration = (int) (((2000000000) - (speed * 11181818)) / 1000000);
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File sheepFile = null;
         Image sheepImage = null;
         ImageView sheepView = null;
@@ -2016,7 +2002,7 @@ public class FarmView extends View {
     public void ShowDogMoving(int xCell1, int yCell1, int xCell2, int yCell2) {
         System.out.println("ShowDogMoving");
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
-        int duration = (int) (((2000000000) - (speed * 11181818)) / 1000000);
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File dogFile = null;
         Image dogImage = null;
         ImageView dogView = null;
@@ -2091,7 +2077,7 @@ public class FarmView extends View {
 
     public void ShowCatMoving(int xCell1, int yCell1, int xCell2, int yCell2) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
-        int duration = (int) (((2000000000) - (speed * 11181818)) / 1000000);
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File dogFile = null;
         Image dogImage = null;
         ImageView dogView = null;
@@ -2162,6 +2148,256 @@ public class FarmView extends View {
         });
         dogAnimation.play();
         dogTimeLine.play();
+    }
+
+    public void ShowLionMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+        File lionFile = null;
+        Image lionImage = null;
+        ImageView lionView = null;
+        Animation lionAnimation = null;
+        final ImageView[] dogArrayView = new ImageView[1];
+
+        if (xCell1 == xCell2) {
+            if (yCell1 > yCell2) {
+                lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\up.png");
+                lionImage = new Image(lionFile.toURI().toString());
+                lionView = new ImageView(lionImage);
+                lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 6, 0, 0, 94, 116);
+                lionView.setViewport(new Rectangle2D(0, 0, 94, 116));
+            } else {
+                lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\down.png");
+                lionImage = new Image(lionFile.toURI().toString());
+                lionView = new ImageView(lionImage);
+                lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 5, 0, 0, 96, 92);
+                lionView.setViewport(new Rectangle2D(0, 0, 96, 92));
+            }
+        } else if (yCell1 == yCell2) {
+            lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\left.png");
+            lionImage = new Image(lionFile.toURI().toString());
+            lionView = new ImageView(lionImage);
+            lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 3, 0, 0, 138, 92);
+            lionView.setViewport(new Rectangle2D(0, 0, 138, 92));
+            if (xCell1 < xCell2) {
+                lionView.setScaleX(-1);
+            }
+        } else if (yCell2 > yCell1) {
+            lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\down_left.png");
+            lionImage = new Image(lionFile.toURI().toString());
+            lionView = new ImageView(lionImage);
+            lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 4, 0, 0, 118, 90);
+            lionView.setViewport(new Rectangle2D(0, 0, 118, 90));
+            if (xCell1 < xCell2) {
+                lionView.setScaleX(-1);
+            }
+        } else if (yCell1 > yCell2) {
+            lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\up_left.png");
+            lionImage = new Image(lionFile.toURI().toString());
+            lionView = new ImageView(lionImage);
+            lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 6, 0, 0, 120, 106);
+            lionView.setViewport(new Rectangle2D(0, 0, 120, 106));
+            if (xCell1 < xCell2) {
+                lionView.setScaleX(-1);
+            }
+        }
+        int[] position1 = getPositionByCellPosition(xCell1, yCell1);
+        int[] position2 = getPositionByCellPosition(xCell2, yCell2);
+        int x1Position = position1[0];
+        int y1Position = position1[1];
+        int x2Position = position2[0];
+        int y2Position = position2[1];
+        lionView.relocate(x1Position, y1Position);
+        rootFarmView.getChildren().addAll(lionView);
+        dogArrayView[0] = lionView;
+
+        KeyValue xLion = new KeyValue(lionView.xProperty(), x2Position - x1Position);
+        KeyValue yLion = new KeyValue(lionView.yProperty(), y2Position - y1Position);
+        KeyFrame xLionFrame = new KeyFrame(Duration.millis(duration), xLion, yLion);
+        Timeline lionTimeLine = new Timeline(xLionFrame);
+        lionTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(dogArrayView[0]);
+            }
+        });
+        lionAnimation.play();
+        lionTimeLine.play();
+    }
+
+    public void ShowBearMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+        File bearFile = null;
+        Image bearImage = null;
+        ImageView bearView = null;
+        Animation bearAnimation = null;
+        final ImageView[] dogArrayView = new ImageView[1];
+
+        if (xCell1 == xCell2) {
+            if (yCell1 > yCell2) {
+                bearFile = new File("Data\\Textures\\Grizzly\\up.png");
+                bearImage = new Image(bearFile.toURI().toString());
+                bearView = new ImageView(bearImage);
+                bearAnimation = new SpriteAnimation(bearView, Duration.millis(duration), 24, 4, 0, 0, 120, 116);
+                bearView.setViewport(new Rectangle2D(0, 0, 120, 116));
+            } else {
+                bearFile = new File("Data\\Textures\\Grizzly\\down.png");
+                bearImage = new Image(bearFile.toURI().toString());
+                bearView = new ImageView(bearImage);
+                bearAnimation = new SpriteAnimation(bearView, Duration.millis(duration), 24, 4, 0, 0, 120, 108);
+                bearView.setViewport(new Rectangle2D(0, 0, 120, 108));
+            }
+        } else if (yCell1 == yCell2) {
+            bearFile = new File("Data\\Textures\\Grizzly\\left.png");
+            bearImage = new Image(bearFile.toURI().toString());
+            bearView = new ImageView(bearImage);
+            bearAnimation = new SpriteAnimation(bearView, Duration.millis(duration), 24, 4, 0, 0, 110, 116);
+            bearView.setViewport(new Rectangle2D(0, 0, 110, 116));
+            if (xCell1 < xCell2) {
+                bearView.setScaleX(-1);
+            }
+        } else if (yCell2 > yCell1) {
+            bearFile = new File("Data\\Textures\\Grizzly\\down_left.png");
+            bearImage = new Image(bearFile.toURI().toString());
+            bearView = new ImageView(bearImage);
+            bearAnimation = new SpriteAnimation(bearView, Duration.millis(duration), 24, 4, 0, 0, 112, 106);
+            bearView.setViewport(new Rectangle2D(0, 0, 112, 106));
+            if (xCell1 < xCell2) {
+                bearView.setScaleX(-1);
+            }
+        } else if (yCell1 > yCell2) {
+            bearFile = new File("Data\\Textures\\Grizzly\\up_left.png");
+            bearImage = new Image(bearFile.toURI().toString());
+            bearView = new ImageView(bearImage);
+            bearAnimation = new SpriteAnimation(bearView, Duration.millis(duration), 24, 4, 0, 0, 112, 120);
+            bearView.setViewport(new Rectangle2D(0, 0, 112, 120));
+            if (xCell1 < xCell2) {
+                bearView.setScaleX(-1);
+            }
+        }
+        int[] position1 = getPositionByCellPosition(xCell1, yCell1);
+        int[] position2 = getPositionByCellPosition(xCell2, yCell2);
+        int x1Position = position1[0];
+        int y1Position = position1[1];
+        int x2Position = position2[0];
+        int y2Position = position2[1];
+        bearView.relocate(x1Position, y1Position);
+        rootFarmView.getChildren().addAll(bearView);
+        dogArrayView[0] = bearView;
+
+        KeyValue xBear = new KeyValue(bearView.xProperty(), x2Position - x1Position);
+        KeyValue yBear = new KeyValue(bearView.yProperty(), y2Position - y1Position);
+        KeyFrame positionBearFrame = new KeyFrame(Duration.millis(duration), xBear, yBear);
+        Timeline bearTimeLine = new Timeline(positionBearFrame);
+        bearTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(dogArrayView[0]);
+            }
+        });
+        bearAnimation.play();
+        bearTimeLine.play();
+    }
+
+    public void ShowFightBetweenDogAndWildAnimal(int xCell,int yCell){
+        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+        File fightFile = new File("Data\\Textures\\Animals\\battle_1.png");
+        Image fightImage = new Image(fightFile.toURI().toString());
+        ImageView fightView = new ImageView(fightImage);
+        int[] position1 = getPositionByCellPosition(xCell, yCell);
+        int xPosition = position1[0];
+        int yPosition = position1[1];
+        fightView.relocate(xPosition-50,yPosition-50);
+        rootFarmView.getChildren().addAll(fightView);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 20, 5, 0, 0, 250, 250);
+        fightView.setViewport(new Rectangle2D(0, 0, 250, 250));
+        fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(fightView);
+            }
+        });
+        fightAnimation.setCycleCount(3);
+        fightAnimation.play();
+    }
+
+    private void ShowDingChicken(int xCell,int yCell ){
+        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+        File fightFile = new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\death.png");
+        Image fightImage = new Image(fightFile.toURI().toString());
+        ImageView fightView = new ImageView(fightImage);
+        int[] position1 = getPositionByCellPosition(xCell, yCell);
+        int xPosition = position1[0];
+        int yPosition = position1[1];
+        fightView.relocate(xPosition,yPosition);
+        rootFarmView.getChildren().addAll(fightView);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 24, 5, 0, 0, 78, 70);
+        fightView.setViewport(new Rectangle2D(0, 0, 78, 70));
+        fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(fightView);
+            }
+        });
+        fightAnimation.play();
+    }
+
+    private void ShowDingSheep(int xCell,int yCell){
+        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+        File fightFile = new File("Data\\Textures\\Sheep\\death.png");
+        Image fightImage = new Image(fightFile.toURI().toString());
+        ImageView fightView = new ImageView(fightImage);
+        int[] position1 = getPositionByCellPosition(xCell, yCell);
+        int xPosition = position1[0];
+        int yPosition = position1[1];
+        fightView.relocate(xPosition,yPosition);
+        rootFarmView.getChildren().addAll(fightView);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 24, 4, 0, 0, 122, 88);
+        fightView.setViewport(new Rectangle2D(0, 0, 122, 88));
+        fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(fightView);
+            }
+        });
+        fightAnimation.play();
+    }
+
+    private void ShowDingCow(int xCell,int yCell){
+        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+        File fightFile = new File("Data\\Textures\\Cow\\death.png");
+        Image fightImage = new Image(fightFile.toURI().toString());
+        ImageView fightView = new ImageView(fightImage);
+        int[] position1 = getPositionByCellPosition(xCell, yCell);
+        int xPosition = position1[0];
+        int yPosition = position1[1];
+        fightView.relocate(xPosition,yPosition);
+        rootFarmView.getChildren().addAll(fightView);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 24, 3, 0, 0, 156, 112);
+        fightView.setViewport(new Rectangle2D(0, 0, 156, 112));
+        fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                rootFarmView.getChildren().removeAll(fightView);
+            }
+        });
+        fightAnimation.play();
+    }
+
+    public void ShowDingAnimal(Animals animals,int xCell, int yCell){
+        if (animals instanceof Chicken){
+            ShowDingChicken(xCell,yCell);
+        }else if (animals instanceof Cow){
+            ShowDingCow(xCell,yCell);
+        }else if (animals instanceof Sheep){
+            ShowDingSheep(xCell,yCell);
+        }
+
     }
 
     private void AddSpeedCircleToSettingInFarm(Stage primaryStage) {
@@ -2332,6 +2568,7 @@ public class FarmView extends View {
     }
 
     private void AddGrassByOneClick(int xCell,int yCell){
+        PlayBubbleSound();
         int startX= Collections.max(new ArrayList<>(Arrays.asList(xCell-1,0)));
         int startY=Collections.max(new ArrayList<>(Arrays.asList(yCell-1,0)));
         int endX= Collections.min(new ArrayList<>(Arrays.asList(xCell+1,15)));
@@ -2342,6 +2579,7 @@ public class FarmView extends View {
                 PlantGrass(i,j);
             }
         }
+//        PlantGrass(xCell,yCell);
     }
 
     private void AddNumberOfIconsInWarehouse(String iconName) throws MissionNotLoaded {
