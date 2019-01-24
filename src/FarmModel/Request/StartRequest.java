@@ -20,7 +20,7 @@ public class StartRequest extends Request {
         AnalyzeRequestLine(requestLine);
         WorkShop workShop = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop(getWorkShopName());
         setWorkShop(workShop);
-        workShop.setWorkShopActivatedToMakeProduct(true);
+//        workShop.setWorkShopActivatedToMakeProduct(true);
     }
 
     public String getWorkShopName() {
