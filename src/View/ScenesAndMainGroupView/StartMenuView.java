@@ -29,6 +29,7 @@ import javafx.util.Duration;
 import java.io.File;
 
 import static View.View.PlayBubbleSound;
+import static View.View.PlayErrorSound;
 
 public class StartMenuView {
     private int gameSpeed = 10;
@@ -104,9 +105,9 @@ public class StartMenuView {
         playClickView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                PlayBubbleSound();
                 if (!enterYourUser.getText().equals("")) {
                     try {
+                        PlayBubbleSound();
                         Game.getGameInstance().NewUserStringWantToStartTheGame(enterYourUser.getText());
                     } catch (UnknownObjectException e) {
                         e.printStackTrace();
@@ -118,9 +119,10 @@ public class StartMenuView {
                     primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
                     primaryStage.setFullScreen(true);
                 } else {
+                    PlayErrorSound();
                     KeyValue circleSunError = new KeyValue(circleSun.fillProperty(), Color.rgb(100, 0, 0));
-                    KeyFrame circleSunFram = new KeyFrame(Duration.millis(500), circleSunError);
-                    Timeline circleSunTimeline = new Timeline(circleSunFram);
+                    KeyFrame circleSunFarm = new KeyFrame(Duration.millis(500), circleSunError);
+                    Timeline circleSunTimeline = new Timeline(circleSunFarm);
                     circleSunTimeline.setAutoReverse(true);
                     circleSunTimeline.play();
                 }

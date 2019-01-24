@@ -5,9 +5,7 @@ import FarmModel.Farm;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import View.GameView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public abstract class Animals extends ObjectInMap15_15 {
 
@@ -43,15 +41,26 @@ public abstract class Animals extends ObjectInMap15_15 {
             nextX = currentX + 1;
             nextY = currentY - 1;
         }
+
+
         Farm.getCellByPosition(nextX,nextY).AddCellAMapObject(animals);
         animals.setX(nextX);
         animals.setY(nextY);
         if(animals instanceof Chicken) {
             GameView.getGameView().getFarmView().ShowChickenMoving(currentX,currentY,nextX,nextY);
+            System.out.println("show chicken moving");
         }else if(animals instanceof Cow){
             GameView.getGameView().getFarmView().ShowCowMoving(currentX,currentY,nextX,nextY);
         }else if(animals instanceof Sheep){
             GameView.getGameView().getFarmView().ShowSheepMoving(currentX,currentY,nextX,nextY);
+        }else if (animals instanceof Cat){
+            GameView.getGameView().getFarmView().ShowCatMoving(currentX,currentY,nextX,nextY);
+        }else if (animals instanceof Dog){
+            GameView.getGameView().getFarmView().ShowDogMoving(currentX,currentY,nextX,nextY);
+        }else if(animals instanceof Lion){
+            GameView.getGameView().getFarmView().ShowLionMoving(currentX,currentY,nextX,nextY);
+        }else if (animals instanceof Bear){
+            GameView.getGameView().getFarmView().ShowBearMoving(currentX,currentY,nextX,nextY);
         }
     }
 
@@ -61,15 +70,15 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 4 || nextDir == 5 || nextDir == 6 || nextDir == 7 || nextDir == 8) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 0 && currentY == 29) {
+        } else if (currentX == 0 && currentY == 14) {
             while (nextDir == 2 || nextDir == 3 || nextDir == 4 || nextDir == 5 || nextDir == 6) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 29 && currentY == 0) {
+        } else if (currentX == 14 && currentY == 0) {
             while (nextDir == 6 || nextDir == 7 || nextDir == 8 || nextDir == 1 || nextDir == 2) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 29 && currentY == 29) {
+        } else if (currentX == 14 && currentY == 14) {
             while (nextDir == 8 || nextDir == 1 || nextDir == 2 || nextDir == 3 || nextDir == 4) {
                 nextDir = getNumberBetween0_9();
             }
@@ -77,7 +86,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 4 || nextDir == 5 || nextDir == 6) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentX == 29) {
+        } else if (currentX == 14) {
             while (nextDir == 8 || nextDir == 1 || nextDir == 2) {
                 nextDir = getNumberBetween0_9();
             }
@@ -85,7 +94,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             while (nextDir == 6 || nextDir == 7 || nextDir == 8) {
                 nextDir = getNumberBetween0_9();
             }
-        } else if (currentY == 29) {
+        } else if (currentY == 14) {
             while (nextDir == 2 || nextDir == 3 || nextDir == 4) {
                 nextDir = getNumberBetween0_9();
             }
@@ -289,5 +298,4 @@ public abstract class Animals extends ObjectInMap15_15 {
         }
         return next;
     }
-
 }

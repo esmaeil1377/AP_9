@@ -2,7 +2,7 @@ package FarmModel.Request;
 
 import FarmController.Exceptions.FullWareHouse;
 import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.NotEmptyWell;
+import FarmController.Exceptions.WellIsNotEmpty;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Farm;
@@ -16,13 +16,14 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 import FarmModel.User;
+import View.GameView;
 
 import java.util.ArrayList;
 
 public class TurnRequest extends Request {
     private int n;
 
-    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, NotEmptyWell {
+    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, WellIsNotEmpty {
         AnalyzeRequestLine(requestLine);
         DoWorkByPassingTime(getN());
     }
@@ -39,7 +40,7 @@ public class TurnRequest extends Request {
         setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
-    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, NotEmptyWell {
+    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, WellIsNotEmpty {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -97,6 +98,7 @@ public class TurnRequest extends Request {
                             ((AnimalProducer) animals).EatGrass();
                         } else {
                             cell.RemoveCellAMapObject(animals);
+                            GameView.getGameView().getFarmView().ShowDingAnimal(animals,x,y);
                         }
                     } else if (((AnimalProducer) animals).getAnimalAmountOfHunger() <= ((AnimalProducer) animals).getMinOfHungerToGoToFindTheGrass()) {
                         ((AnimalProducer) animals).setWantToEatGrass(true);
@@ -127,6 +129,7 @@ public class TurnRequest extends Request {
                     int y = animals.getY();
                     Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[x][y];
                     if (cell.HasWildAnimal()) {
+                        GameView.getGameView().getFarmView().ShowFightBetweenDogAndWildAnimal(x,y);
                         cell.RemoveCellAMapObject(animals);
                         for (ObjectInMap15_15 objectInMap15_15 : cell.getCellObjectInMap15_15()) {
                             if (objectInMap15_15 instanceof WildAnimals) {
@@ -144,7 +147,7 @@ public class TurnRequest extends Request {
         if(currentAnimalInMap!=null) {
             for (Animals animals : currentAnimalInMap) {
                 if (animals instanceof Cat) {
-                    if (animals.getX() == 15 && animals.getY() == 0 && ((Cat) animals).getProduct() != null) {
+                    if (animals.getX() == 7 && animals.getY() == 0 && ((Cat) animals).getProduct() != null) {
                         ((Cat) animals).PutProductInStore();
                     } else {
                         ((Cat) animals).TakeProduct();
@@ -163,6 +166,7 @@ public class TurnRequest extends Request {
                     int x = product.getX();
                     int y = product.getY();
                     Farm.getCellByPosition(x, y).RemoveCellAMapObject(product);
+                    GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap(product.toString(),x,y);
                 } else {
                     product.setRemainTurnToDisapear(product.getRemainTurnToDisapear() - 1);
                 }
@@ -205,6 +209,7 @@ public class TurnRequest extends Request {
                     int x = grass.getX();
                     int y = grass.getY();
                     Farm.getCellByPosition(x, y).RemoveCellAMapObject(grass);
+                    GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap("Grass",x,y);
                 } else {
                     grass.setRemainTurnToDisAppear(grass.getRemainTurnToDisAppear() - 1);
                 }
@@ -212,7 +217,7 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() throws MissionNotLoaded, NotEmptyWell {
+    private void FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket() throws MissionNotLoaded, WellIsNotEmpty {
         Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
         if (well.getRemainTurnToFillTheBucket() == 0 && well.isWellActivatedToFillTheBucket()) {
             well.FillTheBucket();
@@ -234,6 +239,7 @@ public class TurnRequest extends Request {
                     for (ObjectInMap15_15 objectInMap15_15 : copyOfObjectInCell) {
                         if (!(objectInMap15_15 instanceof Grass) && !(objectInMap15_15 instanceof WildAnimals)) {
                             cell.RemoveCellAMapObject(objectInMap15_15);
+                            GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap(objectInMap15_15.toString(),x,y);
                         }
                     }
                 }

@@ -52,18 +52,7 @@ public class GameShopView extends View {
         AddShopText();
         AddStarAndMoneyText();
         AddOkText(primaryStage);
-//        AddEggPowerPlantLevel(3);
-//        AddCookieBakeryLevel(3);
-//        AddSpinneryLevel(3);
-//        AddCakeBakeryLevel(3);
-//        AddSewingFactoryLevel(3);
-//        AddCatLevel(3);
-//        AddTruckLevel(4);
-//        AddWellLevel(3);
-//        AddWareHouseLevel(3);
-//        AddHelicopterLevel(3);
-//        AddDogLevel(3);
-  //      AddWeavingFactoryLevel(3);
+
     }
 
     private void AddIcons(Stage primaryStage) {

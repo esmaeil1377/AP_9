@@ -6,6 +6,7 @@ import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.User;
+import View.GameView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,13 +41,14 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
         return capacityOfWareHouse;
     }
 
-    public void AddWholeObjectToStore(Object object) throws FullWareHouse {
+    public void AddWholeObjectToStore(Object object) throws FullWareHouse, MissionNotLoaded {
         int spaceNeededForObjectInWareHouse = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame().getSpaceNeededInWareHouse(object);
         // to improve this we should change Information class to methods to code clearer.
         if (getRemainCapacityOfWareHouse() >= spaceNeededForObjectInWareHouse) {
             wareHouseList.add(object);
             RecordThisTransActionThatWholeObjectAddedToWareHouse(object);
             setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse() - spaceNeededForObjectInWareHouse);
+            GameView.getGameView().getFarmView().AddNumberOfIconsInWarehouse(object.toString());
         }else {
             throw new FullWareHouse();
         }

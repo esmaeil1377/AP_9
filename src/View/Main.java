@@ -1,13 +1,10 @@
 package View;
 
-import FarmController.Exceptions.FullWareHouse;
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.NotEmptyWell;
-import FarmController.Exceptions.UnknownObjectException;
-import FarmModel.Request.TurnRequest;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import static View.View.PlayErrorSound;
+import static View.View.PlayStartingSound;
 
 //import static View.View.getRequest;
 
@@ -25,6 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        PlayStartingSound();
         setPrimaryStage(primaryStage);
 
         primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
