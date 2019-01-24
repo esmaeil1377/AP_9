@@ -139,7 +139,7 @@ public abstract class Animals extends ObjectInMap15_15 {
             if (PointOfNearestDestination.get(0) == -100) {
                 //i call this method because it animal producer has to walk faster than normal state.
                 WalkRandomlyForOneTurn(animal);
-                WalkRandomlyForOneTurn(animal);
+//                WalkRandomlyForOneTurn(animal);
                 return;
             }
         } else if (animal instanceof Dog) {
@@ -180,6 +180,12 @@ public abstract class Animals extends ObjectInMap15_15 {
         }
         else if(animal instanceof Dog){
             GameView.getGameView().getFarmView().ShowDogMoving(currentX,currentY,nextX,nextY);
+        }else if (animal instanceof Chicken){
+            GameView.getGameView().getFarmView().ShowChickenMoving(currentX,currentY,nextX,nextY);
+        }else if (animal instanceof Sheep){
+            GameView.getGameView().getFarmView().ShowSheepMoving(currentX,currentY,nextX,nextY);
+        }else if (animal instanceof Cow){
+            GameView.getGameView().getFarmView().ShowCowMoving(currentX,currentY,nextX,nextY);
         }
     }
 

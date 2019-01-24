@@ -21,6 +21,8 @@ public class Chicken extends AnimalProducer {
         int y = getY();
         GameView.getGameView().getFarmView().AddEgg(x,y);
         Farm.getCellByPosition(x,y).AddCellAMapObject(new Egg());
+        setRemainTurnToProduce(getTurnToProduce());
+        System.out.println("one egg added");
     }
 
     public boolean IsHungry() {

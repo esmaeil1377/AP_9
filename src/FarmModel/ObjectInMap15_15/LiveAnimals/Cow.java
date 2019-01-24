@@ -16,6 +16,7 @@ public class Cow extends AnimalProducer {
         int y = getY();
         GameView.getGameView().getFarmView().AddMilk(x,y);
         Farm.getCellByPosition(x,y).AddCellAMapObject(new Milk());
+        setRemainTurnToProduce(getTurnToProduce());
     }
 
     @Override

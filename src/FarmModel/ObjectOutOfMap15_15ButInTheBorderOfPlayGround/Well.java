@@ -10,8 +10,8 @@ import FarmModel.User;
 public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implements Upgradeable {
     private int Level = 0;
     private int WaterOfTheBucket = 0;
-    private int turnToFillTheBucket;
-    private int remainTurnToFillTheBucket;
+//    private int turnToFillTheBucket;
+//    private int remainTurnToFillTheBucket;
     private boolean isWellActivatedToFillTheBucket = false;
 
     public void setWellActivatedToFillTheBucket(boolean wellActivatedToFillTheBucket) {
@@ -22,21 +22,21 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
         return isWellActivatedToFillTheBucket;
     }
 
-    public void setRemainTurnToFillTheBucket(int remainTurnToFillTheBucket) {
-        this.remainTurnToFillTheBucket = remainTurnToFillTheBucket;
-    }
+//    public void setRemainTurnToFillTheBucket(int remainTurnToFillTheBucket) {
+//        this.remainTurnToFillTheBucket = remainTurnToFillTheBucket;
+//    }
 
-    public int getRemainTurnToFillTheBucket() {
-        return remainTurnToFillTheBucket;
-    }
-
-    public void setTurnToFillTheBucket(int turnToFillTheBucket) {
-        this.turnToFillTheBucket = turnToFillTheBucket;
-    }
-
-    public int getTurnToFillTheBucket() {
-        return turnToFillTheBucket;
-    }
+//    public int getRemainTurnToFillTheBucket() {
+//        return remainTurnToFillTheBucket;
+//    }
+//
+//    public void setTurnToFillTheBucket(int turnToFillTheBucket) {
+//        this.turnToFillTheBucket = turnToFillTheBucket;
+//    }
+//
+//    public int getTurnToFillTheBucket() {
+//        return turnToFillTheBucket;
+//    }
 
     public int getLevel() {
         return Level;
@@ -87,7 +87,11 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
             currentMission.setMissionMoney(currentMission.getMissionMoney() - priceToFillTheBucket);
         }
         else{
-            throw new WellIsNotEmpty();
+            try {
+                throw new WellIsNotEmpty();
+            }catch (WellIsNotEmpty e){
+                e.printStackTrace();
+            }
         }
     }
 
