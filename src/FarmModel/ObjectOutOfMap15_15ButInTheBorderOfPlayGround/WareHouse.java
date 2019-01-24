@@ -3,6 +3,8 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
 import FarmController.Exceptions.*;
 import FarmController.Interfaces.Upgradeable;
 import FarmModel.Game;
+import FarmModel.InformationNeededInGame;
+import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.User;
 
 import java.util.ArrayList;
@@ -52,6 +54,30 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
 
     public HashMap<Class, Integer> getRecordNoteBookThatRecordEveryThingAndNumbers() {
         return recordNoteBookThatRecordEveryThingAndNumbers;
+    }
+
+    private int GetNumberOfObjectInWareHouse(Object object) throws MissionNotLoaded {
+        int result=0;
+        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+        WareHouse wareHouse=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
+        for(Object object1:wareHouseList){
+            if(object.toString().equals(object1.toString())){
+                result++;
+            }
+        }
+        return result*informationNeededInGame.getSpaceNeededInWareHouse(object);
+
+    }
+
+    public HashMap<Object,Integer> getTypeAndNumberOfProductInWAreHouse() throws MissionNotLoaded {
+        WareHouse wareHouse=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
+        HashMap<Object,Integer> result=new HashMap<>();
+        for(Object object:wareHouseList){
+            if(!result.containsKey(object)){
+                result.put(object,GetNumberOfObjectInWareHouse(object));
+            }
+        }
+        return result;
     }
 
 
