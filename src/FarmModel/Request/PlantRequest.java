@@ -22,11 +22,11 @@ public class PlantRequest extends Request {
             if (getX() < 30 && getX() >= 0 && getY() < 30 && getY() >= 0) {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
-                        if (x + i >= 0 && x + i < 30 && y + j >= 0 && y + j < 30) {
-                            Cell cell = Farm.getCellByPosition(y + j, x + i);
+                        if (x + i >= 0 && x + i < 15 && y + j >= 0 && y + j < 15) {
+                            Cell cell = Farm.getCellByPosition(x+i, y+j);
                             Grass grass=new Grass();
-                            grass.setX(y+j);
-                            grass.setY(x+i);
+                            grass.setX(x+i);
+                            grass.setY(y+j);
                             cell.AddCellAMapObject(grass);
                         }
                     }
@@ -35,7 +35,7 @@ public class PlantRequest extends Request {
                 System.out.println("Wrong Input");
             }
         } else {
-            throw new BucketIsEmptyException();
+                throw new BucketIsEmptyException();
         }
     }
 

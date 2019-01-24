@@ -2,6 +2,7 @@ package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.ObjectNotFoundInWareHouse;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Cell;
 import FarmModel.Game;
@@ -29,12 +30,12 @@ public class EggPowderPlant extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[ i][15];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[ 14][14-i];
             cell.AddCellAMapObject(getResultProduct());
-            GameView.getGameView().getFarmView().AddEggPowder(i,15);
+            GameView.getGameView().getFarmView().AddEggPowder(14,14-i);
         }
     }
-    public void getProductFromWareHouse() {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
         int countOfEgg = 0;
         WareHouse wareHouse = new WareHouse();
         Egg egg = new Egg();
@@ -42,16 +43,26 @@ public class EggPowderPlant extends WorkShop {
             if (object.toString().equals(egg.toString()))
                 countOfEgg++;
         }
-        if (getMaxNumberOfGettingInput() <= countOfEgg)
+        if (countOfEgg==0){
+            throw new ObjectNotFoundInWareHouse();
+        }
+        if (getMaxNumberOfGettingInput() <= countOfEgg) {
             setCurrentNumberOfProducingProduct(getMaxNumberOfGettingInput());
-        else
+        }
+        else {
             setCurrentNumberOfProducingProduct(countOfEgg);
+        }
         for(int i = 0 ; i <getCurrentNumberOfProducingProduct();i++)
             wareHouse.RemovePieceOfObjectFromWareHouse(egg);
     }
 
     public String getWorkShopName() {
         return workShopName;
+    }
+    @Override
+    public void ActiveWorkShop() throws MissionNotLoaded, ObjectNotFoundInWareHouse {
+        getProductFromWareHouse();
+        MakeAProductAndPutItInMap();
     }
 
     @Override

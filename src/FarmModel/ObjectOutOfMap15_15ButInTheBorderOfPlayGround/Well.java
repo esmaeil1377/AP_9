@@ -54,10 +54,6 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
         WaterOfTheBucket = waterOfTheBucket;
     }
 
-    public void FillTheBucket(int waterOfTheBucket) {
-        WaterOfTheBucket = waterOfTheBucket;
-    }
-
     public void Upgrade() throws MaxLevelExceeded, NotEnoughMoney, UnknownObjectException, MissionNotLoaded {
         User user=Game.getGameInstance().getCurrentUserAccount();
         Mission currentMission = user.getCurrentPlayingMission();
@@ -87,11 +83,7 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
             currentMission.setMissionMoney(currentMission.getMissionMoney() - priceToFillTheBucket);
         }
         else{
-            try {
-                throw new WellIsNotEmpty();
-            }catch (WellIsNotEmpty e){
-                e.printStackTrace();
-            }
+            throw new WellIsNotEmpty();
         }
     }
 
