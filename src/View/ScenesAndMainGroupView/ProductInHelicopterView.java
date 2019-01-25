@@ -26,6 +26,15 @@ import java.io.File;
 public class ProductInHelicopterView extends View {
     private Group rootProductHelicopterView = new Group();
     private Scene sceneProductHelicopterView = new Scene(rootProductHelicopterView, 1600, 900);
+    private Label labelButtonCake = new Label("0");
+    private Label labelButtonCookie = new Label("0");
+    private Label labelButton1Flour = new Label("0");
+    private Label labelButtonPowder = new Label("0");
+    private Label labelButtonCarnivalDress = new Label("0");
+    private Label labelButtonDecoration = new Label("0");
+    private Label labelButtonFabric = new Label("0");
+    private Label labelButtonSewing = new Label("0");
+
 
     public Scene getSceneProductHelicopterView() {
         return sceneProductHelicopterView;
@@ -310,15 +319,21 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        labelButtonCake.relocate(455, 130 + 5);
+        labelButtonCake.setTextFill(Color.BLACK);
+        labelButtonCake.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonCake.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -340,14 +355,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButtonCake.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonCake.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButtonCake.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -356,7 +377,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButtonCake.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -365,12 +386,12 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonCake, labelOfPrice);
 
     }
 
     private void AddItemToBuyCookie() throws UnknownObjectException {
-        int shift = 50 ;
+        int shift = 50;
         File fileIcon = new File("Data\\Textures\\Products\\Cake.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -399,15 +420,20 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130 + shift);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5 + shift);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+        labelButtonCookie.relocate(455, 130 + 5 + shift);
+        labelButtonCookie.setTextFill(Color.BLACK);
+        labelButtonCookie.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonCookie.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -429,14 +455,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButtonCookie.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonCookie.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButtonCookie.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -445,7 +477,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButtonCookie.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -454,11 +486,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonCookie, labelOfPrice);
     }
 
     private void AddItemToBuyFlour() throws UnknownObjectException {
-        int shift = 100 ;
+        int shift = 100;
         File fileIcon = new File("Data\\Textures\\Products\\Flour.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -487,15 +519,20 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130 + shift);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5 + shift);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+        labelButton1Flour.relocate(455, 130 + 5 + shift);
+        labelButton1Flour.setTextFill(Color.BLACK);
+        labelButton1Flour.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButton1Flour.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -517,14 +554,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButton1Flour.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButton1Flour.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButton1Flour.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -533,7 +576,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButton1Flour.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -542,11 +585,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1Flour, labelOfPrice);
     }
 
     private void AddItemToBuyPowder() throws UnknownObjectException {
-        int shift = 150 ;
+        int shift = 150;
         File fileIcon = new File("Data\\Textures\\Products\\EggPowder.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -575,15 +618,20 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130 + shift);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5 + shift);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+        labelButtonPowder.relocate(455, 130 + 5 + shift);
+        labelButtonPowder.setTextFill(Color.BLACK);
+        labelButtonPowder.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonPowder.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -605,14 +653,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButtonPowder.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonPowder.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButtonPowder.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -621,7 +675,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButtonPowder.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -630,11 +684,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonPowder, labelOfPrice);
     }
 
     private void AddItemToBuyCarnivalDress() throws UnknownObjectException {
-        int shift = 200 ;
+        int shift = 200;
         File fileIcon = new File("Data\\Textures\\Products\\CarnivalDress.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -663,15 +717,20 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130 + shift);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5 + shift);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+        labelButtonCarnivalDress.relocate(455, 130 + 5 + shift);
+        labelButtonCarnivalDress.setTextFill(Color.BLACK);
+        labelButtonCarnivalDress.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonCarnivalDress.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -693,14 +752,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButtonCarnivalDress.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonCarnivalDress.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButtonCarnivalDress.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -709,7 +774,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButtonCarnivalDress.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -718,11 +783,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonCarnivalDress, labelOfPrice);
     }
 
     private void AddItemToBuyDecoration() throws UnknownObjectException {
-        int shift = 250 ;
+        int shift = 250;
         File fileIcon = new File("Data\\Textures\\Products\\Decoration.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -751,15 +816,20 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130 + shift);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5 + shift);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+        labelButtonDecoration.relocate(455, 130 + 5 + shift);
+        labelButtonDecoration.setTextFill(Color.BLACK);
+        labelButtonDecoration.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonDecoration.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -781,14 +851,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButtonDecoration.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonDecoration.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButtonDecoration.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -797,7 +873,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButtonDecoration.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -806,11 +882,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonDecoration, labelOfPrice);
     }
 
     private void AddItemToBuyFabric() throws UnknownObjectException {
-        int shift = 300 ;
+        int shift = 300;
         File fileIcon = new File("Data\\Textures\\Products\\Fabric.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -839,15 +915,20 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130 + shift);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5 + shift);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+        labelButtonFabric.relocate(455, 130 + 5 + shift);
+        labelButtonFabric.setTextFill(Color.BLACK);
+        labelButtonFabric.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonFabric.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -869,14 +950,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButtonFabric.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonFabric.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButtonFabric.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -885,7 +972,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButtonFabric.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -894,11 +981,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonFabric, labelOfPrice);
     }
 
     private void AddItemToBuySewing() throws UnknownObjectException {
-        int shift = 350 ;
+        int shift = 350;
         File fileIcon = new File("Data\\Textures\\Products\\Sewing.png");
         Image imageIcon = new Image(fileIcon.toURI().toString());
         ImageView imageViewIcon = new ImageView(imageIcon);
@@ -927,15 +1014,21 @@ public class ProductInHelicopterView extends View {
         imageViewButton1.setFitWidth(35);
         imageViewButton1.relocate(445, 130 + shift);
 
-        Label labelButton1 = new Label("1");
-        labelButton1.relocate(455, 130 + 5 + shift);
-        labelButton1.setTextFill(Color.BLACK);
-        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+        labelButtonSewing.relocate(455, 130 + 5 + shift);
+        labelButtonSewing.setTextFill(Color.BLACK);
+        labelButtonSewing.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonSewing.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
@@ -957,14 +1050,20 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        labelButtonSewing.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String nowString = labelButtonSewing.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < 9) {
+                    labelButtonCake.setText(String.valueOf(nowInt + 1));
+                } else if (nowInt == 9) {
+                    labelButtonCake.setText("0");
+                }
             }
         });
 
-        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        labelButtonSewing.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35 + 5);
@@ -973,7 +1072,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+        labelButtonSewing.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 imageViewButton1.setFitHeight(35);
@@ -982,7 +1081,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonSewing, labelOfPrice);
     }
 
 }
