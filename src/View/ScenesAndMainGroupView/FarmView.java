@@ -29,10 +29,13 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -116,7 +119,9 @@ public class FarmView extends View {
                 if (now - time > (2000000000) - (speed * 15881818)) {
                     System.out.print(speed + ":speed");
                     System.out.println(now);
+
                     time = now;
+                    missionTime();
                     try {
                         new TurnRequest("turn 1");
                         UpdateMoneyText();
@@ -128,11 +133,9 @@ public class FarmView extends View {
             }
         };
         animationTimer.start();
-
         AddBackGround(primaryStage);
 
         ShowMovingCloud();
-
         AddMovingWell(farm.getWell().getLevel());
 
         AddMovingWareHouse(farm.getWareHouse().getLevel());
@@ -156,11 +159,11 @@ public class FarmView extends View {
 //        AddThreePavementForWorkshop();
 
         AddMenuClick(primaryStage);
-
-
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
         primaryStage.show();
+
+
     }
 
 
@@ -974,6 +977,7 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(chickenCircle, sheepCircle, cowCircle, catCircle, dogCircle, chickenView, sheepView, cowView, catView, dogView);
     }
 
+
     private void AddSpinnery(int level) {
         File spinneryFile = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\0" + String.valueOf(level + 1) + ".png");
         Image spinneryImage = new Image(spinneryFile.toURI().toString());
@@ -1546,6 +1550,22 @@ public class FarmView extends View {
         cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Egg", eggView);
     }
 
+    private void PickUpProductFromMap(int xCell, int yCell, ImageView eggView) {
+        eggView.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
+                    rootFarmView.getChildren().removeAll(eggView);
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
+                }
+            }
+        });
+    }
+
     public void AddMilk(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -1589,7 +1609,6 @@ public class FarmView extends View {
         });
         cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Milk", milkView);
     }
-
     public void AddWool(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -1775,7 +1794,6 @@ public class FarmView extends View {
         PickUpImageViews(xCell, yCell, fabricView);
         cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Fabric", fabricView);
     }
-
     public void AddFlouryCake(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -2913,29 +2931,19 @@ public class FarmView extends View {
 
     }
 
-    public void AddMapObjectIcon(Object object, int xCell, int yCell) {
-        if (object.toString().equals("FlouryCake")) {
-            AddFlouryCake(xCell, yCell);
-        } else if (object.toString().equals("CarnivalDress")) {
-            AddCarnivalDress(xCell, yCell);
-        } else if (object.toString().equals("Fabric")) {
-            AddFabric(xCell, yCell);
-        } else if (object.toString().equals("Flour")) {
-            AddFlour(xCell, yCell);
-        } else if (object.toString().equals("Cake")) {
-            AddCake(xCell, yCell);
-        } else if (object.toString().equals("Powder")) {
-            AddEggPowder(xCell, yCell);
-        } else if (object.toString().equals("Egg")) {
-            AddEggPowder(xCell, yCell);
-        } else if (object.toString().equals("Wool")) {
-            AddWool(xCell, yCell);
-        } else if (object.toString().equals("Milk")) {
-            AddMilk(xCell, yCell);
-        } else if (object.toString().equals("Grass")) {
-            PlantGrass(xCell, yCell);
-        } else if (object.toString().equals("CageLion")) {
-            ShowCageWhenIsUsingForWildAnimal("Lion", xCell, yCell);
+    public void AddMapObjectIcon(Object object,int xCell,int yCell){
+        if (object instanceof Cake){
+            AddFlouryCake(xCell,yCell);
+        }
+        else if (object instanceof CarnivalDress) {
+            AddCarnivalDress(xCell,yCell);
+        }else if (object instanceof Fabric){
+            AddFabric(xCell,yCell);
+        }
+        else if (object instanceof Flour){
+            AddFlour(xCell,yCell);
+        }else if (object instanceof Cookie){
+            AddCake(xCell,yCell);
         }
     }
 
@@ -2985,5 +2993,31 @@ public class FarmView extends View {
             rootFarmView.getChildren().addAll(rectangle1);
         }
     }
+    Integer minute_1 = 0;
+    Integer minute_2 = 0;
+    Integer second_1 = 0;
+    Integer second_2 = 0;
+    Text timerText = new Text(minute_1 + minute_2 + " : " + second_1 + second_2);
+    private void missionTime() {
+        timerText.setText(minute_1 + minute_2 + ":" + second_1 + second_2);
+        timerText.relocate(1310, 800);
+        timerText.setFont(Font.font(25));
+        second_2++;
+        if (second_2 == 10) {
+            second_1++;
+            second_2 = 0;
+        }
+        if (second_1 == 6) {
+            minute_2++;
+            second_1 = 0;
+        }
+        if (minute_2 == 10) {
+            minute_1++;
+            minute_2 = 0;
+        }
+        rootFarmView.getChildren().addAll(timerText);
+    }
+}
+
 
 }
