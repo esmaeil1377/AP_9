@@ -15,14 +15,14 @@ public class CityShop {
     public ObjectInMap15_15 getObjectTypeFromCityShop(String className){
         for(ObjectInMap15_15 objectInMap15_15: cityOfferingProduct){
             if(objectInMap15_15.toString().equals(className)){
-                if(className.equals("Cake")){
-                    return new Cake();
+                if(className.equals("FlouryCake")){
+                    return new FlouryCake();
                 }
                 else if(className.equals("CarnivalDress")){
                     return new CarnivalDress();
                 }
-                else if(className.equals("Cookie")){
-                    return new Cookie();
+                else if(className.equals("Cake")){
+                    return new Cake();
                 }
                 else if(className.equals("Decoration")){
                     return new Decoration();

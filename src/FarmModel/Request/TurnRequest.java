@@ -39,7 +39,7 @@ public class TurnRequest extends Request {
         setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
-    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, WellIsNotEmpty {
+    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -50,8 +50,8 @@ public class TurnRequest extends Request {
 //            MakeWorkShopProduce(farm.getWorkShops());
             MakeGrassDisappear(farm.getCurrentGrassInMap());
 //            FillTheBucketOfTheWellOrDecreaseRemainTurnToFillTheBucket();
-            MakeTruckPassTheWayToCityOrGiveObjectToCity();
-            MakeHelicopterPassTheWayToCityOrPutThemOnMap();
+//            MakeTruckPassTheWayToCityOrGiveObjectToCity();
+//            MakeHelicopterPassTheWayToCityOrPutThemOnMap();
             MakeCatTakeProductOrPutProductToWareHouseIfItWasNearWareHouse(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             MakeDogKillWildAnimal(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
             AddWildAnimalsToMapAfterOneMinute();
@@ -146,7 +146,7 @@ public class TurnRequest extends Request {
         if(currentAnimalInMap!=null) {
             for (Animals animals : currentAnimalInMap) {
                 if (animals instanceof Cat) {
-                    if (animals.getX() == 7 && animals.getY() == 0 && ((Cat) animals).getProduct() != null) {
+                    if (animals.getX() == 7 && animals.getY() == 14 && ((Cat) animals).getProduct() != null) {
                         ((Cat) animals).PutProductInStore();
                     } else {
                         ((Cat) animals).TakeProduct();
@@ -247,33 +247,33 @@ public class TurnRequest extends Request {
         }
     }
 
-    private void MakeTruckPassTheWayToCityOrGiveObjectToCity() throws UnknownObjectException, MissionNotLoaded {
-        Truck truck = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
-        if(truck!=null) {
-            if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
-                truck.SellObjectToCityAndGetMoneyToUser();
-                truck.setVehicleActivated(false);
-            } else if (truck.IsVehicleActivated()) {
-                truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
-            }
-        }
-    }
-
-    private void MakeHelicopterPassTheWayToCityOrPutThemOnMap() throws MissionNotLoaded {
-        Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
-        if(helicopter!=null) {
-            if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
-                try {
-                    helicopter.PutObjectInMapRandomly();
-                }catch (NullPointerException e){}
-                finally {
-                    helicopter.setVehicleActivated(false);
-                }
-            } else if (helicopter.IsVehicleActivated()) {
-                helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
-            }
-        }
-    }
+//    private void MakeTruckPassTheWayToCityOrGiveObjectToCity() throws UnknownObjectException, MissionNotLoaded {
+//        Truck truck = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
+//        if(truck!=null) {
+//            if (truck.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && truck.IsVehicleActivated()) {
+//                truck.SellObjectToCityAndGetMoneyToUser();
+//                truck.setVehicleActivated(false);
+//            } else if (truck.IsVehicleActivated()) {
+//                truck.setRemainTurnToMoveObjectToCityAndComeBack(truck.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
+//            }
+//        }
+//    }
+//
+//    private void MakeHelicopterPassTheWayToCityOrPutThemOnMap() throws MissionNotLoaded {
+//        Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
+//        if(helicopter!=null) {
+//            if (helicopter.getRemainTurnToMoveObjectToCityAndComeBack() == 0 && helicopter.IsVehicleActivated()) {
+//                try {
+//                    helicopter.PutObjectInMapRandomly();
+//                }catch (NullPointerException e){}
+//                finally {
+//                    helicopter.setVehicleActivated(false);
+//                }
+//            } else if (helicopter.IsVehicleActivated()) {
+//                helicopter.setRemainTurnToMoveObjectToCityAndComeBack(helicopter.getRemainTurnToMoveObjectToCityAndComeBack() - 1);
+//            }
+//        }
+//    }
 
 
     private void StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission() throws MissionNotLoaded {

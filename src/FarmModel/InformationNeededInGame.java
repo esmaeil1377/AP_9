@@ -50,20 +50,20 @@ public class InformationNeededInGame {
     private final static int SpaceNeededInWareHouseForEgg = 1;
     private final static int SpaceNeededInWareHouseForWool = 5;
     private final static int SpaceNeededInWareHouseForMilk = 10;
-    private final static int SpaceNeededInWareHouseForCake = 5;
+    private final static int SpaceNeededInWareHouseForFlouryCake = 5;
     private final static int SpaceNeededInWareHouseForPowder = 4; // random
     private final static int SpaceNeededInWareHouseForFlour = 2;
     private final static int SpaceNeededInWareHouseForFabric = 6;
     private final static int SpaceNeededInWareHouseForSewing = 3;
     private final static int SpaceNeededInWareHouseForDecoration = 2; // random
     private final static int SpaceNeededInWareHouseForCloth = 3; // random
-    private final static int SpaceNeededInWareHouseForCookie = 2; // random
+    private final static int SpaceNeededInWareHouseForCake = 2; // random
 
     //PriceToUpgradeCat
     //PriceToBuyWorkShop
 
     public int getSpaceNeededInWareHouse(Object object) {
-        if (object.toString().substring(0,4).equals("Cage")) {
+        if (object.toString().substring(0,3).equals("Cag")) {
             WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
             if (wildAnimals.toString().equals("Lion"))
                 return SpaceNeededInWareHouseForCageThatLionIsInIt;
@@ -76,8 +76,8 @@ public class InformationNeededInGame {
             return SpaceNeededInWareHouseForMilk;
         else if (object.toString().equals("Wool"))
             return SpaceNeededInWareHouseForWool;
-        else if (object.toString().equals("Cake"))
-            return SpaceNeededInWareHouseForCake;
+        else if (object.toString().equals("FlouryCake"))
+            return SpaceNeededInWareHouseForFlouryCake;
         else if (object.toString().equals("Powder"))
             return SpaceNeededInWareHouseForPowder;
         else if (object.toString().equals("Flour"))
@@ -90,8 +90,8 @@ public class InformationNeededInGame {
             return SpaceNeededInWareHouseForDecoration;
         else if (object.toString().equals("CarnivalDress"))
             return SpaceNeededInWareHouseForCloth;
-        else if (object.toString().equals("Cookie"))
-            return SpaceNeededInWareHouseForCookie;
+        else if (object.toString().equals("Cake"))
+            return SpaceNeededInWareHouseForCake;
 //        throw new NotDefinedSpaceForObject();
         //don't forget.
         return -1;
@@ -166,7 +166,7 @@ public class InformationNeededInGame {
     private final static int PriceToBuyCookie=200;
     private final static int PriceToBuyDecoration=800;
     private final static int PriceToBuyFabric=400;
-    private final static int PriceToBuyFlour=20;
+    private final static int PriceToBuyFlour=100;
     private final static int PriceToBuyPowder=300;
     private final static int PriceToBuySewing=200;
 
@@ -189,9 +189,9 @@ public class InformationNeededInGame {
             return PriceTOBuyWool;
         } else if (object.toString().equals("Milk")) {
             return PriceToBuyMilk;
-        }else if(object.toString().equals("Cake")){
+        }else if(object.toString().equals("FlouryCake")){
             return PriceToBuyCake;
-        }else if(object.toString().equals("Cookie")){
+        }else if(object.toString().equals("Cake")){
             return PriceToBuyCookie;
         } else if(object.toString().equals("Sewing")){
             return PriceToBuySewing;
@@ -203,6 +203,8 @@ public class InformationNeededInGame {
             return PriceToBuyFlour;
         }else if(object.toString().equals("Fabric")){
             return PriceToBuyFabric;
+        }else if (object.toString().equals("CarnivalDress")){
+            return PriceToBuyCarnivalDress;
         }else {
             if (object.toString().equals("EggPowderPlant")) {
                 return PriceToBuyEggPowderPlantLevel0 + 100 * (((WorkShop) object).getLevel());
@@ -249,9 +251,9 @@ public class InformationNeededInGame {
             return PriceForSellMilk;
         } else if (object.toString().equals("Egg")) {
             return PriceForSellEgg;
-        } else if (object.toString().equals("Cake")) {
+        } else if (object.toString().equals("FlouryCake")) {
             return PriceForSellCake;
-        } else if (object.toString().equals("Cookie")) {
+        } else if (object.toString().equals("Cake")) {
             return PriceForSellCookie;
         } else if (object.toString().equals("Flour")) {
             return PriceForSellFlour;

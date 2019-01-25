@@ -47,7 +47,7 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
         if (getRemainCapacityOfWareHouse() >= spaceNeededForObjectInWareHouse) {
             wareHouseList.add(object);
             RecordThisTransActionThatWholeObjectAddedToWareHouse(object);
-            setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse() - spaceNeededForObjectInWareHouse);
+//            setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse() - spaceNeededForObjectInWareHouse);
             GameView.getGameView().getFarmView().AddNumberOfIconsInWarehouse(object.toString());
         }else {
             throw new FullWareHouse();

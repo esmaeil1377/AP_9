@@ -9,7 +9,7 @@ import FarmModel.Cell;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.FlouryCake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Flour;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import View.GameView;
@@ -26,9 +26,9 @@ public class CakeBakery extends WorkShop {
         }
         HashMap<Product, Integer> objectNeededToProduceOne=new HashMap<>();
         objectNeededToProduceOne.put(new Flour(),getMaxNumberOfGettingInput());
-        objectNeededToProduceOne.put(new Cookie(),getMaxNumberOfGettingInput());
+        objectNeededToProduceOne.put(new Cake(),getMaxNumberOfGettingInput());
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);
-        setResultProduct(new Cake());
+        setResultProduct(new FlouryCake());
     }
 
     public String getWorkShopName() {
@@ -60,7 +60,7 @@ public class CakeBakery extends WorkShop {
         }
         int countOfCookie = 0;
         int min = 0;
-        Cookie cookie = new Cookie();
+        Cake cookie = new Cake();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(cookie.toString()))
                 countOfCookie++;

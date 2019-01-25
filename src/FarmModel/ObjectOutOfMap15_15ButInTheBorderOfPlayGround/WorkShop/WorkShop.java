@@ -9,7 +9,6 @@ import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.ObjectOutOfMap15_15ButInTheBorderOfPlayGround;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.User;
 
 import java.util.HashMap;
@@ -154,14 +153,14 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
     }
 
     public Product getNewProductByType(Product product){
-        if(product instanceof Cake){
-            return new Cake();
+        if(product instanceof FlouryCake){
+            return new FlouryCake();
         }
         else if(product instanceof CarnivalDress){
             return new CarnivalDress();
         }
-        else if(product instanceof Cookie){
-            return new Cookie();
+        else if(product instanceof Cake){
+            return new Cake();
         }
         else if(product instanceof Decoration){
             return new Decoration();

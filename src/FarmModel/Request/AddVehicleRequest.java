@@ -9,7 +9,7 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cake;
-import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Cookie;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.FlouryCake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
@@ -35,7 +35,7 @@ public class AddVehicleRequest extends Request {
             Helicopter helicopter = farm.getHelicopter();
             if(!helicopter.IsVehicleActivated()) {
                 for (int i = 0; i < count; i++)
-                    helicopter.AddObjectToListForBuyToHelicopterAndGetMoneyFromUser(getObject());
+                    helicopter.AddObjectToListForBuyToHelicopter(getObject());
             }
         }
     }
@@ -69,10 +69,10 @@ public class AddVehicleRequest extends Request {
             setObject(new Milk());
         } else if (itemName.equals("Wool")) {
             setObject(new Wool());
+        } else if (itemName.equals("FlouryCake")) {
+            setObject(new FlouryCake());
         } else if (itemName.equals("Cake")) {
             setObject(new Cake());
-        } else if (itemName.equals("Cookie")) {
-            setObject(new Cookie());
         } else if (itemName.equals("Powder")) {
             setObject(new Powder());
         } else if (itemName.equals("Cage")) {

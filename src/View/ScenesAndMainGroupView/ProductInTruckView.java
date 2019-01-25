@@ -824,7 +824,7 @@ public class ProductInTruckView extends View {
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
-                } else if (key.equals("Cake")) {
+                } else if (key.equals("FlouryCake")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
                     File fileIcon = new File("Data\\Textures\\Products\\FlouryCake.png");
                     Image imageIcon = new Image(fileIcon.toURI().toString());
@@ -985,9 +985,9 @@ public class ProductInTruckView extends View {
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
-                } else if (key.equals("Cookie")) {
+                } else if (key.equals("Cake")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
-                    File fileIcon = new File("Data\\Textures\\Products\\Cake.png");
+                    File fileIcon = new File("Data\\Textures\\Products\\FlouryCake.png");
                     Image imageIcon = new Image(fileIcon.toURI().toString());
                     ImageView imageViewIcon = new ImageView(imageIcon);
                     imageViewIcon.setFitHeight(30);

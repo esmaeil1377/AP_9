@@ -24,7 +24,7 @@ public class CookieBakery extends WorkShop {
         HashMap<Product, Integer> objectNeededToProduceOne=new HashMap<>();
         objectNeededToProduceOne.put(new Powder(),1);
         setObjectNeededToProduceAProduct(objectNeededToProduceOne);
-        setResultProduct(new Cookie());
+        setResultProduct(new Cake());
     }
 
     @Override

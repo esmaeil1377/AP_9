@@ -19,12 +19,12 @@ public class Helicopter extends TransportationVehicle implements Upgradeable {
     }
 
     //i have to watch out this part because object have not the same space needed and they are .
-    public void AddObjectToListForBuyToHelicopterAndGetMoneyFromUser(ObjectInMap15_15 good) throws MissionNotLoaded {
+    public void AddObjectToListForBuyToHelicopter(ObjectInMap15_15 good) throws MissionNotLoaded {
         //don'd forget capacity limitation.
         Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
         int priceToBuy = CalculatePriceToBuyForHelicopter(new ArrayList<>(Arrays.asList(good)));
         if (mission.getMissionMoney() > priceToBuy) {
-            mission.ChangeMissionMoney(- priceToBuy);
+//            mission.ChangeMissionMoney(- priceToBuy);
             getGoodsThatHaveToCarry().add(good);
             setRemainTurnToMoveObjectToCityAndComeBack(getTurnToMoveObjectToCityAndComeBack());
         }
@@ -33,12 +33,14 @@ public class Helicopter extends TransportationVehicle implements Upgradeable {
     public void PutObjectInMapRandomly() throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (Object objectInMap15_15 : getGoodsThatHaveToCarry()) {
-            int x = (int) (Math.random() * 15) + 1;
-            int y = (int) (Math.random() * 15) + 1;
+            int x = (int) (Math.random() * 14) + 1;
+            int y = (int) (Math.random() * 14) + 1;
+            ((ObjectInMap15_15)objectInMap15_15).setX(x);
+            ((ObjectInMap15_15)objectInMap15_15).setY(y);
             farm.getMap()[x][y].AddCellAMapObject((ObjectInMap15_15)objectInMap15_15);
             GameView.getGameView().getFarmView().AddMapObjectIcon(objectInMap15_15,x,y);
         }
-        setGoodsThatHaveToCarry(null);
+        setGoodsThatHaveToCarry(new ArrayList<>());
         //add from warehouse goods that are going to sell and something in userMoney
     }
 

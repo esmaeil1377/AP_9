@@ -7,6 +7,7 @@ import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.User;
+import View.GameView;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class Cat extends Animals implements Upgradeable {
     }
 
 
-    public void setProduct(Product product) {
+    public void setProductThatHaveToCarry(Product product) {
         this.productThatCarryToPutInWareHouse = product;
     }
 
@@ -36,7 +37,8 @@ public class Cat extends Animals implements Upgradeable {
         for (ObjectInMap15_15 objectInMap15_15 : currentObjectInMap) {
             if (objectInMap15_15 instanceof Product && getProduct() == null ) {
                 cell.RemoveCellAMapObject(objectInMap15_15);
-                setProduct((Product) objectInMap15_15);
+                setProductThatHaveToCarry((Product) objectInMap15_15);
+                GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap(objectInMap15_15.toString(),getX(),getY());
                 return;
             }
         }
@@ -45,7 +47,7 @@ public class Cat extends Animals implements Upgradeable {
     public void PutProductInStore() throws FullWareHouse, MissionNotLoaded {
         if (getProduct() != null) {
             Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse().AddWholeObjectToStore(getProduct());
-            setProduct(null);
+            setProductThatHaveToCarry(null);
         }
     }
 

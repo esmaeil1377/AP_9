@@ -8,6 +8,7 @@ import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import View.GameView;
 
 import java.util.ArrayList;
 
@@ -24,9 +25,11 @@ public class PickUpRequest extends Request {
             if (object instanceof Product) {
                 wareHouse.AddWholeObjectToStore(object);
                 cell.RemoveCellAMapObject(object);
+                GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap(object.toString(),getX(),getY());
             }else if (object.toString().substring(0,4).equals("Cage")){
                 wareHouse.AddWholeObjectToStore(object);
                 cell.RemoveCellAMapObject(object);
+                GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap(object.toString(),getX(),getY());
             }
         }
     }

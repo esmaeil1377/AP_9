@@ -7,11 +7,13 @@ import FarmController.Exceptions.WellIsNotEmpty;
 import FarmModel.*;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
+import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.TransportationVehicle;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
@@ -28,33 +30,37 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+
 
 public class FarmView extends View {
-    HashMap<ArrayList<Integer>,HashMap<String,Node>> cells=new HashMap<>();
+    HashMap<ArrayList<Integer>, HashMap<String, Node>> cells = new HashMap<>();
     private Text text = new Text("Speed\n   " + String.valueOf(GameView.getGameView().getStartMenuView().getGameSpeed()));
     private Circle speedCircle;
     private Group rootFarmView = new Group();
     private Scene sceneFarmView = new Scene(rootFarmView, 1600, 900);
     private AnimationTimer animationTimer;
     private Text moneyText;
+    ImageView helicopterView;
+    ImageView truckView;
 
     public Text getText() {
         return text;
@@ -92,12 +98,10 @@ public class FarmView extends View {
             if (sewingFactory != null) AddSewingFactory(sewingFactory.getLevel());
             if (spinnery != null) AddSpinnery(spinnery.getLevel());
             if (weavingFactory != null) AddWeavingFactory(weavingFactory.getLevel());
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
 //            e.printStackTrace();
         }
 
-        GameView.getGameView().setProductInHelicopterView(new ProductInHelicopterView(primaryStage));
-        GameView.getGameView().setProductInTruckView(new ProductInTruckView(primaryStage));
         text.setText(GameView.getGameView().getStartMenuView().getText().getText());
 
         AddSpeedCircleToSettingInFarm(primaryStage);
@@ -145,7 +149,6 @@ public class FarmView extends View {
         if (farm.getHelicopter() != null) AddHelicopter(primaryStage, farm.getHelicopter().getLevel());
 
 
-
         AddStarAndMoneyText(user.getCurrentPlayingMission().getMissionMoney());
 
         ShowBorderOfMsp();
@@ -172,9 +175,9 @@ public class FarmView extends View {
         BackGroundView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                double xPosition=event.getX();
-                double yPosition=event.getY();
-                if(xPosition<(649.999+310) && xPosition>310 &&  yPosition<(210+375) &&  yPosition>210) {
+                double xPosition = event.getX();
+                double yPosition = event.getY();
+                if (xPosition < (649.999 + 310) && xPosition > 310 && yPosition < (210 + 375) && yPosition > 210) {
                     int[] cellPosition = getCellPositionByPosition((int) xPosition, (int) yPosition);
                     int xCell = cellPosition[0];
                     int yCell = cellPosition[1];
@@ -607,7 +610,7 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    Well well=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
+                    Well well = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWell();
                     if (!well.isWellActivatedToFillTheBucket()) {
                         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
@@ -669,6 +672,12 @@ public class FarmView extends View {
         wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                try {
+                    ShowTruckGoingToCityAndComingBack();
+                    ShowHelicopterToCityAndComingBack();
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
 //                AddLevelBucketToWell(0);
             }
         });
@@ -1000,8 +1009,8 @@ public class FarmView extends View {
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
                     PlayBubbleSound();
                     //we have ifs here
-                    Animation animation = new SpriteAnimation(spinneryView, Duration.millis(duration/2), 12, 4, 0, 0, 130, 106);
-                    animation.setCycleCount(spinnery.getTurnNeededToProduceOneProduct()/2);
+                    Animation animation = new SpriteAnimation(spinneryView, Duration.millis(duration / 2), 12, 4, 0, 0, 130, 106);
+                    animation.setCycleCount(spinnery.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -1015,7 +1024,7 @@ public class FarmView extends View {
                     });
                     animation.setDelay(Duration.millis(83));
                     animation.play();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -1024,7 +1033,7 @@ public class FarmView extends View {
     }
 
     private void AddCakeBakery(int level) {
-        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\0" + String.valueOf(level + 1) + ".png");
+        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\FlouryCake(FlouryCake Bakery)\\0" + String.valueOf(level + 1) + ".png");
         Image cakeBakeryImage = new Image(cakeBakeryFile.toURI().toString());
         ImageView cakeBakeryVeiw = new ImageView(cakeBakeryImage);
         cakeBakeryVeiw.relocate(100, 350);
@@ -1056,8 +1065,8 @@ public class FarmView extends View {
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
                     PlayBubbleSound();
                     //we have ifs here
-                    Animation animation = new SpriteAnimation(cakeBakeryVeiw, Duration.millis(duration/2), 12, 4, 0, 0, 184, 171);
-                    animation.setCycleCount(cakeBakery.getTurnNeededToProduceOneProduct()/2);
+                    Animation animation = new SpriteAnimation(cakeBakeryVeiw, Duration.millis(duration / 2), 12, 4, 0, 0, 184, 171);
+                    animation.setCycleCount(cakeBakery.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -1071,7 +1080,7 @@ public class FarmView extends View {
                     });
                     animation.setDelay(Duration.millis(83));
                     animation.play();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -1112,8 +1121,8 @@ public class FarmView extends View {
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
                     PlayBubbleSound();
                     //we have ifs here
-                    Animation animation = new SpriteAnimation(sewingFactoryView, Duration.millis(duration/2), 12, 4, 0, 0, 170, 130);
-                    animation.setCycleCount(sewingFactory.getTurnNeededToProduceOneProduct()/2);
+                    Animation animation = new SpriteAnimation(sewingFactoryView, Duration.millis(duration / 2), 12, 4, 0, 0, 170, 130);
+                    animation.setCycleCount(sewingFactory.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -1127,7 +1136,7 @@ public class FarmView extends View {
                     });
                     animation.setDelay(Duration.millis(83));
                     animation.play();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -1168,8 +1177,8 @@ public class FarmView extends View {
                     WeavingFactory weavingFactory = (WeavingFactory) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("WeavingFactory");
                     PlayBubbleSound();
                     //we have ifs here
-                    Animation animation = new SpriteAnimation(WeavingView, Duration.millis(duration/2), 12, 4, 0, 0, 166, 116);
-                    animation.setCycleCount(weavingFactory.getTurnNeededToProduceOneProduct()/2);
+                    Animation animation = new SpriteAnimation(WeavingView, Duration.millis(duration / 2), 12, 4, 0, 0, 166, 116);
+                    animation.setCycleCount(weavingFactory.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -1183,7 +1192,7 @@ public class FarmView extends View {
                     });
                     animation.setDelay(Duration.millis(83));
                     animation.play();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -1192,7 +1201,7 @@ public class FarmView extends View {
     }
 
     private void AddCookieBakery(int level) {
-        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\0" + String.valueOf(level + 1) + ".png");
+        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\0" + String.valueOf(level + 1) + ".png");
         Image cakeBakeryImage = new Image(cakeBakeryFile.toURI().toString());
         ImageView cookieBakeryView = new ImageView(cakeBakeryImage);
         cookieBakeryView.relocate(1000, 350);
@@ -1221,11 +1230,11 @@ public class FarmView extends View {
                 try {
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
-                    CookieBakery cookieBakery=(CookieBakery) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("CookieBakery");
+                    CookieBakery cookieBakery = (CookieBakery) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("CookieBakery");
                     PlayBubbleSound();
                     //we have ifs here
-                    Animation animation = new SpriteAnimation(cookieBakeryView, Duration.millis(duration/2), 12, 4, 0, 0, 134, 142);
-                    animation.setCycleCount(cookieBakery.getTurnNeededToProduceOneProduct()/2);
+                    Animation animation = new SpriteAnimation(cookieBakeryView, Duration.millis(duration / 2), 12, 4, 0, 0, 134, 142);
+                    animation.setCycleCount(cookieBakery.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -1282,11 +1291,11 @@ public class FarmView extends View {
                     }
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
-                    EggPowderPlant eggPowderPlant=(EggPowderPlant) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("EggPowderPlant");
+                    EggPowderPlant eggPowderPlant = (EggPowderPlant) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("EggPowderPlant");
                     PlayBubbleSound();
                     //we have ifs here
-                    Animation animation = new SpriteAnimation(eggPowderPlantView, Duration.millis(duration/2), 12, 4, 0, 0, 128, 114);
-                    animation.setCycleCount(eggPowderPlant.getTurnNeededToProduceOneProduct()/2);
+                    Animation animation = new SpriteAnimation(eggPowderPlantView, Duration.millis(duration / 2), 12, 4, 0, 0, 128, 114);
+                    animation.setCycleCount(eggPowderPlant.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -1310,7 +1319,7 @@ public class FarmView extends View {
     private void AddTruck(Stage primaryStage, int level) {
         File truckFile = new File("Data\\Textures\\Service\\Truck\\0" + String.valueOf(level + 1) + ".png");
         Image truckImage = new Image(truckFile.toURI().toString());
-        ImageView truckView = new ImageView(truckImage);
+        truckView = new ImageView(truckImage);
         truckView.relocate(880, 620);
         truckView.setFitHeight(200);
         truckView.setFitWidth(200);
@@ -1333,6 +1342,7 @@ public class FarmView extends View {
         truckView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                GameView.getGameView().setProductInTruckView(new ProductInTruckView(primaryStage));
                 animationTimer.stop();
                 primaryStage.setScene(GameView.getGameView().getProductInTruckView().getSceneProductTruckView());
                 primaryStage.setFullScreen(true);
@@ -1340,9 +1350,11 @@ public class FarmView extends View {
         });
         rootFarmView.getChildren().addAll(truckView);
     }
-    private void ShowTruckGoingToCityAndComingBack() throws MissionNotLoaded {
-        Truck truck=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
-        int turnToMoveObjectToCityAndComeBack=truck.getTurnToMoveObjectToCityAndComeBack();
+
+    public void ShowTruckGoingToCityAndComingBack() throws MissionNotLoaded {
+        rootFarmView.getChildren().removeAll(truckView);
+        Truck truck = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
+        int turnToMoveObjectToCityAndComeBack = truck.getTurnToMoveObjectToCityAndComeBack();
 
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
@@ -1357,10 +1369,10 @@ public class FarmView extends View {
 
         KeyValue xForGoing = new KeyValue(truckView.xProperty(), 500);
 
-        KeyFrame going = new KeyFrame(Duration.millis(turnToMoveObjectToCityAndComeBack * 1000 * duration), xForGoing);
+        KeyFrame going = new KeyFrame(Duration.millis(turnToMoveObjectToCityAndComeBack * duration), xForGoing);
         Timeline timeLineGoing = new Timeline(going);
         timeLineGoing.getKeyFrames().addAll(going);
-        VehicleTimeLine(turnToMoveObjectToCityAndComeBack, truckView, timeLineGoing);
+        VehicleTimeLine(truck, turnToMoveObjectToCityAndComeBack, truckView, timeLineGoing);
         timeLineGoing.play();
 
 
@@ -1376,7 +1388,7 @@ public class FarmView extends View {
     private void AddHelicopter(Stage primaryStage, int level) {
         File helicopterFile = new File("Data\\Textures\\Service\\Helicopter\\0" + String.valueOf(level + 1) + ".png");
         Image helicopterImage = new Image(helicopterFile.toURI().toString());
-        ImageView helicopterView = new ImageView(helicopterImage);
+        helicopterView = new ImageView(helicopterImage);
         helicopterView.relocate(250, 600);
         helicopterView.setFitHeight(200);
         helicopterView.setFitWidth(200);
@@ -1400,15 +1412,20 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 animationTimer.stop();
+                GameView.getGameView().setProductInHelicopterView(new ProductInHelicopterView(primaryStage));
                 primaryStage.setScene(GameView.getGameView().getProductInHelicopterView().getSceneProductHelicopterView());
                 primaryStage.setFullScreen(true);
             }
         });
         rootFarmView.getChildren().addAll(helicopterView);
     }
-    private void ShowHelicopterToCityAndComingBack() throws MissionNotLoaded {
-        Helicopter helicopter=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
-        int timeToGoToCityAndComeBack=helicopter.getTurnToMoveObjectToCityAndComeBack();
+
+    public void ShowHelicopterToCityAndComingBack() throws MissionNotLoaded {
+        rootFarmView.getChildren().removeAll(helicopterView);
+        int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+        int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+        Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
+        int turnToGoToCityAndComeBack = helicopter.getTurnToMoveObjectToCityAndComeBack();
 
         File helicopterFile = new File("Data\\Textures\\UI\\Helicopter\\01_mini.png");
         Image helicopterImage = new Image(helicopterFile.toURI().toString());
@@ -1420,11 +1437,10 @@ public class FarmView extends View {
         helicopterView.setScaleX(-1);
 
         KeyValue xForGoing = new KeyValue(helicopterView.xProperty(), 500);
-
-        KeyFrame going = new KeyFrame(Duration.millis(timeToGoToCityAndComeBack * 1000), xForGoing);
-        Timeline timeLineGoing = new Timeline(going);
-        timeLineGoing.getKeyFrames().addAll(going);
-        VehicleTimeLine(timeToGoToCityAndComeBack, helicopterView, timeLineGoing);
+        KeyFrame goingFrame = new KeyFrame(Duration.millis(turnToGoToCityAndComeBack * duration), xForGoing);
+        Timeline timeLineGoing = new Timeline(goingFrame);
+        timeLineGoing.getKeyFrames().addAll(goingFrame);
+        VehicleTimeLine(helicopter, turnToGoToCityAndComeBack, helicopterView, timeLineGoing);
         timeLineGoing.play();
 
         helicopterView.setViewport(new Rectangle2D(0, 0, 48, 48));
@@ -1436,19 +1452,32 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(helicopterView);
     }
 
-    private void VehicleTimeLine(int timeToGoToCityAndComeBack, ImageView helicopterView, Timeline timeLineGoing) {
+    private void VehicleTimeLine(TransportationVehicle vehicle, int turnToGoToCityAndComeBack, ImageView vehicleView, Timeline timeLineGoing) {
         timeLineGoing.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                helicopterView.setScaleX(1);
-                KeyValue xForComing = new KeyValue(helicopterView.xProperty(), 0);
-                KeyFrame coming = new KeyFrame(Duration.millis(timeToGoToCityAndComeBack * 1000), xForComing);
+                int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
+                int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+                vehicleView.setScaleX(1);
+                KeyValue xForComing = new KeyValue(vehicleView.xProperty(), 0);
+                KeyFrame coming = new KeyFrame(Duration.millis(turnToGoToCityAndComeBack * duration), xForComing);
                 Timeline timeLineComing = new Timeline(coming);
                 timeLineComing.getKeyFrames().addAll(coming);
                 timeLineComing.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        rootFarmView.getChildren().removeAll(helicopterView);
+                        rootFarmView.getChildren().removeAll(vehicleView);
+                        if (vehicle instanceof Truck) {
+                            rootFarmView.getChildren().addAll(truckView);
+                        } else if (vehicle instanceof Helicopter) {
+                            rootFarmView.getChildren().addAll(helicopterView);
+                            try {
+                                Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
+                                helicopter.PutObjectInMapRandomly();
+                            } catch (MissionNotLoaded missionNotLoaded) {
+                                missionNotLoaded.printStackTrace();
+                            }
+                        }
                     }
                 });
                 timeLineComing.play();
@@ -1469,8 +1498,8 @@ public class FarmView extends View {
 
     private void PlantGrass(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position[0]-24;
-        int yPosition = position[1]-24;
+        int xPosition = position[0] - 24;
+        int yPosition = position[1] - 24;
 
         File grassFile = new File("Data\\Textures\\Grass\\grass1.png");
         Image grassImage = new Image(grassFile.toURI().toString());
@@ -1483,7 +1512,7 @@ public class FarmView extends View {
         Animation animation = new SpriteAnimation(grassView, Duration.millis(1000), 12, 4, 0, 0, 48, 48);
         animation.play();
         rootFarmView.getChildren().addAll(grassView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Grass",grassView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Grass", grassView);
     }
 
     public void AddEgg(int xCell, int yCell) {
@@ -1514,24 +1543,8 @@ public class FarmView extends View {
                 eggView.setFitWidth(20);
             }
         });
-        PickUpProductFromMap(xCell, yCell, eggView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Egg",eggView);
-    }
-
-    private void PickUpProductFromMap(int xCell, int yCell, ImageView eggView) {
-        eggView.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().removeAll(eggView);
-                } catch (MissionNotLoaded missionNotLoaded) {
-                    missionNotLoaded.printStackTrace();
-                } catch (FullWareHouse fullWareHouse) {
-                    fullWareHouse.printStackTrace();
-                }
-            }
-        });
+        PickUpImageViews(xCell, yCell, eggView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Egg", eggView);
     }
 
     public void AddMilk(int xCell, int yCell) {
@@ -1563,9 +1576,21 @@ public class FarmView extends View {
                 milkView.setFitWidth(43);
             }
         });
-        PickUpProductFromMap(xCell, yCell, milkView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Milk",milkView);
+        milkView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new PickUpRequest("pickup " + String.valueOf(xCell) + " " + String.valueOf(yCell));
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
+                }
+            }
+        });
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Milk", milkView);
     }
+
     public void AddWool(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -1594,8 +1619,19 @@ public class FarmView extends View {
                 woolView.setFitWidth(40);
             }
         });
-        PickUpProductFromMap(xCell, yCell, woolView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Wool",woolView);
+        woolView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new PickUpRequest("pickup " + String.valueOf(xCell) + " " + String.valueOf(yCell));
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
+                }
+            }
+        });
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Wool", woolView);
     }
 
     public void AddEggPowder(int xCell, int yCell) {
@@ -1626,12 +1662,16 @@ public class FarmView extends View {
                 eggPowderView.setFitWidth(40);
             }
         });
+        PickUpImageViews(xCell, yCell, eggPowderView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("EggPowder", eggPowderView);
+    }
+
+    private void PickUpImageViews(int xCell, int yCell, ImageView eggPowderView) {
         eggPowderView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(eggPowderView);
+                    new PickUpRequest("pickup " + String.valueOf(xCell) + " " + String.valueOf(yCell));
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 } catch (FullWareHouse fullWareHouse) {
@@ -1639,8 +1679,8 @@ public class FarmView extends View {
                 }
             }
         });
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("EggPowder",eggPowderView);
     }
+
     public void AddCarnivalDress(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -1669,21 +1709,10 @@ public class FarmView extends View {
                 carnivalDressView.setFitWidth(40);
             }
         });
-        carnivalDressView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(carnivalDressView);
-                } catch (MissionNotLoaded missionNotLoaded) {
-                    missionNotLoaded.printStackTrace();
-                } catch (FullWareHouse fullWareHouse) {
-                    fullWareHouse.printStackTrace();
-                }
-            }
-        });
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("CarnivalDress",carnivalDressView);
+        PickUpImageViews(xCell, yCell, carnivalDressView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("CarnivalDress", carnivalDressView);
     }
+
     public void AddCake(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -1712,21 +1741,10 @@ public class FarmView extends View {
                 cakeView.setFitWidth(40);
             }
         });
-        cakeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(cakeView);
-                } catch (MissionNotLoaded missionNotLoaded) {
-                    missionNotLoaded.printStackTrace();
-                } catch (FullWareHouse fullWareHouse) {
-                    fullWareHouse.printStackTrace();
-                }
-            }
-        });
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Cake",cakeView);
+        PickUpImageViews(xCell, yCell, cakeView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Cake", cakeView);
     }
+
     public void AddFabric(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -1755,21 +1773,10 @@ public class FarmView extends View {
                 fabricView.setFitWidth(40);
             }
         });
-        fabricView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(fabricView);
-                } catch (MissionNotLoaded missionNotLoaded) {
-                    missionNotLoaded.printStackTrace();
-                } catch (FullWareHouse fullWareHouse) {
-                    fullWareHouse.printStackTrace();
-                }
-            }
-        });
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Fabric",fabricView);
+        PickUpImageViews(xCell, yCell, fabricView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Fabric", fabricView);
     }
+
     public void AddFlouryCake(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -1798,22 +1805,11 @@ public class FarmView extends View {
                 flouryCake.setFitWidth(40);
             }
         });
-        flouryCake.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    new PickUpRequest("pickup " + String.valueOf(xCell) +" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().addAll(flouryCake);
-                } catch (MissionNotLoaded missionNotLoaded) {
-                    missionNotLoaded.printStackTrace();
-                } catch (FullWareHouse fullWareHouse) {
-                    fullWareHouse.printStackTrace();
-                }
-            }
-        });
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("FlouryCake",flouryCake);
+        PickUpImageViews(xCell, yCell, flouryCake);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("FlouryCake", flouryCake);
     }
-    public void AddFlour(int xCell,int yCell){
+
+    public void AddFlour(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
         int yPosition = position[1];
@@ -1841,7 +1837,8 @@ public class FarmView extends View {
                 flourView.setFitWidth(40);
             }
         });
-        cells.get(new ArrayList<>(Arrays.asList(xCell,yCell))).put("Flour",flourView);
+        PickUpImageViews(xCell, yCell, flourView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Flour", flourView);
     }
 
     private static int[] getCellPositionByPosition(int x, int y) {
@@ -1881,9 +1878,9 @@ public class FarmView extends View {
         ImageView chickenView = null;
         Animation chickenAnimation = null;
         final ImageView[] chickenArrayView = new ImageView[1];
-        if (xcell1==xCell2 & yCell1==yCell2){
-            ShowEatingChicken(xcell1,yCell1);
-        }else {
+        if (xcell1 == xCell2 & yCell1 == yCell2) {
+            ShowEatingChicken(xcell1, yCell1);
+        } else {
             if (xcell1 == xCell2) {
                 if (yCell1 > yCell2) {
                     chickenFile = new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\up.png");
@@ -1960,10 +1957,9 @@ public class FarmView extends View {
         Animation cowAnimation = null;
         final ImageView[] cowArrayView = new ImageView[1];
 
-        if (xCell1==xCell2 & yCell1==yCell2){
-            ShowEatingCow(xCell1,yCell1);
-        }
-        else {
+        if (xCell1 == xCell2 & yCell1 == yCell2) {
+            ShowEatingCow(xCell1, yCell1);
+        } else {
             if (xCell1 == xCell2) {
                 if (yCell1 > yCell2) {
                     cowFile = new File("Data\\Textures\\Cow\\up.png");
@@ -2040,9 +2036,9 @@ public class FarmView extends View {
         Animation sheepAnimation = null;
         final ImageView[] sheepArrayView = new ImageView[1];
 
-        if (xCell1==xCell2 & yCell1==yCell2){
-            ShowEatingSheep(xCell1,yCell1);
-        }else {
+        if (xCell1 == xCell2 & yCell1 == yCell2) {
+            ShowEatingSheep(xCell1, yCell1);
+        } else {
             if (xCell1 == xCell2) {
                 if (yCell1 > yCell2) {
                     sheepFile = new File("Data\\Textures\\Sheep\\up.png");
@@ -2164,10 +2160,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0]-40;
-        int y1Position = position1[1]-40;
-        int x2Position = position2[0]-40;
-        int y2Position = position2[1]-40;
+        int x1Position = position1[0] - 40;
+        int y1Position = position1[1] - 40;
+        int x2Position = position2[0] - 40;
+        int y2Position = position2[1] - 40;
         dogView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(dogView);
         dogArrayView[0] = dogView;
@@ -2239,10 +2235,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0]-35;
-        int y1Position = position1[1]-35;
-        int x2Position = position2[0]-35;
-        int y2Position = position2[1]-35;
+        int x1Position = position1[0] - 35;
+        int y1Position = position1[1] - 35;
+        int x2Position = position2[0] - 35;
+        int y2Position = position2[1] - 35;
         dogView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(dogView);
         dogArrayView[0] = dogView;
@@ -2261,7 +2257,7 @@ public class FarmView extends View {
         dogTimeLine.play();
     }
 
-    public void ShowLionMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+    public void ShowLionMoving(int xCell1, int yCell1, int xCell2, int yCell2) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File lionFile = null;
@@ -2314,10 +2310,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0]-50;
-        int y1Position = position1[1]-50;
-        int x2Position = position2[0]-50;
-        int y2Position = position2[1]-50;
+        int x1Position = position1[0] - 50;
+        int y1Position = position1[1] - 50;
+        int x2Position = position2[0] - 50;
+        int y2Position = position2[1] - 50;
         lionView[0].relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(lionView);
 //        dogArrayView[0] = lionView[0];
@@ -2326,8 +2322,8 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    ShowCageWhenIsUsingForWildAnimal("Lion",xCell2,yCell2);
-                    new CageRequest("cage "+String.valueOf(xCell2)+" "+String.valueOf(yCell2));
+                    ShowCageWhenIsUsingForWildAnimal("Lion", xCell2, yCell2);
+                    new CageRequest("cage " + String.valueOf(xCell2) + " " + String.valueOf(yCell2));
                     rootFarmView.getChildren().removeAll(lionView[0]);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
@@ -2349,7 +2345,7 @@ public class FarmView extends View {
         lionTimeLine.play();
     }
 
-    public void ShowBearMoving(int xCell1,int yCell1,int xCell2,int yCell2){
+    public void ShowBearMoving(int xCell1, int yCell1, int xCell2, int yCell2) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File bearFile = null;
@@ -2402,10 +2398,10 @@ public class FarmView extends View {
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
         int[] position2 = getPositionByCellPosition(xCell2, yCell2);
-        int x1Position = position1[0]-55;
-        int y1Position = position1[1]-55;
-        int x2Position = position2[0]-55;
-        int y2Position = position2[1]-55;
+        int x1Position = position1[0] - 55;
+        int y1Position = position1[1] - 55;
+        int x2Position = position2[0] - 55;
+        int y2Position = position2[1] - 55;
         bearView.relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(bearView);
         dogArrayView[0] = bearView;
@@ -2424,18 +2420,18 @@ public class FarmView extends View {
         bearTimeLine.play();
     }
 
-    public void ShowFightBetweenDogAndWildAnimal(int xCell,int yCell){
+    public void ShowFightBetweenDogAndWildAnimal(int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File fightFile = new File("Data\\Textures\\Animals\\battle_1.png");
         Image fightImage = new Image(fightFile.toURI().toString());
         ImageView fightView = new ImageView(fightImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-125;
-        int yPosition = position1[1]-125;
-        fightView.relocate(xPosition-50,yPosition-50);
+        int xPosition = position1[0] - 125;
+        int yPosition = position1[1] - 125;
+        fightView.relocate(xPosition - 50, yPosition - 50);
         rootFarmView.getChildren().addAll(fightView);
-        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 20, 5, 0, 0, 250, 250);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration + 500), 20, 5, 0, 0, 250, 250);
         fightView.setViewport(new Rectangle2D(0, 0, 250, 250));
         fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
@@ -2447,18 +2443,18 @@ public class FarmView extends View {
         fightAnimation.play();
     }
 
-    private void ShowDingChicken(int xCell,int yCell ){
+    private void ShowDingChicken(int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File fightFile = new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\death.png");
         Image fightImage = new Image(fightFile.toURI().toString());
         ImageView fightView = new ImageView(fightImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-35;
-        int yPosition = position1[1]-35;
-        fightView.relocate(xPosition,yPosition);
+        int xPosition = position1[0] - 35;
+        int yPosition = position1[1] - 35;
+        fightView.relocate(xPosition, yPosition);
         rootFarmView.getChildren().addAll(fightView);
-        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 24, 5, 0, 0, 78, 70);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration + 500), 24, 5, 0, 0, 78, 70);
         fightView.setViewport(new Rectangle2D(0, 0, 78, 70));
         fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
@@ -2469,18 +2465,18 @@ public class FarmView extends View {
         fightAnimation.play();
     }
 
-    private void ShowDingSheep(int xCell,int yCell){
+    private void ShowDingSheep(int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File fightFile = new File("Data\\Textures\\Sheep\\death.png");
         Image fightImage = new Image(fightFile.toURI().toString());
         ImageView fightView = new ImageView(fightImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-50;
-        int yPosition = position1[1]-50;
-        fightView.relocate(xPosition,yPosition);
+        int xPosition = position1[0] - 50;
+        int yPosition = position1[1] - 50;
+        fightView.relocate(xPosition, yPosition);
         rootFarmView.getChildren().addAll(fightView);
-        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 24, 4, 0, 0, 122, 88);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration + 500), 24, 4, 0, 0, 122, 88);
         fightView.setViewport(new Rectangle2D(0, 0, 122, 88));
         fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
@@ -2491,18 +2487,18 @@ public class FarmView extends View {
         fightAnimation.play();
     }
 
-    private void ShowDingCow(int xCell,int yCell){
+    private void ShowDingCow(int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File fightFile = new File("Data\\Textures\\Cow\\death.png");
         Image fightImage = new Image(fightFile.toURI().toString());
         ImageView fightView = new ImageView(fightImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-60;
-        int yPosition = position1[1]-60;
-        fightView.relocate(xPosition,yPosition);
+        int xPosition = position1[0] - 60;
+        int yPosition = position1[1] - 60;
+        fightView.relocate(xPosition, yPosition);
         rootFarmView.getChildren().addAll(fightView);
-        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration+500), 24, 3, 0, 0, 156, 112);
+        Animation fightAnimation = new SpriteAnimation(fightView, Duration.millis(duration + 500), 24, 3, 0, 0, 156, 112);
         fightView.setViewport(new Rectangle2D(0, 0, 156, 112));
         fightAnimation.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
@@ -2513,16 +2509,16 @@ public class FarmView extends View {
         fightAnimation.play();
     }
 
-    private void ShowEatingChicken(int xCell,int yCell){
+    private void ShowEatingChicken(int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File eatFile = new File("Data\\Textures\\Animals\\Africa\\GuineaFowl\\eat.png");
         Image eatImage = new Image(eatFile.toURI().toString());
         ImageView eatView = new ImageView(eatImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-35;
-        int yPosition = position1[1]-35;
-        eatView.relocate(xPosition,yPosition);
+        int xPosition = position1[0] - 35;
+        int yPosition = position1[1] - 35;
+        eatView.relocate(xPosition, yPosition);
         rootFarmView.getChildren().addAll(eatView);
         Animation eatAnimation = new SpriteAnimation(eatView, Duration.millis(duration), 24, 5, 0, 0, 74, 64);
         eatView.setViewport(new Rectangle2D(0, 0, 74, 64));
@@ -2535,16 +2531,16 @@ public class FarmView extends View {
         eatAnimation.play();
     }
 
-    private void ShowEatingCow(int xCell,int yCell){
+    private void ShowEatingCow(int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File eatFile = new File("Data\\Textures\\Cow\\eat.png");
         Image eatImage = new Image(eatFile.toURI().toString());
         ImageView eatView = new ImageView(eatImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-65;
-        int yPosition = position1[1]-65;
-        eatView.relocate(xPosition,yPosition);
+        int xPosition = position1[0] - 65;
+        int yPosition = position1[1] - 65;
+        eatView.relocate(xPosition, yPosition);
         rootFarmView.getChildren().addAll(eatView);
         Animation eatAnimation = new SpriteAnimation(eatView, Duration.millis(duration), 24, 4, 0, 0, 134, 144);
         eatView.setViewport(new Rectangle2D(0, 0, 134, 144));
@@ -2557,16 +2553,16 @@ public class FarmView extends View {
         eatAnimation.play();
     }
 
-    private void ShowEatingSheep(int xCell,int yCell){
+    private void ShowEatingSheep(int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File eatFile = new File("Data\\Textures\\Sheep\\eat.png");
         Image eatImage = new Image(eatFile.toURI().toString());
         ImageView eatView = new ImageView(eatImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-55;
-        int yPosition = position1[1]-55;
-        eatView.relocate(xPosition,yPosition);
+        int xPosition = position1[0] - 55;
+        int yPosition = position1[1] - 55;
+        eatView.relocate(xPosition, yPosition);
         rootFarmView.getChildren().addAll(eatView);
         Animation eatAnimation = new SpriteAnimation(eatView, Duration.millis(duration), 24, 4, 0, 0, 110, 78);
         eatView.setViewport(new Rectangle2D(0, 0, 110, 78));
@@ -2580,30 +2576,30 @@ public class FarmView extends View {
         eatAnimation.play();
     }
 
-    private void ShowCageWhenIsUsingForWildAnimal(String bearOrLionCage,int xCell,int yCell){
+    private void ShowCageWhenIsUsingForWildAnimal(String bearOrLionCage, int xCell, int yCell) {
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File cageFile = new File("Data\\Textures\\Cages\\build01.png");
         Image cageImage = new Image(cageFile.toURI().toString());
         ImageView cageView = new ImageView(cageImage);
         int[] position1 = getPositionByCellPosition(xCell, yCell);
-        int xPosition = position1[0]-130;
-        int yPosition = position1[1]-130;
-        cageView.relocate(xPosition,yPosition);
+        int xPosition = position1[0] - 130;
+        int yPosition = position1[1] - 130;
+        cageView.relocate(xPosition, yPosition);
         Animation cageAnimation = new SpriteAnimation(cageView, Duration.millis(duration), 8, 3, 0, 0, 260, 260);
         cageView.setViewport(new Rectangle2D(0, 0, 260, 260));
         cageAnimation.play();
 
         File wildAnimalFile;
         Image wildImage;
-        final ImageView[] wildView=new ImageView[1];
-        Animation wildCagedAnimation=null;
-        if (bearOrLionCage.equals("Lion")){
-            wildAnimalFile=new File("Data\\Textures\\Animals\\Africa\\Lion\\caged.png");
-            wildImage=new Image(wildAnimalFile.toURI().toString());
-            wildView[0]=new ImageView(wildImage);
+        final ImageView[] wildView = new ImageView[1];
+        Animation wildCagedAnimation = null;
+        if (bearOrLionCage.equals("Lion")) {
+            wildAnimalFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\caged.png");
+            wildImage = new Image(wildAnimalFile.toURI().toString());
+            wildView[0] = new ImageView(wildImage);
 //            cageView.setViewport(new Rectangle2D(0, 0, 132, 142));
-            wildCagedAnimation=new SpriteAnimation(wildView[0],Duration.millis(duration),24,6,0,0,132,142);
+            wildCagedAnimation = new SpriteAnimation(wildView[0], Duration.millis(duration), 24, 6, 0, 0, 132, 142);
             wildView[0].setViewport(new Rectangle2D(0, 0, 132, 142));
             wildCagedAnimation.setOnFinished(new EventHandler<ActionEvent>() {
                 @Override
@@ -2611,11 +2607,11 @@ public class FarmView extends View {
                     wildView[0].setViewport(new Rectangle2D(0, 0, 132, 142));
                 }
             });
-        }else if (bearOrLionCage.equals("Bear")){
-            wildAnimalFile=new File("Data\\Textures\\Grizzly\\caged.png");
-            wildImage=new Image(wildAnimalFile.toURI().toString());
-            wildView[0]=new ImageView(wildImage);
-            wildCagedAnimation=new SpriteAnimation(wildView[0],Duration.millis(duration),24,6,0,0,142,126);
+        } else if (bearOrLionCage.equals("Bear")) {
+            wildAnimalFile = new File("Data\\Textures\\Grizzly\\caged.png");
+            wildImage = new Image(wildAnimalFile.toURI().toString());
+            wildView[0] = new ImageView(wildImage);
+            wildCagedAnimation = new SpriteAnimation(wildView[0], Duration.millis(duration), 24, 6, 0, 0, 142, 126);
             wildCagedAnimation.setOnFinished(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -2625,7 +2621,7 @@ public class FarmView extends View {
             wildView[0].setViewport(new Rectangle2D(0, 0, 142, 126));
         }
         wildCagedAnimation.setCycleCount(Timeline.INDEFINITE);
-        wildView[0].relocate(xPosition+50,yPosition+50);
+        wildView[0].relocate(xPosition + 50, yPosition + 50);
         wildCagedAnimation.play();
         rootFarmView.getChildren().addAll(wildView[0]);
         rootFarmView.getChildren().addAll(cageView);
@@ -2633,8 +2629,8 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().removeAll(wildView[0],cageView);
+                    new PickUpRequest("pickup " + String.valueOf(xCell) + " " + String.valueOf(yCell));
+                    rootFarmView.getChildren().removeAll(wildView[0], cageView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 } catch (FullWareHouse fullWareHouse) {
@@ -2644,13 +2640,13 @@ public class FarmView extends View {
         });
     }
 
-    public void ShowDingAnimal(Animals animals,int xCell, int yCell){
-        if (animals instanceof Chicken){
-            ShowDingChicken(xCell,yCell);
-        }else if (animals instanceof Cow){
-            ShowDingCow(xCell,yCell);
-        }else if (animals instanceof Sheep){
-            ShowDingSheep(xCell,yCell);
+    public void ShowDingAnimal(Animals animals, int xCell, int yCell) {
+        if (animals instanceof Chicken) {
+            ShowDingChicken(xCell, yCell);
+        } else if (animals instanceof Cow) {
+            ShowDingCow(xCell, yCell);
+        } else if (animals instanceof Sheep) {
+            ShowDingSheep(xCell, yCell);
         }
 
     }
@@ -2816,64 +2812,67 @@ public class FarmView extends View {
         timeline.play();
     }
 
-    private void UpdateMoneyText() throws MissionNotLoaded {
+    public void UpdateMoneyText() throws MissionNotLoaded {
         int currnetMissionMoney = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getMissionMoney();
         moneyText.setText(String.valueOf(currnetMissionMoney));
 
     }
 
-    private void AddGrassByOneClick(int xCell,int yCell) throws MissionNotLoaded {
+    private void AddGrassByOneClick(int xCell, int yCell) throws MissionNotLoaded {
         PlayBubbleSound();
-        int startX= Collections.max(new ArrayList<>(Arrays.asList(xCell-1,0)));
-        int startY=Collections.max(new ArrayList<>(Arrays.asList(yCell-1,0)));
-        int endX= Collections.min(new ArrayList<>(Arrays.asList(xCell+1,14)));
-        int endY=Collections.min(new ArrayList<>(Arrays.asList(yCell+1,14)));
+        int startX = Collections.max(new ArrayList<>(Arrays.asList(xCell - 1, 0)));
+        int startY = Collections.max(new ArrayList<>(Arrays.asList(yCell - 1, 0)));
+        int endX = Collections.min(new ArrayList<>(Arrays.asList(xCell + 1, 14)));
+        int endY = Collections.min(new ArrayList<>(Arrays.asList(yCell + 1, 14)));
 
-        for (int i=startX;i<=endX;i++){
-            for (int j=startY;j<=endY;j++){
-                PlantGrass(i,j);
+        for (int i = startX; i <= endX; i++) {
+            for (int j = startY; j <= endY; j++) {
+                PlantGrass(i, j);
             }
         }
         CheckWellBucketWater();
     }
 
     public void AddNumberOfIconsInWarehouse(String iconName) throws MissionNotLoaded {
-        File file=null;
-        int numberOfIconWeNeedToAdd=0;
-        User user=Game.getGameInstance().getCurrentUserAccount();
-        WareHouse wareHouse=user.getCurrentPlayingMission().getFarm().getWareHouse();
-        InformationNeededInGame informationNeededInGame=user.getInformationNeededInGame();
-        int occupiedSpace=wareHouse.getCapacityOfWareHouse()-wareHouse.getRemainCapacityOfWareHouse();
-        if(iconName.equals("CageBear")){
-            file=new File("Data\\Textures\\Products\\CagedBrownBear.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Bear()));
-        }else if(iconName.equals("CageLion")){
-            file=new File("Data\\Textures\\Products\\CagedLion.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Lion()));
-        }else if(iconName.equals("Egg")){
-            file=new File("Data\\Textures\\Products\\Egg\\normal_1.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Egg());
-        }else if(iconName.equals("Milk")){
-            file=new File("Data\\Textures\\Products\\Milk.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Milk());
-        }else if(iconName.equals("Wool")){
-            file=new File("Data\\Textures\\Products\\Wool\\normal.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Wool());
-        }else if(iconName.equals("FlouryCake")){
-            file=new File("Data\\Textures\\Products\\FlouryCake.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cake());;
-        }else if(iconName.equals("Cookie")){
-            file=new File("Data\\Textures\\Products\\Cake.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cookie());
-        }else if(iconName.equals("Fabric")){
-            file=new File("Data\\Textures\\Products\\Fabric.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Fabric());
-        }else if(iconName.equals("CarnivalDress")){
-            file=new File("Data\\Textures\\Products\\CarnivalDress.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
-        }else if (iconName.equals("EggPowder")){
-            file=new File("Data\\Textures\\Products\\EggPowder.png");
-            numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
+        File file = null;
+        int numberOfIconWeNeedToAdd = 0;
+        User user = Game.getGameInstance().getCurrentUserAccount();
+        WareHouse wareHouse = user.getCurrentPlayingMission().getFarm().getWareHouse();
+        InformationNeededInGame informationNeededInGame = user.getInformationNeededInGame();
+        int occupiedSpace = wareHouse.getCapacityOfWareHouse() - wareHouse.getRemainCapacityOfWareHouse();
+        if (iconName.equals("CageBear")) {
+            file = new File("Data\\Textures\\Products\\CagedBrownBear.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Bear()));
+        } else if (iconName.equals("CageLion")) {
+            file = new File("Data\\Textures\\Products\\CagedLion.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Lion()));
+        } else if (iconName.equals("Egg")) {
+            file = new File("Data\\Textures\\Products\\Egg\\normal_1.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Egg());
+        } else if (iconName.equals("Milk")) {
+            file = new File("Data\\Textures\\Products\\Milk.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Milk());
+        } else if (iconName.equals("Wool")) {
+            file = new File("Data\\Textures\\Products\\Wool\\normal.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Wool());
+        } else if (iconName.equals("FlouryCake")) {
+            file = new File("Data\\Textures\\Products\\FlouryCake.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new FlouryCake());
+        } else if (iconName.equals("Cake")) {
+            file = new File("Data\\Textures\\Products\\Cake.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Cake());
+        } else if (iconName.equals("Fabric")) {
+            file = new File("Data\\Textures\\Products\\Fabric.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Fabric());
+        } else if (iconName.equals("CarnivalDress")) {
+            file = new File("Data\\Textures\\Products\\CarnivalDress.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
+        } else if (iconName.equals("EggPowder")) {
+            file = new File("Data\\Textures\\Products\\EggPowder.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
+        } else if (iconName.equals("Flour")) {
+            file = new File("Data\\Textures\\Products\\Flour.png");
+            numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new Flour());
         }
 //        else if(iconName.equals("EggPowder")){
 //            file=new File("Data\\Textures\\Products\\EggPowder.png");
@@ -2881,71 +2880,85 @@ public class FarmView extends View {
 //        }else if(iconName.equals("Flour")){
 //            file=new File("Data\\Textures\\Products\\Flour.png");
 //        }
-        Image iconImage=new Image(file.toURI().toString());
-        for (int icon=0;icon<numberOfIconWeNeedToAdd;icon++){
-            ImageView iconView=new ImageView(iconImage);
-            iconView.setFitWidth(19);
-            iconView.setFitHeight(19);
-            int row=occupiedSpace%7;
-            int column=(int)(((float)occupiedSpace)/10.0);
-            occupiedSpace++;
-            iconView.relocate(column*19+560,825-row*19);
-            rootFarmView.getChildren().addAll(iconView);
+        try {
+            Image iconImage = new Image(file.toURI().toString());
+            for (int icon = 0; icon < numberOfIconWeNeedToAdd; icon++) {
+                ImageView iconView = new ImageView(iconImage);
+                iconView.setFitWidth(19);
+                iconView.setFitHeight(19);
+                int row = occupiedSpace % 7;
+                int column = (int) (((float) occupiedSpace) / 10.0);
+                occupiedSpace++;
+                iconView.relocate(column * 19 + 560, 825 - row * 19);
+                rootFarmView.getChildren().addAll(iconView);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    private void InitializeTheCells(){
-        for(int i=0;i<15;i++){
-            for(int j=0;j<15;j++){
-              cells.put(new ArrayList<>(Arrays.asList(i,j)),new HashMap<>());
+    private void InitializeTheCells() {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                cells.put(new ArrayList<>(Arrays.asList(i, j)), new HashMap<>());
             }
         }
         System.out.println(cells.keySet());
     }
 
-    public void RemoveGrassAndProductFromMap(String nodeName,int xCell,int yCell){
-        HashMap<String,Node> cellNodes=cells.get(new ArrayList<>(Arrays.asList(xCell,yCell)));
-        Node node=cellNodes.get(nodeName);
+    public void RemoveGrassAndProductFromMap(String nodeName, int xCell, int yCell) {
+        HashMap<String, Node> cellNodes = cells.get(new ArrayList<>(Arrays.asList(xCell, yCell)));
+        Node node = cellNodes.get(nodeName);
         rootFarmView.getChildren().removeAll(node);
         cellNodes.remove(nodeName);
 
     }
 
-    public void AddMapObjectIcon(Object object,int xCell,int yCell){
-        if (object instanceof Cake){
-            AddFlouryCake(xCell,yCell);
-        }
-        else if (object instanceof CarnivalDress) {
-            AddCarnivalDress(xCell,yCell);
-        }else if (object instanceof Fabric){
-            AddFabric(xCell,yCell);
-        }
-        else if (object instanceof Flour){
-            AddFlour(xCell,yCell);
-        }else if (object instanceof Cookie){
-            AddCake(xCell,yCell);
+    public void AddMapObjectIcon(Object object, int xCell, int yCell) {
+        if (object.toString().equals("FlouryCake")) {
+            AddFlouryCake(xCell, yCell);
+        } else if (object.toString().equals("CarnivalDress")) {
+            AddCarnivalDress(xCell, yCell);
+        } else if (object.toString().equals("Fabric")) {
+            AddFabric(xCell, yCell);
+        } else if (object.toString().equals("Flour")) {
+            AddFlour(xCell, yCell);
+        } else if (object.toString().equals("Cake")) {
+            AddCake(xCell, yCell);
+        } else if (object.toString().equals("Powder")) {
+            AddEggPowder(xCell, yCell);
+        } else if (object.toString().equals("Egg")) {
+            AddEggPowder(xCell, yCell);
+        } else if (object.toString().equals("Wool")) {
+            AddWool(xCell, yCell);
+        } else if (object.toString().equals("Milk")) {
+            AddMilk(xCell, yCell);
+        } else if (object.toString().equals("Grass")) {
+            PlantGrass(xCell, yCell);
+        }else if (object.toString().equals("CageLion")){
+            ShowCageWhenIsUsingForWildAnimal("Lion",xCell,yCell);
         }
     }
 
     private void LoadMapIconTharWereBefore() throws MissionNotLoaded {
-        Cell[][] map=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap();
-        for(int xCell=0;xCell<15;xCell++){
-            for(int yCell=0;yCell<15;yCell++){
-                Cell cell=map[xCell][yCell];
-                for(Object object:cell.getCellObjectInMap15_15()){
-                    AddMapObjectIcon(object,xCell,yCell);
+        Cell[][] map = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap();
+        for (int xCell = 0; xCell < 15; xCell++) {
+            for (int yCell = 0; yCell < 15; yCell++) {
+                Cell cell = map[xCell][yCell];
+                for (Object object : cell.getCellObjectInMap15_15()) {
+                    AddMapObjectIcon(object, xCell, yCell);
                 }
             }
         }
 
     }
 
-    private void ShowBorderOfMsp(){
-        Line line=new Line(310,210,310,375+210);
-        Line line1=new Line(649.999+310,210,649.999+310,210+375);
-        Line line2=new Line(310,375+210,310+649.999,375+210);
-        Line line3=new Line(310,210,310+649.999,210);
-        rootFarmView.getChildren().addAll(line,line1,line2,line3);
+    private void ShowBorderOfMsp() {
+        Line line = new Line(310, 210, 310, 375 + 210);
+        Line line1 = new Line(649.999 + 310, 210, 649.999 + 310, 210 + 375);
+        Line line2 = new Line(310, 375 + 210, 310 + 649.999, 375 + 210);
+        Line line3 = new Line(310, 210, 310 + 649.999, 210);
+        rootFarmView.getChildren().addAll(line, line1, line2, line3);
 
     }
 
@@ -2960,19 +2973,18 @@ public class FarmView extends View {
         int y = 630;
         Rectangle rectangle = new Rectangle(18, 112);
         rectangle.relocate(x, y);
-        rectangle.setFill(Color.rgb(231,137,0));
+        rectangle.setFill(Color.rgb(231, 137, 0));
         rectangle.setArcHeight(8);
         rectangle.setArcWidth(8);
         rootFarmView.getChildren().addAll(rectangle);
         for (int i = 0; i < num; i++) {
-            Rectangle rectangle1 = new Rectangle(14 , 18);
-            rectangle1.relocate(x+2 , y + 93 - i * 23);
-            rectangle1.setFill(Color.rgb(29,85,132));
+            Rectangle rectangle1 = new Rectangle(14, 18);
+            rectangle1.relocate(x + 2, y + 93 - i * 23);
+            rectangle1.setFill(Color.rgb(29, 85, 132));
             rectangle1.setArcWidth(8);
             rectangle1.setArcHeight(8);
             rootFarmView.getChildren().addAll(rectangle1);
         }
     }
-
 
 }

@@ -9,6 +9,8 @@ import FarmModel.Game;
 import FarmModel.Mission;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 
+import java.util.ArrayList;
+
 public class Truck extends TransportationVehicle implements Upgradeable {
 
 
@@ -21,7 +23,7 @@ public class Truck extends TransportationVehicle implements Upgradeable {
         int priceToSellTheObject=CalculatePriceForSellForTruck(getGoodsThatHaveToCarry());
         Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
         mission.setMissionMoney(mission.getMissionMoney()+priceToSellTheObject);
-        setGoodsThatHaveToCarry(null);
+        setGoodsThatHaveToCarry(new ArrayList<>());
         setRemainTurnToMoveObjectToCityAndComeBack(0);
         //delete object from ware  house and increase money;
     }

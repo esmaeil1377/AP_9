@@ -285,7 +285,7 @@ public abstract class Animals extends ObjectInMap15_15 {
     }
 
     private ArrayList<Integer> GivePointOfWareHouse() {
-        return new ArrayList<>(Arrays.asList(15, 0));
+        return new ArrayList<>(Arrays.asList(7, 14));
     }
     private static int getNext(int current,int goal){
         int next=current;
