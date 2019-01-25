@@ -60,7 +60,7 @@ public abstract class AnimalProducer extends Animals {
                 if (objectInMap15_15 instanceof Grass) {
                     cell.RemoveCellAMapObject(objectInMap15_15);
                     GameView.getGameView().getFarmView().RemoveGrassAndProductFromMap("Grass",x,y);
-                    setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 3);
+                    setAnimalAmountOfHunger(getAnimalAmountOfHunger() + 5);
                     if (getAnimalAmountOfHunger() == healthyAnimalAmountOfHunger) {
                         setWantToEatGrass(false);
                     }
