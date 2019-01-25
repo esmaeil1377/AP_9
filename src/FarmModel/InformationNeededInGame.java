@@ -63,7 +63,7 @@ public class InformationNeededInGame {
     //PriceToBuyWorkShop
 
     public int getSpaceNeededInWareHouse(Object object) {
-        if (object.toString().equals("Cage")) {
+        if (object.toString().substring(0,4).equals("Cage")) {
             WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
             if (wildAnimals.toString().equals("Lion"))
                 return SpaceNeededInWareHouseForCageThatLionIsInIt;

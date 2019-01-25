@@ -19,6 +19,6 @@ public class Cage extends ObjectInMap15_15 {
 
     @Override
     public String toString() {
-        return "Cage";
+        return "Cage"+wildAnimals.toString();
     }
 }

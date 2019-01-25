@@ -1,6 +1,7 @@
 package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.BucketIsEmptyException;
+import FarmController.Exceptions.FullWareHouse;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.WellIsNotEmpty;
 import FarmModel.*;
@@ -1526,6 +1527,8 @@ public class FarmView extends View {
                     rootFarmView.getChildren().removeAll(eggView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
                 }
             }
         });
@@ -1631,6 +1634,8 @@ public class FarmView extends View {
                     rootFarmView.getChildren().addAll(eggPowderView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
                 }
             }
         });
@@ -1672,6 +1677,8 @@ public class FarmView extends View {
                     rootFarmView.getChildren().addAll(carnivalDressView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
                 }
             }
         });
@@ -1713,6 +1720,8 @@ public class FarmView extends View {
                     rootFarmView.getChildren().addAll(cakeView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
                 }
             }
         });
@@ -1754,6 +1763,8 @@ public class FarmView extends View {
                     rootFarmView.getChildren().addAll(fabricView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
                 }
             }
         });
@@ -1795,6 +1806,8 @@ public class FarmView extends View {
                     rootFarmView.getChildren().addAll(flouryCake);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
                 }
             }
         });
@@ -2253,50 +2266,50 @@ public class FarmView extends View {
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File lionFile = null;
         Image lionImage = null;
-        ImageView lionView = null;
+        ImageView[] lionView = new ImageView[1];
         Animation lionAnimation = null;
-        final ImageView[] dogArrayView = new ImageView[1];
+//        final ImageView[] dogArrayView = new ImageView[1];
 
         if (xCell1 == xCell2) {
             if (yCell1 > yCell2) {
                 lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\up.png");
                 lionImage = new Image(lionFile.toURI().toString());
-                lionView = new ImageView(lionImage);
-                lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 6, 0, 0, 94, 116);
-                lionView.setViewport(new Rectangle2D(0, 0, 94, 116));
+                lionView[0] = new ImageView(lionImage);
+                lionAnimation = new SpriteAnimation(lionView[0], Duration.millis(duration), 24, 6, 0, 0, 94, 116);
+                lionView[0].setViewport(new Rectangle2D(0, 0, 94, 116));
             } else {
                 lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\down.png");
                 lionImage = new Image(lionFile.toURI().toString());
-                lionView = new ImageView(lionImage);
-                lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 5, 0, 0, 96, 92);
-                lionView.setViewport(new Rectangle2D(0, 0, 96, 92));
+                lionView[0] = new ImageView(lionImage);
+                lionAnimation = new SpriteAnimation(lionView[0], Duration.millis(duration), 24, 5, 0, 0, 96, 92);
+                lionView[0].setViewport(new Rectangle2D(0, 0, 96, 92));
             }
         } else if (yCell1 == yCell2) {
             lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\left.png");
             lionImage = new Image(lionFile.toURI().toString());
-            lionView = new ImageView(lionImage);
-            lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 3, 0, 0, 138, 92);
-            lionView.setViewport(new Rectangle2D(0, 0, 138, 92));
+            lionView[0] = new ImageView(lionImage);
+            lionAnimation = new SpriteAnimation(lionView[0], Duration.millis(duration), 24, 3, 0, 0, 138, 92);
+            lionView[0].setViewport(new Rectangle2D(0, 0, 138, 92));
             if (xCell1 < xCell2) {
-                lionView.setScaleX(-1);
+                lionView[0].setScaleX(-1);
             }
         } else if (yCell2 > yCell1) {
             lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\down_left.png");
             lionImage = new Image(lionFile.toURI().toString());
-            lionView = new ImageView(lionImage);
-            lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 4, 0, 0, 118, 90);
-            lionView.setViewport(new Rectangle2D(0, 0, 118, 90));
+            lionView[0] = new ImageView(lionImage);
+            lionAnimation = new SpriteAnimation(lionView[0], Duration.millis(duration), 24, 4, 0, 0, 118, 90);
+            lionView[0].setViewport(new Rectangle2D(0, 0, 118, 90));
             if (xCell1 < xCell2) {
-                lionView.setScaleX(-1);
+                lionView[0].setScaleX(-1);
             }
         } else if (yCell1 > yCell2) {
             lionFile = new File("Data\\Textures\\Animals\\Africa\\Lion\\up_left.png");
             lionImage = new Image(lionFile.toURI().toString());
-            lionView = new ImageView(lionImage);
-            lionAnimation = new SpriteAnimation(lionView, Duration.millis(duration), 24, 6, 0, 0, 120, 106);
-            lionView.setViewport(new Rectangle2D(0, 0, 120, 106));
+            lionView[0] = new ImageView(lionImage);
+            lionAnimation = new SpriteAnimation(lionView[0], Duration.millis(duration), 24, 6, 0, 0, 120, 106);
+            lionView[0].setViewport(new Rectangle2D(0, 0, 120, 106));
             if (xCell1 < xCell2) {
-                lionView.setScaleX(-1);
+                lionView[0].setScaleX(-1);
             }
         }
         int[] position1 = getPositionByCellPosition(xCell1, yCell1);
@@ -2305,30 +2318,31 @@ public class FarmView extends View {
         int y1Position = position1[1]-50;
         int x2Position = position2[0]-50;
         int y2Position = position2[1]-50;
-        lionView.relocate(x1Position, y1Position);
+        lionView[0].relocate(x1Position, y1Position);
         rootFarmView.getChildren().addAll(lionView);
-        dogArrayView[0] = lionView;
+//        dogArrayView[0] = lionView[0];
 
-        lionView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        lionView[0].setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ShowCageWhenIsUsingForWildAnimal("Lion",xCell2,yCell2);
                 try {
+                    ShowCageWhenIsUsingForWildAnimal("Lion",xCell2,yCell2);
                     new CageRequest("cage "+String.valueOf(xCell2)+" "+String.valueOf(yCell2));
+                    rootFarmView.getChildren().removeAll(lionView[0]);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
                 }
             }
         });
 
-        KeyValue xLion = new KeyValue(lionView.xProperty(), x2Position - x1Position);
-        KeyValue yLion = new KeyValue(lionView.yProperty(), y2Position - y1Position);
+        KeyValue xLion = new KeyValue(lionView[0].xProperty(), x2Position - x1Position);
+        KeyValue yLion = new KeyValue(lionView[0].yProperty(), y2Position - y1Position);
         KeyFrame xLionFrame = new KeyFrame(Duration.millis(duration), xLion, yLion);
         Timeline lionTimeLine = new Timeline(xLionFrame);
         lionTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                rootFarmView.getChildren().removeAll(dogArrayView[0]);
+                rootFarmView.getChildren().removeAll(lionView[0]);
             }
         });
         lionAnimation.play();
@@ -2576,39 +2590,55 @@ public class FarmView extends View {
         int xPosition = position1[0]-130;
         int yPosition = position1[1]-130;
         cageView.relocate(xPosition,yPosition);
-        rootFarmView.getChildren().addAll(cageView);
         Animation cageAnimation = new SpriteAnimation(cageView, Duration.millis(duration), 8, 3, 0, 0, 260, 260);
         cageView.setViewport(new Rectangle2D(0, 0, 260, 260));
         cageAnimation.play();
 
         File wildAnimalFile;
         Image wildImage;
-        final ImageView[] wildView=null;
+        final ImageView[] wildView=new ImageView[1];
         Animation wildCagedAnimation=null;
         if (bearOrLionCage.equals("Lion")){
             wildAnimalFile=new File("Data\\Textures\\Animals\\Africa\\Lion\\caged.png");
             wildImage=new Image(wildAnimalFile.toURI().toString());
             wildView[0]=new ImageView(wildImage);
-            wildCagedAnimation=new SpriteAnimation(wildView[0],Duration.millis(duration*2),24,6,0,0,132,142);
-            cageView.setViewport(new Rectangle2D(0, 0, 132, 142));
-        }else if (bearOrLionCage.equals("Beat")){
+//            cageView.setViewport(new Rectangle2D(0, 0, 132, 142));
+            wildCagedAnimation=new SpriteAnimation(wildView[0],Duration.millis(duration),24,6,0,0,132,142);
+            wildView[0].setViewport(new Rectangle2D(0, 0, 132, 142));
+            wildCagedAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    wildView[0].setViewport(new Rectangle2D(0, 0, 132, 142));
+                }
+            });
+        }else if (bearOrLionCage.equals("Bear")){
             wildAnimalFile=new File("Data\\Textures\\Grizzly\\caged.png");
             wildImage=new Image(wildAnimalFile.toURI().toString());
             wildView[0]=new ImageView(wildImage);
-            wildCagedAnimation=new SpriteAnimation(wildView[0],Duration.millis(duration*2),24,6,0,0,142,126);
-            cageView.setViewport(new Rectangle2D(0, 0, 142, 126));
+            wildCagedAnimation=new SpriteAnimation(wildView[0],Duration.millis(duration),24,6,0,0,142,126);
+            wildCagedAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    wildView[0].setViewport(new Rectangle2D(0, 0, 142, 126));
+                }
+            });
+            wildView[0].setViewport(new Rectangle2D(0, 0, 142, 126));
         }
         wildCagedAnimation.setCycleCount(Timeline.INDEFINITE);
-        rootFarmView.getChildren().addAll(wildView);
+        wildView[0].relocate(xPosition+50,yPosition+50);
         wildCagedAnimation.play();
+        rootFarmView.getChildren().addAll(wildView[0]);
+        rootFarmView.getChildren().addAll(cageView);
         wildView[0].setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
                     new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
-                    rootFarmView.getChildren().removeAll(wildView[0]);
+                    rootFarmView.getChildren().removeAll(wildView[0],cageView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
+                } catch (FullWareHouse fullWareHouse) {
+                    fullWareHouse.printStackTrace();
                 }
             }
         });
@@ -2814,10 +2844,10 @@ public class FarmView extends View {
         WareHouse wareHouse=user.getCurrentPlayingMission().getFarm().getWareHouse();
         InformationNeededInGame informationNeededInGame=user.getInformationNeededInGame();
         int occupiedSpace=wareHouse.getCapacityOfWareHouse()-wareHouse.getRemainCapacityOfWareHouse();
-        if(iconName.equals("Bear")){
+        if(iconName.equals("CageBear")){
             file=new File("Data\\Textures\\Products\\CagedBrownBear.png");
             numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Bear()));
-        }else if(iconName.equals("Lion")){
+        }else if(iconName.equals("CageLion")){
             file=new File("Data\\Textures\\Products\\CagedLion.png");
             numberOfIconWeNeedToAdd=informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Lion()));
         }else if(iconName.equals("Egg")){

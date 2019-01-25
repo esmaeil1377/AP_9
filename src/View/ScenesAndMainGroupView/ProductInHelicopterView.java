@@ -56,7 +56,6 @@ public class ProductInHelicopterView extends View {
             AddItemToBuyPowder();
             AddItemToBuyDecoration();
             AddItemToBuySewing();
-            AddItemToBuySewing();
             AddItemToBuyFabric();
         } catch (UnknownObjectException e) {
             e.printStackTrace();
@@ -1081,7 +1080,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonSewing, labelOfPrice);
+        rootProductHelicopterView.getChildren().addAll(imageViewButton1);
+        rootProductHelicopterView.getChildren().addAll(imageViewCoin);
+        rootProductHelicopterView.getChildren().addAll(imageViewIcon);
+        rootProductHelicopterView.getChildren().addAll(labelButtonSewing);
+        rootProductHelicopterView.getChildren().addAll(labelOfPrice);
     }
 
 }
