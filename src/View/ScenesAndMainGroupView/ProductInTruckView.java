@@ -75,12 +75,13 @@ public class ProductInTruckView extends View {
         return sceneProductTruckView;
     }
 
-    public ProductInTruckView(Stage primaryStage) {
+    public ProductInTruckView(Stage primaryStage) throws UnknownObjectException, MissionNotLoaded {
         Start(primaryStage);
     }
 
     @Override
-    public void Start(Stage primaryStage) {
+    public void Start(Stage primaryStage) throws UnknownObjectException, MissionNotLoaded {
+        UpdateMoneyLabelForSellAndCapacityBar();
         AddBackGround(primaryStage);
         AddIcons();
         AddItems();
@@ -255,6 +256,10 @@ public class ProductInTruckView extends View {
 
     }
 
+    public Text getCoinText() {
+        return coinText;
+    }
+
     private void AddOkAndCancelButton(Stage primaryStage) {
         File button = new File("Data\\Click\\OkButton.png");
         Image buttonImage = new Image(button.toURI().toString());
@@ -301,6 +306,8 @@ public class ProductInTruckView extends View {
                 buttonView.relocate((int) (xShift * 750), (int) (yShift * 1000));
             }
         });
+
+        MakeOkButton(primaryStage,buttonView,okTextView);
 
 
         ImageView cancelButtonView = new ImageView(buttonImage);
@@ -2143,7 +2150,7 @@ public class ProductInTruckView extends View {
         coinText.setText(String.valueOf(money));
         Truck truck=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
         int capacityOfTruck=truck.getCapacity();
-        LoadDegreeForCapcity((getCapacityNeeded()/capacityOfTruck)*10+1);
+        LoadDegreeForCapcity((int)(((float)getCapacityNeeded()/(float)capacityOfTruck)*10));
 
     }
 
@@ -2178,7 +2185,7 @@ public class ProductInTruckView extends View {
                 if (nowInt < maxNumber) {
                     labelButton.setText(String.valueOf(nowInt + 1));
                     if (getCapacityNeeded()>capacityOfTruck){
-                        labelButton.setText(String.valueOf(nowInt -1));
+                        labelButton.setText(String.valueOf(0));
                         View.PlayErrorSound();
                     }
                 } else if (nowInt == maxNumber) {
@@ -2201,7 +2208,7 @@ public class ProductInTruckView extends View {
                 if (nowInt < maxNumber) {
                     labelButton.setText(String.valueOf(nowInt + 1));
                     if (getCapacityNeeded()>capacityOfTruck){
-                        labelButton.setText(String.valueOf(nowInt -1));
+                        labelButton.setText(String.valueOf(0));
                         View.PlayErrorSound();
                     }
                 } else if (nowInt == maxNumber) {
@@ -2223,6 +2230,7 @@ public class ProductInTruckView extends View {
                 labelButton.setText(String.valueOf(maxNumber));
                 if (getCapacityNeeded()>capacityOfTruck){
                     labelButton.setText(currentText);
+                    PlayErrorSound();
                 }
                 try {
                     UpdateMoneyLabelForSellAndCapacityBar();
@@ -2240,6 +2248,7 @@ public class ProductInTruckView extends View {
                 labelButton.setText(String.valueOf(maxNumber));
                 if (getCapacityNeeded()>capacityOfTruck){
                     labelButton.setText(currentText);
+                    PlayErrorSound();
                 }
                 try {
                     UpdateMoneyLabelForSellAndCapacityBar();
@@ -2268,28 +2277,113 @@ public class ProductInTruckView extends View {
         }
     }
 
+    private void MakeOkButton(Stage primaryStage,ImageView okButton,ImageView okText){
+        okButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(getCapacityNeeded()!=0){
+                    FarmView farmView= GameView.getGameView().getFarmView();
+                    primaryStage.setScene(farmView.getSceneFarmView());
+                    primaryStage.setFullScreen(true);
+                    farmView.getAnimationTimer().start();
+                    try {
+                        RemoveFromWareHouseThe();
+                        farmView.ShowTruckGoingToCityAndComingBack();
+                    } catch (MissionNotLoaded missionNotLoaded) {
+                        missionNotLoaded.printStackTrace();
+                    }
+
+                }else{
+                    AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
+                    animationTimer.start();
+                    primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                    primaryStage.setFullScreen(true);
+                }
+            }
+        });
+        okText.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(getCapacityNeeded()!=0){
+                    FarmView farmView= GameView.getGameView().getFarmView();
+                    primaryStage.setScene(farmView.getSceneFarmView());
+                    primaryStage.setFullScreen(true);
+                    farmView.getAnimationTimer().start();
+                    try {
+                        farmView.ShowTruckGoingToCityAndComingBack();
+                    } catch (MissionNotLoaded missionNotLoaded) {
+                        missionNotLoaded.printStackTrace();
+                    }
+
+                }else{
+                    AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
+                    animationTimer.start();
+                    primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                    primaryStage.setFullScreen(true);
+                }
+            }
+        });
+    }
 
     private int getCapacityNeeded(){
         int result=0;
         InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
-        result+=Integer.valueOf(labelEggButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Egg());
-        result+=Integer.valueOf(labelWoolButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Wool());
-        result+=Integer.valueOf(labelMilkButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Milk());
-        result+=Integer.valueOf(labelCakeButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Cake());
-        result+=Integer.valueOf(labelFabricButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Fabric());
-        result+=Integer.valueOf(labelDecorationButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Decoration());
-        result+=Integer.valueOf(labelFlouryCakeButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new FlouryCake());
-        result+=Integer.valueOf(labelFlourButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Flour());
-        result+=Integer.valueOf(labelPowderButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Powder());
-        result+=Integer.valueOf(labelCarnivalDressButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
-        result+=Integer.valueOf(labelSewingButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Sewing());
-        result+=Integer.valueOf(labelCageLionButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Lion()));
-        result+=Integer.valueOf(labelCageBearButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Bear()));
+        result+=Integer.valueOf(labelEggButton1.getText());
+        result+=Integer.valueOf(labelWoolButton1.getText());
+        result+=Integer.valueOf(labelMilkButton1.getText());
+        result+=Integer.valueOf(labelCakeButton1.getText());
+        result+=Integer.valueOf(labelFabricButton1.getText());
+        result+=Integer.valueOf(labelDecorationButton1.getText());
+        result+=Integer.valueOf(labelFlouryCakeButton1.getText());
+        result+=Integer.valueOf(labelFlourButton1.getText());
+        result+=Integer.valueOf(labelPowderButton1.getText());
+        result+=Integer.valueOf(labelCarnivalDressButton1.getText());
+        result+=Integer.valueOf(labelSewingButton1.getText());
+        result+=Integer.valueOf(labelCageLionButton1.getText());
+        result+=Integer.valueOf(labelCageBearButton1.getText());
         return result;
     }
 
-
-
-
+    private void RemoveFromWareHouseThe() throws MissionNotLoaded {
+        Truck truck=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
+        WareHouse wareHouse=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
+        for(int i = 0; i<Integer.valueOf(labelEggButton1.getText()); i++){
+            truck.TakeObjectFromWareHouse(new Egg());
+        }
+        for(int i = 0; i<Integer.valueOf(labelWoolButton1.getText()); i++){
+            truck.TakeObjectFromWareHouse(new Wool());
+        }
+        for(int i=0;i<Integer.valueOf(labelMilkButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Milk());
+        }
+        for(int i=0;i<Integer.valueOf(labelCakeButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Cake());
+        }
+        for(int i=0;i<Integer.valueOf(labelFabricButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Fabric());
+        }
+        for(int i=0;i<Integer.valueOf(labelDecorationButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Decoration());
+        }for(int i=0;i<Integer.valueOf(labelFlouryCakeButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new FlouryCake());
+        }
+        for(int i=0;i<Integer.valueOf(labelFlourButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Flour());
+        }
+        for(int i=0;i<Integer.valueOf(labelPowderButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Powder());
+        }for(int i=0;i<Integer.valueOf(labelCarnivalDressButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new CarnivalDress());
+        }
+        for(int i=0;i<Integer.valueOf(labelSewingButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Sewing());
+        }
+        for(int i=0;i<Integer.valueOf(labelCageLionButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Cage(new Lion()));
+        }
+        for(int i=0;i<Integer.valueOf(labelCageBearButton1.getText());i++){
+            truck.TakeObjectFromWareHouse(new Cage(new Bear()));
+        }
+    }
 
 }
