@@ -5,10 +5,14 @@ import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.InformationNeededInGame;
 import FarmModel.ObjectInMap15_15.Cage;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
-import FarmModel.Game;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import View.View;
 import javafx.animation.AnimationTimer;
@@ -36,8 +40,36 @@ import View.GameView;
 public class ProductInTruckView extends View {
     double xShift = 0.788;
     double yShift = 0.788;
+    private Text coinText=new Text("0");;
     private Group rootProductTruckViewView = new Group();
     private Scene sceneProductTruckView = new Scene(rootProductTruckViewView, (int) (xShift * 1600), (int) (yShift * 900));
+    private Label labelEggOfNumber;
+    private Label labelWoolOfNumber;
+    private Label labelMilkOfNumber;
+    private Label labelFlouryCakeOfNumber;
+    private Label labelCakeOfNumber;
+    private Label labelFlourOfNumber;
+    private Label labelPowderOfNumber;
+    private Label labelCarnivalDressOfNumber;
+    private Label labelDecorationOfNumber;
+    private Label labelFabricOfNumber;
+    private Label labelSewingOfNumber;
+    private Label labelCageLionOfNumber;
+    private Label labelCageBrearOfNumber;
+    private Label labelEggButton1 = new Label("0");
+    private Label labelWoolButton1 = new Label("0");
+    private Label labelMilkButton1 = new Label("0");
+    private Label labelFlouryCakeButton1 = new Label("0");
+    private Label labelCakeButton1 = new Label("0");
+    private Label labelFlourButton1 = new Label("0");
+    private Label labelPowderButton1 = new Label("0");
+    private Label labelCarnivalDressButton1 = new Label("0");
+    private Label labelDecorationButton1 = new Label("0");
+    private Label labelFabricButton1 = new Label("0");
+    private Label labelSewingButton1 = new Label("0");
+    private Label labelCageLionButton1 = new Label("0");
+    private Label labelCageBearButton1 = new Label("0");
+    private ArrayList<Rectangle> barRectangles=new ArrayList<>();
 
     public Scene getSceneProductTruckView() {
         return sceneProductTruckView;
@@ -53,7 +85,7 @@ public class ProductInTruckView extends View {
         AddIcons();
         AddItems();
         AddOkAndCancelButton(primaryStage);
-        AddWarehouseToTruck();
+        ShowWareHouseListInTruckView();
     }
 
     private void AddBackGround(Stage primaryStage) {
@@ -140,7 +172,6 @@ public class ProductInTruckView extends View {
         coinView.setFitWidth((int) (xShift * 50));
         coinView.relocate((int) (xShift * 1275), (int) (yShift * 925));
 
-        Text coinText = new Text("0");
         coinText.relocate((int) (xShift * 1475), (int) (yShift * 945));
         coinText.setFont(Font.font(30));
         coinText.setStyle("-fx-font-weight: bold");
@@ -330,15 +361,15 @@ public class ProductInTruckView extends View {
     }
 
 
-    public void AddWarehouseToTruck() {
+    private void ShowWareHouseListInTruckView() {
         try {
             WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
             ArrayList<Object> arrayList = wareHouse.getWareHouseList();
-            HashMap<Object, Integer> hashMap = wareHouse.getTypeAndNumberOfProductInWAreHouse();
+            HashMap<String, Integer> hashMap = wareHouse.getTypeAndNumberOfProductInWAreHouse();
             int yLocationOfFirst = 170;
             InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
-            for (Map.Entry<Object, Integer> entry : hashMap.entrySet()) {
-                String key = entry.getKey().toString(); // getClass
+            for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+                String key = entry.getKey(); // getClass
                 Object object = entry.getKey();
                 Integer value = entry.getValue();
                 if (key.equals("Egg")) {
@@ -357,13 +388,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelEggOfNumber = new Label(value.toString());
+                    labelEggOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelEggOfNumber.setTextFill(Color.BLACK);
+                    labelEggOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -381,17 +412,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelEggButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelEggButton1.setTextFill(Color.BLACK);
+                    labelEggButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -401,7 +425,6 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370 - 2.5, finalYLocationOfFirst - 2.5);
                         }
                     });
-
                     imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -411,14 +434,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelEggButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -426,8 +442,7 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370 - 2.5, finalYLocationOfFirst - 2.5);
                         }
                     });
-
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelEggButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -435,6 +450,8 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370, finalYLocationOfFirst);
                         }
                     });
+
+
 
 
                     File fileButtonAll = new File("Data\\Click\\OkButton.png");
@@ -448,13 +465,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.relocate(443, finalYLocationOfFirst + 5);
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
 
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -471,13 +481,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -499,8 +502,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelEggOfNumber.getText()),imageViewButton1,labelEggButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelEggButton1, labelButtonAll, labelEggOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Wool")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -518,13 +523,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelWoolOfNumber = new Label(value.toString());
+                    labelWoolOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelWoolOfNumber.setTextFill(Color.BLACK);
+                    labelWoolOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -542,17 +547,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelWoolButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelWoolButton1.setTextFill(Color.BLACK);
+                    labelWoolButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -562,7 +560,6 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370 - 2.5, finalYLocationOfFirst - 2.5);
                         }
                     });
-
                     imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -571,15 +568,7 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370, finalYLocationOfFirst);
                         }
                     });
-
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelWoolButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -587,8 +576,7 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370 - 2.5, finalYLocationOfFirst - 2.5);
                         }
                     });
-
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelWoolButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -596,6 +584,7 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370, finalYLocationOfFirst);
                         }
                     });
+
 
 
                     File fileButtonAll = new File("Data\\Click\\OkButton.png");
@@ -609,13 +598,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.relocate(443, finalYLocationOfFirst + 5);
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
 
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -632,13 +614,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -660,8 +635,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelWoolOfNumber.getText()),imageViewButton1,labelWoolButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelWoolButton1, labelButtonAll, labelWoolOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Milk")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -679,13 +656,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelMilkOfNumber = new Label(value.toString());
+                    labelMilkOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelMilkOfNumber.setTextFill(Color.BLACK);
+                    labelMilkOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -703,17 +680,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelMilkButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelMilkButton1.setTextFill(Color.BLACK);
+                    labelMilkButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -733,14 +703,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelMilkButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -749,7 +712,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelMilkButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -766,17 +729,11 @@ public class ProductInTruckView extends View {
                     imageViewButtonAll.setFitWidth(45);
                     imageViewButtonAll.relocate(435, finalYLocationOfFirst);
 
+
                     Label labelButtonAll = new Label("All");
                     labelButtonAll.relocate(443, finalYLocationOfFirst + 5);
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
 
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -793,13 +750,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -821,8 +771,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelMilkOfNumber.getText()),imageViewButton1,labelMilkButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelMilkButton1, labelButtonAll, labelMilkOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("FlouryCake")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -840,13 +792,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelFlouryCakeOfNumber = new Label(value.toString());
+                    labelFlouryCakeOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelFlouryCakeOfNumber.setTextFill(Color.BLACK);
+                    labelFlouryCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -864,17 +816,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelFlouryCakeButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelFlouryCakeButton1.setTextFill(Color.BLACK);
+                    labelFlouryCakeButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -894,14 +839,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelFlouryCakeButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -910,7 +848,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelFlouryCakeButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -918,6 +856,7 @@ public class ProductInTruckView extends View {
                             imageViewButton1.relocate(370, finalYLocationOfFirst);
                         }
                     });
+
 
 
                     File fileButtonAll = new File("Data\\Click\\OkButton.png");
@@ -931,13 +870,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.relocate(443, finalYLocationOfFirst + 5);
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
 
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -954,13 +886,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -982,12 +907,14 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelFlouryCakeOfNumber.getText()),imageViewButton1,labelFlouryCakeButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelFlouryCakeButton1, labelButtonAll, labelFlouryCakeOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Cake")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
-                    File fileIcon = new File("Data\\Textures\\Products\\FlouryCake.png");
+                    File fileIcon = new File("Data\\Textures\\Products\\Cake.png");
                     Image imageIcon = new Image(fileIcon.toURI().toString());
                     ImageView imageViewIcon = new ImageView(imageIcon);
                     imageViewIcon.setFitHeight(30);
@@ -1001,13 +928,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelCakeOfNumber = new Label(value.toString());
+                    labelCakeOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelCakeOfNumber.setTextFill(Color.BLACK);
+                    labelCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -1025,17 +952,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelCakeButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelCakeButton1.setTextFill(Color.BLACK);
+                    labelCakeButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -1055,14 +975,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelCakeButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -1071,7 +984,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelCakeButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -1093,13 +1006,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -1115,13 +1021,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -1143,8 +1042,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelCakeOfNumber.getText()),imageViewButton1,labelCakeButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelCakeButton1, labelButtonAll, labelCakeOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Flour")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -1162,13 +1063,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelFlourOfNumber = new Label(value.toString());
+                    labelFlourOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelFlourOfNumber.setTextFill(Color.BLACK);
+                    labelFlourOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -1186,17 +1087,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelFlourButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelFlourButton1.setTextFill(Color.BLACK);
+                    labelFlourButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -1216,14 +1110,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelFlourButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -1232,7 +1119,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelFlourButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -1254,13 +1141,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -1276,13 +1156,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -1304,8 +1177,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelFlourOfNumber.getText()),imageViewButton1,labelFlourButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelFlourButton1, labelButtonAll, labelFlourOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Powder")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -1323,13 +1198,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelPowderOfNumber = new Label(value.toString());
+                    labelPowderOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelPowderOfNumber.setTextFill(Color.BLACK);
+                    labelPowderOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -1347,17 +1222,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelPowderButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelPowderButton1.setTextFill(Color.BLACK);
+                    labelPowderButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -1377,14 +1245,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelPowderButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -1393,7 +1254,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelPowderButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -1415,13 +1276,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -1437,13 +1291,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -1465,8 +1312,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelPowderOfNumber.getText()),imageViewButton1, labelPowderButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelPowderButton1, labelButtonAll, labelPowderOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("CarnivalDress")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -1484,13 +1333,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelCarnivalDressOfNumber = new Label(value.toString());
+                    labelCarnivalDressOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelCarnivalDressOfNumber.setTextFill(Color.BLACK);
+                    labelCarnivalDressOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -1508,17 +1357,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelCarnivalDressButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelCarnivalDressButton1.setTextFill(Color.BLACK);
+                    labelCarnivalDressButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -1538,14 +1380,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelCarnivalDressButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -1554,7 +1389,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelCarnivalDressButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -1576,13 +1411,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -1598,13 +1426,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -1626,8 +1447,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelCarnivalDressOfNumber.getText()),imageViewButton1,labelCarnivalDressButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelCarnivalDressButton1, labelButtonAll, labelCarnivalDressOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Decoration")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -1645,13 +1468,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelDecorationOfNumber = new Label(value.toString());
+                    labelDecorationOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelDecorationOfNumber.setTextFill(Color.BLACK);
+                    labelDecorationOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -1669,17 +1492,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelDecorationButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelDecorationButton1.setTextFill(Color.BLACK);
+                    labelDecorationButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -1699,14 +1515,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelDecorationButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -1715,7 +1524,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelDecorationButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -1737,13 +1546,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -1759,13 +1561,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -1787,8 +1582,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelDecorationOfNumber.getText()),imageViewButton1,labelDecorationButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelDecorationButton1, labelButtonAll, labelDecorationOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Fabric")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -1806,13 +1603,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelFabricOfNumber = new Label(value.toString());
+                    labelFabricOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelFabricOfNumber.setTextFill(Color.BLACK);
+                    labelFabricOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -1830,17 +1627,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelFabricButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelFabricButton1.setTextFill(Color.BLACK);
+                    labelFabricButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -1860,14 +1650,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelFabricButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -1876,7 +1659,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelFabricButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -1898,13 +1681,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -1920,13 +1696,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -1948,8 +1717,10 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelFabricOfNumber.getText()),imageViewButton1,labelFabricButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelFabricButton1, labelButtonAll, labelFabricOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Sewing")) {
                     final int finalYLocationOfFirst = yLocationOfFirst;
@@ -1967,13 +1738,13 @@ public class ProductInTruckView extends View {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                    Label labelOfNumber = new Label(value.toString());
-                    labelOfNumber.relocate(208, finalYLocationOfFirst);
-                    labelOfNumber.setTextFill(Color.BLACK);
-                    labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                    labelSewingOfNumber = new Label(value.toString());
+                    labelSewingOfNumber.relocate(190, finalYLocationOfFirst);
+                    labelSewingOfNumber.setTextFill(Color.BLACK);
+                    labelSewingOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                     Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                    labelOfPrice.relocate(270, finalYLocationOfFirst);
+                    labelOfPrice.relocate(230, finalYLocationOfFirst);
                     labelOfPrice.setTextFill(Color.BLACK);
                     labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -1991,17 +1762,10 @@ public class ProductInTruckView extends View {
                     imageViewButton1.setFitWidth(35);
                     imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                    Label labelButton1 = new Label("1");
-                    labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                    labelButton1.setTextFill(Color.BLACK);
-                    labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
+                    labelSewingButton1.relocate(380, finalYLocationOfFirst + 5);
+                    labelSewingButton1.setTextFill(Color.BLACK);
+                    labelSewingButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                     imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
@@ -2021,14 +1785,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
-                    labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    labelSewingButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35 + 5);
@@ -2037,7 +1794,7 @@ public class ProductInTruckView extends View {
                         }
                     });
 
-                    labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    labelSewingButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             imageViewButton1.setFitHeight(35);
@@ -2059,13 +1816,6 @@ public class ProductInTruckView extends View {
                     labelButtonAll.setTextFill(Color.BLACK);
                     labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                    imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
-                        }
-                    });
-
                     imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
@@ -2081,13 +1831,6 @@ public class ProductInTruckView extends View {
                             imageViewButtonAll.setFitHeight(35);
                             imageViewButtonAll.setFitWidth(45);
                             imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                        }
-                    });
-
-                    labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-
                         }
                     });
 
@@ -2109,10 +1852,12 @@ public class ProductInTruckView extends View {
                         }
                     });
 
+                    MakeLabelAndButtonChangeable(Integer.valueOf(labelSewingOfNumber.getText()),imageViewButton1,labelSewingButton1,imageViewButtonAll,labelButtonAll);
+
                     rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                            , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                            , imageViewMultiply, labelSewingButton1, labelButtonAll, labelSewingOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
-                } else if (key.equals("Cage")) {
+                } else if (key.substring(0,4).equals("Cage")) {
                     WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
                     if (wildAnimals.toString().equals("Lion")) {
                         final int finalYLocationOfFirst = yLocationOfFirst;
@@ -2130,13 +1875,13 @@ public class ProductInTruckView extends View {
                         imageViewMultiply.setFitHeight(30);
                         imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                        Label labelOfNumber = new Label(value.toString());
-                        labelOfNumber.relocate(208, finalYLocationOfFirst);
-                        labelOfNumber.setTextFill(Color.BLACK);
-                        labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                        labelCageLionOfNumber = new Label(value.toString());
+                        labelCageLionOfNumber.relocate(190, finalYLocationOfFirst);
+                        labelCageLionOfNumber.setTextFill(Color.BLACK);
+                        labelCageLionOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                        labelOfPrice.relocate(270, finalYLocationOfFirst);
+                        labelOfPrice.relocate(230, finalYLocationOfFirst);
                         labelOfPrice.setTextFill(Color.BLACK);
                         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -2154,17 +1899,10 @@ public class ProductInTruckView extends View {
                         imageViewButton1.setFitWidth(35);
                         imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                        Label labelButton1 = new Label("1");
-                        labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                        labelButton1.setTextFill(Color.BLACK);
-                        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
-                            }
-                        });
+                        labelCageLionButton1.relocate(380, finalYLocationOfFirst + 5);
+                        labelCageLionButton1.setTextFill(Color.BLACK);
+                        labelCageLionButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                         imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             @Override
@@ -2184,14 +1922,7 @@ public class ProductInTruckView extends View {
                             }
                         });
 
-                        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
-                            }
-                        });
-
-                        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        labelCageLionButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
                                 imageViewButton1.setFitHeight(35 + 5);
@@ -2200,7 +1931,7 @@ public class ProductInTruckView extends View {
                             }
                         });
 
-                        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        labelCageLionButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
                                 imageViewButton1.setFitHeight(35);
@@ -2222,13 +1953,6 @@ public class ProductInTruckView extends View {
                         labelButtonAll.setTextFill(Color.BLACK);
                         labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                        imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
-                            }
-                        });
-
                         imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
@@ -2244,13 +1968,6 @@ public class ProductInTruckView extends View {
                                 imageViewButtonAll.setFitHeight(35);
                                 imageViewButtonAll.setFitWidth(45);
                                 imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                            }
-                        });
-
-                        labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
                             }
                         });
 
@@ -2272,8 +1989,10 @@ public class ProductInTruckView extends View {
                             }
                         });
 
+                        MakeLabelAndButtonChangeable(Integer.valueOf(labelCageLionOfNumber.getText()),imageViewButton1,labelCageLionButton1,imageViewButtonAll,labelButtonAll);
+
                         rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                                , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                                , imageViewMultiply, labelCageLionButton1, labelButtonAll, labelCageLionOfNumber, labelOfPrice);
                         yLocationOfFirst += 50;
                     } else if (wildAnimals.toString().equals("Bear")) {
                         final int finalYLocationOfFirst = yLocationOfFirst;
@@ -2291,13 +2010,13 @@ public class ProductInTruckView extends View {
                         imageViewMultiply.setFitHeight(30);
                         imageViewMultiply.relocate(185, finalYLocationOfFirst);
 
-                        Label labelOfNumber = new Label(value.toString());
-                        labelOfNumber.relocate(208, finalYLocationOfFirst);
-                        labelOfNumber.setTextFill(Color.BLACK);
-                        labelOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+                        labelCageBrearOfNumber = new Label(value.toString());
+                        labelCageBrearOfNumber.relocate(190, finalYLocationOfFirst);
+                        labelCageBrearOfNumber.setTextFill(Color.BLACK);
+                        labelCageBrearOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
                         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-                        labelOfPrice.relocate(270, finalYLocationOfFirst);
+                        labelOfPrice.relocate(230, finalYLocationOfFirst);
                         labelOfPrice.setTextFill(Color.BLACK);
                         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -2315,17 +2034,10 @@ public class ProductInTruckView extends View {
                         imageViewButton1.setFitWidth(35);
                         imageViewButton1.relocate(370, finalYLocationOfFirst);
 
-                        Label labelButton1 = new Label("1");
-                        labelButton1.relocate(380, finalYLocationOfFirst + 5);
-                        labelButton1.setTextFill(Color.BLACK);
-                        labelButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
-                            }
-                        });
+                        labelCageBearButton1.relocate(380, finalYLocationOfFirst + 5);
+                        labelCageBearButton1.setTextFill(Color.BLACK);
+                        labelCageBearButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
                         imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             @Override
@@ -2345,14 +2057,7 @@ public class ProductInTruckView extends View {
                             }
                         });
 
-                        labelButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
-                            }
-                        });
-
-                        labelButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        labelCageBearButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
                                 imageViewButton1.setFitHeight(35 + 5);
@@ -2361,7 +2066,7 @@ public class ProductInTruckView extends View {
                             }
                         });
 
-                        labelButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        labelCageBearButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
                                 imageViewButton1.setFitHeight(35);
@@ -2383,13 +2088,6 @@ public class ProductInTruckView extends View {
                         labelButtonAll.setTextFill(Color.BLACK);
                         labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
 
-                        imageViewButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
-                            }
-                        });
-
                         imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
@@ -2405,13 +2103,6 @@ public class ProductInTruckView extends View {
                                 imageViewButtonAll.setFitHeight(35);
                                 imageViewButtonAll.setFitWidth(45);
                                 imageViewButtonAll.relocate(435, finalYLocationOfFirst);
-                            }
-                        });
-
-                        labelButtonAll.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-
                             }
                         });
 
@@ -2433,8 +2124,10 @@ public class ProductInTruckView extends View {
                             }
                         });
 
+                        MakeLabelAndButtonChangeable(Integer.valueOf(labelCageBrearOfNumber.getText()),imageViewButton1,labelCageBearButton1,imageViewButtonAll,labelButtonAll);
+
                         rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-                                , imageViewMultiply, labelButton1, labelButtonAll, labelOfNumber, labelOfPrice);
+                                , imageViewMultiply, labelCageBearButton1, labelButtonAll, labelCageBrearOfNumber, labelOfPrice);
                         yLocationOfFirst += 50;
                     }
                 }
@@ -2444,5 +2137,159 @@ public class ProductInTruckView extends View {
             missionNotLoaded.printStackTrace();
         }
     }
+
+    private void UpdateMoneyLabelForSellAndCapacityBar() throws UnknownObjectException, MissionNotLoaded {
+        int money= MoneyForSell();
+        coinText.setText(String.valueOf(money));
+        Truck truck=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
+        int capacityOfTruck=truck.getCapacity();
+        LoadDegreeForCapcity((getCapacityNeeded()/capacityOfTruck)*10+1);
+
+    }
+
+    private int MoneyForSell() throws UnknownObjectException {
+        int result=0;
+        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+        result+=Integer.valueOf(labelEggButton1.getText())*informationNeededInGame.getPriceForSell(new Egg());
+        result+=Integer.valueOf(labelWoolButton1.getText())*informationNeededInGame.getPriceForSell(new Wool());
+        result+=Integer.valueOf(labelMilkButton1.getText())*informationNeededInGame.getPriceForSell(new Milk());
+        result+=Integer.valueOf(labelCakeButton1.getText())*informationNeededInGame.getPriceForSell(new Cake());
+        result+=Integer.valueOf(labelFabricButton1.getText())*informationNeededInGame.getPriceForSell(new Fabric());
+        result+=Integer.valueOf(labelDecorationButton1.getText())*informationNeededInGame.getPriceForSell(new Decoration());
+        result+=Integer.valueOf(labelFlouryCakeButton1.getText())*informationNeededInGame.getPriceForSell(new FlouryCake());
+        result+=Integer.valueOf(labelFlourButton1.getText())*informationNeededInGame.getPriceForSell(new Flour());
+        result+=Integer.valueOf(labelPowderButton1.getText())*informationNeededInGame.getPriceForSell(new Powder());
+        result+=Integer.valueOf(labelCarnivalDressButton1.getText())*informationNeededInGame.getPriceForSell(new CarnivalDress());
+        result+=Integer.valueOf(labelSewingButton1.getText())*informationNeededInGame.getPriceForSell(new Sewing());
+        result+=Integer.valueOf(labelCageLionButton1.getText())*informationNeededInGame.getPriceForSell(new Cage(new Lion()));
+        result+=Integer.valueOf(labelCageBearButton1.getText())*informationNeededInGame.getPriceForSell(new Cage(new Bear()));
+        return result;
+    }
+
+
+    private void MakeLabelAndButtonChangeable(int maxNumber,ImageView imageViewButton1, Label labelButton,ImageView allViewButton,Label allLabel) throws MissionNotLoaded {
+        Truck truck=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
+        int capacityOfTruck=truck.getCapacity();
+        imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String nowString = labelButton.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < maxNumber) {
+                    labelButton.setText(String.valueOf(nowInt + 1));
+                    if (getCapacityNeeded()>capacityOfTruck){
+                        labelButton.setText(String.valueOf(nowInt -1));
+                        View.PlayErrorSound();
+                    }
+                } else if (nowInt == maxNumber) {
+                    labelButton.setText("0");
+                }
+                try {
+                    UpdateMoneyLabelForSellAndCapacityBar();
+                } catch (UnknownObjectException e) {
+                    e.printStackTrace();
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
+            }
+        });
+        labelButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String nowString = labelButton.getText();
+                int nowInt = Integer.valueOf(nowString);
+                if (nowInt < maxNumber) {
+                    labelButton.setText(String.valueOf(nowInt + 1));
+                    if (getCapacityNeeded()>capacityOfTruck){
+                        labelButton.setText(String.valueOf(nowInt -1));
+                        View.PlayErrorSound();
+                    }
+                } else if (nowInt == maxNumber) {
+                    labelButton.setText("0");
+                }
+                try {
+                    UpdateMoneyLabelForSellAndCapacityBar();
+                } catch (UnknownObjectException e) {
+                    e.printStackTrace();
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
+            }
+        });
+        allViewButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String currentText=labelButton.getText();
+                labelButton.setText(String.valueOf(maxNumber));
+                if (getCapacityNeeded()>capacityOfTruck){
+                    labelButton.setText(currentText);
+                }
+                try {
+                    UpdateMoneyLabelForSellAndCapacityBar();
+                } catch (UnknownObjectException e) {
+                    e.printStackTrace();
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
+            }
+        });
+        allLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String currentText=labelButton.getText();
+                labelButton.setText(String.valueOf(maxNumber));
+                if (getCapacityNeeded()>capacityOfTruck){
+                    labelButton.setText(currentText);
+                }
+                try {
+                    UpdateMoneyLabelForSellAndCapacityBar();
+                } catch (UnknownObjectException e) {
+                    e.printStackTrace();
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void LoadDegreeForCapcity(int num){
+        for (Rectangle rectangle:barRectangles){
+            rootProductTruckViewView.getChildren().removeAll(rectangle);
+        }
+        barRectangles=new ArrayList<>();
+        for(int i=0;i<num;i++){
+            Rectangle bar=new Rectangle(1105+55*(i/5),548-(i%5)*10,30,6);
+            bar.setArcHeight(5);
+            bar.setArcWidth(5);
+            bar.setFill(Color.rgb(87,0,5));
+            rootProductTruckViewView.getChildren().addAll(bar);
+            barRectangles.add(bar);
+
+        }
+    }
+
+
+    private int getCapacityNeeded(){
+        int result=0;
+        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+        result+=Integer.valueOf(labelEggButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Egg());
+        result+=Integer.valueOf(labelWoolButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Wool());
+        result+=Integer.valueOf(labelMilkButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Milk());
+        result+=Integer.valueOf(labelCakeButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Cake());
+        result+=Integer.valueOf(labelFabricButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Fabric());
+        result+=Integer.valueOf(labelDecorationButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Decoration());
+        result+=Integer.valueOf(labelFlouryCakeButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new FlouryCake());
+        result+=Integer.valueOf(labelFlourButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Flour());
+        result+=Integer.valueOf(labelPowderButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Powder());
+        result+=Integer.valueOf(labelCarnivalDressButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
+        result+=Integer.valueOf(labelSewingButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Sewing());
+        result+=Integer.valueOf(labelCageLionButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Lion()));
+        result+=Integer.valueOf(labelCageBearButton1.getText())*informationNeededInGame.getSpaceNeededInWareHouse(new Cage(new Bear()));
+        return result;
+    }
+
+
+
+
 
 }

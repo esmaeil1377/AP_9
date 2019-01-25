@@ -5,6 +5,8 @@ import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
 
+import java.awt.*;
+
 public class InformationNeededInGame {
 
     //well information
@@ -243,7 +245,6 @@ public class InformationNeededInGame {
     private final static int PriceForSellCageLion = 150;
     private final static int PriceForSellCageBear = 100;
 
-
     public int getPriceForSell(Object object) throws UnknownObjectException {
         if (object.toString().equals("Wool")) {
             return PriceForSellWool;
@@ -267,7 +268,7 @@ public class InformationNeededInGame {
             return PriceForSellFabric;
         } else if (object.toString().equals("Sewing")) {
             return PriceForSellSewing;
-        } else if (object.toString().equals("Cage")) {
+        } else if (object.toString().substring(0,4).equals("Cage")) {
             WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
             if (wildAnimals.toString().equals("Lion")) {
                 return PriceForSellCageLion;
@@ -277,6 +278,7 @@ public class InformationNeededInGame {
         }
         throw new UnknownObjectException();
     }
+
 
 
 }

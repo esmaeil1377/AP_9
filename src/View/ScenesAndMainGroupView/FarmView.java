@@ -7,7 +7,6 @@ import FarmController.Exceptions.WellIsNotEmpty;
 import FarmModel.*;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
-import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
@@ -80,8 +79,8 @@ public class FarmView extends View {
 
     @Override
     public void Start(Stage primaryStage) throws MissionNotLoaded {
-        LoadMapIconTharWereBefore();
         InitializeTheCells();
+        LoadMapIconTharWereBefore();
         User user = Game.getGameInstance().getCurrentUserAccount();
         Mission mission = user.getCurrentPlayingMission();
         Farm farm = mission.getFarm();
@@ -669,18 +668,18 @@ public class FarmView extends View {
                 wareHouseView.setFitWidth(310);
             }
         });
-        wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    ShowTruckGoingToCityAndComingBack();
-                    ShowHelicopterToCityAndComingBack();
-                } catch (MissionNotLoaded missionNotLoaded) {
-                    missionNotLoaded.printStackTrace();
-                }
-//                AddLevelBucketToWell(0);
-            }
-        });
+//        wareHouseView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                try {
+//                    ShowTruckGoingToCityAndComingBack();
+//                    ShowHelicopterToCityAndComingBack();
+//                } catch (MissionNotLoaded missionNotLoaded) {
+//                    missionNotLoaded.printStackTrace();
+//                }
+////                AddLevelBucketToWell(0);
+//            }
+//        });
         rootFarmView.getChildren().addAll(wareHouseView);
     }
 
@@ -974,7 +973,6 @@ public class FarmView extends View {
 
         rootFarmView.getChildren().addAll(chickenCircle, sheepCircle, cowCircle, catCircle, dogCircle, chickenView, sheepView, cowView, catView, dogView);
     }
-
 
     private void AddSpinnery(int level) {
         File spinneryFile = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\0" + String.valueOf(level + 1) + ".png");
@@ -1342,9 +1340,10 @@ public class FarmView extends View {
         truckView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                GameView.getGameView().setProductInTruckView(new ProductInTruckView(primaryStage));
                 animationTimer.stop();
-                primaryStage.setScene(GameView.getGameView().getProductInTruckView().getSceneProductTruckView());
+                ProductInTruckView productInTruckView=new ProductInTruckView(primaryStage);
+                primaryStage.setScene(productInTruckView.getSceneProductTruckView());
+                GameView.getGameView().setProductInTruckView(productInTruckView);
                 primaryStage.setFullScreen(true);
             }
         });
@@ -2892,7 +2891,7 @@ public class FarmView extends View {
                 iconView.relocate(column * 19 + 560, 825 - row * 19);
                 rootFarmView.getChildren().addAll(iconView);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -2935,8 +2934,8 @@ public class FarmView extends View {
             AddMilk(xCell, yCell);
         } else if (object.toString().equals("Grass")) {
             PlantGrass(xCell, yCell);
-        }else if (object.toString().equals("CageLion")){
-            ShowCageWhenIsUsingForWildAnimal("Lion",xCell,yCell);
+        } else if (object.toString().equals("CageLion")) {
+            ShowCageWhenIsUsingForWildAnimal("Lion", xCell, yCell);
         }
     }
 

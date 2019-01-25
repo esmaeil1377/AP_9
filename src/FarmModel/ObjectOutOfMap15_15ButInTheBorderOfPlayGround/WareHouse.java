@@ -71,12 +71,11 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
 
     }
 
-    public HashMap<Object,Integer> getTypeAndNumberOfProductInWAreHouse() throws MissionNotLoaded {
-        WareHouse wareHouse=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
-        HashMap<Object,Integer> result=new HashMap<>();
+    public HashMap<String,Integer> getTypeAndNumberOfProductInWAreHouse() throws MissionNotLoaded {
+        HashMap<String,Integer> result=new HashMap<>();
         for(Object object:wareHouseList){
-            if(!result.containsKey(object)){
-                result.put(object,GetNumberOfObjectInWareHouse(object));
+            if(!result.containsKey(object.toString())){
+                result.put(object.toString(),GetNumberOfObjectInWareHouse(object));
             }
         }
         return result;
