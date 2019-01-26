@@ -1865,8 +1865,7 @@ public class ProductInTruckView extends View {
                             , imageViewMultiply, labelSewingButton1, labelButtonAll, labelSewingOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.substring(0,4).equals("Cage")) {
-                    WildAnimals wildAnimals = ((Cage) object).getWildAnimals();
-                    if (wildAnimals.toString().equals("Lion")) {
+                    if (key.equals("CageLion")) {
                         final int finalYLocationOfFirst = yLocationOfFirst;
                         File fileIcon = new File("Data\\Textures\\Products\\CagedLion.png"); // not image
                         Image imageIcon = new Image(fileIcon.toURI().toString());
@@ -1887,7 +1886,7 @@ public class ProductInTruckView extends View {
                         labelCageLionOfNumber.setTextFill(Color.BLACK);
                         labelCageLionOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
-                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Cage(new Lion())))); // price of egg
                         labelOfPrice.relocate(230, finalYLocationOfFirst);
                         labelOfPrice.setTextFill(Color.BLACK);
                         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2001,7 +2000,7 @@ public class ProductInTruckView extends View {
                         rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                                 , imageViewMultiply, labelCageLionButton1, labelButtonAll, labelCageLionOfNumber, labelOfPrice);
                         yLocationOfFirst += 50;
-                    } else if (wildAnimals.toString().equals("Bear")) {
+                    } else if (key.equals("CageBear")) {
                         final int finalYLocationOfFirst = yLocationOfFirst;
                         File fileIcon = new File("Data\\Textures\\Products\\CagedBrownBear.png"); // not image
                         Image imageIcon = new Image(fileIcon.toURI().toString());
@@ -2022,7 +2021,7 @@ public class ProductInTruckView extends View {
                         labelCageBrearOfNumber.setTextFill(Color.BLACK);
                         labelCageBrearOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
-                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Cage(new Bear())))); // price of egg
                         labelOfPrice.relocate(230, finalYLocationOfFirst);
                         labelOfPrice.setTextFill(Color.BLACK);
                         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
