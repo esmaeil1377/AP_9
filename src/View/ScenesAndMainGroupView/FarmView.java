@@ -1,9 +1,6 @@
 package View.ScenesAndMainGroupView;
 
-import FarmController.Exceptions.BucketIsEmptyException;
-import FarmController.Exceptions.FullWareHouse;
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.WellIsNotEmpty;
+import FarmController.Exceptions.*;
 import FarmModel.*;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
@@ -1350,7 +1347,14 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 animationTimer.stop();
-                ProductInTruckView productInTruckView=new ProductInTruckView(primaryStage);
+                ProductInTruckView productInTruckView= null;
+                try {
+                    productInTruckView = new ProductInTruckView(primaryStage);
+                } catch (UnknownObjectException e) {
+                    e.printStackTrace();
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
                 primaryStage.setScene(productInTruckView.getSceneProductTruckView());
                 GameView.getGameView().setProductInTruckView(productInTruckView);
                 primaryStage.setFullScreen(true);
@@ -1476,10 +1480,19 @@ public class FarmView extends View {
                     public void handle(ActionEvent event) {
                         rootFarmView.getChildren().removeAll(vehicleView);
                         if (vehicle instanceof Truck) {
-                            rootFarmView.getChildren().addAll(truckView);
-                        } else if (vehicle instanceof Helicopter) {
-                            rootFarmView.getChildren().addAll(helicopterView);
                             try {
+                                rootFarmView.getChildren().addAll(truckView);
+                                int money=Integer.valueOf(GameView.getGameView().getProductInTruckView().getCoinText().getText());
+                                Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+                                mission.ChangeMissionMoney(money);
+                                UpdateMoneyText();
+
+                            } catch (MissionNotLoaded missionNotLoaded) {
+                                missionNotLoaded.printStackTrace();
+                            }
+                        } else if (vehicle instanceof Helicopter) {
+                            try {
+                                rootFarmView.getChildren().addAll(helicopterView);
                                 Helicopter helicopter = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getHelicopter();
                                 helicopter.PutObjectInMapRandomly();
                             } catch (MissionNotLoaded missionNotLoaded) {
