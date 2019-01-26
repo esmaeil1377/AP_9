@@ -52,7 +52,7 @@ import java.util.HashMap;
 
 public class FarmView extends View {
     HashMap<ArrayList<Integer>, HashMap<String, Node>> cells = new HashMap<>();
-    private Text text = new Text("Speed\n   " + String.valueOf(GameView.getGameView().getStartMenuView().getGameSpeed()));
+    private Text speedTextInFarmView = new Text("Speed\n   " + String.valueOf(GameView.getGameView().getStartMenuView().getGameSpeed()));
     private Circle speedCircle;
     private Group rootFarmView = new Group();
     private Scene sceneFarmView = new Scene(rootFarmView, 1600, 900);
@@ -60,11 +60,11 @@ public class FarmView extends View {
     private Text moneyText;
     ImageView helicopterView;
     ImageView truckView;
-    Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+    Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
     private Text timerText = new Text(mission.getMinute_1() + mission.getMinute_2() + " : " + mission.getSecond_1() + mission.getSecond_2());
 
-    public Text getText() {
-        return text;
+    public Text getSpeedTextInFarmView() {
+        return speedTextInFarmView;
     }
 
     public AnimationTimer getAnimationTimer() {
@@ -86,26 +86,12 @@ public class FarmView extends View {
         User user = Game.getGameInstance().getCurrentUserAccount();
         Mission mission = user.getCurrentPlayingMission();
         Farm farm = mission.getFarm();
-        try {
-            CakeBakery cakeBakery = (CakeBakery) farm.getSpecifiedWorkShop("CakeBakery");
-            CookieBakery cookieBakery = (CookieBakery) farm.getSpecifiedWorkShop("CookieBakery");
-            EggPowderPlant eggPowderPlant = (EggPowderPlant) farm.getSpecifiedWorkShop("EggPowderPlant");
-            SewingFactory sewingFactory = (SewingFactory) farm.getSpecifiedWorkShop("SewingFactory");
-            Spinnery spinnery = (Spinnery) farm.getSpecifiedWorkShop("Spinnery");
-            WeavingFactory weavingFactory = (WeavingFactory) farm.getSpecifiedWorkShop("WeavingFactory");
-            if (cakeBakery != null) AddCakeBakery(cakeBakery.getLevel());
-            if (cookieBakery != null) AddCookieBakery(cookieBakery.getLevel());
-            if (eggPowderPlant != null) AddEggPowderPlant(eggPowderPlant.getLevel());
-            if (sewingFactory != null) AddSewingFactory(sewingFactory.getLevel());
-            if (spinnery != null) AddSpinnery(spinnery.getLevel());
-            if (weavingFactory != null) AddWeavingFactory(weavingFactory.getLevel());
-        } catch (NullPointerException e) {
-//            e.printStackTrace();
-        }
 
-        text.setText(GameView.getGameView().getStartMenuView().getText().getText());
+        AddMissionWorkShopsAndVehicles(primaryStage);
 
-        AddSpeedCircleToSettingInFarm(primaryStage);
+
+        speedTextInFarmView.setText(GameView.getGameView().getStartMenuView().getText().getText());
+
 
         animationTimer = new AnimationTimer() {
             long time = -1;
@@ -131,39 +117,29 @@ public class FarmView extends View {
             }
         };
         animationTimer.start();
-        AddBackGround(primaryStage);
 
         ShowMovingCloud();
+
         AddMovingWell(farm.getWell().getLevel());
 
         AddMovingWareHouse(farm.getWareHouse().getLevel());
 
-        AddPavement();
 
         AddBuyItems();
-
-        AddLookingGIf();
-
-        if (farm.getTruck() != null) AddTruck(primaryStage, farm.getTruck().getLevel());
-
-        if (farm.getHelicopter() != null) AddHelicopter(primaryStage, farm.getHelicopter().getLevel());
 
 
         AddStarAndMoneyText(user.getCurrentPlayingMission().getMissionMoney());
 
         ShowBorderOfMsp();
-        CheckWellBucketWater();
 
-//        AddThreePavementForWorkshop();
-
+        AddSpeedCircleToSettingInFarm(primaryStage);
         AddMenuClick(primaryStage);
 
         AddTimeText();
+
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
         primaryStage.show();
-
-
     }
 
 
@@ -330,8 +306,8 @@ public class FarmView extends View {
         settingCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (!rootFarmView.getChildren().contains(text)) {
-                    rootFarmView.getChildren().addAll(text, speedCircle);
+                if (!rootFarmView.getChildren().contains(speedTextInFarmView)) {
+                    rootFarmView.getChildren().addAll(speedTextInFarmView, speedCircle);
                     KeyValue xSpeed = new KeyValue(speedCircle.centerXProperty(), 630);
                     KeyValue ySpeed = new KeyValue(speedCircle.centerYProperty(), 610);
                     KeyFrame speedCircleFrame = new KeyFrame(Duration.millis(500), xSpeed, ySpeed);
@@ -498,7 +474,7 @@ public class FarmView extends View {
         continueCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                rootFarmView.getChildren().removeAll(menuTextImageView, mapTextView, continueImageView, restartImageView, saveView, settingView, speedCircle, text);
+                rootFarmView.getChildren().removeAll(menuTextImageView, mapTextView, continueImageView, restartImageView, saveView, settingView, speedCircle, speedTextInFarmView);
                 animationTimer.start();
                 ShowMenuClosing(menuCircles);
                 PlayBubbleSound();
@@ -924,13 +900,13 @@ public class FarmView extends View {
     }
 
     private void AddCakeBakery(int level) {
-        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\FlouryCake(FlouryCake Bakery)\\0" + String.valueOf(level + 1) + ".png");
+        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\0" + String.valueOf(level + 1) + ".png");
         Image cakeBakeryImage = new Image(cakeBakeryFile.toURI().toString());
         ImageView cakeBakeryVeiw = new ImageView(cakeBakeryImage);
         cakeBakeryVeiw.relocate(100, 350);
         cakeBakeryVeiw.setFitHeight(150);
         cakeBakeryVeiw.setFitWidth(150);
-        cakeBakeryVeiw.setViewport(new Rectangle2D(0, 0, 184, 171.5));
+        cakeBakeryVeiw.setViewport(new Rectangle2D(0, 0, 184, 172));
         cakeBakeryVeiw.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -956,7 +932,7 @@ public class FarmView extends View {
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
                     PlayBubbleSound();
                     //we have ifs here
-                    Animation animation = new SpriteAnimation(cakeBakeryVeiw, Duration.millis(duration / 2), 12, 4, 0, 0, 184, 171);
+                    Animation animation = new SpriteAnimation(cakeBakeryVeiw, Duration.millis(duration / 2), 12, 4, 0, 0, 184, 172);
                     animation.setCycleCount(cakeBakery.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
@@ -1092,7 +1068,7 @@ public class FarmView extends View {
     }
 
     private void AddCookieBakery(int level) {
-        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\0" + String.valueOf(level + 1) + ".png");
+        File cakeBakeryFile = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\0" + String.valueOf(level + 1) + ".png");
         Image cakeBakeryImage = new Image(cakeBakeryFile.toURI().toString());
         ImageView cookieBakeryView = new ImageView(cakeBakeryImage);
         cookieBakeryView.relocate(1000, 350);
@@ -1234,7 +1210,7 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 animationTimer.stop();
-                ProductInTruckView productInTruckView= null;
+                ProductInTruckView productInTruckView = null;
                 try {
                     productInTruckView = new ProductInTruckView(primaryStage);
                 } catch (UnknownObjectException e) {
@@ -1369,8 +1345,8 @@ public class FarmView extends View {
                         if (vehicle instanceof Truck) {
                             try {
                                 rootFarmView.getChildren().addAll(truckView);
-                                int money=Integer.valueOf(GameView.getGameView().getProductInTruckView().getCoinText().getText());
-                                Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+                                int money = Integer.valueOf(GameView.getGameView().getProductInTruckView().getCoinText().getText());
+                                Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
                                 mission.ChangeMissionMoney(money);
                                 UpdateMoneyText();
 
@@ -1456,11 +1432,11 @@ public class FarmView extends View {
     }
 
     private void PickUpProductFromMap(int xCell, int yCell, ImageView eggView) {
-        eggView.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        eggView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new PickUpRequest("pickup "+String.valueOf(xCell)+" "+String.valueOf(yCell));
+                    new PickUpRequest("pickup " + String.valueOf(xCell) + " " + String.valueOf(yCell));
                     rootFarmView.getChildren().removeAll(eggView);
                 } catch (MissionNotLoaded missionNotLoaded) {
                     missionNotLoaded.printStackTrace();
@@ -1514,6 +1490,7 @@ public class FarmView extends View {
         });
         cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Milk", milkView);
     }
+
     public void AddWool(int xCell, int yCell) {
         int[] position = getPositionByCellPosition(xCell, yCell);
         int xPosition = position[0];
@@ -2588,29 +2565,29 @@ public class FarmView extends View {
                 speedCircle.setOpacity(0.4);
             }
         });
-        text.setStyle("-fx-font-weight: bold");
-        text.setFont(Font.font(20));
-        text.relocate(600, 590);
-        text.setFill(Color.rgb(50, 100, 120));
+        speedTextInFarmView.setStyle("-fx-font-weight: bold");
+        speedTextInFarmView.setFont(Font.font(20));
+        speedTextInFarmView.relocate(600, 590);
+        speedTextInFarmView.setFill(Color.rgb(50, 100, 120));
 
         speedCircle.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
-                int speed = Integer.valueOf(text.getText().substring(text.getText().length() - 2));
+                int speed = Integer.valueOf(speedTextInFarmView.getText().substring(speedTextInFarmView.getText().length() - 2));
                 if (speed >= 11 && speed <= 98) {
                     if (((int) (speed + event.getDeltaY() / 32)) > 9 && ((int) (speed + event.getDeltaY() / 32)) < 100) {
-                        text.setText("Speed\n   " + String.valueOf((int) (speed + event.getDeltaY() / 32)));
+                        speedTextInFarmView.setText("Speed\n   " + String.valueOf((int) (speed + event.getDeltaY() / 32)));
                         GameView.getGameView().getStartMenuView().setGameSpeed((int) (speed + event.getDeltaY() / 32));
                         Text startMenuText = GameView.getGameView().getStartMenuView().getText();
                         startMenuText.setText("Speed\n   " + String.valueOf((int) (speed + event.getDeltaY() / 32)));
                     }
                 } else if (speed == 10 && event.getDeltaY() > 0) {
-                    text.setText("Speed\n   " + String.valueOf(speed + 1));
+                    speedTextInFarmView.setText("Speed\n   " + String.valueOf(speed + 1));
                     GameView.getGameView().getStartMenuView().setGameSpeed(speed + 1);
                     Text startMenuText = GameView.getGameView().getStartMenuView().getText();
                     startMenuText.setText("Speed\n   " + String.valueOf(speed + 1));
                 } else if (speed == 99 && event.getDeltaY() < 0) {
-                    text.setText("Speed\n   " + String.valueOf(speed - 1));
+                    speedTextInFarmView.setText("Speed\n   " + String.valueOf(speed - 1));
                     GameView.getGameView().getStartMenuView().setGameSpeed(speed - 1);
                     Text startMenuText = GameView.getGameView().getStartMenuView().getText();
                     startMenuText.setText("Speed\n   " + String.valueOf(speed - 1));
@@ -2836,19 +2813,17 @@ public class FarmView extends View {
 
     }
 
-    public void AddMapObjectIcon(Object object,int xCell,int yCell){
-        if (object instanceof Cake){
-            AddCake(xCell,yCell);
-        }
-        else if (object instanceof CarnivalDress) {
-            AddCarnivalDress(xCell,yCell);
-        }else if (object instanceof Fabric){
-            AddFabric(xCell,yCell);
-        }
-        else if (object instanceof Flour){
-            AddFlour(xCell,yCell);
-        }else if (object instanceof FlouryCake){
-            AddFlouryCake(xCell,yCell);
+    public void AddMapObjectIcon(Object object, int xCell, int yCell) {
+        if (object instanceof Cake) {
+            AddCake(xCell, yCell);
+        } else if (object instanceof CarnivalDress) {
+            AddCarnivalDress(xCell, yCell);
+        } else if (object instanceof Fabric) {
+            AddFabric(xCell, yCell);
+        } else if (object instanceof Flour) {
+            AddFlour(xCell, yCell);
+        } else if (object instanceof FlouryCake) {
+            AddFlouryCake(xCell, yCell);
         }
     }
 
@@ -2872,6 +2847,25 @@ public class FarmView extends View {
         Line line3 = new Line(310, 210, 310 + 649.999, 210);
         rootFarmView.getChildren().addAll(line, line1, line2, line3);
 
+    }
+
+    private void AddMissionWorkShopsAndVehicles(Stage primaryStage) throws MissionNotLoaded {
+        Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
+        CakeBakery cakeBakery = (CakeBakery) farm.getSpecifiedWorkShop("CakeBakery");
+        CookieBakery cookieBakery = (CookieBakery) farm.getSpecifiedWorkShop("CookieBakery");
+        EggPowderPlant eggPowderPlant = (EggPowderPlant) farm.getSpecifiedWorkShop("EggPowderPlant");
+        SewingFactory sewingFactory = (SewingFactory) farm.getSpecifiedWorkShop("SewingFactory");
+        Spinnery spinnery = (Spinnery) farm.getSpecifiedWorkShop("Spinnery");
+        WeavingFactory weavingFactory = (WeavingFactory) farm.getSpecifiedWorkShop("WeavingFactory");
+        if (cakeBakery != null) AddCakeBakery(cakeBakery.getLevel());
+        if (cookieBakery != null) AddCookieBakery(cookieBakery.getLevel());
+        if (eggPowderPlant != null) AddEggPowderPlant(eggPowderPlant.getLevel());
+        if (sewingFactory != null) AddSewingFactory(sewingFactory.getLevel());
+        if (spinnery != null) AddSpinnery(spinnery.getLevel());
+        if (weavingFactory != null) AddWeavingFactory(weavingFactory.getLevel());
+
+        if (farm.getTruck() != null) AddTruck(primaryStage, farm.getTruck().getLevel());
+        if (farm.getHelicopter() != null) AddHelicopter(primaryStage, farm.getHelicopter().getLevel());
     }
 
     private void CheckWellBucketWater() throws MissionNotLoaded {
@@ -2901,24 +2895,24 @@ public class FarmView extends View {
 
 
     private void missionTime() {
-        mission.setSecond_2(mission.getSecond_2()+1);
+        mission.setSecond_2(mission.getSecond_2() + 1);
         if (mission.getSecond_2() == 10) {
-            mission.setSecond_1(mission.getSecond_1()+1);
+            mission.setSecond_1(mission.getSecond_1() + 1);
             mission.setSecond_2(0);
         }
         if (mission.getSecond_1() == 6) {
-            mission.setMinute_2(mission.getMinute_2()+1);
+            mission.setMinute_2(mission.getMinute_2() + 1);
             mission.setSecond_1(0);
         }
         if (mission.getMinute_2() == 10) {
-            mission.setMinute_1(mission.getMinute_1()+1);
+            mission.setMinute_1(mission.getMinute_1() + 1);
             mission.setMinute_2(0);
         }
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
         timerText.setStyle("-fx-font-weight: bold");
     }
 
-    private void AddTimeText(){
+    private void AddTimeText() {
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
         timerText.setStyle("-fx-font-weight: bold");
         timerText.relocate(720, 40 );
@@ -2927,12 +2921,12 @@ public class FarmView extends View {
         File backGroundFile = new File("Data\\Click\\time_gold.png");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView backgroundForTime = new ImageView(backGroundImage);
-        backgroundForTime.relocate(680,20);
+        backgroundForTime.relocate(680, 20);
         backgroundForTime.setFitHeight(60);
         backgroundForTime.setFitWidth(120);
 
 
-        rootFarmView.getChildren().addAll(backgroundForTime,timerText);
+        rootFarmView.getChildren().addAll(backgroundForTime, timerText);
     }
 }
 
