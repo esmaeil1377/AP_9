@@ -687,37 +687,38 @@ public class FarmView extends View {
     }
 
     private void AddBuyItems() {
-        Circle chickenCircle = new Circle(1450, 270, 50, Color.rgb(39, 221, 255));
-        chickenCircle.setOpacity(0.4);
+//        Circle chickenCircle = new Circle(1450, 270, 50, Color.rgb(39, 221, 255));
+//        chickenCircle.setOpacity(0.4);
 
-        Circle sheepCircle = new Circle(1450, 390, 50, Color.rgb(39, 221, 255));
-        sheepCircle.setOpacity(0.4);
-
-        Circle cowCircle = new Circle(1450, 510, 50, Color.rgb(39, 221, 255));
-        cowCircle.setOpacity(0.4);
-
-        Circle catCircle = new Circle(1450, 630, 50, Color.rgb(39, 221, 255));
-        catCircle.setOpacity(0.4);
-
-        Circle dogCircle = new Circle(1450, 750, 50, Color.rgb(39, 221, 255));
-        dogCircle.setOpacity(0.4);
+//        Circle sheepCircle = new Circle(1450, 390, 50, Color.rgb(39, 221, 255));
+//        sheepCircle.setOpacity(0.4);
+//
+//        Circle cowCircle = new Circle(1450, 510, 50, Color.rgb(39, 221, 255));
+//        cowCircle.setOpacity(0.4);
+//
+//        Circle catCircle = new Circle(1450, 630, 50, Color.rgb(39, 221, 255));
+//        catCircle.setOpacity(0.4);
+//
+//        Circle dogCircle = new Circle(1450, 750, 50, Color.rgb(39, 221, 255));
+//        dogCircle.setOpacity(0.4);
 
         File chickenFile = new File("Data\\Textures\\BuyIconNotHead\\Chicken.png");
         Image chickenImage = new Image(chickenFile.toURI().toString());
         ImageView chickenView = new ImageView(chickenImage);
-        chickenView.relocate(1405, 235);
         chickenView.setFitHeight(80);
         chickenView.setFitWidth(80);
+        chickenView.setViewport(new Rectangle2D(0,0,55,60));
+        chickenView.relocate(1405, 230);
         chickenView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.8);
+                chickenView.setOpacity(0.8);
             }
         });
         chickenView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.4);
+                chickenView.setOpacity(1);
             }
         });
         chickenView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -733,19 +734,19 @@ public class FarmView extends View {
 
             }
         });
-        chickenCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        chickenView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.8);
+                chickenView.setOpacity(0.8);
             }
         });
-        chickenCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        chickenView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                chickenCircle.setOpacity(0.4);
+                chickenView.setOpacity(1);
             }
         });
-        chickenCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        chickenView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
@@ -762,19 +763,20 @@ public class FarmView extends View {
         File sheepFile = new File("Data\\Textures\\BuyIconNotHead\\Sheep.png");
         Image sheepImage = new Image(sheepFile.toURI().toString());
         ImageView sheepView = new ImageView(sheepImage);
-        sheepView.relocate(1408, 353);
+        sheepView.relocate(1408, 320);
+        sheepView.setViewport(new Rectangle2D(0,0,55,60));
         sheepView.setFitHeight(80);
         sheepView.setFitWidth(80);
         sheepView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                sheepCircle.setOpacity(0.8);
+                sheepView.setOpacity(0.8);
             }
         });
         sheepView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                sheepCircle.setOpacity(0.4);
+                sheepView.setOpacity(1);
             }
         });
         sheepView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -789,19 +791,19 @@ public class FarmView extends View {
                 }
             }
         });
-        sheepCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        sheepView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                sheepCircle.setOpacity(0.95);
+                sheepView.setOpacity(0.8);
             }
         });
-        sheepCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        sheepView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                sheepCircle.setOpacity(0.4);
+                sheepView.setOpacity(1);
             }
         });
-        sheepCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        sheepView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
@@ -817,19 +819,20 @@ public class FarmView extends View {
         File cowFile = new File("Data\\Textures\\BuyIconNotHead\\Cow.png");
         Image cowImage = new Image(cowFile.toURI().toString());
         ImageView cowView = new ImageView(cowImage);
-        cowView.relocate(1412, 474);
+        cowView.relocate(1412, 410);
+        cowView.setViewport(new Rectangle2D(0,0,55,60));
         cowView.setFitHeight(80);
         cowView.setFitWidth(80);
         cowView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.8);
+                cowView.setOpacity(0.8);
             }
         });
         cowView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.4);
+                cowView.setOpacity(1);
             }
         });
         cowView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -843,19 +846,19 @@ public class FarmView extends View {
                 }
             }
         });
-        cowCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        cowView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.8);
+                cowView.setOpacity(0.8);
             }
         });
-        cowCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        cowView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                cowCircle.setOpacity(0.4);
+                cowView.setOpacity(1);
             }
         });
-        cowCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        cowView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
@@ -870,19 +873,20 @@ public class FarmView extends View {
         File catFile = new File("Data\\Textures\\BuyIconNotHead\\Cat.png");
         Image catImage = new Image(catFile.toURI().toString());
         ImageView catView = new ImageView(catImage);
-        catView.relocate(1408, 590);
+        catView.relocate(1408, 500);
+        catView.setViewport(new Rectangle2D(0,0,55,60));
         catView.setFitHeight(80);
         catView.setFitWidth(80);
         catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.8);
+                catView.setOpacity(0.8);
             }
         });
         catView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.4);
+                catView.setOpacity(1);
             }
         });
         catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -896,19 +900,19 @@ public class FarmView extends View {
                 }
             }
         });
-        catCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.8);
+                catView.setOpacity(0.8);
             }
         });
-        catCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        catView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catCircle.setOpacity(0.4);
+                catView.setOpacity(1);
             }
         });
-        catCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
@@ -923,19 +927,20 @@ public class FarmView extends View {
         File dogFile = new File("Data\\Textures\\BuyIconNotHead\\Dog.png");
         Image dogImage = new Image(dogFile.toURI().toString());
         ImageView dogView = new ImageView(dogImage);
-        dogView.relocate(1410, 703);
+        dogView.relocate(1410, 590);
+        dogView.setViewport(new Rectangle2D(0,0,55,60));
         dogView.setFitHeight(90);
         dogView.setFitWidth(80);
         dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.8);
+                dogView.setOpacity(0.8);
             }
         });
         dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.4);
+                dogView.setOpacity(1);
             }
         });
         dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -949,19 +954,19 @@ public class FarmView extends View {
                 }
             }
         });
-        dogCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.8);
+                dogView.setOpacity(0.8);
             }
         });
-        dogCircle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogCircle.setOpacity(0.4);
+                dogView.setOpacity(1);
             }
         });
-        dogCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
@@ -974,7 +979,7 @@ public class FarmView extends View {
         });
 
 
-        rootFarmView.getChildren().addAll(chickenCircle, sheepCircle, cowCircle, catCircle, dogCircle, chickenView, sheepView, cowView, catView, dogView);
+        rootFarmView.getChildren().addAll( chickenView, sheepView, cowView, catView, dogView);
     }
 
 
@@ -2933,7 +2938,7 @@ public class FarmView extends View {
 
     public void AddMapObjectIcon(Object object,int xCell,int yCell){
         if (object instanceof Cake){
-            AddFlouryCake(xCell,yCell);
+            AddCake(xCell,yCell);
         }
         else if (object instanceof CarnivalDress) {
             AddCarnivalDress(xCell,yCell);
@@ -2942,8 +2947,8 @@ public class FarmView extends View {
         }
         else if (object instanceof Flour){
             AddFlour(xCell,yCell);
-        }else if (object instanceof Cookie){
-            AddCake(xCell,yCell);
+        }else if (object instanceof FlouryCake){
+            AddFlouryCake(xCell,yCell);
         }
     }
 
@@ -3019,5 +3024,3 @@ public class FarmView extends View {
     }
 }
 
-
-}
