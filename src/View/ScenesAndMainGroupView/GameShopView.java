@@ -195,7 +195,7 @@ public class GameShopView extends View {
             }
         });
 
-        File cookieBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\01.png");
+        File cookieBakery = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\01.png");
         Image cookieBakeryImage = new Image(cookieBakery.toURI().toString());
         ImageView cookieBakeryView = new ImageView(cookieBakeryImage);
         cookieBakeryView.setFitHeight((int) (175 * yShift));
@@ -233,7 +233,7 @@ public class GameShopView extends View {
             }
         });
 
-        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(FlouryCake Bakery)\\01.png");
+        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\01.png");
         Image cakeBakeryImage = new Image(cakeBakery.toURI().toString());
         ImageView cakeBakeryView = new ImageView(cakeBakeryImage);
         cakeBakeryView.setFitHeight((int) (210 * yShift));
