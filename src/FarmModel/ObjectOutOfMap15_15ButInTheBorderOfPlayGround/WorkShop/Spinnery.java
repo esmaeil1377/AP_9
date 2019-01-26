@@ -15,7 +15,7 @@ import View.GameView;
 import java.util.HashMap;
 
 public class Spinnery extends WorkShop {
-    public final String workShopName = "Spinnnery";
+    public final String workShopName = "Spinnery";
 
     public Spinnery(int currentLevel) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
         for(int i=0;i<currentLevel;i++){

@@ -223,11 +223,13 @@ public class Farm {
 
     public WorkShop getSpecifiedWorkShop(String WorkshopName) throws MissionNotLoaded {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
-        for (WorkShop workshop : farm.getWorkShops()) {
-            if (workshop.getWorkShopName().equals(WorkshopName)) {
-                return workshop;
+        try {
+            for (WorkShop workshop : farm.getWorkShops()) {
+                if (workshop.getWorkShopName().equals(WorkshopName)) {
+                    return workshop;
+                }
             }
-        }
+        }catch (Exception e){}
         return null;
     }
 
