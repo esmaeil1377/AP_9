@@ -929,9 +929,9 @@ public class GameShopView extends View {
         okButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.relocate((int) (1698 * xShift), (int) (18 * yShift));
-                okButtonView.setFitHeight((int) (80 * yShift));
-                okButtonView.setFitWidth((int) (150 * xShift));
+                okButtonView.relocate((int) (1695 * xShift), (int) (15 * yShift));
+                okButtonView.setFitHeight((int) (85 * yShift));
+                okButtonView.setFitWidth((int) (160 * xShift));
             }
         });
         okButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -959,9 +959,9 @@ public class GameShopView extends View {
         okTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                okButtonView.relocate((int) (1698 * xShift), (int) (18 * yShift));
-                okButtonView.setFitHeight((int) (80 * yShift));
-                okButtonView.setFitWidth((int) (155 * xShift));
+                okButtonView.relocate((int) (1695 * xShift), (int) (15 * yShift));
+                okButtonView.setFitHeight((int) (85 * yShift));
+                okButtonView.setFitWidth((int) (160 * xShift));
             }
         });
         okTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
