@@ -79,8 +79,8 @@ public class FarmView extends View {
 
     @Override
     public void Start(Stage primaryStage) throws MissionNotLoaded {
-        InitializeTheCells();
         LoadMapIconTharWereBefore();
+        InitializeTheCells();
         User user = Game.getGameInstance().getCurrentUserAccount();
         Mission mission = user.getCurrentPlayingMission();
         Farm farm = mission.getFarm();
@@ -116,9 +116,7 @@ public class FarmView extends View {
                 if (now - time > (2000000000) - (speed * 15881818)) {
                     System.out.print(speed + ":speed");
                     System.out.println(now);
-
                     time = now;
-                    missionTime();
                     try {
                         new TurnRequest("turn 1");
                         UpdateMoneyText();
@@ -126,6 +124,7 @@ public class FarmView extends View {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    missionTime();
                 }
             }
         };
@@ -731,32 +730,6 @@ public class FarmView extends View {
 
             }
         });
-        chickenView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                chickenView.setOpacity(0.8);
-            }
-        });
-        chickenView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                chickenView.setOpacity(1);
-            }
-        });
-        chickenView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                PlayBubbleSound();
-                try {
-                    new BuyRequest("buy Chicken");
-                    UpdateMoneyText();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
         File sheepFile = new File("Data\\Textures\\BuyIconNotHead\\Sheep.png");
         Image sheepImage = new Image(sheepFile.toURI().toString());
         ImageView sheepView = new ImageView(sheepImage);
@@ -764,30 +737,6 @@ public class FarmView extends View {
         sheepView.setViewport(new Rectangle2D(0,0,55,60));
         sheepView.setFitHeight(80);
         sheepView.setFitWidth(80);
-        sheepView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                sheepView.setOpacity(0.8);
-            }
-        });
-        sheepView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                sheepView.setOpacity(1);
-            }
-        });
-        sheepView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                PlayBubbleSound();
-                try {
-                    new BuyRequest("buy Sheep");
-                    UpdateMoneyText();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
         sheepView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -820,29 +769,7 @@ public class FarmView extends View {
         cowView.setViewport(new Rectangle2D(0,0,55,60));
         cowView.setFitHeight(80);
         cowView.setFitWidth(80);
-        cowView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                cowView.setOpacity(0.8);
-            }
-        });
-        cowView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                cowView.setOpacity(1);
-            }
-        });
-        cowView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                PlayBubbleSound();
-                try {
-                    new BuyRequest("buy Cow");
-                    UpdateMoneyText();
-                } catch (Exception e) {
-                }
-            }
-        });
+
         cowView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -897,29 +824,6 @@ public class FarmView extends View {
                 }
             }
         });
-        catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                catView.setOpacity(0.8);
-            }
-        });
-        catView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                catView.setOpacity(1);
-            }
-        });
-        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                PlayBubbleSound();
-                try {
-                    new BuyRequest("buy Cat");
-                    UpdateMoneyText();
-                } catch (Exception e) {
-                }
-            }
-        });
 
         File dogFile = new File("Data\\Textures\\BuyIconNotHead\\Dog.png");
         Image dogImage = new Image(dogFile.toURI().toString());
@@ -928,29 +832,6 @@ public class FarmView extends View {
         dogView.setViewport(new Rectangle2D(0,0,55,60));
         dogView.setFitHeight(90);
         dogView.setFitWidth(80);
-        dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                dogView.setOpacity(0.8);
-            }
-        });
-        dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                dogView.setOpacity(1);
-            }
-        });
-        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                PlayBubbleSound();
-                try {
-                    new BuyRequest("buy Dog");
-                    UpdateMoneyText();
-                } catch (Exception e) {
-                }
-            }
-        });
         dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
