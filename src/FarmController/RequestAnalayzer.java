@@ -51,7 +51,7 @@ public class RequestAnalayzer {
         } else if (requestString.matches(Load_Game_Regex)) {
             new LoadGameRequest(requestString);
         } else if (requestString.matches(Print_Regex)) {
-            new PrintRequest(requestString);
+//            new PrintRequest(requestString);
         } else if (requestString.matches(Turn_Regex)) {
             new TurnRequest(requestString);
         } else if (requestString.matches(Go_Vehicle_Regex)) {

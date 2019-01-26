@@ -60,6 +60,8 @@ public class FarmView extends View {
     private Text moneyText;
     ImageView helicopterView;
     ImageView truckView;
+    Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+    private Text timerText = new Text(mission.getMinute_1() + mission.getMinute_2() + " : " + mission.getSecond_1() + mission.getSecond_2());
 
     public Text getText() {
         return text;
@@ -116,7 +118,6 @@ public class FarmView extends View {
                 if (now - time > (2000000000) - (speed * 15881818)) {
                     System.out.print(speed + ":speed");
                     System.out.println(now);
-
                     time = now;
                     missionTime();
                     try {
@@ -156,6 +157,8 @@ public class FarmView extends View {
 //        AddThreePavementForWorkshop();
 
         AddMenuClick(primaryStage);
+
+        AddTimeText();
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
         primaryStage.show();
@@ -3011,29 +3014,39 @@ public class FarmView extends View {
             rootFarmView.getChildren().addAll(rectangle1);
         }
     }
-    Integer minute_1 = 0;
-    Integer minute_2 = 0;
-    Integer second_1 = 0;
-    Integer second_2 = 0;
-    Text timerText = new Text(minute_1 + minute_2 + " : " + second_1 + second_2);
+
+
     private void missionTime() {
-        timerText.setText(minute_1 + minute_2 + ":" + second_1 + second_2);
-        timerText.relocate(1310, 800);
+        mission.setSecond_2(mission.getSecond_2()+1);
+        if (mission.getSecond_2() == 10) {
+            mission.setSecond_1(mission.getSecond_1()+1);
+            mission.setSecond_2(0);
+        }
+        if (mission.getSecond_1() == 6) {
+            mission.setMinute_2(mission.getMinute_2()+1);
+            mission.setSecond_1(0);
+        }
+        if (mission.getMinute_2() == 10) {
+            mission.setMinute_1(mission.getMinute_1()+1);
+            mission.setMinute_2(0);
+        }
+        timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
+    }
+
+    private void AddTimeText(){
+        timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
+        timerText.relocate(720, 40 );
         timerText.setFont(Font.font(25));
-        second_2++;
-        if (second_2 == 10) {
-            second_1++;
-            second_2 = 0;
-        }
-        if (second_1 == 6) {
-            minute_2++;
-            second_1 = 0;
-        }
-        if (minute_2 == 10) {
-            minute_1++;
-            minute_2 = 0;
-        }
-        rootFarmView.getChildren().addAll(timerText);
+
+        File backGroundFile = new File("Data\\Click\\time_gold.png");
+        Image backGroundImage = new Image(backGroundFile.toURI().toString());
+        ImageView backgroundForTime = new ImageView(backGroundImage);
+        backgroundForTime.relocate(680,20);
+        backgroundForTime.setFitHeight(60);
+        backgroundForTime.setFitWidth(120);
+
+
+        rootFarmView.getChildren().addAll(backgroundForTime,timerText);
     }
 }
 

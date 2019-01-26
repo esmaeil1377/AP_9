@@ -11,7 +11,10 @@ import java.util.HashMap;
 public class Mission implements Serializable {
     private String missionName;
     private int missionMoney;
-    private int TimeTakeForPlayerToFinishTheMap;
+    private Integer minute_1 = 0;
+    private Integer minute_2 = 0;
+    private Integer second_1 = 0;
+    private Integer second_2 = 0;
     private Farm farm;
     private boolean isMissionCompletedBefore = false;
     private HashMap<Object, Integer> requirementToFinishTheMission = new HashMap<>();
@@ -25,6 +28,37 @@ public class Mission implements Serializable {
 
     public HashMap<Object, Integer> getRequirementToFinishTheMission() { return requirementToFinishTheMission; }
 
+    public Integer getSecond_1() {
+        return second_1;
+    }
+
+    public Integer getSecond_2() {
+        return second_2;
+    }
+
+    public Integer getMinute_1() {
+        return minute_1;
+    }
+
+    public Integer getMinute_2() {
+        return minute_2;
+    }
+
+    public void setMinute_1(Integer minute_1) {
+        this.minute_1 = minute_1;
+    }
+
+    public void setMinute_2(Integer minute_2) {
+        this.minute_2 = minute_2;
+    }
+
+    public void setSecond_1(Integer second_1) {
+        this.second_1 = second_1;
+    }
+
+    public void setSecond_2(Integer second_2) {
+        this.second_2 = second_2;
+    }
 
     public CityShop getCityShop() {
         return cityShop;
@@ -52,14 +86,6 @@ public class Mission implements Serializable {
         this.missionMoney = missionMoney;
     }
 
-    public int getTimeTakeForPlayerToFinishTheMap() {
-        return TimeTakeForPlayerToFinishTheMap;
-    }
-
-    public void setTimeTakeForPlayerToFinishTheMap(int timeTakeForPlayerToFinishTheMap) {
-        TimeTakeForPlayerToFinishTheMap = timeTakeForPlayerToFinishTheMap;
-    }
-
     public boolean isMissionCompletedBefore() {
         return isMissionCompletedBefore;
     }
@@ -82,7 +108,7 @@ public class Mission implements Serializable {
 
     public int CalculateMoneyToGiveUserAfterCompletingTheMission() {
         //it is a function of timeplayerfinished the mission and other thing that i don't know
-        int money= getMissionMoney()+100*(1/getTimeTakeForPlayerToFinishTheMap());
+        int money= getMissionMoney()+100*(1/(minute_1*600+minute_2*60+second_1*10+second_2));
         return money;
     }
 

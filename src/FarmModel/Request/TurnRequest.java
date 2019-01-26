@@ -278,7 +278,7 @@ public class TurnRequest extends Request {
 
     private void StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission() throws MissionNotLoaded {
         User user = Game.getGameInstance().getCurrentUserAccount();
-        user.getCurrentPlayingMission().setTimeTakeForPlayerToFinishTheMap(user.getCurrentPlayingMission().getTimeTakeForPlayerToFinishTheMap() + 1);
+//        user.getCurrentPlayingMission().setTimeTakeForPlayerToFinishTheMap(user.getCurrentPlayingMission().getTimeTakeForPlayerToFinishTheMap() + 1);
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
             user.getCurrentPlayingMission().setMissionCompletion(true);
             user.AddMoney(user.getCurrentPlayingMission().CalculateMoneyToGiveUserAfterCompletingTheMission());
