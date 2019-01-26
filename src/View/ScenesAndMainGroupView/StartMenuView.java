@@ -1,5 +1,6 @@
 package View.ScenesAndMainGroupView;
 
+import FarmController.Exceptions.MaxLevelExceeded;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
@@ -115,6 +116,8 @@ public class StartMenuView {
                         notEnoughMoney.printStackTrace();
                     } catch (MissionNotLoaded missionNotLoaded) {
                         missionNotLoaded.printStackTrace();
+                    } catch (MaxLevelExceeded maxLevelExceeded) {
+                        maxLevelExceeded.printStackTrace();
                     }
                     primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
                     primaryStage.setFullScreen(true);

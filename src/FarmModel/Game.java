@@ -1,5 +1,6 @@
 package FarmModel;
 
+import FarmController.Exceptions.MaxLevelExceeded;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
@@ -25,11 +26,13 @@ public class Game {
             notEnoughMoney.printStackTrace();
         } catch (MissionNotLoaded missionNotLoaded) {
             missionNotLoaded.printStackTrace();
+        } catch (MaxLevelExceeded maxLevelExceeded) {
+            maxLevelExceeded.printStackTrace();
         }
     }
     //just for the first user account:Mosio
 
-    private Game() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded { }
+    private Game() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded { }
 
     public static Game getGameInstance() {
         return game;
@@ -51,7 +54,7 @@ public class Game {
         this.userAcounts = userAccount;
     }
 
-    public void NewUserStringWantToStartTheGame(String userString) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
+    public void NewUserStringWantToStartTheGame(String userString) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
         boolean isUserLoaded=false;
         File userAccountFolder;
         try{

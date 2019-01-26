@@ -132,9 +132,9 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
         User user=Game.getGameInstance().getCurrentUserAccount();
         int priceNeeded = user.getInformationNeededInGame().getPriceForUpgrade(this);
         Mission mission = user.getCurrentPlayingMission();
-        int missionMoney = mission.getMissionMoney();
+        int userMoney = user.getMoney();
 
-        if (missionMoney > priceNeeded) {
+        if (userMoney > priceNeeded) {
             setLevel(getLevel() + 1);
             setMaxNumberOfGettingInput(getMaxNumberOfGettingInput() + 1);
             if (getLevel() == 1) {
@@ -146,7 +146,7 @@ public abstract class WorkShop extends ObjectOutOfMap15_15ButInTheBorderOfPlayGr
             } else if (getLevel() == 4) {
                 setTurnNeededToProduceOneProduct(getTurnNeededToProduceOneProduct() - 3);
             }
-            mission.setMissionMoney(missionMoney - priceNeeded);
+            user.setMoney(userMoney - priceNeeded);
         } else {
             throw new NotEnoughMoney();
         }

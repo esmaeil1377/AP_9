@@ -14,6 +14,12 @@ public class Well extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround implemen
 //    private int remainTurnToFillTheBucket;
     private boolean isWellActivatedToFillTheBucket = false;
 
+    public Well(int level) throws UnknownObjectException, MaxLevelExceeded, NotEnoughMoney, MissionNotLoaded {
+        for (int i=0;i<level;i++){
+            Upgrade();
+        }
+    }
+
     public void setWellActivatedToFillTheBucket(boolean wellActivatedToFillTheBucket) {
         isWellActivatedToFillTheBucket = wellActivatedToFillTheBucket;
     }

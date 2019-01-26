@@ -79,7 +79,7 @@ public class UpgradeRequest extends Request{
         }else if(workShop.getWorkShopName().equals("CookieBakery")){
             user.setCookieBakeryLevel(user.getCookieBakeryLevel()+1);
         }else if(workShop.getWorkShopName().equals("EggPowderPlant")){
-            user.setEggPOwderPlantLevel(user.getEggPOwderPlantLevel()+1);
+            user.setEggPowderPlantLevel(user.getEggPowderPlantLevel()+1);
         }else if(workShop.getWorkShopName().equals("SewingFactory")){
             user.setWeavingFactoryLevel(user.getSewingFactoryLevel()+1);
         }else if(workShop.getWorkShopName().equals("Spinnery")){

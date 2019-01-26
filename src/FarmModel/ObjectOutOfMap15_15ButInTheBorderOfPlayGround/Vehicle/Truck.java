@@ -1,8 +1,6 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.ObjectNotFoundInWareHouse;
-import FarmController.Exceptions.UnknownObjectException;
+import FarmController.Exceptions.*;
 import FarmController.Interfaces.Upgradeable;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -14,7 +12,10 @@ import java.util.ArrayList;
 public class Truck extends TransportationVehicle implements Upgradeable {
 
 
-    public Truck() {
+    public Truck(int level) throws UnknownObjectException, NotEnoughMoney, MaxLevelExceeded, MissionNotLoaded {
+        for (int i=0;i<level;i++){
+            Upgrade();
+        }
         setTurnToMoveObjectToCityAndComeBack(20);
         setCapacity(20);
     }

@@ -1,4 +1,5 @@
 package FarmModel;
+import FarmController.Exceptions.MaxLevelExceeded;
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
@@ -16,19 +17,23 @@ import java.util.Arrays;
 
 public class User {
     private String acountName;
-    private int money;
+    private int money=1000;
 
     private int CatLevel;
     private int CakeBakeryLevel;
     private int CookieBakeryLevel;
-    private int EggPOwderPlantLevel;
-    private int SeewingFactoryLevel;
+    private int EggPowderPlantLevel;
+    private int SewingFactoryLevel;
     private int SpinneryLevel;
     private int WeavingFactoryLevel;
+    private int warehouseLevel;
+    private int wellLevel;
+    private int truckLevel;
+    private int HelicopterLevel;
     private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,new ArrayList<>(Arrays.asList(new EggPowderPlant(0)))));
-    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(),new Truck(),new Well(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0),new CakeBakery(0),new SewingFactory(0),new CookieBakery(0),new Spinnery(0),new WeavingFactory(0)))));
-    private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null,null));
-    private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null,null));
+    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(0),new Truck(0),new Well(0),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0),new CakeBakery(0),new SewingFactory(0),new CookieBakery(0),new Spinnery(0),new WeavingFactory(0)))));
+    private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(0),null,null));
+    private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(0),null,null,null));
     private Mission currentPlayingMission;
     private ArrayList<WorkShop> customWorkShops=new ArrayList<>();
     //inja bayad tamam mission ha ro baraye missions az rouye ye pushe bezarim.
@@ -37,7 +42,8 @@ public class User {
     private InformationNeededInGame informationNeededInGame=new InformationNeededInGame();
 
 
-    public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded {
+
+    public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
         mission1.Addrequierment(new Egg(),10);
         mission2.Addrequierment(new Chicken(),15);
         mission3.Addrequierment(new Powder(),5);
@@ -52,6 +58,38 @@ public class User {
 
     public Mission getMission1() {
         return mission1;
+    }
+
+    public int getHelicopterLevel() {
+        return HelicopterLevel;
+    }
+
+    public int getTruckLevel() {
+        return truckLevel;
+    }
+
+    public void setHelicopterLevel(int helicopterLevel) {
+        HelicopterLevel = helicopterLevel;
+    }
+
+    public void setTruckLevel(int truckLevel) {
+        this.truckLevel = truckLevel;
+    }
+
+    public int getWarehouseLevel() {
+        return warehouseLevel;
+    }
+
+    public int getWellLevel() {
+        return wellLevel;
+    }
+
+    public void setWellLevel(int wellLevel) {
+        this.wellLevel = wellLevel;
+    }
+
+    public void setWarehouseLevel(int warehouseLevel) {
+        this.warehouseLevel = warehouseLevel;
     }
 
     public Mission getMission2() {
@@ -90,20 +128,20 @@ public class User {
         CookieBakeryLevel = cookieBakeryLevel;
     }
 
-    public int getEggPOwderPlantLevel() {
-        return EggPOwderPlantLevel;
+    public int getEggPowderPlantLevel() {
+        return EggPowderPlantLevel;
     }
 
-    public void setEggPOwderPlantLevel(int eggPOwderPlantLevel) {
-        EggPOwderPlantLevel = eggPOwderPlantLevel;
+    public void setEggPowderPlantLevel(int eggPowderPlantLevel) {
+        EggPowderPlantLevel = eggPowderPlantLevel;
     }
 
     public int getSewingFactoryLevel() {
-        return SeewingFactoryLevel;
+        return SewingFactoryLevel;
     }
 
-    public void setSeewingFactoryLevel(int seewingFactoryLevel) {
-        SeewingFactoryLevel = seewingFactoryLevel;
+    public void setSewingFactoryLevel(int sewingFactoryLevel) {
+        SewingFactoryLevel = sewingFactoryLevel;
     }
 
     public int getSpinneryLevel() {
@@ -152,7 +190,7 @@ public class User {
         return acountName;
     }
 
-    private void setMoney(int money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 

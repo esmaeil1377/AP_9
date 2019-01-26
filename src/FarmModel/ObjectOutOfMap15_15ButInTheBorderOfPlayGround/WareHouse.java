@@ -26,7 +26,10 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
         this.remainCapacityOfWareHouse = remainCapacityOfWareHouse;
     }
 
-    public WareHouse() {
+    public WareHouse(int level) throws UnknownObjectException, NotEnoughMoney, MaxLevelExceeded, MissionNotLoaded {
+        for(int i=0;i<level;i++){
+            Upgrade();
+        }
     }
 
     public int getLevel() {

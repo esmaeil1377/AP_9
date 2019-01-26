@@ -1,6 +1,9 @@
 package FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle;
 
+import FarmController.Exceptions.MaxLevelExceeded;
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmController.Interfaces.Upgradeable;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -13,7 +16,10 @@ import java.util.Arrays;
 
 public class Helicopter extends TransportationVehicle implements Upgradeable {
 
-    public Helicopter() {
+    public Helicopter(int level) throws UnknownObjectException, NotEnoughMoney, MaxLevelExceeded, MissionNotLoaded {
+        for (int i=0;i<level;i++){
+            Upgrade();
+        }
         setTurnToMoveObjectToCityAndComeBack(12);
         setCapacity(20);
     }

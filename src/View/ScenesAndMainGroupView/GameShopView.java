@@ -2,7 +2,15 @@ package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmModel.Game;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Cat;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
+import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.*;
 import FarmModel.Request.UpgradeRequest;
+import FarmModel.Request.WellRequest;
+import FarmModel.User;
 import View.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -23,6 +31,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 import static javafx.application.Application.launch;
 import View.GameView;
@@ -185,8 +194,16 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade EggPowderPlant");
-                    UpdateMoneyText();
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new EggPowderPlant(user.getEggPowderPlantLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setEggPowderPlantLevel(user.getEggPowderPlantLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
                 } catch (NotEnoughMoney e2){
                   ShowNotEnoughMoneyError();
                 }catch (Exception e3){
@@ -223,12 +240,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade CookieBakery");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
-                   ShowNotEnoughMoneyError();
-                }catch (Exception e1){
-                    e1.printStackTrace();
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new CookieBakery(user.getCookieBakeryLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setCookieBakeryLevel(user.getCookieBakeryLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -262,12 +287,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade CakeBakery");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
-                    e.printStackTrace();
-                }catch (Exception e1){
-                    e1.printStackTrace();
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new CakeBakery(user.getCakeBakeryLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setCakeBakeryLevel(user.getCakeBakeryLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
+                    ShowNotEnoughMoneyError();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -300,12 +333,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade Spinnery");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Spinnery(user.getSpinneryLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setSpinneryLevel(user.getSpinneryLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -338,12 +379,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade SewingFactory");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new SewingFactory(user.getSewingFactoryLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setSewingFactoryLevel(user.getSewingFactoryLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -376,12 +425,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade WeavingFactory");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new WeavingFactory(user.getWeavingFactoryLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setWeavingFactoryLevel(user.getWeavingFactoryLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -414,12 +471,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade Warehouse");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new WareHouse(user.getWarehouseLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setWarehouseLevel(user.getWarehouseLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -452,12 +517,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade Truck");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Truck(user.getTruckLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setTruckLevel(user.getTruckLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -490,12 +563,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade Well");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Well(user.getEggPowderPlantLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setWellLevel(user.getWellLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -528,12 +609,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade Helicopter");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Helicopter(user.getHelicopterLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setHelicopterLevel(user.getHelicopterLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -602,12 +691,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    new UpgradeRequest("upgrade Cat");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
+                    User user=Game.getGameInstance().getCurrentUserAccount();
+                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Cat(user.getCatLevel()));
+                    if(price<user.getMoney()){
+                        user.setMoney(user.getMoney()-price);
+                        user.setCatLevel(user.getCatLevel()+1);
+                        UpdateMoneyText();
+                    }else{
+                        throw new NotEnoughMoney();
+                    }
+                    UpdateLevelArrows();
+                } catch (NotEnoughMoney e2){
                     ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
+                }catch (Exception e3){
+                    e3.printStackTrace();
                 }
             }
         });
@@ -779,6 +876,21 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].relocate(1410 , 690 + i * 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
+    }
+
+    public void UpdateLevelArrows(){
+        User user=Game.getGameInstance().getCurrentUserAccount();
+        AddCakeBakeryLevel(user.getCakeBakeryLevel());
+        AddCatLevel(user.getCatLevel());
+        AddHelicopterLevel(user.getHelicopterLevel());
+        AddWellLevel(user.getWellLevel());
+        AddTruckLevel(user.getTruckLevel());
+        AddWareHouseLevel(user.getWarehouseLevel());
+        AddEggPowerPlantLevel(user.getEggPowderPlantLevel());
+        AddCookieBakeryLevel(user.getCookieBakeryLevel());
+        AddSewingFactoryLevel(user.getSewingFactoryLevel());
+        AddWeavingFactoryLevel(user.getWeavingFactoryLevel());
+        AddSpinneryLevel(user.getSpinneryLevel());
     }
 
 

@@ -26,6 +26,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -59,6 +60,8 @@ public class FarmView extends View {
     ImageView truckView;
     Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
     private Text timerText = new Text(mission.getMinute_1() + mission.getMinute_2() + " : " + mission.getSecond_1() + mission.getSecond_2());
+    private Label labelCoinLevel = new Label("0");
+    private Label labelClockLevel = new Label("00:00");
 
     public Text getSpeedTextInFarmView() {
         return speedTextInFarmView;
@@ -139,6 +142,7 @@ public class FarmView extends View {
 
         AddTimeText();
 
+//        ShowEndMission(primaryStage);
         primaryStage.setScene(sceneFarmView);
         primaryStage.setFullScreen(true);
         primaryStage.show();
@@ -2856,6 +2860,7 @@ public class FarmView extends View {
     }
 
     private void AddMissionWorkShopsAndVehicles(Stage primaryStage) throws MissionNotLoaded {
+        User user=Game.getGameInstance().getCurrentUserAccount();
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         CakeBakery cakeBakery = (CakeBakery) farm.getSpecifiedWorkShop("CakeBakery");
         CookieBakery cookieBakery = (CookieBakery) farm.getSpecifiedWorkShop("CookieBakery");
@@ -2863,12 +2868,12 @@ public class FarmView extends View {
         SewingFactory sewingFactory = (SewingFactory) farm.getSpecifiedWorkShop("SewingFactory");
         Spinnery spinnery = (Spinnery) farm.getSpecifiedWorkShop("Spinnery");
         WeavingFactory weavingFactory = (WeavingFactory) farm.getSpecifiedWorkShop("WeavingFactory");
-        if (cakeBakery != null) AddCakeBakery(cakeBakery.getLevel());
-        if (cookieBakery != null) AddCookieBakery(cookieBakery.getLevel());
-        if (eggPowderPlant != null) AddEggPowderPlant(eggPowderPlant.getLevel());
-        if (sewingFactory != null) AddSewingFactory(sewingFactory.getLevel());
-        if (spinnery != null) AddSpinnery(spinnery.getLevel());
-        if (weavingFactory != null) AddWeavingFactory(weavingFactory.getLevel());
+        if (cakeBakery != null) AddCakeBakery(user.getCakeBakeryLevel());
+        if (cookieBakery != null) AddCookieBakery(user.getCookieBakeryLevel());
+        if (eggPowderPlant != null) AddEggPowderPlant(user.getEggPowderPlantLevel());
+        if (sewingFactory != null) AddSewingFactory(user.getSewingFactoryLevel());
+        if (spinnery != null) AddSpinnery(user.getSpinneryLevel());
+        if (weavingFactory != null) AddWeavingFactory(user.getWeavingFactoryLevel());
 
         if (farm.getTruck() != null) AddTruck(primaryStage, farm.getTruck().getLevel());
         if (farm.getHelicopter() != null) AddHelicopter(primaryStage, farm.getHelicopter().getLevel());
@@ -2917,6 +2922,14 @@ public class FarmView extends View {
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
     }
 
+
+//    private void ShowEndMission(Stage primaryStage) {
+//        AddBackground();
+//        AddOtherThings();
+//        AddOkView();
+//        AddTimeLabel();
+//    }
+//
     private void AddTimeText() {
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
         timerText.relocate(720, 40);
@@ -2932,5 +2945,211 @@ public class FarmView extends View {
 
         rootFarmView.getChildren().addAll(backgroundForTime, timerText);
     }
+//
+//    private void AddTimeLabel() {
+//        labelClockLevel.setTextFill(Color.WHITE);
+//        labelClockLevel.relocate(400, 220);
+//        labelClockLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        rootFarmView.getChildren().addAll(labelClockLevel);
+//    }
+//
+//    private void AddBackground() {
+//        File backGroundFile = new File("Data\\ShopBackground.jpg");
+//        Image backGroundImage = new Image(backGroundFile.toURI().toString());
+//        ImageView backgroundView = new ImageView(backGroundImage);
+//        backgroundView.setFitHeight(450);
+//        backgroundView.setFitWidth(400);
+//        Rectangle rectangle = new Rectangle(0, 0, 400, 450);
+//        rectangle.setArcWidth(30);
+//        rectangle.setArcHeight(30);
+//        rectangle.relocate(500,400);
+//        backgroundView.setClip(rectangle);
+//        rootFarmView.getChildren().addAll(backgroundView);
+//    }
+//
+//    private void AddOkView() {
+//        File buttonOkFile = new File("Data\\Click\\OkButton.png");
+//        Image buttonOkImage = new Image(buttonOkFile.toURI().toString());
+//        ImageView buttonOkImageView = new ImageView(buttonOkImage);
+//        buttonOkImageView.setFitHeight(50);
+//        buttonOkImageView.setFitWidth(120);
+//        buttonOkImageView.relocate(350, 560);
+//        rootFarmView.getChildren().addAll(buttonOkImageView);
+//
+//        buttonOkImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//
+//            }
+//        });
+//        buttonOkImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                buttonOkImageView.setFitHeight(50 + 10);
+//                buttonOkImageView.setFitWidth(120 + 10);
+//                buttonOkImageView.relocate(250 - 5, 560 - 5);
+//            }
+//        });
+//        buttonOkImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                buttonOkImageView.setFitHeight(50);
+//                buttonOkImageView.setFitWidth(120);
+//                buttonOkImageView.relocate(250, 560);
+//            }
+//        });
+//
+//        File okText = new File("Data\\Shop\\OkText.png");
+//        Image okImage = new Image(okText.toURI().toString());
+//        ImageView okImageView = new ImageView(okImage);
+//        okImageView.setFitWidth(50);
+//        okImageView.setFitHeight(40);
+//        okImageView.relocate(385, 565);
+//        rootFarmView.getChildren().addAll(okImageView);
+//
+//        okImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//
+//            }
+//        });
+//        okImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                buttonOkImageView.setFitHeight(50 + 10);
+//                buttonOkImageView.setFitWidth(120 + 10);
+//                buttonOkImageView.relocate(350 - 5, 560 - 5);
+//            }
+//        });
+//        okImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                buttonOkImageView.setFitHeight(50);
+//                buttonOkImageView.setFitWidth(120);
+//                buttonOkImageView.relocate(350, 560);
+//            }
+//        });
+//    }
+//
+//    private void AddOtherThings() {
+//        Rectangle rectangle = new Rectangle(150, 35);
+//        rectangle.setArcWidth(20);
+//        rectangle.setArcHeight(20);
+//        rectangle.relocate(320, 205);
+//        rectangle.setFill(Color.GREEN);
+//        rootFarmView.getChildren().addAll(rectangle);
+//
+//        Label label = new Label("Level result");
+//        label.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        label.relocate(340, 207);
+//        label.setTextFill(Color.WHITE);
+//        rootFarmView.getChildren().addAll(label);
+//
+//        File coin = new File("Data\\Shop\\Coin.png");
+//        Image coinImage = new Image(coin.toURI().toString());
+//        ImageView coinView = new ImageView(coinImage);
+//        coinView.setFitHeight(40);
+//        coinView.setFitWidth(40);
+//        coinView.relocate(230, 250);
+//        rootFarmView.getChildren().addAll(coinView);
+//
+//        Label labelCoin = new Label("Coin:");
+//        labelCoin.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelCoin.relocate(285, 260);
+//        labelCoin.setTextFill(Color.WHITE);
+//        rootFarmView.getChildren().addAll(labelCoin);
+//
+//        // todo
+//        labelCoinLevel.setTextFill(Color.WHITE);
+//        labelCoinLevel.relocate(400, 260);
+//        labelCoinLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        rootFarmView.getChildren().addAll(labelCoinLevel);
+//
+//        File clock = new File("Data\\Shop\\Clock.png");
+//        Image clockImage = new Image(clock.toURI().toString());
+//        ImageView clockView = new ImageView(clockImage);
+//        clockView.setFitHeight(40);
+//        clockView.setFitWidth(40);
+//        clockView.relocate(230, 310);
+//        rootFarmView.getChildren().addAll(clockView);
+//
+//        Label labelClock = new Label("Time:");
+//        labelClock.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelClock.relocate(285, 320);
+//        labelClock.setTextFill(Color.WHITE);
+//        rootFarmView.getChildren().addAll(labelClock);
+//
+//
+//        Label labelBonus = new Label("Bonus:");
+//        labelBonus.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelBonus.setTextFill(Color.WHITE);
+//        labelBonus.relocate(285, 380);
+//        rootFarmView.getChildren().addAll(labelBonus);
+//
+//        Label labelBonusLevel = new Label("0"); // todo
+//        labelBonusLevel.setTextFill(Color.WHITE);
+//        labelBonusLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelBonusLevel.relocate(400, 380);
+//        rootFarmView.getChildren().addAll(labelBonusLevel);
+//
+//        File star = new File("Data\\Shop\\Star.png");
+//        Image starImage = new Image(star.toURI().toString());
+//        ImageView starView = new ImageView(starImage);
+//        starView.setFitHeight(40);
+//        starView.setFitWidth(40);
+//        starView.relocate(230, 370);
+//        rootFarmView.getChildren().addAll(starView);
+//
+//        File coinBank1 = new File("Data\\Shop\\Coin.png");
+//        Image coinBankImage1 = new Image(coinBank1.toURI().toString());
+//        ImageView coinBankView1 = new ImageView(coinBankImage1);
+//        coinBankView1.setFitHeight(20);
+//        coinBankView1.setFitWidth(20);
+//        coinBankView1.relocate(230, 440);
+//        rootFarmView.getChildren().addAll(coinBankView1);
+//
+//        File coinBank2 = new File("Data\\Shop\\Coin.png");
+//        Image coinBankImage2 = new Image(coinBank2.toURI().toString());
+//        ImageView coinBankView2 = new ImageView(coinBankImage2);
+//        coinBankView2.setFitHeight(20);
+//        coinBankView2.setFitWidth(20);
+//        coinBankView2.relocate(250, 440);
+//        rootFarmView.getChildren().addAll(coinBankView2);
+//
+//        File coinBank3 = new File("Data\\Shop\\Coin.png");
+//        Image coinBankImage3 = new Image(coinBank3.toURI().toString());
+//        ImageView coinBankView3 = new ImageView(coinBankImage3);
+//        coinBankView3.setFitHeight(20);
+//        coinBankView3.setFitWidth(20);
+//        coinBankView3.relocate(240, 460);
+//        rootFarmView.getChildren().addAll(coinBankView3);
+//
+//        Label labelBank = new Label("Bank:");
+//        labelBank.relocate(285, 485);
+//        labelBank.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelBank.setTextFill(Color.WHITE);
+//        rootFarmView.getChildren().addAll(labelBank);
+//
+//        Label labelBankLevel = new Label("0"); // todo
+//        labelBankLevel.setTextFill(Color.WHITE);
+//        labelBankLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelBankLevel.relocate(400, 445);
+//        rootFarmView.getChildren().addAll(labelBankLevel);
+//
+//        Line line = new Line(60, 300, 330, 300);
+//        rootFarmView.getChildren().addAll(line);
+//
+//        Label labelBestTime = new Label("Best time:");
+//        labelBestTime.setTextFill(Color.WHITE);
+//        labelBestTime.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelBestTime.relocate(320, 505);
+//        rootFarmView.getChildren().addAll(labelBestTime);
+//
+//        Label labelBestTimeLevel = new Label("00:00");
+//        labelBestTimeLevel.setTextFill(Color.WHITE);
+//        labelBestTimeLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+//        labelBestTimeLevel.relocate(450, 505);
+//        rootFarmView.getChildren().addAll(labelBestTimeLevel);
+//    }
 }
 

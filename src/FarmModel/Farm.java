@@ -1,7 +1,6 @@
 package FarmModel;
 
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.ObjectNotFoundInWareHouse;
+import FarmController.Exceptions.*;
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
@@ -20,15 +19,15 @@ public class Farm {
     private Truck truck;
     private Helicopter helicopter;
     private ArrayList<WorkShop> workShops = new ArrayList<>();
-    private WareHouse wareHouse = new WareHouse();
-    private Well well = new Well();
+    private WareHouse wareHouse = new WareHouse(0);
+    private Well well = new Well(0);
     private int remainTurnToRandomlyAddWildAnimalToMap = 60;
 
     private void setWorkShops(ArrayList<WorkShop> workShops) {
         this.workShops = workShops;
     }
 
-    public Farm(Helicopter helicopter, Truck truck, Well well, ArrayList<WorkShop> workShops) {
+    public Farm(Helicopter helicopter, Truck truck, Well well, ArrayList<WorkShop> workShops) throws UnknownObjectException, NotEnoughMoney, MaxLevelExceeded, MissionNotLoaded {
         setHelicopter(helicopter);
         setTruck(truck);
         setWorkShops(workShops);
