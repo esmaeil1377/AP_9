@@ -30,14 +30,18 @@ public class EggPowderPlant extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[ 14][14-i];
-            cell.AddCellAMapObject(getResultProduct());
-            GameView.getGameView().getFarmView().AddEggPowder(14,14-i);
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[ 14-i][14];
+            Powder powder=new Powder();
+            powder.setX(14);
+            powder.setY(14);
+            cell.AddCellAMapObject(powder);
+            GameView.getGameView().getFarmView().AddEggPowder(14-i,14);
         }
     }
-    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
+
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse, MissionNotLoaded {
         int countOfEgg = 0;
-        WareHouse wareHouse = new WareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         Egg egg = new Egg();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(egg.toString()))
@@ -60,7 +64,7 @@ public class EggPowderPlant extends WorkShop {
         return workShopName;
     }
     @Override
-    public void ActiveWorkShop() throws MissionNotLoaded, ObjectNotFoundInWareHouse {
+    public void ActiveWorkShop() throws MissionNotLoaded, ObjectNotFoundInWareHouse{
         getProductFromWareHouse();
         MakeAProductAndPutItInMap();
     }

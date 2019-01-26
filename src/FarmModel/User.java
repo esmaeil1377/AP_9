@@ -25,7 +25,7 @@ public class User {
     private int SeewingFactoryLevel;
     private int SpinneryLevel;
     private int WeavingFactoryLevel;
-    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,null));
+    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,new ArrayList<>(Arrays.asList(new EggPowderPlant(0)))));
     private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(),new Truck(),new Well(),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0),new CakeBakery(0),new SewingFactory(0),new CookieBakery(0),new Spinnery(0),new WeavingFactory(0)))));
     private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(),null,null));
     private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(),null,null,null));

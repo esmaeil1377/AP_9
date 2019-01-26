@@ -149,7 +149,10 @@ public class TurnRequest extends Request {
                     if (animals.getX() == 7 && animals.getY() == 14 && ((Cat) animals).getProduct() != null) {
                         ((Cat) animals).PutProductInStore();
                     } else {
-                        ((Cat) animals).TakeProduct();
+                        Cell cell=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[animals.getX()][animals.getY()];
+                        if (cell.getCellObjectInMap15_15().size()>1) {
+                            ((Cat) animals).TakeProduct();
+                        }
                     }
                 }
             }

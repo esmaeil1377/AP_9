@@ -30,18 +30,21 @@ public class WeavingFactory extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[14 - i][14];
-            cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
-          //  GameView.getGameView().getFarmView().Add
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[14 - i][0];
+            Fabric fabric=new Fabric();
+            fabric.setX(14-i);
+            fabric.setY(0);
+            cell.AddCellAMapObject(getNewProductByType(fabric));
+            GameView.getGameView().getFarmView().AddFabric(14-i,0);
         }
     }
     public String getWorkShopName() {
         return workShopName;
     }
 
-    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse, MissionNotLoaded {
         int countOfFibre = 0;
-        WareHouse wareHouse = new WareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         Fabric fabric = new Fabric();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(fabric.toString()))

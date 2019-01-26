@@ -81,7 +81,6 @@ public class FarmView extends View {
         AddBackGround(primaryStage);
         AddPavement();
 
-        LoadMapIconTharWereBefore();
         InitializeTheCells();
         CheckWellBucketWater();
         AddLookingGIf();
@@ -129,6 +128,7 @@ public class FarmView extends View {
 
         AddBuyItems();
 
+        LoadMapIconTharWereBefore();
 
         AddStarAndMoneyText(user.getCurrentPlayingMission().getMissionMoney());
 
@@ -871,19 +871,19 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    Spinnery spinnery = (Spinnery) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("Spinnery");
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+                    Spinnery spinnery = (Spinnery) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("Spinnery");
+                    spinnery.getProductFromWareHouse();
                     PlayBubbleSound();
-                    //we have ifs here
-                    Animation animation = new SpriteAnimation(spinneryView, Duration.millis(duration / 2), 12, 4, 0, 0, 130, 106);
+                    Animation animation = new SpriteAnimation(spinneryView, Duration.millis(duration / 2), 16, 4, 0, 0, 130, 106);
                     animation.setCycleCount(spinnery.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             spinneryView.setViewport(new Rectangle2D(0, 0, 130, 106));
                             try {
-                                new StartRequest("start Spinnery");
+                                spinnery.MakeAProductAndPutItInMap();
                             } catch (MissionNotLoaded missionNotLoaded) {
                                 missionNotLoaded.printStackTrace();
                             }
@@ -894,6 +894,7 @@ public class FarmView extends View {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         });
         rootFarmView.getChildren().addAll(spinneryView);
@@ -927,19 +928,19 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    CakeBakery cakeBakery = (CakeBakery) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("CakeBakery");
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+                    CakeBakery cakeBakery = (CakeBakery) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("CakeBakery");
+                    cakeBakery.getProductFromWareHouse();
                     PlayBubbleSound();
-                    //we have ifs here
-                    Animation animation = new SpriteAnimation(cakeBakeryVeiw, Duration.millis(duration / 2), 12, 4, 0, 0, 184, 172);
+                    Animation animation = new SpriteAnimation(cakeBakeryVeiw, Duration.millis(duration / 2), 16, 4, 0, 0, 184, 172);
                     animation.setCycleCount(cakeBakery.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            cakeBakeryVeiw.setViewport(new Rectangle2D(0, 0, 184, 171));
+                            cakeBakeryVeiw.setViewport(new Rectangle2D(0, 0, 184, 172));
                             try {
-                                new StartRequest("start CakeBakery");
+                                cakeBakery.MakeAProductAndPutItInMap();
                             } catch (MissionNotLoaded missionNotLoaded) {
                                 missionNotLoaded.printStackTrace();
                             }
@@ -950,6 +951,7 @@ public class FarmView extends View {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         });
         rootFarmView.getChildren().addAll(cakeBakeryVeiw);
@@ -983,19 +985,19 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    SewingFactory sewingFactory = (SewingFactory) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("SewingFactory");
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
+                    SewingFactory sewingFactory = (SewingFactory) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("SewingFactory");
+                    sewingFactory.getProductFromWareHouse();
                     PlayBubbleSound();
-                    //we have ifs here
-                    Animation animation = new SpriteAnimation(sewingFactoryView, Duration.millis(duration / 2), 12, 4, 0, 0, 170, 130);
+                    Animation animation = new SpriteAnimation(sewingFactoryView, Duration.millis(duration / 2), 16, 4, 0, 0, 170, 130);
                     animation.setCycleCount(sewingFactory.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             sewingFactoryView.setViewport(new Rectangle2D(0, 0, 170, 130));
                             try {
-                                new StartRequest("start SewingFactory");
+                                sewingFactory.MakeAProductAndPutItInMap();
                             } catch (MissionNotLoaded missionNotLoaded) {
                                 missionNotLoaded.printStackTrace();
                             }
@@ -1006,6 +1008,7 @@ public class FarmView extends View {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         });
         rootFarmView.getChildren().addAll(sewingFactoryView);
@@ -1042,16 +1045,16 @@ public class FarmView extends View {
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
                     WeavingFactory weavingFactory = (WeavingFactory) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("WeavingFactory");
+                    weavingFactory.getProductFromWareHouse();
                     PlayBubbleSound();
-                    //we have ifs here
-                    Animation animation = new SpriteAnimation(WeavingView, Duration.millis(duration / 2), 12, 4, 0, 0, 166, 116);
+                    Animation animation = new SpriteAnimation(WeavingView, Duration.millis(duration / 2), 16, 4, 0, 0, 166, 116);
                     animation.setCycleCount(weavingFactory.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             WeavingView.setViewport(new Rectangle2D(0, 0, 166, 116));
                             try {
-                                new StartRequest("start WeavingFactory");
+                                weavingFactory.MakeAProductAndPutItInMap();
                             } catch (MissionNotLoaded missionNotLoaded) {
                                 missionNotLoaded.printStackTrace();
                             }
@@ -1062,6 +1065,7 @@ public class FarmView extends View {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         });
         rootFarmView.getChildren().addAll(WeavingView);
@@ -1098,16 +1102,16 @@ public class FarmView extends View {
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
                     CookieBakery cookieBakery = (CookieBakery) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("CookieBakery");
+                    cookieBakery.getProductFromWareHouse();
                     PlayBubbleSound();
-                    //we have ifs here
-                    Animation animation = new SpriteAnimation(cookieBakeryView, Duration.millis(duration / 2), 12, 4, 0, 0, 134, 142);
+                    Animation animation = new SpriteAnimation(cookieBakeryView, Duration.millis(duration / 2), 16, 4, 0, 0, 134, 142);
                     animation.setCycleCount(cookieBakery.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             cookieBakeryView.setViewport(new Rectangle2D(0, 0, 134, 142));
                             try {
-                                new StartRequest("start CookieBakery");
+                                cookieBakery.MakeAProductAndPutItInMap();
                             } catch (MissionNotLoaded missionNotLoaded) {
                                 missionNotLoaded.printStackTrace();
                             }
@@ -1118,6 +1122,7 @@ public class FarmView extends View {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         });
         rootFarmView.getChildren().addAll(cookieBakeryView);
@@ -1151,22 +1156,22 @@ public class FarmView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    try {
-                        new StartRequest("start EggPowderPlant");
-                    } catch (MissionNotLoaded missionNotLoaded) {
-                        missionNotLoaded.printStackTrace();
-                    }
                     int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
                     int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
                     EggPowderPlant eggPowderPlant = (EggPowderPlant) Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getSpecifiedWorkShop("EggPowderPlant");
+                    eggPowderPlant.getProductFromWareHouse();
                     PlayBubbleSound();
-                    //we have ifs here
-                    Animation animation = new SpriteAnimation(eggPowderPlantView, Duration.millis(duration / 2), 12, 4, 0, 0, 128, 114);
+                    Animation animation = new SpriteAnimation(eggPowderPlantView, Duration.millis(duration / 2), 16, 4, 0, 0, 128, 114);
                     animation.setCycleCount(eggPowderPlant.getTurnNeededToProduceOneProduct() / 2);
                     animation.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             eggPowderPlantView.setViewport(new Rectangle2D(0, 0, 128, 114));
+                            try {
+                                eggPowderPlant.MakeAProductAndPutItInMap();
+                            } catch (MissionNotLoaded missionNotLoaded) {
+                                missionNotLoaded.printStackTrace();
+                            }
                         }
                     });
                     animation.setDelay(Duration.millis(83));
@@ -1563,7 +1568,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, eggPowderView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("EggPowder", eggPowderView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Powder", eggPowderView);
     }
 
     private void PickUpImageViews(int xCell, int yCell, ImageView eggPowderView) {

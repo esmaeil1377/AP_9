@@ -38,9 +38,12 @@ public class CakeBakery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[i][0];
-            cell.AddCellAMapObject(getResultProduct());
-            GameView.getGameView().getFarmView().AddCake(i,0);
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[i][7];
+            FlouryCake flouryCake=new FlouryCake();
+            flouryCake.setX(i);
+            flouryCake.setY(7);
+            cell.AddCellAMapObject(flouryCake);
+            GameView.getGameView().getFarmView().AddFlouryCake(14-i,7);
         }
     }
 
@@ -50,9 +53,9 @@ public class CakeBakery extends WorkShop {
         MakeAProductAndPutItInMap();
     }
 
-    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse, MissionNotLoaded {
         int countOfFlour = 0;
-        WareHouse wareHouse = new WareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         Flour flour = new Flour();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(flour.toString()))

@@ -30,9 +30,12 @@ public class SewingFactory extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[14 - i][0];
-            cell.AddCellAMapObject(getResultProduct());
-            GameView.getGameView().getFarmView().AddFabric(14-i,0);
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[i][14];
+            CarnivalDress carnivalDress=new CarnivalDress();
+            carnivalDress.setX(i);
+            carnivalDress.setY(14);
+            cell.AddCellAMapObject(carnivalDress);
+            GameView.getGameView().getFarmView().AddFabric(i,14);
         }
     }
 
@@ -40,9 +43,9 @@ public class SewingFactory extends WorkShop {
         return workShopName;
     }
 
-    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse, MissionNotLoaded {
         int countOfCloth = 0;
-        WareHouse wareHouse = new WareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         CarnivalDress carnivalDress = new CarnivalDress();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(carnivalDress.toString()))

@@ -84,7 +84,7 @@ public class InformationNeededInGame {
             return SpaceNeededInWareHouseForPowder;
         else if (object.toString().equals("Flour"))
             return SpaceNeededInWareHouseForFlour;
-        else if (object.toString().equals("Fiber"))
+        else if (object.toString().equals("Fabric"))
             return SpaceNeededInWareHouseForFabric;
         else if (object.toString().equals("Sewing"))
             return SpaceNeededInWareHouseForSewing;
@@ -94,8 +94,6 @@ public class InformationNeededInGame {
             return SpaceNeededInWareHouseForCloth;
         else if (object.toString().equals("Cake"))
             return SpaceNeededInWareHouseForCake;
-//        throw new NotDefinedSpaceForObject();
-        //don't forget.
         return -1;
     }
 

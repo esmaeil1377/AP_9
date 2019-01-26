@@ -30,14 +30,17 @@ public class Spinnery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[14 - i][7];
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[i][0];
+            Sewing sewing=new Sewing();
+            sewing.setX(i);
+            sewing.setY(0);
             cell.AddCellAMapObject(getNewProductByType(getResultProduct()));
-            GameView.getGameView().getFarmView().AddCarnivalDress(14-i,7);
+            GameView.getGameView().getFarmView().AddCarnivalDress(i,0);
         }
     }
-    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse, MissionNotLoaded {
         int countOfWool = 0;
-        WareHouse wareHouse = new WareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         Wool wool = new Wool();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(wool.toString()))

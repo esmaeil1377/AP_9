@@ -30,14 +30,17 @@ public class CookieBakery extends WorkShop {
     @Override
     public void MakeAProductAndPutItInMap() throws MissionNotLoaded {
         for (int i = 0; i < getCurrentNumberOfProducingProduct(); i++) {
-            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[i][7];
-            cell.AddCellAMapObject(getResultProduct());
-            GameView.getGameView().getFarmView().AddFlouryCake(i,7);
+            Cell cell = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getMap()[14-i][7];
+            Cake cake=new Cake();
+            cake.setX(14-i);
+            cake.setY(7);
+            cell.AddCellAMapObject(cake);
+            GameView.getGameView().getFarmView().AddCake(14-i,7);
         }
     }
-    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse {
+    public void getProductFromWareHouse() throws ObjectNotFoundInWareHouse, MissionNotLoaded {
         int countOfPowder = 0;
-        WareHouse wareHouse = new WareHouse();
+        WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         Powder powder = new Powder();
         for (Object object : wareHouse.getWareHouseList()) {
             if (object.toString().equals(powder.toString()))
