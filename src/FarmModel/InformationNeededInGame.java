@@ -99,6 +99,7 @@ public class InformationNeededInGame {
 
 
     private final static int PriceToUpgradeCatLevel1 = 500;
+    private final static int PriceToUpgradeDogLevel1 = 500;
     //PriceToUpgradeWorkShop
     private final static int PriceToUpgradeCakeBakery = 300;
     private final static int PriceToUpgradeCookieBakery = 200;
@@ -112,16 +113,21 @@ public class InformationNeededInGame {
     //PriceToUpgradeWareHouse
     private final static int PriceToUpgradeWareHouse = 1500; // random
     private final static int PriceToUpgradeHelicopter=1000;
+    private final static int PriceToUpgradeTruck=1000;
 
     public int getPriceForUpgrade(Object object) throws UnknownObjectException {
         if (object.toString().equals("Well")) {
             return PriceToUpgradeWell;
         } else if (object.toString().equals("Cat")) {
             return PriceToUpgradeCatLevel1;
+        } else if (object.toString().equals("Dog")) {
+            return PriceToUpgradeDogLevel1;
         } else if (object.toString().equals("WareHouse")) {
             return PriceToUpgradeWareHouse;
-        }else if(object.toString().equals("Helicopter")){
+        }else if(object.toString().equals("Helicopter")) {
             return PriceToUpgradeHelicopter;
+        }else if(object.toString().equals("Truck")){
+                return PriceToUpgradeTruck;
         }else {
             int level = ((WorkShop) object).getLevel();
             if (object.toString().equals("CakeBakery")) {
