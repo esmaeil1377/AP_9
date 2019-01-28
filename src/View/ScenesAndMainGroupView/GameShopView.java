@@ -523,7 +523,7 @@ public class GameShopView extends View {
                     int price=user.getInformationNeededInGame().getPriceForUpgrade(new Truck(user.getTruckLevel()));
                     if(price<user.getMoney()){
                         user.setMoney(user.getMoney()-price);
-                        user.setTruckLevel(user.getTruckLevel()+1);
+                        user.setTruckLevel(user.getTruckLevel() + 1);
                         UpdateMoneyText();
                     }else{
                         throw new NotEnoughMoney();
