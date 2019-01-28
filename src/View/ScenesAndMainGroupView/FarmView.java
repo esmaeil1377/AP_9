@@ -60,8 +60,6 @@ public class FarmView extends View {
     ImageView truckView;
     Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
     private Text timerText = new Text(mission.getMinute_1() + mission.getMinute_2() + " : " + mission.getSecond_1() + mission.getSecond_2());
-    private Label labelCoinLevel = new Label("0");
-    private Label labelClockLevel = new Label("00:00");
 
     public Text getSpeedTextInFarmView() {
         return speedTextInFarmView;
@@ -2778,7 +2776,7 @@ public class FarmView extends View {
         } else if (iconName.equals("CarnivalDress")) {
             file = new File("Data\\Textures\\Products\\CarnivalDress.png");
             numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
-        } else if (iconName.equals("EggPowder")) {
+        } else if (iconName.equals("Powder")) {
             file = new File("Data\\Textures\\Products\\EggPowder.png");
             numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
         } else if (iconName.equals("Flour")) {
@@ -2862,7 +2860,7 @@ public class FarmView extends View {
     }
 
     private void AddMissionWorkShopsAndVehicles(Stage primaryStage) throws MissionNotLoaded {
-        User user=Game.getGameInstance().getCurrentUserAccount();
+        User user = Game.getGameInstance().getCurrentUserAccount();
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         CakeBakery cakeBakery = (CakeBakery) farm.getSpecifiedWorkShop("CakeBakery");
         CookieBakery cookieBakery = (CookieBakery) farm.getSpecifiedWorkShop("CookieBakery");
@@ -2906,7 +2904,6 @@ public class FarmView extends View {
         }
     }
 
-
     private void missionTime() {
         mission.setSecond_2(mission.getSecond_2() + 1);
         if (mission.getSecond_2() == 10) {
@@ -2924,14 +2921,6 @@ public class FarmView extends View {
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
     }
 
-
-//    private void ShowEndMission(Stage primaryStage) {
-//        AddBackground();
-//        AddOtherThings();
-//        AddOkView();
-//        AddTimeLabel();
-//    }
-//
     private void AddTimeText() {
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
         timerText.relocate(720, 40);
@@ -2947,211 +2936,232 @@ public class FarmView extends View {
 
         rootFarmView.getChildren().addAll(backgroundForTime, timerText);
     }
-//
-//    private void AddTimeLabel() {
-//        labelClockLevel.setTextFill(Color.WHITE);
-//        labelClockLevel.relocate(400, 220);
-//        labelClockLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        rootFarmView.getChildren().addAll(labelClockLevel);
-//    }
-//
-//    private void AddBackground() {
-//        File backGroundFile = new File("Data\\ShopBackground.jpg");
-//        Image backGroundImage = new Image(backGroundFile.toURI().toString());
-//        ImageView backgroundView = new ImageView(backGroundImage);
-//        backgroundView.setFitHeight(450);
-//        backgroundView.setFitWidth(400);
-//        Rectangle rectangle = new Rectangle(0, 0, 400, 450);
-//        rectangle.setArcWidth(30);
-//        rectangle.setArcHeight(30);
-//        rectangle.relocate(500,400);
-//        backgroundView.setClip(rectangle);
-//        rootFarmView.getChildren().addAll(backgroundView);
-//    }
-//
-//    private void AddOkView() {
-//        File buttonOkFile = new File("Data\\Click\\OkButton.png");
-//        Image buttonOkImage = new Image(buttonOkFile.toURI().toString());
-//        ImageView buttonOkImageView = new ImageView(buttonOkImage);
-//        buttonOkImageView.setFitHeight(50);
-//        buttonOkImageView.setFitWidth(120);
-//        buttonOkImageView.relocate(350, 560);
-//        rootFarmView.getChildren().addAll(buttonOkImageView);
-//
-//        buttonOkImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//
-//            }
-//        });
-//        buttonOkImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                buttonOkImageView.setFitHeight(50 + 10);
-//                buttonOkImageView.setFitWidth(120 + 10);
-//                buttonOkImageView.relocate(250 - 5, 560 - 5);
-//            }
-//        });
-//        buttonOkImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                buttonOkImageView.setFitHeight(50);
-//                buttonOkImageView.setFitWidth(120);
-//                buttonOkImageView.relocate(250, 560);
-//            }
-//        });
-//
-//        File okText = new File("Data\\Shop\\OkText.png");
-//        Image okImage = new Image(okText.toURI().toString());
-//        ImageView okImageView = new ImageView(okImage);
-//        okImageView.setFitWidth(50);
-//        okImageView.setFitHeight(40);
-//        okImageView.relocate(385, 565);
-//        rootFarmView.getChildren().addAll(okImageView);
-//
-//        okImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//
-//            }
-//        });
-//        okImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                buttonOkImageView.setFitHeight(50 + 10);
-//                buttonOkImageView.setFitWidth(120 + 10);
-//                buttonOkImageView.relocate(350 - 5, 560 - 5);
-//            }
-//        });
-//        okImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                buttonOkImageView.setFitHeight(50);
-//                buttonOkImageView.setFitWidth(120);
-//                buttonOkImageView.relocate(350, 560);
-//            }
-//        });
-//    }
-//
-//    private void AddOtherThings() {
-//        Rectangle rectangle = new Rectangle(150, 35);
-//        rectangle.setArcWidth(20);
-//        rectangle.setArcHeight(20);
-//        rectangle.relocate(320, 205);
-//        rectangle.setFill(Color.GREEN);
-//        rootFarmView.getChildren().addAll(rectangle);
-//
-//        Label label = new Label("Level result");
-//        label.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        label.relocate(340, 207);
-//        label.setTextFill(Color.WHITE);
-//        rootFarmView.getChildren().addAll(label);
-//
-//        File coin = new File("Data\\Shop\\Coin.png");
-//        Image coinImage = new Image(coin.toURI().toString());
-//        ImageView coinView = new ImageView(coinImage);
-//        coinView.setFitHeight(40);
-//        coinView.setFitWidth(40);
-//        coinView.relocate(230, 250);
-//        rootFarmView.getChildren().addAll(coinView);
-//
-//        Label labelCoin = new Label("Coin:");
-//        labelCoin.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelCoin.relocate(285, 260);
-//        labelCoin.setTextFill(Color.WHITE);
-//        rootFarmView.getChildren().addAll(labelCoin);
-//
-//        // todo
-//        labelCoinLevel.setTextFill(Color.WHITE);
-//        labelCoinLevel.relocate(400, 260);
-//        labelCoinLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        rootFarmView.getChildren().addAll(labelCoinLevel);
-//
-//        File clock = new File("Data\\Shop\\Clock.png");
-//        Image clockImage = new Image(clock.toURI().toString());
-//        ImageView clockView = new ImageView(clockImage);
-//        clockView.setFitHeight(40);
-//        clockView.setFitWidth(40);
-//        clockView.relocate(230, 310);
-//        rootFarmView.getChildren().addAll(clockView);
-//
-//        Label labelClock = new Label("Time:");
-//        labelClock.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelClock.relocate(285, 320);
-//        labelClock.setTextFill(Color.WHITE);
-//        rootFarmView.getChildren().addAll(labelClock);
-//
-//
-//        Label labelBonus = new Label("Bonus:");
-//        labelBonus.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelBonus.setTextFill(Color.WHITE);
-//        labelBonus.relocate(285, 380);
-//        rootFarmView.getChildren().addAll(labelBonus);
-//
-//        Label labelBonusLevel = new Label("0"); // todo
-//        labelBonusLevel.setTextFill(Color.WHITE);
-//        labelBonusLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelBonusLevel.relocate(400, 380);
-//        rootFarmView.getChildren().addAll(labelBonusLevel);
-//
-//        File star = new File("Data\\Shop\\Star.png");
-//        Image starImage = new Image(star.toURI().toString());
-//        ImageView starView = new ImageView(starImage);
-//        starView.setFitHeight(40);
-//        starView.setFitWidth(40);
-//        starView.relocate(230, 370);
-//        rootFarmView.getChildren().addAll(starView);
-//
-//        File coinBank1 = new File("Data\\Shop\\Coin.png");
-//        Image coinBankImage1 = new Image(coinBank1.toURI().toString());
-//        ImageView coinBankView1 = new ImageView(coinBankImage1);
-//        coinBankView1.setFitHeight(20);
-//        coinBankView1.setFitWidth(20);
-//        coinBankView1.relocate(230, 440);
-//        rootFarmView.getChildren().addAll(coinBankView1);
-//
-//        File coinBank2 = new File("Data\\Shop\\Coin.png");
-//        Image coinBankImage2 = new Image(coinBank2.toURI().toString());
-//        ImageView coinBankView2 = new ImageView(coinBankImage2);
-//        coinBankView2.setFitHeight(20);
-//        coinBankView2.setFitWidth(20);
-//        coinBankView2.relocate(250, 440);
-//        rootFarmView.getChildren().addAll(coinBankView2);
-//
-//        File coinBank3 = new File("Data\\Shop\\Coin.png");
-//        Image coinBankImage3 = new Image(coinBank3.toURI().toString());
-//        ImageView coinBankView3 = new ImageView(coinBankImage3);
-//        coinBankView3.setFitHeight(20);
-//        coinBankView3.setFitWidth(20);
-//        coinBankView3.relocate(240, 460);
-//        rootFarmView.getChildren().addAll(coinBankView3);
-//
-//        Label labelBank = new Label("Bank:");
-//        labelBank.relocate(285, 485);
-//        labelBank.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelBank.setTextFill(Color.WHITE);
-//        rootFarmView.getChildren().addAll(labelBank);
-//
-//        Label labelBankLevel = new Label("0"); // todo
-//        labelBankLevel.setTextFill(Color.WHITE);
-//        labelBankLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelBankLevel.relocate(400, 445);
-//        rootFarmView.getChildren().addAll(labelBankLevel);
-//
-//        Line line = new Line(60, 300, 330, 300);
-//        rootFarmView.getChildren().addAll(line);
-//
-//        Label labelBestTime = new Label("Best time:");
-//        labelBestTime.setTextFill(Color.WHITE);
-//        labelBestTime.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelBestTime.relocate(320, 505);
-//        rootFarmView.getChildren().addAll(labelBestTime);
-//
-//        Label labelBestTimeLevel = new Label("00:00");
-//        labelBestTimeLevel.setTextFill(Color.WHITE);
-//        labelBestTimeLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
-//        labelBestTimeLevel.relocate(450, 505);
-//        rootFarmView.getChildren().addAll(labelBestTimeLevel);
-//    }
+
+
+    public void ShowMissionResultInTheEnd(Stage primaryStage) throws MissionNotLoaded {
+        File backGroundFile = new File("Data\\ShopBackground.jpg");
+        Image backGroundImage = new Image(backGroundFile.toURI().toString());
+        ImageView backgroundView = new ImageView(backGroundImage);
+        Rectangle rectangleClip=new Rectangle(0,0,400,450);
+        rectangleClip.setArcHeight(30);
+        rectangleClip.setArcWidth(30);
+        backgroundView.setClip(rectangleClip);
+        backgroundView.setFitHeight(450);
+        backgroundView.setFitWidth(400);
+        backgroundView.relocate(600 , 200);
+        backgroundView.setOpacity(0.8);
+        rootFarmView.getChildren().addAll(backgroundView);
+
+        int shiftX = 600;
+        int shiftY = 200;
+
+        Rectangle rectangle = new Rectangle(150 , 35);
+        rectangle.setArcWidth(20);
+        rectangle.setArcHeight(20);
+        rectangle.relocate(130 + shiftX , 5 + shiftY);
+        rectangle.setFill(Color.rgb(0,114,150));
+        rootFarmView.getChildren().addAll(rectangle);
+
+        Label label = new Label("Level result");
+        label.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        label.relocate(150 + shiftX, 7 + shiftY);
+        label.setTextFill(Color.WHITE);
+        rootFarmView.getChildren().addAll(label);
+
+        File coin = new File("Data\\Shop\\Coin.png");
+        Image coinImage = new Image(coin.toURI().toString());
+        ImageView coinView = new ImageView(coinImage);
+        coinView.setFitHeight(40);
+        coinView.setFitWidth(40);
+        coinView.relocate(30 + shiftX, 50 + shiftY);
+        rootFarmView.getChildren().addAll(coinView);
+
+        Label labelCoin = new Label("Coin:");
+        labelCoin.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelCoin.relocate(85 + shiftX , 60 + shiftY);
+        labelCoin.setTextFill(Color.WHITE);
+        rootFarmView.getChildren().addAll(labelCoin);
+
+        Label labelCoinLevel = new Label(moneyText.getText()); // todo
+        labelCoinLevel.setTextFill(Color.WHITE);
+        labelCoinLevel.relocate(200 + shiftX , 60 + shiftY);
+        labelCoinLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        rootFarmView.getChildren().addAll(labelCoinLevel);
+
+        File clock = new File("Data\\Shop\\Clock.png");
+        Image clockImage = new Image(clock.toURI().toString());
+        ImageView clockView = new ImageView(clockImage);
+        clockView.setFitHeight(40);
+        clockView.setFitWidth(40);
+        clockView.relocate(30 + shiftX, 110 + shiftY);
+        rootFarmView.getChildren().addAll(clockView);
+
+        Label labelClock = new Label("Time:");
+        labelClock.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelClock.relocate(85 + shiftX , 120 + shiftY);
+        labelClock.setTextFill(Color.WHITE);
+        rootFarmView.getChildren().addAll(labelClock);
+
+        Label labelClockLevel = new Label(timerText.getText());
+        labelClockLevel.setTextFill(Color.WHITE);
+        labelClockLevel.relocate(200 + shiftX, 120 + shiftY);
+        labelClockLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        rootFarmView.getChildren().addAll(labelClockLevel);
+        GameView.getGameView().getMissionSelectionView().setBestTimeForCurrnetMissionIfItIsBest(timerText.getText());
+
+        Label labelBonus = new Label("Bonus:");
+        labelBonus.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelBonus.setTextFill(Color.WHITE);
+        labelBonus.relocate(85 + shiftX, 180 + shiftY);
+        rootFarmView.getChildren().addAll(labelBonus);
+
+        String time=timerText.getText();
+        Label[] labelBonusLevel=new Label[1];
+        if (time.substring(0,2).equals("0:")){
+            labelBonusLevel[0]=new Label("200");
+        }else if(time.substring(0,2).equals("1:")){
+            labelBonusLevel[0]=new Label("100");
+        }else if(time.substring(0,2).equals("2:")){
+            labelBonusLevel[0]=new Label("50");
+        }else {
+            labelBonusLevel[0]=new Label("25");
+        }
+        labelBonusLevel[0].setTextFill(Color.WHITE);
+        labelBonusLevel[0].setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelBonusLevel[0].relocate(200 + shiftX,  180 + shiftY);
+        rootFarmView.getChildren().addAll(labelBonusLevel[0]);
+
+        File star = new File("Data\\Shop\\Star.png");
+        Image starImage = new Image(star.toURI().toString());
+        ImageView starView = new ImageView(starImage);
+        starView.setFitHeight(40);
+        starView.setFitWidth(40);
+        starView.relocate(30 + shiftX, 170 + shiftY);
+        rootFarmView.getChildren().addAll(starView);
+
+        File coinBank1 = new File("Data\\Shop\\Coin.png");
+        Image coinBankImage1 = new Image(coinBank1.toURI().toString());
+        ImageView coinBankView1 = new ImageView(coinBankImage1);
+        coinBankView1.setFitHeight(20);
+        coinBankView1.setFitWidth(20);
+        coinBankView1.relocate(30 + shiftX, 240 + shiftY);
+        rootFarmView.getChildren().addAll(coinBankView1);
+
+        File coinBank2 = new File("Data\\Shop\\Coin.png");
+        Image coinBankImage2 = new Image(coinBank2.toURI().toString());
+        ImageView coinBankView2 = new ImageView(coinBankImage2);
+        coinBankView2.setFitHeight(20);
+        coinBankView2.setFitWidth(20);
+        coinBankView2.relocate(50 + shiftX, 240 + shiftY);
+        rootFarmView.getChildren().addAll(coinBankView2);
+
+        File coinBank3 = new File("Data\\Shop\\Coin.png");
+        Image coinBankImage3 = new Image(coinBank3.toURI().toString());
+        ImageView coinBankView3 = new ImageView(coinBankImage3);
+        coinBankView3.setFitHeight(20);
+        coinBankView3.setFitWidth(20);
+        coinBankView3.relocate(40 + shiftX, 260 + shiftY);
+        rootFarmView.getChildren().addAll(coinBankView3);
+
+        Label labelBank = new Label("Bank:");
+        labelBank.relocate(85 + shiftX , 245 + shiftY);
+        labelBank.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelBank.setTextFill(Color.WHITE);
+        rootFarmView.getChildren().addAll(labelBank);
+
+        Label labelBankLevel = new Label("25"); // todo
+        labelBankLevel.setTextFill(Color.WHITE);
+        labelBankLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelBankLevel.relocate(200 + shiftX, 245 + shiftY);
+        rootFarmView.getChildren().addAll(labelBankLevel);
+
+        Line line = new Line(60  + shiftX, 300 + shiftY, 330 + shiftX, 300 + shiftY);
+        rootFarmView.getChildren().addAll(line);
+
+        Label labelBestTime = new Label("Best time:");
+        labelBestTime.setTextFill(Color.WHITE);
+        labelBestTime.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelBestTime.relocate(120 + shiftX , 305 + shiftY);
+        rootFarmView.getChildren().addAll(labelBestTime);
+
+        Label labelBestTimeLevel = new Label(GameView.getGameView().getMissionSelectionView().getBestTimeForCurrnetMissionToEnd());
+        labelBestTimeLevel.setTextFill(Color.WHITE);
+        labelBestTimeLevel.setStyle("-fx-font: 23 Georgia; -fx-base: #4258ee;");
+        labelBestTimeLevel.relocate(250 + shiftX , 305 + shiftY);
+        rootFarmView.getChildren().addAll(labelBestTimeLevel);
+
+        File buttonOkFile = new File("Data\\Click\\OkButton.png");
+        Image buttonOkImage = new Image(buttonOkFile.toURI().toString());
+        ImageView buttonOkImageView = new ImageView(buttonOkImage);
+        buttonOkImageView.setFitHeight(50);
+        buttonOkImageView.setFitWidth(120);
+        buttonOkImageView.relocate(150 + shiftX, 360 + shiftY);
+        rootFarmView.getChildren().addAll(buttonOkImageView);
+
+        MakeEndMissionOkViewForClick(primaryStage, labelBonusLevel, labelBankLevel, buttonOkImageView);
+        buttonOkImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                buttonOkImageView.setFitHeight(50 + 10);
+                buttonOkImageView.setFitWidth(120 + 10);
+                buttonOkImageView.relocate(150 - 5 + shiftX, 360 - 5 + shiftY);
+            }
+        });
+        buttonOkImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                buttonOkImageView.setFitHeight(50);
+                buttonOkImageView.setFitWidth(120);
+                buttonOkImageView.relocate(150 + shiftX, 360 + shiftY);
+            }
+        });
+
+        File okText = new File("Data\\Shop\\OkText.png");
+        Image okImage = new Image(okText.toURI().toString());
+        ImageView okImageView = new ImageView(okImage);
+        okImageView.setFitWidth(50);
+        okImageView.setFitHeight(40);
+        okImageView.relocate(185 + shiftX, 365 + shiftY);
+        rootFarmView.getChildren().addAll(okImageView);
+
+        MakeEndMissionOkViewForClick(primaryStage, labelBonusLevel, labelBankLevel, okImageView);
+        okImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                buttonOkImageView.setFitHeight(50 + 10);
+                buttonOkImageView.setFitWidth(120 + 10);
+                buttonOkImageView.relocate(150 - 5 + shiftX, 360 - 5 + shiftY);
+            }
+        });
+        okImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                buttonOkImageView.setFitHeight(50);
+                buttonOkImageView.setFitWidth(120);
+                buttonOkImageView.relocate(150 + shiftX, 360 + shiftY);
+            }
+        });
+    }
+
+    private void MakeEndMissionOkViewForClick(Stage primaryStage, Label[] labelBonusLevel, Label labelBankLevel, ImageView buttonOkImageView) {
+        buttonOkImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                User user= Game.getGameInstance().getCurrentUserAccount();
+                int addMoney=Integer.valueOf(moneyText.getText())+Integer.valueOf(labelBonusLevel[0].getText())+Integer.valueOf(labelBankLevel.getText());
+                user.setMoney(user.getMoney()+addMoney);
+                try {
+                    user.RenewMissions();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(null);
+                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
+                GameView.getGameView().setFarmView(null);
+                primaryStage.setFullScreen(true);
+            }
+        });
+    }
+
 }
 

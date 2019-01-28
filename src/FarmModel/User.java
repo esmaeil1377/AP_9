@@ -6,6 +6,7 @@ import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Chicken;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cow;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.FlouryCake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
@@ -30,10 +31,10 @@ public class User {
     private int wellLevel;
     private int truckLevel;
     private int HelicopterLevel;
-    private Mission mission1=new Mission("mission1",50000,new Farm(null,null,null,new ArrayList<>(Arrays.asList(new EggPowderPlant(0)))));
-    private Mission mission2=new Mission("mission2",100000,new Farm(new Helicopter(0),new Truck(0),new Well(0),new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0),new CakeBakery(0),new SewingFactory(0),new CookieBakery(0),new Spinnery(0),new WeavingFactory(0)))));
-    private Mission mission3=new Mission("mission3",500,new Farm(null,new Truck(0),null,null));
-    private Mission mission4=new Mission("mission4",700,new Farm(new Helicopter(0),null,null,null));
+    private Mission mission1;
+    private Mission mission2;
+    private Mission mission3;
+    private Mission mission4;
     private Mission currentPlayingMission;
     private ArrayList<WorkShop> customWorkShops=new ArrayList<>();
     //inja bayad tamam mission ha ro baraye missions az rouye ye pushe bezarim.
@@ -41,18 +42,50 @@ public class User {
     private GameShop gameShop = new GameShop();
     private InformationNeededInGame informationNeededInGame=new InformationNeededInGame();
 
+    public void RenewMissions() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
+        try {
+            Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+            if (currentMission.getMissionName().equals("mission1")) {
+                mission1 = new Mission("mission1", 500, new Farm(null, new Truck(0), null, null));
+                mission1.Addrequierment(new Egg(), 10);
+            } else if (currentMission.getMissionName().equals("mission2")) {
+                mission2 = new Mission("mission2", 700, new Farm(null, new Truck(0), null, null));
+                mission2.Addrequierment(new Chicken(), 5);
 
+            } else if (currentMission.getMissionName().equals("mission3")) {
+                mission3 = new Mission("mission3", 50000, new Farm(new Helicopter(0), new Truck(0), null, new ArrayList<>(Arrays.asList(new EggPowderPlant(0)))));
+                mission3.Addrequierment(new Powder(), 5);
 
-    public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
-        mission1.Addrequierment(new Egg(),10);
-        mission2.Addrequierment(new Chicken(),15);
-        mission3.Addrequierment(new Powder(),5);
-        mission4.Addrequierment(new Cow(),3);
-        setAccountName(accountName);
+            } else if (currentMission.getMissionName().equals("mission4")) {
+                mission4 = new Mission("mission4", 100000, new Farm(new Helicopter(0), new Truck(0), new Well(0), new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0), new CakeBakery(0), new SewingFactory(0), new CookieBakery(0), new Spinnery(0), new WeavingFactory(0)))));
+                mission4.Addrequierment(new Cow(), 3);
+                mission4.Addrequierment(new FlouryCake(), 3);
+            }
+        }catch (Exception e){
+            mission1 = new Mission("mission1", 500, new Farm(null, new Truck(0), null, null));
+            mission1.Addrequierment(new Egg(), 10);
+            mission2 = new Mission("mission2", 700, new Farm(null, new Truck(0), null, null));
+            mission2.Addrequierment(new Chicken(), 5);
+            mission3 = new Mission("mission3", 50000, new Farm(new Helicopter(0), new Truck(0), null, new ArrayList<>(Arrays.asList(new EggPowderPlant(0)))));
+            mission3.Addrequierment(new Powder(), 5);
+            mission4 = new Mission("mission4", 100000, new Farm(new Helicopter(0), new Truck(0), new Well(0), new ArrayList<WorkShop>(Arrays.asList(new EggPowderPlant(0), new CakeBakery(0), new SewingFactory(0), new CookieBakery(0), new Spinnery(0), new WeavingFactory(0)))));
+            mission4.Addrequierment(new Cow(), 3);
+            mission4.Addrequierment(new FlouryCake(), 3);
+
+        }
+        missions = new ArrayList<>();
         AddMissionToMissionsForUser(mission1);
         AddMissionToMissionsForUser(mission2);
         AddMissionToMissionsForUser(mission3);
         AddMissionToMissionsForUser(mission4);
+    }
+
+
+
+    public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
+        RenewMissions();
+        setAccountName(accountName);
+
         // Add users its missions
     }
 

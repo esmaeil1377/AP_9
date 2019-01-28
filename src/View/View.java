@@ -50,5 +50,4 @@ public abstract class View {
         AudioClip audioClip = new AudioClip(path1);
         audioClip.play();
     }
-
 }

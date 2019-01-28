@@ -1,9 +1,6 @@
 package FarmModel.Request;
 
-import FarmController.Exceptions.FullWareHouse;
-import FarmController.Exceptions.MissionNotLoaded;
-import FarmController.Exceptions.WellIsNotEmpty;
-import FarmController.Exceptions.UnknownObjectException;
+import FarmController.Exceptions.*;
 import FarmModel.Cell;
 import FarmModel.Farm;
 import FarmModel.Game;
@@ -22,7 +19,7 @@ import java.util.ArrayList;
 public class TurnRequest extends Request {
     private int n;
 
-    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, WellIsNotEmpty {
+    public TurnRequest(String requestLine) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, WellIsNotEmpty, MissionIsFinished {
         AnalyzeRequestLine(requestLine);
         DoWorkByPassingTime(getN());
     }
@@ -39,7 +36,7 @@ public class TurnRequest extends Request {
         setN(Integer.valueOf(requestLIne.substring(5)));
     }
 
-    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse {
+    private void DoWorkByPassingTime(int turn) throws UnknownObjectException, MissionNotLoaded, FullWareHouse, MissionIsFinished {
         Farm farm = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
         for (int t = 0; t < turn; t++) {
             KillAnimalsThatAreVeryHungryOrMakeThemHungrierOrEat(farm.getCurrentAnimalInTheMapAndSetMaxNumberOfEachAnimal());
@@ -279,15 +276,11 @@ public class TurnRequest extends Request {
 //    }
 
 
-    private void StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission() throws MissionNotLoaded {
+    private void StopMissionIfItIsFinishedAndIncreaseMoneyUserOrIncreaseTimeForPlayerToFinishTheMission() throws MissionNotLoaded, MissionIsFinished {
         User user = Game.getGameInstance().getCurrentUserAccount();
-//        user.getCurrentPlayingMission().setTimeTakeForPlayerToFinishTheMap(user.getCurrentPlayingMission().getTimeTakeForPlayerToFinishTheMap() + 1);
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
-            user.getCurrentPlayingMission().setMissionCompletion(true);
-            user.AddMoney(user.getCurrentPlayingMission().CalculateMoneyToGiveUserAfterCompletingTheMission());
             System.out.println(user.getCurrentPlayingMission().getMissionName()+" ended.");
-            Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(null);
-            //Now It should go out of the mission don't know how.
+            throw new MissionIsFinished();
         }
     }
 }
