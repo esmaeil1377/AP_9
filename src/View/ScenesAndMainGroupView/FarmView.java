@@ -2774,7 +2774,7 @@ public class FarmView extends View {
         } else if (iconName.equals("CarnivalDress")) {
             file = new File("Data\\Textures\\Products\\CarnivalDress.png");
             numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
-        } else if (iconName.equals("EggPowder")) {
+        } else if (iconName.equals("Powder")) {
             file = new File("Data\\Textures\\Products\\EggPowder.png");
             numberOfIconWeNeedToAdd = informationNeededInGame.getSpaceNeededInWareHouse(new CarnivalDress());
         } else if (iconName.equals("Flour")) {
