@@ -3149,7 +3149,7 @@ public class FarmView extends View {
                 int addMoney=Integer.valueOf(moneyText.getText())+Integer.valueOf(labelBonusLevel[0].getText())+Integer.valueOf(labelBankLevel.getText());
                 user.setMoney(user.getMoney()+addMoney);
                 try {
-                    user.ReNewMissions();
+                    user.RenewMissions();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

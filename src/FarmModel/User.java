@@ -42,7 +42,7 @@ public class User {
     private GameShop gameShop = new GameShop();
     private InformationNeededInGame informationNeededInGame=new InformationNeededInGame();
 
-    public void ReNewMissions() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
+    public void RenewMissions() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
         try {
             Mission currentMission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
             if (currentMission.getMissionName().equals("mission1")) {
@@ -83,7 +83,7 @@ public class User {
 
 
     public User(String accountName) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
-        ReNewMissions();
+        RenewMissions();
         setAccountName(accountName);
 
         // Add users its missions
