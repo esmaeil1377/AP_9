@@ -1,5 +1,6 @@
 package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Game;
 import FarmModel.Mission;
 import View.GameView;
@@ -17,6 +18,52 @@ import java.io.File;
 public class MissionSelectionView extends View {
     private Group rootMissionSelectionView = new Group();
     private Scene sceneSelectionView = new Scene(rootMissionSelectionView, 1600, 900);
+    private String bestTimeForMissino1="99:99";
+    private String bestTimeForMission2="99:99";
+    private String bestTimeForMission3="99:99";
+    private String bestTimeForMission4="99:99";
+
+    public String getBestTimeForCurrnetMissionToEnd() throws MissionNotLoaded {
+        Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+        if (mission.getMissionName().equals("mission1")){
+            return bestTimeForMissino1;
+        }else if (mission.getMissionName().equals("mission2")){
+            return bestTimeForMission2;
+        }else if (mission.getMissionName().equals("mission3")){
+            return bestTimeForMission3;
+        }else if (mission.getMissionName().equals("mission4")){
+            return bestTimeForMission4;
+        }
+        return "00:00";
+    }
+
+    public void setBestTimeForCurrnetMissionIfItIsBest(String newTime) throws MissionNotLoaded {
+        int value=0;
+        int value2=0;
+        Mission mission = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();;
+        String lastTime = GameView.getGameView().getMissionSelectionView().getBestTimeForCurrnetMissionToEnd();
+        if (newTime.length()>4) {
+            value = Integer.valueOf(newTime.substring(0, 2)) * 60 + Integer.valueOf(newTime.substring(3, 5));
+        }else{
+            value = Integer.valueOf(newTime.substring(0, 1)) * 60 + Integer.valueOf(newTime.substring(2, 4));
+        }
+        if(lastTime.length()>4){
+            value2 = Integer.valueOf(lastTime.substring(0, 2)) * 60 + Integer.valueOf(lastTime.substring(3, 5));
+        }else{
+            value2 = Integer.valueOf(lastTime.substring(0, 1)) * 60 + Integer.valueOf(lastTime.substring(2, 4));
+        }
+        if (value<value2) {
+            if (mission.getMissionName().equals("mission1")) {
+                bestTimeForMissino1 = newTime;
+            } else if (mission.getMissionName().equals("mission2")) {
+                bestTimeForMission2 = newTime;
+            } else if (mission.getMissionName().equals("mission3")) {
+                bestTimeForMission3 = newTime;
+            } else if (mission.getMissionName().equals("mission4")) {
+                bestTimeForMission4 = newTime;
+            }
+        }
+    }
 
     public Scene getSceneSelectionView() {
         return sceneSelectionView;

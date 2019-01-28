@@ -54,7 +54,7 @@ public class Game {
         this.userAcounts = userAccount;
     }
 
-    public void NewUserStringWantToStartTheGame(String userString) throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
+    public void NewUserStringWantToStartTheGame(String userString) throws UnknownObjectException, NotEnoughMoney, MaxLevelExceeded, MissionNotLoaded {
         boolean isUserLoaded=false;
         File userAccountFolder;
         try{
@@ -62,7 +62,7 @@ public class Game {
             File[] contentDirectory=userAccountFolder.listFiles();
             for(File file:contentDirectory){
                 if (file.getName().equals(userString+".txt")){
-                    LoadGameRequest loadGameRequest=new LoadGameRequest("load game UsersAccount\\"+userString+".txt");
+                    new LoadGameRequest("load game UsersAccount\\"+userString+".txt");
                     isUserLoaded=true;
                 }
             }

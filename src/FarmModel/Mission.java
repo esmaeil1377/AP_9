@@ -86,16 +86,6 @@ public class Mission implements Serializable {
         this.missionMoney = missionMoney;
     }
 
-    public boolean isMissionCompletedBefore() {
-        return isMissionCompletedBefore;
-    }
-
-    public void setMissionCompletion(boolean missionCompletedBefore) {
-        isMissionCompletedBefore = missionCompletedBefore;
-    }
-
-    public void PutStartingObjectRandomlyInTheirPlace(ArrayList<Object> ObjectForStartingTheMission) {
-    }
 
     public void setFarm(Farm farm) {
         this.farm = farm;

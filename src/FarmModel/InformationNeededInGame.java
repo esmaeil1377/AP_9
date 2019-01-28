@@ -111,6 +111,7 @@ public class InformationNeededInGame {
     private final static int PriceToUpgradeWell = 1000; // random
     //PriceToUpgradeWareHouse
     private final static int PriceToUpgradeWareHouse = 1500; // random
+    private final static int PriceToUpgradeHelicopter=1000;
 
     public int getPriceForUpgrade(Object object) throws UnknownObjectException {
         if (object.toString().equals("Well")) {
@@ -119,7 +120,9 @@ public class InformationNeededInGame {
             return PriceToUpgradeCatLevel1;
         } else if (object.toString().equals("WareHouse")) {
             return PriceToUpgradeWareHouse;
-        } else {
+        }else if(object.toString().equals("Helicopter")){
+            return PriceToUpgradeHelicopter;
+        }else {
             int level = ((WorkShop) object).getLevel();
             if (object.toString().equals("CakeBakery")) {
                 return PriceToUpgradeCakeBakery + 100 * (level);
