@@ -2935,7 +2935,6 @@ public class FarmView extends View {
         rootFarmView.getChildren().addAll(backgroundForTime, timerText);
     }
 
-
     public void ShowMissionResultInTheEnd(Stage primaryStage) throws MissionNotLoaded {
         File backGroundFile = new File("Data\\ShopBackground.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
