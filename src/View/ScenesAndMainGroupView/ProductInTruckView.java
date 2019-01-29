@@ -207,42 +207,42 @@ public class ProductInTruckView extends View {
         shipTextView.setFitWidth((int) (xShift * 75));
         shipTextView.relocate((int) (xShift * 500), (int) (yShift * 150));
 
-        File goodsText_1 = new File("Data\\Shop\\GoodsText.png");
+        File goodsText_1 = new File("Data\\Shop\\Goods.png");
         Image goodsTextImage_1 = new Image(goodsText_1.toURI().toString());
         ImageView goodsTextView_1 = new ImageView(goodsTextImage_1);
         goodsTextView_1.setFitHeight((int) (yShift * 40));
         goodsTextView_1.setFitWidth((int) (xShift * 75));
         goodsTextView_1.relocate((int) (xShift * 725), (int) (yShift * 150));
 
-        File priceText_1 = new File("Data\\Shop\\PriceText.png");
+        File priceText_1 = new File("Data\\Shop\\Price.png");
         Image priceTextImage_1 = new Image(priceText_1.toURI().toString());
         ImageView priceTextView_1 = new ImageView(priceTextImage_1);
         priceTextView_1.setFitHeight((int) (yShift * 40));
         priceTextView_1.setFitWidth((int) (xShift * 75));
         priceTextView_1.relocate((int) (xShift * 875), (int) (yShift * 150));
 
-        File shipText_1 = new File("Data\\Shop\\ShipText.png");
+        File shipText_1 = new File("Data\\Shop\\Ship.png");
         Image shipTextImage_1 = new Image(shipText_1.toURI().toString());
         ImageView shipTextView_1 = new ImageView(shipTextImage_1);
         shipTextView_1.setFitHeight((int) (yShift * 40));
         shipTextView_1.setFitWidth((int) (xShift * 75));
         shipTextView_1.relocate((int) (xShift * 1025), (int) (yShift * 150));
 
-        File animalsText = new File("Data\\Shop\\AnimalsText.png");
+        File animalsText = new File("Data\\Shop\\Animals.png");
         Image animalsTextImage = new Image(animalsText.toURI().toString());
         ImageView animalsTextView = new ImageView(animalsTextImage);
         animalsTextView.setFitHeight((int) (yShift * 40));
         animalsTextView.setFitWidth((int) (xShift * 100));
         animalsTextView.relocate((int) (xShift * 1250), (int) (yShift * 150));
 
-        File priceText_2 = new File("Data\\PriceText.png");
+        File priceText_2 = new File("Data\\Price.png");
         Image priceTextImage_2 = new Image(priceText_2.toURI().toString());
         ImageView priceTextView_2 = new ImageView(priceTextImage_2);
         priceTextView_2.setFitHeight((int) (yShift * 40));
         priceTextView_2.setFitWidth((int) (xShift * 75));
         priceTextView_2.relocate((int) (xShift * 1400), (int) (yShift * 150));
 
-        File shipText_2 = new File("Data\\Shop\\ShipText.png");
+        File shipText_2 = new File("Data\\Shop\\Ship.png");
         Image shipTextImage_2 = new Image(shipText_2.toURI().toString());
         ImageView shipTextView_2 = new ImageView(shipTextImage_2);
         shipTextView_2.setFitHeight((int) (yShift * 40));

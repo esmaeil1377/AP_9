@@ -125,7 +125,7 @@ public class ProductInHelicopterView extends View {
         ImageView buttonImageView = new ImageView(buttonImage);
         buttonImageView.setFitHeight(60);
         buttonImageView.setFitWidth(250);
-        buttonImageView.relocate(230, 2);
+        buttonImageView.relocate(230, 28);
         rootProductHelicopterView.getChildren().addAll(buttonImageView);
 
         Rectangle rectangle = new Rectangle(350, 450);
@@ -190,12 +190,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130);
+        imageViewIcon.relocate(200, 130);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new FlouryCake()))); // price of egg
-        labelOfPrice.relocate(300, 130);
+        labelOfPrice.relocate(260, 130);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -204,7 +204,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130);
+        imageViewCoin.relocate(355, 130);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -266,12 +266,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130 + shift);
+        imageViewIcon.relocate(200, 130 + shift);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new Cake()))); // price of egg
-        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.relocate(260, 130 + shift);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -280,7 +280,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130 + shift);
+        imageViewCoin.relocate(355, 130 + shift);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -336,12 +336,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130 + shift);
+        imageViewIcon.relocate(200, 130 + shift);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new Flour()))); // price of egg
-        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.relocate(260, 130 + shift);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -350,7 +350,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130 + shift);
+        imageViewCoin.relocate(355, 130 + shift);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -410,12 +410,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130 + shift);
+        imageViewIcon.relocate(200, 130 + shift);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new Powder()))); // price of egg
-        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.relocate(260, 130 + shift);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -424,7 +424,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130 + shift);
+        imageViewCoin.relocate(355, 130 + shift);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -485,12 +485,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130 + shift);
+        imageViewIcon.relocate(200, 130 + shift);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new CarnivalDress()))); // price of egg
-        labelOfPrice.relocate(295, 130 + shift);
+        labelOfPrice.relocate(260, 130 + shift);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -499,7 +499,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130 + shift);
+        imageViewCoin.relocate(355, 130 + shift);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -560,12 +560,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130 + shift);
+        imageViewIcon.relocate(200, 130 + shift);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new Decoration()))); // price of egg
-        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.relocate(260, 130 + shift);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -574,7 +574,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130 + shift);
+        imageViewCoin.relocate(355, 130 + shift);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -635,12 +635,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130 + shift);
+        imageViewIcon.relocate(200, 130 + shift);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new Fabric()))); // price of egg
-        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.relocate(260, 130 + shift);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -649,7 +649,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130 + shift);
+        imageViewCoin.relocate(355, 130 + shift);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -709,12 +709,12 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewIcon = new ImageView(imageIcon);
         imageViewIcon.setFitHeight(30);
         imageViewIcon.setFitWidth(30);
-        imageViewIcon.relocate(215, 130 + shift);
+        imageViewIcon.relocate(200, 130 + shift);
 
         InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
 
         Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceToBuy(new Sewing()))); // price of egg
-        labelOfPrice.relocate(300, 130 + shift);
+        labelOfPrice.relocate(260, 130 + shift);
         labelOfPrice.setTextFill(Color.BLACK);
         labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
 
@@ -723,7 +723,7 @@ public class ProductInHelicopterView extends View {
         ImageView imageViewCoin = new ImageView(imageOfCoin);
         imageViewCoin.setFitWidth(30);
         imageViewCoin.setFitHeight(30);
-        imageViewCoin.relocate(365, 130 + shift);
+        imageViewCoin.relocate(355, 130 + shift);
 
         File fileButton1 = new File("Data\\Click\\OkButton.png");
         Image imageButton1 = new Image(fileButton1.toURI().toString());
@@ -891,8 +891,8 @@ public class ProductInHelicopterView extends View {
         File buttonCancelFile = new File("Data\\Click\\OkButton.png");
         Image buttonCancelImage = new Image(buttonCancelFile.toURI().toString());
         ImageView cancelButtonView = new ImageView(buttonCancelImage);
-        cancelButtonView.setFitHeight(65);
-        cancelButtonView.setFitWidth(105);
+        cancelButtonView.setFitHeight(60);
+        cancelButtonView.setFitWidth(100);
         cancelButtonView.relocate(400, 760);
         rootProductHelicopterView.getChildren().addAll(cancelButtonView);
         cancelButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -924,9 +924,9 @@ public class ProductInHelicopterView extends View {
         File cancelText = new File("Data\\Shop\\CancelText.png");
         Image cancelImage = new Image(cancelText.toURI().toString());
         ImageView cancelImageView = new ImageView(cancelImage);
-        cancelImageView.setFitWidth(90);
-        cancelImageView.setFitHeight(55);
-        cancelImageView.relocate(408, 762);
+        cancelImageView.setFitWidth(80);
+        cancelImageView.setFitHeight(50);
+        cancelImageView.relocate(410, 765);
         rootProductHelicopterView.getChildren().addAll(cancelImageView);
 
         cancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1011,7 +1011,7 @@ public class ProductInHelicopterView extends View {
         coinView.relocate(180, 690);
         rootProductHelicopterView.getChildren().addAll(coinView);
 
-        coinText.relocate(355, 715);
+        coinText.relocate(375, 715);
         coinText.setFont(Font.font(30));
         coinText.setStyle("-fx-font-weight: bold");
         coinText.setFill(Color.rgb(244, 240, 16));
