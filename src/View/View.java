@@ -45,9 +45,9 @@ public abstract class View {
     }
 
     static void PlayStartingSound(){
-        String path = "Data\\Voice\\BackgroundMusic1.mp3";
-        String path1 = Paths.get(path).toUri().toString();
-        AudioClip audioClip = new AudioClip(path1);
-        audioClip.play();
+//        String path = "Data\\Voice\\BackgroundMusic1.mp3";
+//        String path1 = Paths.get(path).toUri().toString();
+//        AudioClip audioClip = new AudioClip(path1);
+//        audioClip.play();
     }
 }

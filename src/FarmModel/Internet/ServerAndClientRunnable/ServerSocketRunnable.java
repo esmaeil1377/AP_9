@@ -10,10 +10,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class ServerSocketRunnable implements Runnable{
-    private HashMap<Socket,PVView> connectedSockets=new HashMap<>();
+public class ServerSocketRunnable extends SocketRunnable implements Runnable{
+
     private String port;
     private ServerSocket serverSocket = null;
+    private String IP;
 
     public ServerSocket getServerSocket() {
         return serverSocket;
@@ -24,7 +25,6 @@ public class ServerSocketRunnable implements Runnable{
     }
     @Override
     public void run() {
-
         try {
             serverSocket = new ServerSocket(Integer.valueOf(port));
         } catch (IOException e) {
@@ -33,9 +33,9 @@ public class ServerSocketRunnable implements Runnable{
         while (true) {
             Socket socket = null;
             try {
+                System.out.println("Waiting for some one to connect.");
                 socket = serverSocket.accept();
                 System.out.println("One User Connected...");
-                AddNewSocketToConnectedSocketsAndPVView(socket);
                 Changes.WeHaveNewContact();
 
                 Thread reader=new Thread(new Reader(socket));
@@ -51,11 +51,6 @@ public class ServerSocketRunnable implements Runnable{
         }
     }
 
-    public void AddNewSocketToConnectedSocketsAndPVView(Socket socket){
-        connectedSockets.put(socket,new PVView(socket.toString()));
-    }
 
-    public HashMap<Socket, PVView> getConnectedSockets() {
-        return connectedSockets;
-    }
+
 }
