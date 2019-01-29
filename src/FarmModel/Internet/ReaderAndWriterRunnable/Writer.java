@@ -4,6 +4,7 @@ import FarmModel.Internet.Changes;
 import View.GameView;
 import View.ScenesAndMainGroupView.PVView;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -18,24 +19,29 @@ public class Writer implements Runnable {
     @Override
     public void run() {
         String inputString;
+        OutputStream outputStream= null;
         try {
-            OutputStream outputStream=socket.getOutputStream();
-            Formatter formatter=new Formatter(outputStream);
-            while (true) {
-                PVView pvView = GameView.getGameView().getHostAndGuestView().getServerSocketRunnable().getConnectedSockets().get(socket);
-                ArrayList<String> strs= pvView.getDataToSendThatWeDidntSendThem();
-                if ( strs.size()!= 0) {
+            outputStream = socket.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Formatter formatter=new Formatter(outputStream);
+        while (true) {
+            try {
+                PVView pvView = GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket);
+                ArrayList<String> strs = pvView.getDataToSendThatWeDidntSendThem();
+                if (strs.size() != 0) {
                     for (String str : strs) {
-                        System.out.println("we are sending this data:"+str);
-                        formatter.format(str+"\n");
+                        System.out.println("we are sending this data:" + str);
+                        formatter.format(str + "\n");
                         formatter.flush();
                         Changes.WeHaveNewMassageToShow();
-//                        pvView.setDataToSendThatWeDidntSendThem(new ArrayList<>());
+                        pvView.setDataToSendThatWeDidntSendThem(new ArrayList<>());
                     }
                 }
+            }catch (Exception e){
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

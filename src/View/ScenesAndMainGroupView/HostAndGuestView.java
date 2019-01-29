@@ -1,8 +1,11 @@
 package View.ScenesAndMainGroupView;
 
 import FarmModel.Internet.Changes;
+import FarmModel.Internet.ServerAndClientRunnable.GuestSocketRunnable;
 import FarmModel.Internet.ServerAndClientRunnable.ServerSocketRunnable;
+import FarmModel.Internet.ServerAndClientRunnable.SocketRunnable;
 import View.GameView;
+import View.Main;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -21,7 +24,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,11 +37,18 @@ public class HostAndGuestView extends View.View {
     private TextField portTextField = new TextField("serverport");
     private int endHeightOfTheMassages = 120;
     private int endHeightOfTheContacts=120;
-    private ServerSocketRunnable serverSocketRunnable;
+//    private ServerSocketRunnable serverSocketRunnable;
     private ArrayList<String> massageNotWrittenInInGroup = new ArrayList<>();
     private ArrayList<String> historyMassage = new ArrayList<>();
     private ArrayList<Node> massageHistoryNodes =new ArrayList<>();
     private ArrayList<Node> currentContactsNode=new ArrayList<>();
+
+
+
+    public HostAndGuestView(Stage primaryStage){
+        Start(primaryStage);
+    }
+
 
     public ArrayList<String> getHistoryMassage() {
         return historyMassage;
@@ -49,9 +58,6 @@ public class HostAndGuestView extends View.View {
         return SceneHost;
     }
 
-    public ServerSocketRunnable getServerSocketRunnable() {
-        return serverSocketRunnable;
-    }
 
     @Override
     public void Start(Stage primaryStage) {
@@ -69,7 +75,7 @@ public class HostAndGuestView extends View.View {
                     lastTime = now;
                     time += 1;
                     if (Changes.isThereAnyNewContact()) {
-                        ReloadPVContacts();
+                        ReloadPVContacts(primaryStage);
                         Changes.ContactViewReloaded();
                     }
                     if (Changes.isThereAnyNewMassage()) {
@@ -89,58 +95,67 @@ public class HostAndGuestView extends View.View {
         AddBackgroundBlackRectangle();
         AddTextFieldToGetPort();
         AddTextFieldTOSendInGroup();
-
-        try {
-            for (Map.Entry<Socket, PVView> socketPVViewEntry : serverSocketRunnable.getConnectedSockets().entrySet()) {
-                AddNewContactWhenItConnectToOurPort(socketPVViewEntry.getKey(), primaryStage);
-            }
-        } catch (Exception e) {
-        }
-
+        AddOkToStartConnecting();
     }
 
-    private void MakeOkMagnifier(ImageView imageView) {
-        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    private void AddOkToStartConnecting(){
+        Rectangle rectangle=new Rectangle(1430,55,50,45);
+        rectangle.setArcWidth(8);
+        rectangle.setArcHeight(8);
+        rectangle.setOpacity(0.2);
+        rectangle.setFill(Color.rgb(255,255,255));
+        Label okLabel=new Label("OK");
+        okLabel.setTextFill(Color.rgb(255,255,255));
+        okLabel.setFont(Font.font(35));
+        okLabel.relocate(1430,53);
+        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String port = userPort.getText();
-                serverSocketRunnable = new ServerSocketRunnable(port);
-
+                rectangle.setOpacity(0.5);
             }
         });
-    }
-
-    private void AddNewContactWhenItConnectToOurPort(Socket socket, Stage primaryStage) {
-        Rectangle rectangle = new Rectangle(10, endHeightOfTheMassages, 300, 45);
-        rectangle.setFill(Color.rgb(144, 144, 144));
-        rectangle.setOpacity(0.6);
-        Label contactLabel = new Label("C:" + socket.toString());
-        contactLabel.relocate(15, endHeightOfTheContacts + 5);
-        endHeightOfTheContacts += 45 + 10;
-        contactLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                HashMap<Socket, PVView> sockets = serverSocketRunnable.getConnectedSockets();
-                primaryStage.setScene(sockets.get(socket).getScenePv());
+                rectangle.setOpacity(0.2);
             }
         });
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                HashMap<Socket, PVView> sockets = serverSocketRunnable.getConnectedSockets();
-                primaryStage.setScene(sockets.get(socket).getScenePv());
+                if(rootHost.getChildren().contains(ipTextField)){
+                    if (!portTextField.getText().equals("") && !ipTextField.getText().equals("") && !userPort.getText().equals("")) {
+                        GameView.getGameView().getStartMenuView().setServerOrGuest(new GuestSocketRunnable(portTextField.getText(), ipTextField.getText()));
+                        Thread thread=new Thread(GameView.getGameView().getStartMenuView().getServerOrGuest());
+                        thread.start();
+                    }
+                }else {
+                    if(!userPort.getText().equals("")) {
+                        GameView.getGameView().getStartMenuView().setServerOrGuest(new ServerSocketRunnable(userPort.getText()));
+                        Thread thread =new Thread(GameView.getGameView().getStartMenuView().getServerOrGuest());
+                        thread.start();
+                    }
+                }
             }
         });
-        currentContactsNode.add(rectangle);
-        currentContactsNode.add(contactLabel);
-        MakeContactsViewScrolling(rectangle);
-        MakeContactsViewScrolling(contactLabel);
-        rootHost.getChildren().addAll(rectangle, contactLabel);
+        rootHost.getChildren().addAll(okLabel,rectangle);
     }
 
-    private void AddServerIP() {
-        ServerSocket serverSocket = GameView.getGameView().getHostAndGuestView().getServerSocketRunnable().getServerSocket();
+
+    private void AddNewContactWhenItConnectToOurPort(Socket socket, Stage primaryStage,String contactName) {
+        Label contactLabel = new Label(" "+contactName+" " );
+        contactLabel.relocate(850, endHeightOfTheContacts + 5);
+        endHeightOfTheContacts += 45 + 10;
+        contactLabel.setStyle("-fx-font-size: 35");
+        contactLabel.setStyle("-fx-background-color: blue");
+        currentContactsNode.add(contactLabel);
+        MakeContactsViewScrolling(contactLabel);
+        rootHost.getChildren().addAll(contactLabel);
     }
+
+//    private void AddServerIP() {
+//        ServerSocket serverSocket = GameView.getGameView().getHostAndGuestView().getServerSocketRunnable().getServerSocket();
+//    }
 
 
     public void ShowDataInPV(String str, int xForLocationToDetermineTheOwner) {
@@ -208,23 +223,38 @@ public class HostAndGuestView extends View.View {
         }
     }
 
-    public void ReloadPVContacts() {
-        GameView.getGameView().setHostAndGuestView(new HostAndGuestView());
+    public void ReloadPVContacts(Stage primaryStage) {
+        endHeightOfTheContacts=120;
+        for (Node node:currentContactsNode){
+            if (rootHost.getChildren().contains(node)) {
+                rootHost.getChildren().removeAll(node);
+            }
+        }
+        currentContactsNode=new ArrayList<>();
+        try {
+            for (Map.Entry<Socket, PVView> socketPVViewEntry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+                AddNewContactWhenItConnectToOurPort(socketPVViewEntry.getKey(), primaryStage,socketPVViewEntry.getValue().getContactName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void AddNewMassagesToAllocatedPvAndGroup() throws IOException {
-        for (PVView pvView : GameView.getGameView().getHostAndGuestView().getServerSocketRunnable().getConnectedSockets().values()) {
-            if (pvView.getMassagesNotWrittenInPVView().size() != 0) {
-                for (Map.Entry<String, Integer> stringIntegerEntry : pvView.getMassagesNotWrittenInPVView().entrySet()) {
-                    pvView.ShowDataInPV(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+        try {
+            for (PVView pvView : ((ServerSocketRunnable)GameView.getGameView().getStartMenuView().getServerOrGuest()).getConnectedSockets().values()) {
+                if (pvView.getMassagesNotWrittenInPVView().size() != 0) {
+                    for (Map.Entry<String, Integer> stringIntegerEntry : pvView.getMassagesNotWrittenInPVView().entrySet()) {
+                        pvView.ShowDataInPV(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+                    }
+                    pvView.setDatasNotWrittenInPVViewAndTheXPosition(new HashMap<>());
                 }
-                pvView.setDatasNotWrittenInPVViewAndTheXPosition(new HashMap<>());
             }
-        }
-        for (String string : massageNotWrittenInInGroup) {
-            ShowDataInPV(string, 60);
-        }
-        massageNotWrittenInInGroup = new ArrayList<>();
+            for (String string : massageNotWrittenInInGroup) {
+                ShowDataInPV(string, 60);
+            }
+            massageNotWrittenInInGroup = new ArrayList<>();
+        }catch (Exception e){}
     }
 
     private void AddDataImageOrGifsOrEmojiToPv(String path, int height, int width, int x) {
@@ -282,17 +312,15 @@ public class HostAndGuestView extends View.View {
         rectangle2.setArcWidth(30);
         rectangle2.setArcHeight(30);
         rectangle2.setOpacity(0.4);
+        MakeContactsViewScrolling(rectangle2);
 
         rootHost.getChildren().addAll(rectangle2);
     }
 
     private void AddTextFieldToGetPort() {
-        userPort.relocate(1200, 56);
+        userPort.relocate(1150, 56);
         userPort.setFont(Font.font(20));
         rootHost.getChildren().addAll(userPort);
-
-        //add Magnifier
-
 
     }
 
@@ -334,7 +362,7 @@ public class HostAndGuestView extends View.View {
         rootHost.getChildren().addAll(textField, sendLabel, clipRectangle);
     }
 
-    private void AddTextFieldToGetServerIPAndServerPort() {
+    public void AddTextFieldToGetServerIPAndServerPort() {
         ipTextField.setFont(Font.font(20));
         ipTextField.relocate(70, 56);
         portTextField.setFont(Font.font(20));

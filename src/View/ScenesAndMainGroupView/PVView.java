@@ -26,7 +26,9 @@ import java.util.HashMap;
 public class PVView extends View.View {
     private Group rootPV = new Group();
     private Scene scenePv = new Scene(rootPV, 1500, 700, Color.rgb(150, 150, 230));
-    private String contactName = "h";
+    private String contactName;
+    private String contactLevelInMission;
+    private String contactMoneyInGame;
     private int endOfTheMassages = 65;
     private TextField inputingTextField;
     private HashMap<String, Integer> datasNotWrittenInPVViewAndTheXPosition = new HashMap<>();
@@ -35,6 +37,14 @@ public class PVView extends View.View {
 
     public void setContactName(String contactName) {
         this.contactName = contactName;
+    }
+
+    public void setContactMoneyInGame(String contactMoneyInGame) {
+        this.contactMoneyInGame = contactMoneyInGame;
+    }
+
+    public void setContactLevelInMission(String contactLevelInMission) {
+        this.contactLevelInMission = contactLevelInMission;
     }
 
     public Label getLabelContactName() {
