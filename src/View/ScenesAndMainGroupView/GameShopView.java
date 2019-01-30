@@ -37,6 +37,8 @@ import static javafx.application.Application.launch;
 import View.GameView;
 import javafx.util.Duration;
 
+import javafx.scene.control.Label;
+
 public class GameShopView extends View {
     double xShift = 0.788;
     double yShift = 0.788;
@@ -73,12 +75,24 @@ public class GameShopView extends View {
         eggPowderPlantRect.setFill(Color.rgb(64, 45, 67));
         eggPowderPlantRect.relocate((int) (20 * xShift), (int) (110 * yShift));
 
+        Label labelEggPowderPlant = new Label("EggPowderPlant");
+        labelEggPowderPlant.setTextFill(Color.BLACK);
+        labelEggPowderPlant.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelEggPowderPlant.relocate(60 , 115);
+        rootGameShopView.getChildren().addAll(labelEggPowderPlant);
+
         Rectangle cookieBakeryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         cookieBakeryRect.setOpacity(0.6);
         cookieBakeryRect.setArcHeight((int) (70 * yShift));
         cookieBakeryRect.setArcWidth((int) (70 * xShift));
         cookieBakeryRect.setFill(Color.rgb(64, 45, 67));
         cookieBakeryRect.relocate((int) (500 * xShift), (int) (110 * yShift));
+
+        Label labelCookieBakery = new Label("CookieBakery");
+        labelCookieBakery.setTextFill(Color.BLACK);
+        labelCookieBakery.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelCookieBakery.relocate(430 , 115);
+        rootGameShopView.getChildren().addAll(labelCookieBakery);
 
         Rectangle cakeBakeryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         cakeBakeryRect.setOpacity(0.6);
@@ -87,6 +101,12 @@ public class GameShopView extends View {
         cakeBakeryRect.setFill(Color.rgb(64, 45, 67));
         cakeBakeryRect.relocate((int) (980 * xShift), (int) (110 * yShift));
 
+        Label labelCakeBakery = new Label("CakeBakery");
+        labelCakeBakery.setTextFill(Color.BLACK);
+        labelCakeBakery.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelCakeBakery.relocate(810 , 115);
+        rootGameShopView.getChildren().addAll(labelCakeBakery);
+
         Rectangle spinneryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         spinneryRect.setOpacity(0.6);
         spinneryRect.setArcHeight((int) (70 * yShift));
@@ -94,6 +114,11 @@ public class GameShopView extends View {
         spinneryRect.setFill(Color.rgb(64, 45, 67));
         spinneryRect.relocate((int) (1460 * xShift), (int) (110 * yShift));
 
+        Label labelSpinnery = new Label("Spinnery");
+        labelSpinnery.setTextFill(Color.BLACK);
+        labelSpinnery.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelSpinnery.relocate(1180 , 115);
+        rootGameShopView.getChildren().addAll(labelSpinnery);
 
         Rectangle sewingFactoryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         sewingFactoryRect.setOpacity(0.6);
@@ -102,12 +127,24 @@ public class GameShopView extends View {
         sewingFactoryRect.setFill(Color.rgb(64, 45, 67));
         sewingFactoryRect.relocate((int) (20 * xShift), (int) (430 * yShift));
 
+        Label labelSewingFactory = new Label("SewingFactory");
+        labelSewingFactory.setTextFill(Color.BLACK);
+        labelSewingFactory.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelSewingFactory.relocate(60 , 360);
+        rootGameShopView.getChildren().addAll(labelSewingFactory);
+
         Rectangle weavingFactoryRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         weavingFactoryRect.setOpacity(0.6);
         weavingFactoryRect.setArcHeight((int) (70 * yShift));
         weavingFactoryRect.setArcWidth((int) (70 * xShift));
         weavingFactoryRect.setFill(Color.rgb(64, 45, 67));
         weavingFactoryRect.relocate((int) (500 * xShift), (int) (430 * yShift));
+
+        Label labelWeavingFactory = new Label("WeavingFactory");
+        labelWeavingFactory.setTextFill(Color.BLACK);
+        labelWeavingFactory.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelWeavingFactory.relocate(430 , 360);
+        rootGameShopView.getChildren().addAll(labelWeavingFactory);
 
         Rectangle wareHouseRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         wareHouseRect.setOpacity(0.6);
@@ -116,12 +153,24 @@ public class GameShopView extends View {
         wareHouseRect.setFill(Color.rgb(64, 45, 67));
         wareHouseRect.relocate((int) (980 * xShift), (int) (430 * yShift));
 
+        Label labelWareHouse = new Label("WareHouse");
+        labelWareHouse.setTextFill(Color.BLACK);
+        labelWareHouse.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelWareHouse.relocate(810 , 360);
+        rootGameShopView.getChildren().addAll(labelWareHouse);
+
         Rectangle truckRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         truckRect.setOpacity(0.6);
         truckRect.setArcHeight((int) (70 * yShift));
         truckRect.setArcWidth((int) (70 * xShift));
         truckRect.setFill(Color.rgb(64, 45, 67));
         truckRect.relocate((int) (1460 * xShift), (int) (430 * yShift));
+
+        Label labelTruck = new Label("Truck");
+        labelTruck.setTextFill(Color.BLACK);
+        labelTruck.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelTruck.relocate(1180 , 360);
+        rootGameShopView.getChildren().addAll(labelTruck);
 
         Rectangle wellRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         wellRect.setOpacity(0.6);
@@ -130,12 +179,24 @@ public class GameShopView extends View {
         wellRect.setFill(Color.rgb(64, 45, 67));
         wellRect.relocate((int) (20 * xShift), (int) (750 * yShift));
 
+        Label labelWell = new Label("Well");
+        labelWell.setTextFill(Color.BLACK);
+        labelWell.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelWell.relocate(60 , 605);
+        rootGameShopView.getChildren().addAll(labelWell);
+
         Rectangle helicopterRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         helicopterRect.setOpacity(0.6);
         helicopterRect.setArcHeight((int) (70 * yShift));
         helicopterRect.setArcWidth((int) (70 * xShift));
         helicopterRect.setFill(Color.rgb(64, 45, 67));
         helicopterRect.relocate((int) (500 * xShift), (int) (750 * yShift));
+
+        Label labelHelicopter = new Label("Helicopter");
+        labelHelicopter.setTextFill(Color.BLACK);
+        labelHelicopter.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelHelicopter.relocate(430 , 605);
+        rootGameShopView.getChildren().addAll(labelHelicopter);
 
         Rectangle dogRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         dogRect.setOpacity(0.6);
@@ -144,12 +205,24 @@ public class GameShopView extends View {
         dogRect.setFill(Color.rgb(64, 45, 67));
         dogRect.relocate((int) (980 * xShift), (int) (750 * yShift));
 
+        Label labelDog = new Label("Dog");
+        labelDog.setTextFill(Color.BLACK);
+        labelDog.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelDog.relocate(810 , 605);
+        rootGameShopView.getChildren().addAll(labelDog);
+
         Rectangle catRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         catRect.setOpacity(0.6);
         catRect.setArcHeight((int) (70 * yShift));
         catRect.setArcWidth((int) (70 * xShift));
         catRect.setFill(Color.rgb(64, 45, 67));
         catRect.relocate((int) (1460 * xShift), (int) (750 * yShift));
+
+        Label labelCat = new Label("Cat");
+        labelCat.setTextFill(Color.BLACK);
+        labelCat.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
+        labelCat.relocate(1180 , 605);
+        rootGameShopView.getChildren().addAll(labelCat);
 
         rootGameShopView.getChildren().addAll(eggPowderPlantRect, cookieBakeryRect, cakeBakeryRect, spinneryRect, truckRect, weavingFactoryRect, wellRect, sewingFactoryRect, wareHouseRect, dogRect, catRect, helicopterRect);
 
@@ -719,7 +792,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(270 , 190 + i * 20);
+            UpgradeArrowImageView[i].relocate(270 , 250 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -733,7 +806,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(650 , 190 + i * 20);
+            UpgradeArrowImageView[i].relocate(650 , 250 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -747,7 +820,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(1030 , 190 + i * 20);
+            UpgradeArrowImageView[i].relocate(1030 , 250 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -761,7 +834,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(1410 , 190 + i * 20);
+            UpgradeArrowImageView[i].relocate(1410 , 250 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -775,7 +848,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(270 , 440 + i * 20);
+            UpgradeArrowImageView[i].relocate(270 , 500 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -789,7 +862,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(650 , 440 + i * 20);
+            UpgradeArrowImageView[i].relocate(650 , 500 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -803,7 +876,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(1030 , 440 + i * 20);
+            UpgradeArrowImageView[i].relocate(1030 , 500 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -817,7 +890,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(1410 , 440 + i * 20);
+            UpgradeArrowImageView[i].relocate(1410 , 500 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -831,7 +904,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(270 , 690 + i * 20);
+            UpgradeArrowImageView[i].relocate(270 , 750 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -845,7 +918,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(650 , 690 + i * 20);
+            UpgradeArrowImageView[i].relocate(650 , 750 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -859,7 +932,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(1030 , 690 + i * 20);
+            UpgradeArrowImageView[i].relocate(1030 , 750 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
@@ -873,7 +946,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i] = new ImageView(UpgradeArrowImage);
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
-            UpgradeArrowImageView[i].relocate(1410 , 690 + i * 20);
+            UpgradeArrowImageView[i].relocate(1410 , 750 + i - 20);
             rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
