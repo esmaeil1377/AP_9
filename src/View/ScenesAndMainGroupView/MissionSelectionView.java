@@ -110,13 +110,13 @@ public class MissionSelectionView extends View {
 //    }
 
     private void FarmerOfFarm(Stage primaryStage) {
-        File farmerFile = new File("Data\\Gif\\Farmer.gif");
+        File farmerFile = new File("Data\\Gif\\SeaAnimal.gif");
         Image farmerImage = new Image(farmerFile.toURI().toString());
         ImageView farmerImageView = new ImageView(farmerImage);
-        farmerImageView.relocate(1270, 410);
+        farmerImageView.relocate(1200, 410);
         primaryStage.setFullScreen(true);
-        farmerImageView.setFitHeight(160);
-        farmerImageView.setFitWidth(100);
+        farmerImageView.setFitHeight(200);
+        farmerImageView.setFitWidth(200);
         rootMissionSelectionView.getChildren().addAll(farmerImageView);
         primaryStage.show();
     }

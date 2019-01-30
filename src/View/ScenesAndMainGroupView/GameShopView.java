@@ -245,7 +245,7 @@ public class GameShopView extends View {
                     User user=Game.getGameInstance().getCurrentUserAccount();
                     int price=user.getInformationNeededInGame().getPriceForUpgrade(new CookieBakery(user.getCookieBakeryLevel()));
                     if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
+                        user.setMoney(user.getMoney()- price);
                         user.setCookieBakeryLevel(user.getCookieBakeryLevel()+1);
                         UpdateMoneyText();
                     }else{
