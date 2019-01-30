@@ -5,7 +5,6 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
-import FarmModel.Internet.ServerAndClientRunnable.ServerSocketRunnable;
 import FarmModel.Internet.ServerAndClientRunnable.SocketRunnable;
 import View.GameView;
 import View.Main;
@@ -32,7 +31,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.sql.Time;
 
 import static View.View.PlayBubbleSound;
 import static View.View.PlayErrorSound;
@@ -41,9 +39,9 @@ public class StartMenuView {
     private int gameSpeed = 10;
     private Circle circleSun;
     private TextField enterYourUser;
-    private Group rootStartMenuView = new Group();
-    Text text;
-    private Scene sceneStartMenuView = new Scene(rootStartMenuView, 1600, 900);
+    private Group root = new Group();
+    private Text text;
+    private Scene scene = new Scene(root, 1600, 900);
     private SocketRunnable serverOrGuest;
 
     public SocketRunnable getServerOrGuest() {
@@ -66,12 +64,12 @@ public class StartMenuView {
         this.gameSpeed = gameSpeed;
     }
 
-    public Group getRootStartMenuView() {
-        return rootStartMenuView;
+    public Group getRoot() {
+        return root;
     }
 
-    public Scene getSceneStartMenuView() {
-        return sceneStartMenuView;
+    public Scene getScene() {
+        return scene;
     }
 
     public StartMenuView(Stage primaryStage) {
@@ -96,7 +94,7 @@ public class StartMenuView {
         AddMultiPlayerIcon(primaryStage);
 
 
-        primaryStage.setScene(sceneStartMenuView);
+        primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
     }
@@ -108,7 +106,7 @@ public class StartMenuView {
         primaryStage.setFullScreen(true);
         BackGroundView.setFitHeight(900);
         BackGroundView.setFitWidth(1600);
-        rootStartMenuView.getChildren().addAll(BackGroundView);
+        root.getChildren().addAll(BackGroundView);
     }
 
     private void AddPlayClick(Stage primaryStage) {
@@ -123,7 +121,7 @@ public class StartMenuView {
             public void handle(MouseEvent event) {
                 if (!enterYourUser.getText().equals("")) {
                     StartingTheUserAccount();
-                    primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
+                    primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getScene());
                     primaryStage.setFullScreen(true);
                 } else {
                     PlayErrorSound();
@@ -153,7 +151,7 @@ public class StartMenuView {
                 playClickView.setFitHeight(170);
             }
         });
-        rootStartMenuView.getChildren().addAll(playClickView);
+        root.getChildren().addAll(playClickView);
     }
 
     private void AddSettingClick(Stage primaryStage) {
@@ -207,7 +205,7 @@ public class StartMenuView {
             public void handle(MouseEvent event) {
                 PlayBubbleSound();
 
-                if (rootStartMenuView.getChildren().contains(speedCircle)) {
+                if (root.getChildren().contains(speedCircle)) {
                     KeyValue yText = new KeyValue(text.yProperty(), 0);
                     KeyValue y = new KeyValue(speedCircle.centerYProperty(), 750);
                     KeyFrame speedCircleKeyFrame = new KeyFrame(Duration.millis(500), yText, y);
@@ -216,14 +214,14 @@ public class StartMenuView {
                     speedCircleTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            rootStartMenuView.getChildren().removeAll(text, speedCircle);
+                            root.getChildren().removeAll(text, speedCircle);
                         }
                     });
                     speedCircleTimeLine.play();
 
                 } else {
-                    rootStartMenuView.getChildren().addAll(text);
-                    rootStartMenuView.getChildren().addAll(speedCircle);
+                    root.getChildren().addAll(text);
+                    root.getChildren().addAll(speedCircle);
 
                     KeyValue yTextForStarting = new KeyValue(text.yProperty(), -118);
                     KeyValue yForStarting = new KeyValue(speedCircle.centerYProperty(), 630);
@@ -251,7 +249,7 @@ public class StartMenuView {
                 settingImageView.setFitWidth(100);
             }
         });
-        rootStartMenuView.getChildren().addAll(settingImageView);
+        root.getChildren().addAll(settingImageView);
     }
 
     private void AddExitClick(Stage primaryStage) {
@@ -284,7 +282,7 @@ public class StartMenuView {
                 exitImageView.setFitWidth(100);
             }
         });
-        rootStartMenuView.getChildren().addAll(exitImageView);
+        root.getChildren().addAll(exitImageView);
     }
 
     private void ShowMovingCloud(Stage primaryStage) {
@@ -301,7 +299,7 @@ public class StartMenuView {
         timeline.setAutoReverse(true);
         timeline.play();
 
-        rootStartMenuView.getChildren().addAll(cloudView);
+        root.getChildren().addAll(cloudView);
     }
 
     private void AddNewUser(Stage primaryStage) {
@@ -328,8 +326,8 @@ public class StartMenuView {
                 Timeline timeline1 = new Timeline(keyFrame1);
                 timeline1.getKeyFrames().addAll(keyFrame1);
                 timeline1.play();
-                if (!rootStartMenuView.getChildren().contains(enterYourUser)) {
-                    rootStartMenuView.getChildren().addAll(enterYourUser);
+                if (!root.getChildren().contains(enterYourUser)) {
+                    root.getChildren().addAll(enterYourUser);
                 }
             }
         });
@@ -343,7 +341,7 @@ public class StartMenuView {
                 Timeline timeline1 = new Timeline(keyFrame1);
                 timeline1.getKeyFrames().addAll(keyFrame1);
                 timeline1.play();
-                rootStartMenuView.getChildren().remove(enterYourUser);
+                root.getChildren().remove(enterYourUser);
             }
         });
 
@@ -357,7 +355,7 @@ public class StartMenuView {
         timeline.setAutoReverse(true);
         timeline.play();
 
-        rootStartMenuView.getChildren().addAll(circleUserMenu, circleSun, text1);
+        root.getChildren().addAll(circleUserMenu, circleSun, text1);
 
 
         circleSun.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -391,7 +389,7 @@ public class StartMenuView {
                 playClickView.setFitHeight(110);
             }
         });
-        rootStartMenuView.getChildren().addAll(playClickView);
+        root.getChildren().addAll(playClickView);
 
         File cloudServerFile = new File("Data\\Click\\CloudServer.png");
         Image cloudServerImage = new Image(cloudServerFile.toURI().toString());
@@ -412,7 +410,7 @@ public class StartMenuView {
             @Override
             public void handle(MouseEvent event) {
                 if (!enterYourUser.getText().equals("")) {
-                    if (rootStartMenuView.getChildren().contains(cloudServerView)){
+                    if (root.getChildren().contains(cloudServerView)){
                         KeyValue serverGuestOpacity=new KeyValue(cloudServerView.opacityProperty(),0);
                         KeyFrame serverGuestFrame=new KeyFrame(Duration.millis(1000),serverGuestOpacity);
                         Timeline serverTimeLine=new Timeline(serverGuestFrame);
@@ -420,11 +418,11 @@ public class StartMenuView {
                         serverTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                rootStartMenuView.getChildren().removeAll(cloudServerView,guestRec,serverRec);
+                                root.getChildren().removeAll(cloudServerView,guestRec,serverRec);
                             }
                         });
                     }else{
-                        rootStartMenuView.getChildren().addAll(cloudServerView,guestRec,serverRec);
+                        root.getChildren().addAll(cloudServerView,guestRec,serverRec);
                         KeyValue serverGuestOpacity=new KeyValue(cloudServerView.opacityProperty(),1);
                         KeyFrame serverGuestFrame=new KeyFrame(Duration.millis(1000),serverGuestOpacity);
                         Timeline serverTimeLine=new Timeline(serverGuestFrame);
@@ -463,7 +461,7 @@ public class StartMenuView {
                     StartingTheUserAccount();
                     HostAndGuestView hostAndGuestView=new HostAndGuestView(Main.getPrimaryStage());
                     GameView.getGameView().setHostAndGuestView(hostAndGuestView);
-                    Main.getPrimaryStage().setScene(GameView.getGameView().getHostAndGuestView().getSceneHost());
+                    Main.getPrimaryStage().setScene(GameView.getGameView().getHostAndGuestView().getScene());
                     Main.getPrimaryStage().setFullScreen(true);
                 }
             });
@@ -475,7 +473,7 @@ public class StartMenuView {
                     HostAndGuestView hostAndGuestView=new HostAndGuestView(Main.getPrimaryStage());
                     hostAndGuestView.AddTextFieldToGetServerIPAndServerPort();
                     GameView.getGameView().setHostAndGuestView(hostAndGuestView);
-                    Main.getPrimaryStage().setScene(hostAndGuestView.getSceneHost());
+                    Main.getPrimaryStage().setScene(hostAndGuestView.getScene());
                     Main.getPrimaryStage().setFullScreen(true);
                 }
             });

@@ -28,8 +28,8 @@ import java.io.File;
 
 
 public class ProductInHelicopterView extends View {
-    private Group rootProductHelicopterView = new Group();
-    private Scene sceneProductHelicopterView = new Scene(rootProductHelicopterView, 1600, 900);
+    private Group root = new Group();
+    private Scene scene = new Scene(root, 1600, 900);
     private Label labelButtonFlouryCake = new Label("0");
     private Label labelButtonCake = new Label("0");
     private Label labelButton1Flour = new Label("0");
@@ -41,8 +41,8 @@ public class ProductInHelicopterView extends View {
     private Text coinText = new Text("0");
 
 
-    public Scene getSceneProductHelicopterView() {
-        return sceneProductHelicopterView;
+    public Scene getScene() {
+        return scene;
     }
 
     public ProductInHelicopterView(Stage primaryStage) {
@@ -52,7 +52,7 @@ public class ProductInHelicopterView extends View {
     @Override
     public void Start(Stage primaryStage) {
         try {
-            AddBackGround();
+            AddShopBackgroundTBackground(primaryStage);
             AddItemToBackGround(primaryStage);
             AddItemToBuyFlouryCake();
             AddItemToBuyCake();
@@ -69,15 +69,15 @@ public class ProductInHelicopterView extends View {
             e.printStackTrace();
         }
     }
-
-    private void AddBackGround() {
+    private void AddShopBackgroundTBackground(Stage primaryStage) {
         File backGroundFile = new File("Data\\ShopBackground.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
-        BackGroundView.setFitHeight(900);
-        BackGroundView.setFitWidth(1600);
-        rootProductHelicopterView.getChildren().addAll(BackGroundView);
+        BackGroundView.setFitHeight(primaryStage.getMaxHeight());
+        BackGroundView.setFitWidth(primaryStage.getMaxWidth());
+        root.getChildren().addAll(BackGroundView);
     }
+
 
     private void AddItemToBackGround(Stage primaryStage) {
         Rectangle rect_1 = new Rectangle(400, 800);
@@ -86,7 +86,7 @@ public class ProductInHelicopterView extends View {
         rect_1.setArcWidth(70);
         rect_1.setFill(Color.rgb(64, 45, 67));
         rect_1.relocate(150, 50);
-        rootProductHelicopterView.getChildren().addAll(rect_1);
+        root.getChildren().addAll(rect_1);
 
         File goodsFile = new File("Data\\Shop\\GoodsText.png");
         Image goodsImage = new Image(goodsFile.toURI().toString());
@@ -94,7 +94,7 @@ public class ProductInHelicopterView extends View {
         goodsImageView.setFitHeight(30);
         goodsImageView.setFitWidth(90);
         goodsImageView.relocate(180, 90);
-        rootProductHelicopterView.getChildren().addAll(goodsImageView);
+        root.getChildren().addAll(goodsImageView);
 
         File priceFile = new File("Data\\Shop\\PriceText.png");
         Image priceImage = new Image(priceFile.toURI().toString());
@@ -102,7 +102,7 @@ public class ProductInHelicopterView extends View {
         priceImageView.setFitHeight(30);
         priceImageView.setFitWidth(90);
         priceImageView.relocate(300, 90);
-        rootProductHelicopterView.getChildren().addAll(priceImageView);
+        root.getChildren().addAll(priceImageView);
 
         File orderFile = new File("Data\\Shop\\OrderText.png");
         Image orderImage = new Image(orderFile.toURI().toString());
@@ -110,7 +110,7 @@ public class ProductInHelicopterView extends View {
         orderImageView.setFitHeight(30);
         orderImageView.setFitWidth(90);
         orderImageView.relocate(415, 90);
-        rootProductHelicopterView.getChildren().addAll(orderImageView);
+        root.getChildren().addAll(orderImageView);
 
         File helicopter = new File("Data\\Textures\\UI\\Helicopter\\01.png");
         Image helicopterImage = new Image(helicopter.toURI().toString());
@@ -118,7 +118,7 @@ public class ProductInHelicopterView extends View {
         helicopterView.setFitHeight(500);
         helicopterView.setFitWidth(750);
         helicopterView.relocate(700, 400);
-        rootProductHelicopterView.getChildren().addAll(helicopterView);
+        root.getChildren().addAll(helicopterView);
 
         File buttonFile = new File("Data\\Shop\\OrderGoodsText.png");
         Image buttonImage = new Image(buttonFile.toURI().toString());
@@ -126,7 +126,7 @@ public class ProductInHelicopterView extends View {
         buttonImageView.setFitHeight(60);
         buttonImageView.setFitWidth(250);
         buttonImageView.relocate(230, 2);
-        rootProductHelicopterView.getChildren().addAll(buttonImageView);
+        root.getChildren().addAll(buttonImageView);
 
         Rectangle rectangle = new Rectangle(350, 450);
         rectangle.setOpacity(0.6);
@@ -134,7 +134,7 @@ public class ProductInHelicopterView extends View {
         rectangle.setArcWidth(50);
         rectangle.setFill(Color.rgb(64, 45, 67));
         rectangle.relocate(175, 120);
-        rootProductHelicopterView.getChildren().addAll(rectangle);
+        root.getChildren().addAll(rectangle);
 
         Rectangle rectangle1 = new Rectangle(350, 100);
         rectangle1.setOpacity(0.6);
@@ -142,7 +142,7 @@ public class ProductInHelicopterView extends View {
         rectangle1.setArcWidth(50);
         rectangle1.setFill(Color.rgb(64, 45, 67));
         rectangle1.relocate(175, 580);
-        rootProductHelicopterView.getChildren().addAll(rectangle1);
+        root.getChildren().addAll(rectangle1);
 
         Rectangle rectangle2 = new Rectangle(350, 50);
         rectangle2.setOpacity(0.6);
@@ -150,7 +150,7 @@ public class ProductInHelicopterView extends View {
         rectangle2.setArcWidth(50);
         rectangle2.setFill(Color.rgb(64, 45, 67));
         rectangle2.relocate(175, 690);
-        rootProductHelicopterView.getChildren().addAll(rectangle2);
+        root.getChildren().addAll(rectangle2);
 
 
     }
@@ -256,7 +256,7 @@ public class ProductInHelicopterView extends View {
 
         MakeLabelAndButtonChangeable(imageViewButton1, labelButtonFlouryCake);
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonFlouryCake, labelOfPrice);
+        root.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonFlouryCake, labelOfPrice);
 
     }
     private void AddItemToBuyCake() throws UnknownObjectException {
@@ -327,7 +327,7 @@ public class ProductInHelicopterView extends View {
         });
         MakeLabelAndButtonChangeable(imageViewButton1, labelButtonCake);
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonCake, labelOfPrice);
+        root.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonCake, labelOfPrice);
     }
     private void AddItemToBuyFlour() throws UnknownObjectException {
         int shift = 100;
@@ -400,7 +400,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1Flour, labelOfPrice);
+        root.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButton1Flour, labelOfPrice);
         MakeLabelAndButtonChangeable(imageViewButton1, labelButton1Flour);
     }
     private void AddItemToBuyPowder() throws UnknownObjectException {
@@ -476,7 +476,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonPowder, labelOfPrice);
+        root.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonPowder, labelOfPrice);
     }
     private void AddItemToBuyCarnivalDress() throws UnknownObjectException {
         int shift = 200;
@@ -551,7 +551,7 @@ public class ProductInHelicopterView extends View {
         });
 
         MakeLabelAndButtonChangeable(imageViewButton1, labelButtonCarnivalDress);
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonCarnivalDress, labelOfPrice);
+        root.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonCarnivalDress, labelOfPrice);
     }
     private void AddItemToBuyDecoration() throws UnknownObjectException {
         int shift = 250;
@@ -625,7 +625,7 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonDecoration, labelOfPrice);
+        root.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonDecoration, labelOfPrice);
         MakeLabelAndButtonChangeable(imageViewButton1, labelButtonDecoration);
     }
     private void AddItemToBuyFabric() throws UnknownObjectException {
@@ -700,7 +700,7 @@ public class ProductInHelicopterView extends View {
         });
 
         MakeLabelAndButtonChangeable(imageViewButton1, labelButtonFabric);
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonFabric, labelOfPrice);
+        root.getChildren().addAll(imageViewButton1, imageViewCoin, imageViewIcon, labelButtonFabric, labelOfPrice);
     }
     private void AddItemToBuySewing() throws UnknownObjectException {
         int shift = 350;
@@ -775,11 +775,11 @@ public class ProductInHelicopterView extends View {
             }
         });
 
-        rootProductHelicopterView.getChildren().addAll(imageViewButton1);
-        rootProductHelicopterView.getChildren().addAll(imageViewCoin);
-        rootProductHelicopterView.getChildren().addAll(imageViewIcon);
-        rootProductHelicopterView.getChildren().addAll(labelButtonSewing);
-        rootProductHelicopterView.getChildren().addAll(labelOfPrice);
+        root.getChildren().addAll(imageViewButton1);
+        root.getChildren().addAll(imageViewCoin);
+        root.getChildren().addAll(imageViewIcon);
+        root.getChildren().addAll(labelButtonSewing);
+        root.getChildren().addAll(labelOfPrice);
     }
 
     private int MoneyToBuyNumberOfItems(){
@@ -803,7 +803,7 @@ public class ProductInHelicopterView extends View {
         buttonOkImageView.setFitHeight(60);
         buttonOkImageView.setFitWidth(100);
         buttonOkImageView.relocate(190, 760);
-        rootProductHelicopterView.getChildren().addAll(buttonOkImageView);
+        root.getChildren().addAll(buttonOkImageView);
 
         MakeOkButtonViewClick(primaryStage, buttonOkImageView);
         buttonOkImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -829,7 +829,7 @@ public class ProductInHelicopterView extends View {
         okImageView.setFitWidth(80);
         okImageView.setFitHeight(40);
         okImageView.relocate(200, 770);
-        rootProductHelicopterView.getChildren().addAll(okImageView);
+        root.getChildren().addAll(okImageView);
 
         MakeOkButtonViewClick(primaryStage, okImageView);
         okImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -864,7 +864,7 @@ public class ProductInHelicopterView extends View {
                     }else if (!AllTheLabelsAreZero()){
                         AddObjectToHelicopterList();
                         FarmView farmView= GameView.getGameView().getFarmView();
-                        primaryStage.setScene(farmView.getSceneFarmView());
+                        primaryStage.setScene(farmView.getScene());
                         primaryStage.setFullScreen(true);
                         farmView.getAnimationTimer().start();
                         farmView.ShowHelicopterToCityAndComingBack();
@@ -874,7 +874,7 @@ public class ProductInHelicopterView extends View {
                     }else{
                         AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
                         animationTimer.start();
-                        primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                        primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                         primaryStage.setFullScreen(true);
                     }
                 } catch (MissionNotLoaded missionNotLoaded) {
@@ -894,7 +894,7 @@ public class ProductInHelicopterView extends View {
         cancelButtonView.setFitHeight(65);
         cancelButtonView.setFitWidth(105);
         cancelButtonView.relocate(400, 760);
-        rootProductHelicopterView.getChildren().addAll(cancelButtonView);
+        root.getChildren().addAll(cancelButtonView);
         cancelButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -916,7 +916,7 @@ public class ProductInHelicopterView extends View {
             public void handle(MouseEvent event) {
                 AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
                 animationTimer.start();
-                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
@@ -927,14 +927,14 @@ public class ProductInHelicopterView extends View {
         cancelImageView.setFitWidth(90);
         cancelImageView.setFitHeight(55);
         cancelImageView.relocate(408, 762);
-        rootProductHelicopterView.getChildren().addAll(cancelImageView);
+        root.getChildren().addAll(cancelImageView);
 
         cancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
                 animationTimer.start();
-                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
@@ -1009,13 +1009,13 @@ public class ProductInHelicopterView extends View {
         coinView.setFitHeight(50);
         coinView.setFitWidth(50);
         coinView.relocate(180, 690);
-        rootProductHelicopterView.getChildren().addAll(coinView);
+        root.getChildren().addAll(coinView);
 
         coinText.relocate(355, 715);
         coinText.setFont(Font.font(30));
         coinText.setStyle("-fx-font-weight: bold");
         coinText.setFill(Color.rgb(244, 240, 16));
-        rootProductHelicopterView.getChildren().addAll(coinText);
+        root.getChildren().addAll(coinText);
     }
 
     private void UpdateMoneyLabelNeeded(){

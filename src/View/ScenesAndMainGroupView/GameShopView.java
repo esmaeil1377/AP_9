@@ -1,7 +1,6 @@
 package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.NotEnoughMoney;
-import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cat;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
@@ -10,7 +9,6 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Well;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.*;
 import FarmModel.Request.UpgradeRequest;
-import FarmModel.Request.WellRequest;
 import FarmModel.User;
 import View.View;
 import javafx.animation.KeyFrame;
@@ -32,7 +30,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 import static javafx.application.Application.launch;
 import View.GameView;
@@ -42,12 +39,12 @@ public class GameShopView extends View {
     double xShift = 0.788;
     double yShift = 0.788;
     private Text moneyText=new Text();
-    private Group rootGameShopView = new Group();
-    private Scene sceneGameShopView = new Scene(rootGameShopView, (int) (1500 * xShift), (int) (700 * yShift));
+    private Group root = new Group();
+    private Scene scene = new Scene(root, (int) (1500 * xShift), (int) (700 * yShift));
     private User user=Game.getGameInstance().getCurrentUserAccount();
 
-    public Scene getSceneGameShopView() {
-        return sceneGameShopView;
+    public Scene getScene() {
+        return scene;
     }
 
     public GameShopView(Stage primaryStage) {
@@ -57,13 +54,21 @@ public class GameShopView extends View {
     @Override
     public void Start(Stage primaryStage) {
         UpdateMoneyText();
-        AddBackGround(primaryStage);
+        AddShopBackgroundTBackground(primaryStage);
         AddIcons(primaryStage);
         AddItems();
         AddShopText();
         AddStarAndMoneyText();
         AddOkText(primaryStage);
 
+    }
+    private void AddShopBackgroundTBackground(Stage primaryStage) {
+        File backGroundFile = new File("Data\\ShopBackground.jpg");
+        Image backGroundImage = new Image(backGroundFile.toURI().toString());
+        ImageView BackGroundView = new ImageView(backGroundImage);
+        BackGroundView.setFitHeight(primaryStage.getMaxHeight());
+        BackGroundView.setFitWidth(primaryStage.getMaxWidth());
+        root.getChildren().addAll(BackGroundView);
     }
 
     private void AddIcons(Stage primaryStage) {
@@ -153,19 +158,10 @@ public class GameShopView extends View {
         catRect.setFill(Color.rgb(64, 45, 67));
         catRect.relocate((int) (1460 * xShift), (int) (750 * yShift));
 
-        rootGameShopView.getChildren().addAll(eggPowderPlantRect, cookieBakeryRect, cakeBakeryRect, spinneryRect, truckRect, weavingFactoryRect, wellRect, sewingFactoryRect, wareHouseRect, dogRect, catRect, helicopterRect);
+        root.getChildren().addAll(eggPowderPlantRect, cookieBakeryRect, cakeBakeryRect, spinneryRect, truckRect, weavingFactoryRect, wellRect, sewingFactoryRect, wareHouseRect, dogRect, catRect, helicopterRect);
 
     }
 
-    private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\ShopBackground.jpg");
-        Image backGroundImage = new Image(backGroundFile.toURI().toString());
-        ImageView BackGroundView = new ImageView(backGroundImage);
-        primaryStage.setFullScreen(true);
-        BackGroundView.setFitHeight(primaryStage.getHeight());
-        BackGroundView.setFitWidth(primaryStage.getWidth());
-        rootGameShopView.getChildren().addAll(BackGroundView);
-    }
 
     private void AddItems() {
         File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\0" + String.valueOf(user.getEggPowderPlantLevel() + 1) + ".png");
@@ -175,7 +171,7 @@ public class GameShopView extends View {
         eggPowderPlantView.setFitWidth((int) (250 * xShift));
         eggPowderPlantView.setViewport(new Rectangle2D(0, 0, 130, 110));
         eggPowderPlantView.relocate((int) (23 * xShift), (int) (210 * yShift));
-        rootGameShopView.getChildren().addAll(eggPowderPlantView);
+        root.getChildren().addAll(eggPowderPlantView);
         eggPowderPlantView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -221,7 +217,7 @@ public class GameShopView extends View {
         cookieBakeryView.setFitWidth((int) (250 * xShift));
         cookieBakeryView.setViewport(new Rectangle2D(0, 0, 130, 130));
         cookieBakeryView.relocate((int) (525 * xShift), (int) (200 * yShift));
-        rootGameShopView.getChildren().addAll(cookieBakeryView);
+        root.getChildren().addAll(cookieBakeryView);
         cookieBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -267,7 +263,7 @@ public class GameShopView extends View {
         cakeBakeryView.setFitWidth((int) (300 * xShift));
         cakeBakeryView.setViewport(new Rectangle2D(0, 0, 190, 170));
         cakeBakeryView.relocate((int) (970 * xShift), (int) (185 * yShift));
-        rootGameShopView.getChildren().addAll(cakeBakeryView);
+        root.getChildren().addAll(cakeBakeryView);
         cakeBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -314,7 +310,7 @@ public class GameShopView extends View {
         spinneryView.setFitWidth((int) (230 * xShift));
         spinneryView.setViewport(new Rectangle2D(0, 0, 140, 100));
         spinneryView.relocate((int) (1480 * xShift), (int) (218 * yShift));
-        rootGameShopView.getChildren().addAll(spinneryView);
+        root.getChildren().addAll(spinneryView);
         spinneryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -360,7 +356,7 @@ public class GameShopView extends View {
         sewingFactoryView.setFitWidth((int) (230 * xShift));
         sewingFactoryView.setViewport(new Rectangle2D(0, 0, 150, 130));
         sewingFactoryView.relocate((int) (23 * xShift), (int) (540 * yShift));
-        rootGameShopView.getChildren().addAll(sewingFactoryView);
+        root.getChildren().addAll(sewingFactoryView);
         sewingFactoryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -406,7 +402,7 @@ public class GameShopView extends View {
         weavingFactoryView.setFitWidth((int) (250 * xShift));
         weavingFactoryView.setViewport(new Rectangle2D(0, 0, 150, 110));
         weavingFactoryView.relocate((int) (525 * xShift), (int) (530 * yShift));
-        rootGameShopView.getChildren().addAll(weavingFactoryView);
+        root.getChildren().addAll(weavingFactoryView);
         weavingFactoryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -452,7 +448,7 @@ public class GameShopView extends View {
         wareHouseView.setFitWidth((int) (250 * xShift));
         wareHouseView.setViewport(new Rectangle2D(0, 0, 190, 170));
         wareHouseView.relocate((int) (1000 * xShift), (int) (540 * yShift));
-        rootGameShopView.getChildren().addAll(wareHouseView);
+        root.getChildren().addAll(wareHouseView);
         wareHouseView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -498,7 +494,7 @@ public class GameShopView extends View {
         truckView.setFitWidth((int) (300 * xShift));
         truckView.setViewport(new Rectangle2D(0, 0, 170, 130));
         truckView.relocate((int) (1480 * xShift), (int) (495 * yShift));
-        rootGameShopView.getChildren().addAll(truckView);
+        root.getChildren().addAll(truckView);
         truckView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -544,7 +540,7 @@ public class GameShopView extends View {
         wellView.setFitWidth((int) (260 * xShift));
         wellView.setViewport(new Rectangle2D(0, 0, 150, 130));
         wellView.relocate((int) (23 * xShift), (int) (800 * yShift));
-        rootGameShopView.getChildren().addAll(wellView);
+        root.getChildren().addAll(wellView);
         wellView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -590,7 +586,7 @@ public class GameShopView extends View {
         helicopterView.setFitWidth((int) (270 * xShift));
         helicopterView.setViewport(new Rectangle2D(0, 0, 150, 160));
         helicopterView.relocate((int) (500 * xShift), (int) (805 * yShift));
-        rootGameShopView.getChildren().addAll(helicopterView);
+        root.getChildren().addAll(helicopterView);
         helicopterView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -635,7 +631,7 @@ public class GameShopView extends View {
         dogView.setFitHeight((int) (200 * yShift));
         dogView.setFitWidth((int) (250 * xShift));
         dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
-        rootGameShopView.getChildren().addAll(dogView);
+        root.getChildren().addAll(dogView);
         dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -672,7 +668,7 @@ public class GameShopView extends View {
         catView.setFitHeight((int) (160 * yShift));
         catView.setFitWidth((int) (200 * xShift));
         catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
-        rootGameShopView.getChildren().addAll(catView);
+        root.getChildren().addAll(catView);
         catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -722,7 +718,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(270 , 190 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -736,7 +732,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(650 , 190 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -750,7 +746,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(1030 , 190 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -764,7 +760,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(1410 , 190 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -778,7 +774,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(270 , 440 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -792,7 +788,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(650 , 440 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -806,7 +802,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(1030 , 440 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -820,7 +816,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(1410 , 440 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -834,7 +830,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(270 , 690 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -848,7 +844,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(650 , 690 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -862,7 +858,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(1030 , 690 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -876,7 +872,7 @@ public class GameShopView extends View {
             UpgradeArrowImageView[i].setFitWidth(70);
             UpgradeArrowImageView[i].setFitHeight(50);
             UpgradeArrowImageView[i].relocate(1410 , 690 + i * 20);
-            rootGameShopView.getChildren().addAll(UpgradeArrowImageView[i]);
+            root.getChildren().addAll(UpgradeArrowImageView[i]);
         }
     }
 
@@ -904,7 +900,7 @@ public class GameShopView extends View {
         shopTextView.setFitHeight((int) (100 * yShift));
         shopTextView.setFitWidth((int) (200 * xShift));
         shopTextView.relocate((int) (890 * xShift), (int) (0 * yShift));
-        rootGameShopView.getChildren().addAll(shopTextView);
+        root.getChildren().addAll(shopTextView);
     }
 
     private void AddStarAndMoneyText(){
@@ -914,11 +910,11 @@ public class GameShopView extends View {
         starView.setFitHeight((int) (50 * yShift));
         starView.setFitWidth((int) (50 * xShift));
         starView.relocate((int) (30 * xShift), (int) (30 * yShift));
-        rootGameShopView.getChildren().addAll(starView);
+        root.getChildren().addAll(starView);
         moneyText.relocate((int) (100 * xShift), (int) (50 * yShift));
         moneyText.setFont(Font.font(30));
         moneyText.setStyle("-fx-font-weight: bold");
-        rootGameShopView.getChildren().addAll(moneyText);
+        root.getChildren().addAll(moneyText);
     }
 
     private void AddOkText(Stage primaryStage){
@@ -947,11 +943,11 @@ public class GameShopView extends View {
         okButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
+                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
-        rootGameShopView.getChildren().addAll(okButtonView);
+        root.getChildren().addAll(okButtonView);
         File okText = new File("Data\\MenuClick\\OkText.png");
         Image okTextImage = new Image(okText.toURI().toString());
         ImageView okTextView = new ImageView(okTextImage);
@@ -977,17 +973,17 @@ public class GameShopView extends View {
         okTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
+                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
-        rootGameShopView.getChildren().addAll(okTextView);
+        root.getChildren().addAll(okTextView);
     }
 
     private void ShowNotEnoughMoneyError(){
         Circle circle=new Circle(35,35,0, Paint.valueOf("Red"));
         circle.setOpacity(0.5);
-        rootGameShopView.getChildren().addAll(circle);
+        root.getChildren().addAll(circle);
         KeyValue radiusValue=new KeyValue(circle.radiusProperty(),30);
         KeyValue opacityValue=new KeyValue(circle.opacityProperty(),0);
         KeyFrame circleFrame=new KeyFrame(Duration.seconds(1),opacityValue,radiusValue);

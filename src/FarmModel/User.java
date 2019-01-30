@@ -18,6 +18,10 @@ import java.util.Arrays;
 
 public class User {
     private String acountName;
+    private int isMission1Ficnished=0;
+    private int isMission2Ficnished=0;
+    private int isMission3Ficnished=0;
+    private int isMission4Ficnished=0;
     private int money=100000;
 
     private int CatLevel;
@@ -41,6 +45,28 @@ public class User {
     private ArrayList<Mission> missions = new ArrayList<>();
     private GameShop gameShop = new GameShop();
     private InformationNeededInGame informationNeededInGame=new InformationNeededInGame();
+
+    public void setMissionFinished(Mission mission){
+        String missionName=mission.getMissionName();
+        if (missionName.equals("mission1")){
+            isMission1Ficnished=1;
+        }else if (missionName.equals("mission2")){
+            isMission2Ficnished=1;
+        }else if (missionName.equals("mission3")){
+            isMission3Ficnished=1;
+        }else if (missionName.equals("mission4")){
+            isMission4Ficnished=1;
+        }
+    }
+
+    public int getUserLevel(){
+        int result=0;
+        result+=isMission1Ficnished;
+        result +=isMission2Ficnished;
+        result+=isMission3Ficnished;
+        result+=isMission4Ficnished;
+        return result;
+    }
 
     public void RenewMissions() throws UnknownObjectException, NotEnoughMoney, MissionNotLoaded, MaxLevelExceeded {
         try {

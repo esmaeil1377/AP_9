@@ -4,17 +4,26 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Mission;
 import FarmModel.User;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
 import static FarmController.RequestAnalayzer.RequestAnalayzer;
 
 public abstract class View {
+    private Group root;
+    private Scene scene;
 
 //    public static void getRequest() {
 //        String input;
@@ -29,6 +38,7 @@ public abstract class View {
 //    }
 
     public abstract void Start(Stage primaryStage) throws MissionNotLoaded, UnknownObjectException;
+
 
     public static void PlayBubbleSound() {
         String path = "Data\\Voice\\Bubble.mp3";

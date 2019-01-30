@@ -1,6 +1,5 @@
 package View.ScenesAndMainGroupView;
 
-import FarmModel.Game;
 import FarmModel.Internet.Changes;
 import FarmModel.Internet.ServerAndClientRunnable.GuestSocketRunnable;
 import FarmModel.Internet.ServerAndClientRunnable.ServerSocketRunnable;
@@ -17,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -29,8 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HostAndGuestView extends View.View {
-    private Group rootHost = new Group();
-    private Scene SceneHost = new Scene(rootHost, 1500, 700);
+    private Group root = new Group();
+    private Scene scene = new Scene(root, 1500, 700);
     private TextField userPort = new TextField("8050");
     private TextField ipTextField = new TextField("serverip");
     private TextField portTextField = new TextField("8050");
@@ -43,7 +43,22 @@ public class HostAndGuestView extends View.View {
     private ArrayList<Node> massageHistoryNodes =new ArrayList<>();
     private ArrayList<Node> currentContactsNode=new ArrayList<>();
 
-//    public ArrayList<String> getMassagedidntsent() {
+    public Group getRoot() {
+        return root;
+    }
+
+    public TextField getIpTextField() {
+        return ipTextField;
+    }
+
+    public ArrayList<Node> getCurrentContactsNode() {
+        return currentContactsNode;
+    }
+
+    public void setCurrentContactsNode(ArrayList<Node> currentContactsNode) {
+        this.currentContactsNode = currentContactsNode;
+    }
+    //    public ArrayList<String> getMassagedidntsent() {
 //        return massagedidntsent;
 //    }
 
@@ -60,8 +75,8 @@ public class HostAndGuestView extends View.View {
         return historyMassage;
     }
 
-    public Scene getSceneHost() {
-        return SceneHost;
+    public Scene getScene() {
+        return scene;
     }
 
 
@@ -96,12 +111,13 @@ public class HostAndGuestView extends View.View {
             }
         };
         animationTimer.start();
-        AddBackGround(primaryStage);
+        AddShopBackgroundTBackground(primaryStage);
         AddBackgroundBlackRectangle();
         AddGroupRectangleAndContactRectangle();
         AddTextFieldToGetPort();
         AddTextFieldTOSendInGroup();
         AddOkToStartConnecting();
+        AddReturnToMainMenu(primaryStage);
     }
 
     private void AddOkToStartConnecting(){
@@ -129,7 +145,7 @@ public class HostAndGuestView extends View.View {
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(rootHost.getChildren().contains(ipTextField)){
+                if(root.getChildren().contains(ipTextField)){
                     if (!portTextField.getText().equals("") && !ipTextField.getText().equals("") && !userPort.getText().equals("")) {
                         GameView.getGameView().getStartMenuView().setServerOrGuest(new GuestSocketRunnable(portTextField.getText(), ipTextField.getText()));
                         Thread thread=new Thread(GameView.getGameView().getStartMenuView().getServerOrGuest());
@@ -144,25 +160,38 @@ public class HostAndGuestView extends View.View {
                 }
             }
         });
-        rootHost.getChildren().addAll(okLabel,rectangle);
+        root.getChildren().addAll(okLabel,rectangle);
     }
 
 
     private void AddNewContactWhenItConnectToOurPort(Socket socket, Stage primaryStage,String contactName) {
         Label contactLabel = new Label(" "+contactName+" " );
         contactLabel.relocate(850, endHeightOfTheContacts + 5);
-        endHeightOfTheContacts += 45;
+        endHeightOfTheContacts += 50;
         contactLabel.setFont(Font.font(30));
-        contactLabel.setStyle("-fx-background-color: blue");
+        contactLabel.setStyle("-fx-background-color: rgb(114,144,174);-fx-arc-height: 30;-fx-arc-width: 30");
         currentContactsNode.add(contactLabel);
         MakeContactsViewScrolling(contactLabel);
         contactLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).getScenePv());
+                contactLabel.setStyle("-fx-background-color: rgb(154,194,224);-fx-arc-height: 30;-fx-arc-width: 30");
             }
         });
-        rootHost.getChildren().addAll(contactLabel);
+        contactLabel.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                contactLabel.setStyle("-fx-background-color: rgb(114,144,174);-fx-arc-height: 30;-fx-arc-width: 30");
+            }
+        });
+        contactLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).getScene());
+                primaryStage.setFullScreen(true);
+            }
+        });
+        root.getChildren().addAll(contactLabel);
     }
 
 //    private void AddServerIP() {
@@ -187,7 +216,7 @@ public class HostAndGuestView extends View.View {
                 endHeightOfTheMassages = 750;
                 makeNodesChangeTheY(-30, massageHistoryNodes);
             }
-            rootHost.getChildren().addAll(labelMassage);
+            root.getChildren().addAll(labelMassage);
             massageHistoryNodes.add(labelMassage);
         } else {
             if (str.substring(0, 4).equals("Gif ")) {
@@ -229,7 +258,7 @@ public class HostAndGuestView extends View.View {
                     endHeightOfTheMassages = 750;
                     makeNodesChangeTheY(-30, massageHistoryNodes);
                 }
-                rootHost.getChildren().addAll(labelMassage);
+                root.getChildren().addAll(labelMassage);
                 massageHistoryNodes.add(labelMassage);
             }
         }
@@ -238,8 +267,8 @@ public class HostAndGuestView extends View.View {
     public void ReloadPVContacts(Stage primaryStage) {
         endHeightOfTheContacts=120;
         for (Node node:currentContactsNode){
-            if (rootHost.getChildren().contains(node)) {
-                rootHost.getChildren().removeAll(node);
+            if (root.getChildren().contains(node)) {
+                root.getChildren().removeAll(node);
             }
         }
         currentContactsNode=new ArrayList<>();
@@ -280,31 +309,12 @@ public class HostAndGuestView extends View.View {
         imageView.setFitHeight(height);
         imageView.relocate(x, endHeightOfTheMassages);
         endHeightOfTheMassages += height + 10;
-        rootHost.getChildren().addAll(imageView);
+        root.getChildren().addAll(imageView);
     }
 
     public void AddMassageToHistoryAndMassageNotWrittenInGroup(String massage) {
         massagedidntshowedInInGroup.add(massage);
         historyMassage.add(massage);
-    }
-
-    private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\ShopBackground.jpg");
-        Image backGroundImage = new Image(backGroundFile.toURI().toString());
-        ImageView BackGroundView = new ImageView(backGroundImage);
-        BackGroundView.setFitHeight(primaryStage.getMaxHeight());
-        BackGroundView.setFitWidth(primaryStage.getMaxWidth());
-        rootHost.getChildren().addAll(BackGroundView);
-    }
-
-    private void AddBackgroundBlackRectangle() {
-        Rectangle rectangle = new Rectangle(50, 100, 1450, 760);
-        rectangle.setFill(Color.rgb(0, 0, 0));
-        rectangle.setOpacity(0.5);
-        rectangle.setArcWidth(50);
-        rectangle.setArcHeight(50);
-
-        rootHost.getChildren().addAll(rectangle);
     }
 
     private void AddGroupRectangleAndContactRectangle() {
@@ -320,7 +330,7 @@ public class HostAndGuestView extends View.View {
             }
         });
 
-        rootHost.getChildren().addAll(rectangle);
+        root.getChildren().addAll(rectangle);
 
         Rectangle rectangle2 = new Rectangle(775, 120, 700, 700);
         rectangle2.setFill(Color.rgb(0, 158, 130));
@@ -329,13 +339,31 @@ public class HostAndGuestView extends View.View {
         rectangle2.setOpacity(0.4);
         MakeContactsViewScrolling(rectangle2);
 
-        rootHost.getChildren().addAll(rectangle2);
+        root.getChildren().addAll(rectangle2);
+    }
+
+    public void AddShopBackgroundTBackground(Stage primaryStage) {
+        File backGroundFile = new File("Data\\ShopBackground.jpg");
+        Image backGroundImage = new Image(backGroundFile.toURI().toString());
+        ImageView BackGroundView = new ImageView(backGroundImage);
+        BackGroundView.setFitHeight(primaryStage.getMaxHeight());
+        BackGroundView.setFitWidth(primaryStage.getMaxWidth());
+        root.getChildren().addAll(BackGroundView);
+    }
+
+    public void AddBackgroundBlackRectangle() {
+        Rectangle rectangle = new Rectangle(50, 100, 1450, 760);
+        rectangle.setFill(Color.rgb(0, 0, 0));
+        rectangle.setOpacity(0.5);
+        rectangle.setArcWidth(50);
+        rectangle.setArcHeight(50);
+        root.getChildren().addAll(rectangle);
     }
 
     private void AddTextFieldToGetPort() {
         userPort.relocate(1150, 56);
         userPort.setFont(Font.font(20));
-        rootHost.getChildren().addAll(userPort);
+        root.getChildren().addAll(userPort);
 
     }
 
@@ -370,14 +398,14 @@ public class HostAndGuestView extends View.View {
         clipRectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (rootHost.getChildren().contains(ipTextField)){
+                if (root.getChildren().contains(ipTextField)){
                     String massage=textField.getText();
                     Changes.AddMassageToMassageThatShouldSend("@"+massage);
                     massagedidntshowedInInGroup.add(massage);
                     Changes.WeHaveNewMassageToShow();
                 }else {
                     String massage = textField.getText();
-                    massagedidntshowedInInGroup.add(massage);
+                    AddMassageToHistoryAndMassageNotWrittenInGroup(massage);
                     Changes.WeHaveNewMassageToShow();
                     for(Map.Entry<Socket,PVView> entry: GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()){
                         entry.getValue().getDataToSendThatWeDidntSendThem().add("@"+massage);
@@ -387,19 +415,19 @@ public class HostAndGuestView extends View.View {
             }
         });
 
-        rootHost.getChildren().addAll(textField, sendLabel, clipRectangle);
+        root.getChildren().addAll(textField, sendLabel, clipRectangle);
     }
 
     public void AddTextFieldToGetServerIPAndServerPort() {
         ipTextField.setFont(Font.font(20));
-        ipTextField.relocate(70, 56);
+        ipTextField.relocate(220, 56);
         portTextField.setFont(Font.font(20));
-        portTextField.relocate(300, 56);
+        portTextField.relocate(450, 56);
         Rectangle ipRectangle = new Rectangle(0, 0, 200, 60);
         ipTextField.setClip(ipRectangle);
         Rectangle portRectangle = new Rectangle(0, 0, 200, 60);
         portTextField.setClip(portRectangle);
-        rootHost.getChildren().addAll(ipTextField, portTextField);
+        root.getChildren().addAll(ipTextField, portTextField);
     }
 
     private void makeNodesChangeTheY(int y,ArrayList<Node> nodes){
@@ -411,7 +439,7 @@ public class HostAndGuestView extends View.View {
                 if (((Rectangle) node).getY() - y >= 119 & ((Rectangle) node).getY() - y <= 750) {
                     if (((Rectangle) node).getY() >= 750 | ((Rectangle) node).getY() <= 120) {
                         try {
-                            rootHost.getChildren().removeAll(node);
+                            root.getChildren().removeAll(node);
                         } catch (Exception e) {
                         }
                     }
@@ -419,7 +447,7 @@ public class HostAndGuestView extends View.View {
                 else if (((Rectangle) node).getY() - y <= 120 | ((Rectangle) node).getY() - y >= 750) {
                     if (((Rectangle) node).getY() <= 750 & ((Rectangle) node).getY() >= 120) {
                         try {
-                            rootHost.getChildren().addAll(node);
+                            root.getChildren().addAll(node);
                         } catch (Exception e) {
                         }
                     }
@@ -430,7 +458,7 @@ public class HostAndGuestView extends View.View {
                 if (node.getLayoutY() - y >= 119 & node.getLayoutY() - y <= 750) {
                     if (node.getLayoutY() >= 750 | node.getLayoutY() <= 120) {
                         try {
-                            rootHost.getChildren().removeAll(node);
+                            root.getChildren().removeAll(node);
                         } catch (Exception e) {
                         }
                     }
@@ -438,7 +466,7 @@ public class HostAndGuestView extends View.View {
                 else if (node.getLayoutY() - y <= 120 | node.getLayoutY() - y >= 750) {
                     if (node.getLayoutY() <= 750 & node.getLayoutY() >= 120) {
                         try {
-                            rootHost.getChildren().addAll(node);
+                            root.getChildren().addAll(node);
                         } catch (Exception e) {
                         }
                     }
@@ -455,6 +483,39 @@ public class HostAndGuestView extends View.View {
             }
         });
 
+    }
+
+    private void AddReturnToMainMenu(Stage primaryStage){
+        Label label=new Label("MainMenu");
+        label.setTextFill(Paint.valueOf("White"));
+        label.setFont(Font.font(20));
+        label.relocate(25,25);
+        Rectangle rectangle=new Rectangle(20,20,110,45);
+        rectangle.setFill(Paint.valueOf("White"));
+        rectangle.setArcHeight(20);
+        rectangle.setArcWidth(20);
+        rectangle.setOpacity(0.1);
+        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rectangle.setOpacity(0.2);
+            }
+        });
+        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rectangle.setOpacity(0.1);
+            }
+        });
+        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getScene());
+                primaryStage.setFullScreen(true);
+            }
+        });
+
+        root.getChildren().addAll(label,rectangle);
     }
 
 

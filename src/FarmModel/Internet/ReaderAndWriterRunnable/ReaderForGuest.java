@@ -1,5 +1,6 @@
 package FarmModel.Internet.ReaderAndWriterRunnable;
 
+import FarmModel.Game;
 import FarmModel.Internet.Changes;
 import View.GameView;
 import View.Main;
@@ -7,6 +8,7 @@ import View.ScenesAndMainGroupView.PVView;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ReaderForGuest implements Runnable{
@@ -62,12 +64,25 @@ public class ReaderForGuest implements Runnable{
             String userName=inputString.substring(2);
             GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVView(socket,userName);
             Changes.WeHaveNewContact();
+            SendJoinMassageForEveryOneInGroup(userName);
+            SendOldMassageForNewUsers(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket));
         }else if (inputString.substring(0,1).equals("M")){
             String userMoney=inputString.substring(2);
             GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactMoneyInGame(userMoney);
         }else if (inputString.substring(0,1).equals("L")){
-            String userLastMission=inputString.substring(2);
-            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactLevelInMission(userLastMission);
+            String userlevel=inputString.substring(2);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactLevelInMission(userlevel);
+        }
+    }
+    private static void SendJoinMassageForEveryOneInGroup(String newGuestName){
+        for (Map.Entry<Socket,PVView> entry: GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()){
+            entry.getValue().getDataToSendThatWeDidntSendThem().add("@"+newGuestName+" joined us.");
+        }
+        GameView.getGameView().getHostAndGuestView().AddMassageToHistoryAndMassageNotWrittenInGroup(newGuestName+" joined us.");
+    }
+    private static void SendOldMassageForNewUsers(PVView pvView){
+        for (String massage:GameView.getGameView().getHostAndGuestView().getHistoryMassage()){
+            pvView.getDataToSendThatWeDidntSendThem().add("@"+massage);
         }
     }
 }

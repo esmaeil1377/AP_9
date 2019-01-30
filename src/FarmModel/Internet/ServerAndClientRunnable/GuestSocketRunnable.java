@@ -3,9 +3,7 @@ package FarmModel.Internet.ServerAndClientRunnable;
 import FarmModel.Game;
 import FarmModel.Internet.Changes;
 import FarmModel.Internet.ReaderAndWriterRunnable.ReaderForGuest;
-import FarmModel.Internet.ReaderAndWriterRunnable.ReaderForServer;
 import FarmModel.Internet.ReaderAndWriterRunnable.WriterForGuest;
-import FarmModel.Internet.ReaderAndWriterRunnable.WriterForServer;
 import FarmModel.User;
 
 import java.io.IOException;
@@ -58,7 +56,7 @@ public class GuestSocketRunnable extends SocketRunnable implements Runnable {
         formatter.flush();
         formatter.format("M@"+user.getMoney()+"\n");
         formatter.flush();
-//        formatter.close();
-        //and here we have to send the mission user level.
+        formatter.format("L@"+user.getUserLevel()+"\n");
+        formatter.flush();
     }
 }

@@ -16,8 +16,8 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class MissionSelectionView extends View {
-    private Group rootMissionSelectionView = new Group();
-    private Scene sceneSelectionView = new Scene(rootMissionSelectionView, 1600, 900);
+    private Group root = new Group();
+    private Scene scene = new Scene(root, 1600, 900);
     private String bestTimeForMissino1="99:99";
     private String bestTimeForMission2="99:99";
     private String bestTimeForMission3="99:99";
@@ -65,8 +65,8 @@ public class MissionSelectionView extends View {
         }
     }
 
-    public Scene getSceneSelectionView() {
-        return sceneSelectionView;
+    public Scene getScene() {
+        return scene;
     }
 
     public MissionSelectionView(Stage primaryStage) {
@@ -91,7 +91,7 @@ public class MissionSelectionView extends View {
         ImageView BackGroundView = new ImageView(backGroundImage);
         BackGroundView.setFitHeight(900);
         BackGroundView.setFitWidth(1600);
-        rootMissionSelectionView.getChildren().addAll(BackGroundView);
+        root.getChildren().addAll(BackGroundView);
         AddGando();
     }
 
@@ -106,7 +106,7 @@ public class MissionSelectionView extends View {
 //        restartImageView.setFitWidth(120);
 //        //Circle circle = new Circle(1200, 500, 150); // cast to Circle
 //        //circle.setFill(restartImageView);
-//        rootMissionSelectionView.getChildren().addAll(restartImageView);
+//        root.getChildren().addAll(restartImageView);
 //    }
 
     private void FarmerOfFarm(Stage primaryStage) {
@@ -117,7 +117,7 @@ public class MissionSelectionView extends View {
         primaryStage.setFullScreen(true);
         farmerImageView.setFitHeight(160);
         farmerImageView.setFitWidth(100);
-        rootMissionSelectionView.getChildren().addAll(farmerImageView);
+        root.getChildren().addAll(farmerImageView);
         primaryStage.show();
     }
 
@@ -132,7 +132,7 @@ public class MissionSelectionView extends View {
             bubbleImageView.relocate(1300 - 300 * Math.cos(i * 3.14 / 11), 550 - 300 * Math.sin(i * 3.14 / 11));
             bubbleImageView.setFitWidth(50);
             bubbleImageView.setFitHeight(50);
-            rootMissionSelectionView.getChildren().addAll(bubbleImageView);
+            root.getChildren().addAll(bubbleImageView);
         }
         try {
             for (int i = 20; i < 30; i++) {
@@ -147,7 +147,7 @@ public class MissionSelectionView extends View {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                        primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                         primaryStage.setFullScreen(true);
                     }
                 });
@@ -181,7 +181,7 @@ public class MissionSelectionView extends View {
         restartImageView.relocate(450, 250);
         restartImageView.setFitHeight(200);
         restartImageView.setFitWidth(200);
-        rootMissionSelectionView.getChildren().addAll(restartImageView);
+        root.getChildren().addAll(restartImageView);
     }
 
     private void AddMainMenu(Stage primaryStage) {
@@ -210,7 +210,7 @@ public class MissionSelectionView extends View {
         menuButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
@@ -239,11 +239,11 @@ public class MissionSelectionView extends View {
         menuTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
-        rootMissionSelectionView.getChildren().addAll(menuButtonView, menuTextView);
+        root.getChildren().addAll(menuButtonView, menuTextView);
     }
 
     private void AddShopButton(Stage primaryStage) {
@@ -294,7 +294,7 @@ public class MissionSelectionView extends View {
             }
         });
         ShowShopScene(primaryStage, shopTextView);
-        rootMissionSelectionView.getChildren().addAll(shopButtonView, shopTextView);
+        root.getChildren().addAll(shopButtonView, shopTextView);
     }
 
     private void ShowShopScene(Stage primaryStage, ImageView shopTextView) {
@@ -303,7 +303,7 @@ public class MissionSelectionView extends View {
             public void handle(MouseEvent event) {
                 GameShopView gameShopView = new GameShopView(primaryStage);
                 GameView.getGameView().setGameShopView(gameShopView);
-                primaryStage.setScene(gameShopView.getSceneGameShopView());
+                primaryStage.setScene(gameShopView.getScene());
                 primaryStage.setFullScreen(true);
             }
         });
