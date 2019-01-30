@@ -1,6 +1,7 @@
 package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cat;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
@@ -43,6 +44,7 @@ public class GameShopView extends View {
     private Text moneyText=new Text();
     private Group rootGameShopView = new Group();
     private Scene sceneGameShopView = new Scene(rootGameShopView, (int) (1500 * xShift), (int) (700 * yShift));
+    private User user=Game.getGameInstance().getCurrentUserAccount();
 
     public Scene getSceneGameShopView() {
         return sceneGameShopView;
@@ -61,6 +63,7 @@ public class GameShopView extends View {
         AddShopText();
         AddStarAndMoneyText();
         AddOkText(primaryStage);
+        AddCustomWorkShop(primaryStage);
 
     }
 
@@ -166,7 +169,7 @@ public class GameShopView extends View {
     }
 
     private void AddItems() {
-        File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\01.png");
+        File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\0" + String.valueOf(user.getEggPowderPlantLevel() + 1) + ".png");
         Image eggPowderPlantImage = new Image(eggPowderPlant.toURI().toString());
         ImageView eggPowderPlantView = new ImageView(eggPowderPlantImage);
         eggPowderPlantView.setFitHeight((int) (175 * yShift));
@@ -194,25 +197,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new EggPowderPlant(user.getEggPowderPlantLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setEggPowderPlantLevel(user.getEggPowderPlantLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new EggPowderPlant(user.getEggPowderPlantLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setEggPowderPlantLevel(user.getEggPowderPlantLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
-                  ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (NotEnoughMoney e2) {
+                    ShowNotEnoughMoneyError();
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File cookieBakery = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\01.png");
+        File cookieBakery = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\0" + String.valueOf(user.getCookieBakeryLevel() + 1) + ".png");
         Image cookieBakeryImage = new Image(cookieBakery.toURI().toString());
         ImageView cookieBakeryView = new ImageView(cookieBakeryImage);
         cookieBakeryView.setFitHeight((int) (175 * yShift));
@@ -240,25 +243,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new CookieBakery(user.getCookieBakeryLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()- price);
-                        user.setCookieBakeryLevel(user.getCookieBakeryLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new CookieBakery(user.getCookieBakeryLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setCookieBakeryLevel(user.getCookieBakeryLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\01.png");
+        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\0" + String.valueOf(user.getCakeBakeryLevel() + 1) + ".png");
         Image cakeBakeryImage = new Image(cakeBakery.toURI().toString());
         ImageView cakeBakeryView = new ImageView(cakeBakeryImage);
         cakeBakeryView.setFitHeight((int) (210 * yShift));
@@ -287,25 +290,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new CakeBakery(user.getCakeBakeryLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setCakeBakeryLevel(user.getCakeBakeryLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new CakeBakery(user.getCakeBakeryLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setCakeBakeryLevel(user.getCakeBakeryLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File spinnery = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\01.png");
+        File spinnery = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\0" + String.valueOf(user.getSpinneryLevel() + 1) + ".png");
         Image spinneryImage = new Image(spinnery.toURI().toString());
         ImageView spinneryView = new ImageView(spinneryImage);
         spinneryView.setFitHeight((int) (160 * yShift));
@@ -333,25 +336,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Spinnery(user.getSpinneryLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setSpinneryLevel(user.getSpinneryLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new Spinnery(user.getSpinneryLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setSpinneryLevel(user.getSpinneryLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File sewingFactory = new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\01.png");
+        File sewingFactory = new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\0" + String.valueOf(user.getSewingFactoryLevel() + 1) + ".png");
         Image sewingFactoryImage = new Image(sewingFactory.toURI().toString());
         ImageView sewingFactoryView = new ImageView(sewingFactoryImage);
         sewingFactoryView.setFitHeight((int) (160 * yShift));
@@ -379,25 +382,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new SewingFactory(user.getSewingFactoryLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setSewingFactoryLevel(user.getSewingFactoryLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new SewingFactory(user.getSewingFactoryLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setSewingFactoryLevel(user.getSewingFactoryLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File weavingFactory = new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\01.png");
+        File weavingFactory = new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\0" + String.valueOf(user.getWeavingFactoryLevel() + 1) + ".png");
         Image weavingFactoryImage = new Image(weavingFactory.toURI().toString());
         ImageView weavingFactoryView = new ImageView(weavingFactoryImage);
         weavingFactoryView.setFitHeight((int) (175 * yShift));
@@ -425,25 +428,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new WeavingFactory(user.getWeavingFactoryLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setWeavingFactoryLevel(user.getWeavingFactoryLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new WeavingFactory(user.getWeavingFactoryLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setWeavingFactoryLevel(user.getWeavingFactoryLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File wareHouse = new File("Data\\Textures\\Service\\Depot\\01.png");
+        File wareHouse = new File("Data\\Textures\\Service\\Depot\\0" + String.valueOf(user.getWarehouseLevel() + 1) + ".png");
         Image wareHouseImage = new Image(wareHouse.toURI().toString());
         ImageView wareHouseView = new ImageView(wareHouseImage);
         wareHouseView.setFitHeight((int) (175 * yShift));
@@ -471,25 +474,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new WareHouse(user.getWarehouseLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setWarehouseLevel(user.getWarehouseLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new WareHouse(user.getWarehouseLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setWarehouseLevel(user.getWarehouseLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File truck = new File("Data\\Textures\\Service\\Truck\\01.png");
+        File truck = new File("Data\\Textures\\Service\\Truck\\0" + String.valueOf(user.getTruckLevel() + 1) + ".png");
         Image truckImage = new Image(truck.toURI().toString());
         ImageView truckView = new ImageView(truckImage);
         truckView.setFitHeight((int) (220 * yShift));
@@ -517,25 +520,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Truck(user.getTruckLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setTruckLevel(user.getTruckLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new Truck(user.getTruckLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setTruckLevel(user.getTruckLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File well = new File("Data\\Textures\\Service\\Well\\01.png");
+        File well = new File("Data\\Textures\\Service\\Well\\0" + String.valueOf(user.getWellLevel() + 1) + ".png");
         Image wellImage = new Image(well.toURI().toString());
         ImageView wellView = new ImageView(wellImage);
         wellView.setFitHeight((int) (220 * yShift));
@@ -563,25 +566,25 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Well(user.getEggPowderPlantLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setWellLevel(user.getWellLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new Well(user.getWellLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setWellLevel(user.getWellLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
                 }
             }
         });
 
-        File helicopter = new File("Data\\Textures\\Service\\Helicopter\\01.png");
+        File helicopter = new File("Data\\Textures\\Service\\Helicopter\\0" + String.valueOf(user.getHelicopterLevel() + 1) + ".png");
         Image helicopterImage = new Image(helicopter.toURI().toString());
         ImageView helicopterView = new ImageView(helicopterImage);
         helicopterView.setFitHeight((int) (230 * yShift));
@@ -594,7 +597,7 @@ public class GameShopView extends View {
             public void handle(MouseEvent event) {
                 helicopterView.setFitHeight((int) (230 * yShift) + 10);
                 helicopterView.setFitWidth((int) (270 * xShift) + 10);
-                helicopterView.relocate((int) (500 * xShift) - 5, (int) (805 * yShift) -5);
+                helicopterView.relocate((int) (500 * xShift) - 5, (int) (805 * yShift) - 5);
             }
         });
         helicopterView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -609,57 +612,20 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Helicopter(user.getHelicopterLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setHelicopterLevel(user.getHelicopterLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new Helicopter(user.getHelicopterLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setHelicopterLevel(user.getHelicopterLevel() + 1);
                         UpdateMoneyText();
-                    }else{
+                    } else {
                         throw new NotEnoughMoney();
                     }
                     UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                } catch (NotEnoughMoney e2) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
+                } catch (Exception e3) {
                     e3.printStackTrace();
-                }
-            }
-        });
-
-        File dog = new File("Data\\Textures\\Service\\Dog.png");
-        Image dogImage = new Image(dog.toURI().toString());
-        ImageView dogView = new ImageView(dogImage);
-        dogView.setFitHeight((int) (200 * yShift));
-        dogView.setFitWidth((int) (250 * xShift));
-        dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
-        rootGameShopView.getChildren().addAll(dogView);
-        dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                dogView.setFitHeight((int) (200 * yShift) + 10);
-                dogView.setFitWidth((int) (250 * xShift) + 10);
-                dogView.relocate((int) (980 * xShift) - 5, (int) (840 * yShift) - 5);
-            }
-        });
-        dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                dogView.setFitHeight((int) (200 * yShift));
-                dogView.setFitWidth((int) (250 * xShift));
-                dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
-            }
-        });
-        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    new UpgradeRequest("upgrade Dog");
-                    UpdateMoneyText();
-                } catch (NotEnoughMoney e) {
-                    ShowNotEnoughMoneyError();
-                }catch (Exception e2){
-                    e2.printStackTrace();
                 }
             }
         });
@@ -667,48 +633,71 @@ public class GameShopView extends View {
         File cat = new File("Data\\Textures\\Service\\Cat.png");
         Image catImage = new Image(cat.toURI().toString());
         ImageView catView = new ImageView(catImage);
-        catView.setFitHeight((int) (160 * yShift));
-        catView.setFitWidth((int) (200 * xShift));
-        catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+        catView.setFitHeight((int) (180 * yShift));
+        catView.setFitWidth((int) (250 * xShift));
+        catView.relocate((int) (990 * xShift), (int) (840 * yShift));
         rootGameShopView.getChildren().addAll(catView);
         catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catView.setFitHeight((int) (160 * yShift) + 10);
-                catView.setFitWidth((int) (200 * xShift) + 10);
-                catView.relocate((int) (1480 * xShift) - 5, (int) (860 * yShift) - 5);
+                catView.setFitHeight((int) (180 * yShift) + 10);
+                catView.setFitWidth((int) (250 * xShift) + 10);
+                catView.relocate((int) (990 * xShift) - 5, (int) (840 * yShift) - 5);
             }
         });
         catView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                catView.setFitHeight((int) (160 * yShift));
-                catView.setFitWidth((int) (200 * xShift));
-                catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+                catView.setFitHeight((int) (180 * yShift));
+                catView.setFitWidth((int) (250 * xShift));
+                catView.relocate((int) (990 * xShift), (int) (840 * yShift));
             }
         });
         catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Cat(user.getCatLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setCatLevel(user.getCatLevel()+1);
-                        UpdateMoneyText();
-                    }else{
-                        throw new NotEnoughMoney();
-                    }
-                    UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
+                    new UpgradeRequest("upgrade Dog");
+                    UpdateMoneyText();
+                } catch (NotEnoughMoney e) {
                     ShowNotEnoughMoneyError();
-                }catch (Exception e3){
-                    e3.printStackTrace();
+                } catch (Exception e2) {
+                    e2.printStackTrace();
                 }
             }
         });
     }
+        private void AddCustomWorkShop(Stage primaryStage) {
+            File customWorkShop = new File("Data\\Textures\\Service\\Cat.png");
+            Image customWorkShopImage = new Image(customWorkShop.toURI().toString());
+            ImageView customWorkShopView = new ImageView(customWorkShopImage);
+            customWorkShopView.setFitHeight((int) (160 * yShift));
+            customWorkShopView.setFitWidth((int) (200 * xShift));
+            customWorkShopView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+            customWorkShopView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    customWorkShopView.setFitHeight((int) (160 * yShift) + 10);
+                    customWorkShopView.setFitWidth((int) (200 * xShift) + 10);
+                    customWorkShopView.relocate((int) (1480 * xShift) - 5, (int) (860 * yShift) - 5);
+                }
+            });
+            customWorkShopView.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    customWorkShopView.setFitHeight((int) (160 * yShift));
+                    customWorkShopView.setFitWidth((int) (200 * xShift));
+                    customWorkShopView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+                }
+            });
+            customWorkShopView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                }
+            });
+            rootGameShopView.getChildren().addAll(customWorkShopView);
+        }
+
 
     public void AddEggPowerPlantLevel(int level) {
         File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
@@ -953,9 +942,9 @@ public class GameShopView extends View {
         File okText = new File("Data\\MenuClick\\OkText.png");
         Image okTextImage = new Image(okText.toURI().toString());
         ImageView okTextView = new ImageView(okTextImage);
-        okTextView.setFitHeight((int) (30 * yShift));
+        okTextView.setFitHeight((int) (50 * yShift));
         okTextView.setFitWidth((int) (100 * xShift));
-        okTextView.relocate((int) (1720 * xShift), (int) (40 * yShift));
+        okTextView.relocate((int) (1720 * xShift), (int) (33 * yShift));
         okTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -998,3 +987,4 @@ public class GameShopView extends View {
 
     }
 }
+

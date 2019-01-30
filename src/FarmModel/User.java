@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 public class User {
     private String acountName;
-    private int money=1000;
+    private int money=100000;
 
     private int CatLevel;
     private int CakeBakeryLevel;
