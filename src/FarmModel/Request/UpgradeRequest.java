@@ -72,7 +72,7 @@ public class UpgradeRequest extends Request{
         setObjectString(params[1]);
     }
 
-    private void SetLevelInUserForWorkShops(WorkShop workShop) throws UnknownObjectException {
+    private void SetLevelInUserForWorkShops(WorkShop workShop) throws UnknownObjectException, MaxLevelExceeded {
         User user=Game.getGameInstance().getCurrentUserAccount();
         if(workShop.getWorkShopName().equals("CakeBakery")){
             user.setCakeBakeryLevel(user.getCakeBakeryLevel()+1);

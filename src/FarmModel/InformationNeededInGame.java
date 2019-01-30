@@ -112,7 +112,6 @@ public class InformationNeededInGame {
     //PriceToUpgradeWareHouse
     private final static int PriceToUpgradeWareHouse = 1500; // random
     private final static int PriceToUpgradeHelicopter=1000;
-    private final static int PriceToUpgradeTruck=1000;
 
     public int getPriceForUpgrade(Object object) throws UnknownObjectException {
         if (object.toString().equals("Well")) {
@@ -123,24 +122,22 @@ public class InformationNeededInGame {
             return PriceToUpgradeWareHouse;
         }else if(object.toString().equals("Helicopter")){
             return PriceToUpgradeHelicopter;
-        }else if(object.toString().equals("Truck")){
-            return PriceToUpgradeTruck;
         }else {
-            int level = ((WorkShop) object).getLevel();
+            User user=Game.getGameInstance().getCurrentUserAccount();
             if (object.toString().equals("CakeBakery")) {
-                return PriceToUpgradeCakeBakery + 100 * (level);
+                return PriceToUpgradeCakeBakery + 100 * (user.getCakeBakeryLevel());
             } else if (object.toString().equals("EggPowderPlant")) {
-                return PriceToUpgradeEggPowderPlant + 100 * level;
+                return PriceToUpgradeEggPowderPlant + 100 * user.getEggPowderPlantLevel();
             } else if (object.toString().equals("CookieBakery")) {
-                return PriceToUpgradeCookieBakery + 100 * level;
+                return PriceToUpgradeCookieBakery + 100 * user.getCookieBakeryLevel();
             } else if (object.toString().equals("SewingFactory")) {
-                return PriceToUpgradeSewingFactory + 100 * level;
+                return PriceToUpgradeSewingFactory + 100 * user.getSewingFactoryLevel();
             } else if (object.toString().equals("Spinnery")) {
-                return PriceToUpgradeSpinnery + 100 * level;
+                return PriceToUpgradeSpinnery + 100 * user.getSpinneryLevel();
             } else if (object.toString().equals("WeavingFactory")) {
-                return PriceToUpgradeWeavingFactory + 100 * level;
+                return PriceToUpgradeWeavingFactory + 100 * user.getWeavingFactoryLevel();
             } else if (object.toString().equals("CustomWorkShop")) {
-                return PriceToUpgradeUnknownWorkShop + 100 * level;
+                return PriceToUpgradeUnknownWorkShop + 200;
             } else
                 throw new UnknownObjectException();
         }

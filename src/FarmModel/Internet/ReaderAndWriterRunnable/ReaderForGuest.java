@@ -1,9 +1,7 @@
 package FarmModel.Internet.ReaderAndWriterRunnable;
 
-import FarmModel.Game;
 import FarmModel.Internet.Changes;
 import View.GameView;
-import View.Main;
 import View.ScenesAndMainGroupView.PVView;
 
 import java.io.IOException;
@@ -61,17 +59,33 @@ public class ReaderForGuest implements Runnable{
 
     public static void GetDataNotMassageFromSocket(String inputString, Socket socket) {
         if (inputString.substring(0,1).equals("N")){
+            //it means server is sending the server name.
             String userName=inputString.substring(2);
-            GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVView(socket,userName);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVView(socket,"Server: "+userName);
             Changes.WeHaveNewContact();
             SendJoinMassageForEveryOneInGroup(userName);
             SendOldMassageForNewUsers(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket));
         }else if (inputString.substring(0,1).equals("M")){
+            //it means server is sending the server money.
             String userMoney=inputString.substring(2);
             GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactMoneyInGame(userMoney);
         }else if (inputString.substring(0,1).equals("L")){
+            //it means the  server is sending the server level in game.
             String userlevel=inputString.substring(2);
             GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactLevelInMission(userlevel);
+        }else if (inputString.substring(0,1).equals("D")){
+            //it means server is sending again the contacts.means the user that are connected to server
+            String[] contactsData=inputString.substring(2).split(" ");
+            for (String contactData:contactsData) {
+                String Name=contactData.split(",")[0];
+                String Money=contactData.split(",")[1];
+                String Level=contactData.split(",")[2];
+                GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVViewOrReloadItPV(Name,Money,Level);
+            }
+            Changes.WeHaveNewContact();
+
+        }else if (inputString.substring(0,1).equals("D")){
+            String[] connectedContacts=inputString.substring(2).split(" ");
         }
     }
     private static void SendJoinMassageForEveryOneInGroup(String newGuestName){

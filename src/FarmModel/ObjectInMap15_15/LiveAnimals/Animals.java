@@ -2,7 +2,9 @@ package FarmModel.ObjectInMap15_15.LiveAnimals;
 
 import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Farm;
+import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
+import FarmModel.User;
 import View.GameView;
 
 import java.util.*;
@@ -133,6 +135,7 @@ public abstract class Animals extends ObjectInMap15_15 {
         int currentY = animal.getY();
         int nextX;
         int nextY;
+        User user= Game.getGameInstance().getCurrentUserAccount();
         ArrayList<Integer> PointOfNearestDestination = new ArrayList<>();
         if (animal instanceof AnimalProducer) {
             PointOfNearestDestination = animal.FindNearGrass();
@@ -148,13 +151,13 @@ public abstract class Animals extends ObjectInMap15_15 {
                 WalkRandomlyForOneTurn(animal);
                 return;
             }
-        } else if (animal instanceof Cat && ((Cat) animal).getLevel() == 1 && ((Cat) animal).getProduct() == null) {
+        } else if (user.getCatLevel()==1 && ((Cat) animal).getProduct() == null) {
             PointOfNearestDestination = animal.FindNearestProduct();
             if (PointOfNearestDestination.get(0) == -100) {
                 WalkRandomlyForOneTurn(animal);
                 return;
             }
-        } else if (animal instanceof Cat && ((Cat) animal).getLevel() == 0 && ((Cat) animal).getProduct() == null) {
+        } else if (user.getCatLevel()==0 && ((Cat) animal).getProduct() == null) {
             PointOfNearestDestination = animal.FindProductForCatRandomly();
             if (PointOfNearestDestination.get(0) == -100) {
                 WalkRandomlyForOneTurn(animal);

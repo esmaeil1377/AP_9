@@ -48,7 +48,7 @@ public class GuestSocketRunnable extends SocketRunnable implements Runnable {
             e2.printStackTrace();
         }
     }
-    private void SendInformation(Socket socket) throws IOException {
+    static void SendInformation(Socket socket) throws IOException {
         OutputStream outputStream=socket.getOutputStream();
         Formatter formatter=new Formatter(outputStream);
         User user= Game.getGameInstance().getCurrentUserAccount();

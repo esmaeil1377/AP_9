@@ -518,5 +518,9 @@ public class HostAndGuestView extends View.View {
         root.getChildren().addAll(label,rectangle);
     }
 
+    private void SendConnectedClientDataToOther(){
+
+    }
+
 
 }

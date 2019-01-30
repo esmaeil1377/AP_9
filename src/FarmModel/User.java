@@ -6,6 +6,7 @@ import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Chicken;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cow;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.CarnivalDress;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.FlouryCake;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.Powder;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
@@ -167,7 +168,10 @@ public class User {
         return CatLevel;
     }
 
-    public void setCatLevel(int catLevel) {
+    public void setCatLevel(int catLevel) throws MaxLevelExceeded {
+        if (CatLevel==1){
+            throw new MaxLevelExceeded();
+        }
         CatLevel = catLevel;
     }
 
@@ -175,7 +179,10 @@ public class User {
         return CakeBakeryLevel;
     }
 
-    public void setCakeBakeryLevel(int cakeBakeryLevel) {
+    public void setCakeBakeryLevel(int cakeBakeryLevel) throws MaxLevelExceeded {
+        if (CakeBakeryLevel==5){
+            throw new MaxLevelExceeded();
+        }
         CakeBakeryLevel = cakeBakeryLevel;
     }
 
@@ -183,7 +190,10 @@ public class User {
         return CookieBakeryLevel;
     }
 
-    public void setCookieBakeryLevel(int cookieBakeryLevel) {
+    public void setCookieBakeryLevel(int cookieBakeryLevel) throws MaxLevelExceeded {
+        if (CookieBakeryLevel==5){
+            throw new MaxLevelExceeded();
+        }
         CookieBakeryLevel = cookieBakeryLevel;
     }
 
@@ -191,7 +201,10 @@ public class User {
         return EggPowderPlantLevel;
     }
 
-    public void setEggPowderPlantLevel(int eggPowderPlantLevel) {
+    public void setEggPowderPlantLevel(int eggPowderPlantLevel) throws MaxLevelExceeded {
+        if (EggPowderPlantLevel==5){
+            throw new MaxLevelExceeded();
+        }
         EggPowderPlantLevel = eggPowderPlantLevel;
     }
 
@@ -199,7 +212,10 @@ public class User {
         return SewingFactoryLevel;
     }
 
-    public void setSewingFactoryLevel(int sewingFactoryLevel) {
+    public void setSewingFactoryLevel(int sewingFactoryLevel) throws MaxLevelExceeded {
+        if (SewingFactoryLevel==5){
+            throw new MaxLevelExceeded();
+        }
         SewingFactoryLevel = sewingFactoryLevel;
     }
 
@@ -207,7 +223,10 @@ public class User {
         return SpinneryLevel;
     }
 
-    public void setSpinneryLevel(int spinneryLevel) {
+    public void setSpinneryLevel(int spinneryLevel) throws MaxLevelExceeded {
+        if (SpinneryLevel==5){
+            throw new MaxLevelExceeded();
+        }
         SpinneryLevel = spinneryLevel;
     }
 
@@ -215,7 +234,10 @@ public class User {
         return WeavingFactoryLevel;
     }
 
-    public void setWeavingFactoryLevel(int weavingFactoryLevel) {
+    public void setWeavingFactoryLevel(int weavingFactoryLevel) throws MaxLevelExceeded {
+        if (WeavingFactoryLevel==5){
+            throw new MaxLevelExceeded();
+        }
         WeavingFactoryLevel = weavingFactoryLevel;
     }
     public InformationNeededInGame getInformationNeededInGame() {
