@@ -846,6 +846,8 @@ public class FarmView extends View {
                 }
             }
         });
+
+
         rootFarmView.getChildren().addAll( chickenView, sheepView, cowView, catView, dogView,chickenPrice,catPrice,cowPrice,dogPrice,sheepPrice);
     }
     private void AddSpinnery(int level) {
@@ -2904,7 +2906,6 @@ public class FarmView extends View {
             rootFarmView.getChildren().addAll(rectangle1);
         }
     }
-
 
     private void missionTime() {
         mission.setSecond_2(mission.getSecond_2() + 1);

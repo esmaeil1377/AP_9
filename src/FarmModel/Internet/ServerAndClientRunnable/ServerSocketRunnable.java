@@ -1,14 +1,12 @@
 package FarmModel.Internet.ServerAndClientRunnable;
 
 import FarmModel.Internet.Changes;
-import FarmModel.Internet.ReaderAndWriterRunnable.Reader;
-import FarmModel.Internet.ReaderAndWriterRunnable.Writer;
-import View.ScenesAndMainGroupView.PVView;
+import FarmModel.Internet.ReaderAndWriterRunnable.ReaderForServer;
+import FarmModel.Internet.ReaderAndWriterRunnable.WriterForServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
 
 public class ServerSocketRunnable extends SocketRunnable implements Runnable{
 
@@ -38,9 +36,9 @@ public class ServerSocketRunnable extends SocketRunnable implements Runnable{
                 System.out.println("One User Connected...");
                 Changes.WeHaveNewContact();
 
-                Thread reader=new Thread(new Reader(socket));
+                Thread reader=new Thread(new ReaderForServer(socket));
                 reader.start();
-                Thread writer=new Thread(new Writer(socket));
+                Thread writer=new Thread(new WriterForServer(socket));
                 writer.start();
 
             } catch (IOException e1) {

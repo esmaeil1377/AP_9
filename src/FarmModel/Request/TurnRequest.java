@@ -1,9 +1,7 @@
 package FarmModel.Request;
 
 import FarmController.Exceptions.*;
-import FarmModel.Cell;
-import FarmModel.Farm;
-import FarmModel.Game;
+import FarmModel.*;
 import FarmModel.ObjectInMap15_15.Grass;
 import FarmModel.ObjectInMap15_15.LiveAnimals.*;
 import FarmModel.ObjectInMap15_15.ObjectInMap15_15;
@@ -11,7 +9,6 @@ import FarmModel.ObjectInMap15_15.Product.Product;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.WorkShop;
-import FarmModel.User;
 import View.GameView;
 
 import java.util.ArrayList;
@@ -280,6 +277,8 @@ public class TurnRequest extends Request {
         User user = Game.getGameInstance().getCurrentUserAccount();
         if (user.getCurrentPlayingMission().CheckIfMissionIsFinished()) {
             System.out.println(user.getCurrentPlayingMission().getMissionName()+" ended.");
+            Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+            user.setMissionFinished(mission);
             throw new MissionIsFinished();
         }
     }

@@ -3,7 +3,6 @@ package View;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import static View.View.PlayErrorSound;
 import static View.View.PlayStartingSound;
 
 //import static View.View.getRequest;
@@ -25,7 +24,7 @@ public class Main extends Application {
         PlayStartingSound();
         setPrimaryStage(primaryStage);
 
-        primaryStage.setScene(GameView.getGameView().getStartMenuView().getSceneStartMenuView());
+        primaryStage.setScene(GameView.getGameView().getStartMenuView().getScene());
         primaryStage.setFullScreen(true);
         primaryStage.show();
 

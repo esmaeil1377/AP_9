@@ -7,7 +7,6 @@ import FarmModel.InformationNeededInGame;
 import FarmModel.ObjectInMap15_15.Cage;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Bear;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
-import FarmModel.ObjectInMap15_15.LiveAnimals.WildAnimals;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
@@ -42,8 +41,8 @@ public class ProductInTruckView extends View {
     double xShift = 0.788;
     double yShift = 0.788;
     private Text coinText=new Text("0");;
-    private Group rootProductTruckViewView = new Group();
-    private Scene sceneProductTruckView = new Scene(rootProductTruckViewView, (int) (xShift * 1600), (int) (yShift * 900));
+    private Group root = new Group();
+    private Scene scene = new Scene(root, (int) (xShift * 1600), (int) (yShift * 900));
     private Label labelEggOfNumber;
     private Label labelWoolOfNumber;
     private Label labelMilkOfNumber;
@@ -73,8 +72,8 @@ public class ProductInTruckView extends View {
     private ArrayList<Rectangle> barRectangles=new ArrayList<>();
     private User user=Game.getGameInstance().getCurrentUserAccount();
 
-    public Scene getSceneProductTruckView() {
-        return sceneProductTruckView;
+    public Scene getScene() {
+        return scene;
     }
 
     public ProductInTruckView(Stage primaryStage) throws UnknownObjectException, MissionNotLoaded {
@@ -84,22 +83,21 @@ public class ProductInTruckView extends View {
     @Override
     public void Start(Stage primaryStage) throws UnknownObjectException, MissionNotLoaded {
         UpdateMoneyLabelForSellAndCapacityBar();
-        AddBackGround(primaryStage);
+        AddShopBackgroundTBackground(primaryStage);
         AddIcons();
         AddItems();
         AddOkAndCancelButton(primaryStage);
         ShowWareHouseListInTruckView();
     }
-
-    private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\ShopBackGround.jpg");
+    private void AddShopBackgroundTBackground(Stage primaryStage) {
+        File backGroundFile = new File("Data\\ShopBackground.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
-        primaryStage.setFullScreen(true);
-        BackGroundView.setFitHeight((int) (yShift * 1200));
-        BackGroundView.setFitWidth((int) (xShift * 2000));
-        rootProductTruckViewView.getChildren().addAll(BackGroundView);
+        BackGroundView.setFitHeight(primaryStage.getMaxHeight());
+        BackGroundView.setFitWidth(primaryStage.getMaxWidth());
+        root.getChildren().addAll(BackGroundView);
     }
+
 
     private void AddIcons() {
         Rectangle rect_1 = new Rectangle((int) (xShift * 500), (int) (yShift * 875));
@@ -157,7 +155,7 @@ public class ProductInTruckView extends View {
         rect_8.setArcWidth(50);
         rect_8.setFill(Color.rgb(64, 45, 67));
         rect_8.relocate((int) (xShift * 1250), (int) (yShift * 915));
-        rootProductTruckViewView.getChildren().addAll(rect_1, rect_2, rect_3, rect_4, rect_5, rect_6, rect_7, rect_8);
+        root.getChildren().addAll(rect_1, rect_2, rect_3, rect_4, rect_5, rect_6, rect_7, rect_8);
     }
 
     private void AddItems() {
@@ -252,9 +250,9 @@ public class ProductInTruckView extends View {
         shipTextView_2.relocate((int) (xShift * 1550), (int) (yShift * 150));
 
 
-        rootProductTruckViewView.getChildren().addAll(truckView, coinView, coinText, shipProductTextView, shipTextView);
-        rootProductTruckViewView.getChildren().addAll(goodsTextView, priceTextView, shipTextView_1, priceTextView_1, goodsTextView_1);
-        rootProductTruckViewView.getChildren().addAll(animalsTextView, priceTextView_2, shipTextView_2);
+        root.getChildren().addAll(truckView, coinView, coinText, shipProductTextView, shipTextView);
+        root.getChildren().addAll(goodsTextView, priceTextView, shipTextView_1, priceTextView_1, goodsTextView_1);
+        root.getChildren().addAll(animalsTextView, priceTextView_2, shipTextView_2);
 
     }
 
@@ -337,7 +335,7 @@ public class ProductInTruckView extends View {
             public void handle(MouseEvent event) {
                 AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
                 animationTimer.start();
-                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
@@ -361,12 +359,12 @@ public class ProductInTruckView extends View {
             public void handle(MouseEvent event) {
                 AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
                 animationTimer.start();
-                primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
 
-        rootProductTruckViewView.getChildren().addAll(buttonView, okTextView, cancelButtonView, cancelTextView);
+        root.getChildren().addAll(buttonView, okTextView, cancelButtonView, cancelTextView);
     }
 
 
@@ -513,7 +511,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelEggOfNumber.getText()),imageViewButton1,labelEggButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelEggButton1, labelButtonAll, labelEggOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Wool")) {
@@ -646,7 +644,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelWoolOfNumber.getText()),imageViewButton1,labelWoolButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelWoolButton1, labelButtonAll, labelWoolOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Milk")) {
@@ -782,7 +780,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelMilkOfNumber.getText()),imageViewButton1,labelMilkButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelMilkButton1, labelButtonAll, labelMilkOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("FlouryCake")) {
@@ -918,7 +916,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelFlouryCakeOfNumber.getText()),imageViewButton1,labelFlouryCakeButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelFlouryCakeButton1, labelButtonAll, labelFlouryCakeOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Cake")) {
@@ -1053,7 +1051,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelCakeOfNumber.getText()),imageViewButton1,labelCakeButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelCakeButton1, labelButtonAll, labelCakeOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Flour")) {
@@ -1188,7 +1186,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelFlourOfNumber.getText()),imageViewButton1,labelFlourButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelFlourButton1, labelButtonAll, labelFlourOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Powder")) {
@@ -1323,7 +1321,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelPowderOfNumber.getText()),imageViewButton1, labelPowderButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelPowderButton1, labelButtonAll, labelPowderOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("CarnivalDress")) {
@@ -1458,7 +1456,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelCarnivalDressOfNumber.getText()),imageViewButton1,labelCarnivalDressButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelCarnivalDressButton1, labelButtonAll, labelCarnivalDressOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Decoration")) {
@@ -1593,7 +1591,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelDecorationOfNumber.getText()),imageViewButton1,labelDecorationButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelDecorationButton1, labelButtonAll, labelDecorationOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Fabric")) {
@@ -1728,7 +1726,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelFabricOfNumber.getText()),imageViewButton1,labelFabricButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelFabricButton1, labelButtonAll, labelFabricOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.equals("Sewing")) {
@@ -1863,7 +1861,7 @@ public class ProductInTruckView extends View {
 
                     MakeLabelAndButtonChangeable(Integer.valueOf(labelSewingOfNumber.getText()),imageViewButton1,labelSewingButton1,imageViewButtonAll,labelButtonAll);
 
-                    rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelSewingButton1, labelButtonAll, labelSewingOfNumber, labelOfPrice);
                     yLocationOfFirst += 50;
                 } else if (key.substring(0,4).equals("Cage")) {
@@ -1999,7 +1997,7 @@ public class ProductInTruckView extends View {
 
                         MakeLabelAndButtonChangeable(Integer.valueOf(labelCageLionOfNumber.getText()),imageViewButton1,labelCageLionButton1,imageViewButtonAll,labelButtonAll);
 
-                        rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                        root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                                 , imageViewMultiply, labelCageLionButton1, labelButtonAll, labelCageLionOfNumber, labelOfPrice);
                         yLocationOfFirst += 50;
                     } else if (key.equals("CageBear")) {
@@ -2134,7 +2132,7 @@ public class ProductInTruckView extends View {
 
                         MakeLabelAndButtonChangeable(Integer.valueOf(labelCageBrearOfNumber.getText()),imageViewButton1,labelCageBearButton1,imageViewButtonAll,labelButtonAll);
 
-                        rootProductTruckViewView.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                        root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                                 , imageViewMultiply, labelCageBearButton1, labelButtonAll, labelCageBrearOfNumber, labelOfPrice);
                         yLocationOfFirst += 50;
                     }
@@ -2264,7 +2262,7 @@ public class ProductInTruckView extends View {
 
     private void LoadDegreeForCapcity(int num){
         for (Rectangle rectangle:barRectangles){
-            rootProductTruckViewView.getChildren().removeAll(rectangle);
+            root.getChildren().removeAll(rectangle);
         }
         barRectangles=new ArrayList<>();
         for(int i=0;i<num;i++){
@@ -2272,7 +2270,7 @@ public class ProductInTruckView extends View {
             bar.setArcHeight(5);
             bar.setArcWidth(5);
             bar.setFill(Color.rgb(87,0,5));
-            rootProductTruckViewView.getChildren().addAll(bar);
+            root.getChildren().addAll(bar);
             barRectangles.add(bar);
 
         }
@@ -2284,7 +2282,7 @@ public class ProductInTruckView extends View {
             public void handle(MouseEvent event) {
                 if(getCapacityNeeded()!=0){
                     FarmView farmView= GameView.getGameView().getFarmView();
-                    primaryStage.setScene(farmView.getSceneFarmView());
+                    primaryStage.setScene(farmView.getScene());
                     primaryStage.setFullScreen(true);
                     farmView.getAnimationTimer().start();
                     try {
@@ -2297,7 +2295,7 @@ public class ProductInTruckView extends View {
                 }else{
                     AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
                     animationTimer.start();
-                    primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                    primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                     primaryStage.setFullScreen(true);
                 }
             }
@@ -2307,7 +2305,7 @@ public class ProductInTruckView extends View {
             public void handle(MouseEvent event) {
                 if(getCapacityNeeded()!=0){
                     FarmView farmView= GameView.getGameView().getFarmView();
-                    primaryStage.setScene(farmView.getSceneFarmView());
+                    primaryStage.setScene(farmView.getScene());
                     primaryStage.setFullScreen(true);
                     farmView.getAnimationTimer().start();
                     try {
@@ -2319,7 +2317,7 @@ public class ProductInTruckView extends View {
                 }else{
                     AnimationTimer animationTimer = GameView.getGameView().getFarmView().getAnimationTimer();
                     animationTimer.start();
-                    primaryStage.setScene(GameView.getGameView().getFarmView().getSceneFarmView());
+                    primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                     primaryStage.setFullScreen(true);
                 }
             }
