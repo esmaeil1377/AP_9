@@ -110,13 +110,13 @@ public class MissionSelectionView extends View {
 //    }
 
     private void FarmerOfFarm(Stage primaryStage) {
-        File farmerFile = new File("Data\\Gif\\Farmer.gif");
+        File farmerFile = new File("Data\\Gif\\SeaAnimal.gif");
         Image farmerImage = new Image(farmerFile.toURI().toString());
         ImageView farmerImageView = new ImageView(farmerImage);
-        farmerImageView.relocate(1270, 410);
+        farmerImageView.relocate(1200, 410);
         primaryStage.setFullScreen(true);
-        farmerImageView.setFitHeight(160);
-        farmerImageView.setFitWidth(100);
+        farmerImageView.setFitHeight(200);
+        farmerImageView.setFitWidth(200);
         root.getChildren().addAll(farmerImageView);
         primaryStage.show();
     }
@@ -274,9 +274,9 @@ public class MissionSelectionView extends View {
         File shopText = new File("Data\\Mission\\ShopText.png");
         Image shopTextImage = new Image(shopText.toURI().toString());
         ImageView shopTextView = new ImageView(shopTextImage);
-        shopTextView.setFitHeight(60);
-        shopTextView.setFitWidth(110);
-        shopTextView.relocate(35, 772);
+        shopTextView.setFitHeight(50);
+        shopTextView.setFitWidth(100);
+        shopTextView.relocate(40, 772);
         shopTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

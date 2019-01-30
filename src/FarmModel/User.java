@@ -22,7 +22,7 @@ public class User {
     private int isMission2Ficnished=0;
     private int isMission3Ficnished=0;
     private int isMission4Ficnished=0;
-    private int money=100000;
+    private int money=1000;
 
     private int CatLevel;
     private int CakeBakeryLevel;

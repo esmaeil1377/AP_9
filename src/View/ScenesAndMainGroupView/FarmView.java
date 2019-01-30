@@ -122,9 +122,9 @@ public class FarmView extends View {
 
         ShowMovingCloud();
 
-        AddMovingWell(farm.getWell().getLevel());
+        AddMovingWell(user.getWellLevel());
 
-        AddMovingWareHouse(farm.getWareHouse().getLevel());
+        AddMovingWareHouse(user.getWarehouseLevel());
 
 
         AddBuyItems();
@@ -2607,12 +2607,16 @@ public class FarmView extends View {
     }
 
     private void AddStarAndMoneyText(int money) {
-        File star = new File("Data\\Gif\\RotatingStar.gif");
+        File star = new File("Data\\Gif\\Coin.gif");
         Image starImage = new Image(star.toURI().toString());
         ImageView starView = new ImageView(starImage);
         starView.setFitHeight(50);
         starView.setFitWidth(50);
         starView.relocate((int) (30), (int) (30));
+        root.getChildren().addAll(starView);
+        starView.setFitHeight(75);
+        starView.setFitWidth(75);
+        starView.relocate((int) (20), (int) (17));
         root.getChildren().addAll(starView);
         moneyText = new Text(String.valueOf(money));
         moneyText.relocate((int) (100), (int) (50));
@@ -2875,8 +2879,8 @@ public class FarmView extends View {
         if (spinnery != null) AddSpinnery(user.getSpinneryLevel());
         if (weavingFactory != null) AddWeavingFactory(user.getWeavingFactoryLevel());
 
-        if (farm.getTruck() != null) AddTruck(primaryStage, farm.getTruck().getLevel());
-        if (farm.getHelicopter() != null) AddHelicopter(primaryStage, farm.getHelicopter().getLevel());
+        if (farm.getTruck() != null) AddTruck(primaryStage, user.getTruckLevel());
+        if (farm.getHelicopter() != null) AddHelicopter(primaryStage, user.getHelicopterLevel());
     }
 
     private void CheckWellBucketWater() throws MissionNotLoaded {

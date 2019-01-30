@@ -13,6 +13,7 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
+import FarmModel.User;
 import View.View;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
@@ -69,6 +70,7 @@ public class ProductInTruckView extends View {
     private Label labelCageLionButton1 = new Label("0");
     private Label labelCageBearButton1 = new Label("0");
     private ArrayList<Rectangle> barRectangles=new ArrayList<>();
+    private User user=Game.getGameInstance().getCurrentUserAccount();
 
     public Scene getScene() {
         return scene;
@@ -157,12 +159,12 @@ public class ProductInTruckView extends View {
     }
 
     private void AddItems() {
-        File truck = new File("Data\\Textures\\UI\\Truck\\01.png");
+        File truck = new File("Data\\Textures\\UI\\Truck\\0" + String.valueOf(user.getTruckLevel() + 1) + ".png");
         Image truckImage = new Image(truck.toURI().toString());
         ImageView truckView = new ImageView(truckImage);
         truckView.setFitHeight((int) (yShift * 750));
         truckView.setFitWidth((int) (xShift * 600));
-        truckView.relocate((int) (xShift * 1175), (int) (yShift * 300));
+        truckView.relocate((int) (xShift * 1175), (int) (yShift * 320));
 
         File coin = new File("Data\\Shop\\Coin.png");
         Image coinImage = new Image(coin.toURI().toString());
@@ -285,9 +287,9 @@ public class ProductInTruckView extends View {
 
         Image okTextImage = new Image(okText.toURI().toString());
         ImageView okTextView = new ImageView(okTextImage);
-        okTextView.setFitHeight((int) (yShift * 30));
+        okTextView.setFitHeight((int) (yShift * 50));
         okTextView.setFitWidth((int) (xShift * 100));
-        okTextView.relocate((int) (xShift * 775), (int) (yShift * 1025));
+        okTextView.relocate((int) (xShift * 775), (int) (yShift * 1014));
         okTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -341,9 +343,9 @@ public class ProductInTruckView extends View {
         File cancelText = new File("Data\\Shop\\CancelText.png");
         Image cancelTextImage = new Image(cancelText.toURI().toString());
         ImageView cancelTextView = new ImageView(cancelTextImage);
-        cancelTextView.setFitHeight((int) (yShift * 50));
+        cancelTextView.setFitHeight((int) (yShift * 60));
         cancelTextView.setFitWidth((int) (xShift * 120));
-        cancelTextView.relocate((int) (xShift * 947), (int) (yShift * 1012));
+        cancelTextView.relocate((int) (xShift * 947), (int) (yShift * 1007));
         cancelTextView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

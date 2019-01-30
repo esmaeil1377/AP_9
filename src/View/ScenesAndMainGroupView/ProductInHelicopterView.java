@@ -8,6 +8,7 @@ import FarmModel.InformationNeededInGame;
 import FarmModel.Mission;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
+import FarmModel.User;
 import View.View;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
@@ -39,7 +40,7 @@ public class ProductInHelicopterView extends View {
     private Label labelButtonFabric = new Label("0");
     private Label labelButtonSewing = new Label("0");
     private Text coinText = new Text("0");
-
+    private User user=Game.getGameInstance().getCurrentUserAccount();
 
     public Scene getScene() {
         return scene;
@@ -112,12 +113,12 @@ public class ProductInHelicopterView extends View {
         orderImageView.relocate(415, 90);
         root.getChildren().addAll(orderImageView);
 
-        File helicopter = new File("Data\\Textures\\UI\\Helicopter\\01.png");
+        File helicopter = new File("Data\\Textures\\UI\\Helicopter\\0" + String.valueOf(user.getHelicopterLevel() + 1) + ".png");
         Image helicopterImage = new Image(helicopter.toURI().toString());
         ImageView helicopterView = new ImageView(helicopterImage);
         helicopterView.setFitHeight(500);
         helicopterView.setFitWidth(750);
-        helicopterView.relocate(700, 400);
+        helicopterView.relocate(700, 300);
         root.getChildren().addAll(helicopterView);
 
         File buttonFile = new File("Data\\Shop\\OrderGoodsText.png");
@@ -892,14 +893,14 @@ public class ProductInHelicopterView extends View {
         Image buttonCancelImage = new Image(buttonCancelFile.toURI().toString());
         ImageView cancelButtonView = new ImageView(buttonCancelImage);
         cancelButtonView.setFitHeight(65);
-        cancelButtonView.setFitWidth(105);
+        cancelButtonView.setFitWidth(115);
         cancelButtonView.relocate(400, 760);
         root.getChildren().addAll(cancelButtonView);
         cancelButtonView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 cancelButtonView.setFitHeight(70);
-                cancelButtonView.setFitWidth(110);
+                cancelButtonView.setFitWidth(120);
                 cancelButtonView.relocate(400 - 5, 760 - 5);
             }
         });
@@ -907,7 +908,7 @@ public class ProductInHelicopterView extends View {
             @Override
             public void handle(MouseEvent event) {
                 cancelButtonView.setFitHeight(60);
-                cancelButtonView.setFitWidth(100);
+                cancelButtonView.setFitWidth(115);
                 cancelButtonView.relocate(400, 760);
             }
         });
@@ -926,7 +927,7 @@ public class ProductInHelicopterView extends View {
         ImageView cancelImageView = new ImageView(cancelImage);
         cancelImageView.setFitWidth(90);
         cancelImageView.setFitHeight(55);
-        cancelImageView.relocate(408, 762);
+        cancelImageView.relocate(411, 762);
         root.getChildren().addAll(cancelImageView);
 
         cancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -942,7 +943,7 @@ public class ProductInHelicopterView extends View {
             @Override
             public void handle(MouseEvent event) {
                 cancelButtonView.setFitHeight(70);
-                cancelButtonView.setFitWidth(110);
+                cancelButtonView.setFitWidth(120);
                 cancelButtonView.relocate(400 - 5, 760 - 5);
             }
         });
@@ -950,7 +951,7 @@ public class ProductInHelicopterView extends View {
             @Override
             public void handle(MouseEvent event) {
                 cancelButtonView.setFitHeight(60);
-                cancelButtonView.setFitWidth(100);
+                cancelButtonView.setFitWidth(115);
                 cancelButtonView.relocate(400, 760);
             }
         });
