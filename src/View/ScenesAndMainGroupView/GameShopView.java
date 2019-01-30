@@ -749,32 +749,32 @@ public class GameShopView extends View {
         });
     }
 
-    private void AddCustomWorkShopItem(int whichphto) {
-        File customFile = new File("Data\\Textures\\Workshops\\Custom\\" + String.valueOf(whichphto) + ".png");
-        Image customImage = new Image(customFile.toURI().toString());
-        ImageView customView = new ImageView(customImage);
-        customView.setFitHeight((int) (200 * yShift));
-        customView.setFitWidth((int) (250 * xShift));
-        customView.setViewport(new Rectangle2D(0, 0, 130, 130));
-        customView.relocate((int) (980 * xShift), (int) (840 * yShift));
-        root.getChildren().addAll(customView);
-        customView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                customView.setFitHeight((int) (200 * yShift) + 10);
-                customView.setFitWidth((int) (250 * xShift) + 10);
-                customView.relocate((int) (980 * xShift) - 5, (int) (840 * yShift) - 5);
-            }
-        });
-        customView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                customView.setFitHeight((int) (200 * yShift));
-                customView.setFitWidth((int) (250 * xShift));
-                customView.relocate((int) (980 * xShift), (int) (840 * yShift));
-            }
-        });
-    }
+//    private void AddCustomWorkShopItem(int whichphto) {
+//        File customFile = new File("Data\\Textures\\Workshops\\Custom\\" + String.valueOf(whichphto) + ".png");
+//        Image customImage = new Image(customFile.toURI().toString());
+//        ImageView customView = new ImageView(customImage);
+//        customView.setFitHeight((int) (200 * yShift));
+//        customView.setFitWidth((int) (250 * xShift));
+//        customView.setViewport(new Rectangle2D(0, 0, 130, 130));
+//        customView.relocate((int) (980 * xShift), (int) (840 * yShift));
+//        root.getChildren().addAll(customView);
+//        customView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                customView.setFitHeight((int) (200 * yShift) + 10);
+//                customView.setFitWidth((int) (250 * xShift) + 10);
+//                customView.relocate((int) (980 * xShift) - 5, (int) (840 * yShift) - 5);
+//            }
+//        });
+//        customView.setOnMouseExited(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                customView.setFitHeight((int) (200 * yShift));
+//                customView.setFitWidth((int) (250 * xShift));
+//                customView.relocate((int) (980 * xShift), (int) (840 * yShift));
+//            }
+//        });
+//    }
 
     public void AddEggPowerPlantLevel(int level) {
         File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");
