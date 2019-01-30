@@ -5,14 +5,17 @@ import FarmController.Exceptions.MissionNotLoaded;
 import FarmController.Exceptions.NotEnoughMoney;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
+import FarmModel.Internet.ServerAndClientRunnable.ServerSocketRunnable;
+import FarmModel.Internet.ServerAndClientRunnable.SocketRunnable;
 import View.GameView;
-import View.View;
+import View.Main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,12 +25,14 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.sql.Time;
 
 import static View.View.PlayBubbleSound;
 import static View.View.PlayErrorSound;
@@ -39,6 +44,15 @@ public class StartMenuView {
     private Group rootStartMenuView = new Group();
     Text text;
     private Scene sceneStartMenuView = new Scene(rootStartMenuView, 1600, 900);
+    private SocketRunnable serverOrGuest;
+
+    public SocketRunnable getServerOrGuest() {
+        return serverOrGuest;
+    }
+
+    public void setServerOrGuest(SocketRunnable serverOrGuest) {
+        this.serverOrGuest = serverOrGuest;
+    }
 
     public Text getText() {
         return text;
@@ -62,6 +76,7 @@ public class StartMenuView {
 
     public StartMenuView(Stage primaryStage) {
         Start(primaryStage);
+        System.out.println("we have new start menu view");
     }
 
     public void Start(Stage primaryStage) {
@@ -78,7 +93,7 @@ public class StartMenuView {
 
         AddNewUser(primaryStage);
 
-//        AddJumpingRabbit(primaryStage);
+        AddMultiPlayerIcon(primaryStage);
 
 
         primaryStage.setScene(sceneStartMenuView);
@@ -107,18 +122,7 @@ public class StartMenuView {
             @Override
             public void handle(MouseEvent event) {
                 if (!enterYourUser.getText().equals("")) {
-                    try {
-                        PlayBubbleSound();
-                        Game.getGameInstance().NewUserStringWantToStartTheGame(enterYourUser.getText());
-                    } catch (UnknownObjectException e) {
-                        e.printStackTrace();
-                    } catch (NotEnoughMoney notEnoughMoney) {
-                        notEnoughMoney.printStackTrace();
-                    } catch (MissionNotLoaded missionNotLoaded) {
-                        missionNotLoaded.printStackTrace();
-                    } catch (MaxLevelExceeded maxLevelExceeded) {
-                        maxLevelExceeded.printStackTrace();
-                    }
+                    StartingTheUserAccount();
                     primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getSceneSelectionView());
                     primaryStage.setFullScreen(true);
                 } else {
@@ -364,5 +368,132 @@ public class StartMenuView {
         });
     }
 
+    private void AddMultiPlayerIcon(Stage primaryStage){
+        File multiPlayerFile = new File("Data\\Click\\MultiPlayerClick.png");
+        Image imagePlayClick = new Image(multiPlayerFile.toURI().toString());
+        ImageView playClickView = new ImageView(imagePlayClick);
+        playClickView.relocate(1390, 380);
+        playClickView.setFitWidth(110);
+        playClickView.setFitHeight(110);
+        playClickView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                playClickView.relocate(1395, 385);
+                playClickView.setFitWidth(100);
+                playClickView.setFitHeight(100);
+            }
+        });
+        playClickView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                playClickView.relocate(1390, 380);
+                playClickView.setFitWidth(110);
+                playClickView.setFitHeight(110);
+            }
+        });
+        rootStartMenuView.getChildren().addAll(playClickView);
 
+        File cloudServerFile = new File("Data\\Click\\CloudServer.png");
+        Image cloudServerImage = new Image(cloudServerFile.toURI().toString());
+        ImageView cloudServerView = new ImageView(cloudServerImage);
+        cloudServerView.relocate(1200, 350);
+        cloudServerView.setFitWidth(140);
+        cloudServerView.setFitHeight(140);
+        cloudServerView.setOpacity(0);
+
+
+        Rectangle serverRec=new Rectangle(1200,350,140,70);
+        serverRec.setOpacity(0);
+        MakeRectangleChangeOpacityWhenMouseIsOnThem(serverRec,"Server");
+        Rectangle guestRec=new Rectangle(1200,420,140,70);
+        guestRec.setOpacity(0);
+        MakeRectangleChangeOpacityWhenMouseIsOnThem(guestRec,"Guest");
+        playClickView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (!enterYourUser.getText().equals("")) {
+                    if (rootStartMenuView.getChildren().contains(cloudServerView)){
+                        KeyValue serverGuestOpacity=new KeyValue(cloudServerView.opacityProperty(),0);
+                        KeyFrame serverGuestFrame=new KeyFrame(Duration.millis(1000),serverGuestOpacity);
+                        Timeline serverTimeLine=new Timeline(serverGuestFrame);
+                        serverTimeLine.play();
+                        serverTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                rootStartMenuView.getChildren().removeAll(cloudServerView,guestRec,serverRec);
+                            }
+                        });
+                    }else{
+                        rootStartMenuView.getChildren().addAll(cloudServerView,guestRec,serverRec);
+                        KeyValue serverGuestOpacity=new KeyValue(cloudServerView.opacityProperty(),1);
+                        KeyFrame serverGuestFrame=new KeyFrame(Duration.millis(1000),serverGuestOpacity);
+                        Timeline serverTimeLine=new Timeline(serverGuestFrame);
+                        serverTimeLine.play();
+                    }
+                } else {
+                    PlayErrorSound();
+                    KeyValue circleSunError = new KeyValue(circleSun.fillProperty(), Color.rgb(100, 0, 0));
+                    KeyFrame circleSunFarm = new KeyFrame(Duration.millis(500), circleSunError);
+                    Timeline circleSunTimeline = new Timeline(circleSunFarm);
+                    circleSunTimeline.setAutoReverse(true);
+                    circleSunTimeline.play();
+                }
+                primaryStage.setFullScreen(true);
+            }
+        });
+    }
+
+    private void MakeRectangleChangeOpacityWhenMouseIsOnThem(Node node,String serverOrClient){
+        node.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                node.setOpacity(0.3);
+            }
+        });
+        node.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                node.setOpacity(0);
+            }
+        });
+        if (serverOrClient.equals("Server")){
+            node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    StartingTheUserAccount();
+                    HostAndGuestView hostAndGuestView=new HostAndGuestView(Main.getPrimaryStage());
+                    GameView.getGameView().setHostAndGuestView(hostAndGuestView);
+                    Main.getPrimaryStage().setScene(GameView.getGameView().getHostAndGuestView().getSceneHost());
+                    Main.getPrimaryStage().setFullScreen(true);
+                }
+            });
+        }else{
+            node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    StartingTheUserAccount();
+                    HostAndGuestView hostAndGuestView=new HostAndGuestView(Main.getPrimaryStage());
+                    hostAndGuestView.AddTextFieldToGetServerIPAndServerPort();
+                    GameView.getGameView().setHostAndGuestView(hostAndGuestView);
+                    Main.getPrimaryStage().setScene(hostAndGuestView.getSceneHost());
+                    Main.getPrimaryStage().setFullScreen(true);
+                }
+            });
+        }
+    }
+
+    private void StartingTheUserAccount() {
+        try {
+            PlayBubbleSound();
+            Game.getGameInstance().NewUserStringWantToStartTheGame(enterYourUser.getText());
+        } catch (UnknownObjectException e) {
+            e.printStackTrace();
+        } catch (NotEnoughMoney notEnoughMoney) {
+            notEnoughMoney.printStackTrace();
+        } catch (MissionNotLoaded missionNotLoaded) {
+            missionNotLoaded.printStackTrace();
+        } catch (MaxLevelExceeded maxLevelExceeded) {
+            maxLevelExceeded.printStackTrace();
+        }
+    }
 }

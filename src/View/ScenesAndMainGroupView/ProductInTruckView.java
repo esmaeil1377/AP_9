@@ -237,7 +237,7 @@ public class ProductInTruckView extends View {
         animalsTextView.setFitWidth((int) (xShift * 100));
         animalsTextView.relocate((int) (xShift * 1250), (int) (yShift * 150));
 
-        File priceText_2 = new File("Data\\Shop\\PriceText.png");
+        File priceText_2 = new File("Data\\PriceText.png");
         Image priceTextImage_2 = new Image(priceText_2.toURI().toString());
         ImageView priceTextView_2 = new ImageView(priceTextImage_2);
         priceTextView_2.setFitHeight((int) (yShift * 40));

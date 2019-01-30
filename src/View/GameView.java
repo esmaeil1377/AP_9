@@ -10,6 +10,15 @@ public class GameView {
     private FarmView farmView;
     private ProductInTruckView productInTruckView;
     private ProductInHelicopterView productInHelicopterView;
+    private HostAndGuestView hostAndGuestView;
+
+    public HostAndGuestView getHostAndGuestView() {
+        return hostAndGuestView;
+    }
+
+    public void setHostAndGuestView(HostAndGuestView hostAndGuestView) {
+        this.hostAndGuestView = hostAndGuestView;
+    }
 
     public void setProductInTruckView(ProductInTruckView productInTruckView) {
         this.productInTruckView = productInTruckView;

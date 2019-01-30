@@ -40,7 +40,6 @@ public class ProductInHelicopterView extends View {
     private Label labelButtonFabric = new Label("0");
     private Label labelButtonSewing = new Label("0");
     private Text coinText = new Text("0");
-    private User user=Game.getGameInstance().getCurrentUserAccount();
 
 
     public Scene getSceneProductHelicopterView() {
