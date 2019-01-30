@@ -672,21 +672,10 @@ public class FarmView extends View {
     }
 
     private void AddBuyItems() {
-//        Circle chickenCircle = new Circle(1450, 270, 50, Color.rgb(39, 221, 255));
-//        chickenCircle.setOpacity(0.4);
-
-//        Circle sheepCircle = new Circle(1450, 390, 50, Color.rgb(39, 221, 255));
-//        sheepCircle.setOpacity(0.4);
-//
-//        Circle cowCircle = new Circle(1450, 510, 50, Color.rgb(39, 221, 255));
-//        cowCircle.setOpacity(0.4);
-//
-//        Circle catCircle = new Circle(1450, 630, 50, Color.rgb(39, 221, 255));
-//        catCircle.setOpacity(0.4);
-//
-//        Circle dogCircle = new Circle(1450, 750, 50, Color.rgb(39, 221, 255));
-//        dogCircle.setOpacity(0.4);
-
+        Text chickenPrice = new Text("100");
+        chickenPrice.relocate(1430,286);
+        chickenPrice.setFont(Font.font(15));
+        chickenPrice.setStyle("-fx-font-weight: bold");
         File chickenFile = new File("Data\\Textures\\BuyIconNotHead\\Chicken.png");
         Image chickenImage = new Image(chickenFile.toURI().toString());
         ImageView chickenView = new ImageView(chickenImage);
@@ -719,6 +708,10 @@ public class FarmView extends View {
 
             }
         });
+        Text sheepPrice = new Text("1000");
+        sheepPrice.relocate(1425,376);
+        sheepPrice.setFont(Font.font(15));
+        sheepPrice.setStyle("-fx-font-weight: bold");
         File sheepFile = new File("Data\\Textures\\BuyIconNotHead\\Sheep.png");
         Image sheepImage = new Image(sheepFile.toURI().toString());
         ImageView sheepView = new ImageView(sheepImage);
@@ -750,7 +743,10 @@ public class FarmView extends View {
                 }
             }
         });
-
+        Text cowPrice = new Text("10000");
+        cowPrice.relocate(1424,466);
+        cowPrice.setFont(Font.font(15));
+        cowPrice.setStyle("-fx-font-weight: bold");
         File cowFile = new File("Data\\Textures\\BuyIconNotHead\\Cow.png");
         Image cowImage = new Image(cowFile.toURI().toString());
         ImageView cowView = new ImageView(cowImage);
@@ -782,7 +778,10 @@ public class FarmView extends View {
                 }
             }
         });
-
+        Text catPrice = new Text("2500");
+        catPrice.relocate(1428,556);
+        catPrice.setFont(Font.font(15));
+        catPrice.setStyle("-fx-font-weight: bold");
         File catFile = new File("Data\\Textures\\BuyIconNotHead\\Cat.png");
         Image catImage = new Image(catFile.toURI().toString());
         ImageView catView = new ImageView(catImage);
@@ -813,7 +812,10 @@ public class FarmView extends View {
                 }
             }
         });
-
+        Text dogPrice = new Text("2600");
+        dogPrice.relocate(1428,653);
+        dogPrice.setFont(Font.font(15));
+        dogPrice.setStyle("-fx-font-weight: bold");
         File dogFile = new File("Data\\Textures\\BuyIconNotHead\\Dog.png");
         Image dogImage = new Image(dogFile.toURI().toString());
         ImageView dogView = new ImageView(dogImage);
@@ -846,10 +848,8 @@ public class FarmView extends View {
         });
 
 
-        rootFarmView.getChildren().addAll(chickenView, sheepView, cowView, catView, dogView);
+        rootFarmView.getChildren().addAll( chickenView, sheepView, cowView, catView, dogView,chickenPrice,catPrice,cowPrice,dogPrice,sheepPrice);
     }
-
-
     private void AddSpinnery(int level) {
         File spinneryFile = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\0" + String.valueOf(level + 1) + ".png");
         Image spinneryImage = new Image(spinneryFile.toURI().toString());
@@ -2922,10 +2922,13 @@ public class FarmView extends View {
             mission.setMinute_2(0);
         }
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
+        timerText.setStyle("-fx-font-weight: bold");
     }
 
     private void AddTimeText() {
         timerText.setText(mission.getMinute_1() + mission.getMinute_2() + ":" + mission.getSecond_1() + mission.getSecond_2());
+        timerText.setStyle("-fx-font-weight: bold");
+        timerText.relocate(720, 40 );
         timerText.relocate(720, 40);
         timerText.setFont(Font.font(25));
 

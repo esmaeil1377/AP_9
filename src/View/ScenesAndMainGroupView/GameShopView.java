@@ -1,6 +1,7 @@
 package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.NotEnoughMoney;
+import FarmModel.Farm;
 import FarmModel.Game;
 import FarmModel.ObjectInMap15_15.LiveAnimals.Cat;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Helicopter;
@@ -45,6 +46,7 @@ public class GameShopView extends View {
     private Text moneyText=new Text();
     private Group rootGameShopView = new Group();
     private Scene sceneGameShopView = new Scene(rootGameShopView, (int) (1500 * xShift), (int) (700 * yShift));
+    private User user=Game.getGameInstance().getCurrentUserAccount();
 
     public Scene getSceneGameShopView() {
         return sceneGameShopView;
@@ -57,13 +59,22 @@ public class GameShopView extends View {
     @Override
     public void Start(Stage primaryStage) {
         UpdateMoneyText();
-        AddBackGround(primaryStage);
+        AddShopBackgroundTBackground(primaryStage);
         AddIcons(primaryStage);
         AddItems();
         AddShopText();
         AddStarAndMoneyText();
         AddOkText(primaryStage);
+        AddCustomWorkShop(primaryStage);
 
+    }
+    private void AddShopBackgroundTBackground(Stage primaryStage) {
+        File backGroundFile = new File("Data\\ShopBackground.jpg");
+        Image backGroundImage = new Image(backGroundFile.toURI().toString());
+        ImageView BackGroundView = new ImageView(backGroundImage);
+        BackGroundView.setFitHeight(primaryStage.getMaxHeight());
+        BackGroundView.setFitWidth(primaryStage.getMaxWidth());
+        rootGameShopView.getChildren().addAll(BackGroundView);
     }
 
     private void AddIcons(Stage primaryStage) {
@@ -196,7 +207,7 @@ public class GameShopView extends View {
         labelHelicopter.setTextFill(Color.BLACK);
         labelHelicopter.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
         labelHelicopter.relocate(430 , 605);
-        rootGameShopView.getChildren().addAll(labelHelicopter);
+        root.getChildren().addAll(labelHelicopter);
 
         Rectangle dogRect = new Rectangle((int) (470 * xShift), (int) (300 * yShift));
         dogRect.setOpacity(0.6);
@@ -218,6 +229,7 @@ public class GameShopView extends View {
         catRect.setFill(Color.rgb(64, 45, 67));
         catRect.relocate((int) (1460 * xShift), (int) (750 * yShift));
 
+        rootGameShopView.getChildren().addAll(eggPowderPlantRect, cookieBakeryRect, cakeBakeryRect, spinneryRect, truckRect, weavingFactoryRect, wellRect, sewingFactoryRect, wareHouseRect, dogRect, catRect, helicopterRect);
         Label labelCat = new Label("Cat");
         labelCat.setTextFill(Color.BLACK);
         labelCat.setStyle("-fx-font: 25 Serif; -fx-base: #ee369e;");
@@ -228,18 +240,9 @@ public class GameShopView extends View {
 
     }
 
-    private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\ShopBackground.jpg");
-        Image backGroundImage = new Image(backGroundFile.toURI().toString());
-        ImageView BackGroundView = new ImageView(backGroundImage);
-        primaryStage.setFullScreen(true);
-        BackGroundView.setFitHeight(primaryStage.getHeight());
-        BackGroundView.setFitWidth(primaryStage.getWidth());
-        rootGameShopView.getChildren().addAll(BackGroundView);
-    }
 
     private void AddItems() {
-        File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\01.png");
+        File eggPowderPlant = new File("Data\\Textures\\Workshops\\DriedEggs(Egg Powder Plant)\\0" + String.valueOf(user.getEggPowderPlantLevel() + 1) + ".png");
         Image eggPowderPlantImage = new Image(eggPowderPlant.toURI().toString());
         ImageView eggPowderPlantView = new ImageView(eggPowderPlantImage);
         eggPowderPlantView.setFitHeight((int) (175 * yShift));
@@ -267,11 +270,11 @@ public class GameShopView extends View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new EggPowderPlant(user.getEggPowderPlantLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setEggPowderPlantLevel(user.getEggPowderPlantLevel()+1);
+                    User user = Game.getGameInstance().getCurrentUserAccount();
+                    int price = user.getInformationNeededInGame().getPriceForUpgrade(new EggPowderPlant(user.getEggPowderPlantLevel()));
+                    if (price < user.getMoney()) {
+                        user.setMoney(user.getMoney() - price);
+                        user.setEggPowderPlantLevel(user.getEggPowderPlantLevel() + 1);
                         UpdateMoneyText();
                     }else{
                         throw new NotEnoughMoney();
@@ -285,14 +288,14 @@ public class GameShopView extends View {
             }
         });
 
-        File cookieBakery = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\01.png");
+        File cookieBakery = new File("Data\\Textures\\Workshops\\Cake(Cookie Bakery)\\0" + String.valueOf(user.getCookieBakeryLevel() + 1) + ".png");
         Image cookieBakeryImage = new Image(cookieBakery.toURI().toString());
         ImageView cookieBakeryView = new ImageView(cookieBakeryImage);
         cookieBakeryView.setFitHeight((int) (175 * yShift));
         cookieBakeryView.setFitWidth((int) (250 * xShift));
         cookieBakeryView.setViewport(new Rectangle2D(0, 0, 130, 130));
         cookieBakeryView.relocate((int) (525 * xShift), (int) (200 * yShift));
-        rootGameShopView.getChildren().addAll(cookieBakeryView);
+        root.getChildren().addAll(cookieBakeryView);
         cookieBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -316,7 +319,7 @@ public class GameShopView extends View {
                     User user=Game.getGameInstance().getCurrentUserAccount();
                     int price=user.getInformationNeededInGame().getPriceForUpgrade(new CookieBakery(user.getCookieBakeryLevel()));
                     if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()- price);
+                        user.setMoney(user.getMoney()-price);
                         user.setCookieBakeryLevel(user.getCookieBakeryLevel()+1);
                         UpdateMoneyText();
                     }else{
@@ -331,7 +334,7 @@ public class GameShopView extends View {
             }
         });
 
-        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\01.png");
+        File cakeBakery = new File("Data\\Textures\\Workshops\\FlouryCake(Cake Bakery)\\0" + String.valueOf(user.getCakeBakeryLevel() + 1) + ".png");
         Image cakeBakeryImage = new Image(cakeBakery.toURI().toString());
         ImageView cakeBakeryView = new ImageView(cakeBakeryImage);
         cakeBakeryView.setFitHeight((int) (210 * yShift));
@@ -378,7 +381,7 @@ public class GameShopView extends View {
             }
         });
 
-        File spinnery = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\01.png");
+        File spinnery = new File("Data\\Textures\\Workshops\\Spinnery(Spinnery)\\0" + String.valueOf(user.getSpinneryLevel() + 1) + ".png");
         Image spinneryImage = new Image(spinnery.toURI().toString());
         ImageView spinneryView = new ImageView(spinneryImage);
         spinneryView.setFitHeight((int) (160 * yShift));
@@ -424,7 +427,7 @@ public class GameShopView extends View {
             }
         });
 
-        File sewingFactory = new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\01.png");
+        File sewingFactory = new File("Data\\Textures\\Workshops\\CarnivalDress(Sewing Factory)\\0" + String.valueOf(user.getSewingFactoryLevel() + 1) + ".png");
         Image sewingFactoryImage = new Image(sewingFactory.toURI().toString());
         ImageView sewingFactoryView = new ImageView(sewingFactoryImage);
         sewingFactoryView.setFitHeight((int) (160 * yShift));
@@ -470,7 +473,7 @@ public class GameShopView extends View {
             }
         });
 
-        File weavingFactory = new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\01.png");
+        File weavingFactory = new File("Data\\Textures\\Workshops\\Weaving(Weaving Factory)\\0" + String.valueOf(user.getWeavingFactoryLevel() + 1) + ".png");
         Image weavingFactoryImage = new Image(weavingFactory.toURI().toString());
         ImageView weavingFactoryView = new ImageView(weavingFactoryImage);
         weavingFactoryView.setFitHeight((int) (175 * yShift));
@@ -516,7 +519,7 @@ public class GameShopView extends View {
             }
         });
 
-        File wareHouse = new File("Data\\Textures\\Service\\Depot\\01.png");
+        File wareHouse = new File("Data\\Textures\\Service\\Depot\\0" + String.valueOf(user.getWarehouseLevel() + 1) + ".png");
         Image wareHouseImage = new Image(wareHouse.toURI().toString());
         ImageView wareHouseView = new ImageView(wareHouseImage);
         wareHouseView.setFitHeight((int) (175 * yShift));
@@ -562,7 +565,7 @@ public class GameShopView extends View {
             }
         });
 
-        File truck = new File("Data\\Textures\\Service\\Truck\\01.png");
+        File truck = new File("Data\\Textures\\Service\\Truck\\0" + String.valueOf(user.getTruckLevel() + 1) + ".png");
         Image truckImage = new Image(truck.toURI().toString());
         ImageView truckView = new ImageView(truckImage);
         truckView.setFitHeight((int) (220 * yShift));
@@ -608,7 +611,7 @@ public class GameShopView extends View {
             }
         });
 
-        File well = new File("Data\\Textures\\Service\\Well\\01.png");
+        File well = new File("Data\\Textures\\Service\\Well\\0" + String.valueOf(user.getWellLevel() + 1) + ".png");
         Image wellImage = new Image(well.toURI().toString());
         ImageView wellView = new ImageView(wellImage);
         wellView.setFitHeight((int) (220 * yShift));
@@ -654,7 +657,7 @@ public class GameShopView extends View {
             }
         });
 
-        File helicopter = new File("Data\\Textures\\Service\\Helicopter\\01.png");
+        File helicopter = new File("Data\\Textures\\Service\\Helicopter\\0" + String.valueOf(user.getHelicopterLevel() + 1) + ".png");
         Image helicopterImage = new Image(helicopter.toURI().toString());
         ImageView helicopterView = new ImageView(helicopterImage);
         helicopterView.setFitHeight((int) (230 * yShift));
@@ -700,30 +703,30 @@ public class GameShopView extends View {
             }
         });
 
-        File dog = new File("Data\\Textures\\Service\\Dog.png");
-        Image dogImage = new Image(dog.toURI().toString());
-        ImageView dogView = new ImageView(dogImage);
-        dogView.setFitHeight((int) (200 * yShift));
-        dogView.setFitWidth((int) (250 * xShift));
-        dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
-        rootGameShopView.getChildren().addAll(dogView);
-        dogView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        File cat = new File("Data\\Textures\\Service\\Cat.png");
+        Image catImage = new Image(cat.toURI().toString());
+        ImageView catView = new ImageView(catImage);
+        catView.setFitHeight((int) (180 * yShift));
+        catView.setFitWidth((int) (250 * xShift));
+        catView.relocate((int) (990 * xShift), (int) (840 * yShift));
+        rootGameShopView.getChildren().addAll(catView);
+        catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogView.setFitHeight((int) (200 * yShift) + 10);
-                dogView.setFitWidth((int) (250 * xShift) + 10);
-                dogView.relocate((int) (980 * xShift) - 5, (int) (840 * yShift) - 5);
+                catView.setFitHeight((int) (180 * yShift) + 10);
+                catView.setFitWidth((int) (250 * xShift) + 10);
+                catView.relocate((int) (990 * xShift) - 5, (int) (840 * yShift) - 5);
             }
         });
-        dogView.setOnMouseExited(new EventHandler<MouseEvent>() {
+        catView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                dogView.setFitHeight((int) (200 * yShift));
-                dogView.setFitWidth((int) (250 * xShift));
-                dogView.relocate((int) (980 * xShift), (int) (840 * yShift));
+                catView.setFitHeight((int) (180 * yShift));
+                catView.setFitWidth((int) (250 * xShift));
+                catView.relocate((int) (990 * xShift), (int) (840 * yShift));
             }
         });
-        dogView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
@@ -736,52 +739,38 @@ public class GameShopView extends View {
                 }
             }
         });
-
-        File cat = new File("Data\\Textures\\Service\\Cat.png");
-        Image catImage = new Image(cat.toURI().toString());
-        ImageView catView = new ImageView(catImage);
-        catView.setFitHeight((int) (160 * yShift));
-        catView.setFitWidth((int) (200 * xShift));
-        catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
-        rootGameShopView.getChildren().addAll(catView);
-        catView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                catView.setFitHeight((int) (160 * yShift) + 10);
-                catView.setFitWidth((int) (200 * xShift) + 10);
-                catView.relocate((int) (1480 * xShift) - 5, (int) (860 * yShift) - 5);
-            }
-        });
-        catView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                catView.setFitHeight((int) (160 * yShift));
-                catView.setFitWidth((int) (200 * xShift));
-                catView.relocate((int) (1480 * xShift), (int) (860 * yShift));
-            }
-        });
-        catView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    User user=Game.getGameInstance().getCurrentUserAccount();
-                    int price=user.getInformationNeededInGame().getPriceForUpgrade(new Cat(user.getCatLevel()));
-                    if(price<user.getMoney()){
-                        user.setMoney(user.getMoney()-price);
-                        user.setCatLevel(user.getCatLevel()+1);
-                        UpdateMoneyText();
-                    }else{
-                        throw new NotEnoughMoney();
-                    }
-                    UpdateLevelArrows();
-                } catch (NotEnoughMoney e2){
-                    ShowNotEnoughMoneyError();
-                }catch (Exception e3){
-                    e3.printStackTrace();
-                }
-            }
-        });
     }
+        private void AddCustomWorkShop(Stage primaryStage) {
+            File customWorkShop = new File("Data\\Textures\\Service\\Cat.png");
+            Image customWorkShopImage = new Image(customWorkShop.toURI().toString());
+            ImageView customWorkShopView = new ImageView(customWorkShopImage);
+            customWorkShopView.setFitHeight((int) (160 * yShift));
+            customWorkShopView.setFitWidth((int) (200 * xShift));
+            customWorkShopView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+            customWorkShopView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    customWorkShopView.setFitHeight((int) (160 * yShift) + 10);
+                    customWorkShopView.setFitWidth((int) (200 * xShift) + 10);
+                    customWorkShopView.relocate((int) (1480 * xShift) - 5, (int) (860 * yShift) - 5);
+                }
+            });
+            customWorkShopView.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    customWorkShopView.setFitHeight((int) (160 * yShift));
+                    customWorkShopView.setFitWidth((int) (200 * xShift));
+                    customWorkShopView.relocate((int) (1480 * xShift), (int) (860 * yShift));
+                }
+            });
+            customWorkShopView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                }
+            });
+            rootGameShopView.getChildren().addAll(customWorkShopView);
+        }
+
 
     public void AddEggPowerPlantLevel(int level) {
         File UpgradeArrow = new File("Data\\Textures\\Service\\UpgradeArrow.png");

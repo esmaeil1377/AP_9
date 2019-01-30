@@ -1,8 +1,19 @@
 package FarmModel.Internet;
 
+import java.util.ArrayList;
+
 public class Changes {
     private static boolean NewContact =false;
     private static boolean NewMassage =false;
+    private static ArrayList<String> massageShouldSendToServerForOtherUsersOrServerItSelf=new ArrayList<>();
+
+    public static ArrayList<String> getMassageShouldSendToServerForOtherUsersOrServerItSelf() {
+        return massageShouldSendToServerForOtherUsersOrServerItSelf;
+    }
+
+    public static void setMassageShouldSendToServerForOtherUsersOrServerItSelf(ArrayList<String> massageShouldSendToServerForOtherUsersOrServerItSelf) {
+        Changes.massageShouldSendToServerForOtherUsersOrServerItSelf = massageShouldSendToServerForOtherUsersOrServerItSelf;
+    }
 
     public static boolean isThereAnyNewContact(){
         return NewContact;
@@ -26,5 +37,9 @@ public class Changes {
 
     public static void WeHaveNewMassageToShow(){
         NewMassage=true;
+    }
+
+    public static void AddMassageToMassageThatShouldSend(String str){
+        massageShouldSendToServerForOtherUsersOrServerItSelf.add(str);
     }
 }

@@ -11,6 +11,7 @@ public class GameView {
     private ProductInTruckView productInTruckView;
     private ProductInHelicopterView productInHelicopterView;
     private HostAndGuestView hostAndGuestView;
+    private CustomWorkShopView customWorkShopView;
 
     public HostAndGuestView getHostAndGuestView() {
         return hostAndGuestView;
@@ -58,6 +59,14 @@ public class GameView {
     }
     public void setMissionSelectionView(MissionSelectionView missionSelectionView) {
         this.missionSelectionView = missionSelectionView;
+    }
+
+    public CustomWorkShopView getCustomWorkShopView() {
+        return customWorkShopView;
+    }
+
+    public void setCustomWorkShopView(CustomWorkShopView customWorkShopView) {
+        this.customWorkShopView = customWorkShopView;
     }
 
     private GameView(){}
