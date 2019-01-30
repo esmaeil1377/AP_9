@@ -74,16 +74,8 @@ public class PVView extends View.View {
 
     @Override
     public void Start(Stage primaryStage) {
-        AddBackGround(primaryStage);
-        AddBackgroundBlackRectangle();
-        AddContactName();
-        AddReturnToHostViewButton(primaryStage);
-        AddSendMassageButton();
-
-        AddTextFiledForMassage();
 
     }
-
 
     public void ShowDataInPV(String str, int xForLocationToDetermineTheOwner) throws IOException {
         if (str.length() < 6) {
@@ -136,86 +128,6 @@ public class PVView extends View.View {
                 rootPV.getChildren().addAll(labelMassage);
             }
         }
-    }
-
-    private void AddBackGround(Stage primaryStage) {
-        File backGroundFile = new File("Data\\ShopBackground.jpg");
-        Image backGroundImage = new Image(backGroundFile.toURI().toString());
-        ImageView BackGroundView = new ImageView(backGroundImage);
-        BackGroundView.setFitHeight(primaryStage.getMaxHeight());
-        BackGroundView.setFitWidth(primaryStage.getMaxWidth());
-        rootPV.getChildren().addAll(BackGroundView);
-    }
-
-    private void AddBackgroundBlackRectangle(){
-        Rectangle rectangle =new Rectangle(50,100,1450,750);
-        rectangle.setFill(Color.rgb(0,0,0));
-        rectangle.setOpacity(0.5);
-        rectangle.setArcWidth(50);
-        rectangle.setArcHeight(50);
-
-        rootPV.getChildren().addAll(rectangle);
-    }
-
-    private void AddContactName(){
-        Rectangle rectangle = new Rectangle(550, 61, Color.rgb(60, 125, 139));
-        rectangle.relocate(0, 0);
-
-        labelContactName.setFont(Font.font(20));
-        labelContactName.relocate(60, 15);
-
-        Label contactLevel=new Label("0");
-        contactLevel.relocate(80,15);
-        Label contactMoney=new Label("0");
-    }
-
-    private void AddTextFiledForMassage(){
-        inputingTextField = new TextField();
-        inputingTextField.setFont(Font.font(20));
-        inputingTextField.relocate(0, 650);
-    }
-
-    private void AddSendMassageButton(){
-        Button sendButton = new Button("send");
-        sendButton.relocate(470, 648);
-        sendButton.setFont(Font.font(20));
-        sendButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                String massage = inputingTextField.getText();
-                try {
-
-                    AddDataToDataNotWritten(massage, 300);
-                    Changes.WeHaveNewMassageToShow();
-                    AddDataToMassageToSendThatWeDidntSendThem(massage);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    private void AddReturnToHostViewButton(Stage primaryStage){
-        Rectangle returnToHostView = new Rectangle(40, 40, Color.rgb(200, 200, 255));
-        returnToHostView.relocate(10, 10);
-        returnToHostView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getSceneHost());
-                primaryStage.setFullScreen(true);
-            }
-        });
-        Label returnLabel = new Label("<");
-        returnLabel.relocate(12, 0);
-        returnLabel.setFont(Font.font(40));
-        returnLabel.setTextFill(Paint.valueOf("White"));
-        returnLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getSceneHost());
-                primaryStage.setFullScreen(true);
-            }
-        });
     }
 
     public void setDataToSendThatWeDidntSendThem(ArrayList<String> dataToSendThatWeDidntSendThem) {

@@ -1,11 +1,10 @@
 package View.ScenesAndMainGroupView;
 
+import FarmModel.Game;
 import FarmModel.Internet.Changes;
 import FarmModel.Internet.ServerAndClientRunnable.GuestSocketRunnable;
 import FarmModel.Internet.ServerAndClientRunnable.ServerSocketRunnable;
-import FarmModel.Internet.ServerAndClientRunnable.SocketRunnable;
 import View.GameView;
-import View.Main;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -34,16 +33,23 @@ public class HostAndGuestView extends View.View {
     private Scene SceneHost = new Scene(rootHost, 1500, 700);
     private TextField userPort = new TextField("8050");
     private TextField ipTextField = new TextField("serverip");
-    private TextField portTextField = new TextField("serverport");
+    private TextField portTextField = new TextField("8050");
     private int endHeightOfTheMassages = 120;
     private int endHeightOfTheContacts=120;
 //    private ServerSocketRunnable serverSocketRunnable;
-    private ArrayList<String> massageNotWrittenInInGroup = new ArrayList<>();
+//    private ArrayList<String> massagedidntsent=new ArrayList<>();
+    private ArrayList<String> massagedidntshowedInInGroup = new ArrayList<>();
     private ArrayList<String> historyMassage = new ArrayList<>();
     private ArrayList<Node> massageHistoryNodes =new ArrayList<>();
     private ArrayList<Node> currentContactsNode=new ArrayList<>();
 
+//    public ArrayList<String> getMassagedidntsent() {
+//        return massagedidntsent;
+//    }
 
+//    public void setMassagedidntsent(ArrayList<String> massagedidntsent) {
+//        this.massagedidntsent = massagedidntsent;
+//    }
 
     public HostAndGuestView(Stage primaryStage){
         Start(primaryStage);
@@ -91,8 +97,8 @@ public class HostAndGuestView extends View.View {
         };
         animationTimer.start();
         AddBackGround(primaryStage);
-        AddGroupRectangleAndContactRectangle();
         AddBackgroundBlackRectangle();
+        AddGroupRectangleAndContactRectangle();
         AddTextFieldToGetPort();
         AddTextFieldTOSendInGroup();
         AddOkToStartConnecting();
@@ -145,11 +151,17 @@ public class HostAndGuestView extends View.View {
     private void AddNewContactWhenItConnectToOurPort(Socket socket, Stage primaryStage,String contactName) {
         Label contactLabel = new Label(" "+contactName+" " );
         contactLabel.relocate(850, endHeightOfTheContacts + 5);
-        endHeightOfTheContacts += 45 + 10;
-        contactLabel.setStyle("-fx-font-size: 35");
+        endHeightOfTheContacts += 45;
+        contactLabel.setFont(Font.font(30));
         contactLabel.setStyle("-fx-background-color: blue");
         currentContactsNode.add(contactLabel);
         MakeContactsViewScrolling(contactLabel);
+        contactLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).getScenePv());
+            }
+        });
         rootHost.getChildren().addAll(contactLabel);
     }
 
@@ -242,7 +254,7 @@ public class HostAndGuestView extends View.View {
 
     public void AddNewMassagesToAllocatedPvAndGroup() throws IOException {
         try {
-            for (PVView pvView : ((ServerSocketRunnable)GameView.getGameView().getStartMenuView().getServerOrGuest()).getConnectedSockets().values()) {
+            for (PVView pvView : ((ServerSocketRunnable) GameView.getGameView().getStartMenuView().getServerOrGuest()).getConnectedSockets().values()) {
                 if (pvView.getMassagesNotWrittenInPVView().size() != 0) {
                     for (Map.Entry<String, Integer> stringIntegerEntry : pvView.getMassagesNotWrittenInPVView().entrySet()) {
                         pvView.ShowDataInPV(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
@@ -250,10 +262,13 @@ public class HostAndGuestView extends View.View {
                     pvView.setDatasNotWrittenInPVViewAndTheXPosition(new HashMap<>());
                 }
             }
-            for (String string : massageNotWrittenInInGroup) {
-                ShowDataInPV(string, 60);
+        }catch (Exception e){
+        }
+        try {
+            for (String string : massagedidntshowedInInGroup) {
+                ShowDataInPV(string, 100);
             }
-            massageNotWrittenInInGroup = new ArrayList<>();
+            massagedidntshowedInInGroup = new ArrayList<>();
         }catch (Exception e){}
     }
 
@@ -268,8 +283,8 @@ public class HostAndGuestView extends View.View {
         rootHost.getChildren().addAll(imageView);
     }
 
-    public void AddMassageToMassageNotWrittenAndHistory(String massage) {
-        massageNotWrittenInInGroup.add(massage);
+    public void AddMassageToHistoryAndMassageNotWrittenInGroup(String massage) {
+        massagedidntshowedInInGroup.add(massage);
         historyMassage.add(massage);
     }
 
@@ -355,7 +370,20 @@ public class HostAndGuestView extends View.View {
         clipRectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                if (rootHost.getChildren().contains(ipTextField)){
+                    String massage=textField.getText();
+                    Changes.AddMassageToMassageThatShouldSend("@"+massage);
+                    massagedidntshowedInInGroup.add(massage);
+                    Changes.WeHaveNewMassageToShow();
+                }else {
+                    String massage = textField.getText();
+                    massagedidntshowedInInGroup.add(massage);
+                    Changes.WeHaveNewMassageToShow();
+                    for(Map.Entry<Socket,PVView> entry: GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()){
+                        entry.getValue().getDataToSendThatWeDidntSendThem().add("@"+massage);
+                    }
 
+                }
             }
         });
 
