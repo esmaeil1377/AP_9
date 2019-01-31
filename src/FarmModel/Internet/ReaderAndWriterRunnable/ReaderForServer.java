@@ -6,9 +6,10 @@ import View.ScenesAndMainGroupView.PVView;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Formatter;
 import java.util.Map;
 import java.util.Scanner;
+
+import static View.ScenesAndMainGroupView.HostAndGuestView.findPvViewByUserName;
 
 public class ReaderForServer implements Runnable {
     private Socket socket;
@@ -39,28 +40,30 @@ public class ReaderForServer implements Runnable {
                     SendMassageThatIsRecivedFromOneUserForGroupToOthers(socket, inputString);
                 } else if (inputString.substring(1, 2).equals("@")) {
                     //it means it is sending the information of account
-                    ReaderForGuest.GetDataNotMassageFromSocket(inputString, socket);
+                    GetDataNotMassageFromClient(inputString, socket);
+//                        socket.notifyAll();
                 } else {
                     if (inputString.substring(0, 1).equals("#")) {
                         //it means it is sending the massage for other user via server
-                        String destinationContactName = inputString.split("#")[0];
-                        String massage = inputString.split("#")[1];
+                        String destinationContactName = inputString.split("#")[1];
+                        String senderContactName=GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).getContactName();
+                        String massage = inputString.split("#")[2];
                         PVView pvView = findPvViewByUserName(destinationContactName);
-                        pvView.getMassagesNotWrittenInPVView().put(massage, 100);
-                        pvView.getDataToSendThatWeDidntSendThem().add(massage);
-                        Changes.WeHaveNewMassageToShow();
+//                        pvView.getMassagesNotWrittenInPVView().put(massage, 100);
+                        pvView.AddDataToMassageToSendThatWeDidntSendThem("#"+senderContactName+"#"+massage);
+//                        Changes.WeHaveNewMassageToShow();
 
                     } else {
                         //this means that user send server a massage and we should show in pvView
                         PVView pvView = GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket);
-                        pvView.AddDataToDataNotWritten(inputString, 10);
+                        pvView.AddDataToDataNotWritten(inputString, 100);
                         Changes.WeHaveNewMassageToShow();
                     }
                 }
             } catch (Exception e) {
                 PVView pvView = GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket);
                 GameView.getGameView().getHostAndGuestView().AddMassageToHistoryAndMassageNotWrittenInGroup(pvView.getContactName() + " disconnected");
-                for (Map.Entry<Socket,PVView> entry:GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()){
+                for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
                     entry.getValue().getDataToSendThatWeDidntSendThem().add("@" + pvView.getContactName() + " disconnected");
                 }
 //                GameView.getGameView().getHostAndGuestView().getMassagedidntsent().add("@" + pvView.getContactName() + " disconnected");
@@ -72,14 +75,7 @@ public class ReaderForServer implements Runnable {
         }
     }
 
-    private PVView findPvViewByUserName(String userName) {
-        for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
-            if (entry.getValue().getContactName().equals(userName)) {
-                return entry.getValue();
-            }
-        }
-        return null;
-    }
+
 
     private void SendMassageThatIsRecivedFromOneUserForGroupToOthers(Socket socket, String massage) throws IOException {
         for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
@@ -88,6 +84,34 @@ public class ReaderForServer implements Runnable {
             }
 
         }
-
     }
+
+    private static void GetDataNotMassageFromClient(String inputString, Socket socket) {
+        if (inputString.substring(0, 1).equals("C")) {
+            //it means client is sending the client Data.
+            String data = inputString.substring(2);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVView(socket, data.split(" ")[0]);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactMoneyInGame(data.split(" ")[1]);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactLevelInMission(data.split(" ")[2]);
+            GameView.getGameView().getHostAndGuestView().SendConnectedClientDataToOther();
+            Changes.WeHaveNewContact();
+            SendOldMassageForNewUsers(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket));
+            SendJoinMassageForEveryOneInGroup(data.split(" ")[0]);
+
+        }
+    }
+
+    private static void SendJoinMassageForEveryOneInGroup(String newGuestName) {
+        for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+            entry.getValue().getDataToSendThatWeDidntSendThem().add("@" + newGuestName + " joined us.");
+        }
+        GameView.getGameView().getHostAndGuestView().AddMassageToHistoryAndMassageNotWrittenInGroup(newGuestName + " joined us.");
+    }
+
+    private static void SendOldMassageForNewUsers(PVView pvView) {
+        for (String massage : GameView.getGameView().getHostAndGuestView().getHistoryMassage()) {
+            pvView.getDataToSendThatWeDidntSendThem().add("@" + massage);
+        }
+    }
+
 }

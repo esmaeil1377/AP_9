@@ -1,10 +1,16 @@
 package View.ScenesAndMainGroupView;
 
+import FarmModel.Game;
 import FarmModel.Internet.Changes;
 import FarmModel.Internet.ServerAndClientRunnable.GuestSocketRunnable;
 import FarmModel.Internet.ServerAndClientRunnable.ServerSocketRunnable;
+import FarmModel.User;
 import View.GameView;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -17,14 +23,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,13 +44,16 @@ public class HostAndGuestView extends View.View {
     private TextField ipTextField = new TextField("serverip");
     private TextField portTextField = new TextField("8050");
     private int endHeightOfTheMassages = 120;
-    private int endHeightOfTheContacts=120;
-//    private ServerSocketRunnable serverSocketRunnable;
+    private int endHeightOfTheContacts = 120;
+    Rectangle scoreboardRectangle = new Rectangle(475, 900, 500, 600);
+    //    private ServerSocketRunnable serverSocketRunnable;
 //    private ArrayList<String> massagedidntsent=new ArrayList<>();
     private ArrayList<String> massagedidntshowedInInGroup = new ArrayList<>();
     private ArrayList<String> historyMassage = new ArrayList<>();
-    private ArrayList<Node> massageHistoryNodes =new ArrayList<>();
-    private ArrayList<Node> currentContactsNode=new ArrayList<>();
+    private ArrayList<Node> massageHistoryNodes = new ArrayList<>();
+    private ArrayList<Node> currentContactsNode = new ArrayList<>();
+    private ArrayList<String> currentPlayerNameSortbyMoney = new ArrayList<>();
+    private ArrayList<Node> currentPlayerNodeSortbyMoney = new ArrayList<>();
 
     public Group getRoot() {
         return root;
@@ -66,7 +78,7 @@ public class HostAndGuestView extends View.View {
 //        this.massagedidntsent = massagedidntsent;
 //    }
 
-    public HostAndGuestView(Stage primaryStage){
+    public HostAndGuestView(Stage primaryStage) {
         Start(primaryStage);
     }
 
@@ -101,11 +113,12 @@ public class HostAndGuestView extends View.View {
                     }
                     if (Changes.isThereAnyNewMassage()) {
                         try {
+                            Changes.MassagesAdded();
                             AddNewMassagesToAllocatedPvAndGroup();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        Changes.MassagesAdded();
+
                     }
                 }
             }
@@ -118,18 +131,19 @@ public class HostAndGuestView extends View.View {
         AddTextFieldTOSendInGroup();
         AddOkToStartConnecting();
         AddReturnToMainMenu(primaryStage);
+        AddScoreBoardButton();
     }
 
-    private void AddOkToStartConnecting(){
-        Rectangle rectangle=new Rectangle(1430,55,50,45);
+    private void AddOkToStartConnecting() {
+        Rectangle rectangle = new Rectangle(1430, 55, 50, 45);
         rectangle.setArcWidth(8);
         rectangle.setArcHeight(8);
         rectangle.setOpacity(0.2);
-        rectangle.setFill(Color.rgb(255,255,255));
-        Label okLabel=new Label("OK");
-        okLabel.setTextFill(Color.rgb(255,255,255));
+        rectangle.setFill(Color.rgb(255, 255, 255));
+        Label okLabel = new Label("OK");
+        okLabel.setTextFill(Color.rgb(255, 255, 255));
         okLabel.setFont(Font.font(35));
-        okLabel.relocate(1430,53);
+        okLabel.relocate(1430, 53);
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -145,27 +159,27 @@ public class HostAndGuestView extends View.View {
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(root.getChildren().contains(ipTextField)){
+                if (root.getChildren().contains(ipTextField)) {
                     if (!portTextField.getText().equals("") && !ipTextField.getText().equals("") && !userPort.getText().equals("")) {
                         GameView.getGameView().getStartMenuView().setServerOrGuest(new GuestSocketRunnable(portTextField.getText(), ipTextField.getText()));
-                        Thread thread=new Thread(GameView.getGameView().getStartMenuView().getServerOrGuest());
+                        Thread thread = new Thread(GameView.getGameView().getStartMenuView().getServerOrGuest());
                         thread.start();
                     }
-                }else {
-                    if(!userPort.getText().equals("")) {
+                } else {
+                    if (!userPort.getText().equals("")) {
                         GameView.getGameView().getStartMenuView().setServerOrGuest(new ServerSocketRunnable(userPort.getText()));
-                        Thread thread =new Thread(GameView.getGameView().getStartMenuView().getServerOrGuest());
+                        Thread thread = new Thread(GameView.getGameView().getStartMenuView().getServerOrGuest());
                         thread.start();
                     }
                 }
             }
         });
-        root.getChildren().addAll(okLabel,rectangle);
+        root.getChildren().addAll(okLabel, rectangle);
     }
 
 
-    private void AddNewContactWhenItConnectToOurPort(Socket socket, Stage primaryStage,String contactName) {
-        Label contactLabel = new Label(" "+contactName+" " );
+    private void AddNewContactWhenItConnectToOurPort(Socket socket, Stage primaryStage, String contactName) {
+        Label contactLabel = new Label(" " + contactName + " ");
         contactLabel.relocate(850, endHeightOfTheContacts + 5);
         endHeightOfTheContacts += 50;
         contactLabel.setFont(Font.font(30));
@@ -265,16 +279,17 @@ public class HostAndGuestView extends View.View {
     }
 
     public void ReloadPVContacts(Stage primaryStage) {
-        endHeightOfTheContacts=120;
-        for (Node node:currentContactsNode){
+        SendConnectedClientDataToOther();
+        endHeightOfTheContacts = 120;
+        for (Node node : currentContactsNode) {
             if (root.getChildren().contains(node)) {
                 root.getChildren().removeAll(node);
             }
         }
-        currentContactsNode=new ArrayList<>();
+        currentContactsNode = new ArrayList<>();
         try {
             for (Map.Entry<Socket, PVView> socketPVViewEntry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
-                AddNewContactWhenItConnectToOurPort(socketPVViewEntry.getKey(), primaryStage,socketPVViewEntry.getValue().getContactName());
+                AddNewContactWhenItConnectToOurPort(socketPVViewEntry.getKey(), primaryStage, socketPVViewEntry.getValue().getContactName());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -283,7 +298,7 @@ public class HostAndGuestView extends View.View {
 
     public void AddNewMassagesToAllocatedPvAndGroup() throws IOException {
         try {
-            for (PVView pvView : ((ServerSocketRunnable) GameView.getGameView().getStartMenuView().getServerOrGuest()).getConnectedSockets().values()) {
+            for (PVView pvView : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().values()) {
                 if (pvView.getMassagesNotWrittenInPVView().size() != 0) {
                     for (Map.Entry<String, Integer> stringIntegerEntry : pvView.getMassagesNotWrittenInPVView().entrySet()) {
                         pvView.ShowDataInPV(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
@@ -291,14 +306,15 @@ public class HostAndGuestView extends View.View {
                     pvView.setDatasNotWrittenInPVViewAndTheXPosition(new HashMap<>());
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
         }
         try {
             for (String string : massagedidntshowedInInGroup) {
                 ShowDataInPV(string, 100);
             }
             massagedidntshowedInInGroup = new ArrayList<>();
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 
     private void AddDataImageOrGifsOrEmojiToPv(String path, int height, int width, int x) {
@@ -326,7 +342,7 @@ public class HostAndGuestView extends View.View {
         rectangle.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
-                makeNodesChangeTheY((int)(event.getDeltaY()/8),massageHistoryNodes);
+                makeNodesChangeTheY((int) (event.getDeltaY() / 8), massageHistoryNodes);
             }
         });
 
@@ -398,17 +414,17 @@ public class HostAndGuestView extends View.View {
         clipRectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (root.getChildren().contains(ipTextField)){
-                    String massage=textField.getText();
-                    Changes.AddMassageToMassageThatShouldSend("@"+massage);
+                if (root.getChildren().contains(ipTextField)) {
+                    String massage = textField.getText();
+                    Changes.AddMassageToMassageThatShouldSend("@" + massage);
                     massagedidntshowedInInGroup.add(massage);
                     Changes.WeHaveNewMassageToShow();
-                }else {
+                } else {
                     String massage = textField.getText();
                     AddMassageToHistoryAndMassageNotWrittenInGroup(massage);
                     Changes.WeHaveNewMassageToShow();
-                    for(Map.Entry<Socket,PVView> entry: GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()){
-                        entry.getValue().getDataToSendThatWeDidntSendThem().add("@"+massage);
+                    for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+                        entry.getValue().getDataToSendThatWeDidntSendThem().add("@" + massage);
                     }
 
                 }
@@ -430,11 +446,11 @@ public class HostAndGuestView extends View.View {
         root.getChildren().addAll(ipTextField, portTextField);
     }
 
-    private void makeNodesChangeTheY(int y,ArrayList<Node> nodes){
-        for (Node node: nodes) {
+    private void makeNodesChangeTheY(int y, ArrayList<Node> nodes) {
+        for (Node node : nodes) {
             if (node instanceof Rectangle) {
-                int newx=(int)((Rectangle) node).getX();
-                int newy=(int)((Rectangle) node).getY()+y;
+                int newx = (int) ((Rectangle) node).getX();
+                int newy = (int) ((Rectangle) node).getY() + y;
                 node.relocate(newx, newy);
                 if (((Rectangle) node).getY() - y >= 119 & ((Rectangle) node).getY() - y <= 750) {
                     if (((Rectangle) node).getY() >= 750 | ((Rectangle) node).getY() <= 120) {
@@ -443,8 +459,7 @@ public class HostAndGuestView extends View.View {
                         } catch (Exception e) {
                         }
                     }
-                }
-                else if (((Rectangle) node).getY() - y <= 120 | ((Rectangle) node).getY() - y >= 750) {
+                } else if (((Rectangle) node).getY() - y <= 120 | ((Rectangle) node).getY() - y >= 750) {
                     if (((Rectangle) node).getY() <= 750 & ((Rectangle) node).getY() >= 120) {
                         try {
                             root.getChildren().addAll(node);
@@ -462,8 +477,7 @@ public class HostAndGuestView extends View.View {
                         } catch (Exception e) {
                         }
                     }
-                }
-                else if (node.getLayoutY() - y <= 120 | node.getLayoutY() - y >= 750) {
+                } else if (node.getLayoutY() - y <= 120 | node.getLayoutY() - y >= 750) {
                     if (node.getLayoutY() <= 750 & node.getLayoutY() >= 120) {
                         try {
                             root.getChildren().addAll(node);
@@ -475,22 +489,22 @@ public class HostAndGuestView extends View.View {
         }
     }
 
-    private void MakeContactsViewScrolling(Node node){
+    private void MakeContactsViewScrolling(Node node) {
         node.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
-                makeNodesChangeTheY((int)(event.getDeltaY()/8),currentContactsNode);
+                makeNodesChangeTheY((int) (event.getDeltaY() / 8), currentContactsNode);
             }
         });
 
     }
 
-    private void AddReturnToMainMenu(Stage primaryStage){
-        Label label=new Label("MainMenu");
+    private void AddReturnToMainMenu(Stage primaryStage) {
+        Label label = new Label("MainMenu");
         label.setTextFill(Paint.valueOf("White"));
         label.setFont(Font.font(20));
-        label.relocate(25,25);
-        Rectangle rectangle=new Rectangle(20,20,110,45);
+        label.relocate(25, 25);
+        Rectangle rectangle = new Rectangle(20, 20, 110, 45);
         rectangle.setFill(Paint.valueOf("White"));
         rectangle.setArcHeight(20);
         rectangle.setArcWidth(20);
@@ -515,12 +529,171 @@ public class HostAndGuestView extends View.View {
             }
         });
 
-        root.getChildren().addAll(label,rectangle);
+        root.getChildren().addAll(label, rectangle);
     }
 
-    private void SendConnectedClientDataToOther(){
+    public void SendConnectedClientDataToOther() {
+        String data = "D@";
+        for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+            data += entry.getValue().getContactName() + "," + entry.getValue().getContactMoneyInGame() + "," + entry.getValue().getContactLevelInMission() + " ";
+        }
+        User user = Game.getGameInstance().getCurrentUserAccount();
+        data += "Server:" + user.getAccountName() + "," + user.getMoney() + "," + user.getUserLevel();
+        for (PVView pvView : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().values()) {
+            pvView.AddDataToMassageToSendThatWeDidntSendThem(data);
+        }
 
     }
 
+    private void AddScoreBoardButton() {
+        Circle circle = new Circle(725, 815, 60, Paint.valueOf("White"));
+        circle.setOpacity(0.2);
+        circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                circle.setOpacity(0.4);
+            }
+        });
+        circle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                circle.setOpacity(0.2);
+            }
+        });
+        Label scoreBoardLabel = new Label("ScoreBoard");
+        scoreBoardLabel.setFont(Font.font(20));
+        scoreBoardLabel.relocate(675, 805);
+        scoreBoardLabel.setTextFill(Paint.valueOf("White"));
+        circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ReloadCurrentPLayerSortedByMoneyAndViewWhenScoreBoardIsShowing();
+                if (scoreboardRectangle.getY() == 900) {
+                    AddScoreBoardRectangle();
+                } else {
+                    RemoveScoreBoardRectangle();
+                }
+            }
+        });
+        root.getChildren().addAll(scoreBoardLabel, circle);
+        scoreboardRectangle.setArcWidth(40);
+        scoreboardRectangle.setOpacity(0.5);
+        scoreboardRectangle.setFill(Paint.valueOf("White"));
+        scoreboardRectangle.setArcHeight(40);
+        root.getChildren().addAll(scoreboardRectangle);
+    }
 
+    private void AddScoreBoardRectangle() {
+        KeyValue rectangleY = new KeyValue(scoreboardRectangle.yProperty(), 150);
+        KeyFrame rectangleFrame = new KeyFrame(Duration.seconds(1), rectangleY);
+        Timeline timeline = new Timeline(rectangleFrame);
+        timeline.play();
+        timeline.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                AddScoreBoardItems();
+            }
+        });
+
+    }
+
+    private void RemoveScoreBoardRectangle() {
+        KeyValue rectangleY = new KeyValue(scoreboardRectangle.yProperty(), 900);
+        KeyFrame rectangleFrame = new KeyFrame(Duration.seconds(1), rectangleY);
+        Timeline timeline = new Timeline(rectangleFrame);
+        timeline.play();
+        RemoveScoreBoardItemsFromViewAndDeleteOldNodesFromArray();
+
+    }
+
+    private void AddScoreBoardItems() {
+        int StartYForPlayername = 160;
+        int number = 1;
+        for (String playerName : currentPlayerNameSortbyMoney) {
+            Label labelResultForContact;
+            if (!playerName.equals(Game.getGameInstance().getCurrentUserAccount().getAccountName())) {
+                PVView pvView = findPvViewByUserName(playerName);
+                labelResultForContact = new Label(number + " " + playerName + ": " + pvView.getContactMoneyInGame());
+
+            }else{
+                labelResultForContact = new Label(number + " " + playerName + ": " + Game.getGameInstance().getCurrentUserAccount().getMoney());
+
+            }
+            labelResultForContact.setTextFill(Paint.valueOf("Black"));
+            labelResultForContact.setFont(Font.font(25));
+            labelResultForContact.setStyle("-fx-background-color: rgb(114,144,174);-fx-arc-height: 30;-fx-arc-width: 30");
+            labelResultForContact.relocate(500, StartYForPlayername);
+
+            currentPlayerNodeSortbyMoney.add(labelResultForContact);
+            number++;
+            StartYForPlayername += 50;
+        }
+    }
+
+    private void RemoveScoreBoardItemsFromViewAndDeleteOldNodesFromArray() {
+        for (Node node : currentPlayerNodeSortbyMoney) {
+            root.getChildren().removeAll(node);
+        }
+        currentPlayerNodeSortbyMoney=new ArrayList<>();
+    }
+
+    private void SortCurrentPlayerScore() {
+        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> copy = new ArrayList<>(currentPlayerNameSortbyMoney);
+        ArrayList<Integer> usersMoney = new ArrayList<>();
+        for (String name : copy) {
+            if (!name.equals(Game.getGameInstance().getCurrentUserAccount().getAccountName())) {
+                usersMoney.add((Integer.valueOf(findPvViewByUserName(name).getContactMoneyInGame())));
+            } else {
+                usersMoney.add(Game.getGameInstance().getCurrentUserAccount().getMoney());
+            }
+        }
+        while (copy.size() > 0) {
+            int maxMoney = Collections.max(usersMoney);
+            int index = usersMoney.indexOf((Integer) maxMoney);
+            String name = copy.get(index);
+            if (!name.equals(Game.getGameInstance().getCurrentUserAccount().getAccountName())) {
+                if (Integer.valueOf(findPvViewByUserName(name).getContactMoneyInGame()).equals(maxMoney)) {
+                    result.add(name);
+                    copy.remove(index);
+                    usersMoney.remove(index);
+                }
+            }else{
+                if (Integer.valueOf(Game.getGameInstance().getCurrentUserAccount().getMoney()).equals(maxMoney)) {
+                    result.add(name);
+                    copy.remove(index);
+                    usersMoney.remove(index);
+                }
+            }
+        }
+        currentPlayerNameSortbyMoney = new ArrayList<>(result);
+    }
+
+    private void AddCurrentPlayerInScoreBoardAndRemoveOldList() {
+        currentPlayerNameSortbyMoney = new ArrayList<>();
+        try {
+            for (PVView pvView : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().values()) {
+                currentPlayerNameSortbyMoney.add(pvView.getContactName());
+            }
+        }catch (Exception e){e.printStackTrace();}
+        currentPlayerNameSortbyMoney.add(Game.getGameInstance().getCurrentUserAccount().getAccountName());
+    }
+
+    public void ReloadCurrentPLayerSortedByMoneyAndViewWhenScoreBoardIsShowing() {
+        AddCurrentPlayerInScoreBoardAndRemoveOldList();
+        SortCurrentPlayerScore();
+        if (scoreboardRectangle.getY()!=900){
+            RemoveScoreBoardItemsFromViewAndDeleteOldNodesFromArray();
+            AddScoreBoardItems();
+        }
+    }
+
+    public static PVView findPvViewByUserName(String userName) {
+        for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+            if (entry.getValue().getContactName().equals(userName)) {
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
 }
