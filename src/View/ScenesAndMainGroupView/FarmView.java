@@ -853,12 +853,55 @@ public class FarmView extends View {
         spinneryView.setFitHeight(150);
         spinneryView.setFitWidth(150);
         spinneryView.setViewport(new Rectangle2D(0, 0, 130, 106));
+
+        File calloutFile = new File("Data\\Callout.png");
+        Image calloutImage = new Image(calloutFile.toURI().toString());
+        ImageView calloutView = new ImageView(calloutImage);
+
+        File productFile = new File("Data\\Textures\\Products\\Wool\\normal.png");
+        Image productImage = new Image(productFile.toURI().toString());
+        ImageView productView = new ImageView(productImage);
+
+        File productFile_2 = new File("Data\\Textures\\Products\\Sewing.png");
+        Image productImage_2 = new Image(productFile_2.toURI().toString());
+        ImageView productView_2 = new ImageView(productImage_2);
+        Text text = new Text();
+
+        File arrowFile = new File("Data\\Arrow.png");
+        Image arrowImage = new Image(arrowFile.toURI().toString());
+        ImageView arrowView = new ImageView(arrowImage);
+
+//        File plusFile = new File("Data\\Plus.png");
+//        Image plusImage = new Image(plusFile.toURI().toString());
+//        ImageView plusView = new ImageView(plusImage);
+
         spinneryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 spinneryView.relocate(95, 195);
                 spinneryView.setFitHeight(160);
                 spinneryView.setFitWidth(160);
+                calloutView.relocate(50, 95);
+                calloutView.setFitHeight(150);
+                calloutView.setFitWidth(225);
+                text.setText("Spinnery Factory");
+                text.setStyle("-fx-font-weight: bold");
+                text.setFont(Font.font(20));
+                text.relocate(85,135);
+                productView.setFitWidth(30);
+                productView.setFitHeight(30);
+                productView.relocate(100,170);
+                arrowView.setFitWidth(30);
+                arrowView.setFitHeight(20);
+                arrowView.relocate(150,175);
+                productView_2.setFitWidth(30);
+                productView_2.setFitHeight(30);
+                productView_2.relocate(200,170);
+
+//                plusView.setFitWidth(30);
+//                plusView.setFitHeight(30);
+//                plusView.relocate(100,150);
+                root.getChildren().addAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         spinneryView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -867,6 +910,7 @@ public class FarmView extends View {
                 spinneryView.relocate(100, 200);
                 spinneryView.setFitHeight(150);
                 spinneryView.setFitWidth(150);
+                root.getChildren().removeAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         spinneryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -910,12 +954,61 @@ public class FarmView extends View {
         cakeBakeryVeiw.setFitHeight(150);
         cakeBakeryVeiw.setFitWidth(150);
         cakeBakeryVeiw.setViewport(new Rectangle2D(0, 0, 184, 172));
+
+        File calloutFile = new File("Data\\Callout.png");
+        Image calloutImage = new Image(calloutFile.toURI().toString());
+        ImageView calloutView = new ImageView(calloutImage);
+
+        File productFile = new File("Data\\Textures\\Products\\Cake.png");
+        Image productImage = new Image(productFile.toURI().toString());
+        ImageView productView = new ImageView(productImage);
+
+        File productFile_2 = new File("Data\\Textures\\Products\\Flour.png");
+        Image productImage_2 = new Image(productFile_2.toURI().toString());
+        ImageView productView_2 = new ImageView(productImage_2);
+
+        File productFile_3 = new File("Data\\Textures\\Products\\FlouryCake.png");
+        Image productImage_3 = new Image(productFile_3.toURI().toString());
+        ImageView productView_3 = new ImageView(productImage_3);
+
+        Text text = new Text();
+
+        File arrowFile = new File("Data\\Arrow.png");
+        Image arrowImage = new Image(arrowFile.toURI().toString());
+        ImageView arrowView = new ImageView(arrowImage);
+
+        File plusFile = new File("Data\\Plus.png");
+        Image plusImage = new Image(plusFile.toURI().toString());
+        ImageView plusView = new ImageView(plusImage);
         cakeBakeryVeiw.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 cakeBakeryVeiw.relocate(95, 345);
                 cakeBakeryVeiw.setFitHeight(160);
                 cakeBakeryVeiw.setFitWidth(160);
+                calloutView.relocate(50, 245);
+                calloutView.setFitHeight(150);
+                calloutView.setFitWidth(225);
+                text.setText("Cake Bakery");
+                text.setStyle("-fx-font-weight: bold");
+                text.setFont(Font.font(20));
+                text.relocate(110,285);
+                productView.setFitWidth(30);
+                productView.setFitHeight(30);
+                productView.relocate(90,320);
+                plusView.setFitWidth(20);
+                plusView.setFitHeight(20);
+                plusView.relocate(125,325);
+                productView_2.setFitWidth(30);
+                productView_2.setFitHeight(30);
+                productView_2.relocate(150,320);
+                arrowView.setFitWidth(30);
+                arrowView.setFitHeight(20);
+                arrowView.relocate(185,325);
+                productView_3.setFitWidth(30);
+                productView_3.setFitHeight(30);
+                productView_3.relocate(220,320);
+                root.getChildren().addAll(calloutView,text,productView,arrowView,productView_2,productView_3,plusView);
             }
         });
         cakeBakeryVeiw.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -924,6 +1017,7 @@ public class FarmView extends View {
                 cakeBakeryVeiw.relocate(100, 350);
                 cakeBakeryVeiw.setFitHeight(150);
                 cakeBakeryVeiw.setFitWidth(150);
+                root.getChildren().removeAll(calloutView,text,productView,plusView,productView_2,productView_3,arrowView);
             }
         });
         cakeBakeryVeiw.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -967,12 +1061,61 @@ public class FarmView extends View {
         sewingFactoryView.setFitHeight(150);
         sewingFactoryView.setFitWidth(150);
         sewingFactoryView.setViewport(new Rectangle2D(0, 0, 170, 130));
+
+        File calloutFile = new File("Data\\Callout.png");
+        Image calloutImage = new Image(calloutFile.toURI().toString());
+        ImageView calloutView = new ImageView(calloutImage);
+
+        File productFile = new File("Data\\Textures\\Products\\Adornment.png");
+        Image productImage = new Image(productFile.toURI().toString());
+        ImageView productView = new ImageView(productImage);
+
+        File productFile_2 = new File("Data\\Textures\\Products\\Fabric.png");
+        Image productImage_2 = new Image(productFile_2.toURI().toString());
+        ImageView productView_2 = new ImageView(productImage_2);
+
+        File productFile_3 = new File("Data\\Textures\\Products\\CarnivalDress.png");
+        Image productImage_3 = new Image(productFile_3.toURI().toString());
+        ImageView productView_3 = new ImageView(productImage_3);
+
+        Text text = new Text();
+
+        File arrowFile = new File("Data\\Arrow.png");
+        Image arrowImage = new Image(arrowFile.toURI().toString());
+        ImageView arrowView = new ImageView(arrowImage);
+
+        File plusFile = new File("Data\\Plus.png");
+        Image plusImage = new Image(plusFile.toURI().toString());
+        ImageView plusView = new ImageView(plusImage);
         sewingFactoryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 sewingFactoryView.relocate(95, 495);
                 sewingFactoryView.setFitHeight(160);
                 sewingFactoryView.setFitWidth(160);
+                calloutView.relocate(50, 395);
+                calloutView.setFitHeight(150);
+                calloutView.setFitWidth(225);
+                text.setText("Sewing Factory");
+                text.setStyle("-fx-font-weight: bold");
+                text.setFont(Font.font(20));
+                text.relocate(100,435);
+                productView.setFitWidth(30);
+                productView.setFitHeight(30);
+                productView.relocate(90,470);
+                plusView.setFitWidth(20);
+                plusView.setFitHeight(20);
+                plusView.relocate(125,475);
+                productView_2.setFitWidth(30);
+                productView_2.setFitHeight(30);
+                productView_2.relocate(150,470);
+                arrowView.setFitWidth(30);
+                arrowView.setFitHeight(20);
+                arrowView.relocate(185,475);
+                productView_3.setFitWidth(30);
+                productView_3.setFitHeight(30);
+                productView_3.relocate(220,470);
+                root.getChildren().addAll(calloutView,text,productView,arrowView,productView_2,productView_3,plusView);
             }
         });
         sewingFactoryView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -981,6 +1124,7 @@ public class FarmView extends View {
                 sewingFactoryView.relocate(100, 500);
                 sewingFactoryView.setFitHeight(150);
                 sewingFactoryView.setFitWidth(150);
+                root.getChildren().removeAll(calloutView,text,productView,arrowView,productView_2,productView_3,plusView);
             }
         });
         sewingFactoryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1024,12 +1168,47 @@ public class FarmView extends View {
         WeavingView.setFitHeight(150);
         WeavingView.setFitWidth(150);
         WeavingView.setViewport(new Rectangle2D(0, 0, 166, 116));
+
+        File calloutFile = new File("Data\\Callout.png");
+        Image calloutImage = new Image(calloutFile.toURI().toString());
+        ImageView calloutView = new ImageView(calloutImage);
+
+        File productFile = new File("Data\\Textures\\Products\\Sewing.png");
+        Image productImage = new Image(productFile.toURI().toString());
+        ImageView productView = new ImageView(productImage);
+
+        File productFile_2 = new File("Data\\Textures\\Products\\Fabric.png");
+        Image productImage_2 = new Image(productFile_2.toURI().toString());
+        ImageView productView_2 = new ImageView(productImage_2);
+        Text text = new Text();
+
+        File arrowFile = new File("Data\\Arrow.png");
+        Image arrowImage = new Image(arrowFile.toURI().toString());
+        ImageView arrowView = new ImageView(arrowImage);
         WeavingView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 WeavingView.relocate(995, 195);
                 WeavingView.setFitHeight(160);
                 WeavingView.setFitWidth(160);
+                calloutView.relocate(950, 95);
+                calloutView.setFitHeight(150);
+                calloutView.setFitWidth(225);
+                text.setText("Weaving Factory");
+                text.setStyle("-fx-font-weight: bold");
+                text.setFont(Font.font(20));
+                text.relocate(985,135);
+                productView.setFitWidth(30);
+                productView.setFitHeight(30);
+                productView.relocate(1000,170);
+                arrowView.setFitWidth(30);
+                arrowView.setFitHeight(20);
+                arrowView.relocate(1050,175);
+                productView_2.setFitWidth(30);
+                productView_2.setFitHeight(30);
+                productView_2.relocate(1100,170);
+
+                root.getChildren().addAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         WeavingView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -1038,6 +1217,7 @@ public class FarmView extends View {
                 WeavingView.relocate(1000, 200);
                 WeavingView.setFitHeight(150);
                 WeavingView.setFitWidth(150);
+                root.getChildren().removeAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         WeavingView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1080,13 +1260,48 @@ public class FarmView extends View {
         cookieBakeryView.relocate(1000, 350);
         cookieBakeryView.setFitHeight(150);
         cookieBakeryView.setFitWidth(150);
-        cookieBakeryView.setViewport(new Rectangle2D(0, 0, 134, 142));
+        cookieBakeryView.setViewport(new Rectangle2D(0, 0, 140, 130));
+
+        File calloutFile = new File("Data\\Callout.png");
+        Image calloutImage = new Image(calloutFile.toURI().toString());
+        ImageView calloutView = new ImageView(calloutImage);
+
+        File productFile = new File("Data\\Textures\\Products\\EggPowder.png");
+        Image productImage = new Image(productFile.toURI().toString());
+        ImageView productView = new ImageView(productImage);
+
+        File productFile_2 = new File("Data\\Textures\\Products\\Cake.png");
+        Image productImage_2 = new Image(productFile_2.toURI().toString());
+        ImageView productView_2 = new ImageView(productImage_2);
+
+        Text text = new Text();
+
+        File arrowFile = new File("Data\\Arrow.png");
+        Image arrowImage = new Image(arrowFile.toURI().toString());
+        ImageView arrowView = new ImageView(arrowImage);
         cookieBakeryView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 cookieBakeryView.relocate(995, 345);
                 cookieBakeryView.setFitHeight(160);
                 cookieBakeryView.setFitWidth(160);
+                calloutView.relocate(950, 245);
+                calloutView.setFitHeight(150);
+                calloutView.setFitWidth(225);
+                text.setText("Cookie Bakery");
+                text.setStyle("-fx-font-weight: bold");
+                text.setFont(Font.font(20));
+                text.relocate(1000,285);
+                productView.setFitWidth(30);
+                productView.setFitHeight(30);
+                productView.relocate(1000,320);
+                productView_2.setFitWidth(30);
+                productView_2.setFitHeight(30);
+                productView_2.relocate(1100,320);
+                arrowView.setFitWidth(30);
+                arrowView.setFitHeight(20);
+                arrowView.relocate(1050,325);
+                root.getChildren().addAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         cookieBakeryView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -1095,6 +1310,7 @@ public class FarmView extends View {
                 cookieBakeryView.relocate(1000, 350);
                 cookieBakeryView.setFitHeight(150);
                 cookieBakeryView.setFitWidth(150);
+                root.getChildren().removeAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         cookieBakeryView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1138,12 +1354,47 @@ public class FarmView extends View {
         eggPowderPlantView.setFitHeight(150);
         eggPowderPlantView.setFitWidth(150);
         eggPowderPlantView.setViewport(new Rectangle2D(0, 0, 128, 114));
+
+        File calloutFile = new File("Data\\Callout.png");
+        Image calloutImage = new Image(calloutFile.toURI().toString());
+        ImageView calloutView = new ImageView(calloutImage);
+
+        File productFile = new File("Data\\Textures\\Products\\Egg\\normal.png");
+        Image productImage = new Image(productFile.toURI().toString());
+        ImageView productView = new ImageView(productImage);
+
+        File productFile_2 = new File("Data\\Textures\\Products\\EggPowder.png");
+        Image productImage_2 = new Image(productFile_2.toURI().toString());
+        ImageView productView_2 = new ImageView(productImage_2);
+
+        Text text = new Text();
+
+        File arrowFile = new File("Data\\Arrow.png");
+        Image arrowImage = new Image(arrowFile.toURI().toString());
+        ImageView arrowView = new ImageView(arrowImage);
         eggPowderPlantView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 eggPowderPlantView.relocate(995, 495);
                 eggPowderPlantView.setFitHeight(160);
                 eggPowderPlantView.setFitWidth(160);
+                calloutView.relocate(950, 395);
+                calloutView.setFitHeight(150);
+                calloutView.setFitWidth(225);
+                text.setText("Egg Powder Plant");
+                text.setStyle("-fx-font-weight: bold");
+                text.setFont(Font.font(20));
+                text.relocate(980,435);
+                productView.setFitWidth(22.5);
+                productView.setFitHeight(22.5);
+                productView.relocate(1000,470);
+                productView_2.setFitWidth(30);
+                productView_2.setFitHeight(30);
+                productView_2.relocate(1100,470);
+                arrowView.setFitWidth(30);
+                arrowView.setFitHeight(20);
+                arrowView.relocate(1050,475);
+                root.getChildren().addAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         eggPowderPlantView.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -1152,6 +1403,7 @@ public class FarmView extends View {
                 eggPowderPlantView.relocate(1000, 500);
                 eggPowderPlantView.setFitHeight(150);
                 eggPowderPlantView.setFitWidth(150);
+                root.getChildren().removeAll(calloutView,text,productView,arrowView,productView_2);
             }
         });
         eggPowderPlantView.setOnMouseClicked(new EventHandler<MouseEvent>() {
