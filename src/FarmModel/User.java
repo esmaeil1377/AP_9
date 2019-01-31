@@ -23,7 +23,7 @@ public class User {
     private int isMission2Ficnished=0;
     private int isMission3Ficnished=0;
     private int isMission4Ficnished=0;
-    private int money=1000;
+    private int money=100000;
 
     private int CatLevel;
     private int CakeBakeryLevel;
@@ -128,11 +128,15 @@ public class User {
         return truckLevel;
     }
 
-    public void setHelicopterLevel(int helicopterLevel) {
+    public void setHelicopterLevel(int helicopterLevel) throws MaxLevelExceeded {
+        if(helicopterLevel == 4)
+            throw new MaxLevelExceeded();
         HelicopterLevel = helicopterLevel;
     }
 
-    public void setTruckLevel(int truckLevel) {
+    public void setTruckLevel(int truckLevel) throws MaxLevelExceeded {
+        if(truckLevel == 4)
+            throw new MaxLevelExceeded();
         this.truckLevel = truckLevel;
     }
 
@@ -144,11 +148,16 @@ public class User {
         return wellLevel;
     }
 
-    public void setWellLevel(int wellLevel) {
+    public void setWellLevel(int wellLevel) throws MaxLevelExceeded {
+        if (wellLevel == 3) {
+            throw new MaxLevelExceeded();
+        }
         this.wellLevel = wellLevel;
     }
 
-    public void setWarehouseLevel(int warehouseLevel) {
+    public void setWarehouseLevel(int warehouseLevel) throws MaxLevelExceeded {
+        if(warehouseLevel == 4)
+            throw new MaxLevelExceeded();
         this.warehouseLevel = warehouseLevel;
     }
 
@@ -180,7 +189,7 @@ public class User {
     }
 
     public void setCakeBakeryLevel(int cakeBakeryLevel) throws MaxLevelExceeded {
-        if (CakeBakeryLevel==5){
+        if (CakeBakeryLevel==4){
             throw new MaxLevelExceeded();
         }
         CakeBakeryLevel = cakeBakeryLevel;
@@ -191,7 +200,7 @@ public class User {
     }
 
     public void setCookieBakeryLevel(int cookieBakeryLevel) throws MaxLevelExceeded {
-        if (CookieBakeryLevel==5){
+        if (CookieBakeryLevel==4){
             throw new MaxLevelExceeded();
         }
         CookieBakeryLevel = cookieBakeryLevel;
@@ -202,7 +211,7 @@ public class User {
     }
 
     public void setEggPowderPlantLevel(int eggPowderPlantLevel) throws MaxLevelExceeded {
-        if (EggPowderPlantLevel==5){
+        if (EggPowderPlantLevel==4){
             throw new MaxLevelExceeded();
         }
         EggPowderPlantLevel = eggPowderPlantLevel;
@@ -213,7 +222,7 @@ public class User {
     }
 
     public void setSewingFactoryLevel(int sewingFactoryLevel) throws MaxLevelExceeded {
-        if (SewingFactoryLevel==5){
+        if (SewingFactoryLevel==4){
             throw new MaxLevelExceeded();
         }
         SewingFactoryLevel = sewingFactoryLevel;
@@ -224,7 +233,7 @@ public class User {
     }
 
     public void setSpinneryLevel(int spinneryLevel) throws MaxLevelExceeded {
-        if (SpinneryLevel==5){
+        if (SpinneryLevel==4){
             throw new MaxLevelExceeded();
         }
         SpinneryLevel = spinneryLevel;
@@ -235,7 +244,7 @@ public class User {
     }
 
     public void setWeavingFactoryLevel(int weavingFactoryLevel) throws MaxLevelExceeded {
-        if (WeavingFactoryLevel==5){
+        if (WeavingFactoryLevel==4){
             throw new MaxLevelExceeded();
         }
         WeavingFactoryLevel = weavingFactoryLevel;
