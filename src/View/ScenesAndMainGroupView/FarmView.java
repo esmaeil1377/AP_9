@@ -104,8 +104,6 @@ public class FarmView extends View {
                 int speed = Integer.valueOf(speedText.substring(speedText.length() - 2));
                 if (time == -1) time = now;
                 if (now - time > (2000000000) - (speed * 15881818)) {
-                    System.out.print(speed + ":speed");
-                    System.out.println(now);
                     time = now;
                     try {
                         new TurnRequest("turn 1");
@@ -161,11 +159,6 @@ public class FarmView extends View {
                     int[] cellPosition = getCellPositionByPosition((int) xPosition, (int) yPosition);
                     int xCell = cellPosition[0];
                     int yCell = cellPosition[1];
-                    System.out.println("*****");
-                    System.out.println(xCell);
-                    System.out.println(yCell);
-                    System.out.println(xPosition);
-                    System.out.println(yPosition);
                     try {
                         new PlantRequest("plant " + String.valueOf(xCell) + " " + String.valueOf(yCell));
                         AddGrassByOneClick(xCell, yCell);
@@ -2029,6 +2022,9 @@ public class FarmView extends View {
                 isXSet = true;
             }
             if (i * 25 < standardY && standardY < (i + 1) * 25) {
+                if (i==0 || i==1){
+                    System.out.println("fuck");
+                }
                 position[1] = i;
                 isYSet = true;
             }
@@ -2283,7 +2279,6 @@ public class FarmView extends View {
     }
 
     public void ShowDogMoving(int xCell1, int yCell1, int xCell2, int yCell2) {
-        System.out.println("ShowDogMoving");
         int speed = GameView.getGameView().getStartMenuView().getGameSpeed();
         int duration = (int) (((2000000000) - (speed * 15881818)) / 1000000);
         File dogFile = null;
@@ -2830,6 +2825,7 @@ public class FarmView extends View {
     private void AddSpeedCircleToSettingInFarm(Stage primaryStage) {
         speedCircle = new Circle(466, 697, 60, Color.rgb(144, 125, 147));
         speedCircle.setOpacity(0.4);
+        speedCircle.setViewOrder(-0.98);
         speedCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -3078,7 +3074,6 @@ public class FarmView extends View {
                 cells.put(new ArrayList<>(Arrays.asList(i, j)), new HashMap<>());
             }
         }
-        System.out.println(cells.keySet());
     }
 
     public void RemoveGrassAndProductFromMap(String nodeName, int xCell, int yCell) {
