@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.Scanner;
 
+import static View.ScenesAndMainGroupView.HostAndGuestView.findPvViewByUserName;
+
 public class ReaderForGuest implements Runnable{
     private Socket socket;
     private boolean isServerConnected=true;
@@ -47,9 +49,19 @@ public class ReaderForGuest implements Runnable{
                     //it means it is sending the information of account
                     GetDataNotMassageFromSocket(inputString, socket);
                 } else {
-                    PVView pvView = GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket);
-                    pvView.AddDataToDataNotWritten(inputString, 10);
-                    Changes.WeHaveNewMassageToShow();
+                    if (inputString.substring(0, 1).equals("#")) {
+                        //it means it is sending the massage for other user via server
+                        String senderContactName = inputString.split("#")[1];
+                        String massage = inputString.split("#")[2];
+                        PVView pvView = findPvViewByUserName(senderContactName);
+                        pvView.AddDataToDataNotWritten(massage, 100);
+                        Changes.WeHaveNewMassageToShow();
+                    } else {
+                        //this means that server send you a massage and we should show in server pvView
+                        PVView pvView = findServerPvView();
+                        pvView.AddDataToDataNotWritten(inputString, 100);
+                        Changes.WeHaveNewMassageToShow();
+                    }
                 }
             }catch (Exception e){
                 e.printStackTrace();
@@ -57,46 +69,33 @@ public class ReaderForGuest implements Runnable{
         }
     }
 
-    public static void GetDataNotMassageFromSocket(String inputString, Socket socket) {
-        if (inputString.substring(0,1).equals("N")){
-            //it means server is sending the server name.
-            String userName=inputString.substring(2);
-            GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVView(socket,"Server: "+userName);
+
+    private PVView findServerPvView() {
+        for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+            if (entry.getValue().getContactName().length() > 7) {
+                if (entry.getValue().getContactName().substring(0,7).equals("Server:")) {
+                    return entry.getValue();
+                }
+            }
+        }
+        return null;
+    }
+
+    private static void GetDataNotMassageFromSocket(String inputString, Socket socket) {
+        if (inputString.substring(0,1).equals("C")){
+            //it means server is sending the server Data.
+            String data=inputString.substring(2);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVView(socket,"Server: "+data.split(" ")[0]);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactMoneyInGame(data.split(" ")[1]);
+            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactLevelInMission(data.split(" ")[2]);
+            GameView.getGameView().getHostAndGuestView().SendConnectedClientDataToOther();
             Changes.WeHaveNewContact();
-            SendJoinMassageForEveryOneInGroup(userName);
-            SendOldMassageForNewUsers(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket));
-        }else if (inputString.substring(0,1).equals("M")){
-            //it means server is sending the server money.
-            String userMoney=inputString.substring(2);
-            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactMoneyInGame(userMoney);
-        }else if (inputString.substring(0,1).equals("L")){
-            //it means the  server is sending the server level in game.
-            String userlevel=inputString.substring(2);
-            GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket).setContactLevelInMission(userlevel);
         }else if (inputString.substring(0,1).equals("D")){
             //it means server is sending again the contacts.means the user that are connected to server
-            String[] contactsData=inputString.substring(2).split(" ");
-            for (String contactData:contactsData) {
-                String Name=contactData.split(",")[0];
-                String Money=contactData.split(",")[1];
-                String Level=contactData.split(",")[2];
-                GameView.getGameView().getStartMenuView().getServerOrGuest().AddNewSocketToConnectedSocketsAndPVViewOrReloadItPV(Name,Money,Level);
-            }
+            String[] contactsDatas=inputString.substring(2).split(" ");
+            GameView.getGameView().getStartMenuView().getServerOrGuest().ReloadContactsAndContactDataThenScoreBoard(contactsDatas);
             Changes.WeHaveNewContact();
+        }
+    }
 
-        }else if (inputString.substring(0,1).equals("D")){
-            String[] connectedContacts=inputString.substring(2).split(" ");
-        }
-    }
-    private static void SendJoinMassageForEveryOneInGroup(String newGuestName){
-        for (Map.Entry<Socket,PVView> entry: GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()){
-            entry.getValue().getDataToSendThatWeDidntSendThem().add("@"+newGuestName+" joined us.");
-        }
-        GameView.getGameView().getHostAndGuestView().AddMassageToHistoryAndMassageNotWrittenInGroup(newGuestName+" joined us.");
-    }
-    private static void SendOldMassageForNewUsers(PVView pvView){
-        for (String massage:GameView.getGameView().getHostAndGuestView().getHistoryMassage()){
-            pvView.getDataToSendThatWeDidntSendThem().add("@"+massage);
-        }
-    }
 }
