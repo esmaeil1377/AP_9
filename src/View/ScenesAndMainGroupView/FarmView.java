@@ -182,12 +182,16 @@ public class FarmView extends View {
     }
 
     private void AddMenuClick(Stage primaryStage) {
+        double viewOrder1=-0.9;
+        double viewOrder2=-0.94;
+        double viewOrder3=-0.98;
         File settingFile = new File("Data\\MenuClick\\Setting.png");
         Image settingImage = new Image(settingFile.toURI().toString());
         ImageView settingView = new ImageView(settingImage);
         settingView.relocate(440, 680);
         settingView.setFitHeight(30);
         settingView.setFitWidth(55);
+        settingView.setViewOrder(viewOrder3);
 
         File saveFile = new File("Data\\MenuClick\\Save.png");
         Image saveImage = new Image(saveFile.toURI().toString());
@@ -205,6 +209,7 @@ public class FarmView extends View {
                 }
             }
         });
+        saveView.setViewOrder(viewOrder3);
 
         File restartFile = new File("Data\\MenuClick\\Restart.png");
         Image restartImage = new Image(restartFile.toURI().toString());
@@ -212,6 +217,7 @@ public class FarmView extends View {
         restartImageView.relocate(266, 655);
         restartImageView.setFitHeight(40);
         restartImageView.setFitWidth(60);
+        restartImageView.setViewOrder(viewOrder3);
 
 
         File continueFile = new File("Data\\MenuClick\\Continue.png");
@@ -220,6 +226,7 @@ public class FarmView extends View {
         continueImageView.relocate(50, 530);
         continueImageView.setFitHeight(40);
         continueImageView.setFitWidth(60);
+        continueImageView.setViewOrder(viewOrder3);
 
         File mapFile = new File("Data\\MenuClick\\Map.png");
         Image mapImage = new Image(mapFile.toURI().toString());
@@ -227,6 +234,7 @@ public class FarmView extends View {
         mapTextView.relocate(300, 780);
         mapTextView.setFitHeight(30);
         mapTextView.setFitWidth(50);
+        mapTextView.setViewOrder(viewOrder3);
 
         File menuTextFile = new File("Data\\MenuClick\\MainMenu.png");
         Image menuTextImage = new Image(menuTextFile.toURI().toString());
@@ -234,11 +242,13 @@ public class FarmView extends View {
         menuTextImageView.relocate(175, 563.495);
         menuTextImageView.setFitHeight(40);
         menuTextImageView.setFitWidth(70);
+        menuTextImageView.setViewOrder(viewOrder3);
 
 
         Circle menuCircle = new Circle(80, 800, 0);
         menuCircle.setOpacity(0.6);
         menuCircle.setFill(Color.rgb(216, 218, 34));
+        menuCircle.setViewOrder(viewOrder1);
 
         Circle emptyCircle = new Circle(390.84, 502.16, 0);
         emptyCircle.setOpacity(0.6);
@@ -261,6 +271,7 @@ public class FarmView extends View {
 
             }
         });
+        emptyCircle.setViewOrder(viewOrder2);
 
         Circle savecircle = new Circle(200, 414, 0);
         savecircle.setOpacity(0.6);
@@ -289,6 +300,7 @@ public class FarmView extends View {
                 PlayBubbleSound();
             }
         });
+        savecircle.setViewOrder(viewOrder2);
 
         Circle settingCircle = new Circle(466, 697, 0);
         settingCircle.setOpacity(0.6);
@@ -318,10 +330,12 @@ public class FarmView extends View {
                 }
             }
         });
+        settingCircle.setViewOrder(viewOrder2);
 
         Circle mainMenuCircle = new Circle(205, 583.495, 0);
         mainMenuCircle.setOpacity(0.6);
         mainMenuCircle.setFill(Color.rgb(64, 45, 67));
+        mainMenuCircle.setViewOrder(viewOrder2);
         mainMenuCircle.setOnMouseEntered(event -> mainMenuCircle.setOpacity(0.8));
         mainMenuCircle.setOnMouseExited(event -> mainMenuCircle.setOpacity(0.6));
         mainMenuCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -413,10 +427,12 @@ public class FarmView extends View {
 
             }
         });
+        restartCircle.setViewOrder(viewOrder2);
 
         Circle mapCircle = new Circle(330, 800, 0);
         mapCircle.setOpacity(0.6);
         mapCircle.setFill(Color.rgb(64, 45, 67));
+        mapCircle.setViewOrder(viewOrder2);
         mapCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -459,6 +475,7 @@ public class FarmView extends View {
 
         Circle continueCircle = new Circle(80, 550, 0);
         continueCircle.setOpacity(0.6);
+        continueCircle.setViewOrder(viewOrder2);
         continueCircle.setFill(Color.rgb(64, 45, 67));
         continueCircle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override

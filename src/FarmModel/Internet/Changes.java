@@ -6,6 +6,17 @@ public class Changes {
     private static boolean NewContact =false;
     private static boolean NewMassage =false;
     private static ArrayList<String> massageShouldSendToServerForOtherUsersOrServerItSelf=new ArrayList<>();
+    private static boolean weHaveUserNameError=false;
+
+    public static boolean DoWeHaveUserNameError(){
+        return weHaveUserNameError;
+    }
+    public static void setWeHaveUserNameErrorfalse(){
+        weHaveUserNameError=false;
+    }
+    public static void WeHaveUsernameError(){
+        weHaveUserNameError=true;
+    }
 
     public static ArrayList<String> getMassageShouldSendToServerForOtherUsersOrServerItSelf() {
         return massageShouldSendToServerForOtherUsersOrServerItSelf;

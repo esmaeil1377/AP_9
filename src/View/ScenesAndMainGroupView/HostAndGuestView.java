@@ -109,7 +109,12 @@ public class HostAndGuestView extends View.View {
                     time += 1;
                     if (Changes.isThereAnyNewContact()) {
                         ReloadPVContacts(primaryStage);
+                        ReloadCurrentPLayerSortedByMoneyAndViewWhenScoreBoardIsShowing();
                         Changes.ContactViewReloaded();
+                    }
+                    if (Changes.DoWeHaveUserNameError()){
+                        GameView.getGameView().getHostAndGuestView().ShowThereIsAUserWithThisNameError();
+                        Changes.setWeHaveUserNameErrorfalse();
                     }
                     if (Changes.isThereAnyNewMassage()) {
                         try {
@@ -124,7 +129,7 @@ public class HostAndGuestView extends View.View {
             }
         };
         animationTimer.start();
-        AddShopBackgroundTBackground(primaryStage);
+        AddShopBackground(primaryStage);
         AddBackgroundBlackRectangle();
         AddGroupRectangleAndContactRectangle();
         AddTextFieldToGetPort();
@@ -358,7 +363,7 @@ public class HostAndGuestView extends View.View {
         root.getChildren().addAll(rectangle2);
     }
 
-    public void AddShopBackgroundTBackground(Stage primaryStage) {
+    public void AddShopBackground(Stage primaryStage) {
         File backGroundFile = new File("Data\\ShopBackground.jpg");
         Image backGroundImage = new Image(backGroundFile.toURI().toString());
         ImageView BackGroundView = new ImageView(backGroundImage);
@@ -580,6 +585,7 @@ public class HostAndGuestView extends View.View {
         scoreboardRectangle.setOpacity(0.5);
         scoreboardRectangle.setFill(Paint.valueOf("White"));
         scoreboardRectangle.setArcHeight(40);
+        scoreboardRectangle.setViewOrder(-0.9);
         root.getChildren().addAll(scoreboardRectangle);
     }
 
@@ -625,6 +631,8 @@ public class HostAndGuestView extends View.View {
             labelResultForContact.relocate(500, StartYForPlayername);
 
             currentPlayerNodeSortbyMoney.add(labelResultForContact);
+            labelResultForContact.setViewOrder(-0.95);
+            root.getChildren().addAll(labelResultForContact);
             number++;
             StartYForPlayername += 50;
         }
@@ -675,7 +683,9 @@ public class HostAndGuestView extends View.View {
             for (PVView pvView : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().values()) {
                 currentPlayerNameSortbyMoney.add(pvView.getContactName());
             }
-        }catch (Exception e){e.printStackTrace();}
+        }catch (Exception e){
+//            e.printStackTrace();
+        }
         currentPlayerNameSortbyMoney.add(Game.getGameInstance().getCurrentUserAccount().getAccountName());
     }
 
@@ -695,5 +705,38 @@ public class HostAndGuestView extends View.View {
             }
         }
         return null;
+    }
+
+    public void ShowThereIsAUserWithThisNameError(){
+        Label error=new Label("There Is Another User With Your User Name.");
+        error.relocate(780,130);
+        error.setFont(Font.font(20));
+        error.setTextFill(Paint.valueOf("White"));
+        error.setStyle("-fx-background-color: rgb(50,0,0)");
+        root.getChildren().addAll(error);
+        Rectangle rectangle=new Rectangle(0,0,0,30);
+        rectangle.setArcHeight(20);
+        rectangle.setArcWidth(20);
+        error.setClip(rectangle);
+        KeyValue w=new KeyValue(rectangle.widthProperty(),500);
+        KeyFrame wFrame=new KeyFrame(Duration.seconds(2),w);
+        Timeline timeline=new Timeline(wFrame);
+        timeline.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                KeyValue opacity=new KeyValue(rectangle.opacityProperty(),0);
+                KeyFrame opacityFrame=new KeyFrame(Duration.seconds(2),opacity);
+                Timeline opacityTimeLine=new Timeline(opacityFrame);
+                opacityTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        root.getChildren().removeAll(error);
+                    }
+                });
+                opacityTimeLine.play();
+            }
+        });
+        timeline.play();
+
     }
 }

@@ -34,7 +34,7 @@ public class WriterForServer implements Runnable {
                 try {
                     pvView = GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket);
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
                 ArrayList<String> pvStrings = pvView.getDataToSendThatWeDidntSendThem();
                 if (pvStrings.size() != 0) {
@@ -42,7 +42,7 @@ public class WriterForServer implements Runnable {
                     pvView.setDataToSendThatWeDidntSendThem(new ArrayList<>());
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         }
 

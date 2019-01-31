@@ -18,7 +18,6 @@ public class SocketRunnable implements Runnable {
         connectedSockets.put(socket,new PVView(contactName));
     }
     public void ReloadContactsAndContactDataThenScoreBoard(String[] contactDatas){
-        GameView.getGameView().getHostAndGuestView().ReloadCurrentPLayerSortedByMoneyAndViewWhenScoreBoardIsShowing();
         ArrayList<String> currnetContactNames=new ArrayList<>();
         for (String contactData:contactDatas){
             currnetContactNames.add(contactData.split(",")[0]);

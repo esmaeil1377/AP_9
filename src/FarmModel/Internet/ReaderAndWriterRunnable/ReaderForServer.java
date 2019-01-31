@@ -66,6 +66,7 @@ public class ReaderForServer implements Runnable {
                 for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
                     entry.getValue().getDataToSendThatWeDidntSendThem().add("@" + pvView.getContactName() + " disconnected");
                 }
+                GameView.getGameView().getHostAndGuestView().SendConnectedClientDataToOther();
 //                GameView.getGameView().getHostAndGuestView().getMassagedidntsent().add("@" + pvView.getContactName() + " disconnected");
                 Changes.WeHaveNewMassageToShow();
                 GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().remove(socket);
