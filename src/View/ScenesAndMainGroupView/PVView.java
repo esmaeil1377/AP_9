@@ -262,10 +262,18 @@ public class PVView extends View.View {
             @Override
             public void handle(MouseEvent event) {
                 TextField ipTextField=GameView.getGameView().getHostAndGuestView().getIpTextField();
-                if (GameView.getGameView().getHostAndGuestView().getRoot().getChildren().contains(textField)){
+                if (GameView.getGameView().getHostAndGuestView().getRoot().getChildren().contains(ipTextField)){
                     String massage=textField.getText();
-                    Changes.AddMassageToMassageThatShouldSend("#"+getContactName()+"#"+massage);
-                    getMassagesNotWrittenInPVView().put(massage,200);
+                    if(getContactName().length()>7){
+                        if(getContactName().substring(0,7).equals("Server:")){
+                            Changes.AddMassageToMassageThatShouldSend(massage);
+                        }else{
+                            Changes.AddMassageToMassageThatShouldSend("#" + getContactName() + "#" + massage);
+                        }
+                    }else {
+                        Changes.AddMassageToMassageThatShouldSend("#" + getContactName() + "#" + massage);
+                    }
+                    getMassagesNotWrittenInPVView().put(massage, 200);
                     Changes.WeHaveNewMassageToShow();
                 }else {
                     String massage = textField.getText();

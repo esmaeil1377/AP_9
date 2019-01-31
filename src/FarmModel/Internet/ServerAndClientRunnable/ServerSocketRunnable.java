@@ -35,7 +35,7 @@ public class ServerSocketRunnable extends SocketRunnable implements Runnable{
                 socket = serverSocket.accept();
                 System.out.println("One User Connected...");
                 Changes.WeHaveNewContact();
-                GuestSocketRunnable.SendInformation(socket);
+//                GuestSocketRunnable.SendInformation(socket);
 
                 Thread reader=new Thread(new ReaderForServer(socket));
                 reader.start();

@@ -52,11 +52,10 @@ public class GuestSocketRunnable extends SocketRunnable implements Runnable {
         OutputStream outputStream=socket.getOutputStream();
         Formatter formatter=new Formatter(outputStream);
         User user= Game.getGameInstance().getCurrentUserAccount();
-        formatter.format("N@"+user.getAccountName()+"\n");
+        formatter.format("C@"+user.getAccountName()+" "+user.getMoney()+" "+user.getUserLevel()+"\n");
         formatter.flush();
-        formatter.format("M@"+user.getMoney()+"\n");
-        formatter.flush();
-        formatter.format("L@"+user.getUserLevel()+"\n");
-        formatter.flush();
+
     }
+
+
 }
