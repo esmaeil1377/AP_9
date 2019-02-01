@@ -459,7 +459,14 @@ public class StartMenuView {
                 @Override
                 public void handle(MouseEvent event) {
                     StartingTheUserAccount();
-                    HostAndGuestView hostAndGuestView=new HostAndGuestView(Main.getPrimaryStage());
+                    HostAndGuestView hostAndGuestView= null;
+                    try {
+                        hostAndGuestView = new HostAndGuestView(Main.getPrimaryStage());
+                    } catch (UnknownObjectException e) {
+                        e.printStackTrace();
+                    } catch (MissionNotLoaded missionNotLoaded) {
+                        missionNotLoaded.printStackTrace();
+                    }
                     GameView.getGameView().setHostAndGuestView(hostAndGuestView);
                     Main.getPrimaryStage().setScene(GameView.getGameView().getHostAndGuestView().getScene());
                     Main.getPrimaryStage().setFullScreen(true);
@@ -470,7 +477,14 @@ public class StartMenuView {
                 @Override
                 public void handle(MouseEvent event) {
                     StartingTheUserAccount();
-                    HostAndGuestView hostAndGuestView=new HostAndGuestView(Main.getPrimaryStage());
+                    HostAndGuestView hostAndGuestView= null;
+                    try {
+                        hostAndGuestView = new HostAndGuestView(Main.getPrimaryStage());
+                    } catch (UnknownObjectException e) {
+                        e.printStackTrace();
+                    } catch (MissionNotLoaded missionNotLoaded) {
+                        missionNotLoaded.printStackTrace();
+                    }
                     hostAndGuestView.AddServerIP();
                     hostAndGuestView.AddTextFieldToGetServerIPAndServerPort();
                     GameView.getGameView().setHostAndGuestView(hostAndGuestView);

@@ -1,11 +1,14 @@
 package View.ScenesAndMainGroupView;
 
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.Internet.Changes;
 import FarmModel.Internet.ServerAndClientRunnable.GuestSocketRunnable;
 import FarmModel.Internet.ServerAndClientRunnable.ServerSocketRunnable;
 import FarmModel.User;
 import View.GameView;
+import View.Main;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -55,6 +58,14 @@ public class HostAndGuestView extends View.View {
     private ArrayList<Node> currentContactsNode = new ArrayList<>();
     private ArrayList<String> currentPlayerNameSortbyMoney = new ArrayList<>();
     private ArrayList<Node> currentPlayerNodeSortbyMoney = new ArrayList<>();
+    private BazaarView bazaarView=new BazaarView(Main.getPrimaryStage());
+    public BazaarView getBazaarView() {
+        return bazaarView;
+    }
+
+    public void setBazaarView(BazaarView bazaarView) {
+        this.bazaarView = bazaarView;
+    }
 
     public void setClientIp(int clientIpNumber) {
         clientIp.setText("Client Ip: "+String.valueOf(clientIpNumber));
@@ -83,7 +94,7 @@ public class HostAndGuestView extends View.View {
 //        this.massagedidntsent = massagedidntsent;
 //    }
 
-    public HostAndGuestView(Stage primaryStage) {
+    public HostAndGuestView(Stage primaryStage) throws UnknownObjectException, MissionNotLoaded {
         Start(primaryStage);
     }
 
@@ -142,6 +153,7 @@ public class HostAndGuestView extends View.View {
         AddOkToStartConnecting();
         AddReturnToMainMenu(primaryStage);
         AddScoreBoardButton();
+        AddBazarClick(primaryStage);
     }
 
     private void AddOkToStartConnecting() {
@@ -754,5 +766,38 @@ public class HostAndGuestView extends View.View {
         });
         timeline.play();
 
+    }
+
+    private void AddBazarClick(Stage primaryStage){
+        Label bazar=new Label("Bazaar");
+        bazar.relocate(695,655);
+        bazar.setFont(Font.font(20));
+        bazar.setTextFill(Paint.valueOf("White"));
+        Rectangle bazarRec=new Rectangle(680,620,90,100);
+        bazarRec.setFill(Paint.valueOf("White"));
+        bazarRec.setArcWidth(20);
+        bazarRec.setArcHeight(20);
+        bazarRec.setOpacity(0.2);
+        root.getChildren().addAll(bazar,bazarRec);
+        bazarRec.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                bazarRec.setOpacity(0.4);
+            }
+        });
+        bazarRec.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                bazarRec.setOpacity(0.2);
+            }
+        });
+
+        bazarRec.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getBazaarView().getScene());
+                primaryStage.setFullScreen(true);
+            }
+        });
     }
 }

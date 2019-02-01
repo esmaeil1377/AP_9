@@ -1,9 +1,22 @@
 package View;
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.UnknownObjectException;
 import View.ScenesAndMainGroupView.*;
 
 
 public class GameView {
-    private static GameView gameView=new GameView();
+    private static GameView gameView;
+
+    static {
+        try {
+            gameView = new GameView();
+        } catch (UnknownObjectException e) {
+            e.printStackTrace();
+        } catch (MissionNotLoaded missionNotLoaded) {
+            missionNotLoaded.printStackTrace();
+        }
+    }
+
     private StartMenuView startMenuView=new StartMenuView(Main.getPrimaryStage());
     private MissionSelectionView missionSelectionView=new MissionSelectionView(Main.getPrimaryStage());
     private GameShopView gameShopView;
@@ -12,6 +25,8 @@ public class GameView {
     private ProductInHelicopterView productInHelicopterView;
     private HostAndGuestView hostAndGuestView;
     private CustomWorkShopView customWorkShopView;
+
+
 
 
     public HostAndGuestView getHostAndGuestView() {
@@ -70,7 +85,7 @@ public class GameView {
         this.customWorkShopView = customWorkShopView;
     }
 
-    private GameView(){}
+    private GameView() throws UnknownObjectException, MissionNotLoaded {}
     public static GameView getGameView() {
         return gameView;
     }
