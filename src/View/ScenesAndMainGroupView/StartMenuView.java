@@ -174,8 +174,8 @@ public class StartMenuView {
             public void handle(ScrollEvent event) {
                 int speed = Integer.valueOf(text.getText().substring(text.getText().length() - 2));
                 if (speed >= 11 && speed <= 98) {
-                    if((speed+event.getDeltaY()/32)>9 && (speed+event.getDeltaY()/32)<100)
-                    text.setText("Speed\n   " + String.valueOf((int) (speed + event.getDeltaY() / 32)));
+                    if ((speed + event.getDeltaY() / 32) > 9 && (speed + event.getDeltaY() / 32) < 100)
+                        text.setText("Speed\n   " + String.valueOf((int) (speed + event.getDeltaY() / 32)));
                     setGameSpeed((int) (speed + event.getDeltaY() / 32));
                 } else if (speed == 10 && event.getDeltaY() > 0) {
                     text.setText("Speed\n   " + String.valueOf(speed + 1));
@@ -366,7 +366,7 @@ public class StartMenuView {
         });
     }
 
-    private void AddMultiPlayerIcon(Stage primaryStage){
+    private void AddMultiPlayerIcon(Stage primaryStage) {
         File multiPlayerFile = new File("Data\\Click\\MultiPlayerClick.png");
         Image imagePlayClick = new Image(multiPlayerFile.toURI().toString());
         ImageView playClickView = new ImageView(imagePlayClick);
@@ -400,32 +400,32 @@ public class StartMenuView {
         cloudServerView.setOpacity(0);
 
 
-        Rectangle serverRec=new Rectangle(1200,350,140,70);
+        Rectangle serverRec = new Rectangle(1200, 350, 140, 70);
         serverRec.setOpacity(0);
-        MakeRectangleChangeOpacityWhenMouseIsOnThem(serverRec,"Server");
-        Rectangle guestRec=new Rectangle(1200,420,140,70);
+        MakeRectangleChangeOpacityWhenMouseIsOnThem(serverRec, "Server");
+        Rectangle guestRec = new Rectangle(1200, 420, 140, 70);
         guestRec.setOpacity(0);
-        MakeRectangleChangeOpacityWhenMouseIsOnThem(guestRec,"Guest");
+        MakeRectangleChangeOpacityWhenMouseIsOnThem(guestRec, "Guest");
         playClickView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 if (!enterYourUser.getText().equals("")) {
-                    if (root.getChildren().contains(cloudServerView)){
-                        KeyValue serverGuestOpacity=new KeyValue(cloudServerView.opacityProperty(),0);
-                        KeyFrame serverGuestFrame=new KeyFrame(Duration.millis(1000),serverGuestOpacity);
-                        Timeline serverTimeLine=new Timeline(serverGuestFrame);
+                    if (root.getChildren().contains(cloudServerView)) {
+                        KeyValue serverGuestOpacity = new KeyValue(cloudServerView.opacityProperty(), 0);
+                        KeyFrame serverGuestFrame = new KeyFrame(Duration.millis(1000), serverGuestOpacity);
+                        Timeline serverTimeLine = new Timeline(serverGuestFrame);
                         serverTimeLine.play();
                         serverTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                root.getChildren().removeAll(cloudServerView,guestRec,serverRec);
+                                root.getChildren().removeAll(cloudServerView, guestRec, serverRec);
                             }
                         });
-                    }else{
-                        root.getChildren().addAll(cloudServerView,guestRec,serverRec);
-                        KeyValue serverGuestOpacity=new KeyValue(cloudServerView.opacityProperty(),1);
-                        KeyFrame serverGuestFrame=new KeyFrame(Duration.millis(1000),serverGuestOpacity);
-                        Timeline serverTimeLine=new Timeline(serverGuestFrame);
+                    } else {
+                        root.getChildren().addAll(cloudServerView, guestRec, serverRec);
+                        KeyValue serverGuestOpacity = new KeyValue(cloudServerView.opacityProperty(), 1);
+                        KeyFrame serverGuestFrame = new KeyFrame(Duration.millis(1000), serverGuestOpacity);
+                        Timeline serverTimeLine = new Timeline(serverGuestFrame);
                         serverTimeLine.play();
                     }
                 } else {
@@ -441,7 +441,7 @@ public class StartMenuView {
         });
     }
 
-    private void MakeRectangleChangeOpacityWhenMouseIsOnThem(Node node,String serverOrClient){
+    private void MakeRectangleChangeOpacityWhenMouseIsOnThem(Node node, String serverOrClient) {
         node.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -454,12 +454,12 @@ public class StartMenuView {
                 node.setOpacity(0);
             }
         });
-        if (serverOrClient.equals("Server")){
+        if (serverOrClient.equals("Server")) {
             node.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     StartingTheUserAccount();
-                    HostAndGuestView hostAndGuestView= null;
+                    HostAndGuestView hostAndGuestView = null;
                     try {
                         hostAndGuestView = new HostAndGuestView(Main.getPrimaryStage());
                     } catch (UnknownObjectException e) {
@@ -472,12 +472,12 @@ public class StartMenuView {
                     Main.getPrimaryStage().setFullScreen(true);
                 }
             });
-        }else{
+        } else {
             node.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     StartingTheUserAccount();
-                    HostAndGuestView hostAndGuestView= null;
+                    HostAndGuestView hostAndGuestView = null;
                     try {
                         hostAndGuestView = new HostAndGuestView(Main.getPrimaryStage());
                     } catch (UnknownObjectException e) {
