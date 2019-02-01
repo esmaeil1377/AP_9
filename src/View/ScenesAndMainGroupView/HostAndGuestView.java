@@ -847,11 +847,11 @@ public class HostAndGuestView extends View.View {
     }
 
     public void AddReturnToGame(Stage primaryStage) {
-        Label label = new Label("Mission");
+        Label label = new Label("Game");
         label.setTextFill(Paint.valueOf("White"));
         label.setFont(Font.font(20));
-        label.relocate(170, 25);
-        Rectangle rectangle = new Rectangle(165, 20, 120, 45);
+        label.relocate(180, 25);
+        Rectangle rectangle = new Rectangle(165, 20, 115, 45);
         rectangle.setFill(Paint.valueOf("White"));
         rectangle.setArcHeight(20);
         rectangle.setArcWidth(20);
@@ -871,6 +871,7 @@ public class HostAndGuestView extends View.View {
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                GameView.getGameView().getFarmView().getAnimationTimer().start();
                 primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                 primaryStage.setFullScreen(true);
             }

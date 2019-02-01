@@ -11,9 +11,9 @@ import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
 import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
 import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
-import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.Vehicle.Truck;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.User;
+import View.GameView;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -44,38 +45,23 @@ public class BazaarView {
     private Label labelButtonDecoration = new Label("0");
     private Label labelButtonFabric = new Label("0");
     private Label labelButtonSewing = new Label("0");
-    private Text coinText = new Text("0");
+    private Text coinTextForSell = new Text("0");
+    private Text coinTextForOrder=new Text("0");
 
 
-
-    private Label labelEggOfNumber;
-
-    private Label labelWoolOfNumber;
-    private Label labelMilkOfNumber;
-    private Label labelFlouryCakeOfNumber;
-    private Label labelCakeOfNumber;
-    private Label labelFlourOfNumber;
-    private Label labelPowderOfNumber;
-    private Label labelCarnivalDressOfNumber;
-    private Label labelDecorationOfNumber;
-    private Label labelFabricOfNumber;
-    private Label labelSewingOfNumber;
-    private Label labelCageLionOfNumber;
-    private Label labelCageBrearOfNumber;
-    private Label labelEggButton1 = new Label("0");
-    private Label labelWoolButton1 = new Label("0");
-    private Label labelMilkButton1 = new Label("0");
-    private Label labelFlouryCakeButton1 = new Label("0");
-    private Label labelCakeButton1 = new Label("0");
-    private Label labelFlourButton1 = new Label("0");
-    private Label labelPowderButton1 = new Label("0");
-    private Label labelCarnivalDressButton1 = new Label("0");
-    private Label labelDecorationButton1 = new Label("0");
-    private Label labelFabricButton1 = new Label("0");
-    private Label labelSewingButton1 = new Label("0");
-    private Label labelCageLionButton1 = new Label("0");
-    private Label labelCageBearButton1 = new Label("0");
-    private ArrayList<Rectangle> barRectangles=new ArrayList<>();
+    private Label labelEggButton1 = new Label("10");
+    private Label labelWoolButton1 = new Label("10");
+    private Label labelMilkButton1 = new Label("10");
+    private Label labelFlouryCakeButton1 = new Label("10");
+    private Label labelCakeButton1 = new Label("10");
+    private Label labelFlourButton1 = new Label("10");
+    private Label labelPowderButton1 = new Label("10");
+    private Label labelCarnivalDressButton1 = new Label("10");
+    private Label labelDecorationButton1 = new Label("10");
+    private Label labelFabricButton1 = new Label("10");
+    private Label labelSewingButton1 = new Label("10");
+    private Label labelCageLionButton1 = new Label("10");
+    private Label labelCageBearButton1 = new Label("10");
     private User user= Game.getGameInstance().getCurrentUserAccount();
     public Scene getScene() {
         return scene;
@@ -90,11 +76,11 @@ public class BazaarView {
     }
 
     public void Start(Stage primaryStage) throws UnknownObjectException, MissionNotLoaded {
-        UpdateMoneyLabelForSellAndCapacityBar();
+        UpdateMoneyLabelForSell();
         AddBackground(primaryStage);
         AddItem(primaryStage);
         AddButtton(primaryStage);
-        ShowWareHouseListInTruckView();
+        ShowWareHouseListInOnlineShopView();
         AddItemToBuyFlouryCake();
         AddItemToBuyCake();
         AddItemToBuyCarnivalDress();
@@ -103,6 +89,7 @@ public class BazaarView {
         AddItemToBuyDecoration();
         AddItemToBuySewing();
         AddItemToBuyFabric();
+        AddMoneyLabels();
     }
 
     public void AddBackground(Stage primaryStage) {
@@ -315,7 +302,8 @@ public class BazaarView {
         buttonCancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getScene());
+                primaryStage.setFullScreen(true);
             }
         });
 
@@ -347,7 +335,8 @@ public class BazaarView {
         cancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getScene());
+                primaryStage.setFullScreen(true);
             }
         });
 
@@ -400,7 +389,7 @@ public class BazaarView {
 
     private void UpdateMoneyLabelNeeded(){
         int money=MoneyToBuyNumberOfItems();
-        coinText.setText(String.valueOf(money));
+        coinTextForOrder.setText(String.valueOf(money));
     }
 
     private int MoneyToBuyNumberOfItems(){
@@ -419,42 +408,26 @@ public class BazaarView {
 
     private int getCapacityNeeded(){
         int result=0;
-        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
-        result+=Integer.valueOf(labelEggButton1.getText());
-        result+=Integer.valueOf(labelWoolButton1.getText());
-        result+=Integer.valueOf(labelMilkButton1.getText());
-        result+=Integer.valueOf(labelCakeButton1.getText());
-        result+=Integer.valueOf(labelFabricButton1.getText());
-        result+=Integer.valueOf(labelDecorationButton1.getText());
-        result+=Integer.valueOf(labelFlouryCakeButton1.getText());
-        result+=Integer.valueOf(labelFlourButton1.getText());
-        result+=Integer.valueOf(labelPowderButton1.getText());
-        result+=Integer.valueOf(labelCarnivalDressButton1.getText());
-        result+=Integer.valueOf(labelSewingButton1.getText());
-        result+=Integer.valueOf(labelCageLionButton1.getText());
-        result+=Integer.valueOf(labelCageBearButton1.getText());
+//        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+//        result+=Integer.valueOf(labelEggButton1.getText());
+//        result+=Integer.valueOf(labelWoolButton1.getText());
+//        result+=Integer.valueOf(labelMilkButton1.getText());
+//        result+=Integer.valueOf(labelCakeButton1.getText());
+//        result+=Integer.valueOf(labelFabricButton1.getText());
+//        result+=Integer.valueOf(labelDecorationButton1.getText());
+//        result+=Integer.valueOf(labelFlouryCakeButton1.getText());
+//        result+=Integer.valueOf(labelFlourButton1.getText());
+//        result+=Integer.valueOf(labelPowderButton1.getText());
+//        result+=Integer.valueOf(labelCarnivalDressButton1.getText());
+//        result+=Integer.valueOf(labelSewingButton1.getText());
+//        result+=Integer.valueOf(labelCageLionButton1.getText());
+//        result+=Integer.valueOf(labelCageBearButton1.getText());
         return result;
     }
 
-    private void UpdateMoneyLabelForSellAndCapacityBar() throws UnknownObjectException, MissionNotLoaded {
+    private void UpdateMoneyLabelForSell() throws UnknownObjectException, MissionNotLoaded {
         int money= MoneyForSell();
-        coinText.setText(String.valueOf(money));
-    }
-
-    private void LoadDegreeForCapacity(int num){
-        for (Rectangle rectangle:barRectangles){
-            root.getChildren().removeAll(rectangle);
-        }
-        barRectangles=new ArrayList<>();
-        for(int i=0;i<num;i++){
-            Rectangle bar=new Rectangle(1105+55*(i/5),548-(i%5)*10,30,6);
-            bar.setArcHeight(5);
-            bar.setArcWidth(5);
-            bar.setFill(Color.rgb(87,0,5));
-            root.getChildren().addAll(bar);
-            barRectangles.add(bar);
-
-        }
+        coinTextForSell.setText(String.valueOf(money));
     }
 
     private int MoneyForSell() throws UnknownObjectException {
@@ -476,10 +449,9 @@ public class BazaarView {
         return result;
     }
 
-    private void MakeLabelAndButtonChangeableّForSell(int maxNumber,ImageView imageViewButton1, Label labelButton,ImageView allViewButton
-            ,Label allLabel) throws MissionNotLoaded {
-        Truck truck=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
-        int capacityOfTruck=truck.getCapacity();
+    private void MakeLabelAndButtonChangableّForSell(int maxNumber, ImageView imageViewButton1, Label labelButton, ImageView allViewButton
+            , Label allLabel) throws MissionNotLoaded {
+        int capacityOfOnlineShop=100000;
         imageViewButton1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -487,7 +459,7 @@ public class BazaarView {
                 int nowInt = Integer.valueOf(nowString);
                 if (nowInt < maxNumber) {
                     labelButton.setText(String.valueOf(nowInt + 1));
-                    if (getCapacityNeeded()>capacityOfTruck){
+                    if (getCapacityNeeded()>capacityOfOnlineShop){
                         labelButton.setText(String.valueOf(0));
                         PlayErrorSound();
                     }
@@ -495,7 +467,7 @@ public class BazaarView {
                     labelButton.setText("0");
                 }
                 try {
-                    UpdateMoneyLabelForSellAndCapacityBar();
+                    UpdateMoneyLabelForSell();
                 } catch (UnknownObjectException e) {
                     e.printStackTrace();
                 } catch (MissionNotLoaded missionNotLoaded) {
@@ -510,7 +482,7 @@ public class BazaarView {
                 int nowInt = Integer.valueOf(nowString);
                 if (nowInt < maxNumber) {
                     labelButton.setText(String.valueOf(nowInt + 1));
-                    if (getCapacityNeeded()>capacityOfTruck){
+                    if (getCapacityNeeded()>capacityOfOnlineShop){
                         labelButton.setText(String.valueOf(0));
                         PlayErrorSound();
                     }
@@ -518,7 +490,7 @@ public class BazaarView {
                     labelButton.setText("0");
                 }
                 try {
-                    UpdateMoneyLabelForSellAndCapacityBar();
+                    UpdateMoneyLabelForSell();
                 } catch (UnknownObjectException e) {
                     e.printStackTrace();
                 } catch (MissionNotLoaded missionNotLoaded) {
@@ -531,12 +503,12 @@ public class BazaarView {
             public void handle(MouseEvent event) {
                 String currentText=labelButton.getText();
                 labelButton.setText(String.valueOf(maxNumber));
-                if (getCapacityNeeded()>capacityOfTruck){
+                if (getCapacityNeeded()>capacityOfOnlineShop){
                     labelButton.setText(currentText);
                     PlayErrorSound();
                 }
                 try {
-                    UpdateMoneyLabelForSellAndCapacityBar();
+                    UpdateMoneyLabelForSell();
                 } catch (UnknownObjectException e) {
                     e.printStackTrace();
                 } catch (MissionNotLoaded missionNotLoaded) {
@@ -549,12 +521,12 @@ public class BazaarView {
             public void handle(MouseEvent event) {
                 String currentText=labelButton.getText();
                 labelButton.setText(String.valueOf(maxNumber));
-                if (getCapacityNeeded()>capacityOfTruck){
+                if (getCapacityNeeded()>capacityOfOnlineShop){
                     labelButton.setText(currentText);
                     PlayErrorSound();
                 }
                 try {
-                    UpdateMoneyLabelForSellAndCapacityBar();
+                    UpdateMoneyLabelForSell();
                 } catch (UnknownObjectException e) {
                     e.printStackTrace();
                 } catch (MissionNotLoaded missionNotLoaded) {
@@ -1162,10 +1134,9 @@ public class BazaarView {
         root.getChildren().addAll(labelOfPrice);
     }
 
-    private void ShowWareHouseListInTruckView() {
+    private void ShowWareHouseListInOnlineShopView() {
         try {
             WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
-            ArrayList<Object> arrayList = wareHouse.getWareHouseList();
             HashMap<String, Integer> hashMap = wareHouse.getTypeAndNumberOfProductInWAreHouse();
             int yLocationOfFirst = 150;
             int SHIFT = 480;
@@ -1190,7 +1161,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelEggOfNumber = new Label(value.toString());
+                    Label labelEggOfNumber = new Label(value.toString());
                     labelEggOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelEggOfNumber.setTextFill(Color.BLACK);
                     labelEggOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -1304,7 +1275,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelEggOfNumber.getText()),imageViewButton1,labelEggButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelEggOfNumber.getText()),imageViewButton1,labelEggButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelEggButton1, labelButtonAll, labelEggOfNumber, labelOfPrice);
@@ -1325,7 +1296,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelWoolOfNumber = new Label(value.toString());
+                    Label labelWoolOfNumber = new Label(value.toString());
                     labelWoolOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelWoolOfNumber.setTextFill(Color.BLACK);
                     labelWoolOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -1437,7 +1408,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelWoolOfNumber.getText()),imageViewButton1,labelWoolButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelWoolOfNumber.getText()),imageViewButton1,labelWoolButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelWoolButton1, labelButtonAll, labelWoolOfNumber, labelOfPrice);
@@ -1458,7 +1429,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelMilkOfNumber = new Label(value.toString());
+                    Label labelMilkOfNumber = new Label(value.toString());
                     labelMilkOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelMilkOfNumber.setTextFill(Color.BLACK);
                     labelMilkOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -1573,7 +1544,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelMilkOfNumber.getText()),imageViewButton1,labelMilkButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelMilkOfNumber.getText()),imageViewButton1,labelMilkButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelMilkButton1, labelButtonAll, labelMilkOfNumber, labelOfPrice);
@@ -1594,7 +1565,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelFlouryCakeOfNumber = new Label(value.toString());
+                    Label labelFlouryCakeOfNumber = new Label(value.toString());
                     labelFlouryCakeOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelFlouryCakeOfNumber.setTextFill(Color.BLACK);
                     labelFlouryCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -1709,7 +1680,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFlouryCakeOfNumber.getText()),imageViewButton1,labelFlouryCakeButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelFlouryCakeOfNumber.getText()),imageViewButton1,labelFlouryCakeButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelFlouryCakeButton1, labelButtonAll, labelFlouryCakeOfNumber, labelOfPrice);
@@ -1730,7 +1701,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelCakeOfNumber = new Label(value.toString());
+                    Label labelCakeOfNumber = new Label(value.toString());
                     labelCakeOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelCakeOfNumber.setTextFill(Color.BLACK);
                     labelCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -1844,7 +1815,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCakeOfNumber.getText()),imageViewButton1,labelCakeButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelCakeOfNumber.getText()),imageViewButton1,labelCakeButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelCakeButton1, labelButtonAll, labelCakeOfNumber, labelOfPrice);
@@ -1865,7 +1836,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelFlourOfNumber = new Label(value.toString());
+                    Label labelFlourOfNumber = new Label(value.toString());
                     labelFlourOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelFlourOfNumber.setTextFill(Color.BLACK);
                     labelFlourOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -1979,7 +1950,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFlourOfNumber.getText()),imageViewButton1,labelFlourButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelFlourOfNumber.getText()),imageViewButton1,labelFlourButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelFlourButton1, labelButtonAll, labelFlourOfNumber, labelOfPrice);
@@ -2000,7 +1971,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelPowderOfNumber = new Label(value.toString());
+                    Label labelPowderOfNumber = new Label(value.toString());
                     labelPowderOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelPowderOfNumber.setTextFill(Color.BLACK);
                     labelPowderOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2114,7 +2085,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelPowderOfNumber.getText()),imageViewButton1, labelPowderButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelPowderOfNumber.getText()),imageViewButton1, labelPowderButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelPowderButton1, labelButtonAll, labelPowderOfNumber, labelOfPrice);
@@ -2135,7 +2106,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelCarnivalDressOfNumber = new Label(value.toString());
+                    Label labelCarnivalDressOfNumber = new Label(value.toString());
                     labelCarnivalDressOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelCarnivalDressOfNumber.setTextFill(Color.BLACK);
                     labelCarnivalDressOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2249,7 +2220,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCarnivalDressOfNumber.getText()),imageViewButton1,labelCarnivalDressButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelCarnivalDressOfNumber.getText()),imageViewButton1,labelCarnivalDressButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelCarnivalDressButton1, labelButtonAll, labelCarnivalDressOfNumber, labelOfPrice);
@@ -2270,7 +2241,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelDecorationOfNumber = new Label(value.toString());
+                    Label labelDecorationOfNumber = new Label(value.toString());
                     labelDecorationOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelDecorationOfNumber.setTextFill(Color.BLACK);
                     labelDecorationOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2384,7 +2355,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelDecorationOfNumber.getText()),imageViewButton1,labelDecorationButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelDecorationOfNumber.getText()),imageViewButton1,labelDecorationButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelDecorationButton1, labelButtonAll, labelDecorationOfNumber, labelOfPrice);
@@ -2405,7 +2376,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelFabricOfNumber = new Label(value.toString());
+                    Label labelFabricOfNumber = new Label(value.toString());
                     labelFabricOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelFabricOfNumber.setTextFill(Color.BLACK);
                     labelFabricOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2519,7 +2490,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFabricOfNumber.getText()),imageViewButton1,labelFabricButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelFabricOfNumber.getText()),imageViewButton1,labelFabricButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelFabricButton1, labelButtonAll, labelFabricOfNumber, labelOfPrice);
@@ -2540,7 +2511,7 @@ public class BazaarView {
                     imageViewMultiply.setFitHeight(30);
                     imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                    labelSewingOfNumber = new Label(value.toString());
+                    Label labelSewingOfNumber = new Label(value.toString());
                     labelSewingOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                     labelSewingOfNumber.setTextFill(Color.BLACK);
                     labelSewingOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2654,7 +2625,7 @@ public class BazaarView {
                         }
                     });
 
-                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelSewingOfNumber.getText()),imageViewButton1,labelSewingButton1,imageViewButtonAll,labelButtonAll);
+                    MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelSewingOfNumber.getText()),imageViewButton1,labelSewingButton1,imageViewButtonAll,labelButtonAll);
 
                     root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                             , imageViewMultiply, labelSewingButton1, labelButtonAll, labelSewingOfNumber, labelOfPrice);
@@ -2676,7 +2647,7 @@ public class BazaarView {
                         imageViewMultiply.setFitHeight(30);
                         imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                        labelCageLionOfNumber = new Label(value.toString());
+                        Label labelCageLionOfNumber = new Label(value.toString());
                         labelCageLionOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                         labelCageLionOfNumber.setTextFill(Color.BLACK);
                         labelCageLionOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2790,7 +2761,7 @@ public class BazaarView {
                             }
                         });
 
-                        MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCageLionOfNumber.getText()),imageViewButton1,labelCageLionButton1,imageViewButtonAll,labelButtonAll);
+                        MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelCageLionOfNumber.getText()),imageViewButton1,labelCageLionButton1,imageViewButtonAll,labelButtonAll);
 
                         root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                                 , imageViewMultiply, labelCageLionButton1, labelButtonAll, labelCageLionOfNumber, labelOfPrice);
@@ -2811,7 +2782,7 @@ public class BazaarView {
                         imageViewMultiply.setFitHeight(30);
                         imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
 
-                        labelCageBrearOfNumber = new Label(value.toString());
+                        Label labelCageBrearOfNumber = new Label(value.toString());
                         labelCageBrearOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
                         labelCageBrearOfNumber.setTextFill(Color.BLACK);
                         labelCageBrearOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
@@ -2925,7 +2896,7 @@ public class BazaarView {
                             }
                         });
 
-                        MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCageBrearOfNumber.getText()),imageViewButton1,labelCageBearButton1,imageViewButtonAll,labelButtonAll);
+                        MakeLabelAndButtonChangableّForSell(Integer.valueOf(labelCageBrearOfNumber.getText()),imageViewButton1,labelCageBearButton1,imageViewButtonAll,labelButtonAll);
 
                         root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
                                 , imageViewMultiply, labelCageBearButton1, labelButtonAll, labelCageBrearOfNumber, labelOfPrice);
@@ -2937,6 +2908,27 @@ public class BazaarView {
         } catch (MissionNotLoaded | UnknownObjectException missionNotLoaded) {
             missionNotLoaded.printStackTrace();
         }
+    }
+
+    private void AddMoneyLabels(){
+
+        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+        ImageView imageViewCoin = new ImageView(imageOfCoin);
+        imageViewCoin.setFitWidth(30);
+        imageViewCoin.setFitHeight(30);
+        imageViewCoin.relocate(200, 615);
+
+        ImageView coint2 = new ImageView(imageOfCoin);
+        coint2.setFitWidth(30);
+        coint2.setFitHeight(30);
+        coint2.relocate(650, 615);
+
+        coinTextForSell.setFont(Font.font(25));
+        coinTextForOrder.setFont(Font.font(25));
+        coinTextForOrder.relocate(250,610);
+        coinTextForSell.relocate(700,610);
+        root.getChildren().addAll(coinTextForSell,coinTextForOrder,imageViewCoin,coint2);
     }
 
 }
