@@ -99,6 +99,23 @@ public class ReaderForServer implements Runnable {
             SendOldMassageForNewUsers(GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().get(socket));
             SendJoinMassageForEveryOneInGroup(data.split(" ")[0]);
 
+        }else if (inputString.substring(0,1).equals("P")){
+            boolean isPlayingNow;
+            //it means one of the guests are playing a mission.
+            if (inputString.split("@")[2].equals("Playing")){
+                isPlayingNow=true;
+            }else{
+                isPlayingNow=false;
+            }
+            Changes.UpdatePlayingUsersArray(inputString.split("@")[1],isPlayingNow);
+            NotifyingOtherUsersOfUserStateInMission(inputString);
+            }
+
+    }
+
+    private static void NotifyingOtherUsersOfUserStateInMission(String state){
+        for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+            entry.getValue().getDataToSendThatWeDidntSendThem().add(state);
         }
     }
 

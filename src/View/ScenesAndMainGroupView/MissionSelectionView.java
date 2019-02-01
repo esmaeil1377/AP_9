@@ -1,17 +1,26 @@
 package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.Mission;
 import View.GameView;
 import View.View;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -308,5 +317,7 @@ public class MissionSelectionView extends View {
             }
         });
     }
+
+
 
 }

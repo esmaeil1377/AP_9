@@ -94,7 +94,7 @@ public class BazaarView {
         AddBackground(primaryStage);
         AddItem(primaryStage);
         AddButtton(primaryStage);
-//        ShowWareHouseListInTruckView();
+        ShowWareHouseListInTruckView();
         AddItemToBuyFlouryCake();
         AddItemToBuyCake();
         AddItemToBuyCarnivalDress();
@@ -1162,1781 +1162,1781 @@ public class BazaarView {
         root.getChildren().addAll(labelOfPrice);
     }
 
-//    private void ShowWareHouseListInTruckView() {
-//        try {
-//            WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
-//            ArrayList<Object> arrayList = wareHouse.getWareHouseList();
-//            HashMap<String, Integer> hashMap = wareHouse.getTypeAndNumberOfProductInWAreHouse();
-//            int yLocationOfFirst = 150;
-//            int SHIFT = 480;
-//            InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
-//            for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
-//                String key = entry.getKey(); // getClass
-//                Object object = entry.getKey();
-//                Integer value = entry.getValue();
-//                if (key.equals("Egg")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Egg\\normal.png");
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelEggOfNumber = new Label(value.toString());
-//                    labelEggOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelEggOfNumber.setTextFill(Color.BLACK);
-//                    labelEggOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelEggButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelEggButton1.setTextFill(Color.BLACK);
-//                    labelEggButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelEggButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//                    labelEggButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelEggOfNumber.getText()),imageViewButton1,labelEggButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelEggButton1, labelButtonAll, labelEggOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Wool")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Wool\\normal.png");
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelWoolOfNumber = new Label(value.toString());
-//                    labelWoolOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelWoolOfNumber.setTextFill(Color.BLACK);
-//                    labelWoolOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelWoolButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelWoolButton1.setTextFill(Color.BLACK);
-//                    labelWoolButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//                    labelWoolButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//                    labelWoolButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelWoolOfNumber.getText()),imageViewButton1,labelWoolButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelWoolButton1, labelButtonAll, labelWoolOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Milk")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Milk.png");
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelMilkOfNumber = new Label(value.toString());
-//                    labelMilkOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelMilkOfNumber.setTextFill(Color.BLACK);
-//                    labelMilkOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelMilkButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelMilkButton1.setTextFill(Color.BLACK);
-//                    labelMilkButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelMilkButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelMilkButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelMilkOfNumber.getText()),imageViewButton1,labelMilkButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelMilkButton1, labelButtonAll, labelMilkOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("FlouryCake")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\FlouryCake.png");
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelFlouryCakeOfNumber = new Label(value.toString());
-//                    labelFlouryCakeOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelFlouryCakeOfNumber.setTextFill(Color.BLACK);
-//                    labelFlouryCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelFlouryCakeButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelFlouryCakeButton1.setTextFill(Color.BLACK);
-//                    labelFlouryCakeButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelFlouryCakeButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelFlouryCakeButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFlouryCakeOfNumber.getText()),imageViewButton1,labelFlouryCakeButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelFlouryCakeButton1, labelButtonAll, labelFlouryCakeOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Cake")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Cake.png");
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelCakeOfNumber = new Label(value.toString());
-//                    labelCakeOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelCakeOfNumber.setTextFill(Color.BLACK);
-//                    labelCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230+ SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelCakeButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelCakeButton1.setTextFill(Color.BLACK);
-//                    labelCakeButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelCakeButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelCakeButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCakeOfNumber.getText()),imageViewButton1,labelCakeButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelCakeButton1, labelButtonAll, labelCakeOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Flour")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Flour.png");
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelFlourOfNumber = new Label(value.toString());
-//                    labelFlourOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelFlourOfNumber.setTextFill(Color.BLACK);
-//                    labelFlourOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelFlourButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelFlourButton1.setTextFill(Color.BLACK);
-//                    labelFlourButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelFlourButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelFlourButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFlourOfNumber.getText()),imageViewButton1,labelFlourButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelFlourButton1, labelButtonAll, labelFlourOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Powder")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\EggPowder.png"); // not image
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelPowderOfNumber = new Label(value.toString());
-//                    labelPowderOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelPowderOfNumber.setTextFill(Color.BLACK);
-//                    labelPowderOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelPowderButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelPowderButton1.setTextFill(Color.BLACK);
-//                    labelPowderButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelPowderButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelPowderButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelPowderOfNumber.getText()),imageViewButton1, labelPowderButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelPowderButton1, labelButtonAll, labelPowderOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("CarnivalDress")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\CarnivalDress.png");
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelCarnivalDressOfNumber = new Label(value.toString());
-//                    labelCarnivalDressOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelCarnivalDressOfNumber.setTextFill(Color.BLACK);
-//                    labelCarnivalDressOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelCarnivalDressButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelCarnivalDressButton1.setTextFill(Color.BLACK);
-//                    labelCarnivalDressButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelCarnivalDressButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelCarnivalDressButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCarnivalDressOfNumber.getText()),imageViewButton1,labelCarnivalDressButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelCarnivalDressButton1, labelButtonAll, labelCarnivalDressOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Decoration")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Decoration.png"); // todo
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelDecorationOfNumber = new Label(value.toString());
-//                    labelDecorationOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelDecorationOfNumber.setTextFill(Color.BLACK);
-//                    labelDecorationOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelDecorationButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelDecorationButton1.setTextFill(Color.BLACK);
-//                    labelDecorationButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelDecorationButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelDecorationButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelDecorationOfNumber.getText()),imageViewButton1,labelDecorationButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelDecorationButton1, labelButtonAll, labelDecorationOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Fabric")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Fabric.png"); // not image
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelFabricOfNumber = new Label(value.toString());
-//                    labelFabricOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelFabricOfNumber.setTextFill(Color.BLACK);
-//                    labelFabricOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelFabricButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelFabricButton1.setTextFill(Color.BLACK);
-//                    labelFabricButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelFabricButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelFabricButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFabricOfNumber.getText()),imageViewButton1,labelFabricButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelFabricButton1, labelButtonAll, labelFabricOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.equals("Sewing")) {
-//                    final int finalYLocationOfFirst = yLocationOfFirst;
-//                    File fileIcon = new File("Data\\Textures\\Products\\Sewing.png"); // not image
-//                    Image imageIcon = new Image(fileIcon.toURI().toString());
-//                    ImageView imageViewIcon = new ImageView(imageIcon);
-//                    imageViewIcon.setFitHeight(30);
-//                    imageViewIcon.setFitWidth(30);
-//                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                    ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                    imageViewMultiply.setFitWidth(30);
-//                    imageViewMultiply.setFitHeight(30);
-//                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                    labelSewingOfNumber = new Label(value.toString());
-//                    labelSewingOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                    labelSewingOfNumber.setTextFill(Color.BLACK);
-//                    labelSewingOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
-//                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                    labelOfPrice.setTextFill(Color.BLACK);
-//                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                    ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                    imageViewCoin.setFitWidth(30);
-//                    imageViewCoin.setFitHeight(30);
-//                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                    File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                    Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                    ImageView imageViewButton1 = new ImageView(imageButton1);
-//                    imageViewButton1.setFitHeight(35);
-//                    imageViewButton1.setFitWidth(35);
-//                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                    labelSewingButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelSewingButton1.setTextFill(Color.BLACK);
-//                    labelSewingButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelSewingButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35 + 5);
-//                            imageViewButton1.setFitWidth(35 + 5);
-//                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelSewingButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButton1.setFitHeight(35);
-//                            imageViewButton1.setFitWidth(35);
-//                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//
-//                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                    imageViewButtonAll.setFitHeight(35);
-//                    imageViewButtonAll.setFitWidth(45);
-//                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                    Label labelButtonAll = new Label("All");
-//                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                    labelButtonAll.setTextFill(Color.BLACK);
-//                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35 + 5);
-//                            imageViewButtonAll.setFitWidth(45 + 5);
-//                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                        }
-//                    });
-//
-//                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                        @Override
-//                        public void handle(MouseEvent event) {
-//                            imageViewButtonAll.setFitHeight(35);
-//                            imageViewButtonAll.setFitWidth(45);
-//                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                        }
-//                    });
-//
-//                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelSewingOfNumber.getText()),imageViewButton1,labelSewingButton1,imageViewButtonAll,labelButtonAll);
-//
-//                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                            , imageViewMultiply, labelSewingButton1, labelButtonAll, labelSewingOfNumber, labelOfPrice);
-//                    yLocationOfFirst += 50;
-//                } else if (key.substring(0,4).equals("Cage")) {
-//                    if (key.equals("CageLion")) {
-//                        final int finalYLocationOfFirst = yLocationOfFirst;
-//                        File fileIcon = new File("Data\\Textures\\Products\\CagedLion.png"); // not image
-//                        Image imageIcon = new Image(fileIcon.toURI().toString());
-//                        ImageView imageViewIcon = new ImageView(imageIcon);
-//                        imageViewIcon.setFitHeight(30);
-//                        imageViewIcon.setFitWidth(30);
-//                        imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                        File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                        Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                        ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                        imageViewMultiply.setFitWidth(30);
-//                        imageViewMultiply.setFitHeight(30);
-//                        imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                        labelCageLionOfNumber = new Label(value.toString());
-//                        labelCageLionOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                        labelCageLionOfNumber.setTextFill(Color.BLACK);
-//                        labelCageLionOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Cage(new Lion())))); // price of egg
-//                        labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                        labelOfPrice.setTextFill(Color.BLACK);
-//                        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                        File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                        ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                        imageViewCoin.setFitWidth(30);
-//                        imageViewCoin.setFitHeight(30);
-//                        imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                        File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                        Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                        ImageView imageViewButton1 = new ImageView(imageButton1);
-//                        imageViewButton1.setFitHeight(35);
-//                        imageViewButton1.setFitWidth(35);
-//                        imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                        labelCageLionButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                        labelCageLionButton1.setTextFill(Color.BLACK);
-//                        labelCageLionButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35 + 5);
-//                                imageViewButton1.setFitWidth(35 + 5);
-//                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35);
-//                                imageViewButton1.setFitWidth(35);
-//                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//                        labelCageLionButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35 + 5);
-//                                imageViewButton1.setFitWidth(35 + 5);
-//                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        labelCageLionButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35);
-//                                imageViewButton1.setFitWidth(35);
-//                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//
-//                        File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                        Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                        ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                        imageViewButtonAll.setFitHeight(35);
-//                        imageViewButtonAll.setFitWidth(45);
-//                        imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                        Label labelButtonAll = new Label("All");
-//                        labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                        labelButtonAll.setTextFill(Color.BLACK);
-//                        labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                        imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35 + 5);
-//                                imageViewButtonAll.setFitWidth(45 + 5);
-//                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35);
-//                                imageViewButtonAll.setFitWidth(45);
-//                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//                        labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35 + 5);
-//                                imageViewButtonAll.setFitWidth(45 + 5);
-//                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35);
-//                                imageViewButtonAll.setFitWidth(45);
-//                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//                        MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCageLionOfNumber.getText()),imageViewButton1,labelCageLionButton1,imageViewButtonAll,labelButtonAll);
-//
-//                        root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                                , imageViewMultiply, labelCageLionButton1, labelButtonAll, labelCageLionOfNumber, labelOfPrice);
-//                        yLocationOfFirst += 50;
-//                    } else if (key.equals("CageBear")) {
-//                        final int finalYLocationOfFirst = yLocationOfFirst;
-//                        File fileIcon = new File("Data\\Textures\\Products\\CagedBrownBear.png"); // not image
-//                        Image imageIcon = new Image(fileIcon.toURI().toString());
-//                        ImageView imageViewIcon = new ImageView(imageIcon);
-//                        imageViewIcon.setFitHeight(30);
-//                        imageViewIcon.setFitWidth(30);
-//                        imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
-//
-//                        File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
-//                        Image imageMultiply = new Image(fileMultiply.toURI().toString());
-//                        ImageView imageViewMultiply = new ImageView(imageMultiply);
-//                        imageViewMultiply.setFitWidth(30);
-//                        imageViewMultiply.setFitHeight(30);
-//                        imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
-//
-//                        labelCageBrearOfNumber = new Label(value.toString());
-//                        labelCageBrearOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
-//                        labelCageBrearOfNumber.setTextFill(Color.BLACK);
-//                        labelCageBrearOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Cage(new Bear())))); // price of egg
-//                        labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
-//                        labelOfPrice.setTextFill(Color.BLACK);
-//                        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
-//
-//                        File fileOfCoin = new File("Data\\Shop\\Coin.png");
-//                        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
-//                        ImageView imageViewCoin = new ImageView(imageOfCoin);
-//                        imageViewCoin.setFitWidth(30);
-//                        imageViewCoin.setFitHeight(30);
-//                        imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
-//
-//                        File fileButton1 = new File("Data\\Click\\OkButton.png");
-//                        Image imageButton1 = new Image(fileButton1.toURI().toString());
-//                        ImageView imageViewButton1 = new ImageView(imageButton1);
-//                        imageViewButton1.setFitHeight(35);
-//                        imageViewButton1.setFitWidth(35);
-//                        imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//
-//
-//                        labelCageBearButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
-//                        labelCageBearButton1.setTextFill(Color.BLACK);
-//                        labelCageBearButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35 + 5);
-//                                imageViewButton1.setFitWidth(35 + 5);
-//                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35);
-//                                imageViewButton1.setFitWidth(35);
-//                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//                        labelCageBearButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35 + 5);
-//                                imageViewButton1.setFitWidth(35 + 5);
-//                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        labelCageBearButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButton1.setFitHeight(35);
-//                                imageViewButton1.setFitWidth(35);
-//                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//
-//                        File fileButtonAll = new File("Data\\Click\\OkButton.png");
-//                        Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
-//                        ImageView imageViewButtonAll = new ImageView(imageButtonAll);
-//                        imageViewButtonAll.setFitHeight(35);
-//                        imageViewButtonAll.setFitWidth(45);
-//                        imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//
-//                        Label labelButtonAll = new Label("All");
-//                        labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
-//                        labelButtonAll.setTextFill(Color.BLACK);
-//                        labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
-//
-//                        imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35 + 5);
-//                                imageViewButtonAll.setFitWidth(45 + 5);
-//                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35);
-//                                imageViewButtonAll.setFitWidth(45);
-//                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//                        labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35 + 5);
-//                                imageViewButtonAll.setFitWidth(45 + 5);
-//                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
-//                            }
-//                        });
-//
-//                        labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
-//                            @Override
-//                            public void handle(MouseEvent event) {
-//                                imageViewButtonAll.setFitHeight(35);
-//                                imageViewButtonAll.setFitWidth(45);
-//                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
-//                            }
-//                        });
-//
-//                        MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCageBrearOfNumber.getText()),imageViewButton1,labelCageBearButton1,imageViewButtonAll,labelButtonAll);
-//
-//                        root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
-//                                , imageViewMultiply, labelCageBearButton1, labelButtonAll, labelCageBrearOfNumber, labelOfPrice);
-//                        yLocationOfFirst += 50;
-//                    }
-//                }
-//            }
-//
-//        } catch (MissionNotLoaded | UnknownObjectException missionNotLoaded) {
-//            missionNotLoaded.printStackTrace();
-//        }
-//    }
+    private void ShowWareHouseListInTruckView() {
+        try {
+            WareHouse wareHouse = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
+            ArrayList<Object> arrayList = wareHouse.getWareHouseList();
+            HashMap<String, Integer> hashMap = wareHouse.getTypeAndNumberOfProductInWAreHouse();
+            int yLocationOfFirst = 150;
+            int SHIFT = 480;
+            InformationNeededInGame informationNeededInGame = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+            for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+                String key = entry.getKey(); // getClass
+                Object object = entry.getKey();
+                Integer value = entry.getValue();
+                if (key.equals("Egg")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Egg\\normal.png");
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelEggOfNumber = new Label(value.toString());
+                    labelEggOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelEggOfNumber.setTextFill(Color.BLACK);
+                    labelEggOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelEggButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelEggButton1.setTextFill(Color.BLACK);
+                    labelEggButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelEggButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+                    labelEggButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelEggOfNumber.getText()),imageViewButton1,labelEggButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelEggButton1, labelButtonAll, labelEggOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Wool")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Wool\\normal.png");
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelWoolOfNumber = new Label(value.toString());
+                    labelWoolOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelWoolOfNumber.setTextFill(Color.BLACK);
+                    labelWoolOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelWoolButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelWoolButton1.setTextFill(Color.BLACK);
+                    labelWoolButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+                    labelWoolButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+                    labelWoolButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelWoolOfNumber.getText()),imageViewButton1,labelWoolButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelWoolButton1, labelButtonAll, labelWoolOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Milk")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Milk.png");
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelMilkOfNumber = new Label(value.toString());
+                    labelMilkOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelMilkOfNumber.setTextFill(Color.BLACK);
+                    labelMilkOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelMilkButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelMilkButton1.setTextFill(Color.BLACK);
+                    labelMilkButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelMilkButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelMilkButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelMilkOfNumber.getText()),imageViewButton1,labelMilkButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelMilkButton1, labelButtonAll, labelMilkOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("FlouryCake")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\FlouryCake.png");
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelFlouryCakeOfNumber = new Label(value.toString());
+                    labelFlouryCakeOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelFlouryCakeOfNumber.setTextFill(Color.BLACK);
+                    labelFlouryCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelFlouryCakeButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelFlouryCakeButton1.setTextFill(Color.BLACK);
+                    labelFlouryCakeButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelFlouryCakeButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelFlouryCakeButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFlouryCakeOfNumber.getText()),imageViewButton1,labelFlouryCakeButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelFlouryCakeButton1, labelButtonAll, labelFlouryCakeOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Cake")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Cake.png");
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelCakeOfNumber = new Label(value.toString());
+                    labelCakeOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelCakeOfNumber.setTextFill(Color.BLACK);
+                    labelCakeOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230+ SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelCakeButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelCakeButton1.setTextFill(Color.BLACK);
+                    labelCakeButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelCakeButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelCakeButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCakeOfNumber.getText()),imageViewButton1,labelCakeButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelCakeButton1, labelButtonAll, labelCakeOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Flour")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Flour.png");
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelFlourOfNumber = new Label(value.toString());
+                    labelFlourOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelFlourOfNumber.setTextFill(Color.BLACK);
+                    labelFlourOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelFlourButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelFlourButton1.setTextFill(Color.BLACK);
+                    labelFlourButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelFlourButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelFlourButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFlourOfNumber.getText()),imageViewButton1,labelFlourButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelFlourButton1, labelButtonAll, labelFlourOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Powder")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\EggPowder.png"); // not image
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelPowderOfNumber = new Label(value.toString());
+                    labelPowderOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelPowderOfNumber.setTextFill(Color.BLACK);
+                    labelPowderOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelPowderButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelPowderButton1.setTextFill(Color.BLACK);
+                    labelPowderButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelPowderButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelPowderButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelPowderOfNumber.getText()),imageViewButton1, labelPowderButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelPowderButton1, labelButtonAll, labelPowderOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("CarnivalDress")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\CarnivalDress.png");
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelCarnivalDressOfNumber = new Label(value.toString());
+                    labelCarnivalDressOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelCarnivalDressOfNumber.setTextFill(Color.BLACK);
+                    labelCarnivalDressOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelCarnivalDressButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelCarnivalDressButton1.setTextFill(Color.BLACK);
+                    labelCarnivalDressButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelCarnivalDressButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelCarnivalDressButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCarnivalDressOfNumber.getText()),imageViewButton1,labelCarnivalDressButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelCarnivalDressButton1, labelButtonAll, labelCarnivalDressOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Decoration")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Decoration.png"); // todo
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelDecorationOfNumber = new Label(value.toString());
+                    labelDecorationOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelDecorationOfNumber.setTextFill(Color.BLACK);
+                    labelDecorationOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelDecorationButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelDecorationButton1.setTextFill(Color.BLACK);
+                    labelDecorationButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelDecorationButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelDecorationButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelDecorationOfNumber.getText()),imageViewButton1,labelDecorationButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelDecorationButton1, labelButtonAll, labelDecorationOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Fabric")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Fabric.png"); // not image
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelFabricOfNumber = new Label(value.toString());
+                    labelFabricOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelFabricOfNumber.setTextFill(Color.BLACK);
+                    labelFabricOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelFabricButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelFabricButton1.setTextFill(Color.BLACK);
+                    labelFabricButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelFabricButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelFabricButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelFabricOfNumber.getText()),imageViewButton1,labelFabricButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelFabricButton1, labelButtonAll, labelFabricOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.equals("Sewing")) {
+                    final int finalYLocationOfFirst = yLocationOfFirst;
+                    File fileIcon = new File("Data\\Textures\\Products\\Sewing.png"); // not image
+                    Image imageIcon = new Image(fileIcon.toURI().toString());
+                    ImageView imageViewIcon = new ImageView(imageIcon);
+                    imageViewIcon.setFitHeight(30);
+                    imageViewIcon.setFitWidth(30);
+                    imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                    File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                    Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                    ImageView imageViewMultiply = new ImageView(imageMultiply);
+                    imageViewMultiply.setFitWidth(30);
+                    imageViewMultiply.setFitHeight(30);
+                    imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                    labelSewingOfNumber = new Label(value.toString());
+                    labelSewingOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                    labelSewingOfNumber.setTextFill(Color.BLACK);
+                    labelSewingOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(object))); // price of egg
+                    labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                    labelOfPrice.setTextFill(Color.BLACK);
+                    labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                    File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                    Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                    ImageView imageViewCoin = new ImageView(imageOfCoin);
+                    imageViewCoin.setFitWidth(30);
+                    imageViewCoin.setFitHeight(30);
+                    imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                    File fileButton1 = new File("Data\\Click\\OkButton.png");
+                    Image imageButton1 = new Image(fileButton1.toURI().toString());
+                    ImageView imageViewButton1 = new ImageView(imageButton1);
+                    imageViewButton1.setFitHeight(35);
+                    imageViewButton1.setFitWidth(35);
+                    imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                    labelSewingButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                    labelSewingButton1.setTextFill(Color.BLACK);
+                    labelSewingButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelSewingButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35 + 5);
+                            imageViewButton1.setFitWidth(35 + 5);
+                            imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelSewingButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButton1.setFitHeight(35);
+                            imageViewButton1.setFitWidth(35);
+                            imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+
+                    File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                    Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                    ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                    imageViewButtonAll.setFitHeight(35);
+                    imageViewButtonAll.setFitWidth(45);
+                    imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                    Label labelButtonAll = new Label("All");
+                    labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                    labelButtonAll.setTextFill(Color.BLACK);
+                    labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                    imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35 + 5);
+                            imageViewButtonAll.setFitWidth(45 + 5);
+                            imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                        }
+                    });
+
+                    labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            imageViewButtonAll.setFitHeight(35);
+                            imageViewButtonAll.setFitWidth(45);
+                            imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                        }
+                    });
+
+                    MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelSewingOfNumber.getText()),imageViewButton1,labelSewingButton1,imageViewButtonAll,labelButtonAll);
+
+                    root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                            , imageViewMultiply, labelSewingButton1, labelButtonAll, labelSewingOfNumber, labelOfPrice);
+                    yLocationOfFirst += 50;
+                } else if (key.substring(0,4).equals("Cage")) {
+                    if (key.equals("CageLion")) {
+                        final int finalYLocationOfFirst = yLocationOfFirst;
+                        File fileIcon = new File("Data\\Textures\\Products\\CagedLion.png"); // not image
+                        Image imageIcon = new Image(fileIcon.toURI().toString());
+                        ImageView imageViewIcon = new ImageView(imageIcon);
+                        imageViewIcon.setFitHeight(30);
+                        imageViewIcon.setFitWidth(30);
+                        imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                        File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                        Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                        ImageView imageViewMultiply = new ImageView(imageMultiply);
+                        imageViewMultiply.setFitWidth(30);
+                        imageViewMultiply.setFitHeight(30);
+                        imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                        labelCageLionOfNumber = new Label(value.toString());
+                        labelCageLionOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                        labelCageLionOfNumber.setTextFill(Color.BLACK);
+                        labelCageLionOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Cage(new Lion())))); // price of egg
+                        labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                        labelOfPrice.setTextFill(Color.BLACK);
+                        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                        ImageView imageViewCoin = new ImageView(imageOfCoin);
+                        imageViewCoin.setFitWidth(30);
+                        imageViewCoin.setFitHeight(30);
+                        imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                        File fileButton1 = new File("Data\\Click\\OkButton.png");
+                        Image imageButton1 = new Image(fileButton1.toURI().toString());
+                        ImageView imageViewButton1 = new ImageView(imageButton1);
+                        imageViewButton1.setFitHeight(35);
+                        imageViewButton1.setFitWidth(35);
+                        imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                        labelCageLionButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                        labelCageLionButton1.setTextFill(Color.BLACK);
+                        labelCageLionButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35 + 5);
+                                imageViewButton1.setFitWidth(35 + 5);
+                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35);
+                                imageViewButton1.setFitWidth(35);
+                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+                        labelCageLionButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35 + 5);
+                                imageViewButton1.setFitWidth(35 + 5);
+                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        labelCageLionButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35);
+                                imageViewButton1.setFitWidth(35);
+                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+
+                        File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                        Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                        ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                        imageViewButtonAll.setFitHeight(35);
+                        imageViewButtonAll.setFitWidth(45);
+                        imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                        Label labelButtonAll = new Label("All");
+                        labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                        labelButtonAll.setTextFill(Color.BLACK);
+                        labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                        imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35 + 5);
+                                imageViewButtonAll.setFitWidth(45 + 5);
+                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35);
+                                imageViewButtonAll.setFitWidth(45);
+                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+                        labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35 + 5);
+                                imageViewButtonAll.setFitWidth(45 + 5);
+                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35);
+                                imageViewButtonAll.setFitWidth(45);
+                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+                        MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCageLionOfNumber.getText()),imageViewButton1,labelCageLionButton1,imageViewButtonAll,labelButtonAll);
+
+                        root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                                , imageViewMultiply, labelCageLionButton1, labelButtonAll, labelCageLionOfNumber, labelOfPrice);
+                        yLocationOfFirst += 50;
+                    } else if (key.equals("CageBear")) {
+                        final int finalYLocationOfFirst = yLocationOfFirst;
+                        File fileIcon = new File("Data\\Textures\\Products\\CagedBrownBear.png"); // not image
+                        Image imageIcon = new Image(fileIcon.toURI().toString());
+                        ImageView imageViewIcon = new ImageView(imageIcon);
+                        imageViewIcon.setFitHeight(30);
+                        imageViewIcon.setFitWidth(30);
+                        imageViewIcon.relocate(150 + SHIFT, finalYLocationOfFirst);
+
+                        File fileMultiply = new File("Data\\Textures\\Service\\multiply.png");
+                        Image imageMultiply = new Image(fileMultiply.toURI().toString());
+                        ImageView imageViewMultiply = new ImageView(imageMultiply);
+                        imageViewMultiply.setFitWidth(30);
+                        imageViewMultiply.setFitHeight(30);
+                        imageViewMultiply.relocate(185 + SHIFT, finalYLocationOfFirst);
+
+                        labelCageBrearOfNumber = new Label(value.toString());
+                        labelCageBrearOfNumber.relocate(190 + SHIFT, finalYLocationOfFirst);
+                        labelCageBrearOfNumber.setTextFill(Color.BLACK);
+                        labelCageBrearOfNumber.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                        Label labelOfPrice = new Label(String.valueOf(informationNeededInGame.getPriceForSell(new Cage(new Bear())))); // price of egg
+                        labelOfPrice.relocate(230 + SHIFT, finalYLocationOfFirst);
+                        labelOfPrice.setTextFill(Color.BLACK);
+                        labelOfPrice.setStyle("-fx-font: 28 arial; -fx-base: #030202;");
+
+                        File fileOfCoin = new File("Data\\Shop\\Coin.png");
+                        Image imageOfCoin = new Image(fileOfCoin.toURI().toString());
+                        ImageView imageViewCoin = new ImageView(imageOfCoin);
+                        imageViewCoin.setFitWidth(30);
+                        imageViewCoin.setFitHeight(30);
+                        imageViewCoin.relocate(310 + SHIFT, finalYLocationOfFirst);
+
+                        File fileButton1 = new File("Data\\Click\\OkButton.png");
+                        Image imageButton1 = new Image(fileButton1.toURI().toString());
+                        ImageView imageViewButton1 = new ImageView(imageButton1);
+                        imageViewButton1.setFitHeight(35);
+                        imageViewButton1.setFitWidth(35);
+                        imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+
+
+                        labelCageBearButton1.relocate(380 + SHIFT, finalYLocationOfFirst + 5);
+                        labelCageBearButton1.setTextFill(Color.BLACK);
+                        labelCageBearButton1.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                        imageViewButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35 + 5);
+                                imageViewButton1.setFitWidth(35 + 5);
+                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        imageViewButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35);
+                                imageViewButton1.setFitWidth(35);
+                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+                        labelCageBearButton1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35 + 5);
+                                imageViewButton1.setFitWidth(35 + 5);
+                                imageViewButton1.relocate(370 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        labelCageBearButton1.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButton1.setFitHeight(35);
+                                imageViewButton1.setFitWidth(35);
+                                imageViewButton1.relocate(370 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+
+                        File fileButtonAll = new File("Data\\Click\\OkButton.png");
+                        Image imageButtonAll = new Image(fileButtonAll.toURI().toString());
+                        ImageView imageViewButtonAll = new ImageView(imageButtonAll);
+                        imageViewButtonAll.setFitHeight(35);
+                        imageViewButtonAll.setFitWidth(45);
+                        imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+
+                        Label labelButtonAll = new Label("All");
+                        labelButtonAll.relocate(443 + SHIFT, finalYLocationOfFirst + 5);
+                        labelButtonAll.setTextFill(Color.BLACK);
+                        labelButtonAll.setStyle("-fx-font: 24 arial; -fx-base: #030202;");
+
+                        imageViewButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35 + 5);
+                                imageViewButtonAll.setFitWidth(45 + 5);
+                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        imageViewButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35);
+                                imageViewButtonAll.setFitWidth(45);
+                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+                        labelButtonAll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35 + 5);
+                                imageViewButtonAll.setFitWidth(45 + 5);
+                                imageViewButtonAll.relocate(435 - 2.5 + SHIFT, finalYLocationOfFirst - 2.5);
+                            }
+                        });
+
+                        labelButtonAll.setOnMouseExited(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                imageViewButtonAll.setFitHeight(35);
+                                imageViewButtonAll.setFitWidth(45);
+                                imageViewButtonAll.relocate(435 + SHIFT, finalYLocationOfFirst);
+                            }
+                        });
+
+                        MakeLabelAndButtonChangeableّForSell(Integer.valueOf(labelCageBrearOfNumber.getText()),imageViewButton1,labelCageBearButton1,imageViewButtonAll,labelButtonAll);
+
+                        root.getChildren().addAll(imageViewButton1, imageViewButtonAll, imageViewCoin, imageViewIcon
+                                , imageViewMultiply, labelCageBearButton1, labelButtonAll, labelCageBrearOfNumber, labelOfPrice);
+                        yLocationOfFirst += 50;
+                    }
+                }
+            }
+
+        } catch (MissionNotLoaded | UnknownObjectException missionNotLoaded) {
+            missionNotLoaded.printStackTrace();
+        }
+    }
 
 }

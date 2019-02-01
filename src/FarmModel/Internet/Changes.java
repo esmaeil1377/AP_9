@@ -1,12 +1,30 @@
 package FarmModel.Internet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Changes {
     private static boolean NewContact =false;
     private static boolean NewMassage =false;
     private static ArrayList<String> massageShouldSendToServerForOtherUsersOrServerItSelf=new ArrayList<>();
     private static boolean weHaveUserNameError=false;
+    private static ArrayList<String> userThatArePlayingMissionNow=new ArrayList<>();
+
+    public static void UpdatePlayingUsersArray(String userName,boolean isPlayingAMissionNow){
+        if (isPlayingAMissionNow){
+            if (!userThatArePlayingMissionNow.contains(userName)){
+                userThatArePlayingMissionNow.add(userName);
+            }
+        }else{
+            if (userThatArePlayingMissionNow.contains(userName)){
+                userThatArePlayingMissionNow.remove(userName);
+            }
+        }
+    }
+
+    public static ArrayList<String> getUserThatArePlayingMissionNow() {
+        return userThatArePlayingMissionNow;
+    }
 
     public static boolean DoWeHaveUserNameError(){
         return weHaveUserNameError;

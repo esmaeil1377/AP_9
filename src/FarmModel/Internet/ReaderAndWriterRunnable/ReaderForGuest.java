@@ -47,7 +47,7 @@ public class ReaderForGuest implements Runnable{
                     Changes.WeHaveNewMassageToShow();
                 } else if (inputString.substring(1, 2).equals("@")) {
                     //it means it is sending the information of account
-                    GetDataNotMassageFromSocket(inputString, socket);
+                    GetDataNotMassageFromServer(inputString, socket);
                 } else {
                     if (inputString.substring(0, 1).equals("#")) {
                         //it means it is sending the massage for other user via server
@@ -81,7 +81,7 @@ public class ReaderForGuest implements Runnable{
         return null;
     }
 
-    private static void GetDataNotMassageFromSocket(String inputString, Socket socket) {
+    private void GetDataNotMassageFromServer(String inputString, Socket socket) {
         if (inputString.substring(0,1).equals("C")){
             //it means server is sending the server Data.
             String data=inputString.substring(2);
@@ -95,7 +95,37 @@ public class ReaderForGuest implements Runnable{
             String[] contactsDatas=inputString.substring(2).split(" ");
             GameView.getGameView().getStartMenuView().getServerOrGuest().ReloadContactsAndContactDataThenScoreBoard(contactsDatas);
             Changes.WeHaveNewContact();
+        }else if (inputString.substring(0,1).equals("P")){
+            boolean isPlayingNow;
+            if (inputString.split("@").length==2){
+                // it means server is playing a mission
+                if (inputString.split("@")[1].equals("Playing")){
+                    isPlayingNow=true;
+                }else{
+                    isPlayingNow=false;
+                }
+                Changes.UpdatePlayingUsersArray(ServerUserName(),isPlayingNow);
+            }else{
+                //it means one of the guests are playing a mission.
+                if (inputString.split("@")[2].equals("Playing")){
+                    isPlayingNow=true;
+                }else{
+                    isPlayingNow=false;
+                }
+                Changes.UpdatePlayingUsersArray(inputString.split("@")[1],isPlayingNow);
+            }
         }
+    }
+
+    private String ServerUserName(){
+        for (Map.Entry<Socket,PVView> entry:GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()){
+            if (entry.getValue().getContactName().length()>7){
+                if (entry.getValue().getContactName().substring(0,7).equals("Server:")){
+                    return entry.getValue().getContactName();
+                }
+            }
+        }
+        return null;
     }
 
 }

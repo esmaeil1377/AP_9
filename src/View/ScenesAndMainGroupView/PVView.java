@@ -38,7 +38,9 @@ public class PVView extends View.View {
     private ArrayList<String> dataToSendThatWeDidntSendThem = new ArrayList<>();
     private ArrayList<Node> massageHistoryNodes =new ArrayList<>();
     private ArrayList<Node> currentContactsNode=new ArrayList<>();
+    private Label userIsPlayingNow=new Label("Playing...");
 //    private ArrayList<String> massagedidntshowedInInGroup = new ArrayList<>();
+
 
 
     public String getContactMoneyInGame() {
@@ -108,6 +110,7 @@ public class PVView extends View.View {
         AddTextFieldTOSendInGroup();
         AddReturnTheGroup(primaryStage);
         AddUserNameToPvView();
+        AddUserPlaying();
     }
 
 
@@ -398,14 +401,35 @@ public class PVView extends View.View {
     }
 
     private void AddUserLevelToPvView(){
-        Rectangle rectangle=new Rectangle(825,360,600,60);
+        Rectangle rectangle=new Rectangle(825,330,600,60);
         rectangle.setArcHeight(30);
         rectangle.setArcWidth(30);
         rectangle.setFill(Color.rgb(114,144,174));
         Label label=new Label("User Level: "+getContactLevelInMission());
         label.setFont(Font.font(25));
-        label.relocate(860,370);
+        label.relocate(860,340);
         root.getChildren().addAll(rectangle,label);
+    }
+
+    private void AddUserPlaying(){
+        Rectangle rectangle=new Rectangle(825,420,600,60);
+        rectangle.setArcHeight(30);
+        rectangle.setArcWidth(30);
+        rectangle.setFill(Color.rgb(114,144,174));
+        userIsPlayingNow.setFont(Font.font(25));
+        userIsPlayingNow.relocate(860,430);
+        root.getChildren().addAll(rectangle);
+    }
+
+    public void setUserIsNotPlayingAndRemoveTheLabel(){
+        if (root.getChildren().contains(userIsPlayingNow)) {
+            root.getChildren().removeAll(userIsPlayingNow);
+        }
+    }
+    public void setUserIsPlayingAMissionAndAddLebel(){
+        if (!root.getChildren().contains(userIsPlayingNow)) {
+            root.getChildren().addAll(userIsPlayingNow);
+        }
     }
 
 }

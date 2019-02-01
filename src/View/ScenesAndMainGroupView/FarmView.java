@@ -136,6 +136,7 @@ public class FarmView extends View {
         AddSpeedCircleToSettingInFarm(primaryStage);
         AddMenuClick(primaryStage);
 
+        AddMultiPlayerIcon(primaryStage);
         AddTimeText();
 
         AddStarAndMoneyText(user.getCurrentPlayingMission().getMissionMoney());
@@ -3425,6 +3426,51 @@ public class FarmView extends View {
                 primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getScene());
                 GameView.getGameView().setFarmView(null);
                 primaryStage.setFullScreen(true);
+            }
+        });
+    }
+
+    private void AddMultiPlayerIcon(Stage primaryStage) {
+        File multiPlayerFile = new File("Data\\Click\\MultiPlayerClick.png");
+        Image multiPlayerImage = new Image(multiPlayerFile.toURI().toString());
+        ImageView multiPlayerView = new ImageView(multiPlayerImage);
+        multiPlayerView.relocate(1420, 750);
+        multiPlayerView.setFitWidth(100);
+        multiPlayerView.setFitHeight(100);
+        multiPlayerView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                multiPlayerView.relocate(1415, 745);
+                multiPlayerView.setFitWidth(110);
+                multiPlayerView.setFitHeight(110);
+            }
+        });
+        multiPlayerView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                multiPlayerView.relocate(1420, 750);
+                multiPlayerView.setFitWidth(100);
+                multiPlayerView.setFitHeight(100);
+            }
+        });
+        root.getChildren().addAll(multiPlayerView);
+
+        multiPlayerView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(GameView.getGameView().getHostAndGuestView()!=null) {
+                    try {
+                        GameView.getGameView().getHostAndGuestView().AddReturnToGame(primaryStage);
+                        GameView.getGameView().getHostAndGuestView().RemoveReturnToMainMenuView();
+                    }catch (Exception e){}
+                    primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getScene());
+                    PlayBubbleSound();
+                    animationTimer.stop();
+                    primaryStage.setFullScreen(true);
+                }else{
+                    //it means user is not connected to any net.
+                    PlayErrorSound();
+                }
             }
         });
     }

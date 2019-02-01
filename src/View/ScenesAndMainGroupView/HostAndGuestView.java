@@ -50,15 +50,14 @@ public class HostAndGuestView extends View.View {
     private int endHeightOfTheContacts = 120;
     Label clientIp=new Label("Client Ip: ");
     Rectangle scoreboardRectangle = new Rectangle(475, 900, 500, 600);
-    //    private ServerSocketRunnable serverSocketRunnable;
-//    private ArrayList<String> massagedidntsent=new ArrayList<>();
+    Rectangle returnToMainMenu = new Rectangle(20, 20, 105, 45);
     private ArrayList<String> massagedidntshowedInInGroup = new ArrayList<>();
     private ArrayList<String> historyMassage = new ArrayList<>();
     private ArrayList<Node> massageHistoryNodes = new ArrayList<>();
     private ArrayList<Node> currentContactsNode = new ArrayList<>();
     private ArrayList<String> currentPlayerNameSortbyMoney = new ArrayList<>();
     private ArrayList<Node> currentPlayerNodeSortbyMoney = new ArrayList<>();
-    private BazaarView bazaarView=new BazaarView(Main.getPrimaryStage());
+    private BazaarView bazaarView;
     public BazaarView getBazaarView() {
         return bazaarView;
     }
@@ -98,7 +97,6 @@ public class HostAndGuestView extends View.View {
         Start(primaryStage);
     }
 
-
     public ArrayList<String> getHistoryMassage() {
         return historyMassage;
     }
@@ -119,16 +117,17 @@ public class HostAndGuestView extends View.View {
             public void handle(long now) {
                 if (lastTime == 0)
                     lastTime = now;
-                if (now - lastTime > (second / 10)) {
+                if (now - lastTime > (second / 2)) {
                     //this check every 0.5 sec to upload every thing like PVView and IsNewMassage.
                     lastTime = now;
                     time += 1;
+                    ReloadStateOfUsersAndServer();
                     if (Changes.isThereAnyNewContact()) {
                         ReloadPVContacts(primaryStage);
                         ReloadCurrentPLayerSortedByMoneyAndViewWhenScoreBoardIsShowing();
                         Changes.ContactViewReloaded();
                     }
-                    if (Changes.DoWeHaveUserNameError()){
+                    if (Changes.DoWeHaveUserNameError()) {
                         GameView.getGameView().getHostAndGuestView().ShowThereIsAUserWithThisNameError();
                         Changes.setWeHaveUserNameErrorfalse();
                     }
@@ -141,6 +140,33 @@ public class HostAndGuestView extends View.View {
                         }
 
                     }
+                    if (GameView.getGameView().getStartMenuView().getServerOrGuest() != null) {
+                        try {
+                            Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+                            TextField ipTextField = GameView.getGameView().getHostAndGuestView().getIpTextField();
+                            if (GameView.getGameView().getHostAndGuestView().getRoot().getChildren().contains(ipTextField)) {
+                                Changes.AddMassageToMassageThatShouldSend("P@" + Game.getGameInstance().getCurrentUserAccount().getAccountName() + "@Playing");
+                            } else {
+                                for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+                                    entry.getValue().AddDataToMassageToSendThatWeDidntSendThem("P@Playing");
+                                }
+                            }
+                        } catch (MissionNotLoaded missionNotLoaded) {
+                            //it means that user is not playing a mission now so you can't release a wild animal in his map.
+                            try {
+                                TextField ipTextField = GameView.getGameView().getHostAndGuestView().getIpTextField();
+                                if (GameView.getGameView().getHostAndGuestView().getRoot().getChildren().contains(ipTextField)) {
+                                    Changes.AddMassageToMassageThatShouldSend("P@" + Game.getGameInstance().getCurrentUserAccount().getAccountName() + "@NotPlaying");
+                                } else {
+                                    for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+                                        entry.getValue().AddDataToMassageToSendThatWeDidntSendThem("P@NotPlaying");
+                                    }
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                 }
             }
         };
@@ -151,7 +177,7 @@ public class HostAndGuestView extends View.View {
         AddTextFieldToGetPort();
         AddTextFieldTOSendInGroup();
         AddOkToStartConnecting();
-        AddReturnToMainMenu(primaryStage);
+        AddGoToMissionselectionView(primaryStage);
         AddScoreBoardButton();
         AddBazarClick(primaryStage);
     }
@@ -532,37 +558,36 @@ public class HostAndGuestView extends View.View {
 
     }
 
-    private void AddReturnToMainMenu(Stage primaryStage) {
-        Label label = new Label("MainMenu");
+    private void AddGoToMissionselectionView(Stage primaryStage) {
+        Label label = new Label("Missions");
         label.setTextFill(Paint.valueOf("White"));
         label.setFont(Font.font(20));
-        label.relocate(25, 25);
-        Rectangle rectangle = new Rectangle(20, 20, 110, 45);
-        rectangle.setFill(Paint.valueOf("White"));
-        rectangle.setArcHeight(20);
-        rectangle.setArcWidth(20);
-        rectangle.setOpacity(0.1);
-        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        label.relocate(27, 25);
+        returnToMainMenu.setFill(Paint.valueOf("White"));
+        returnToMainMenu.setArcHeight(20);
+        returnToMainMenu.setArcWidth(20);
+        returnToMainMenu.setOpacity(0.1);
+        returnToMainMenu.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                rectangle.setOpacity(0.2);
+                returnToMainMenu.setOpacity(0.2);
             }
         });
-        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        returnToMainMenu.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                rectangle.setOpacity(0.1);
+                returnToMainMenu.setOpacity(0.1);
             }
         });
-        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        returnToMainMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getStartMenuView().getScene());
+                primaryStage.setScene(GameView.getGameView().getMissionSelectionView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
 
-        root.getChildren().addAll(label, rectangle);
+        root.getChildren().addAll(label, returnToMainMenu);
     }
 
     public void SendConnectedClientDataToOther() {
@@ -795,9 +820,68 @@ public class HostAndGuestView extends View.View {
         bazarRec.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getBazaarView().getScene());
+                try {
+                    Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+                    setBazaarView(new BazaarView(Main.getPrimaryStage()));
+                    primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getBazaarView().getScene());
+                    primaryStage.setFullScreen(true);
+                }catch (MissionNotLoaded e){
+                    PlayErrorSound();
+                } catch (UnknownObjectException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void ReloadStateOfUsersAndServer(){
+        if (GameView.getGameView().getStartMenuView().getServerOrGuest()!=null) {
+            for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
+                if (Changes.getUserThatArePlayingMissionNow().contains(entry.getValue().getContactName())) {
+                    entry.getValue().setUserIsPlayingAMissionAndAddLebel();
+                } else {
+                    entry.getValue().setUserIsNotPlayingAndRemoveTheLabel();
+                }
+            }
+        }
+    }
+
+    public void AddReturnToGame(Stage primaryStage) {
+        Label label = new Label("Mission");
+        label.setTextFill(Paint.valueOf("White"));
+        label.setFont(Font.font(20));
+        label.relocate(170, 25);
+        Rectangle rectangle = new Rectangle(165, 20, 120, 45);
+        rectangle.setFill(Paint.valueOf("White"));
+        rectangle.setArcHeight(20);
+        rectangle.setArcWidth(20);
+        rectangle.setOpacity(0.1);
+        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rectangle.setOpacity(0.2);
+            }
+        });
+        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rectangle.setOpacity(0.1);
+            }
+        });
+        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getFarmView().getScene());
                 primaryStage.setFullScreen(true);
             }
         });
+
+        root.getChildren().addAll(label, rectangle);
+    }
+
+    public void RemoveReturnToMainMenuView(){
+        if (root.getChildren().contains(returnToMainMenu)){
+            root.getChildren().removeAll(returnToMainMenu);
+        }
     }
 }

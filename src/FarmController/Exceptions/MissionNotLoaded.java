@@ -4,6 +4,6 @@ import static View.View.PlayErrorSound;
 
 public class MissionNotLoaded extends Exception  {
     public MissionNotLoaded(){
-        PlayErrorSound();
+//        PlayErrorSound();
     }
 }
