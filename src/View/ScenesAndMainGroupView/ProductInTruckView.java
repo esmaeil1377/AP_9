@@ -2325,7 +2325,7 @@ public class ProductInTruckView extends View {
 
     private int getCapacityNeeded(){
         int result=0;
-        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
+//        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
         result+=Integer.valueOf(labelEggButton1.getText());
         result+=Integer.valueOf(labelWoolButton1.getText());
         result+=Integer.valueOf(labelMilkButton1.getText());

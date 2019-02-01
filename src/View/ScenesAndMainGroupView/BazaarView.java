@@ -480,7 +480,6 @@ public class BazaarView {
 
     private void AddObjectWeOrderedToWareHouse() throws MissionNotLoaded, FullWareHouse {
         WareHouse wareHouse=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
-        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
         for(int i = 0; i<Integer.valueOf(labelButtonFlouryCakeToOrder.getText()); i++){
             wareHouse.AddWholeObjectToStore(new FlouryCake());
         }

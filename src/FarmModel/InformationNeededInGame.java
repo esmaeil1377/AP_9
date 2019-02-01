@@ -47,11 +47,11 @@ public class InformationNeededInGame {
 
 
     //SpaceNeededInWareHouseForObject
-    private final static int SpaceNeededInWareHouseForCageThatLionIsInIt = 20;
-    private final static int SpaceNeededInWareHouseForCageThatBearIsInIt = 20;
+    private final static int SpaceNeededInWareHouseForCageThatLionIsInIt = 10;
+    private final static int SpaceNeededInWareHouseForCageThatBearIsInIt = 10;
     private final static int SpaceNeededInWareHouseForEgg = 1;
     private final static int SpaceNeededInWareHouseForWool = 5;
-    private final static int SpaceNeededInWareHouseForMilk = 10;
+    private final static int SpaceNeededInWareHouseForMilk = 6;
     private final static int SpaceNeededInWareHouseForFlouryCake = 5;
     private final static int SpaceNeededInWareHouseForPowder = 4; // random
     private final static int SpaceNeededInWareHouseForFlour = 2;

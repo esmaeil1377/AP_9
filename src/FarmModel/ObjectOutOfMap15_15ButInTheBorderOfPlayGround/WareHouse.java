@@ -65,15 +65,12 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
 
     private int GetNumberOfObjectInWareHouse(Object object) throws MissionNotLoaded {
         int result=0;
-        InformationNeededInGame informationNeededInGame=Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame();
-        WareHouse wareHouse=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         for(Object object1:wareHouseList){
             if(object.toString().equals(object1.toString())){
                 result++;
             }
         }
-        return result*informationNeededInGame.getSpaceNeededInWareHouse(object);
-
+        return result;
     }
 
     public HashMap<String,Integer> getTypeAndNumberOfProductInWAreHouse() throws MissionNotLoaded {
