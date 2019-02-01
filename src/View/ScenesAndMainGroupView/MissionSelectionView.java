@@ -1,9 +1,11 @@
 package View.ScenesAndMainGroupView;//package View.ScenesAndMainGroupView;
 
 import FarmController.Exceptions.MissionNotLoaded;
+import javafx.scene.control.Label;
 import FarmController.Exceptions.UnknownObjectException;
 import FarmModel.Game;
 import FarmModel.Mission;
+import FarmModel.User;
 import View.GameView;
 import View.View;
 import javafx.animation.KeyFrame;
@@ -23,6 +25,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MissionSelectionView extends View {
     private Group root = new Group();
@@ -31,6 +36,16 @@ public class MissionSelectionView extends View {
     private String bestTimeForMission2="99:99";
     private String bestTimeForMission3="99:99";
     private String bestTimeForMission4="99:99";
+    private int SHIFT = 0;
+    private User user=Game.getGameInstance().getCurrentUserAccount();
+    private Mission[] missions = new Mission[4];
+    ArrayList<Label>[] arrayListLabelOfObject = new ArrayList[4];
+    ArrayList<Label>[] arrayListLabelOfInteger = new ArrayList[4];
+
+    private File informationMissionFile = new File("Data\\Callout\\Callout.png");
+    private Image informationMissionImage = new Image(informationMissionFile.toURI().toString());
+    private ImageView[] informationMissionImageView = new ImageView[10];
+
 
     public String getBestTimeForCurrnetMissionToEnd() throws MissionNotLoaded {
         Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
@@ -131,6 +146,10 @@ public class MissionSelectionView extends View {
     }
 
     private void NumberOfMission(Stage primaryStage) {
+        missions[0] = user.getMission1();
+        missions[1] = user.getMission2();
+        missions[2] = user.getMission3();
+        missions[3] = user.getMission4();
         File numberFile = new File("Data\\Mission\\Bubble.png");
         Image numberImage = new Image(numberFile.toURI().toString());
         //ImageView numberImageView = new ImageView(numberImage);
@@ -142,6 +161,31 @@ public class MissionSelectionView extends View {
             bubbleImageView.setFitWidth(50);
             bubbleImageView.setFitHeight(50);
             root.getChildren().addAll(bubbleImageView);
+        }
+        for (int i = 20; i < 24; i++) {
+            ImageView imageView = new ImageView(informationMissionImage);
+            arrayListLabelOfInteger[i - 20] = new ArrayList<>();
+            arrayListLabelOfObject[i - 20] = new ArrayList<>();
+            informationMissionImageView[i - 20] = imageView;
+            informationMissionImageView[i - 20].relocate(1300 - 300 * Math.cos(i * 3.14 / 11) - 200, 550 - 300 * Math.sin(i * 3.14 / 11) - 140);
+            informationMissionImageView[i - 20].setFitHeight(150);
+            informationMissionImageView[i - 20].setFitWidth(300);
+            HashMap<Object, Integer> hashMap = missions[i - 20].getRequirementToFinishTheMission();
+            SHIFT = 25;
+            for (Map.Entry map: hashMap.entrySet()) {
+                Label label1 = new Label(map.getKey().toString());
+                label1.relocate(1300 - 300 * Math.cos(i * 3.14 / 11) + 60 - 200, 550 - 300 * Math.sin(i * 3.14 / 11) + SHIFT - 140 );
+                label1.setTextFill(Color.BLACK);
+                label1.setStyle("-fx-font: 25 Georgia; -fx-base: #030202;");
+                arrayListLabelOfObject[i - 20].add(label1);
+                Label label2 = new Label(map.getValue().toString());
+                label2.relocate(1300 - 300 * Math.cos(i * 3.14 / 11) + 230 - 200, 550 - 300 * Math.sin(i * 3.14 / 11) + SHIFT - 140);
+                label2.setTextFill(Color.BLACK);
+                label2.setStyle("-fx-font: 25 Georgia; -fx-base: #030202;");
+                arrayListLabelOfInteger[i - 20].add(label2);
+                SHIFT += 25;
+            }
+            SHIFT = 0;
         }
         try {
             for (int i = 20; i < 30; i++) {
@@ -167,6 +211,15 @@ public class MissionSelectionView extends View {
                         numberImageView[finali - 20].relocate(1300 - 300 * Math.cos(finali * 3.14 / 11) + 5, 550 - 300 * Math.sin(finali * 3.14 / 11) + 5);
                         numberImageView[finali - 20].setFitWidth(40);
                         numberImageView[finali - 20].setFitHeight(40);
+                        if (finali - 20 < 4) {
+                            root.getChildren().addAll(informationMissionImageView[finali - 20]);
+                            for (Label label1: arrayListLabelOfObject[finali - 20]) {
+                                root.getChildren().addAll(label1);
+                            }
+                            for (Label label1 : arrayListLabelOfInteger[finali - 20]) {
+                                root.getChildren().addAll(label1);
+                            }
+                        }
                     }
                 });
                 numberImageView[finali - 20].setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -175,6 +228,15 @@ public class MissionSelectionView extends View {
                         numberImageView[finali - 20].relocate(1300 - 300 * Math.cos(finali * 3.14 / 11), 550 - 300 * Math.sin(finali * 3.14 / 11));
                         numberImageView[finali - 20].setFitWidth(50);
                         numberImageView[finali - 20].setFitHeight(50);
+                        if (finali - 20 < 4) {
+                            root.getChildren().remove(informationMissionImageView[finali - 20]);
+                            for (Label label1: arrayListLabelOfObject[finali - 20]) {
+                                root.getChildren().remove(label1);
+                            }
+                            for (Label label1 : arrayListLabelOfInteger[finali - 20]) {
+                                root.getChildren().remove(label1);
+                            }
+                        }
                     }
                 });
             }
