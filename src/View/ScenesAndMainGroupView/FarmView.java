@@ -49,7 +49,7 @@ import java.util.HashMap;
 
 
 public class FarmView extends View {
-    HashMap<ArrayList<Integer>, HashMap<String, Node>> cells = new HashMap<>();
+    HashMap<ArrayList<Integer>, HashMap<Node, String>> cells = new HashMap<>();
     private Text speedTextInFarmView = new Text("Speed\n   " + String.valueOf(GameView.getGameView().getStartMenuView().getGameSpeed()));
     private Circle speedCircle;
     private Group root = new Group();
@@ -1665,7 +1665,7 @@ public class FarmView extends View {
         Animation animation = new SpriteAnimation(grassView, Duration.millis(1000), 12, 4, 0, 0, 48, 48);
         animation.play();
         root.getChildren().addAll(grassView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Grass", grassView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(grassView,"Grass");
     }
 
     public void AddEgg(int xCell, int yCell) {
@@ -1697,7 +1697,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, eggView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Egg", eggView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(eggView,"Egg");
     }
 
     private void PickUpProductFromMap(int xCell, int yCell, ImageView eggView) {
@@ -1757,7 +1757,7 @@ public class FarmView extends View {
                 }
             }
         });
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Milk", milkView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(milkView,"Milk");
     }
 
     public void AddWool(int xCell, int yCell) {
@@ -1800,7 +1800,7 @@ public class FarmView extends View {
                 }
             }
         });
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Wool", woolView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(woolView,"Wool");
     }
 
     public void AddEggPowder(int xCell, int yCell) {
@@ -1832,7 +1832,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, eggPowderView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Powder", eggPowderView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(eggPowderView,"Powder");
     }
 
     private void PickUpImageViews(int xCell, int yCell, ImageView eggPowderView) {
@@ -1879,7 +1879,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, carnivalDressView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("CarnivalDress", carnivalDressView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(carnivalDressView,"CarnivalDress");
     }
 
     public void AddCake(int xCell, int yCell) {
@@ -1911,7 +1911,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, cakeView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Cake", cakeView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(cakeView,"Cake");
     }
 
     public void AddFabric(int xCell, int yCell) {
@@ -1943,7 +1943,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, fabricView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Fabric", fabricView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(fabricView,"Fabric");
     }
 
     public void AddFlouryCake(int xCell, int yCell) {
@@ -1975,7 +1975,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, flouryCake);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("FlouryCake", flouryCake);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(flouryCake,"FlouryCake");
     }
 
     public void AddFlour(int xCell, int yCell) {
@@ -2007,7 +2007,7 @@ public class FarmView extends View {
             }
         });
         PickUpImageViews(xCell, yCell, flourView);
-        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put("Flour", flourView);
+        cells.get(new ArrayList<>(Arrays.asList(xCell, yCell))).put(flourView,"Flour");
     }
 
     private static int[] getCellPositionByPosition(int x, int y) {
@@ -3077,10 +3077,16 @@ public class FarmView extends View {
     }
 
     public void RemoveGrassAndProductFromMap(String nodeName, int xCell, int yCell) {
-        HashMap<String, Node> cellNodes = cells.get(new ArrayList<>(Arrays.asList(xCell, yCell)));
-        Node node = cellNodes.get(nodeName);
+        HashMap<Node, String> cellNodes = cells.get(new ArrayList<>(Arrays.asList(xCell, yCell)));
+        Node node=null;
+        loop:for(Node nodes:cellNodes.keySet()){
+            if(cellNodes.get(nodes).equals(nodeName)){
+                node=nodes;
+                break loop;
+            }
+        }
         root.getChildren().removeAll(node);
-        cellNodes.remove(nodeName);
+        cellNodes.remove(node,nodeName);
 
     }
 

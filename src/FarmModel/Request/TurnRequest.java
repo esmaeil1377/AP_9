@@ -222,7 +222,6 @@ public class TurnRequest extends Request {
 //            well.setRemainTurnToFillTheBucket(well.getRemainTurnToFillTheBucket() - 1);
 //        }
 //    }
-
     private void MakeWildAnimalDestroy(ArrayList<Animals> currentAnimlInMap) throws MissionNotLoaded {
         if(currentAnimlInMap!=null) {
             for (Animals animals : currentAnimlInMap) {
