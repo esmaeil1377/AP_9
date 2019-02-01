@@ -107,6 +107,7 @@ public class BazaarView {
         AddItemToBuyFabric();
         AddMoneyLabels();
         AddMaxNumberProductLabels();
+        ReloadNumberOfProductExistInOnLineShop(Changes.getDataForMaxNumberOfProductExistInOnlineShop());
     }
 
     public void AddBackground(Stage primaryStage) {
@@ -378,6 +379,8 @@ public class BazaarView {
                         AddObjectWeOrderedToWareHouse();
                         ExchangeTheProduct();
                         SendMaxNumberOfProDuctData(getMaxNumberOfProductData());
+                        Changes.setDataForMaxNumberOfProductExistInOnlineShop(getMaxNumberOfProductData());
+                        System.out.println(getMaxNumberOfProductData());
                         Game.getGameInstance().getCurrentUserAccount().setMoney(userMoney-moneyNeeded);
                         Main.getPrimaryStage().setScene(GameView.getGameView().getHostAndGuestView().getScene());
                         Main.getPrimaryStage().setFullScreen(true);
@@ -420,14 +423,14 @@ public class BazaarView {
 
     private String getMaxNumberOfProductData() {
         String result="";
-        result+="FlouryCake:"+maxNumberOfFlouryCake+" ";
-        result+="Cake:"+maxNumberOfCake+" ";
-        result+="Flour:"+maxNumberOfFlour+" ";
-        result+="Powder:"+maxNumberOfPowder+" ";
-        result+="CarnivalDress:"+maxNumberOfCarnivalDress+" ";
-        result+="Decoration:"+maxNumberOfDecoration+" ";
-        result+="Fabric:"+maxNumberOfFabric+" ";
-        result+="Sewing:"+maxNumberOfSewing;
+        result+="FlouryCake:"+maxNumberOfFlouryCake.getText()+" ";
+        result+="Cake:"+maxNumberOfCake.getText()+" ";
+        result+="Flour:"+maxNumberOfFlour.getText()+" ";
+        result+="Powder:"+maxNumberOfPowder.getText()+" ";
+        result+="CarnivalDress:"+maxNumberOfCarnivalDress.getText()+" ";
+        result+="Decoration:"+maxNumberOfDecoration.getText()+" ";
+        result+="Fabric:"+maxNumberOfFabric.getText()+" ";
+        result+="Sewing:"+maxNumberOfSewing.getText();
         return result;
 
 

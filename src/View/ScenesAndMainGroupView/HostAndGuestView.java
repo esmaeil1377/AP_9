@@ -141,7 +141,9 @@ public class HostAndGuestView extends View.View {
 
                     }
                     if (GameView.getGameView().getStartMenuView().getServerOrGuest() != null) {
-                        GameView.getGameView().getHostAndGuestView().getBazaarView().ReloadNumberOfProductExistInOnLineShop(Changes.getDataForMaxNumberOfProductExistInOnlineShop());
+                        try {
+                            GameView.getGameView().getHostAndGuestView().getBazaarView().ReloadNumberOfProductExistInOnLineShop(Changes.getDataForMaxNumberOfProductExistInOnlineShop());
+                        }catch (Exception e){}
                         try {
                             Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
                             TextField ipTextField = GameView.getGameView().getHostAndGuestView().getIpTextField();
