@@ -117,7 +117,7 @@ public class HostAndGuestView extends View.View {
             public void handle(long now) {
                 if (lastTime == 0)
                     lastTime = now;
-                if (now - lastTime > (second / 2)) {
+                if (now - lastTime > (second / 4)) {
                     //this check every 0.5 sec to upload every thing like PVView and IsNewMassage.
                     lastTime = now;
                     time += 1;
@@ -141,6 +141,7 @@ public class HostAndGuestView extends View.View {
 
                     }
                     if (GameView.getGameView().getStartMenuView().getServerOrGuest() != null) {
+                        GameView.getGameView().getHostAndGuestView().getBazaarView().ReloadNumberOfProductExistInOnLineShop(Changes.getDataForMaxNumberOfProductExistInOnlineShop());
                         try {
                             Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
                             TextField ipTextField = GameView.getGameView().getHostAndGuestView().getIpTextField();
@@ -821,14 +822,25 @@ public class HostAndGuestView extends View.View {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
-                    setBazaarView(new BazaarView(Main.getPrimaryStage()));
-                    primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getBazaarView().getScene());
-                    primaryStage.setFullScreen(true);
-                }catch (MissionNotLoaded e){
-                    PlayErrorSound();
-                } catch (UnknownObjectException e) {
-                    e.printStackTrace();
+                    boolean checkServerOrGuest=GameView.getGameView().getStartMenuView().getServerOrGuest() instanceof ServerSocketRunnable;
+                    boolean checkConnectedUsers=GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().size()!=0;
+                    if (checkConnectedUsers | checkServerOrGuest ) {
+                        try {
+                            Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
+                            setBazaarView(new BazaarView(Main.getPrimaryStage()));
+                            primaryStage.setScene(GameView.getGameView().getHostAndGuestView().getBazaarView().getScene());
+                            primaryStage.setFullScreen(true);
+                        } catch (MissionNotLoaded e) {
+                            PlayErrorSound();
+                            ShowYouShouldBeInMissionAndConnectedToServerToAccessBazaar();
+                        } catch (UnknownObjectException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        ShowYouShouldBeInMissionAndConnectedToServerToAccessBazaar();
+                    }
+                }catch (Exception e){
+                    ShowYouShouldBeInMissionAndConnectedToServerToAccessBazaar();
                 }
             }
         });
@@ -838,7 +850,7 @@ public class HostAndGuestView extends View.View {
         if (GameView.getGameView().getStartMenuView().getServerOrGuest()!=null) {
             for (Map.Entry<Socket, PVView> entry : GameView.getGameView().getStartMenuView().getServerOrGuest().getConnectedSockets().entrySet()) {
                 if (Changes.getUserThatArePlayingMissionNow().contains(entry.getValue().getContactName())) {
-                    entry.getValue().setUserIsPlayingAMissionAndAddLebel();
+                    entry.getValue().setUserIsPlayingAMissionAndAddLabel();
                 } else {
                     entry.getValue().setUserIsNotPlayingAndRemoveTheLabel();
                 }
@@ -884,5 +896,38 @@ public class HostAndGuestView extends View.View {
         if (root.getChildren().contains(returnToMainMenu)){
             root.getChildren().removeAll(returnToMainMenu);
         }
+    }
+
+    public void ShowYouShouldBeInMissionAndConnectedToServerToAccessBazaar(){
+        Label error=new Label("You Should Be In A Mission And Connected To Server To Access The ServerBazaar.");
+        error.relocate(780,130);
+        error.setFont(Font.font(20));
+        error.setTextFill(Paint.valueOf("White"));
+        error.setStyle("-fx-background-color: rgb(50,0,0)");
+        root.getChildren().addAll(error);
+        Rectangle rectangle=new Rectangle(0,0,0,30);
+        rectangle.setArcHeight(20);
+        rectangle.setArcWidth(20);
+        error.setClip(rectangle);
+        KeyValue w=new KeyValue(rectangle.widthProperty(),800);
+        KeyFrame wFrame=new KeyFrame(Duration.seconds(3),w);
+        Timeline timeline=new Timeline(wFrame);
+        timeline.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                KeyValue opacity=new KeyValue(rectangle.opacityProperty(),0);
+                KeyFrame opacityFrame=new KeyFrame(Duration.seconds(3),opacity);
+                Timeline opacityTimeLine=new Timeline(opacityFrame);
+                opacityTimeLine.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        root.getChildren().removeAll(error);
+                    }
+                });
+                opacityTimeLine.play();
+            }
+        });
+        timeline.play();
+
     }
 }

@@ -2172,7 +2172,6 @@ public class ProductInTruckView extends View {
         return result;
     }
 
-
     private void MakeLabelAndButtonChangeable(int maxNumber,ImageView imageViewButton1, Label labelButton,ImageView allViewButton,Label allLabel) throws MissionNotLoaded {
         Truck truck=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getTruck();
         int capacityOfTruck=truck.getCapacity();
