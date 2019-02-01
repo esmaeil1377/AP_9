@@ -97,6 +97,7 @@ public class CustomWorkShopView<Static> extends View {
         AddCarnivalDress(520);
         AddDecoration(520);
         AddSewing(520);
+        checkbox();
     }
 
     private void AddBackGround(Stage primaryStage) {
@@ -695,25 +696,25 @@ public class CustomWorkShopView<Static> extends View {
             objectNeededToProduceOne.put(new CarnivalDress(),1);
         if(checkBoxField_1.isSelected())
             resultProduct = new Egg();
-        if(checkBoxField_2.isSelected())
+        else if(checkBoxField_2.isSelected())
             resultProduct = new Wool();
-        if(checkBoxField_3.isSelected())
+        else if(checkBoxField_3.isSelected())
             resultProduct = new Milk();
-        if(checkBoxField_4.isSelected())
+       else if(checkBoxField_4.isSelected())
             resultProduct = new Cake();
-        if(checkBoxField_5.isSelected())
+        else if(checkBoxField_5.isSelected())
             resultProduct = new FlouryCake();
-        if(checkBoxField_6.isSelected())
+       else if(checkBoxField_6.isSelected())
             resultProduct = new Powder();
-        if(checkBoxField_7.isSelected())
+       else if(checkBoxField_7.isSelected())
             resultProduct = new Fabric();
-        if(checkBoxField_8.isSelected())
+       else if(checkBoxField_8.isSelected())
             resultProduct = new Flour();
-        if(checkBoxField_9.isSelected())
+        else if(checkBoxField_9.isSelected())
             resultProduct = new Sewing();
-        if(checkBoxField_10.isSelected())
+       else if(checkBoxField_10.isSelected())
             resultProduct = new Decoration();
-        if(checkBoxField_11.isSelected())
+        else if(checkBoxField_11.isSelected())
             resultProduct = new CarnivalDress();
     }
 
