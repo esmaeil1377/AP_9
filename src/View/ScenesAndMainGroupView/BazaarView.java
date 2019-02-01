@@ -29,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -36,9 +37,11 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static View.ScenesAndMainGroupView.HostAndGuestView.findPvViewByUserName;
 import static View.View.PlayErrorSound;
 
 public class BazaarView {
@@ -60,6 +63,8 @@ public class BazaarView {
     private Label maxNumberOfFabric = new Label("10");
     private Label labelButtonSewingToOrder = new Label("0");
     private Label maxNumberOfSewing = new Label("10");
+
+    private ArrayList<Node> currentOnlinePalyerNodes=new ArrayList<>();
 
     private Text coinTextForSell = new Text("0");
     private Text coinTextForOrder = new Text("0");
@@ -107,6 +112,7 @@ public class BazaarView {
         AddItemToBuyFabric();
         AddMoneyLabels();
         AddMaxNumberProductLabels();
+        AddCagesLionIcon();
         ReloadNumberOfProductExistInOnLineShop(Changes.getDataForMaxNumberOfProductExistInOnlineShop());
     }
 
@@ -116,7 +122,6 @@ public class BazaarView {
         ImageView BackGroundView = new ImageView(backGroundImage);
         BackGroundView.setFitHeight(primaryStage.getMaxHeight());
         BackGroundView.setFitWidth(primaryStage.getMaxWidth());
-        primaryStage.setFullScreen(true);
         root.getChildren().addAll(BackGroundView);
     }
 
@@ -247,51 +252,51 @@ public class BazaarView {
         File buttonOkFile = new File("Data\\Click\\OkButton.png");
         Image buttonOkImage = new Image(buttonOkFile.toURI().toString());
         ImageView buttonOkImageView = new ImageView(buttonOkImage);
-        buttonOkImageView.setFitHeight(100);
-        buttonOkImageView.setFitWidth(200);
-        buttonOkImageView.relocate(1175, 460);
+        buttonOkImageView.setFitHeight(50);
+        buttonOkImageView.setFitWidth(100);
+        buttonOkImageView.relocate(1300, 750);
         root.getChildren().addAll(buttonOkImageView);
 
 
         buttonOkImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonOkImageView.setFitHeight(110);
-                buttonOkImageView.setFitWidth(210);
-                buttonOkImageView.relocate(1175 - 5, 460 - 5);
+                buttonOkImageView.setFitHeight(60);
+                buttonOkImageView.setFitWidth(110);
+                buttonOkImageView.relocate(1300 - 5, 750 - 5);
             }
         });
         buttonOkImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonOkImageView.setFitHeight(100);
-                buttonOkImageView.setFitWidth(200);
-                buttonOkImageView.relocate(1175, 460);
+                buttonOkImageView.setFitHeight(50);
+                buttonOkImageView.setFitWidth(100);
+                buttonOkImageView.relocate(1300, 750);
             }
         });
 
         File okText = new File("Data\\Shop\\OkText.png");
         Image okImage = new Image(okText.toURI().toString());
         ImageView okImageView = new ImageView(okImage);
-        okImageView.setFitWidth(140);
-        okImageView.setFitHeight(80);
-        okImageView.relocate(1190 + 10, 460 + 10);
+        okImageView.setFitWidth(50);
+        okImageView.setFitHeight(30);
+        okImageView.relocate(1300 + 25, 750 + 10);
         root.getChildren().addAll(okImageView);
 
         okImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonOkImageView.setFitHeight(110);
-                buttonOkImageView.setFitWidth(210);
-                buttonOkImageView.relocate(1175 - 5, 460 - 5);
+                buttonOkImageView.setFitHeight(60);
+                buttonOkImageView.setFitWidth(110);
+                buttonOkImageView.relocate(1300 - 5, 750 - 5);
             }
         });
         okImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonOkImageView.setFitHeight(100);
-                buttonOkImageView.setFitWidth(200);
-                buttonOkImageView.relocate(1175, 460);
+                buttonOkImageView.setFitHeight(50);
+                buttonOkImageView.setFitWidth(100);
+                buttonOkImageView.relocate(1300, 750);
             }
         });
         MakeNodeSetOnClickForOkButton(okImageView);
@@ -301,9 +306,9 @@ public class BazaarView {
         File buttonCancelFile = new File("Data\\Click\\OkButton.png");
         Image buttonCancelImage = new Image(buttonCancelFile.toURI().toString());
         ImageView buttonCancelImageView = new ImageView(buttonCancelImage);
-        buttonCancelImageView.setFitHeight(100);
-        buttonCancelImageView.setFitWidth(200);
-        buttonCancelImageView.relocate(1175, 610);
+        buttonCancelImageView.setFitHeight(50);
+        buttonCancelImageView.setFitWidth(100);
+        buttonCancelImageView.relocate(1150, 750);
         root.getChildren().addAll(buttonCancelImageView);
 
         buttonCancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -317,26 +322,26 @@ public class BazaarView {
         buttonCancelImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(110);
-                buttonCancelImageView.setFitWidth(210);
-                buttonCancelImageView.relocate(1175 - 5, 610 - 5);
+                buttonCancelImageView.setFitHeight(60);
+                buttonCancelImageView.setFitWidth(110);
+                buttonCancelImageView.relocate(1150 - 5, 750 - 5);
             }
         });
         buttonCancelImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(100);
-                buttonCancelImageView.setFitWidth(200);
-                buttonCancelImageView.relocate(1175, 610);
+                buttonCancelImageView.setFitHeight(50);
+                buttonCancelImageView.setFitWidth(100);
+                buttonCancelImageView.relocate(1150, 750);
             }
         });
 
         File cancelText = new File("Data\\Shop\\CancelText.png");
         Image cancelImage = new Image(cancelText.toURI().toString());
         ImageView cancelImageView = new ImageView(cancelImage);
-        cancelImageView.setFitWidth(150);
-        cancelImageView.setFitHeight(85);
-        cancelImageView.relocate(1175 + 30, 610 + 10);
+        cancelImageView.setFitWidth(70);
+        cancelImageView.setFitHeight(35);
+        cancelImageView.relocate(1150 + 15, 750 + 10);
         root.getChildren().addAll(cancelImageView);
 
         cancelImageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -350,17 +355,17 @@ public class BazaarView {
         cancelImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(110);
-                buttonCancelImageView.setFitWidth(210);
-                buttonCancelImageView.relocate(1175 - 5, 610 - 5);
+                buttonCancelImageView.setFitHeight(60);
+                buttonCancelImageView.setFitWidth(110);
+                buttonCancelImageView.relocate(1150 - 5, 750 - 5);
             }
         });
         cancelImageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                buttonCancelImageView.setFitHeight(100);
-                buttonCancelImageView.setFitWidth(200);
-                buttonCancelImageView.relocate(1175, 610);
+                buttonCancelImageView.setFitHeight(50);
+                buttonCancelImageView.setFitWidth(100);
+                buttonCancelImageView.relocate(1150, 750);
             }
         });
     }
@@ -3163,5 +3168,93 @@ public class BazaarView {
                 SetNumberOfProductExistInOnlineShop(string);
             }catch (Exception e){}
         }
+    }
+
+    private void AddCagesLionIcon(){
+        File backGroundFile = new File("Data\\Textures\\Products\\CagedLion.png");
+        Image backGroundImage = new Image(backGroundFile.toURI().toString());
+        ImageView wildAnimal = new ImageView(backGroundImage);
+        wildAnimal.setFitHeight(70);
+        wildAnimal.setFitWidth(70);
+        wildAnimal.relocate(1250,550);
+        wildAnimal.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wildAnimal.setFitWidth(75);
+                wildAnimal.setFitHeight(75);
+                wildAnimal.relocate(1248,548);
+            }
+        });
+        wildAnimal.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                wildAnimal.setFitHeight(70);
+                wildAnimal.setFitWidth(70);
+                wildAnimal.relocate(1250,550);
+            }
+        });
+        root.getChildren().addAll(wildAnimal);
+        MakeWildAnimalIconViewSetOnMouseClick(wildAnimal);
+    }
+
+    private void MakeWildAnimalIconViewSetOnMouseClick(Node node){
+        int y;
+        node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                int StartYForPlayername = 350;
+                for (String playerName : Changes.getUserThatArePlayingMissionNow()) {
+                    Label labelResultForContact;
+                    labelResultForContact = new Label(playerName);
+                    labelResultForContact.setTextFill(Paint.valueOf("Black"));
+                    labelResultForContact.setFont(Font.font(25));
+                    labelResultForContact.setStyle("-fx-background-color: rgb(84,124,154);-fx-arc-height: 30;-fx-arc-width: 30");
+                    labelResultForContact.setOnMouseExited(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            labelResultForContact.setStyle("-fx-background-color: rgb(84,124,154);-fx-arc-height: 30;-fx-arc-width: 30");
+                        }
+                    });
+                    labelResultForContact.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            labelResultForContact.setStyle("-fx-background-color: rgb(114,154,184);-fx-arc-height: 30;-fx-arc-width: 30");
+                        }
+                    });
+                    labelResultForContact.relocate(1200, StartYForPlayername);
+                    currentOnlinePalyerNodes.add(labelResultForContact);
+                    root.getChildren().addAll(labelResultForContact);
+                    StartYForPlayername += 50;
+                    MakeOnlineLabelPlayerSetOnMouseClick(labelResultForContact);
+                }
+            }
+        });
+    }
+
+    private void MakeOnlineLabelPlayerSetOnMouseClick(Label node){
+        node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String contactName=node.getText();
+                TextField ipTextField=GameView.getGameView().getHostAndGuestView().getIpTextField();
+                int userMoney=Game.getGameInstance().getCurrentUserAccount().getMoney();
+                int moneyNeeded=800;
+                if (userMoney>moneyNeeded) {
+                    if (GameView.getGameView().getHostAndGuestView().getRoot().getChildren().contains(ipTextField)) {
+                        Changes.AddMassageToMassageThatShouldSend("W@" + contactName);
+                    } else {
+                        PVView pvView = findPvViewByUserName(contactName);
+                        pvView.AddDataToMassageToSendThatWeDidntSendThem("W@");
+                    }
+                    Game.getGameInstance().getCurrentUserAccount().setMoney(userMoney-moneyNeeded);
+                }else {
+                    try {
+                        throw new NotEnoughMoney();
+                    } catch (NotEnoughMoney enoughMoney) {
+                        enoughMoney.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }
