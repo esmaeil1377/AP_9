@@ -19,6 +19,10 @@ import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WareHouse;
 import FarmModel.User;
 import View.GameView;
 import View.Main;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -34,6 +38,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.net.Socket;
@@ -65,6 +70,7 @@ public class BazaarView {
     private Label maxNumberOfSewing = new Label("10");
 
     private ArrayList<Node> currentOnlinePalyerNodes=new ArrayList<>();
+    Rectangle onlinePlayerRectangle=new Rectangle(1150,250,300,400);
 
     private Text coinTextForSell = new Text("0");
     private Text coinTextForOrder = new Text("0");
@@ -3176,13 +3182,13 @@ public class BazaarView {
         ImageView wildAnimal = new ImageView(backGroundImage);
         wildAnimal.setFitHeight(70);
         wildAnimal.setFitWidth(70);
-        wildAnimal.relocate(1250,550);
+        wildAnimal.relocate(1250,650);
         wildAnimal.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 wildAnimal.setFitWidth(75);
                 wildAnimal.setFitHeight(75);
-                wildAnimal.relocate(1248,548);
+                wildAnimal.relocate(1248,655);
             }
         });
         wildAnimal.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -3190,7 +3196,7 @@ public class BazaarView {
             public void handle(MouseEvent event) {
                 wildAnimal.setFitHeight(70);
                 wildAnimal.setFitWidth(70);
-                wildAnimal.relocate(1250,550);
+                wildAnimal.relocate(1250,650);
             }
         });
         root.getChildren().addAll(wildAnimal);
@@ -3198,10 +3204,17 @@ public class BazaarView {
     }
 
     private void MakeWildAnimalIconViewSetOnMouseClick(Node node){
-        int y;
+
         node.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                OnlinePlayerRectangle();
+                for(Node node:currentOnlinePalyerNodes){
+                    if (root.getChildren().contains(node)){
+                        currentOnlinePalyerNodes.remove(node);
+                    }
+                }
+                currentOnlinePalyerNodes=new ArrayList<>();
                 int StartYForPlayername = 350;
                 for (String playerName : Changes.getUserThatArePlayingMissionNow()) {
                     Label labelResultForContact;
@@ -3222,6 +3235,7 @@ public class BazaarView {
                         }
                     });
                     labelResultForContact.relocate(1200, StartYForPlayername);
+                    labelResultForContact.setViewOrder(-0.96);
                     currentOnlinePalyerNodes.add(labelResultForContact);
                     root.getChildren().addAll(labelResultForContact);
                     StartYForPlayername += 50;
@@ -3257,4 +3271,31 @@ public class BazaarView {
             }
         });
     }
+
+    private void OnlinePlayerRectangle(){
+        onlinePlayerRectangle.setArcHeight(30);
+        onlinePlayerRectangle.setOpacity(0);
+        onlinePlayerRectangle.setArcWidth(30);
+        onlinePlayerRectangle.setFill(Paint.valueOf("White"));
+        onlinePlayerRectangle.setViewOrder(-0.95);
+        if(root.getChildren().contains(onlinePlayerRectangle)){
+            KeyValue opacity=new KeyValue(onlinePlayerRectangle.opacityProperty(),0);
+            KeyFrame opacityFrame=new KeyFrame(Duration.seconds(1),opacity);
+            Timeline timeline=new Timeline(opacityFrame);
+            timeline.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    root.getChildren().removeAll(onlinePlayerRectangle);
+                }
+            });
+            timeline.play();
+        }else{
+            root.getChildren().addAll(onlinePlayerRectangle);
+            KeyValue opacity=new KeyValue(onlinePlayerRectangle.opacityProperty(),0.6);
+            KeyFrame opacityFrame=new KeyFrame(Duration.seconds(1),opacity);
+            Timeline timeline=new Timeline(opacityFrame);
+            timeline.play();
+        }
+    }
+
 }

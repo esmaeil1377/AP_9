@@ -1,5 +1,6 @@
 package FarmModel.Internet.ReaderAndWriterRunnable;
 
+import FarmController.Exceptions.MissionNotLoaded;
 import FarmModel.Internet.Changes;
 import View.GameView;
 import View.ScenesAndMainGroupView.PVView;
@@ -9,6 +10,7 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.Scanner;
 
+import static FarmModel.Internet.ReaderAndWriterRunnable.ReaderForServer.AddLionInFarmRandomLy;
 import static View.ScenesAndMainGroupView.HostAndGuestView.findPvViewByUserName;
 
 public class ReaderForGuest implements Runnable{
@@ -81,7 +83,7 @@ public class ReaderForGuest implements Runnable{
         return null;
     }
 
-    private void GetDataNotMassageFromServer(String inputString, Socket socket) {
+    private void GetDataNotMassageFromServer(String inputString, Socket socket) throws MissionNotLoaded {
         if (inputString.substring(0,1).equals("C")){
             //it means server is sending the server Data.
             String data=inputString.substring(2);
@@ -118,6 +120,10 @@ public class ReaderForGuest implements Runnable{
             String data=inputString.substring(2);
             Changes.setDataForMaxNumberOfProductExistInOnlineShop(data);
             Changes.WeShouldReloadTheOnlineShop();
+        }else if (inputString.substring(0,1).equals("W")) {
+            String contactName = inputString.substring(2);
+            //it means we should release a wild animal in guest farm.
+            AddLionInFarmRandomLy();
         }
     }
 
@@ -131,5 +137,4 @@ public class ReaderForGuest implements Runnable{
         }
         return null;
     }
-
 }

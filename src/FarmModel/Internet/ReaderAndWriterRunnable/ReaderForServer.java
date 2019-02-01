@@ -1,6 +1,11 @@
 package FarmModel.Internet.ReaderAndWriterRunnable;
 
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmModel.Cell;
+import FarmModel.Farm;
+import FarmModel.Game;
 import FarmModel.Internet.Changes;
+import FarmModel.ObjectInMap15_15.LiveAnimals.Lion;
 import View.GameView;
 import View.ScenesAndMainGroupView.PVView;
 
@@ -87,7 +92,7 @@ public class ReaderForServer implements Runnable {
         }
     }
 
-    private static void GetDataNotMassageFromClient(String inputString, Socket socket) {
+    private static void GetDataNotMassageFromClient(String inputString, Socket socket) throws MissionNotLoaded {
         if (inputString.substring(0, 1).equals("C")) {
             //it means client is sending the client Data.
             String data = inputString.substring(2);
@@ -113,6 +118,22 @@ public class ReaderForServer implements Runnable {
             String data=inputString.substring(2);
             Changes.setDataForMaxNumberOfProductExistInOnlineShop(data);
             Changes.WeShouldReloadTheOnlineShop();
+        }else if (inputString.substring(0,1).equals("W")){
+            String contactName=inputString.substring(2);
+            if (contactName.length()>7){
+                if (contactName.substring(0,7).equals("Server:")){
+                    //it means we should release a wild animal in server farm.
+                    AddLionInFarmRandomLy();
+                }else{
+                    PVView pvView=findPvViewByUserName(contactName);
+                    pvView.AddDataToMassageToSendThatWeDidntSendThem("W@");
+                }
+            }else{
+                PVView pvView=findPvViewByUserName(contactName);
+                pvView.AddDataToMassageToSendThatWeDidntSendThem("W@");
+
+
+            }
         }
 
     }
@@ -134,6 +155,17 @@ public class ReaderForServer implements Runnable {
         for (String massage : GameView.getGameView().getHostAndGuestView().getHistoryMassage()) {
             pvView.getDataToSendThatWeDidntSendThem().add("@" + massage);
         }
+    }
+
+    public static void AddLionInFarmRandomLy() throws MissionNotLoaded {
+        Farm farm= Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm();
+        int randomX = ((int) (Math.random() * 15));
+        int randomY = ((int) (Math.random() * 15));
+        Cell randomCell = farm.getMap()[randomX][randomY];
+        Lion lion=new Lion();
+        lion.setX(randomX);
+        lion.setY(randomY);
+        randomCell.AddCellAMapObject(lion);
     }
 
 }
