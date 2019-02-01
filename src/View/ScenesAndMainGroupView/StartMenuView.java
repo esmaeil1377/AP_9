@@ -471,6 +471,7 @@ public class StartMenuView {
                 public void handle(MouseEvent event) {
                     StartingTheUserAccount();
                     HostAndGuestView hostAndGuestView=new HostAndGuestView(Main.getPrimaryStage());
+                    hostAndGuestView.AddServerIP();
                     hostAndGuestView.AddTextFieldToGetServerIPAndServerPort();
                     GameView.getGameView().setHostAndGuestView(hostAndGuestView);
                     Main.getPrimaryStage().setScene(hostAndGuestView.getScene());

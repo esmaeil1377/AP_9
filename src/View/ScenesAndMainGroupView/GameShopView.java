@@ -215,6 +215,15 @@ public class GameShopView extends View {
         customWorkShopRec.setArcWidth((int) (70 * xShift));
         customWorkShopRec.setFill(Color.rgb(64, 45, 67));
         customWorkShopRec.relocate((int) (980 * xShift), (int) (750 * yShift));
+        customWorkShopRec.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                CustomWorkShopView customWorkShopView=new CustomWorkShopView(primaryStage);
+                GameView.getGameView().setCustomWorkShopView(customWorkShopView);
+                primaryStage.setScene(customWorkShopView.getSceneCustomWorkShopView());
+                primaryStage.setFullScreen(true);
+            }
+        });
 
         Label customWorkShop = new Label("Custom WorkShop");
         customWorkShop.setTextFill(Color.BLACK);

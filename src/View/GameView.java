@@ -13,6 +13,7 @@ public class GameView {
     private HostAndGuestView hostAndGuestView;
     private CustomWorkShopView customWorkShopView;
 
+
     public HostAndGuestView getHostAndGuestView() {
         return hostAndGuestView;
     }

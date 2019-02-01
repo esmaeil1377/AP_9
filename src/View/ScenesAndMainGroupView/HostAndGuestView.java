@@ -45,6 +45,7 @@ public class HostAndGuestView extends View.View {
     private TextField portTextField = new TextField("8050");
     private int endHeightOfTheMassages = 120;
     private int endHeightOfTheContacts = 120;
+    Label clientIp=new Label("Client Ip: ");
     Rectangle scoreboardRectangle = new Rectangle(475, 900, 500, 600);
     //    private ServerSocketRunnable serverSocketRunnable;
 //    private ArrayList<String> massagedidntsent=new ArrayList<>();
@@ -54,6 +55,10 @@ public class HostAndGuestView extends View.View {
     private ArrayList<Node> currentContactsNode = new ArrayList<>();
     private ArrayList<String> currentPlayerNameSortbyMoney = new ArrayList<>();
     private ArrayList<Node> currentPlayerNodeSortbyMoney = new ArrayList<>();
+
+    public void setClientIp(int clientIpNumber) {
+        clientIp.setText("Client Ip: "+String.valueOf(clientIpNumber));
+    }
 
     public Group getRoot() {
         return root;
@@ -213,9 +218,11 @@ public class HostAndGuestView extends View.View {
         root.getChildren().addAll(contactLabel);
     }
 
-//    private void AddServerIP() {
-//        ServerSocket serverSocket = GameView.getGameView().getHostAndGuestView().getServerSocketRunnable().getServerSocket();
-//    }
+    public void AddServerIP() {
+        clientIp.relocate(800,60);
+        clientIp.setFont(Font.font(25));
+        root.getChildren().addAll(clientIp);
+    }
 
 
     public void ShowDataInPV(String str, int xForLocationToDetermineTheOwner) {
@@ -382,8 +389,13 @@ public class HostAndGuestView extends View.View {
     }
 
     private void AddTextFieldToGetPort() {
+        Rectangle userPortRec = new Rectangle(2, 2, 200, 40);
+        userPortRec.setArcWidth(15);
+        userPortRec.setArcHeight(15);
+
         userPort.relocate(1150, 56);
         userPort.setFont(Font.font(20));
+        userPort.setClip(userPortRec);
         root.getChildren().addAll(userPort);
 
     }
@@ -444,9 +456,13 @@ public class HostAndGuestView extends View.View {
         ipTextField.relocate(220, 56);
         portTextField.setFont(Font.font(20));
         portTextField.relocate(450, 56);
-        Rectangle ipRectangle = new Rectangle(0, 0, 200, 60);
+        Rectangle ipRectangle = new Rectangle(0, 0, 200, 42);
+        ipRectangle.setArcWidth(15);
+        ipRectangle.setArcHeight(15);
         ipTextField.setClip(ipRectangle);
-        Rectangle portRectangle = new Rectangle(0, 0, 200, 60);
+        Rectangle portRectangle = new Rectangle(0, 0, 200, 42);
+        portRectangle.setArcHeight(15);
+        portRectangle.setArcWidth(15);
         portTextField.setClip(portRectangle);
         root.getChildren().addAll(ipTextField, portTextField);
     }
