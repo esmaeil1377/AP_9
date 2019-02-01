@@ -9,6 +9,21 @@ public class Changes {
     private static ArrayList<String> massageShouldSendToServerForOtherUsersOrServerItSelf=new ArrayList<>();
     private static boolean weHaveUserNameError=false;
     private static ArrayList<String> userThatArePlayingMissionNow=new ArrayList<>();
+    private static boolean weShouldReloadTheOnlineShop=false;
+    private static String dataForMaxNumberOfProductExistInOnlineShop="";
+
+    public static String getDataForMaxNumberOfProductExistInOnlineShop() {
+        return dataForMaxNumberOfProductExistInOnlineShop;
+    }
+
+    public static void setDataForMaxNumberOfProductExistInOnlineShop(String dataForMaxNumberOfProductExistInOnlineShop) {
+        Changes.dataForMaxNumberOfProductExistInOnlineShop = dataForMaxNumberOfProductExistInOnlineShop;
+    }
+
+    public static void WeShouldReloadTheOnlineShop(){
+        weHaveUserNameError=true;
+    }
+
 
     public static void UpdatePlayingUsersArray(String userName,boolean isPlayingAMissionNow){
         if (isPlayingAMissionNow){

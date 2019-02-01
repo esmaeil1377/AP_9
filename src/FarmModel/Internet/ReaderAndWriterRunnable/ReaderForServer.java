@@ -109,7 +109,11 @@ public class ReaderForServer implements Runnable {
             }
             Changes.UpdatePlayingUsersArray(inputString.split("@")[1],isPlayingNow);
             NotifyingOtherUsersOfUserStateInMission(inputString);
-            }
+        }else if (inputString.substring(0,1).equals("B")){
+            String data=inputString.substring(2);
+            Changes.setDataForMaxNumberOfProductExistInOnlineShop(data);
+            Changes.WeShouldReloadTheOnlineShop();
+        }
 
     }
 

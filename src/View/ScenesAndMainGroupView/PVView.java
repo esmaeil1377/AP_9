@@ -426,7 +426,7 @@ public class PVView extends View.View {
             root.getChildren().removeAll(userIsPlayingNow);
         }
     }
-    public void setUserIsPlayingAMissionAndAddLebel(){
+    public void setUserIsPlayingAMissionAndAddLabel(){
         if (!root.getChildren().contains(userIsPlayingNow)) {
             root.getChildren().addAll(userIsPlayingNow);
         }
