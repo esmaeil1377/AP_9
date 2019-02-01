@@ -1,5 +1,13 @@
 package View.ScenesAndMainGroupView;
 
+import FarmController.Exceptions.MissionNotLoaded;
+import FarmController.Exceptions.NotEnoughMoney;
+import FarmController.Exceptions.UnknownObjectException;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Egg;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Milk;
+import FarmModel.ObjectInMap15_15.Product.AnimalsProduct.Wool;
+import FarmModel.ObjectInMap15_15.Product.Product;
+import FarmModel.ObjectInMap15_15.Product.WorkShopProduct.*;
 import FarmModel.ObjectOutOfMap15_15ButInTheBorderOfPlayGround.WorkShop.CustomWorkShop;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -18,14 +26,38 @@ import javafx.stage.Stage;
 import View.View;
 
 import java.io.File;
+import java.util.HashMap;
 
 public class CustomWorkShopView<Static> extends View {
     double xShift = 0.768;
     double yShift = 0.768;
     private String workShopName;
     public Integer i = 1;
+    private Product resultProduct;
     private TextField inputingTextField;
-    private CheckBox checkBoxField;
+    CheckBox checkBoxField_1;
+    CheckBox checkBoxField_2;
+    CheckBox checkBoxField_3;
+    CheckBox checkBoxField_4;
+    CheckBox checkBoxField_5;
+    CheckBox checkBoxField_6;
+    CheckBox checkBoxField_7;
+    CheckBox checkBoxField_8;
+    CheckBox checkBoxField_9;
+    CheckBox checkBoxField_10;
+    CheckBox checkBoxField_11;
+    CheckBox checkBoxField_12;
+    CheckBox checkBoxField_13;
+    CheckBox checkBoxField_14;
+    CheckBox checkBoxField_15;
+    CheckBox checkBoxField_16;
+    CheckBox checkBoxField_17;
+    CheckBox checkBoxField_18;
+    CheckBox checkBoxField_19;
+    CheckBox checkBoxField_20;
+    CheckBox checkBoxField_21;
+    CheckBox checkBoxField_22;
+    HashMap<Product, Integer> objectNeededToProduceOne=new HashMap<>();
     private Group rootCustomWorkShopViewView = new Group();
     private Scene sceneCustomWorkShopView = new Scene(rootCustomWorkShopViewView, (int) (xShift * 1600), (int) (yShift * 900));
 
@@ -65,6 +97,7 @@ public class CustomWorkShopView<Static> extends View {
         AddCarnivalDress(520);
         AddDecoration(520);
         AddSewing(520);
+        checkbox();
     }
 
     private void AddBackGround(Stage primaryStage) {
@@ -162,7 +195,15 @@ public class CustomWorkShopView<Static> extends View {
                 okButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-//                        CustomWorkShop customWorkShop = new CustomWorkShop(1,workShopName,)
+                        try {
+                            CustomWorkShop customWorkShop = new CustomWorkShop(1,workShopName,objectNeededToProduceOne,resultProduct);
+                        } catch (UnknownObjectException e) {
+                            e.printStackTrace();
+                        } catch (NotEnoughMoney notEnoughMoney) {
+                            notEnoughMoney.printStackTrace();
+                        } catch (MissionNotLoaded missionNotLoaded) {
+                            missionNotLoaded.printStackTrace();
+                        }
                     }
                 });
 
@@ -249,9 +290,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * 210));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * 222));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_12 = new CheckBox();
+        checkBoxField_12.relocate((int) (xShift * 950), (int) (yShift * 222));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_12);
     }
 
     private void AddWool() {
@@ -267,9 +308,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_13 = new CheckBox();
+        checkBoxField_13.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_13);
     }
 
     private void AddMilk() {
@@ -285,9 +326,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_14 = new CheckBox();
+        checkBoxField_14.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_14);
     }
 
     private void AddCookie() {
@@ -303,9 +344,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_15 = new CheckBox();
+        checkBoxField_15.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_15);
     }
 
     private void AddCake() {
@@ -321,9 +362,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_16 = new CheckBox();
+        checkBoxField_16.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_16);
     }
 
     private void AddPowder() {
@@ -339,9 +380,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_17 = new CheckBox();
+        checkBoxField_17.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_17);
     }
 
     private void AddFabric() {
@@ -357,9 +398,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_18 = new CheckBox();
+        checkBoxField_18.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_18);
     }
 
     private void AddFlour() {
@@ -375,9 +416,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_19 = new CheckBox();
+        checkBoxField_19.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_19);
     }
 
     private void AddSewing() {
@@ -393,9 +434,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_20 = new CheckBox();
+        checkBoxField_20.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_20);
     }
 
     private void AddDecoration() {
@@ -411,9 +452,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (xShift * 50));
         imageViewIcon.setFitWidth((int) (yShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_21 = new CheckBox();
+        checkBoxField_21.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_21);
     }
 
     private void AddCarnivalDress() {
@@ -429,9 +470,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * 805), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_22 = new CheckBox();
+        checkBoxField_22.relocate((int) (xShift * 950), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_22);
     }
 
     private void AddEgg(int xxShift) {
@@ -446,9 +487,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * 210));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * 222));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_1 = new CheckBox();
+        checkBoxField_1.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * 222));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_1);
     }
 
     private void AddWool(int xxShift) {
@@ -464,9 +505,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_2 = new CheckBox();
+        checkBoxField_2.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_2);
     }
 
     private void AddMilk(int xxShift) {
@@ -482,9 +523,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_3 = new CheckBox();
+        checkBoxField_3.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_3);
     }
 
     private void AddCookie(int xxShift) {
@@ -500,9 +541,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_4 = new CheckBox();
+        checkBoxField_4.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_4);
     }
 
     private void AddCake(int xxShift) {
@@ -518,9 +559,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (xShift * 50));
         imageViewIcon.setFitWidth((int) (yShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_5 = new CheckBox();
+        checkBoxField_5.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_5);
     }
 
     private void AddPowder(int xxShift) {
@@ -536,9 +577,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_6 = new CheckBox();
+        checkBoxField_6.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_6);
     }
 
     private void AddFabric(int xxShift) {
@@ -554,9 +595,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_7 = new CheckBox();
+        checkBoxField_7.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_7);
     }
 
     private void AddFlour(int xxShift) {
@@ -572,9 +613,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_8 = new CheckBox();
+        checkBoxField_8.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_8);
     }
 
     private void AddSewing(int xxShift) {
@@ -590,9 +631,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_9 = new CheckBox();
+        checkBoxField_9.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_9);
     }
 
     private void AddDecoration(int xxShift) {
@@ -608,9 +649,9 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_10 = new CheckBox();
+        checkBoxField_10.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_10);
     }
 
     private void AddCarnivalDress(int xxShift) {
@@ -626,9 +667,55 @@ public class CustomWorkShopView<Static> extends View {
         imageViewIcon.setFitHeight((int) (yShift * 50));
         imageViewIcon.setFitWidth((int) (xShift * 50));
         imageViewIcon.relocate((int) (xShift * (805 + xxShift)), (int) (yShift * (210 + shift)));
-        checkBoxField = new CheckBox();
-        checkBoxField.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
-        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField);
+        checkBoxField_11 = new CheckBox();
+        checkBoxField_11.relocate((int) (xShift * (950 + xxShift)), (int) (yShift * (222 + shift)));
+        rootCustomWorkShopViewView.getChildren().addAll(text, imageViewIcon, checkBoxField_11);
+    }
+    private void checkbox(){
+        if(checkBoxField_12.isSelected())
+            objectNeededToProduceOne.put(new Egg(),1);
+        if(checkBoxField_13.isSelected())
+            objectNeededToProduceOne.put(new Wool(),1);
+        if(checkBoxField_14.isSelected())
+            objectNeededToProduceOne.put(new Milk(),1);
+        if(checkBoxField_15.isSelected())
+            objectNeededToProduceOne.put(new Cake(),1);
+        if(checkBoxField_16.isSelected())
+            objectNeededToProduceOne.put(new FlouryCake(),1);
+        if(checkBoxField_17.isSelected())
+            objectNeededToProduceOne.put(new Powder(),1);
+        if(checkBoxField_18.isSelected())
+            objectNeededToProduceOne.put(new Fabric(),1);
+        if(checkBoxField_19.isSelected())
+            objectNeededToProduceOne.put(new Flour(),1);
+        if(checkBoxField_20.isSelected())
+            objectNeededToProduceOne.put(new Sewing(),1);
+        if(checkBoxField_21.isSelected())
+            objectNeededToProduceOne.put(new Decoration(),1);
+        if(checkBoxField_21.isSelected())
+            objectNeededToProduceOne.put(new CarnivalDress(),1);
+        if(checkBoxField_1.isSelected())
+            resultProduct = new Egg();
+        else if(checkBoxField_2.isSelected())
+            resultProduct = new Wool();
+        else if(checkBoxField_3.isSelected())
+            resultProduct = new Milk();
+       else if(checkBoxField_4.isSelected())
+            resultProduct = new Cake();
+        else if(checkBoxField_5.isSelected())
+            resultProduct = new FlouryCake();
+       else if(checkBoxField_6.isSelected())
+            resultProduct = new Powder();
+       else if(checkBoxField_7.isSelected())
+            resultProduct = new Fabric();
+       else if(checkBoxField_8.isSelected())
+            resultProduct = new Flour();
+        else if(checkBoxField_9.isSelected())
+            resultProduct = new Sewing();
+       else if(checkBoxField_10.isSelected())
+            resultProduct = new Decoration();
+        else if(checkBoxField_11.isSelected())
+            resultProduct = new CarnivalDress();
     }
 
     public void AddImage() {
