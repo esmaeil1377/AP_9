@@ -130,7 +130,7 @@ public class FarmView extends View {
         LoadMapIconTharWereBefore();
 
 
-        ShowBorderOfMsp();
+//        ShowBorderOfMsp();
 
         AddSpeedCircleToSettingInFarm(primaryStage);
         AddMenuClick(primaryStage);
