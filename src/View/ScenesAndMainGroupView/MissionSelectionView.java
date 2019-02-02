@@ -174,12 +174,12 @@ public class MissionSelectionView extends View {
             SHIFT = 25;
             for (Map.Entry map: hashMap.entrySet()) {
                 Label label1 = new Label(map.getKey().toString());
-                label1.relocate(1300 - 300 * Math.cos(i * 3.14 / 11) + 60 - 200, 550 - 300 * Math.sin(i * 3.14 / 11) + SHIFT - 140 );
+                label1.relocate(1300 - 300 * Math.cos(i * 3.14 / 11) + 60 - 200, 550 - 300 * Math.sin(i * 3.14 / 11) + SHIFT - 130 );
                 label1.setTextFill(Color.BLACK);
                 label1.setStyle("-fx-font: 25 Georgia; -fx-base: #030202;");
                 arrayListLabelOfObject[i - 20].add(label1);
                 Label label2 = new Label(map.getValue().toString());
-                label2.relocate(1300 - 300 * Math.cos(i * 3.14 / 11) + 230 - 200, 550 - 300 * Math.sin(i * 3.14 / 11) + SHIFT - 140);
+                label2.relocate(1300 - 300 * Math.cos(i * 3.14 / 11) + 230 - 200, 550 - 300 * Math.sin(i * 3.14 / 11) + SHIFT - 130);
                 label2.setTextFill(Color.BLACK);
                 label2.setStyle("-fx-font: 25 Georgia; -fx-base: #030202;");
                 arrayListLabelOfInteger[i - 20].add(label2);
