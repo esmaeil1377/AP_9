@@ -40,8 +40,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -131,7 +130,7 @@ public class FarmView extends View {
         LoadMapIconTharWereBefore();
 
 
-        ShowBorderOfMsp();
+//        ShowBorderOfMsp();
 
         AddSpeedCircleToSettingInFarm(primaryStage);
         AddMenuClick(primaryStage);
@@ -377,7 +376,7 @@ public class FarmView extends View {
                     String currentMissionName = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getMissionName();
                     animationTimer.stop();
                     FileInputStream fileInputStream;
-                    fileInputStream = new FileInputStream("SaveGameFile\\" + currentMissionName + ".txt");
+                    fileInputStream = new FileInputStream("SavedMissions\\" + currentMissionName + ".txt");
                     Mission mission;
                     YaGson mapper = new YaGson();
                     byte missionByte[] = fileInputStream.readAllBytes();
@@ -385,15 +384,16 @@ public class FarmView extends View {
                     for (byte b : missionByte) {
                         stringBuilder.append(String.valueOf((char) b));
                     }
-                    String userString = stringBuilder.toString();
+                    String missionString = stringBuilder.toString();
                     fileInputStream.close();
 
-                    mission = mapper.fromJson(userString, Mission.class);
+                    mission = mapper.fromJson(missionString, Mission.class);
                     Game.getGameInstance().getCurrentUserAccount().setCurrentPlayingMission(mission);
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         });
         restartImageView.setOnMouseEntered(new EventHandler<MouseEvent>() {

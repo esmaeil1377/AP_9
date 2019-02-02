@@ -25,18 +25,6 @@ public abstract class View {
     private Group root;
     private Scene scene;
 
-//    public static void getRequest() {
-//        String input;
-//        while (true) {
-//            input = scanner.nextLine();
-//            try {
-//                RequestAnalayzer(input);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
     public abstract void Start(Stage primaryStage) throws MissionNotLoaded, UnknownObjectException;
 
 
@@ -55,9 +43,9 @@ public abstract class View {
     }
 
     static void PlayStartingSound(){
-//        String path = "Data\\Voice\\BackgroundMusic1.mp3";
-//        String path1 = Paths.get(path).toUri().toString();
-//        AudioClip audioClip = new AudioClip(path1);
-//        audioClip.play();
+        String path = "Data\\Voice\\BackgroundMusic1.mp3";
+        String path1 = Paths.get(path).toUri().toString();
+        AudioClip audioClip = new AudioClip(path1);
+        audioClip.play();
     }
 }

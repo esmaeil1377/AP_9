@@ -99,6 +99,17 @@ public class WareHouse extends ObjectOutOfMap15_15ButInTheBorderOfPlayGround imp
             e.printStackTrace();
         }
     }
+    public void AddPiceOfObjectToWareHouse(Object object) throws MissionNotLoaded, FullWareHouse {
+        int spaceNeededForObjectInWareHouse = Game.getGameInstance().getCurrentUserAccount().getInformationNeededInGame().getSpaceNeededInWareHouse(object);
+        if (getRemainCapacityOfWareHouse() >= spaceNeededForObjectInWareHouse) {
+            wareHouseList.add(object);
+            RecordThisTransActionThatWholeObjectAddedToWareHouse(object);
+            setRemainCapacityOfWareHouse(getRemainCapacityOfWareHouse() - spaceNeededForObjectInWareHouse);
+            GameView.getGameView().getFarmView().AddNumberOfIconsInWarehouse(object.toString());
+        }else {
+            throw new FullWareHouse();
+        }
+    }
 
     public void RecordThisTransActionThatWholeObjectAddedToWareHouse(Object object) {
         Class classObject = object.getClass();

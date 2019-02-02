@@ -24,6 +24,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import View.View;
+import View.GameView;
 
 import java.io.File;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class CustomWorkShopView<Static> extends View {
     public void Start(Stage primaryStage) {
         AddBackGround(primaryStage);
         AddImage();
-        AddIcons();
+        AddIcons(primaryStage);
         AddEgg();
         AddMilk();
         AddWool();
@@ -113,9 +114,7 @@ public class CustomWorkShopView<Static> extends View {
         primaryStage.show();
     }
 
-    private void AddIcons() {
-
-
+    private void AddIcons(Stage primaryStage) {
         Rectangle rect_1 = new Rectangle((int) (xShift * 500), (int) (yShift * 875));
         rect_1.setOpacity(0.6);
         rect_1.setArcHeight(70);
@@ -183,29 +182,29 @@ public class CustomWorkShopView<Static> extends View {
                 okButtonView.setFitWidth((int) (xShift * 170));
             }
         });
-                okButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        okButtonView.setFitHeight((int) (yShift * 75));
-                        okButtonView.setFitWidth((int) (xShift * 160));
-                        okButtonView.relocate((int) (xShift * 750), (int) (yShift * 1000));
+        okButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                okButtonView.setFitHeight((int) (yShift * 75));
+                okButtonView.setFitWidth((int) (xShift * 160));
+                okButtonView.relocate((int) (xShift * 750), (int) (yShift * 1000));
 
+    }
+});
+        okButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    CustomWorkShop customWorkShop = new CustomWorkShop(1,workShopName,objectNeededToProduceOne,resultProduct);
+                } catch (UnknownObjectException e) {
+                    e.printStackTrace();
+                } catch (NotEnoughMoney notEnoughMoney) {
+                    notEnoughMoney.printStackTrace();
+                } catch (MissionNotLoaded missionNotLoaded) {
+                    missionNotLoaded.printStackTrace();
+                }
             }
         });
-                okButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        try {
-                            CustomWorkShop customWorkShop = new CustomWorkShop(1,workShopName,objectNeededToProduceOne,resultProduct);
-                        } catch (UnknownObjectException e) {
-                            e.printStackTrace();
-                        } catch (NotEnoughMoney notEnoughMoney) {
-                            notEnoughMoney.printStackTrace();
-                        } catch (MissionNotLoaded missionNotLoaded) {
-                            missionNotLoaded.printStackTrace();
-                        }
-                    }
-                });
 
         File okText = new File("Data\\Textures\\Service\\OkText.png");
         Image okTextImage = new Image(okText.toURI().toString());
@@ -253,6 +252,22 @@ public class CustomWorkShopView<Static> extends View {
 
             }
         });
+        cancelButtonView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cancelButtonView.setFitHeight((int) (yShift * 75));
+                cancelButtonView.setFitWidth((int) (xShift * 160));
+                cancelButtonView.relocate((int) (xShift * 925), (int) (yShift * 1000));
+            }
+        });
+        cancelButtonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getGameShopView().getScene());
+                primaryStage.setFullScreen(true);
+            }
+        });
+
         File cancelText = new File("Data\\MenuClick\\Cancel.png");
         Image cancelTextImage = new Image(cancelText.toURI().toString());
         ImageView cancelTextView = new ImageView(cancelTextImage);
@@ -267,7 +282,7 @@ public class CustomWorkShopView<Static> extends View {
                 cancelButtonView.setFitWidth((int) (xShift * 170));
             }
         });
-        okTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
+        cancelTextView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 cancelButtonView.setFitHeight((int) (yShift * 75));
@@ -275,6 +290,14 @@ public class CustomWorkShopView<Static> extends View {
                 cancelButtonView.relocate((int) (xShift * 925), (int) (yShift * 1000));
             }
         });
+        cancelTextView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(GameView.getGameView().getGameShopView().getScene());
+                primaryStage.setFullScreen(true);
+            }
+        });
+
         rootCustomWorkShopViewView.getChildren().addAll(outputTextView, inputTextView, nameTextView, okButtonView, okTextView, cancelButtonView, cancelTextView);
     }
 

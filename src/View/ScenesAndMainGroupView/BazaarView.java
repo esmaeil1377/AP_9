@@ -492,27 +492,27 @@ public class BazaarView {
     private void AddObjectWeOrderedToWareHouse() throws MissionNotLoaded, FullWareHouse {
         WareHouse wareHouse=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getFarm().getWareHouse();
         for(int i = 0; i<Integer.valueOf(labelButtonFlouryCakeToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new FlouryCake());
+            wareHouse.AddPiceOfObjectToWareHouse(new FlouryCake());
         }
         for(int i = 0; i<Integer.valueOf(labelButtonCakeToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new Cake());
+            wareHouse.AddPiceOfObjectToWareHouse(new Cake());
         }
         for(int i = 0; i<Integer.valueOf(labelButton1FlourToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new Flour());
+            wareHouse.AddPiceOfObjectToWareHouse(new Flour());
         }
         for(int i = 0; i<Integer.valueOf(labelButtonPowderToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new Powder());
+            wareHouse.AddPiceOfObjectToWareHouse(new Powder());
         }
         for(int i = 0; i<Integer.valueOf(labelButtonCarnivalDressToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new CarnivalDress());
+            wareHouse.AddPiceOfObjectToWareHouse(new CarnivalDress());
         }
         for(int i = 0; i<Integer.valueOf(labelButtonDecorationToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new Decoration());
+            wareHouse.AddPiceOfObjectToWareHouse(new Decoration());
         }for(int i = 0; i<Integer.valueOf(labelButtonFabricToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new Fabric());
+            wareHouse.AddPiceOfObjectToWareHouse(new Fabric());
         }
         for(int i = 0; i<Integer.valueOf(labelButtonSewingToOrder.getText()); i++){
-            wareHouse.AddWholeObjectToStore(new Sewing());
+            wareHouse.AddPiceOfObjectToWareHouse(new Sewing());
         }
 
     }
