@@ -1,5 +1,6 @@
 package FarmController.Exceptions;
 
+import FarmModel.Internet.Changes;
 import View.GameView;
 import View.Main;
 import javafx.scene.media.AudioClip;
@@ -11,6 +12,7 @@ public class MissionIsFinished extends Exception{
         PlayVictorySound();
         GameView.getGameView().getFarmView().getAnimationTimer().stop();
         GameView.getGameView().getFarmView().ShowMissionResultInTheEnd(Main.getPrimaryStage());
+        Changes.WeHaveNewContact();
     }
 
     private void PlayVictorySound() {

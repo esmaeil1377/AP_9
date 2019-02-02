@@ -377,7 +377,7 @@ public class FarmView extends View {
                     String currentMissionName = Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission().getMissionName();
                     animationTimer.stop();
                     FileInputStream fileInputStream;
-                    fileInputStream = new FileInputStream("SaveGameFile\\" + currentMissionName + ".txt");
+                    fileInputStream = new FileInputStream("SavedMissions\\" + currentMissionName + ".txt");
                     Mission mission;
                     YaGson mapper = new YaGson();
                     byte missionByte[] = fileInputStream.readAllBytes();

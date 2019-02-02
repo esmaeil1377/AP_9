@@ -278,6 +278,7 @@ public class TurnRequest extends Request {
             System.out.println(user.getCurrentPlayingMission().getMissionName()+" ended.");
             Mission mission=Game.getGameInstance().getCurrentUserAccount().getCurrentPlayingMission();
             user.setMissionFinished(mission);
+
             throw new MissionIsFinished();
         }
     }
